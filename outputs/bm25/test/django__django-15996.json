@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-15996",
+  "query": "Support for serialization of combination of Enum flags.\nDescription\n\t \n\t\t(last modified by Willem Van Onsem)\n\t \nIf we work with a field:\nregex_flags = models.IntegerField(default=re.UNICODE | re.IGNORECASE)\nThis is turned into a migration with:\ndefault=re.RegexFlag[None]\nThis is due to the fact that the EnumSerializer aims to work with the .name of the item, but if there is no single item for the given value, then there is no such name.\nIn that case, we can use enum._decompose to obtain a list of names, and create an expression to create the enum value by \"ORing\" the items together.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/serializer.py"
+    ],
+    "locations": [
+      "django/db/migrations/serializer.py::BaseSerializer",
+      "django/db/migrations/serializer.py::EnumSerializer",
+      "django/db/migrations/serializer.py::EnumSerializer.serialize"
+    ]
+  },
+  "predictions": [
+    "django/views/generic/detail.py::SingleObjectTemplateResponseMixin.get_template_names",
+    "django/template/defaulttags.py::regroup",
+    "django/db/models/query.py::prefetch_one_level",
+    "django/db/models/fields/related_descriptors.py::ForwardManyToOneDescriptor.__set__",
+    "django/db/models/sql/query.py::JoinPromoter.update_join_types",
+    "django/forms/widgets.py::Widget.id_for_label",
+    "tests/schema/tests.py::SchemaTests.test_add_field_default_transform",
+    "django/forms/fields.py::Field.__init__",
+    "django/db/models/fields/files.py::FileDescriptor.__get__",
+    "django/core/serializers/__init__.py::sort_dependencies"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "b30c0081d4d8a31ab7dc7f72a4c7099af606ef29",
+    "total_functions_indexed": 26129,
+    "retrieval_time_seconds": 0.9118287563323975
+  },
+  "raw_output": "[{\"doc_id\": \"django/views/generic/detail.py::SingleObjectTemplateResponseMixin.get_template_names\", \"score\": 105.3963849099257}, {\"doc_id\": \"django/template/defaulttags.py::regroup\", \"score\": 102.24202039569965}, {\"doc_id\": \"django/db/models/query.py::prefetch_one_level\", \"score\": 101.11224899776587}, {\"doc_id\": \"django/db/models/fields/related_descriptors.py::ForwardManyToOneDescriptor.__set__\", \"score\": 99.59035514770363}, {\"doc_id\": \"django/db/models/sql/query.py::JoinPromoter.update_join_types\", \"score\": 98.7214368050977}, {\"doc_id\": \"django/forms/widgets.py::Widget.id_for_label\", \"score\": 98.55576070079746}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_add_field_default_transform\", \"score\": 98.55482666594153}, {\"doc_id\": \"django/forms/fields.py::Field.__init__\", \"score\": 96.73549234676369}, {\"doc_id\": \"django/db/models/fields/files.py::FileDescriptor.__get__\", \"score\": 96.63336839860365}, {\"doc_id\": \"django/core/serializers/__init__.py::sort_dependencies\", \"score\": 96.15609508414741}]"
+}

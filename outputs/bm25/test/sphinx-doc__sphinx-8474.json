@@ -1,0 +1,32 @@
+{
+  "instance_id": "sphinx-doc__sphinx-8474",
+  "query": "v3.3 upgrade started generating \"WARNING: no number is assigned for table\" warnings\nWe've updated to Sphinx 3.3 in our documentation, and suddenly the following warning started popping up in our builds when we build either `singlehtml` or `latex`.:\r\n\r\n`WARNING: no number is assigned for table:`\r\n\r\nI looked through the changelog but it didn't seem like there was anything related to `numref` that was changed, but perhaps I missed something? Could anyone point me to a change in the numref logic so I can figure out where these warnings are coming from?\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/domains/std.py"
+    ],
+    "locations": [
+      "sphinx/domains/std.py::StandardDomain",
+      "sphinx/domains/std.py::StandardDomain._resolve_numref_xref"
+    ]
+  },
+  "predictions": [
+    "tests/test_build_html.py::test_numfig_with_numbered_toctree_warn",
+    "tests/test_build_html.py::test_numfig_with_prefix_warn",
+    "tests/test_build_html.py::test_numfig_with_secnum_depth_warn",
+    "tests/test_build_html.py::test_numfig_without_numbered_toctree_warn",
+    "doc/usage/extensions/example_google.py::example_generator",
+    "doc/usage/extensions/example_numpy.py::example_generator",
+    "sphinx/ext/doctest.py::DocTestBuilder.get_line_number",
+    "sphinx/util/stemmer/porter.py::PorterStemmer.stem",
+    "sphinx/util/__init__.py::rpartition",
+    "sphinx/domains/c.py::CObject._add_enumerator_to_parent"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "3ea1ec84cc610f7a9f4f6b354e264565254923ff",
+    "total_functions_indexed": 5557,
+    "retrieval_time_seconds": 0.2016284465789795
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_build_html.py::test_numfig_with_numbered_toctree_warn\", \"score\": 82.09252779415918}, {\"doc_id\": \"tests/test_build_html.py::test_numfig_with_prefix_warn\", \"score\": 82.09252779415918}, {\"doc_id\": \"tests/test_build_html.py::test_numfig_with_secnum_depth_warn\", \"score\": 82.09252779415918}, {\"doc_id\": \"tests/test_build_html.py::test_numfig_without_numbered_toctree_warn\", \"score\": 72.99590293963443}, {\"doc_id\": \"doc/usage/extensions/example_google.py::example_generator\", \"score\": 69.48811037549233}, {\"doc_id\": \"doc/usage/extensions/example_numpy.py::example_generator\", \"score\": 69.48811037549233}, {\"doc_id\": \"sphinx/ext/doctest.py::DocTestBuilder.get_line_number\", \"score\": 67.16284626357256}, {\"doc_id\": \"sphinx/util/stemmer/porter.py::PorterStemmer.stem\", \"score\": 64.35794086596626}, {\"doc_id\": \"sphinx/util/__init__.py::rpartition\", \"score\": 60.71445086448956}, {\"doc_id\": \"sphinx/domains/c.py::CObject._add_enumerator_to_parent\", \"score\": 60.38721477998614}]"
+}

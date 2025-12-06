@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11742",
+  "query": "Add check to ensure max_length fits longest choice.\nDescription\n\t\nThere is currently no check to ensure that Field.max_length is large enough to fit the longest value in Field.choices.\nThis would be very helpful as often this mistake is not noticed until an attempt is made to save a record with those values that are too long.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/__init__.py"
+    ],
+    "locations": [
+      "django/db/models/fields/__init__.py::Field",
+      "django/db/models/fields/__init__.py::Field._check_choices"
+    ]
+  },
+  "predictions": [
+    "django/db/models/fields/__init__.py::TextField.formfield",
+    "django/db/models/sql/query.py::Query.is_nullable",
+    "django/db/models/query_utils.py::check_rel_lookup_compatibility",
+    "django/db/models/sql/query.py::Query.deferred_to_data",
+    "django/db/models/base.py::Model.save",
+    "django/db/backends/oracle/operations.py::DatabaseOperations._foreign_key_constraints",
+    "django/db/backends/sqlite3/operations.py::DatabaseOperations._references_graph",
+    "tests/schema/tests.py::SchemaTests.test_add_field_default_transform",
+    "tests/file_storage/tests.py::FileFieldStorageTests.test_file_truncation",
+    "django/db/models/fields/related_descriptors.py::ManyToManyDescriptor.through"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "fee75d2aed4e58ada6567c464cfd22e89dc65f4a",
+    "total_functions_indexed": 22837,
+    "retrieval_time_seconds": 0.6545889377593994
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/fields/__init__.py::TextField.formfield\", \"score\": 61.69663676856558}, {\"doc_id\": \"django/db/models/sql/query.py::Query.is_nullable\", \"score\": 59.86427322331018}, {\"doc_id\": \"django/db/models/query_utils.py::check_rel_lookup_compatibility\", \"score\": 57.01492886078782}, {\"doc_id\": \"django/db/models/sql/query.py::Query.deferred_to_data\", \"score\": 56.9925758989463}, {\"doc_id\": \"django/db/models/base.py::Model.save\", \"score\": 56.90163895434731}, {\"doc_id\": \"django/db/backends/oracle/operations.py::DatabaseOperations._foreign_key_constraints\", \"score\": 54.475688516274396}, {\"doc_id\": \"django/db/backends/sqlite3/operations.py::DatabaseOperations._references_graph\", \"score\": 54.475688516274396}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_add_field_default_transform\", \"score\": 54.31214771665984}, {\"doc_id\": \"tests/file_storage/tests.py::FileFieldStorageTests.test_file_truncation\", \"score\": 53.07804064194854}, {\"doc_id\": \"django/db/models/fields/related_descriptors.py::ManyToManyDescriptor.through\", \"score\": 52.57933776471469}]"
+}

@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-13146",
+  "query": "Exponent doesn't fully simplify\nSay I have code like this:\n\n```\nimport sympy\nfrom sympy import *\nx=Symbol('x')\nexpr1 = S(1)/2*x**2.5\nexpr2 = S(1)*x**(S(5)/2)/2\nres = expr1-expr2\nres= simplify(res.evalf(5))\nprint res\n```\n\nThe output is\n`-0.5*x**2.5 + 0.5*x**2.5`\nHow do I simplify it to 0?\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/operations.py"
+    ],
+    "locations": [
+      "sympy/core/operations.py::AssocOp",
+      "sympy/core/operations.py::AssocOp._eval_evalf",
+      "sympy/core/operations.py::AssocOp.make_args"
+    ]
+  },
+  "predictions": [
+    "sympy/functions/special/tests/test_hyper.py::test_meijerg_eval",
+    "sympy/solvers/tests/test_solvers.py::test_quintics_1",
+    "sympy/simplify/sqrtdenest.py::_sqrt_match",
+    "sympy/integrals/meijerint.py::_meijerint_indefinite_1",
+    "sympy/polys/ring_series.py::rs_cot",
+    "sympy/combinatorics/permutations.py::Permutation.transpositions",
+    "sympy/simplify/tests/test_cse.py::test_cse_Indexed",
+    "sympy/solvers/tests/test_solveset.py::test_solve_quintics",
+    "sympy/calculus/finite_diff.py::finite_diff_weights",
+    "sympy/polys/polyroots.py::roots_quintic"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "b678d8103e48fdb1af335dbf0080b3d5366f2d17",
+    "total_functions_indexed": 21188,
+    "retrieval_time_seconds": 0.5586912631988525
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/functions/special/tests/test_hyper.py::test_meijerg_eval\", \"score\": 115.0298122841517}, {\"doc_id\": \"sympy/solvers/tests/test_solvers.py::test_quintics_1\", \"score\": 102.46751700044445}, {\"doc_id\": \"sympy/simplify/sqrtdenest.py::_sqrt_match\", \"score\": 102.24025480673198}, {\"doc_id\": \"sympy/integrals/meijerint.py::_meijerint_indefinite_1\", \"score\": 100.26383818946731}, {\"doc_id\": \"sympy/polys/ring_series.py::rs_cot\", \"score\": 99.87865612039539}, {\"doc_id\": \"sympy/combinatorics/permutations.py::Permutation.transpositions\", \"score\": 98.87748943680772}, {\"doc_id\": \"sympy/simplify/tests/test_cse.py::test_cse_Indexed\", \"score\": 96.73497041822829}, {\"doc_id\": \"sympy/solvers/tests/test_solveset.py::test_solve_quintics\", \"score\": 95.59871753285114}, {\"doc_id\": \"sympy/calculus/finite_diff.py::finite_diff_weights\", \"score\": 93.29616897713773}, {\"doc_id\": \"sympy/polys/polyroots.py::roots_quintic\", \"score\": 93.03282387920183}]"
+}

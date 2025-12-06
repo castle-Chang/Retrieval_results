@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-20049",
+  "query": "Point.vel() should calculate the velocity if possible\nIf you specify the orientation of two reference frames and then ask for the angular velocity between the two reference frames the angular velocity will be calculated. But if you try to do the same thing with velocities, this doesn't work. See below:\r\n\r\n```\r\nIn [1]: import sympy as sm                                                                               \r\n\r\nIn [2]: import sympy.physics.mechanics as me                                                             \r\n\r\nIn [3]: A = me.ReferenceFrame('A')                                                                       \r\n\r\nIn [5]: q = me.dynamicsymbols('q')                                                                       \r\n\r\nIn [6]: B = A.orientnew('B', 'Axis', (q, A.x))                                                           \r\n\r\nIn [7]: B.ang_vel_in(A)                                                                                  \r\nOut[7]: q'*A.x\r\n\r\nIn [9]: P = me.Point('P')                                                                                \r\n\r\nIn [10]: Q = me.Point('Q')                                                                               \r\n\r\nIn [11]: r = q*A.x + 2*q*A.y                                                                             \r\n\r\nIn [12]: Q.set_pos(P, r)                                                                                 \r\n\r\nIn [13]: Q.vel(A)                                                                                        \r\n---------------------------------------------------------------------------\r\nValueError                                Traceback (most recent call last)\r\n<ipython-input-13-0fc8041904cc> in <module>\r\n----> 1 Q.vel(A)\r\n\r\n~/miniconda3/lib/python3.6/site-packages/sympy/physics/vector/point.py in vel(self, frame)\r\n    453         if not (frame in self._vel_dict):\r\n    454             raise ValueError('Velocity of point ' + self.name + ' has not been'\r\n--> 455                              ' defined in ReferenceFrame ' + frame.name)\r\n    456         return self._vel_dict[frame]\r\n    457 \r\n\r\nValueError: Velocity of point Q has not been defined in ReferenceFrame A\r\n```\r\n\r\nThe expected result of the `Q.vel(A)` should be:\r\n\r\n```\r\nIn [14]: r.dt(A)                                                                                         \r\nOut[14]: q'*A.x + 2*q'*A.y\r\n```\r\n\r\nI think that this is possible. Maybe there is a reason it isn't implemented. But we should try to implement it because it is confusing why this works for orientations and not positions.\r\n\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/physics/vector/point.py"
+    ],
+    "locations": [
+      "sympy/physics/vector/point.py::Point",
+      "sympy/physics/vector/point.py::Point.v2pt_theory",
+      "sympy/physics/vector/point.py::Point.vel"
+    ]
+  },
+  "predictions": [
+    "sympy/physics/vector/point.py::Point.vel",
+    "sympy/physics/vector/point.py::Point.v1pt_theory",
+    "sympy/physics/vector/point.py::Point.v2pt_theory",
+    "sympy/physics/vector/point.py::Point.set_vel",
+    "sympy/physics/mechanics/rigidbody.py::RigidBody.kinetic_energy",
+    "sympy/physics/mechanics/particle.py::Particle.kinetic_energy",
+    "sympy/physics/vector/point.py::Point.a1pt_theory",
+    "sympy/physics/vector/point.py::Point.partial_velocity",
+    "sympy/physics/mechanics/rigidbody.py::RigidBody.angular_momentum",
+    "sympy/physics/mechanics/tests/test_kane2.py::test_aux_dep"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "d57aaf064041fe52c0fa357639b069100f8b28e1",
+    "total_functions_indexed": 35312,
+    "retrieval_time_seconds": 3.108656406402588
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/physics/vector/point.py::Point.vel\", \"score\": 490.7110344747679}, {\"doc_id\": \"sympy/physics/vector/point.py::Point.v1pt_theory\", \"score\": 473.35886508024447}, {\"doc_id\": \"sympy/physics/vector/point.py::Point.v2pt_theory\", \"score\": 466.2538751987714}, {\"doc_id\": \"sympy/physics/vector/point.py::Point.set_vel\", \"score\": 413.97185097014665}, {\"doc_id\": \"sympy/physics/mechanics/rigidbody.py::RigidBody.kinetic_energy\", \"score\": 406.5699001192621}, {\"doc_id\": \"sympy/physics/mechanics/particle.py::Particle.kinetic_energy\", \"score\": 406.2847327440269}, {\"doc_id\": \"sympy/physics/vector/point.py::Point.a1pt_theory\", \"score\": 405.2434743242488}, {\"doc_id\": \"sympy/physics/vector/point.py::Point.partial_velocity\", \"score\": 399.86155505242266}, {\"doc_id\": \"sympy/physics/mechanics/rigidbody.py::RigidBody.angular_momentum\", \"score\": 398.5735134448158}, {\"doc_id\": \"sympy/physics/mechanics/tests/test_kane2.py::test_aux_dep\", \"score\": 397.834182866121}]"
+}

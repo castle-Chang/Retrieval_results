@@ -1,0 +1,34 @@
+{
+  "instance_id": "matplotlib__matplotlib-24265",
+  "query": "[Bug]: Setting matplotlib.pyplot.style.library['seaborn-colorblind'] result in key error on matplotlib v3.6.1\n### Bug summary\n\nI have code that executes:\r\n```\r\nimport matplotlib.pyplot as plt\r\nthe_rc = plt.style.library[\"seaborn-colorblind\"]\r\n```\r\n\r\nUsing version 3.4.3 of matplotlib, this works fine. I recently installed my code on a machine with matplotlib version 3.6.1 and upon importing my code, this generated a key error for line `the_rc = plt.style.library[\"seaborn-colorblind\"]` saying \"seaborn-colorblind\" was a bad key.\n\n### Code for reproduction\n\n```python\nimport matplotlib.pyplot as plt\r\nthe_rc = plt.style.library[\"seaborn-colorblind\"]\n```\n\n\n### Actual outcome\n\nTraceback (most recent call last):\r\nKeyError: 'seaborn-colorblind'\n\n### Expected outcome\n\nseaborn-colorblind should be set as the matplotlib library style and I should be able to continue plotting with that style.\n\n### Additional information\n\n- Bug occurs with matplotlib version 3.6.1\r\n- Bug does not occur with matplotlib version 3.4.3\r\n- Tested on MacOSX and Ubuntu (same behavior on both)\n\n### Operating system\n\nOS/X\n\n### Matplotlib Version\n\n3.6.1\n\n### Matplotlib Backend\n\nMacOSX\n\n### Python version\n\n3.9.7\n\n### Jupyter version\n\n_No response_\n\n### Installation\n\npip\n",
+  "ground_truth": {
+    "files": [
+      "lib/matplotlib/style/core.py"
+    ],
+    "locations": [
+      "lib/matplotlib/style/core.py::_remove_blacklisted_style_params",
+      "lib/matplotlib/style/core.py::use",
+      "lib/matplotlib/style/core.py::update_nested_dict",
+      "lib/matplotlib/style/core.py::reload_library"
+    ]
+  },
+  "predictions": [
+    "lib/matplotlib/style/core.py::use",
+    "lib/matplotlib/tests/test_style.py::test_deprecated_seaborn_styles",
+    "lib/matplotlib/figure.py::Figure.__setstate__",
+    "lib/matplotlib/__init__.py::RcParams.__getitem__",
+    "lib/matplotlib/testing/conftest.py::mpl_test_settings",
+    "lib/matplotlib/style/core.py::update_user_library",
+    "lib/matplotlib/__init__.py::_get_executable_info",
+    "lib/matplotlib/__init__.py::_rc_params_in_file",
+    "lib/matplotlib/pyplot.py::xkcd",
+    "lib/matplotlib/style/core.py::load_base_library"
+  ],
+  "metadata": {
+    "repo": "matplotlib/matplotlib",
+    "commit": "e148998d9bed9d1b53a91587ad48f9bb43c7737f",
+    "total_functions_indexed": 9109,
+    "retrieval_time_seconds": 0.5565519332885742
+  },
+  "raw_output": "[{\"doc_id\": \"lib/matplotlib/style/core.py::use\", \"score\": 260.9838593097652}, {\"doc_id\": \"lib/matplotlib/tests/test_style.py::test_deprecated_seaborn_styles\", \"score\": 146.65996845507985}, {\"doc_id\": \"lib/matplotlib/figure.py::Figure.__setstate__\", \"score\": 143.90613863312558}, {\"doc_id\": \"lib/matplotlib/__init__.py::RcParams.__getitem__\", \"score\": 135.5955938658216}, {\"doc_id\": \"lib/matplotlib/testing/conftest.py::mpl_test_settings\", \"score\": 131.9602114297925}, {\"doc_id\": \"lib/matplotlib/style/core.py::update_user_library\", \"score\": 129.94842663492426}, {\"doc_id\": \"lib/matplotlib/__init__.py::_get_executable_info\", \"score\": 127.9782882285313}, {\"doc_id\": \"lib/matplotlib/__init__.py::_rc_params_in_file\", \"score\": 123.0971050377236}, {\"doc_id\": \"lib/matplotlib/pyplot.py::xkcd\", \"score\": 120.26646464656795}, {\"doc_id\": \"lib/matplotlib/style/core.py::load_base_library\", \"score\": 120.2593537067076}]"
+}

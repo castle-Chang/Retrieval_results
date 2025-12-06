@@ -1,0 +1,33 @@
+{
+  "instance_id": "psf__requests-863",
+  "query": "Allow lists in the dict values of the hooks argument\nCurrently the Request class has a .register_hook() method but it parses the dictionary it expects from it's hooks argument weirdly: the argument can only specify one hook function per hook.  If you pass in a list of hook functions per hook the code in Request.**init**() will wrap the list in a list which then fails when the hooks are consumed (since a list is not callable).  This is especially annoying since you can not use multiple hooks from a session.  The only way to get multiple hooks now is to create the request object without sending it, then call .register_hook() multiple times and then finally call .send().\n\nThis would all be much easier if Request.**init**() parsed the hooks parameter in a way that it accepts lists as it's values.\n\n",
+  "ground_truth": {
+    "files": [
+      "requests/models.py"
+    ],
+    "locations": [
+      "requests/models.py::Request",
+      "requests/models.py::Request.register_hook",
+      "requests/models.py::Request.deregister_hook"
+    ]
+  },
+  "predictions": [
+    "requests/sessions.py::Session.request",
+    "requests/hooks.py::dispatch_hook",
+    "requests/models.py::Request.__init__",
+    "requests/packages/urllib3/connectionpool.py::HTTPConnectionPool.urlopen",
+    "requests/api.py::request",
+    "requests/utils.py::parse_list_header",
+    "requests/packages/oauthlib/oauth1/rfc5849/__init__.py::Client.sign",
+    "requests/packages/oauthlib/oauth1/rfc5849/__init__.py::Server.validate_realm",
+    "requests/models.py::Request.register_hook",
+    "requests/models.py::Request.deregister_hook"
+  ],
+  "metadata": {
+    "repo": "psf/requests",
+    "commit": "a0df2cbb10419037d11d04352b3175405ab52941",
+    "total_functions_indexed": 627,
+    "retrieval_time_seconds": 0.034456491470336914
+  },
+  "raw_output": "[{\"doc_id\": \"requests/sessions.py::Session.request\", \"score\": 134.4914360823914}, {\"doc_id\": \"requests/hooks.py::dispatch_hook\", \"score\": 126.04112320469237}, {\"doc_id\": \"requests/models.py::Request.__init__\", \"score\": 125.094375064193}, {\"doc_id\": \"requests/packages/urllib3/connectionpool.py::HTTPConnectionPool.urlopen\", \"score\": 118.74785844300752}, {\"doc_id\": \"requests/api.py::request\", \"score\": 116.44463260179518}, {\"doc_id\": \"requests/utils.py::parse_list_header\", \"score\": 116.16240751726164}, {\"doc_id\": \"requests/packages/oauthlib/oauth1/rfc5849/__init__.py::Client.sign\", \"score\": 112.45106457790773}, {\"doc_id\": \"requests/packages/oauthlib/oauth1/rfc5849/__init__.py::Server.validate_realm\", \"score\": 109.79331374716807}, {\"doc_id\": \"requests/models.py::Request.register_hook\", \"score\": 108.47394325674152}, {\"doc_id\": \"requests/models.py::Request.deregister_hook\", \"score\": 107.0610477946064}]"
+}

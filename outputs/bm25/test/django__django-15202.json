@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-15202",
+  "query": "URLField throws ValueError instead of ValidationError on clean\nDescription\n\t\nforms.URLField( ).clean('////]@N.AN')\nresults in:\n\tValueError: Invalid IPv6 URL\n\tTraceback (most recent call last):\n\t File \"basic_fuzzer.py\", line 22, in TestOneInput\n\t File \"fuzzers.py\", line 350, in test_forms_URLField\n\t File \"django/forms/fields.py\", line 151, in clean\n\t File \"django/forms/fields.py\", line 136, in run_validators\n\t File \"django/core/validators.py\", line 130, in __call__\n\t File \"urllib/parse.py\", line 440, in urlsplit\n",
+  "ground_truth": {
+    "files": [
+      "django/core/validators.py"
+    ],
+    "locations": [
+      "django/core/validators.py::URLValidator",
+      "django/core/validators.py::URLValidator.__call__"
+    ]
+  },
+  "predictions": [
+    "django/core/files/base.py::File.__iter__",
+    "tests/staticfiles_tests/test_management.py::TestFindStatic.test_all_files",
+    "django/core/management/commands/makemessages.py::Command.copy_plural_forms",
+    "tests/serializers/test_jsonl.py::JsonlSerializerTestCase._get_field_values",
+    "tests/serializers/tests.py::SerializerAPITests.test_stream_class",
+    "django/views/i18n.py::JavaScriptCatalog._plural_string",
+    "django/db/backends/postgresql/introspection.py::DatabaseIntrospection.get_table_description",
+    "tests/staticfiles_tests/test_management.py::TestFindStatic.test_all_files_less_verbose",
+    "tests/serializers/test_jsonl.py::JsonlSerializerTestCase._get_pk_values",
+    "django/utils/text.py::wrap"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "4fd3044ca0135da903a70dfb66992293f529ecf1",
+    "total_functions_indexed": 25399,
+    "retrieval_time_seconds": 0.703895092010498
+  },
+  "raw_output": "[{\"doc_id\": \"django/core/files/base.py::File.__iter__\", \"score\": 106.63127161529971}, {\"doc_id\": \"tests/staticfiles_tests/test_management.py::TestFindStatic.test_all_files\", \"score\": 89.70908612340665}, {\"doc_id\": \"django/core/management/commands/makemessages.py::Command.copy_plural_forms\", \"score\": 83.84347500325504}, {\"doc_id\": \"tests/serializers/test_jsonl.py::JsonlSerializerTestCase._get_field_values\", \"score\": 83.37175020868546}, {\"doc_id\": \"tests/serializers/tests.py::SerializerAPITests.test_stream_class\", \"score\": 80.7968798647309}, {\"doc_id\": \"django/views/i18n.py::JavaScriptCatalog._plural_string\", \"score\": 79.74025996307047}, {\"doc_id\": \"django/db/backends/postgresql/introspection.py::DatabaseIntrospection.get_table_description\", \"score\": 78.38986595729767}, {\"doc_id\": \"tests/staticfiles_tests/test_management.py::TestFindStatic.test_all_files_less_verbose\", \"score\": 78.22867346999091}, {\"doc_id\": \"tests/serializers/test_jsonl.py::JsonlSerializerTestCase._get_pk_values\", \"score\": 76.35800682223127}, {\"doc_id\": \"django/utils/text.py::wrap\", \"score\": 74.55064123845712}]"
+}

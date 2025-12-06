@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-15400",
+  "query": "SimpleLazyObject doesn't implement __radd__\nDescription\n\t\nTechnically, there's a whole bunch of magic methods it doesn't implement, compared to a complete proxy implementation, like that of wrapt.ObjectProxy, but __radd__ being missing is the one that's biting me at the moment.\nAs far as I can tell, the implementation can't just be\n__radd__ = new_method_proxy(operator.radd)\nbecause that doesn't exist, which is rubbish.\n__radd__ = new_method_proxy(operator.attrgetter(\"__radd__\"))\nalso won't work because types may not have that attr, and attrgetter doesn't supress the exception (correctly)\nThe minimal implementation I've found that works for me is:\n\tdef __radd__(self, other):\n\t\tif self._wrapped is empty:\n\t\t\tself._setup()\n\t\treturn other + self._wrapped\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/functional.py"
+    ],
+    "locations": [
+      "django/utils/functional.py::SimpleLazyObject",
+      "django/utils/functional.py::SimpleLazyObject.__deepcopy__",
+      "django/utils/functional.py::partition"
+    ]
+  },
+  "predictions": [
+    "django/db/models/fields/reverse_related.py::ForeignObjectRel.__getstate__",
+    "django/db/models/fields/__init__.py::Field.db_type",
+    "django/contrib/gis/geos/mutable_list.py::ListMixin.__radd__",
+    "django/db/models/sql/query.py::JoinPromoter.update_join_types",
+    "django/db/models/query.py::QuerySet._next_is_sticky",
+    "django/db/models/expressions.py::Combinable.__radd__",
+    "django/core/files/storage.py::Storage.path",
+    "django/db/models/manager.py::BaseManager.all",
+    "django/contrib/sessions/backends/cache.py::SessionStore.create",
+    "tests/utils_tests/test_module_loading.py::DefaultLoader.test_loader"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "4c76ffc2d6c77c850b4bef8d9acc197d11c47937",
+    "total_functions_indexed": 25616,
+    "retrieval_time_seconds": 1.0417530536651611
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/fields/reverse_related.py::ForeignObjectRel.__getstate__\", \"score\": 109.9640241086837}, {\"doc_id\": \"django/db/models/fields/__init__.py::Field.db_type\", \"score\": 106.88357356680191}, {\"doc_id\": \"django/contrib/gis/geos/mutable_list.py::ListMixin.__radd__\", \"score\": 98.52703980850667}, {\"doc_id\": \"django/db/models/sql/query.py::JoinPromoter.update_join_types\", \"score\": 95.79903117463705}, {\"doc_id\": \"django/db/models/query.py::QuerySet._next_is_sticky\", \"score\": 95.21018635278747}, {\"doc_id\": \"django/db/models/expressions.py::Combinable.__radd__\", \"score\": 93.1126255874086}, {\"doc_id\": \"django/core/files/storage.py::Storage.path\", \"score\": 92.98817946410902}, {\"doc_id\": \"django/db/models/manager.py::BaseManager.all\", \"score\": 92.64451626280471}, {\"doc_id\": \"django/contrib/sessions/backends/cache.py::SessionStore.create\", \"score\": 92.43806767297603}, {\"doc_id\": \"tests/utils_tests/test_module_loading.py::DefaultLoader.test_loader\", \"score\": 92.03419484418349}]"
+}

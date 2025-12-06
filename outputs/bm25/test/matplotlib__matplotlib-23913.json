@@ -1,0 +1,32 @@
+{
+  "instance_id": "matplotlib__matplotlib-23913",
+  "query": "legend draggable as keyword\n<!--To help us understand and resolve your issue, please fill out the form to the best of your ability.-->\r\n<!--You can feel free to delete the sections that do not apply.-->\r\n\r\n### Feature request\r\n\r\n**There is not keyword to make legend draggable at creation**\r\n\r\n<!--A short 1-2 sentences that succinctly describes the bug-->\r\n\r\nIs there a code reason why one can not add a \"draggable=True\" keyword to the __init__ function for Legend?  This would be more handy than having to call it after legend creation.  And, naively, it would seem simple to do.  But maybe there is a reason why it would not work?\n",
+  "ground_truth": {
+    "files": [
+      "lib/matplotlib/legend.py"
+    ],
+    "locations": [
+      "lib/matplotlib/legend.py::Legend",
+      "lib/matplotlib/legend.py::Legend.__init__"
+    ]
+  },
+  "predictions": [
+    "lib/matplotlib/legend.py::_parse_legend_args",
+    "lib/matplotlib/axes/_axes.py::Axes.legend",
+    "lib/matplotlib/figure.py::FigureBase.legend",
+    "lib/matplotlib/backends/qt_compat.py::_maybe_allow_interrupt",
+    "lib/matplotlib/pyplot.py::show",
+    "lib/matplotlib/pyplot.py::subplot",
+    "lib/matplotlib/pyplot.py::axes",
+    "lib/matplotlib/legend.py::Legend.__init__",
+    "lib/matplotlib/legend.py::Legend.get_draggable",
+    "lib/matplotlib/figure.py::FigureBase.colorbar"
+  ],
+  "metadata": {
+    "repo": "matplotlib/matplotlib",
+    "commit": "5c4595267ccd3daf78f5fd05693b7ecbcd575c1e",
+    "total_functions_indexed": 9078,
+    "retrieval_time_seconds": 0.36034440994262695
+  },
+  "raw_output": "[{\"doc_id\": \"lib/matplotlib/legend.py::_parse_legend_args\", \"score\": 111.64534359406375}, {\"doc_id\": \"lib/matplotlib/axes/_axes.py::Axes.legend\", \"score\": 110.66607788794316}, {\"doc_id\": \"lib/matplotlib/figure.py::FigureBase.legend\", \"score\": 106.19098445796948}, {\"doc_id\": \"lib/matplotlib/backends/qt_compat.py::_maybe_allow_interrupt\", \"score\": 93.02522563272764}, {\"doc_id\": \"lib/matplotlib/pyplot.py::show\", \"score\": 92.14880665774011}, {\"doc_id\": \"lib/matplotlib/pyplot.py::subplot\", \"score\": 89.71784105300723}, {\"doc_id\": \"lib/matplotlib/pyplot.py::axes\", \"score\": 89.56195078777648}, {\"doc_id\": \"lib/matplotlib/legend.py::Legend.__init__\", \"score\": 89.39805189368573}, {\"doc_id\": \"lib/matplotlib/legend.py::Legend.get_draggable\", \"score\": 88.87538392444088}, {\"doc_id\": \"lib/matplotlib/figure.py::FigureBase.colorbar\", \"score\": 87.22908715774993}]"
+}

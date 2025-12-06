@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-11001",
+  "query": "Incorrect removal of order_by clause created as multiline RawSQL\nDescription\n\t\nHi.\nThe SQLCompiler is ripping off one of my \"order by\" clause, because he \"thinks\" the clause was already \"seen\" (in SQLCompiler.get_order_by()). I'm using expressions written as multiline RawSQLs, which are similar but not the same. \nThe bug is located in SQLCompiler.get_order_by(), somewhere around line computing part of SQL query without ordering:\nwithout_ordering = self.ordering_parts.search(sql).group(1)\nThe sql variable contains multiline sql. As a result, the self.ordering_parts regular expression is returning just a line containing ASC or DESC words. This line is added to seen set, and because my raw queries have identical last lines, only the first clasue is returing from SQLCompiler.get_order_by().\nAs a quick/temporal fix I can suggest making sql variable clean of newline characters, like this:\nsql_oneline = ' '.join(sql.split('\\n'))\nwithout_ordering = self.ordering_parts.search(sql_oneline).group(1)\nNote: beware of unicode (Py2.x u'') and EOL dragons (\\r).\nExample of my query:\n\treturn MyModel.objects.all().order_by(\n\t\tRawSQL('''\n\t\t\tcase when status in ('accepted', 'verification')\n\t\t\t\t then 2 else 1 end''', []).desc(),\n\t\tRawSQL('''\n\t\t\tcase when status in ('accepted', 'verification')\n\t\t\t\t then (accepted_datetime, preferred_datetime)\n\t\t\t\t else null end''', []).asc(),\n\t\tRawSQL('''\n\t\t\tcase when status not in ('accepted', 'verification')\n\t\t\t\t then (accepted_datetime, preferred_datetime, created_at)\n\t\t\t\t else null end''', []).desc())\nThe ordering_parts.search is returing accordingly:\n'\t\t\t\t then 2 else 1 end)'\n'\t\t\t\t else null end'\n'\t\t\t\t else null end'\nSecond RawSQL with a\t\t\t\t else null end part is removed from query.\nThe fun thing is that the issue can be solved by workaround by adding a space or any other char to the last line. \nSo in case of RawSQL I can just say, that current implementation of avoiding duplicates in order by clause works only for special/rare cases (or does not work in all cases). \nThe bug filed here is about wrong identification of duplicates (because it compares only last line of SQL passed to order by clause).\nHope my notes will help you fixing the issue. Sorry for my english.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/sql/compiler.py"
+    ],
+    "locations": [
+      "django/db/models/sql/compiler.py::SQLCompiler",
+      "django/db/models/sql/compiler.py::SQLCompiler.__init__",
+      "django/db/models/sql/compiler.py::SQLCompiler.setup_query"
+    ]
+  },
+  "predictions": [
+    "django/db/models/sql/compiler.py::SQLCompiler.get_order_by",
+    "django/db/models/sql/compiler.py::SQLCompiler.get_group_by",
+    "django/db/models/sql/query.py::JoinPromoter.update_join_types",
+    "django/db/models/sql/compiler.py::SQLCompiler.get_from_clause",
+    "django/db/models/sql/compiler.py::SQLInsertCompiler.field_as_sql",
+    "django/db/models/sql/compiler.py::SQLCompiler.get_select",
+    "django/db/backends/oracle/introspection.py::DatabaseIntrospection.get_table_description",
+    "django/db/models/sql/query.py::Query.build_filter",
+    "django/db/models/sql/query.py::Query.split_exclude",
+    "django/core/files/base.py::File.__iter__"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "ef082ebb84f00e38af4e8880d04e8365c2766d34",
+    "total_functions_indexed": 22464,
+    "retrieval_time_seconds": 3.310335397720337
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/sql/compiler.py::SQLCompiler.get_order_by\", \"score\": 341.6959060002589}, {\"doc_id\": \"django/db/models/sql/compiler.py::SQLCompiler.get_group_by\", \"score\": 326.78331359274034}, {\"doc_id\": \"django/db/models/sql/query.py::JoinPromoter.update_join_types\", \"score\": 272.3728149472545}, {\"doc_id\": \"django/db/models/sql/compiler.py::SQLCompiler.get_from_clause\", \"score\": 246.0518888695613}, {\"doc_id\": \"django/db/models/sql/compiler.py::SQLInsertCompiler.field_as_sql\", \"score\": 243.34885288157315}, {\"doc_id\": \"django/db/models/sql/compiler.py::SQLCompiler.get_select\", \"score\": 237.01537154836836}, {\"doc_id\": \"django/db/backends/oracle/introspection.py::DatabaseIntrospection.get_table_description\", \"score\": 233.45920572386467}, {\"doc_id\": \"django/db/models/sql/query.py::Query.build_filter\", \"score\": 232.0888540191482}, {\"doc_id\": \"django/db/models/sql/query.py::Query.split_exclude\", \"score\": 229.99614471536137}, {\"doc_id\": \"django/core/files/base.py::File.__iter__\", \"score\": 228.02857753853752}]"
+}

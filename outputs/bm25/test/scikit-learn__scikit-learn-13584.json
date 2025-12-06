@@ -1,0 +1,31 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-13584",
+  "query": "bug in print_changed_only in new repr: vector values\n```python\r\nimport sklearn\r\nimport numpy as np\r\nfrom sklearn.linear_model import LogisticRegressionCV\r\nsklearn.set_config(print_changed_only=True)\r\nprint(LogisticRegressionCV(Cs=np.array([0.1, 1])))\r\n```\r\n> ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()\r\n\r\nping @NicolasHug \r\n\n",
+  "ground_truth": {
+    "files": [
+      "sklearn/utils/_pprint.py"
+    ],
+    "locations": [
+      "sklearn/utils/_pprint.py::_changed_params"
+    ]
+  },
+  "predictions": [
+    "sklearn/_config.py::set_config",
+    "sklearn/utils/multiclass.py::type_of_target",
+    "sklearn/metrics/regression.py::mean_squared_log_error",
+    "sklearn/utils/tests/test_pprint.py::test_changed_only",
+    "sklearn/externals/_pilutil.py::imsave",
+    "sklearn/metrics/cluster/supervised.py::homogeneity_score",
+    "sklearn/metrics/regression.py::max_error",
+    "sklearn/metrics/classification.py::zero_one_loss",
+    "sklearn/feature_selection/base.py::SelectorMixin.get_support",
+    "sklearn/metrics/cluster/supervised.py::completeness_score"
+  ],
+  "metadata": {
+    "repo": "scikit-learn/scikit-learn",
+    "commit": "0e3c1879b06d839171b7d0a607d71bbb19a966a9",
+    "total_functions_indexed": 6972,
+    "retrieval_time_seconds": 0.17245197296142578
+  },
+  "raw_output": "[{\"doc_id\": \"sklearn/_config.py::set_config\", \"score\": 50.99087970968897}, {\"doc_id\": \"sklearn/utils/multiclass.py::type_of_target\", \"score\": 49.37851899673816}, {\"doc_id\": \"sklearn/metrics/regression.py::mean_squared_log_error\", \"score\": 48.37905831657199}, {\"doc_id\": \"sklearn/utils/tests/test_pprint.py::test_changed_only\", \"score\": 48.2975658480586}, {\"doc_id\": \"sklearn/externals/_pilutil.py::imsave\", \"score\": 48.27544008505206}, {\"doc_id\": \"sklearn/metrics/cluster/supervised.py::homogeneity_score\", \"score\": 47.503194774025594}, {\"doc_id\": \"sklearn/metrics/regression.py::max_error\", \"score\": 47.27926920933963}, {\"doc_id\": \"sklearn/metrics/classification.py::zero_one_loss\", \"score\": 47.13827375780748}, {\"doc_id\": \"sklearn/feature_selection/base.py::SelectorMixin.get_support\", \"score\": 46.435257252086515}, {\"doc_id\": \"sklearn/metrics/cluster/supervised.py::completeness_score\", \"score\": 46.28470532406982}]"
+}

@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-12171",
+  "query": "matematica code printer does not handle floats and derivatives correctly\nIn its current state the mathematica code printer does not handle Derivative(func(vars), deriver) \r\ne.g. Derivative(f(t), t) yields Derivative(f(t), t) instead of D[f[t],t]\r\n\r\nAlso floats with exponents are not handled correctly e.g. 1.0e-4 is not converted to 1.0*^-4\r\n\r\nThis has an easy fix by adding the following lines to MCodePrinter:\r\n\r\n\r\ndef _print_Derivative(self, expr):\r\n        return \"D[%s]\" % (self.stringify(expr.args, \", \"))\r\n\r\ndef _print_Float(self, expr):\r\n        res =str(expr)\r\n        return res.replace('e','*^') \r\n\r\n\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/mathematica.py"
+    ],
+    "locations": [
+      "sympy/printing/mathematica.py::MCodePrinter",
+      "sympy/printing/mathematica.py::MCodePrinter._print_Sum",
+      "sympy/printing/mathematica.py::mathematica_code"
+    ]
+  },
+  "predictions": [
+    "sympy/solvers/deutils.py::_preprocess",
+    "sympy/printing/fcode.py::FCodePrinter._print_Piecewise",
+    "sympy/calculus/euler.py::euler_equations",
+    "sympy/integrals/tests/test_meijerint.py::test_rewrite_single",
+    "sympy/core/function.py::Derivative.__new__",
+    "sympy/integrals/meijerint.py::_meijerint_indefinite_1",
+    "sympy/physics/vector/printing.py::init_vprinting",
+    "sympy/solvers/ode.py::ode_nth_linear_euler_eq_nonhomogeneous_undetermined_coefficients",
+    "sympy/integrals/meijerint.py::meijerint_inversion",
+    "sympy/integrals/risch.py::DifferentialExtension.__init__"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "ca6ef27272be31c9dc3753ede9232c39df9a75d8",
+    "total_functions_indexed": 20348,
+    "retrieval_time_seconds": 0.738924503326416
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/solvers/deutils.py::_preprocess\", \"score\": 133.8251290908378}, {\"doc_id\": \"sympy/printing/fcode.py::FCodePrinter._print_Piecewise\", \"score\": 119.42084100036433}, {\"doc_id\": \"sympy/calculus/euler.py::euler_equations\", \"score\": 119.33546834796965}, {\"doc_id\": \"sympy/integrals/tests/test_meijerint.py::test_rewrite_single\", \"score\": 114.84486280860473}, {\"doc_id\": \"sympy/core/function.py::Derivative.__new__\", \"score\": 112.53862731467093}, {\"doc_id\": \"sympy/integrals/meijerint.py::_meijerint_indefinite_1\", \"score\": 111.2048969204337}, {\"doc_id\": \"sympy/physics/vector/printing.py::init_vprinting\", \"score\": 108.79388674321599}, {\"doc_id\": \"sympy/solvers/ode.py::ode_nth_linear_euler_eq_nonhomogeneous_undetermined_coefficients\", \"score\": 106.87696040323445}, {\"doc_id\": \"sympy/integrals/meijerint.py::meijerint_inversion\", \"score\": 103.91614739756281}, {\"doc_id\": \"sympy/integrals/risch.py::DifferentialExtension.__init__\", \"score\": 102.74220043693157}]"
+}

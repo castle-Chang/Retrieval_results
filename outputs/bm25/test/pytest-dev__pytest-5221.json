@@ -1,0 +1,32 @@
+{
+  "instance_id": "pytest-dev__pytest-5221",
+  "query": "Display fixture scope with `pytest --fixtures`\nIt would be useful to show fixture scopes with `pytest --fixtures`; currently the only way to learn the scope of a fixture is look at the docs (when that is documented) or at the source code.\n",
+  "ground_truth": {
+    "files": [
+      "src/_pytest/python.py"
+    ],
+    "locations": [
+      "src/_pytest/python.py::_showfixtures_main",
+      "src/_pytest/python.py::write_docstring"
+    ]
+  },
+  "predictions": [
+    "src/_pytest/fixtures.py::fixture",
+    "src/_pytest/python.py::_find_parametrized_scope",
+    "src/_pytest/python.py::Metafunc.parametrize",
+    "testing/python/fixtures.py::TestScopeOrdering.test_func_closure_scopes_reordered",
+    "src/_pytest/fixtures.py::resolve_fixture_function",
+    "testing/test_pluginmanager.py::TestPytestPluginManagerBootstrapming.test_plugin_prevent_register_stepwise_on_cacheprovider_unregister",
+    "src/_pytest/python.py::pytest_configure",
+    "src/_pytest/compat.py::getfuncargnames",
+    "testing/python/fixtures.py::TestScopeOrdering.test_func_closure_with_native_fixtures",
+    "src/_pytest/outcomes.py::skip"
+  ],
+  "metadata": {
+    "repo": "pytest-dev/pytest",
+    "commit": "4a2fdce62b73944030cff9b3e52862868ca9584d",
+    "total_functions_indexed": 3466,
+    "retrieval_time_seconds": 0.07387447357177734
+  },
+  "raw_output": "[{\"doc_id\": \"src/_pytest/fixtures.py::fixture\", \"score\": 66.04660613017006}, {\"doc_id\": \"src/_pytest/python.py::_find_parametrized_scope\", \"score\": 50.40449621718193}, {\"doc_id\": \"src/_pytest/python.py::Metafunc.parametrize\", \"score\": 50.23381148005252}, {\"doc_id\": \"testing/python/fixtures.py::TestScopeOrdering.test_func_closure_scopes_reordered\", \"score\": 48.86517421775479}, {\"doc_id\": \"src/_pytest/fixtures.py::resolve_fixture_function\", \"score\": 45.784829970003436}, {\"doc_id\": \"testing/test_pluginmanager.py::TestPytestPluginManagerBootstrapming.test_plugin_prevent_register_stepwise_on_cacheprovider_unregister\", \"score\": 45.770571426000195}, {\"doc_id\": \"src/_pytest/python.py::pytest_configure\", \"score\": 45.70230586189423}, {\"doc_id\": \"src/_pytest/compat.py::getfuncargnames\", \"score\": 45.31477885451154}, {\"doc_id\": \"testing/python/fixtures.py::TestScopeOrdering.test_func_closure_with_native_fixtures\", \"score\": 45.18517133303998}, {\"doc_id\": \"src/_pytest/outcomes.py::skip\", \"score\": 44.302423874315416}]"
+}

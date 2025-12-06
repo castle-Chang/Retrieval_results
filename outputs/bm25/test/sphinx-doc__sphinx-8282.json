@@ -1,0 +1,36 @@
+{
+  "instance_id": "sphinx-doc__sphinx-8282",
+  "query": "autodoc_typehints does not effect to overloaded callables\n**Describe the bug**\r\nautodoc_typehints does not effect to overloaded callables.\r\n\r\n**To Reproduce**\r\n\r\n```\r\n# in conf.py\r\nautodoc_typehints = 'none'\r\n```\r\n```\r\n# in index.rst\r\n.. automodule:: example\r\n   :members:\r\n   :undoc-members:\r\n```\r\n```\r\n# in example.py\r\nfrom typing import overload\r\n\r\n\r\n@overload\r\ndef foo(x: int) -> int:\r\n    ...\r\n\r\n\r\n@overload\r\ndef foo(x: float) -> float:\r\n    ...\r\n\r\n\r\ndef foo(x):\r\n    return x\r\n```\r\n\r\n**Expected behavior**\r\nAll typehints for overloaded callables are obeyed `autodoc_typehints` setting.\r\n\r\n**Your project**\r\nNo\r\n\r\n**Screenshots**\r\nNo\r\n\r\n**Environment info**\r\n- OS: Mac\r\n- Python version: 3.8.2\r\n- Sphinx version: 3.1.0dev\r\n- Sphinx extensions: sphinx.ext.autodoc\r\n- Extra tools: No\r\n\r\n**Additional context**\r\nNo\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/ext/autodoc/__init__.py"
+    ],
+    "locations": [
+      "sphinx/ext/autodoc/__init__.py::FunctionDocumenter",
+      "sphinx/ext/autodoc/__init__.py::FunctionDocumenter.format_signature",
+      "sphinx/ext/autodoc/__init__.py::ClassDocumenter",
+      "sphinx/ext/autodoc/__init__.py::ClassDocumenter.format_signature",
+      "sphinx/ext/autodoc/__init__.py::MethodDocumenter",
+      "sphinx/ext/autodoc/__init__.py::MethodDocumenter.format_signature"
+    ]
+  },
+  "predictions": [
+    "tests/test_ext_autodoc.py::test_overload",
+    "tests/test_pycode_parser.py::test_typing_overload_import_as",
+    "tests/roots/test-ext-autodoc/target/overload.py::Foo.__new__",
+    "tests/test_pycode_parser.py::test_typing_overload_from_import",
+    "tests/roots/test-ext-autodoc/target/overload.py::sum",
+    "tests/roots/test-ext-autodoc/target/overload.py::Math.sum",
+    "tests/test_pycode_parser.py::test_typing_overload",
+    "tests/roots/test-ext-autodoc/target/overload.py::Foo.__new__",
+    "tests/roots/test-ext-autodoc/target/overload.py::Foo.__new__",
+    "sphinx/ext/autodoc/__init__.py::MethodDocumenter.format_signature"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "2c2335bbb8af99fa132e1573bbf45dc91584d5a2",
+    "total_functions_indexed": 5489,
+    "retrieval_time_seconds": 0.19774818420410156
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_ext_autodoc.py::test_overload\", \"score\": 99.30194613793687}, {\"doc_id\": \"tests/test_pycode_parser.py::test_typing_overload_import_as\", \"score\": 82.1523193038997}, {\"doc_id\": \"tests/roots/test-ext-autodoc/target/overload.py::Foo.__new__\", \"score\": 77.92240523316313}, {\"doc_id\": \"tests/test_pycode_parser.py::test_typing_overload_from_import\", \"score\": 73.46682894730905}, {\"doc_id\": \"tests/roots/test-ext-autodoc/target/overload.py::sum\", \"score\": 72.42377516798122}, {\"doc_id\": \"tests/roots/test-ext-autodoc/target/overload.py::Math.sum\", \"score\": 71.00095533728125}, {\"doc_id\": \"tests/test_pycode_parser.py::test_typing_overload\", \"score\": 70.55273715282662}, {\"doc_id\": \"tests/roots/test-ext-autodoc/target/overload.py::Foo.__new__\", \"score\": 68.96970065405004}, {\"doc_id\": \"tests/roots/test-ext-autodoc/target/overload.py::Foo.__new__\", \"score\": 66.7697102276961}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::MethodDocumenter.format_signature\", \"score\": 66.36380300329628}]"
+}

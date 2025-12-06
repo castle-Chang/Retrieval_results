@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-11422",
+  "query": "Autoreloader with StatReloader doesn't track changes in manage.py.\nDescription\n\t \n\t\t(last modified by Mariusz Felisiak)\n\t \nThis is a bit convoluted, but here we go.\nEnvironment (OSX 10.11):\n$ python -V\nPython 3.6.2\n$ pip -V\npip 19.1.1\n$ pip install Django==2.2.1\nSteps to reproduce:\nRun a server python manage.py runserver\nEdit the manage.py file, e.g. add print(): \ndef main():\n\tprint('sth')\n\tos.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ticket_30479.settings')\n\t...\nUnder 2.1.8 (and prior), this will trigger the auto-reloading mechanism. Under 2.2.1, it won't. As far as I can tell from the django.utils.autoreload log lines, it never sees the manage.py itself.\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/autoreload.py"
+    ],
+    "locations": [
+      "django/utils/autoreload.py::iter_modules_and_files"
+    ]
+  },
+  "predictions": [
+    "django/test/runner.py::RemoteTestResult.check_picklable",
+    "django/core/management/base.py::BaseCommand.create_parser",
+    "tests/annotations/tests.py::cxOracle_py3_bug",
+    "tests/expressions_case/tests.py::CaseExpressionTests.test_m2m_exclude",
+    "django/core/management/base.py::BaseCommand.run_from_argv",
+    "django/contrib/sites/management.py::create_default_site",
+    "django/db/migrations/questioner.py::InteractiveMigrationQuestioner._ask_default",
+    "django/core/management/__init__.py::ManagementUtility.execute",
+    "django/db/models/sql/query.py::JoinPromoter.update_join_types",
+    "tests/view_tests/tests/test_debug.py::ExceptionReporterTests.test_eol_support"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "df46b329e0900e9e4dc1d60816c1dce6dfc1094e",
+    "total_functions_indexed": 22501,
+    "retrieval_time_seconds": 1.2451133728027344
+  },
+  "raw_output": "[{\"doc_id\": \"django/test/runner.py::RemoteTestResult.check_picklable\", \"score\": 87.98135664073133}, {\"doc_id\": \"django/core/management/base.py::BaseCommand.create_parser\", \"score\": 86.46693586281938}, {\"doc_id\": \"tests/annotations/tests.py::cxOracle_py3_bug\", \"score\": 85.22972244917482}, {\"doc_id\": \"tests/expressions_case/tests.py::CaseExpressionTests.test_m2m_exclude\", \"score\": 83.0347358343762}, {\"doc_id\": \"django/core/management/base.py::BaseCommand.run_from_argv\", \"score\": 78.47795428042393}, {\"doc_id\": \"django/contrib/sites/management.py::create_default_site\", \"score\": 77.00213415017394}, {\"doc_id\": \"django/db/migrations/questioner.py::InteractiveMigrationQuestioner._ask_default\", \"score\": 75.69954868216881}, {\"doc_id\": \"django/core/management/__init__.py::ManagementUtility.execute\", \"score\": 74.2333266742761}, {\"doc_id\": \"django/db/models/sql/query.py::JoinPromoter.update_join_types\", \"score\": 73.31876150305142}, {\"doc_id\": \"tests/view_tests/tests/test_debug.py::ExceptionReporterTests.test_eol_support\", \"score\": 72.33709054911151}]"
+}

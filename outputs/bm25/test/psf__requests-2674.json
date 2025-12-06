@@ -1,0 +1,32 @@
+{
+  "instance_id": "psf__requests-2674",
+  "query": "urllib3 exceptions passing through requests API\nI don't know if it's a design goal of requests to hide urllib3's exceptions and wrap them around requests.exceptions types.\n\n(If it's not IMHO it should be, but that's another discussion)\n\nIf it is, I have at least two of them passing through that I have to catch in addition to requests' exceptions. They are requests.packages.urllib3.exceptions.DecodeError and requests.packages.urllib3.exceptions.TimeoutError (this one I get when a proxy timeouts)\n\nThanks!\n\n",
+  "ground_truth": {
+    "files": [
+      "requests/adapters.py"
+    ],
+    "locations": [
+      "requests/adapters.py::HTTPAdapter",
+      "requests/adapters.py::HTTPAdapter.send"
+    ]
+  },
+  "predictions": [
+    "requests/packages/chardet/jpcntx.py::JapaneseContextAnalysis.feed",
+    "requests/packages/urllib3/connectionpool.py::HTTPConnectionPool._get_conn",
+    "requests/adapters.py::HTTPAdapter.proxy_headers",
+    "requests/packages/urllib3/util/timeout.py::Timeout._validate_timeout",
+    "requests/packages/urllib3/util/timeout.py::Timeout.get_connect_duration",
+    "requests/packages/urllib3/connectionpool.py::HTTPConnectionPool.urlopen",
+    "requests/packages/urllib3/exceptions.py::LocationParseError.__init__",
+    "requests/utils.py::requote_uri",
+    "requests/packages/urllib3/connectionpool.py::HTTPConnectionPool._make_request",
+    "requests/utils.py::unquote_unreserved"
+  ],
+  "metadata": {
+    "repo": "psf/requests",
+    "commit": "0be38a0c37c59c4b66ce908731da15b401655113",
+    "total_functions_indexed": 700,
+    "retrieval_time_seconds": 0.026921987533569336
+  },
+  "raw_output": "[{\"doc_id\": \"requests/packages/chardet/jpcntx.py::JapaneseContextAnalysis.feed\", \"score\": 59.363103196011515}, {\"doc_id\": \"requests/packages/urllib3/connectionpool.py::HTTPConnectionPool._get_conn\", \"score\": 57.25799049179338}, {\"doc_id\": \"requests/adapters.py::HTTPAdapter.proxy_headers\", \"score\": 56.279664225235784}, {\"doc_id\": \"requests/packages/urllib3/util/timeout.py::Timeout._validate_timeout\", \"score\": 56.15262761295821}, {\"doc_id\": \"requests/packages/urllib3/util/timeout.py::Timeout.get_connect_duration\", \"score\": 53.270150208491266}, {\"doc_id\": \"requests/packages/urllib3/connectionpool.py::HTTPConnectionPool.urlopen\", \"score\": 52.52533339563002}, {\"doc_id\": \"requests/packages/urllib3/exceptions.py::LocationParseError.__init__\", \"score\": 52.14417720382224}, {\"doc_id\": \"requests/utils.py::requote_uri\", \"score\": 51.91562366686496}, {\"doc_id\": \"requests/packages/urllib3/connectionpool.py::HTTPConnectionPool._make_request\", \"score\": 51.658151815388266}, {\"doc_id\": \"requests/utils.py::unquote_unreserved\", \"score\": 51.39326862764391}]"
+}

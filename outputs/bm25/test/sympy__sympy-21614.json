@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-21614",
+  "query": "Wrong Derivative kind attribute\nI'm playing around with the `kind` attribute.\r\n\r\nThe following is correct:\r\n\r\n```\r\nfrom sympy import Integral, Derivative\r\nfrom sympy import MatrixSymbol\r\nfrom sympy.abc import x\r\nA = MatrixSymbol('A', 2, 2)\r\ni = Integral(A, x)\r\ni.kind\r\n# MatrixKind(NumberKind)\r\n```\r\n\r\nThis one is wrong:\r\n```\r\nd = Derivative(A, x)\r\nd.kind\r\n# UndefinedKind\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/function.py"
+    ],
+    "locations": [
+      "sympy/core/function.py::Derivative",
+      "sympy/core/function.py::Derivative.free_symbols",
+      "sympy/core/function.py::Derivative._eval_subs"
+    ]
+  },
+  "predictions": [
+    "sympy/core/tests/test_kind.py::test_Integral_kind",
+    "sympy/functions/combinatorial/numbers.py::stirling",
+    "sympy/core/tests/test_kind.py::test_NumberKind",
+    "sympy/tensor/functions.py::shape",
+    "sympy/core/tests/test_kind.py::test_mul_kind",
+    "sympy/core/tests/test_kind.py::test_MatMul_kind",
+    "sympy/core/tests/test_kind.py::test_Add_kind",
+    "sympy/core/kind.py::KindDispatcher.dispatch_kinds",
+    "sympy/core/tests/test_kind.py::test_Symbol_kind",
+    "sympy/testing/randtest.py::test_derivative_numerically"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "b4777fdcef467b7132c055f8ac2c9a5059e6a145",
+    "total_functions_indexed": 36564,
+    "retrieval_time_seconds": 0.9095749855041504
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/tests/test_kind.py::test_Integral_kind\", \"score\": 120.59179575220392}, {\"doc_id\": \"sympy/functions/combinatorial/numbers.py::stirling\", \"score\": 97.22174427245355}, {\"doc_id\": \"sympy/core/tests/test_kind.py::test_NumberKind\", \"score\": 92.8399354107755}, {\"doc_id\": \"sympy/tensor/functions.py::shape\", \"score\": 92.3658170283163}, {\"doc_id\": \"sympy/core/tests/test_kind.py::test_mul_kind\", \"score\": 91.25447644409408}, {\"doc_id\": \"sympy/core/tests/test_kind.py::test_MatMul_kind\", \"score\": 90.34433261961996}, {\"doc_id\": \"sympy/core/tests/test_kind.py::test_Add_kind\", \"score\": 88.34679580608325}, {\"doc_id\": \"sympy/core/kind.py::KindDispatcher.dispatch_kinds\", \"score\": 85.76571644030989}, {\"doc_id\": \"sympy/core/tests/test_kind.py::test_Symbol_kind\", \"score\": 81.93011891724852}, {\"doc_id\": \"sympy/testing/randtest.py::test_derivative_numerically\", \"score\": 77.10429718606578}]"
+}

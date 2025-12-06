@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-13437",
+  "query": "bell(n).limit(n, oo) should be oo rather than bell(oo)\n`bell(n).limit(n,oo)` should take the value infinity, but the current output is `bell(oo)`. As the Bell numbers represent the number of partitions of a set, it seems natural that `bell(oo)` should be able to be evaluated rather than be returned unevaluated. This issue is also in line with the recent fixes to the corresponding limit for the Fibonacci numbers and Lucas numbers.\n\n```\nfrom sympy import *\nn = symbols('n')\nbell(n).limit(n,oo)\n\nOutput:\nbell(oo)\n```\n\nI'm new to Sympy, so I'd appreciate the opportunity to fix this bug myself if that's alright.\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/functions/combinatorial/numbers.py"
+    ],
+    "locations": [
+      "sympy/functions/combinatorial/numbers.py::bell",
+      "sympy/functions/combinatorial/numbers.py::bell._bell_incomplete_poly"
+    ]
+  },
+  "predictions": [
+    "sympy/functions/combinatorial/numbers.py::stirling",
+    "sympy/functions/combinatorial/tests/test_comb_numbers.py::test_bell",
+    "sympy/utilities/iterables.py::multiset_partitions",
+    "sympy/functions/combinatorial/numbers.py::bell._bell_incomplete_poly",
+    "sympy/series/gruntz.py::gruntz",
+    "sympy/functions/combinatorial/numbers.py::nT",
+    "sympy/concrete/summations.py::summation",
+    "sympy/ntheory/factor_.py::pollard_pm1",
+    "sympy/printing/tests/test_conventions.py::test_requires_partial",
+    "sympy/integrals/integrals.py::Integral.as_sum"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "674afc619d7f5c519b6a5393a8b0532a131e57e0",
+    "total_functions_indexed": 22202,
+    "retrieval_time_seconds": 1.094372272491455
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/functions/combinatorial/numbers.py::stirling\", \"score\": 237.43439245298285}, {\"doc_id\": \"sympy/functions/combinatorial/tests/test_comb_numbers.py::test_bell\", \"score\": 202.55724185721587}, {\"doc_id\": \"sympy/utilities/iterables.py::multiset_partitions\", \"score\": 202.48440975051327}, {\"doc_id\": \"sympy/functions/combinatorial/numbers.py::bell._bell_incomplete_poly\", \"score\": 192.07402559192406}, {\"doc_id\": \"sympy/series/gruntz.py::gruntz\", \"score\": 179.8363238542418}, {\"doc_id\": \"sympy/functions/combinatorial/numbers.py::nT\", \"score\": 178.69420468210245}, {\"doc_id\": \"sympy/concrete/summations.py::summation\", \"score\": 177.9711874899967}, {\"doc_id\": \"sympy/ntheory/factor_.py::pollard_pm1\", \"score\": 175.92591986372895}, {\"doc_id\": \"sympy/printing/tests/test_conventions.py::test_requires_partial\", \"score\": 173.76536910643193}, {\"doc_id\": \"sympy/integrals/integrals.py::Integral.as_sum\", \"score\": 170.82083216046811}]"
+}

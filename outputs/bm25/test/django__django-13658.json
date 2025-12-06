@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-13658",
+  "query": "ManagementUtility instantiates CommandParser without passing already-computed prog argument\nDescription\n\t\nManagementUtility ​goes to the trouble to parse the program name from the argv it's passed rather than from sys.argv: \n\tdef __init__(self, argv=None):\n\t\tself.argv = argv or sys.argv[:]\n\t\tself.prog_name = os.path.basename(self.argv[0])\n\t\tif self.prog_name == '__main__.py':\n\t\t\tself.prog_name = 'python -m django'\nBut then when it needs to parse --pythonpath and --settings, it ​uses the program name from sys.argv: \n\t\tparser = CommandParser(usage='%(prog)s subcommand [options] [args]', add_help=False, allow_abbrev=False)\nAbove \"%(prog)s\" ​refers to sys.argv[0]. Instead, it should refer to self.prog_name. This can fixed as follows:\n\t\tparser = CommandParser(\n\t\t\tprog=self.prog_name,\n\t\t\tusage='%(prog)s subcommand [options] [args]',\n\t\t\tadd_help=False,\n\t\t\tallow_abbrev=False)\nI'm aware that execute_from_command_line is a private API, but it'd be really convenient for me if it worked properly in my weird embedded environment where sys.argv[0] is ​incorrectly None. If passing my own argv to execute_from_command_line avoided all the ensuing exceptions, I wouldn't have to modify sys.argv[0] globally as I'm doing in the meantime.\n",
+  "ground_truth": {
+    "files": [
+      "django/core/management/__init__.py"
+    ],
+    "locations": [
+      "django/core/management/__init__.py::ManagementUtility",
+      "django/core/management/__init__.py::ManagementUtility.execute"
+    ]
+  },
+  "predictions": [
+    "django/core/management/__init__.py::ManagementUtility.__init__",
+    "django/core/management/__init__.py::ManagementUtility.execute",
+    "django/utils/autoreload.py::get_child_arguments",
+    "django/core/management/utils.py::get_command_line_option",
+    "django/core/management/base.py::BaseCommand.run_from_argv",
+    "django/core/management/__init__.py::execute_from_command_line",
+    "tests/utils_tests/test_autoreload.py::RestartWithReloaderTests.patch_autoreload",
+    "tests/bash_completion/tests.py::BashCompletionTests._run_autocomplete",
+    "django/core/management/commands/test.py::Command.run_from_argv",
+    "django/core/management/__init__.py::ManagementUtility.fetch_command"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "0773837e15bb632afffb6848a58c59a791008fa1",
+    "total_functions_indexed": 24119,
+    "retrieval_time_seconds": 1.712937593460083
+  },
+  "raw_output": "[{\"doc_id\": \"django/core/management/__init__.py::ManagementUtility.__init__\", \"score\": 377.86553970175606}, {\"doc_id\": \"django/core/management/__init__.py::ManagementUtility.execute\", \"score\": 306.15172460101473}, {\"doc_id\": \"django/utils/autoreload.py::get_child_arguments\", \"score\": 292.7924749692538}, {\"doc_id\": \"django/core/management/utils.py::get_command_line_option\", \"score\": 253.31026249669685}, {\"doc_id\": \"django/core/management/base.py::BaseCommand.run_from_argv\", \"score\": 244.68181005773812}, {\"doc_id\": \"django/core/management/__init__.py::execute_from_command_line\", \"score\": 226.55099065292004}, {\"doc_id\": \"tests/utils_tests/test_autoreload.py::RestartWithReloaderTests.patch_autoreload\", \"score\": 214.64366552189549}, {\"doc_id\": \"tests/bash_completion/tests.py::BashCompletionTests._run_autocomplete\", \"score\": 209.79936321910733}, {\"doc_id\": \"django/core/management/commands/test.py::Command.run_from_argv\", \"score\": 203.70457006255097}, {\"doc_id\": \"django/core/management/__init__.py::ManagementUtility.fetch_command\", \"score\": 194.7930086804102}]"
+}

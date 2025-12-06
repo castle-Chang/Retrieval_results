@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-20212",
+  "query": "0**-oo produces 0, the documentation says it should produce zoo\nUsing SymPy 1.5.1, evaluate `0**-oo` produces `0`.\r\n\r\nThe documentation for the Pow class states that it should return `ComplexInfinity`, aka `zoo`\r\n\r\n| expr | value | reason |\r\n| :-- | :-- | :--|\r\n| `0**-oo` | `zoo` | This is not strictly true, as 0**oo may be oscillating between positive and negative values or rotating in the complex plane. It is convenient, however, when the base is positive.|\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/power.py"
+    ],
+    "locations": [
+      "sympy/core/power.py::Pow",
+      "sympy/core/power.py::Pow.__new__"
+    ]
+  },
+  "predictions": [
+    "sympy/solvers/inequalities.py::_solve_inequality",
+    "sympy/combinatorics/permutations.py::Permutation.apply",
+    "sympy/series/limits.py::limit",
+    "sympy/core/tests/test_relational.py::test_issue_10401",
+    "sympy/core/tests/test_singleton.py::test_names_in_namespace",
+    "sympy/core/numbers.py::mpf_norm",
+    "sympy/solvers/solveset.py::_invert_abs",
+    "sympy/core/tests/test_numbers.py::test_zoo",
+    "sympy/core/expr.py::Expr.equals",
+    "sympy/physics/mechanics/kane.py::KanesMethod.linearize"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "a106f4782a9dbe7f8fd16030f15401d977e03ae9",
+    "total_functions_indexed": 35357,
+    "retrieval_time_seconds": 1.01633882522583
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/solvers/inequalities.py::_solve_inequality\", \"score\": 109.034789845458}, {\"doc_id\": \"sympy/combinatorics/permutations.py::Permutation.apply\", \"score\": 108.8254375418869}, {\"doc_id\": \"sympy/series/limits.py::limit\", \"score\": 106.14893123481184}, {\"doc_id\": \"sympy/core/tests/test_relational.py::test_issue_10401\", \"score\": 106.12780812653519}, {\"doc_id\": \"sympy/core/tests/test_singleton.py::test_names_in_namespace\", \"score\": 101.02626415468927}, {\"doc_id\": \"sympy/core/numbers.py::mpf_norm\", \"score\": 100.69001652938505}, {\"doc_id\": \"sympy/solvers/solveset.py::_invert_abs\", \"score\": 96.71361781885025}, {\"doc_id\": \"sympy/core/tests/test_numbers.py::test_zoo\", \"score\": 95.84506430622244}, {\"doc_id\": \"sympy/core/expr.py::Expr.equals\", \"score\": 95.65795222330236}, {\"doc_id\": \"sympy/physics/mechanics/kane.py::KanesMethod.linearize\", \"score\": 95.62282654940736}]"
+}

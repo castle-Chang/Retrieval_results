@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-20442",
+  "query": "convert_to seems to combine orthogonal units\nTested in sympy 1.4, not presently in a position to install 1.5+.\r\nSimple example. Consider `J = kg*m**2/s**2 => J*s = kg*m**2/s`. The convert_to behavior is odd:\r\n```\r\n>>>convert_to(joule*second,joule)\r\n    joule**(7/9)\r\n```\r\nI would expect the unchanged original expression back, an expression in terms of base units, or an error. It appears that convert_to can only readily handle conversions where the full unit expression is valid.\r\n\r\nNote that the following three related examples give sensible results:\r\n```\r\n>>>convert_to(joule*second,joule*second)\r\n    joule*second\r\n```\r\n```\r\n>>>convert_to(J*s, kg*m**2/s)\r\n    kg*m**2/s\r\n```\r\n```\r\n>>>convert_to(J*s,mins)\r\n    J*mins/60\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/physics/units/util.py"
+    ],
+    "locations": [
+      "sympy/physics/units/util.py::_get_conversion_matrix_for_expr"
+    ]
+  },
+  "predictions": [
+    "sympy/printing/pretty/tests/test_pretty.py::test_units",
+    "sympy/physics/units/tests/test_unit_system_cgs_gauss.py::test_conversion_to_from_si",
+    "sympy/physics/units/tests/test_util.py::test_convert_to_tuples_of_quantities",
+    "sympy/physics/units/util.py::convert_to",
+    "sympy/physics/units/tests/test_unitsystem.py::test_print_unit_base",
+    "sympy/physics/units/tests/test_unitsystem.py::test_extend",
+    "sympy/physics/units/unitsystem.py::UnitSystem.print_unit_base",
+    "sympy/physics/units/quantities.py::Quantity.convert_to",
+    "sympy/physics/units/tests/test_quantities.py::test_units",
+    "sympy/printing/tests/test_str.py::test_Quantity_str"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "1abbc0ac3e552cb184317194e5d5c5b9dd8fb640",
+    "total_functions_indexed": 35377,
+    "retrieval_time_seconds": 1.5764472484588623
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/printing/pretty/tests/test_pretty.py::test_units\", \"score\": 309.1999883643617}, {\"doc_id\": \"sympy/physics/units/tests/test_unit_system_cgs_gauss.py::test_conversion_to_from_si\", \"score\": 305.20651536505534}, {\"doc_id\": \"sympy/physics/units/tests/test_util.py::test_convert_to_tuples_of_quantities\", \"score\": 253.23089096255822}, {\"doc_id\": \"sympy/physics/units/util.py::convert_to\", \"score\": 213.5366798159965}, {\"doc_id\": \"sympy/physics/units/tests/test_unitsystem.py::test_print_unit_base\", \"score\": 210.53856657590174}, {\"doc_id\": \"sympy/physics/units/tests/test_unitsystem.py::test_extend\", \"score\": 198.30708585693156}, {\"doc_id\": \"sympy/physics/units/unitsystem.py::UnitSystem.print_unit_base\", \"score\": 189.32008159098842}, {\"doc_id\": \"sympy/physics/units/quantities.py::Quantity.convert_to\", \"score\": 186.38628177972413}, {\"doc_id\": \"sympy/physics/units/tests/test_quantities.py::test_units\", \"score\": 183.7101184053181}, {\"doc_id\": \"sympy/printing/tests/test_str.py::test_Quantity_str\", \"score\": 181.5848241145652}]"
+}

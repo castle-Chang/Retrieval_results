@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-18532",
+  "query": "expr.atoms() should return objects with no args instead of subclasses of Atom\n`expr.atoms()` with no arguments returns subclasses of `Atom` in `expr`. But the correct definition of a leaf node should be that it has no `.args`. \n\nThis should be easy to fix, but one needs to check that this doesn't affect the performance. \n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/basic.py"
+    ],
+    "locations": [
+      "sympy/core/basic.py::Basic",
+      "sympy/core/basic.py::Basic.atoms"
+    ]
+  },
+  "predictions": [
+    "sympy/core/basic.py::Atom._sorted_args",
+    "sympy/physics/quantum/qexpr.py::QExpr.default_args",
+    "sympy/core/expr.py::Expr._eval_nseries",
+    "sympy/tensor/index_methods.py::get_indices",
+    "sympy/core/exprtools.py::_mask_nc",
+    "sympy/core/expr.py::Expr.as_coeff_mul",
+    "sympy/utilities/tests/test_codegen.py::test_check_case_false_positive",
+    "sympy/functions/elementary/piecewise.py::Piecewise.eval",
+    "sympy/core/expr.py::Expr.as_coeff_add",
+    "sympy/integrals/risch.py::DifferentialExtension._rewrite_exps_pows"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "74227f900b05009d4eed62e34a166228788a32ca",
+    "total_functions_indexed": 33971,
+    "retrieval_time_seconds": 0.8999872207641602
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/basic.py::Atom._sorted_args\", \"score\": 131.93274011296234}, {\"doc_id\": \"sympy/physics/quantum/qexpr.py::QExpr.default_args\", \"score\": 113.49807858086113}, {\"doc_id\": \"sympy/core/expr.py::Expr._eval_nseries\", \"score\": 105.31607842071978}, {\"doc_id\": \"sympy/tensor/index_methods.py::get_indices\", \"score\": 101.49271796789472}, {\"doc_id\": \"sympy/core/exprtools.py::_mask_nc\", \"score\": 98.56883493445565}, {\"doc_id\": \"sympy/core/expr.py::Expr.as_coeff_mul\", \"score\": 96.93339275690232}, {\"doc_id\": \"sympy/utilities/tests/test_codegen.py::test_check_case_false_positive\", \"score\": 96.06020279866492}, {\"doc_id\": \"sympy/functions/elementary/piecewise.py::Piecewise.eval\", \"score\": 95.75570844844769}, {\"doc_id\": \"sympy/core/expr.py::Expr.as_coeff_add\", \"score\": 95.58460843632761}, {\"doc_id\": \"sympy/integrals/risch.py::DifferentialExtension._rewrite_exps_pows\", \"score\": 95.13606501559471}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-14999",
+  "query": "RenameModel with db_table should be a noop.\nDescription\n\t\nA RenameModel operation that already has db_table defined must be a noop.\nIn Postgres, it drops and recreates foreign key constraints. In sqlite it recreates the table (as expected for a table renaming).\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/operations/models.py"
+    ],
+    "locations": [
+      "django/db/migrations/operations/models.py::RenameModel",
+      "django/db/migrations/operations/models.py::RenameModel.database_forwards"
+    ]
+  },
+  "predictions": [
+    "tests/introspection/tests.py::IntrospectionTests.test_get_relations_alt_format",
+    "tests/migrations/test_operations.py::OperationTests.test_rename_model_with_superclass_fk",
+    "tests/schema/tests.py::SchemaTests.get_constraints_count",
+    "django/db/backends/sqlite3/schema.py::DatabaseSchemaEditor.__enter__",
+    "tests/backends/sqlite/tests.py::SchemaTests.test_table_rename_inside_atomic_block",
+    "tests/schema/tests.py::SchemaTests.test_unique_no_unnecessary_fk_drops",
+    "tests/schema/tests.py::SchemaTests.test_creation_deletion_reserved_names",
+    "django/templatetags/i18n.py::do_translate",
+    "django/db/backends/sqlite3/schema.py::DatabaseSchemaEditor._remake_table",
+    "tests/schema/tests.py::SchemaTests.test_creation_deletion"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "a754b82dac511475b6276039471ccd17cc64aeb8",
+    "total_functions_indexed": 25228,
+    "retrieval_time_seconds": 0.5243790149688721
+  },
+  "raw_output": "[{\"doc_id\": \"tests/introspection/tests.py::IntrospectionTests.test_get_relations_alt_format\", \"score\": 52.642954042437594}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_rename_model_with_superclass_fk\", \"score\": 48.47954383230292}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.get_constraints_count\", \"score\": 46.40004400627385}, {\"doc_id\": \"django/db/backends/sqlite3/schema.py::DatabaseSchemaEditor.__enter__\", \"score\": 44.840642633952726}, {\"doc_id\": \"tests/backends/sqlite/tests.py::SchemaTests.test_table_rename_inside_atomic_block\", \"score\": 44.818922358674804}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_unique_no_unnecessary_fk_drops\", \"score\": 44.24165100758947}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_creation_deletion_reserved_names\", \"score\": 43.80200482654213}, {\"doc_id\": \"django/templatetags/i18n.py::do_translate\", \"score\": 43.21736286081063}, {\"doc_id\": \"django/db/backends/sqlite3/schema.py::DatabaseSchemaEditor._remake_table\", \"score\": 42.68183599652848}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_creation_deletion\", \"score\": 41.30613361039415}]"
+}

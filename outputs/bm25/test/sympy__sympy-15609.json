@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-15609",
+  "query": "Indexed matrix-expression LaTeX printer is not compilable\n```python\r\ni, j, k = symbols(\"i j k\")\r\nM = MatrixSymbol(\"M\", k, k)\r\nN = MatrixSymbol(\"N\", k, k)\r\nlatex((M*N)[i, j])\r\n```\r\n\r\nThe LaTeX string produced by the last command is:\r\n```\r\n\\sum_{i_{1}=0}^{k - 1} M_{i, _i_1} N_{_i_1, j}\r\n```\r\nLaTeX complains about a double subscript `_`. This expression won't render in MathJax either.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/latex.py"
+    ],
+    "locations": [
+      "sympy/printing/latex.py::LatexPrinter",
+      "sympy/printing/latex.py::LatexPrinter._print_MatrixElement",
+      "sympy/printing/latex.py::LatexPrinter._print_MatrixSlice"
+    ]
+  },
+  "predictions": [
+    "sympy/codegen/array_utils.py::parse_indexed_expression",
+    "sympy/printing/tests/test_latex.py::test_latex_printer_tensor",
+    "sympy/codegen/tests/test_array_utils.py::test_codegen_array_parse",
+    "sympy/concrete/tests/test_sums_products.py::test_karr_convention",
+    "sympy/solvers/solvers.py::solve_linear_system",
+    "sympy/polys/subresultants_qq_zz.py::sylvester",
+    "sympy/crypto/crypto.py::encipher_hill",
+    "sympy/vector/tests/test_printing.py::test_latex_printing",
+    "sympy/integrals/prde.py::prde_linear_constraints",
+    "sympy/codegen/array_utils.py::recognize_matrix_expression"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "15f56f3b0006d2ed2c29bde3c43e91618012c849",
+    "total_functions_indexed": 24316,
+    "retrieval_time_seconds": 0.866732120513916
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/codegen/array_utils.py::parse_indexed_expression\", \"score\": 151.9028557756459}, {\"doc_id\": \"sympy/printing/tests/test_latex.py::test_latex_printer_tensor\", \"score\": 139.26743592177868}, {\"doc_id\": \"sympy/codegen/tests/test_array_utils.py::test_codegen_array_parse\", \"score\": 134.43807650432194}, {\"doc_id\": \"sympy/concrete/tests/test_sums_products.py::test_karr_convention\", \"score\": 130.47565353859605}, {\"doc_id\": \"sympy/solvers/solvers.py::solve_linear_system\", \"score\": 129.36670934724052}, {\"doc_id\": \"sympy/polys/subresultants_qq_zz.py::sylvester\", \"score\": 127.47993279057474}, {\"doc_id\": \"sympy/crypto/crypto.py::encipher_hill\", \"score\": 126.9135197892245}, {\"doc_id\": \"sympy/vector/tests/test_printing.py::test_latex_printing\", \"score\": 125.84207945613564}, {\"doc_id\": \"sympy/integrals/prde.py::prde_linear_constraints\", \"score\": 123.67154044264312}, {\"doc_id\": \"sympy/codegen/array_utils.py::recognize_matrix_expression\", \"score\": 122.90970730982626}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-13647",
+  "query": "Matrix.col_insert() no longer seems to work correctly.\nExample:\r\n\r\n```\r\nIn [28]: import sympy as sm\r\n\r\nIn [29]: M = sm.eye(6)\r\n\r\nIn [30]: M\r\nOut[30]: \r\n⎡1  0  0  0  0  0⎤\r\n⎢                ⎥\r\n⎢0  1  0  0  0  0⎥\r\n⎢                ⎥\r\n⎢0  0  1  0  0  0⎥\r\n⎢                ⎥\r\n⎢0  0  0  1  0  0⎥\r\n⎢                ⎥\r\n⎢0  0  0  0  1  0⎥\r\n⎢                ⎥\r\n⎣0  0  0  0  0  1⎦\r\n\r\nIn [31]: V = 2 * sm.ones(6, 2)\r\n\r\nIn [32]: V\r\nOut[32]: \r\n⎡2  2⎤\r\n⎢    ⎥\r\n⎢2  2⎥\r\n⎢    ⎥\r\n⎢2  2⎥\r\n⎢    ⎥\r\n⎢2  2⎥\r\n⎢    ⎥\r\n⎢2  2⎥\r\n⎢    ⎥\r\n⎣2  2⎦\r\n\r\nIn [33]: M.col_insert(3, V)\r\nOut[33]: \r\n⎡1  0  0  2  2  1  0  0⎤\r\n⎢                      ⎥\r\n⎢0  1  0  2  2  0  1  0⎥\r\n⎢                      ⎥\r\n⎢0  0  1  2  2  0  0  1⎥\r\n⎢                      ⎥\r\n⎢0  0  0  2  2  0  0  0⎥\r\n⎢                      ⎥\r\n⎢0  0  0  2  2  0  0  0⎥\r\n⎢                      ⎥\r\n⎣0  0  0  2  2  0  0  0⎦\r\nIn [34]: sm.__version__\r\nOut[34]: '1.1.1'\r\n```\r\n\r\nThe 3 x 3 identify matrix to the right of the columns of twos is shifted from the bottom three rows to the top three rows.\r\n\r\n@siefkenj Do you think this has to do with your matrix refactor?\n",
+  "ground_truth": {
+    "files": [
+      "sympy/matrices/common.py"
+    ],
+    "locations": [
+      "sympy/matrices/common.py::MatrixShaping",
+      "sympy/matrices/common.py::MatrixShaping._eval_col_insert"
+    ]
+  },
+  "predictions": [
+    "sympy/matrices/tests/test_matrices.py::test_nullspace",
+    "sympy/polys/agca/homomorphisms.py::ModuleHomomorphism.restrict_domain",
+    "sympy/matrices/common.py::MatrixSpecial.diag",
+    "sympy/physics/quantum/matrixutils.py::_sympy_tensor_product",
+    "sympy/matrices/dense.py::diag",
+    "sympy/matrices/sparse.py::MutableSparseMatrix.__setitem__",
+    "sympy/matrices/dense.py::MutableDenseMatrix.__setitem__",
+    "sympy/matrices/common.py::MatrixOperations.permute",
+    "sympy/matrices/matrices.py::MatrixEigen.diagonalize",
+    "sympy/matrices/matrices.py::MatrixBase.D"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "67e3c956083d0128a621f65ee86a7dacd4f9f19f",
+    "total_functions_indexed": 22349,
+    "retrieval_time_seconds": 1.546809434890747
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/matrices/tests/test_matrices.py::test_nullspace\", \"score\": 314.38066477653194}, {\"doc_id\": \"sympy/polys/agca/homomorphisms.py::ModuleHomomorphism.restrict_domain\", \"score\": 313.8866889662264}, {\"doc_id\": \"sympy/matrices/common.py::MatrixSpecial.diag\", \"score\": 312.8232225999605}, {\"doc_id\": \"sympy/physics/quantum/matrixutils.py::_sympy_tensor_product\", \"score\": 312.16166326918193}, {\"doc_id\": \"sympy/matrices/dense.py::diag\", \"score\": 311.43690472228513}, {\"doc_id\": \"sympy/matrices/sparse.py::MutableSparseMatrix.__setitem__\", \"score\": 303.7852980976008}, {\"doc_id\": \"sympy/matrices/dense.py::MutableDenseMatrix.__setitem__\", \"score\": 299.8682427111402}, {\"doc_id\": \"sympy/matrices/common.py::MatrixOperations.permute\", \"score\": 299.2318610506165}, {\"doc_id\": \"sympy/matrices/matrices.py::MatrixEigen.diagonalize\", \"score\": 297.13715630356256}, {\"doc_id\": \"sympy/matrices/matrices.py::MatrixBase.D\", \"score\": 296.8954827572437}]"
+}

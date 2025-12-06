@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-11049",
+  "query": "Correct expected format in invalid DurationField error message\nDescription\n\t\nIf you enter a duration \"14:00\" into a duration field, it translates to \"00:14:00\" which is 14 minutes.\nThe current error message for invalid DurationField says that this should be the format of durations: \"[DD] [HH:[MM:]]ss[.uuuuuu]\". But according to the actual behaviour, it should be: \"[DD] [[HH:]MM:]ss[.uuuuuu]\", because seconds are mandatory, minutes are optional, and hours are optional if minutes are provided.\nThis seems to be a mistake in all Django versions that support the DurationField.\nAlso the duration fields could have a default help_text with the requested format, because the syntax is not self-explanatory.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/__init__.py"
+    ],
+    "locations": [
+      "django/db/models/fields/__init__.py::DurationField"
+    ]
+  },
+  "predictions": [
+    "tests/validation/test_error_messages.py::ValidationMessagesTest.test_datetime_field_raises_error_message",
+    "tests/model_fields/test_durationfield.py::TestValidation.test_invalid_string",
+    "tests/validation/test_error_messages.py::ValidationMessagesTest.test_time_field_raises_error_message",
+    "django/utils/http.py::http_date",
+    "django/contrib/gis/gdal/field.py::Field.as_datetime",
+    "tests/validation/test_error_messages.py::ValidationMessagesTest.test_date_field_raises_error_message",
+    "django/utils/duration.py::duration_string",
+    "django/utils/duration.py::duration_iso_string",
+    "django/contrib/gis/gdal/field.py::OFTDate.value",
+    "django/contrib/gis/gdal/field.py::OFTTime.value"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "17455e924e243e7a55e8a38f45966d8cbb27c273",
+    "total_functions_indexed": 22323,
+    "retrieval_time_seconds": 1.281738519668579
+  },
+  "raw_output": "[{\"doc_id\": \"tests/validation/test_error_messages.py::ValidationMessagesTest.test_datetime_field_raises_error_message\", \"score\": 172.35345621419964}, {\"doc_id\": \"tests/model_fields/test_durationfield.py::TestValidation.test_invalid_string\", \"score\": 161.52939037536495}, {\"doc_id\": \"tests/validation/test_error_messages.py::ValidationMessagesTest.test_time_field_raises_error_message\", \"score\": 161.33669776113186}, {\"doc_id\": \"django/utils/http.py::http_date\", \"score\": 126.7674881582562}, {\"doc_id\": \"django/contrib/gis/gdal/field.py::Field.as_datetime\", \"score\": 121.93406737813525}, {\"doc_id\": \"tests/validation/test_error_messages.py::ValidationMessagesTest.test_date_field_raises_error_message\", \"score\": 120.55103519898324}, {\"doc_id\": \"django/utils/duration.py::duration_string\", \"score\": 114.97599047713133}, {\"doc_id\": \"django/utils/duration.py::duration_iso_string\", \"score\": 103.6408866044342}, {\"doc_id\": \"django/contrib/gis/gdal/field.py::OFTDate.value\", \"score\": 100.97137873934479}, {\"doc_id\": \"django/contrib/gis/gdal/field.py::OFTTime.value\", \"score\": 98.39587266309779}]"
+}

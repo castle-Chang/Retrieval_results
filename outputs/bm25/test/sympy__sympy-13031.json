@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-13031",
+  "query": "Behavior of Matrix hstack and vstack changed in sympy 1.1\nIn sympy 1.0:\r\n```\r\nimport sympy as sy\r\nM1 = sy.Matrix.zeros(0, 0)\r\nM2 = sy.Matrix.zeros(0, 1)\r\nM3 = sy.Matrix.zeros(0, 2)\r\nM4 = sy.Matrix.zeros(0, 3)\r\nsy.Matrix.hstack(M1, M2, M3, M4).shape\r\n```\r\nreturns \r\n`(0, 6)`\r\n\r\nNow, same in sympy 1.1:\r\n```\r\nimport sympy as sy\r\nM1 = sy.Matrix.zeros(0, 0)\r\nM2 = sy.Matrix.zeros(0, 1)\r\nM3 = sy.Matrix.zeros(0, 2)\r\nM4 = sy.Matrix.zeros(0, 3)\r\nsy.Matrix.hstack(M1, M2, M3, M4).shape\r\n```\r\nreturns\r\n`(0, 3)\r\n`\r\nwhereas:\r\n```\r\nimport sympy as sy\r\nM1 = sy.Matrix.zeros(1, 0)\r\nM2 = sy.Matrix.zeros(1, 1)\r\nM3 = sy.Matrix.zeros(1, 2)\r\nM4 = sy.Matrix.zeros(1, 3)\r\nsy.Matrix.hstack(M1, M2, M3, M4).shape\r\n```\r\nreturns\r\n`(1, 6)\r\n`\n",
+  "ground_truth": {
+    "files": [
+      "sympy/matrices/sparse.py"
+    ],
+    "locations": [
+      "sympy/matrices/sparse.py::MutableSparseMatrix",
+      "sympy/matrices/sparse.py::MutableSparseMatrix.col_join",
+      "sympy/matrices/sparse.py::MutableSparseMatrix.row_join"
+    ]
+  },
+  "predictions": [
+    "sympy/matrices/tests/test_commonmatrix.py::test_hstack",
+    "sympy/printing/tests/test_theanocode.py::test_DenseMatrix",
+    "sympy/physics/quantum/tests/test_spin.py::test_couple_symbolic",
+    "sympy/core/tests/test_expr.py::test_relational_assumptions",
+    "sympy/matrices/tests/test_matrices.py::test_slicing",
+    "sympy/physics/quantum/tests/test_spin.py::test_uncouple_symbolic",
+    "sympy/solvers/diophantine.py::diop_general_pythagorean",
+    "sympy/physics/mechanics/tests/test_models.py::test_multi_mass_spring_damper_higher_order",
+    "sympy/physics/quantum/tests/test_pauli.py::test_pauli_operators_multiplication",
+    "sympy/physics/hep/tests/test_gamma_matrices.py::test_gamma_matrix_trace"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "2dfa7457f20ee187fbb09b5b6a1631da4458388c",
+    "total_functions_indexed": 20881,
+    "retrieval_time_seconds": 1.0059423446655273
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/matrices/tests/test_commonmatrix.py::test_hstack\", \"score\": 514.2050711436497}, {\"doc_id\": \"sympy/printing/tests/test_theanocode.py::test_DenseMatrix\", \"score\": 348.4520517869653}, {\"doc_id\": \"sympy/physics/quantum/tests/test_spin.py::test_couple_symbolic\", \"score\": 345.71768532468485}, {\"doc_id\": \"sympy/core/tests/test_expr.py::test_relational_assumptions\", \"score\": 330.26856138654153}, {\"doc_id\": \"sympy/matrices/tests/test_matrices.py::test_slicing\", \"score\": 327.2264121452259}, {\"doc_id\": \"sympy/physics/quantum/tests/test_spin.py::test_uncouple_symbolic\", \"score\": 314.5792175717023}, {\"doc_id\": \"sympy/solvers/diophantine.py::diop_general_pythagorean\", \"score\": 301.79158931165836}, {\"doc_id\": \"sympy/physics/mechanics/tests/test_models.py::test_multi_mass_spring_damper_higher_order\", \"score\": 301.3066442055798}, {\"doc_id\": \"sympy/physics/quantum/tests/test_pauli.py::test_pauli_operators_multiplication\", \"score\": 299.1104086055401}, {\"doc_id\": \"sympy/physics/hep/tests/test_gamma_matrices.py::test_gamma_matrix_trace\", \"score\": 296.6086108248561}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11905",
+  "query": "Prevent using __isnull lookup with non-boolean value.\nDescription\n\t \n\t\t(last modified by Mariusz Felisiak)\n\t \n__isnull should not allow for non-boolean values. Using truthy/falsey doesn't promote INNER JOIN to an OUTER JOIN but works fine for a simple queries. Using non-boolean values is ​undocumented and untested. IMO we should raise an error for non-boolean values to avoid confusion and for consistency.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/lookups.py"
+    ],
+    "locations": [
+      "django/db/models/lookups.py::IsNull",
+      "django/db/models/lookups.py::IsNull.as_sql"
+    ]
+  },
+  "predictions": [
+    "django/db/models/sql/query.py::Query.promote_joins",
+    "tests/test_utils/tests.py::AssertQuerysetEqualTests.test_undefined_order",
+    "django/forms/widgets.py::CheckboxInput.value_from_datadict",
+    "django/db/models/sql/subqueries.py::DeleteQuery.delete_qs",
+    "django/db/models/sql/query.py::JoinPromoter.update_join_types",
+    "tests/queries/tests.py::NullJoinPromotionOrTest.test_ticket_17886",
+    "django/template/defaulttags.py::ForNode.render",
+    "django/forms/widgets.py::MultiWidget.decompress",
+    "django/db/models/query.py::QuerySet._validate_values_are_expressions",
+    "django/contrib/admin/utils.py::prepare_lookup_value"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "2f72480fbd27896c986c45193e1603e35c0b19a7",
+    "total_functions_indexed": 22904,
+    "retrieval_time_seconds": 0.6336488723754883
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/sql/query.py::Query.promote_joins\", \"score\": 61.5177982598473}, {\"doc_id\": \"tests/test_utils/tests.py::AssertQuerysetEqualTests.test_undefined_order\", \"score\": 60.81986290671724}, {\"doc_id\": \"django/forms/widgets.py::CheckboxInput.value_from_datadict\", \"score\": 58.92569642263021}, {\"doc_id\": \"django/db/models/sql/subqueries.py::DeleteQuery.delete_qs\", \"score\": 58.51892527261669}, {\"doc_id\": \"django/db/models/sql/query.py::JoinPromoter.update_join_types\", \"score\": 58.23177667321988}, {\"doc_id\": \"tests/queries/tests.py::NullJoinPromotionOrTest.test_ticket_17886\", \"score\": 56.85547538654426}, {\"doc_id\": \"django/template/defaulttags.py::ForNode.render\", \"score\": 56.596413407472355}, {\"doc_id\": \"django/forms/widgets.py::MultiWidget.decompress\", \"score\": 55.80553004200352}, {\"doc_id\": \"django/db/models/query.py::QuerySet._validate_values_are_expressions\", \"score\": 55.79708920040394}, {\"doc_id\": \"django/contrib/admin/utils.py::prepare_lookup_value\", \"score\": 54.36270079037105}]"
+}

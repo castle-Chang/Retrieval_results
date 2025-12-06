@@ -1,0 +1,32 @@
+{
+  "instance_id": "pytest-dev__pytest-7220",
+  "query": "Wrong path to test file when directory changed in fixture\nFiles are shown as relative to new directory when working directory is changed in a fixture. This makes it impossible to jump to the error as the editor is unaware of the directory change. The displayed directory should stay relative to the original directory.\r\n\r\ntest_path_error.py:\r\n```python\r\nimport os\r\nimport errno\r\nimport shutil\r\n\r\nimport pytest\r\n\r\n\r\n@pytest.fixture\r\ndef private_dir():  # or (monkeypatch)\r\n    out_dir = 'ddd'\r\n\r\n    try:\r\n        shutil.rmtree(out_dir)\r\n    except OSError as ex:\r\n        if ex.errno != errno.ENOENT:\r\n            raise\r\n    os.mkdir(out_dir)\r\n\r\n    old_dir = os.getcwd()\r\n    os.chdir(out_dir)\r\n    yield out_dir\r\n    os.chdir(old_dir)\r\n\r\n    # Same issue if using:\r\n    # monkeypatch.chdir(out_dir)\r\n\r\n\r\ndef test_show_wrong_path(private_dir):\r\n    assert False\r\n```\r\n\r\n```diff\r\n+ Expected: test_path_error.py:29: AssertionError\r\n- Displayed: ../test_path_error.py:29: AssertionError\r\n```\r\n\r\nThe full output is:\r\n```\r\n-*- mode: compilation; default-directory: \"~/src/pytest_path_error/\" -*-\r\nCompilation started at Fri Jan 10 00:05:52\r\n\r\nnox\r\nnox > Running session test\r\nnox > Creating virtual environment (virtualenv) using python3.7 in .nox/test\r\nnox > pip install pytest>=5.3\r\nnox > pip freeze\r\nattrs==19.3.0\r\nimportlib-metadata==1.3.0\r\nmore-itertools==8.0.2\r\npackaging==20.0\r\npluggy==0.13.1\r\npy==1.8.1\r\npyparsing==2.4.6\r\npytest==5.3.2\r\nsix==1.13.0\r\nwcwidth==0.1.8\r\nzipp==0.6.0\r\nnox > pytest \r\n================================= test session starts =================================\r\nplatform linux -- Python 3.7.5, pytest-5.3.2, py-1.8.1, pluggy-0.13.1\r\nrootdir: /home/lhn/src/pytest_path_error\r\ncollected 1 item                                                                      \r\n\r\ntest_path_error.py F                                                            [100%]\r\n\r\n====================================== FAILURES =======================================\r\n________________________________ test_show_wrong_path _________________________________\r\n\r\nprivate_dir = 'ddd'\r\n\r\n    def test_show_wrong_path(private_dir):\r\n>       assert False\r\nE       assert False\r\n\r\n../test_path_error.py:29: AssertionError\r\n================================== 1 failed in 0.03s ==================================\r\nnox > Command pytest  failed with exit code 1\r\nnox > Session test failed.\r\n\r\nCompilation exited abnormally with code 1 at Fri Jan 10 00:06:01\r\n```\r\n\r\nnoxfile.py:\r\n```python\r\nimport nox\r\n\r\n@nox.session(python='3.7')\r\ndef test(session):\r\n    session.install('pytest>=5.3')\r\n    session.run('pip', 'freeze')\r\n    session.run('pytest')\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "src/_pytest/nodes.py"
+    ],
+    "locations": [
+      "src/_pytest/nodes.py::Node",
+      "src/_pytest/nodes.py::Node._repr_failure_py"
+    ]
+  },
+  "predictions": [
+    "src/_pytest/python_api.py::approx",
+    "testing/test_cacheprovider.py::TestLastFailed.test_lastfailed_skip_collection",
+    "testing/test_assertion.py::TestAssert_reprcompare.test_sequence_different_items",
+    "testing/test_doctest.py::TestLiterals.test_number_precision",
+    "testing/code/test_excinfo.py::TestFormattedExcinfo.test_repr_local_truncated",
+    "testing/code/test_source.py::TestSourceParsingAndCompiling.test_getstatementrange_within_constructs",
+    "testing/python/approx.py::TestApprox.test_unicode_plus_minus",
+    "testing/python/metafunc.py::TestMetafunc.test_parametrize_ids_iterator_without_mark",
+    "src/_pytest/assertion/rewrite.py::try_makedirs",
+    "testing/python/approx.py::TestApprox.test_dict"
+  ],
+  "metadata": {
+    "repo": "pytest-dev/pytest",
+    "commit": "56bf819c2f4eaf8b36bd8c42c06bb59d5a3bfc0f",
+    "total_functions_indexed": 3818,
+    "retrieval_time_seconds": 0.35874366760253906
+  },
+  "raw_output": "[{\"doc_id\": \"src/_pytest/python_api.py::approx\", \"score\": 183.4814583297937}, {\"doc_id\": \"testing/test_cacheprovider.py::TestLastFailed.test_lastfailed_skip_collection\", \"score\": 174.0683909720661}, {\"doc_id\": \"testing/test_assertion.py::TestAssert_reprcompare.test_sequence_different_items\", \"score\": 170.52100892107467}, {\"doc_id\": \"testing/test_doctest.py::TestLiterals.test_number_precision\", \"score\": 167.2320899339449}, {\"doc_id\": \"testing/code/test_excinfo.py::TestFormattedExcinfo.test_repr_local_truncated\", \"score\": 166.58826928062066}, {\"doc_id\": \"testing/code/test_source.py::TestSourceParsingAndCompiling.test_getstatementrange_within_constructs\", \"score\": 163.4547966024157}, {\"doc_id\": \"testing/python/approx.py::TestApprox.test_unicode_plus_minus\", \"score\": 160.22425967494615}, {\"doc_id\": \"testing/python/metafunc.py::TestMetafunc.test_parametrize_ids_iterator_without_mark\", \"score\": 157.58843592593442}, {\"doc_id\": \"src/_pytest/assertion/rewrite.py::try_makedirs\", \"score\": 156.91596574875757}, {\"doc_id\": \"testing/python/approx.py::TestApprox.test_dict\", \"score\": 155.81602140718638}]"
+}

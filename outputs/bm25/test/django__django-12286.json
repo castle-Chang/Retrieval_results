@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-12286",
+  "query": "translation.E004 shouldn't be raised on sublanguages when a base language is available.\nDescription\n\t\nAccording to Django documentation:\nIf a base language is available but the sublanguage specified is not, Django uses the base language. For example, if a user specifies de-at (Austrian German) but Django only has de available, Django uses de.\nHowever, when using Django 3.0.2, if my settings.py has\nLANGUAGE_CODE = \"de-at\"\nI get this error message:\nSystemCheckError: System check identified some issues:\nERRORS:\n?: (translation.E004) You have provided a value for the LANGUAGE_CODE setting that is not in the LANGUAGES setting.\nIf using\nLANGUAGE_CODE = \"es-ar\"\nDjango works fine (es-ar is one of the translations provided out of the box).\n",
+  "ground_truth": {
+    "files": [
+      "django/core/checks/translation.py"
+    ],
+    "locations": [
+      "django/core/checks/translation.py::check_language_settings_consistent"
+    ]
+  },
+  "predictions": [
+    "tests/check_framework/test_translation.py::TranslationCheckTests.test_inconsistent_language_settings",
+    "django/utils/translation/trans_real.py::DjangoTranslation.__init__",
+    "tests/i18n/tests.py::MiscTests.test_parse_language_cookie",
+    "django/utils/translation/trans_real.py::get_language_from_request",
+    "tests/view_tests/tests/test_i18n.py::I18NViewTests.test_jsi18n_with_missing_en_files",
+    "tests/i18n/tests.py::MiscTests.test_parse_literal_http_header",
+    "tests/view_tests/tests/test_i18n.py::I18NViewTests.test_i18n_language_english_default",
+    "django/core/checks/translation.py::check_language_settings_consistent",
+    "tests/i18n/tests.py::TranslationFallbackI18NTests.test_sparse_territory_catalog",
+    "django/utils/translation/trans_real.py::check_for_language"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "979f61abd322507aafced9627702362e541ec34e",
+    "total_functions_indexed": 23141,
+    "retrieval_time_seconds": 1.0474750995635986
+  },
+  "raw_output": "[{\"doc_id\": \"tests/check_framework/test_translation.py::TranslationCheckTests.test_inconsistent_language_settings\", \"score\": 145.31189258645608}, {\"doc_id\": \"django/utils/translation/trans_real.py::DjangoTranslation.__init__\", \"score\": 132.68570855992078}, {\"doc_id\": \"tests/i18n/tests.py::MiscTests.test_parse_language_cookie\", \"score\": 127.71168497665285}, {\"doc_id\": \"django/utils/translation/trans_real.py::get_language_from_request\", \"score\": 127.67965376512252}, {\"doc_id\": \"tests/view_tests/tests/test_i18n.py::I18NViewTests.test_jsi18n_with_missing_en_files\", \"score\": 124.17281962719173}, {\"doc_id\": \"tests/i18n/tests.py::MiscTests.test_parse_literal_http_header\", \"score\": 123.44528579468582}, {\"doc_id\": \"tests/view_tests/tests/test_i18n.py::I18NViewTests.test_i18n_language_english_default\", \"score\": 118.7219763664715}, {\"doc_id\": \"django/core/checks/translation.py::check_language_settings_consistent\", \"score\": 116.65123824754707}, {\"doc_id\": \"tests/i18n/tests.py::TranslationFallbackI18NTests.test_sparse_territory_catalog\", \"score\": 115.71004237197445}, {\"doc_id\": \"django/utils/translation/trans_real.py::check_for_language\", \"score\": 115.1163986310389}]"
+}

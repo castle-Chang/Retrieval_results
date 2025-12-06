@@ -1,0 +1,33 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-10508",
+  "query": "LabelEncoder transform fails for empty lists (for certain inputs)\nPython 3.6.3, scikit_learn 0.19.1\r\n\r\nDepending on which datatypes were used to fit the LabelEncoder, transforming empty lists works or not. Expected behavior would be that empty arrays are returned in both cases.\r\n\r\n```python\r\n>>> from sklearn.preprocessing import LabelEncoder\r\n>>> le = LabelEncoder()\r\n>>> le.fit([1,2])\r\nLabelEncoder()\r\n>>> le.transform([])\r\narray([], dtype=int64)\r\n>>> le.fit([\"a\",\"b\"])\r\nLabelEncoder()\r\n>>> le.transform([])\r\nTraceback (most recent call last):\r\n  File \"[...]\\Python36\\lib\\site-packages\\numpy\\core\\fromnumeric.py\", line 57, in _wrapfunc\r\n    return getattr(obj, method)(*args, **kwds)\r\nTypeError: Cannot cast array data from dtype('float64') to dtype('<U32') according to the rule 'safe'\r\n\r\nDuring handling of the above exception, another exception occurred:\r\n\r\nTraceback (most recent call last):\r\n  File \"<stdin>\", line 1, in <module>\r\n  File \"[...]\\Python36\\lib\\site-packages\\sklearn\\preprocessing\\label.py\", line 134, in transform\r\n    return np.searchsorted(self.classes_, y)\r\n  File \"[...]\\Python36\\lib\\site-packages\\numpy\\core\\fromnumeric.py\", line 1075, in searchsorted\r\n    return _wrapfunc(a, 'searchsorted', v, side=side, sorter=sorter)\r\n  File \"[...]\\Python36\\lib\\site-packages\\numpy\\core\\fromnumeric.py\", line 67, in _wrapfunc\r\n    return _wrapit(obj, method, *args, **kwds)\r\n  File \"[...]\\Python36\\lib\\site-packages\\numpy\\core\\fromnumeric.py\", line 47, in _wrapit\r\n    result = getattr(asarray(obj), method)(*args, **kwds)\r\nTypeError: Cannot cast array data from dtype('float64') to dtype('<U32') according to the rule 'safe'\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sklearn/preprocessing/label.py"
+    ],
+    "locations": [
+      "sklearn/preprocessing/label.py::LabelEncoder",
+      "sklearn/preprocessing/label.py::LabelEncoder.transform",
+      "sklearn/preprocessing/label.py::LabelEncoder.inverse_transform"
+    ]
+  },
+  "predictions": [
+    "sklearn/externals/joblib/numpy_pickle.py::NumpyArrayWrapper.read_array",
+    "sklearn/datasets/species_distributions.py::_load_coverage",
+    "sklearn/datasets/svmlight_format.py::load_svmlight_file",
+    "sklearn/utils/class_weight.py::compute_class_weight",
+    "sklearn/preprocessing/tests/test_label.py::test_label_encoder",
+    "sklearn/preprocessing/tests/test_label.py::test_label_encoder_errors",
+    "doc/sphinxext/github_link.py::_linkcode_resolve",
+    "sklearn/externals/joblib/numpy_pickle.py::load",
+    "sklearn/externals/joblib/format_stack.py::format_records",
+    "sklearn/externals/joblib/numpy_pickle.py::NumpyArrayWrapper.write_array"
+  ],
+  "metadata": {
+    "repo": "scikit-learn/scikit-learn",
+    "commit": "c753b77ac49e72ebc0fe5e3c2369fe628f975017",
+    "total_functions_indexed": 5839,
+    "retrieval_time_seconds": 0.41815733909606934
+  },
+  "raw_output": "[{\"doc_id\": \"sklearn/externals/joblib/numpy_pickle.py::NumpyArrayWrapper.read_array\", \"score\": 173.3691963579407}, {\"doc_id\": \"sklearn/datasets/species_distributions.py::_load_coverage\", \"score\": 167.54189201335262}, {\"doc_id\": \"sklearn/datasets/svmlight_format.py::load_svmlight_file\", \"score\": 163.20273078024994}, {\"doc_id\": \"sklearn/utils/class_weight.py::compute_class_weight\", \"score\": 161.46535523028948}, {\"doc_id\": \"sklearn/preprocessing/tests/test_label.py::test_label_encoder\", \"score\": 160.59420176961575}, {\"doc_id\": \"sklearn/preprocessing/tests/test_label.py::test_label_encoder_errors\", \"score\": 156.83486132530598}, {\"doc_id\": \"doc/sphinxext/github_link.py::_linkcode_resolve\", \"score\": 154.87113734776048}, {\"doc_id\": \"sklearn/externals/joblib/numpy_pickle.py::load\", \"score\": 150.24453986601935}, {\"doc_id\": \"sklearn/externals/joblib/format_stack.py::format_records\", \"score\": 147.91443986065664}, {\"doc_id\": \"sklearn/externals/joblib/numpy_pickle.py::NumpyArrayWrapper.write_array\", \"score\": 146.0314222210784}]"
+}

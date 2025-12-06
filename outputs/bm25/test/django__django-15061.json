@@ -1,0 +1,34 @@
+{
+  "instance_id": "django__django-15061",
+  "query": "Remove \"for = ...\" from MultiWidget's <label>.\nDescription\n\t\nThe instance from Raw MultiWidget class generate id_for_label like f'{id_}0'\nIt has not sense.\nFor example ChoiceWidget has self.add_id_index and I can decide it myself, how I will see label_id - with or without index.\nI think, it is better to remove completely id_for_label method from MultiWidget Class.\n",
+  "ground_truth": {
+    "files": [
+      "django/forms/widgets.py"
+    ],
+    "locations": [
+      "django/forms/widgets.py::MultiWidget",
+      "django/forms/widgets.py::MultiWidget.get_context",
+      "django/forms/widgets.py::MultiWidget.id_for_label",
+      "django/forms/widgets.py::MultiWidget.value_from_datadict"
+    ]
+  },
+  "predictions": [
+    "django/forms/boundfield.py::BoundField.id_for_label",
+    "django/forms/widgets.py::ChoiceWidget.id_for_label",
+    "django/forms/widgets.py::MultiWidget.id_for_label",
+    "django/forms/boundfield.py::BoundField.label_tag",
+    "django/forms/widgets.py::RadioSelect.id_for_label",
+    "django/db/backends/oracle/operations.py::DatabaseOperations.bulk_insert_sql",
+    "django/contrib/postgres/forms/array.py::SplitArrayWidget.id_for_label",
+    "tests/user_commands/management/commands/hal.py::Command.handle",
+    "django/forms/models.py::_get_foreign_key",
+    "django/forms/widgets.py::MultiWidget.get_context"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "2c01ebb4be5d53cbf6450f356c10e436025d6d07",
+    "total_functions_indexed": 25265,
+    "retrieval_time_seconds": 0.7001094818115234
+  },
+  "raw_output": "[{\"doc_id\": \"django/forms/boundfield.py::BoundField.id_for_label\", \"score\": 91.13562401404775}, {\"doc_id\": \"django/forms/widgets.py::ChoiceWidget.id_for_label\", \"score\": 69.57110108763823}, {\"doc_id\": \"django/forms/widgets.py::MultiWidget.id_for_label\", \"score\": 66.85083607012227}, {\"doc_id\": \"django/forms/boundfield.py::BoundField.label_tag\", \"score\": 55.774282266326786}, {\"doc_id\": \"django/forms/widgets.py::RadioSelect.id_for_label\", \"score\": 52.519557894809516}, {\"doc_id\": \"django/db/backends/oracle/operations.py::DatabaseOperations.bulk_insert_sql\", \"score\": 51.933669559934415}, {\"doc_id\": \"django/contrib/postgres/forms/array.py::SplitArrayWidget.id_for_label\", \"score\": 50.99346281294524}, {\"doc_id\": \"tests/user_commands/management/commands/hal.py::Command.handle\", \"score\": 50.16166725699724}, {\"doc_id\": \"django/forms/models.py::_get_foreign_key\", \"score\": 46.33090527407322}, {\"doc_id\": \"django/forms/widgets.py::MultiWidget.get_context\", \"score\": 45.99984394554159}]"
+}

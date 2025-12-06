@@ -1,0 +1,34 @@
+{
+  "instance_id": "django__django-13220",
+  "query": "Allow ValidationErrors to equal each other when created identically\nDescription\n\t \n\t\t(last modified by kamni)\n\t \nCurrently ValidationErrors (django.core.exceptions.ValidationError) that have identical messages don't equal each other, which is counter-intuitive, and can make certain kinds of testing more complicated. Please add an __eq__ method that allows two ValidationErrors to be compared. \nIdeally, this would be more than just a simple self.messages == other.messages. It would be most helpful if the comparison were independent of the order in which errors were raised in a field or in non_field_errors.\n",
+  "ground_truth": {
+    "files": [
+      "django/core/exceptions.py"
+    ],
+    "locations": [
+      "django/core/exceptions.py::FieldDoesNotExist",
+      "django/core/exceptions.py::ValidationError",
+      "django/core/exceptions.py::ValidationError.__repr__",
+      "django/core/exceptions.py::EmptyResultSet"
+    ]
+  },
+  "predictions": [
+    "django/contrib/messages/storage/base.py::BaseStorage._get",
+    "django/forms/forms.py::BaseForm.add_error",
+    "django/core/exceptions.py::ValidationError.__init__",
+    "django/contrib/messages/storage/base.py::BaseStorage._store",
+    "django/forms/fields.py::Field.__init__",
+    "django/forms/models.py::BaseModelForm._update_errors",
+    "django/contrib/messages/storage/cookie.py::CookieStorage._store",
+    "django/contrib/messages/storage/cookie.py::CookieStorage._encode",
+    "django/db/models/deletion.py::Collector.add",
+    "django/utils/tree.py::Node.add"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "16218c20606d8cd89c5393970c83da04598a3e04",
+    "total_functions_indexed": 23741,
+    "retrieval_time_seconds": 0.8375740051269531
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/messages/storage/base.py::BaseStorage._get\", \"score\": 91.53446440191266}, {\"doc_id\": \"django/forms/forms.py::BaseForm.add_error\", \"score\": 79.35582296697481}, {\"doc_id\": \"django/core/exceptions.py::ValidationError.__init__\", \"score\": 75.023012683999}, {\"doc_id\": \"django/contrib/messages/storage/base.py::BaseStorage._store\", \"score\": 72.85940978390359}, {\"doc_id\": \"django/forms/fields.py::Field.__init__\", \"score\": 71.5954437747161}, {\"doc_id\": \"django/forms/models.py::BaseModelForm._update_errors\", \"score\": 69.87530052400493}, {\"doc_id\": \"django/contrib/messages/storage/cookie.py::CookieStorage._store\", \"score\": 69.09636172720563}, {\"doc_id\": \"django/contrib/messages/storage/cookie.py::CookieStorage._encode\", \"score\": 68.82278235832445}, {\"doc_id\": \"django/db/models/deletion.py::Collector.add\", \"score\": 68.45272738160861}, {\"doc_id\": \"django/utils/tree.py::Node.add\", \"score\": 68.3693410772639}]"
+}

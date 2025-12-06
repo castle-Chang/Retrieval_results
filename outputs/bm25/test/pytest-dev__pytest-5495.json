@@ -1,0 +1,31 @@
+{
+  "instance_id": "pytest-dev__pytest-5495",
+  "query": "Confusing assertion rewriting message with byte strings\nThe comparison with assertion rewriting for byte strings is confusing: \r\n```\r\n    def test_b():\r\n>       assert b\"\" == b\"42\"\r\nE       AssertionError: assert b'' == b'42'\r\nE         Right contains more items, first extra item: 52\r\nE         Full diff:\r\nE         - b''\r\nE         + b'42'\r\nE         ?   ++\r\n```\r\n\r\n52 is the ASCII ordinal of \"4\" here.\r\n\r\nIt became clear to me when using another example:\r\n\r\n```\r\n    def test_b():\r\n>       assert b\"\" == b\"1\"\r\nE       AssertionError: assert b'' == b'1'\r\nE         Right contains more items, first extra item: 49\r\nE         Full diff:\r\nE         - b''\r\nE         + b'1'\r\nE         ?   +\r\n```\r\n\r\nNot sure what should/could be done here.\n",
+  "ground_truth": {
+    "files": [
+      "src/_pytest/assertion/util.py"
+    ],
+    "locations": [
+      "src/_pytest/assertion/util.py::_compare_eq_sequence"
+    ]
+  },
+  "predictions": [
+    "testing/test_assertion.py::TestAssert_reprcompare.test_dict_different_items",
+    "testing/test_assertion.py::test_assertrepr_loaded_per_dir",
+    "testing/test_assertion.py::TestAssert_reprcompare.test_mojibake",
+    "testing/python/metafunc.py::TestMetafunc.test_idmaker_enum",
+    "testing/test_assertion.py::test_sequence_comparison_uses_repr",
+    "src/_pytest/_code/code.py::FormattedExcinfo.repr_excinfo",
+    "testing/test_assertion.py::TestImportHookInstallation.test_rewrite_ast",
+    "testing/test_assertion.py::TestAssert_reprcompare.test_sequence_different_items",
+    "doc/en/example/assertion/failure_demo.py::TestCustomAssertMsg.test_multiline",
+    "doc/en/example/assertion/failure_demo.py::test_attribute_multiple"
+  ],
+  "metadata": {
+    "repo": "pytest-dev/pytest",
+    "commit": "1aefb24b37c30fba8fd79a744829ca16e252f340",
+    "total_functions_indexed": 3489,
+    "retrieval_time_seconds": 0.14395785331726074
+  },
+  "raw_output": "[{\"doc_id\": \"testing/test_assertion.py::TestAssert_reprcompare.test_dict_different_items\", \"score\": 157.58448281586388}, {\"doc_id\": \"testing/test_assertion.py::test_assertrepr_loaded_per_dir\", \"score\": 147.1178660905468}, {\"doc_id\": \"testing/test_assertion.py::TestAssert_reprcompare.test_mojibake\", \"score\": 127.89967547863039}, {\"doc_id\": \"testing/python/metafunc.py::TestMetafunc.test_idmaker_enum\", \"score\": 116.93989964276363}, {\"doc_id\": \"testing/test_assertion.py::test_sequence_comparison_uses_repr\", \"score\": 114.57224816537108}, {\"doc_id\": \"src/_pytest/_code/code.py::FormattedExcinfo.repr_excinfo\", \"score\": 108.86767119605135}, {\"doc_id\": \"testing/test_assertion.py::TestImportHookInstallation.test_rewrite_ast\", \"score\": 104.99795518324964}, {\"doc_id\": \"testing/test_assertion.py::TestAssert_reprcompare.test_sequence_different_items\", \"score\": 103.77454648581922}, {\"doc_id\": \"doc/en/example/assertion/failure_demo.py::TestCustomAssertMsg.test_multiline\", \"score\": 99.98310825927163}, {\"doc_id\": \"doc/en/example/assertion/failure_demo.py::test_attribute_multiple\", \"score\": 96.27849294851819}]"
+}

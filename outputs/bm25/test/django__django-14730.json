@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-14730",
+  "query": "Prevent developers from defining a related_name on symmetrical ManyToManyFields\nDescription\n\t\nIn ManyToManyField, if the symmetrical argument is passed, or if it's a self-referential ManyToMany relationship, the related field on the target model is not created. However, if a developer passes in the related_name not understanding this fact, they may be confused until they find the information about symmetrical relationship. Thus, it is proposed to raise an error when the user defines a ManyToManyField in this condition.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/related.py"
+    ],
+    "locations": [
+      "django/db/models/fields/related.py::ManyToManyField",
+      "django/db/models/fields/related.py::ManyToManyField._check_ignored_options",
+      "django/db/models/fields/related.py::ManyToManyField._check_relationship_model"
+    ]
+  },
+  "predictions": [
+    "django/db/models/fields/related.py::ManyToManyField.__init__",
+    "django/db/models/fields/reverse_related.py::ForeignObjectRel.get_accessor_name",
+    "django/db/models/base.py::Model._prepare_related_fields_for_save",
+    "django/db/models/fields/related.py::ManyToManyField.contribute_to_class",
+    "django/contrib/admin/checks.py::BaseModelAdminChecks._check_field_spec_item",
+    "tests/schema/fields.py::CustomManyToManyField.__init__",
+    "django/contrib/admin/options.py::InlineModelAdmin._has_any_perms_for_target_model",
+    "tests/invalid_models_tests/test_relative_fields.py::SelfReferentialM2MClashTests.test_clash_between_accessors",
+    "django/db/models/fields/reverse_related.py::ManyToManyRel.__init__",
+    "django/db/models/fields/related.py::RelatedField.formfield"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "4fe3774c729f3fd5105b3001fe69a70bdca95ac3",
+    "total_functions_indexed": 24925,
+    "retrieval_time_seconds": 0.740119457244873
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/fields/related.py::ManyToManyField.__init__\", \"score\": 107.62243115437535}, {\"doc_id\": \"django/db/models/fields/reverse_related.py::ForeignObjectRel.get_accessor_name\", \"score\": 92.3327839321737}, {\"doc_id\": \"django/db/models/base.py::Model._prepare_related_fields_for_save\", \"score\": 88.14244548720619}, {\"doc_id\": \"django/db/models/fields/related.py::ManyToManyField.contribute_to_class\", \"score\": 84.71280990507792}, {\"doc_id\": \"django/contrib/admin/checks.py::BaseModelAdminChecks._check_field_spec_item\", \"score\": 83.45208079164226}, {\"doc_id\": \"tests/schema/fields.py::CustomManyToManyField.__init__\", \"score\": 81.98439590477625}, {\"doc_id\": \"django/contrib/admin/options.py::InlineModelAdmin._has_any_perms_for_target_model\", \"score\": 80.34669779913386}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::SelfReferentialM2MClashTests.test_clash_between_accessors\", \"score\": 78.15233448351704}, {\"doc_id\": \"django/db/models/fields/reverse_related.py::ManyToManyRel.__init__\", \"score\": 77.10131497021965}, {\"doc_id\": \"django/db/models/fields/related.py::RelatedField.formfield\", \"score\": 74.87933945385366}]"
+}

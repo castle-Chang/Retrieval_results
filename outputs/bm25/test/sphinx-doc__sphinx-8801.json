@@ -1,0 +1,31 @@
+{
+  "instance_id": "sphinx-doc__sphinx-8801",
+  "query": "autodoc: The annotation only member in superclass is treated as \"undocumented\"\n**Describe the bug**\r\nautodoc: The annotation only member in superclass is treated as \"undocumented\".\r\n\r\n**To Reproduce**\r\n\r\n```\r\n# example.py\r\nclass Foo:\r\n    \"\"\"docstring\"\"\"\r\n    attr1: int  #: docstring\r\n\r\n\r\nclass Bar(Foo):\r\n    \"\"\"docstring\"\"\"\r\n    attr2: str  #: docstring\r\n```\r\n```\r\n# index.rst\r\n.. autoclass:: example.Bar\r\n   :members:\r\n   :inherited-members:\r\n```\r\n\r\n`Bar.attr1` is not documented. It will be shown if I give `:undoc-members:` option to the autoclass directive call. It seems the attribute is treated as undocumented.\r\n\r\n**Expected behavior**\r\nIt should be shown.\r\n\r\n**Your project**\r\nNo\r\n\r\n**Screenshots**\r\nNo\r\n\r\n**Environment info**\r\n- OS: Mac\r\n- Python version: 3.9.1\r\n- Sphinx version: HEAD of 3.x\r\n- Sphinx extensions: sphinx.ext.autodoc\r\n- Extra tools: No\r\n\r\n**Additional context**\r\nNo\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/ext/autodoc/importer.py"
+    ],
+    "locations": [
+      "sphinx/ext/autodoc/importer.py::get_class_members"
+    ]
+  },
+  "predictions": [
+    "sphinx/ext/autodoc/__init__.py::Documenter.filter_members",
+    "tests/test_ext_autodoc_autoclass.py::test_inherited_instance_variable",
+    "tests/test_ext_autodoc.py::test_slots",
+    "tests/test_ext_napoleon_docstring.py::GoogleDocstringTest.test_parameters_with_class_reference",
+    "sphinx/application.py::Sphinx.add_object_type",
+    "doc/usage/extensions/example_google.py::ExampleClass.__init__",
+    "doc/usage/extensions/example_numpy.py::ExampleClass.__init__",
+    "tests/test_ext_autodoc_autoclass.py::test_slots_attribute",
+    "sphinx/ext/autodoc/importer.py::get_class_members",
+    "tests/test_ext_napoleon.py::SkipMemberTest.test_namedtuple"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "7ca279e33aebb60168d35e6be4ed059f4a68f2c1",
+    "total_functions_indexed": 5672,
+    "retrieval_time_seconds": 0.24668264389038086
+  },
+  "raw_output": "[{\"doc_id\": \"sphinx/ext/autodoc/__init__.py::Documenter.filter_members\", \"score\": 103.3603235242228}, {\"doc_id\": \"tests/test_ext_autodoc_autoclass.py::test_inherited_instance_variable\", \"score\": 102.09075541382897}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_slots\", \"score\": 101.74336779022583}, {\"doc_id\": \"tests/test_ext_napoleon_docstring.py::GoogleDocstringTest.test_parameters_with_class_reference\", \"score\": 100.03280852229352}, {\"doc_id\": \"sphinx/application.py::Sphinx.add_object_type\", \"score\": 99.93572936425203}, {\"doc_id\": \"doc/usage/extensions/example_google.py::ExampleClass.__init__\", \"score\": 99.85118060735373}, {\"doc_id\": \"doc/usage/extensions/example_numpy.py::ExampleClass.__init__\", \"score\": 99.85118060735373}, {\"doc_id\": \"tests/test_ext_autodoc_autoclass.py::test_slots_attribute\", \"score\": 95.54457734546618}, {\"doc_id\": \"sphinx/ext/autodoc/importer.py::get_class_members\", \"score\": 89.78338408787113}, {\"doc_id\": \"tests/test_ext_napoleon.py::SkipMemberTest.test_namedtuple\", \"score\": 88.37244681090402}]"
+}

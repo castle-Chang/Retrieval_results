@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-19487",
+  "query": "Rewrite sign as abs\nIn sympy the `sign` function is defined as\r\n```\r\n    sign(z)  :=  z / Abs(z)\r\n```\r\nfor all complex non-zero `z`. There should be a way to rewrite the sign in terms of `Abs` e.g.:\r\n```\r\n>>> sign(x).rewrite(Abs)                                                                                                                   \r\n x \r\n───\r\n│x│\r\n```\r\nI'm not sure how the possibility of `x` being zero should be handled currently we have\r\n```\r\n>>> sign(0)                                                                                                                               \r\n0\r\n>>> 0 / Abs(0)                                                                                                                            \r\nnan\r\n```\r\nMaybe `sign(0)` should be `nan` as well. Otherwise maybe rewrite as Abs would have to be careful about the possibility of the arg being zero (that would make the rewrite fail in most cases).\n",
+  "ground_truth": {
+    "files": [
+      "sympy/functions/elementary/complexes.py"
+    ],
+    "locations": [
+      "sympy/functions/elementary/complexes.py::sign",
+      "sympy/functions/elementary/complexes.py::sign._eval_rewrite_as_Heaviside",
+      "sympy/functions/elementary/complexes.py::sign._eval_simplify"
+    ]
+  },
+  "predictions": [
+    "sympy/functions/special/delta_functions.py::Heaviside._eval_rewrite_as_sign",
+    "sympy/series/gruntz.py::limitinf",
+    "sympy/functions/elementary/tests/test_complexes.py::test_sign",
+    "sympy/series/gruntz.py::sign",
+    "sympy/physics/quantum/cg.py::_check_cg_simp",
+    "sympy/functions/special/hyper.py::meijerg._diff_wrt_parameter",
+    "sympy/series/gruntz.py::rewrite",
+    "sympy/series/limits.py::Limit.doit",
+    "sympy/series/gruntz.py::gruntz",
+    "sympy/core/basic.py::Basic.rewrite"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "25fbcce5b1a4c7e3956e6062930f4a44ce95a632",
+    "total_functions_indexed": 34589,
+    "retrieval_time_seconds": 1.452448844909668
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/functions/special/delta_functions.py::Heaviside._eval_rewrite_as_sign\", \"score\": 194.01420494186561}, {\"doc_id\": \"sympy/series/gruntz.py::limitinf\", \"score\": 188.39370397548447}, {\"doc_id\": \"sympy/functions/elementary/tests/test_complexes.py::test_sign\", \"score\": 182.75615271836256}, {\"doc_id\": \"sympy/series/gruntz.py::sign\", \"score\": 176.34901617210042}, {\"doc_id\": \"sympy/physics/quantum/cg.py::_check_cg_simp\", \"score\": 174.9068508240042}, {\"doc_id\": \"sympy/functions/special/hyper.py::meijerg._diff_wrt_parameter\", \"score\": 172.85482900449043}, {\"doc_id\": \"sympy/series/gruntz.py::rewrite\", \"score\": 171.41347840992825}, {\"doc_id\": \"sympy/series/limits.py::Limit.doit\", \"score\": 171.27489917263324}, {\"doc_id\": \"sympy/series/gruntz.py::gruntz\", \"score\": 170.74321262921586}, {\"doc_id\": \"sympy/core/basic.py::Basic.rewrite\", \"score\": 164.8413880017729}]"
+}

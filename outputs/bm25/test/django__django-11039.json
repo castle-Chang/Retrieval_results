@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11039",
+  "query": "sqlmigrate wraps it's outpout in BEGIN/COMMIT even if the database doesn't support transactional DDL\nDescription\n\t \n\t\t(last modified by Simon Charette)\n\t \nThe migration executor only adds the outer BEGIN/COMMIT ​if the migration is atomic and ​the schema editor can rollback DDL but the current sqlmigrate logic only takes migration.atomic into consideration.\nThe issue can be addressed by\nChanging sqlmigrate ​assignment of self.output_transaction to consider connection.features.can_rollback_ddl as well.\nAdding a test in tests/migrations/test_commands.py based on ​an existing test for non-atomic migrations that mocks connection.features.can_rollback_ddl to False instead of overdidding MIGRATION_MODULES to point to a non-atomic migration.\nI marked the ticket as easy picking because I included the above guidelines but feel free to uncheck it if you deem it inappropriate.\n",
+  "ground_truth": {
+    "files": [
+      "django/core/management/commands/sqlmigrate.py"
+    ],
+    "locations": [
+      "django/core/management/commands/sqlmigrate.py::Command",
+      "django/core/management/commands/sqlmigrate.py::Command.handle"
+    ]
+  },
+  "predictions": [
+    "django/core/management/commands/sqlmigrate.py::Command.handle",
+    "django/db/migrations/migration.py::Migration.apply",
+    "django/db/migrations/migration.py::Migration.unapply",
+    "tests/migrations/test_executor.py::ExecutorTests.test_atomic_operation_in_non_atomic_migration",
+    "tests/migrations/test_executor.py::ExecutorTests.test_detect_soft_applied_add_field_manytomanyfield",
+    "django/core/management/commands/sqlmigrate.py::Command.execute",
+    "django/db/migrations/executor.py::MigrationExecutor.detect_soft_applied",
+    "tests/backends/sqlite/tests.py::SchemaTests.test_table_rename_inside_atomic_block",
+    "django/db/migrations/loader.py::MigrationLoader.build_graph",
+    "django/db/migrations/executor.py::MigrationExecutor._migrate_all_backwards"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "d5276398046ce4a102776a1e67dcac2884d80dfe",
+    "total_functions_indexed": 22327,
+    "retrieval_time_seconds": 1.4258580207824707
+  },
+  "raw_output": "[{\"doc_id\": \"django/core/management/commands/sqlmigrate.py::Command.handle\", \"score\": 142.7832544550668}, {\"doc_id\": \"django/db/migrations/migration.py::Migration.apply\", \"score\": 139.354043443183}, {\"doc_id\": \"django/db/migrations/migration.py::Migration.unapply\", \"score\": 130.6310783201297}, {\"doc_id\": \"tests/migrations/test_executor.py::ExecutorTests.test_atomic_operation_in_non_atomic_migration\", \"score\": 127.59369706635277}, {\"doc_id\": \"tests/migrations/test_executor.py::ExecutorTests.test_detect_soft_applied_add_field_manytomanyfield\", \"score\": 119.46851527687863}, {\"doc_id\": \"django/core/management/commands/sqlmigrate.py::Command.execute\", \"score\": 118.70607488266928}, {\"doc_id\": \"django/db/migrations/executor.py::MigrationExecutor.detect_soft_applied\", \"score\": 118.27128227321967}, {\"doc_id\": \"tests/backends/sqlite/tests.py::SchemaTests.test_table_rename_inside_atomic_block\", \"score\": 116.86455441215777}, {\"doc_id\": \"django/db/migrations/loader.py::MigrationLoader.build_graph\", \"score\": 115.10593038065228}, {\"doc_id\": \"django/db/migrations/executor.py::MigrationExecutor._migrate_all_backwards\", \"score\": 114.3359057694088}]"
+}

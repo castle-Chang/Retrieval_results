@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12284",
+  "query": "Model.get_FOO_display() does not work correctly with inherited choices.\nDescription\n\t \n\t\t(last modified by Mariusz Felisiak)\n\t \nGiven a base model with choices A containing 3 tuples\nChild Model inherits the base model overrides the choices A and adds 2 more tuples\nget_foo_display does not work correctly for the new tuples added\nExample:\nclass A(models.Model):\n foo_choice = [(\"A\",\"output1\"),(\"B\",\"output2\")]\n field_foo = models.CharField(max_length=254,choices=foo_choice)\n class Meta:\n\t abstract = True\nclass B(A):\n foo_choice = [(\"A\",\"output1\"),(\"B\",\"output2\"),(\"C\",\"output3\")]\n field_foo = models.CharField(max_length=254,choices=foo_choice)\nUpon invoking get_field_foo_display() on instance of B , \nFor value \"A\" and \"B\" the output works correctly i.e. returns \"output1\" / \"output2\"\nbut for value \"C\" the method returns \"C\" and not \"output3\" which is the expected behaviour\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/__init__.py"
+    ],
+    "locations": [
+      "django/db/models/fields/__init__.py::Field",
+      "django/db/models/fields/__init__.py::Field.contribute_to_class"
+    ]
+  },
+  "predictions": [
+    "tests/migrations/test_state.py::StateTests.test_choices_iterator",
+    "tests/invalid_models_tests/test_relative_fields.py::M2mThroughFieldsTests.test_superset_foreign_object",
+    "tests/foreign_object/tests.py::TestModelCheckTests.test_check_subset_composite_foreign_object",
+    "tests/invalid_models_tests/test_relative_fields.py::M2mThroughFieldsTests.test_intersection_foreign_object",
+    "tests/postgres_tests/test_array.py::BasicTests.test_get_field_display_nested_array",
+    "tests/invalid_models_tests/test_ordinary_fields.py::CharFieldTests.test_choices_containing_non_pairs",
+    "tests/foreign_object/tests.py::TestModelCheckTests.test_check_composite_foreign_object",
+    "tests/invalid_models_tests/test_ordinary_fields.py::CharFieldTests.test_non_iterable_choices_two_letters",
+    "tests/postgres_tests/test_array.py::BasicTests.test_get_field_display",
+    "tests/model_inheritance/tests.py::ModelInheritanceTests.test_abstract_parent_link"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "c5e373d48cbdd923575956fed477b63d66d9603f",
+    "total_functions_indexed": 23160,
+    "retrieval_time_seconds": 1.0284459590911865
+  },
+  "raw_output": "[{\"doc_id\": \"tests/migrations/test_state.py::StateTests.test_choices_iterator\", \"score\": 139.3852696129096}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::M2mThroughFieldsTests.test_superset_foreign_object\", \"score\": 135.63718287852956}, {\"doc_id\": \"tests/foreign_object/tests.py::TestModelCheckTests.test_check_subset_composite_foreign_object\", \"score\": 133.86568212560522}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::M2mThroughFieldsTests.test_intersection_foreign_object\", \"score\": 131.9589823494289}, {\"doc_id\": \"tests/postgres_tests/test_array.py::BasicTests.test_get_field_display_nested_array\", \"score\": 130.26702771032558}, {\"doc_id\": \"tests/invalid_models_tests/test_ordinary_fields.py::CharFieldTests.test_choices_containing_non_pairs\", \"score\": 130.2560400550382}, {\"doc_id\": \"tests/foreign_object/tests.py::TestModelCheckTests.test_check_composite_foreign_object\", \"score\": 122.1232769397326}, {\"doc_id\": \"tests/invalid_models_tests/test_ordinary_fields.py::CharFieldTests.test_non_iterable_choices_two_letters\", \"score\": 122.10359753310587}, {\"doc_id\": \"tests/postgres_tests/test_array.py::BasicTests.test_get_field_display\", \"score\": 120.32621092878486}, {\"doc_id\": \"tests/model_inheritance/tests.py::ModelInheritanceTests.test_abstract_parent_link\", \"score\": 118.06886547067249}]"
+}

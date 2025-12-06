@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-16046",
+  "query": "Fix numberformat.py \"string index out of range\" when null\nDescription\n\t\nWhen:\nif str_number[0] == \"-\"\nencounters a number field that's null when formatting for the admin list_display this causes an \nIndexError: string index out of range\nI can attach the proposed fix here, or open a pull request on GitHub if you like?\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/numberformat.py"
+    ],
+    "locations": [
+      "django/utils/numberformat.py::format"
+    ]
+  },
+  "predictions": [
+    "django/contrib/gis/gdal/feature.py::Feature.__getitem__",
+    "django/contrib/gis/gdal/geometries.py::Polygon.__getitem__",
+    "django/contrib/gis/gdal/geometries.py::GeometryCollection.__getitem__",
+    "django/contrib/gis/gdal/geometries.py::LineString.__getitem__",
+    "django/contrib/gis/gdal/datasource.py::DataSource.__getitem__",
+    "django/contrib/gis/gdal/layer.py::Layer.__getitem__",
+    "django/db/backends/mysql/schema.py::DatabaseSchemaEditor._create_missing_fk_index",
+    "django/contrib/gis/utils/ogrinspect.py::ogrinspect",
+    "tests/template_tests/syntax_tests/test_list_index.py::ListIndexTests.test_list_index03",
+    "tests/admin_views/tests.py::AdminViewBasicTest.test_change_list_sorting_model_admin_reverse"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "ec13e801b820614ff374cb0046092caab8d67249",
+    "total_functions_indexed": 26158,
+    "retrieval_time_seconds": 0.5655288696289062
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/gis/gdal/feature.py::Feature.__getitem__\", \"score\": 80.48893628600467}, {\"doc_id\": \"django/contrib/gis/gdal/geometries.py::Polygon.__getitem__\", \"score\": 68.0964071561151}, {\"doc_id\": \"django/contrib/gis/gdal/geometries.py::GeometryCollection.__getitem__\", \"score\": 66.31162301229232}, {\"doc_id\": \"django/contrib/gis/gdal/geometries.py::LineString.__getitem__\", \"score\": 62.45888393200246}, {\"doc_id\": \"django/contrib/gis/gdal/datasource.py::DataSource.__getitem__\", \"score\": 61.59633749189976}, {\"doc_id\": \"django/contrib/gis/gdal/layer.py::Layer.__getitem__\", \"score\": 52.94078864275048}, {\"doc_id\": \"django/db/backends/mysql/schema.py::DatabaseSchemaEditor._create_missing_fk_index\", \"score\": 51.68818793970539}, {\"doc_id\": \"django/contrib/gis/utils/ogrinspect.py::ogrinspect\", \"score\": 50.30437062474338}, {\"doc_id\": \"tests/template_tests/syntax_tests/test_list_index.py::ListIndexTests.test_list_index03\", \"score\": 49.09308767624597}, {\"doc_id\": \"tests/admin_views/tests.py::AdminViewBasicTest.test_change_list_sorting_model_admin_reverse\", \"score\": 48.75017643386566}]"
+}

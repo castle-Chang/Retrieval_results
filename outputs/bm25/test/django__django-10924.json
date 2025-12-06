@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-10924",
+  "query": "Allow FilePathField path to accept a callable.\nDescription\n\t\nI have a special case where I want to create a model containing the path to some local files on the server/dev machine. Seeing as the place where these files are stored is different on different machines I have the following:\nimport os\nfrom django.conf import settings\nfrom django.db import models\nclass LocalFiles(models.Model):\n\tname = models.CharField(max_length=255)\n\tfile = models.FilePathField(path=os.path.join(settings.LOCAL_FILE_DIR, 'example_dir'))\nNow when running manage.py makemigrations it will resolve the path based on the machine it is being run on. Eg: /home/<username>/server_files/example_dir\nI had to manually change the migration to include the os.path.join() part to not break this when running the migration on production/other machine.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/__init__.py"
+    ],
+    "locations": [
+      "django/db/models/fields/__init__.py::FilePathField",
+      "django/db/models/fields/__init__.py::FilePathField.formfield"
+    ]
+  },
+  "predictions": [
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_migration_path_output_valueerror",
+    "django/utils/encoding.py::filepath_to_uri",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_migrations_modules_path_not_exist",
+    "django/core/files/storage.py::Storage.generate_filename",
+    "tests/migrations/test_base.py::MigrationTestBase.temporary_migration_module",
+    "django/db/models/options.py::Options.get_path_from_parent",
+    "django/contrib/staticfiles/views.py::serve",
+    "django/core/management/commands/shell.py::Command.python",
+    "django/contrib/staticfiles/storage.py::HashedFilesMixin.post_process",
+    "tests/file_storage/tests.py::FileStoragePathParsing.test_first_character_dot"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "bceadd2788dc2dad53eba0caae172bd8522fd483",
+    "total_functions_indexed": 22462,
+    "retrieval_time_seconds": 1.5303962230682373
+  },
+  "raw_output": "[{\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_migration_path_output_valueerror\", \"score\": 159.32535603112817}, {\"doc_id\": \"django/utils/encoding.py::filepath_to_uri\", \"score\": 128.09553741128502}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_migrations_modules_path_not_exist\", \"score\": 122.2992061561092}, {\"doc_id\": \"django/core/files/storage.py::Storage.generate_filename\", \"score\": 115.7096957196073}, {\"doc_id\": \"tests/migrations/test_base.py::MigrationTestBase.temporary_migration_module\", \"score\": 114.78312184184107}, {\"doc_id\": \"django/db/models/options.py::Options.get_path_from_parent\", \"score\": 113.85590895189888}, {\"doc_id\": \"django/contrib/staticfiles/views.py::serve\", \"score\": 113.6976988129034}, {\"doc_id\": \"django/core/management/commands/shell.py::Command.python\", \"score\": 113.57820690422623}, {\"doc_id\": \"django/contrib/staticfiles/storage.py::HashedFilesMixin.post_process\", \"score\": 113.55998431154575}, {\"doc_id\": \"tests/file_storage/tests.py::FileStoragePathParsing.test_first_character_dot\", \"score\": 112.95180235180335}]"
+}

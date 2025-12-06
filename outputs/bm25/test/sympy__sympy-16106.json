@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-16106",
+  "query": "mathml printer for IndexedBase required\nWriting an `Indexed` object to MathML fails with a `TypeError` exception: `TypeError: 'Indexed' object is not iterable`:\r\n\r\n```\r\nIn [340]: sympy.__version__\r\nOut[340]: '1.0.1.dev'\r\n\r\nIn [341]: from sympy.abc import (a, b)\r\n\r\nIn [342]: sympy.printing.mathml(sympy.IndexedBase(a)[b])\r\n---------------------------------------------------------------------------\r\nTypeError                                 Traceback (most recent call last)\r\n<ipython-input-342-b32e493b70d3> in <module>()\r\n----> 1 sympy.printing.mathml(sympy.IndexedBase(a)[b])\r\n\r\n/dev/shm/gerrit/venv/stable-3.5/lib/python3.5/site-packages/sympy/printing/mathml.py in mathml(expr, **settings)\r\n    442 def mathml(expr, **settings):\r\n    443     \"\"\"Returns the MathML representation of expr\"\"\"\r\n--> 444     return MathMLPrinter(settings).doprint(expr)\r\n    445 \r\n    446 \r\n\r\n/dev/shm/gerrit/venv/stable-3.5/lib/python3.5/site-packages/sympy/printing/mathml.py in doprint(self, expr)\r\n     36         Prints the expression as MathML.\r\n     37         \"\"\"\r\n---> 38         mathML = Printer._print(self, expr)\r\n     39         unistr = mathML.toxml()\r\n     40         xmlbstr = unistr.encode('ascii', 'xmlcharrefreplace')\r\n\r\n/dev/shm/gerrit/venv/stable-3.5/lib/python3.5/site-packages/sympy/printing/printer.py in _print(self, expr, *args, **kwargs)\r\n    255                 printmethod = '_print_' + cls.__name__\r\n    256                 if hasattr(self, printmethod):\r\n--> 257                     return getattr(self, printmethod)(expr, *args, **kwargs)\r\n    258             # Unknown object, fall back to the emptyPrinter.\r\n    259             return self.emptyPrinter(expr)\r\n\r\n/dev/shm/gerrit/venv/stable-3.5/lib/python3.5/site-packages/sympy/printing/mathml.py in _print_Basic(self, e)\r\n    356     def _print_Basic(self, e):\r\n    357         x = self.dom.createElement(self.mathml_tag(e))\r\n--> 358         for arg in e:\r\n    359             x.appendChild(self._print(arg))\r\n    360         return x\r\n\r\nTypeError: 'Indexed' object is not iterable\r\n```\r\n\r\nIt also fails for more complex expressions where at least one element is Indexed.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/mathml.py"
+    ],
+    "locations": [
+      "sympy/printing/mathml.py::MathMLPresentationPrinter",
+      "sympy/printing/mathml.py::MathMLPresentationPrinter._print_Lambda",
+      "sympy/printing/mathml.py::mathml"
+    ]
+  },
+  "predictions": [
+    "sympy/printing/mathml.py::MathMLPrinterBase.doprint",
+    "sympy/printing/printer.py::Printer._print",
+    "sympy/printing/mathml.py::mathml",
+    "sympy/printing/mathml.py::print_mathml",
+    "sympy/printing/mathml.py::MathMLContentPrinter._print_Basic",
+    "sympy/printing/mathml.py::MathMLPresentationPrinter._print_SetOp",
+    "sympy/printing/mathml.py::MathMLPresentationPrinter._print_Basic",
+    "sympy/printing/mathml.py::MathMLContentPrinter._print_Function",
+    "sympy/printing/mathml.py::MathMLContentPrinter._print_AssocOp",
+    "sympy/printing/mathml.py::MathMLPresentationPrinter._print_Add"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "0e987498b00167fdd4a08a41c852a97cb70ce8f2",
+    "total_functions_indexed": 24630,
+    "retrieval_time_seconds": 2.1894359588623047
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/printing/mathml.py::MathMLPrinterBase.doprint\", \"score\": 423.3785324466197}, {\"doc_id\": \"sympy/printing/printer.py::Printer._print\", \"score\": 369.1784087827746}, {\"doc_id\": \"sympy/printing/mathml.py::mathml\", \"score\": 345.2536678771122}, {\"doc_id\": \"sympy/printing/mathml.py::print_mathml\", \"score\": 335.50522219611685}, {\"doc_id\": \"sympy/printing/mathml.py::MathMLContentPrinter._print_Basic\", \"score\": 307.7786094299876}, {\"doc_id\": \"sympy/printing/mathml.py::MathMLPresentationPrinter._print_SetOp\", \"score\": 287.7277323688605}, {\"doc_id\": \"sympy/printing/mathml.py::MathMLPresentationPrinter._print_Basic\", \"score\": 287.6044970473916}, {\"doc_id\": \"sympy/printing/mathml.py::MathMLContentPrinter._print_Function\", \"score\": 281.68489264567927}, {\"doc_id\": \"sympy/printing/mathml.py::MathMLContentPrinter._print_AssocOp\", \"score\": 279.547456784608}, {\"doc_id\": \"sympy/printing/mathml.py::MathMLPresentationPrinter._print_Add\", \"score\": 278.9114842909961}]"
+}

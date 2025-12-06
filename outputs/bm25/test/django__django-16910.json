@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-16910",
+  "query": "QuerySet.only() doesn't work with select_related() on a reverse OneToOneField relation.\nDescription\n\t\nOn Django 4.2 calling only() with select_related() on a query using the reverse lookup for a OneToOne relation does not generate the correct query.\nAll the fields from the related model are still included in the generated SQL.\nSample models:\nclass Main(models.Model):\n\tmain_field_1 = models.CharField(blank=True, max_length=45)\n\tmain_field_2 = models.CharField(blank=True, max_length=45)\n\tmain_field_3 = models.CharField(blank=True, max_length=45)\nclass Secondary(models.Model):\n\tmain = models.OneToOneField(Main, primary_key=True, related_name='secondary', on_delete=models.CASCADE)\n\tsecondary_field_1 = models.CharField(blank=True, max_length=45)\n\tsecondary_field_2 = models.CharField(blank=True, max_length=45)\n\tsecondary_field_3 = models.CharField(blank=True, max_length=45)\nSample code:\nMain.objects.select_related('secondary').only('main_field_1', 'secondary__secondary_field_1')\nGenerated query on Django 4.2.1:\nSELECT \"bugtest_main\".\"id\", \"bugtest_main\".\"main_field_1\", \"bugtest_secondary\".\"main_id\", \"bugtest_secondary\".\"secondary_field_1\", \"bugtest_secondary\".\"secondary_field_2\", \"bugtest_secondary\".\"secondary_field_3\" FROM \"bugtest_main\" LEFT OUTER JOIN \"bugtest_secondary\" ON (\"bugtest_main\".\"id\" = \"bugtest_secondary\".\"main_id\")\nGenerated query on Django 4.1.9:\nSELECT \"bugtest_main\".\"id\", \"bugtest_main\".\"main_field_1\", \"bugtest_secondary\".\"main_id\", \"bugtest_secondary\".\"secondary_field_1\" FROM \"bugtest_main\" LEFT OUTER JOIN \"bugtest_secondary\" ON (\"bugtest_main\".\"id\" = \"bugtest_secondary\".\"main_id\")\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/sql/query.py"
+    ],
+    "locations": [
+      "django/db/models/sql/query.py::Query",
+      "django/db/models/sql/query.py::Query._get_only_select_mask"
+    ]
+  },
+  "predictions": [
+    "tests/migrations/test_writer.py::WriterTests.test_serialize_fields",
+    "tests/migrations/test_operations.py::OperationTests.test_alter_field_reloads_state_on_fk_with_to_field_target_changes",
+    "tests/migrations/test_operations.py::OperationTests.test_alter_field_reloads_state_on_fk_target_changes",
+    "tests/modeladmin/tests.py::ModelAdminTests.test_lookup_allowed_onetoone",
+    "tests/field_deconstruction/tests.py::FieldDeconstructionTests.test_char_field",
+    "tests/inspectdb/tests.py::InspectDBTestCase.test_field_types",
+    "tests/migrations/test_operations.py::OperationTests.test_rename_field_reloads_state_on_fk_target_changes",
+    "tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_multi_inheritance_field_clashes",
+    "tests/migrations/test_autodetector.py::AutodetectorTests.test_rename_model_with_fks_in_different_position",
+    "tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_override_one2one_relation_auto_field_clashes"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "4142739af1cda53581af4169dbe16d6cd5e26948",
+    "total_functions_indexed": 26678,
+    "retrieval_time_seconds": 1.5342645645141602
+  },
+  "raw_output": "[{\"doc_id\": \"tests/migrations/test_writer.py::WriterTests.test_serialize_fields\", \"score\": 219.46322949719786}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_alter_field_reloads_state_on_fk_with_to_field_target_changes\", \"score\": 195.08770797412532}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_alter_field_reloads_state_on_fk_target_changes\", \"score\": 193.59189667437192}, {\"doc_id\": \"tests/modeladmin/tests.py::ModelAdminTests.test_lookup_allowed_onetoone\", \"score\": 190.9391174221484}, {\"doc_id\": \"tests/field_deconstruction/tests.py::FieldDeconstructionTests.test_char_field\", \"score\": 189.81681095551642}, {\"doc_id\": \"tests/inspectdb/tests.py::InspectDBTestCase.test_field_types\", \"score\": 189.073341489858}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_rename_field_reloads_state_on_fk_target_changes\", \"score\": 182.59132174798785}, {\"doc_id\": \"tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_multi_inheritance_field_clashes\", \"score\": 169.0739707635713}, {\"doc_id\": \"tests/migrations/test_autodetector.py::AutodetectorTests.test_rename_model_with_fks_in_different_position\", \"score\": 168.50584146477377}, {\"doc_id\": \"tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_override_one2one_relation_auto_field_clashes\", \"score\": 165.18671570325571}]"
+}

@@ -1,0 +1,31 @@
+{
+  "instance_id": "pydata__xarray-3364",
+  "query": "Ignore missing variables when concatenating datasets?\nSeveral users (@raj-kesavan, @richardotis, now myself) have wondered about how to concatenate xray Datasets with different variables.\n\nWith the current `xray.concat`, you need to awkwardly create dummy variables filled with `NaN` in datasets that don't have them (or drop mismatched variables entirely). Neither of these are great options -- `concat` should have an option (the default?) to take care of this for the user.\n\nThis would also be more consistent with `pd.concat`, which takes a more relaxed approach to matching dataframes with different variables (it does an outer join).\n\n",
+  "ground_truth": {
+    "files": [
+      "xarray/core/concat.py"
+    ],
+    "locations": [
+      "xarray/core/concat.py::_dataset_concat"
+    ]
+  },
+  "predictions": [
+    "xarray/core/combine.py::auto_combine",
+    "xarray/core/combine.py::combine_nested",
+    "xarray/core/concat.py::concat",
+    "xarray/backends/api.py::open_mfdataset",
+    "xarray/core/variable.py::concat",
+    "xarray/core/variable.py::Variable.concat",
+    "xarray/core/concat.py::_dataset_concat",
+    "xarray/core/combine.py::combine_by_coords",
+    "xarray/core/combine.py::_dimension_coords_exist",
+    "xarray/core/dataset.py::Dataset.merge"
+  ],
+  "metadata": {
+    "repo": "pydata/xarray",
+    "commit": "863e49066ca4d61c9adfe62aca3bf21b90e1af8c",
+    "total_functions_indexed": 3755,
+    "retrieval_time_seconds": 0.14144420623779297
+  },
+  "raw_output": "[{\"doc_id\": \"xarray/core/combine.py::auto_combine\", \"score\": 126.17651227089819}, {\"doc_id\": \"xarray/core/combine.py::combine_nested\", \"score\": 115.89360256273036}, {\"doc_id\": \"xarray/core/concat.py::concat\", \"score\": 107.40644431572345}, {\"doc_id\": \"xarray/backends/api.py::open_mfdataset\", \"score\": 99.69715741833386}, {\"doc_id\": \"xarray/core/variable.py::concat\", \"score\": 97.49988855653464}, {\"doc_id\": \"xarray/core/variable.py::Variable.concat\", \"score\": 94.331373143741}, {\"doc_id\": \"xarray/core/concat.py::_dataset_concat\", \"score\": 92.41268263520436}, {\"doc_id\": \"xarray/core/combine.py::combine_by_coords\", \"score\": 89.34873664404289}, {\"doc_id\": \"xarray/core/combine.py::_dimension_coords_exist\", \"score\": 88.955062305925}, {\"doc_id\": \"xarray/core/dataset.py::Dataset.merge\", \"score\": 88.48617795610107}]"
+}

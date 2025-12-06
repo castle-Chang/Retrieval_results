@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-16820",
+  "query": "Squashing migrations with Meta.index_together -> indexes transition should remove deprecation warnings.\nDescription\n\t\nSquashing migrations with Meta.index_together -> Meta.indexes transition should remove deprecation warnings. As far as I'm aware, it's a 4.2 release blocker because you cannot get rid of the index_together deprecation warnings without rewriting migrations, see comment.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/operations/models.py"
+    ],
+    "locations": [
+      "django/db/migrations/operations/models.py::CreateModel",
+      "django/db/migrations/operations/models.py::CreateModel.reduce"
+    ]
+  },
+  "predictions": [
+    "tests/deprecation/tests.py::RenameMethodsTests.test_renamed_subclass_deprecated",
+    "django/db/models/options.py::Options.contribute_to_class",
+    "django/utils/deprecation.py::DeprecationInstanceCheck.__instancecheck__",
+    "tests/deprecation/tests.py::RenameMethodsTests.test_get_old_defined",
+    "tests/schema/tests.py::SchemaTests.test_remove_index_together_does_not_remove_meta_indexes",
+    "tests/deprecation/tests.py::RenameMethodsTests.test_get_new_defined",
+    "django/utils/deprecation.py::warn_about_renamed_method.__call__",
+    "tests/migrations/test_autodetector.py::AutodetectorIndexTogetherTests.test_rename_index_together_to_index_order_fields",
+    "tests/indexes/tests.py::SchemaIndexesTests.test_index_together_single_list",
+    "django/db/migrations/operations/models.py::AlterIndexTogether.__init__"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "c61219a7ae051d2baab53f041e00592011fc550c",
+    "total_functions_indexed": 26575,
+    "retrieval_time_seconds": 0.6785967350006104
+  },
+  "raw_output": "[{\"doc_id\": \"tests/deprecation/tests.py::RenameMethodsTests.test_renamed_subclass_deprecated\", \"score\": 54.48714274378142}, {\"doc_id\": \"django/db/models/options.py::Options.contribute_to_class\", \"score\": 53.672910770888436}, {\"doc_id\": \"django/utils/deprecation.py::DeprecationInstanceCheck.__instancecheck__\", \"score\": 53.440908443819595}, {\"doc_id\": \"tests/deprecation/tests.py::RenameMethodsTests.test_get_old_defined\", \"score\": 53.099536931161765}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_remove_index_together_does_not_remove_meta_indexes\", \"score\": 52.74026065273462}, {\"doc_id\": \"tests/deprecation/tests.py::RenameMethodsTests.test_get_new_defined\", \"score\": 50.2719988970695}, {\"doc_id\": \"django/utils/deprecation.py::warn_about_renamed_method.__call__\", \"score\": 49.35623392196756}, {\"doc_id\": \"tests/migrations/test_autodetector.py::AutodetectorIndexTogetherTests.test_rename_index_together_to_index_order_fields\", \"score\": 49.20334129732437}, {\"doc_id\": \"tests/indexes/tests.py::SchemaIndexesTests.test_index_together_single_list\", \"score\": 48.53700383510096}, {\"doc_id\": \"django/db/migrations/operations/models.py::AlterIndexTogether.__init__\", \"score\": 47.92825116174946}]"
+}

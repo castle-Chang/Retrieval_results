@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-15789",
+  "query": "Add an encoder parameter to django.utils.html.json_script().\nDescription\n\t\nI have a use case where I want to customize the JSON encoding of some values to output to the template layer. It looks like django.utils.html.json_script is a good utility for that, however the JSON encoder is hardcoded to DjangoJSONEncoder. I think it would be nice to be able to pass a custom encoder class.\nBy the way, django.utils.html.json_script is not documented (only its template filter counterpart is), would it be a good thing to add to the docs?\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/html.py"
+    ],
+    "locations": [
+      "django/utils/html.py::json_script"
+    ]
+  },
+  "predictions": [
+    "django/utils/html.py::json_script",
+    "django/utils/encoding.py::filepath_to_uri",
+    "django/http/response.py::JsonResponse.__init__",
+    "django/db/models/fields/__init__.py::Field.db_type",
+    "docs/_ext/djangodocs.py::html_page_context_hook",
+    "django/template/defaulttags.py::regroup",
+    "django/shortcuts.py::resolve_url",
+    "django/db/models/sql/query.py::Query.is_nullable",
+    "django/db/models/query.py::QuerySet._next_is_sticky",
+    "django/template/context_processors.py::csrf"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "d4d5427571b4bf3a21c902276c2a00215c2a37cc",
+    "total_functions_indexed": 26051,
+    "retrieval_time_seconds": 0.9020979404449463
+  },
+  "raw_output": "[{\"doc_id\": \"django/utils/html.py::json_script\", \"score\": 121.58881186694853}, {\"doc_id\": \"django/utils/encoding.py::filepath_to_uri\", \"score\": 109.24199218743138}, {\"doc_id\": \"django/http/response.py::JsonResponse.__init__\", \"score\": 102.13750048813593}, {\"doc_id\": \"django/db/models/fields/__init__.py::Field.db_type\", \"score\": 96.59728323402065}, {\"doc_id\": \"docs/_ext/djangodocs.py::html_page_context_hook\", \"score\": 95.12808951618163}, {\"doc_id\": \"django/template/defaulttags.py::regroup\", \"score\": 92.61807495228015}, {\"doc_id\": \"django/shortcuts.py::resolve_url\", \"score\": 91.36187122606442}, {\"doc_id\": \"django/db/models/sql/query.py::Query.is_nullable\", \"score\": 89.02972642310463}, {\"doc_id\": \"django/db/models/query.py::QuerySet._next_is_sticky\", \"score\": 89.01652678492445}, {\"doc_id\": \"django/template/context_processors.py::csrf\", \"score\": 88.80603814750141}]"
+}

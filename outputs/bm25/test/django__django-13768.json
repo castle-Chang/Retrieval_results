@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-13768",
+  "query": "Log exceptions handled in Signal.send_robust()\nDescription\n\t\nAs pointed out by ​Haki Benita on Twitter, by default Signal.send_robust() doesn't have any log messages for exceptions raised in receivers. Since Django logs exceptions in other similar situations, such as missing template variables, I think it would be worth adding a logger.exception() call in the except clause of send_robust() . Users would then see such exceptions in their error handling tools, e.g. Sentry, and be able to figure out what action to take from there. Ultimately any *expected* exception should be caught with a try in the receiver function.\n",
+  "ground_truth": {
+    "files": [
+      "django/dispatch/dispatcher.py"
+    ],
+    "locations": [
+      "django/dispatch/dispatcher.py::_make_id",
+      "django/dispatch/dispatcher.py::Signal",
+      "django/dispatch/dispatcher.py::Signal.send_robust"
+    ]
+  },
+  "predictions": [
+    "django/dispatch/dispatcher.py::Signal.send_robust",
+    "tests/backends/tests.py::ThreadTests.test_pass_connection_between_threads",
+    "django/dispatch/dispatcher.py::Signal.send",
+    "django/views/debug.py::ExceptionReporter.get_traceback_frames",
+    "django/core/handlers/exception.py::convert_exception_to_response",
+    "django/dispatch/dispatcher.py::Signal.connect",
+    "tests/backends/tests.py::ThreadTests.test_closing_non_shared_connections",
+    "django/urls/resolvers.py::URLResolver.url_patterns",
+    "tests/file_uploads/tests.py::FileUploadTests.test_file_error_blocking",
+    "django/core/checks/model_checks.py::_check_lazy_references"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "965d2d95c630939b53eb60d9c169f5dfc77ee0c6",
+    "total_functions_indexed": 24204,
+    "retrieval_time_seconds": 1.06611967086792
+  },
+  "raw_output": "[{\"doc_id\": \"django/dispatch/dispatcher.py::Signal.send_robust\", \"score\": 111.31117480772636}, {\"doc_id\": \"tests/backends/tests.py::ThreadTests.test_pass_connection_between_threads\", \"score\": 88.63629657679903}, {\"doc_id\": \"django/dispatch/dispatcher.py::Signal.send\", \"score\": 85.11001707732976}, {\"doc_id\": \"django/views/debug.py::ExceptionReporter.get_traceback_frames\", \"score\": 84.10741524110202}, {\"doc_id\": \"django/core/handlers/exception.py::convert_exception_to_response\", \"score\": 82.50145452125531}, {\"doc_id\": \"django/dispatch/dispatcher.py::Signal.connect\", \"score\": 82.26846414318021}, {\"doc_id\": \"tests/backends/tests.py::ThreadTests.test_closing_non_shared_connections\", \"score\": 81.41230226823888}, {\"doc_id\": \"django/urls/resolvers.py::URLResolver.url_patterns\", \"score\": 74.91102788687337}, {\"doc_id\": \"tests/file_uploads/tests.py::FileUploadTests.test_file_error_blocking\", \"score\": 74.4649756889566}, {\"doc_id\": \"django/core/checks/model_checks.py::_check_lazy_references\", \"score\": 73.26188367529328}]"
+}

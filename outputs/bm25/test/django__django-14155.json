@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-14155",
+  "query": "ResolverMatch.__repr__() doesn't handle functools.partial() nicely.\nDescription\n\t \n\t\t(last modified by Nick Pope)\n\t \nWhen a partial function is passed as the view, the __repr__ shows the func argument as functools.partial which isn't very helpful, especially as it doesn't reveal the underlying function or arguments provided.\nBecause a partial function also has arguments provided up front, we need to handle those specially so that they are accessible in __repr__.\nISTM that we can simply unwrap functools.partial objects in ResolverMatch.__init__().\n",
+  "ground_truth": {
+    "files": [
+      "django/urls/resolvers.py"
+    ],
+    "locations": [
+      "django/urls/resolvers.py::ResolverMatch",
+      "django/urls/resolvers.py::ResolverMatch.__getitem__",
+      "django/urls/resolvers.py::ResolverMatch.__repr__"
+    ]
+  },
+  "predictions": [
+    "django/apps/registry.py::Apps.lazy_model_operation",
+    "django/utils/decorators.py::_multi_decorate",
+    "django/db/migrations/serializer.py::FunctoolsPartialSerializer.serialize",
+    "django/urls/resolvers.py::URLPattern.lookup_str",
+    "tests/migrations/test_autodetector.py::AutodetectorTests.test_supports_functools_partial",
+    "django/db/models/fields/related.py::ManyToManyField.contribute_to_related_class",
+    "django/db/models/fields/related.py::lazy_related_operation",
+    "django/core/checks/model_checks.py::_check_lazy_references",
+    "django/db/backends/sqlite3/base.py::none_guard",
+    "django/views/decorators/http.py::condition"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "2f13c476abe4ba787b6cb71131818341911f43cc",
+    "total_functions_indexed": 24458,
+    "retrieval_time_seconds": 0.9585251808166504
+  },
+  "raw_output": "[{\"doc_id\": \"django/apps/registry.py::Apps.lazy_model_operation\", \"score\": 95.8279692164347}, {\"doc_id\": \"django/utils/decorators.py::_multi_decorate\", \"score\": 91.35735435097392}, {\"doc_id\": \"django/db/migrations/serializer.py::FunctoolsPartialSerializer.serialize\", \"score\": 85.97998112831668}, {\"doc_id\": \"django/urls/resolvers.py::URLPattern.lookup_str\", \"score\": 83.79420634298872}, {\"doc_id\": \"tests/migrations/test_autodetector.py::AutodetectorTests.test_supports_functools_partial\", \"score\": 82.35835003440141}, {\"doc_id\": \"django/db/models/fields/related.py::ManyToManyField.contribute_to_related_class\", \"score\": 77.14797211071892}, {\"doc_id\": \"django/db/models/fields/related.py::lazy_related_operation\", \"score\": 75.21335453964761}, {\"doc_id\": \"django/core/checks/model_checks.py::_check_lazy_references\", \"score\": 74.52435172561425}, {\"doc_id\": \"django/db/backends/sqlite3/base.py::none_guard\", \"score\": 71.8999346097218}, {\"doc_id\": \"django/views/decorators/http.py::condition\", \"score\": 71.66472622988762}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-14308",
+  "query": "vectors break pretty printing\n```py\r\nIn [1]: from sympy.vector import *\r\n\r\nIn [2]: e = CoordSysCartesian('e')\r\n\r\nIn [3]: (x/y)**t*e.j\r\nOut[3]:\r\n⎛   t⎞ e_j\r\n⎜⎛x⎞ e_j ⎟\r\n⎜⎜─⎟ ⎟\r\n⎝⎝y⎠ ⎠\r\n```\r\n\r\nAlso, when it does print correctly, the baseline is wrong (it should be centered). \n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/pretty/pretty.py"
+    ],
+    "locations": [
+      "sympy/printing/pretty/pretty.py::PrettyPrinter",
+      "sympy/printing/pretty/pretty.py::PrettyPrinter._print_BasisDependent"
+    ]
+  },
+  "predictions": [
+    "sympy/series/approximants.py::approximants",
+    "sympy/simplify/powsimp.py::powsimp",
+    "sympy/core/mul.py::Mul.flatten",
+    "sympy/concrete/expr_with_limits.py::ExprWithLimits.free_symbols",
+    "sympy/combinatorics/coset_table.py::CosetTable.scan",
+    "sympy/integrals/tests/test_meijerint.py::test_rewrite_single",
+    "sympy/core/basic.py::Basic.subs",
+    "sympy/combinatorics/coset_table.py::coset_enumeration_r",
+    "sympy/core/expr.py::Expr.nseries",
+    "sympy/printing/rcode.py::rcode"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "fb536869fb7aa28b2695ad7a3b70949926b291c4",
+    "total_functions_indexed": 22941,
+    "retrieval_time_seconds": 0.5936565399169922
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/series/approximants.py::approximants\", \"score\": 72.85283998394108}, {\"doc_id\": \"sympy/simplify/powsimp.py::powsimp\", \"score\": 64.61163637253523}, {\"doc_id\": \"sympy/core/mul.py::Mul.flatten\", \"score\": 63.775712493232646}, {\"doc_id\": \"sympy/concrete/expr_with_limits.py::ExprWithLimits.free_symbols\", \"score\": 62.36731673731458}, {\"doc_id\": \"sympy/combinatorics/coset_table.py::CosetTable.scan\", \"score\": 62.202998691345385}, {\"doc_id\": \"sympy/integrals/tests/test_meijerint.py::test_rewrite_single\", \"score\": 61.9238835353461}, {\"doc_id\": \"sympy/core/basic.py::Basic.subs\", \"score\": 61.483194539906606}, {\"doc_id\": \"sympy/combinatorics/coset_table.py::coset_enumeration_r\", \"score\": 61.274570936930935}, {\"doc_id\": \"sympy/core/expr.py::Expr.nseries\", \"score\": 60.10566305659344}, {\"doc_id\": \"sympy/printing/rcode.py::rcode\", \"score\": 60.09483083916339}]"
+}

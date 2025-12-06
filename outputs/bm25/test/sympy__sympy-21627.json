@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-21627",
+  "query": "Bug: maximum recusion depth error when checking is_zero of cosh expression\nThe following code causes a `RecursionError: maximum recursion depth exceeded while calling a Python object` error when checked if it is zero:\r\n```\r\nexpr =sympify(\"cosh(acos(-i + acosh(-g + i)))\")\r\nexpr.is_zero\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/functions/elementary/complexes.py"
+    ],
+    "locations": [
+      "sympy/functions/elementary/complexes.py::Abs",
+      "sympy/functions/elementary/complexes.py::Abs.eval"
+    ]
+  },
+  "predictions": [
+    "sympy/functions/combinatorial/factorials.py::factorial2.eval",
+    "sympy/plotting/plot.py::LineOver1DRangeSeries.get_points",
+    "sympy/plotting/plot.py::Parametric2DLineSeries.get_points",
+    "sympy/functions/elementary/hyperbolic.py::cosh._eval_is_positive",
+    "sympy/printing/dot.py::dotprint",
+    "sympy/utilities/tests/test_wester.py::test_Y11",
+    "sympy/matrices/tests/test_commonmatrix.py::test_rmul_pr19860",
+    "sympy/plotting/plot_implicit.py::ImplicitSeries.__init__",
+    "sympy/plotting/plot_implicit.py::plot_implicit",
+    "sympy/combinatorics/pc_groups.py::Collector.depth"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "126f80578140e752ad5135aac77b8ff887eede3e",
+    "total_functions_indexed": 36569,
+    "retrieval_time_seconds": 1.379499912261963
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/functions/combinatorial/factorials.py::factorial2.eval\", \"score\": 64.59602687416428}, {\"doc_id\": \"sympy/plotting/plot.py::LineOver1DRangeSeries.get_points\", \"score\": 60.29265742325141}, {\"doc_id\": \"sympy/plotting/plot.py::Parametric2DLineSeries.get_points\", \"score\": 57.55834768309995}, {\"doc_id\": \"sympy/functions/elementary/hyperbolic.py::cosh._eval_is_positive\", \"score\": 55.59934527069583}, {\"doc_id\": \"sympy/printing/dot.py::dotprint\", \"score\": 55.31706386502996}, {\"doc_id\": \"sympy/utilities/tests/test_wester.py::test_Y11\", \"score\": 54.960317917198836}, {\"doc_id\": \"sympy/matrices/tests/test_commonmatrix.py::test_rmul_pr19860\", \"score\": 54.800596996110244}, {\"doc_id\": \"sympy/plotting/plot_implicit.py::ImplicitSeries.__init__\", \"score\": 52.706889025999416}, {\"doc_id\": \"sympy/plotting/plot_implicit.py::plot_implicit\", \"score\": 52.68293312580818}, {\"doc_id\": \"sympy/combinatorics/pc_groups.py::Collector.depth\", \"score\": 50.32779604608046}]"
+}

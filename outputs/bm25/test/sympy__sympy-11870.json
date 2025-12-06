@@ -1,0 +1,36 @@
+{
+  "instance_id": "sympy__sympy-11870",
+  "query": "simplifying exponential -> trig identities\n```\r\nf = 1 / 2 * (-I*exp(I*k) + I*exp(-I*k))\r\ntrigsimp(f)\r\n```\r\n\r\nIdeally, this would yield `sin(k)`. Is there a way to do this?\r\n\r\nAs a corollary, it would be awesome if \r\n\r\n```\r\nf = 1 / 2 / k* (-I*exp(I*k) + I*exp(-I*k))\r\ntrigsimp(f)\r\n```\r\n\r\ncould yield `sinc(k)`. Thank you for your consideration!\n",
+  "ground_truth": {
+    "files": [
+      "sympy/functions/elementary/trigonometric.py"
+    ],
+    "locations": [
+      "sympy/functions/elementary/trigonometric.py::sin",
+      "sympy/functions/elementary/trigonometric.py::sin._eval_rewrite_as_pow",
+      "sympy/functions/elementary/trigonometric.py::sin._eval_rewrite_as_sqrt",
+      "sympy/functions/elementary/trigonometric.py::sin._eval_rewrite_as_csc",
+      "sympy/functions/elementary/trigonometric.py::sinc",
+      "sympy/functions/elementary/trigonometric.py::sinc.eval"
+    ]
+  },
+  "predictions": [
+    "sympy/integrals/tests/test_transforms.py::test_fourier_transform",
+    "sympy/integrals/prde.py::is_log_deriv_k_t_radical",
+    "sympy/integrals/transforms.py::_fourier_transform",
+    "sympy/integrals/prde.py::is_deriv_k",
+    "sympy/polys/densebasic.py::dmp_swap",
+    "sympy/simplify/trigsimp.py::exptrigsimp",
+    "sympy/solvers/diophantine.py::power_representation",
+    "sympy/solvers/diophantine.py::partition",
+    "sympy/concrete/tests/test_sums_products.py::test_karr_convention",
+    "sympy/concrete/guess.py::guess_generating_function"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "5c2e1f96a7ff562d4a778f4ca9ffc9c81557197e",
+    "total_functions_indexed": 22195,
+    "retrieval_time_seconds": 0.563117265701294
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/integrals/tests/test_transforms.py::test_fourier_transform\", \"score\": 131.49899790430317}, {\"doc_id\": \"sympy/integrals/prde.py::is_log_deriv_k_t_radical\", \"score\": 120.69402453589662}, {\"doc_id\": \"sympy/integrals/transforms.py::_fourier_transform\", \"score\": 115.76399848054854}, {\"doc_id\": \"sympy/integrals/prde.py::is_deriv_k\", \"score\": 113.52605004275911}, {\"doc_id\": \"sympy/polys/densebasic.py::dmp_swap\", \"score\": 113.33718083215787}, {\"doc_id\": \"sympy/simplify/trigsimp.py::exptrigsimp\", \"score\": 112.52757204126812}, {\"doc_id\": \"sympy/solvers/diophantine.py::power_representation\", \"score\": 112.04749434324972}, {\"doc_id\": \"sympy/solvers/diophantine.py::partition\", \"score\": 111.96694678455972}, {\"doc_id\": \"sympy/concrete/tests/test_sums_products.py::test_karr_convention\", \"score\": 110.51200962459711}, {\"doc_id\": \"sympy/concrete/guess.py::guess_generating_function\", \"score\": 110.23520394759063}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-13241",
+  "query": "Differences among the results of KernelPCA with rbf kernel\nHi there,\r\nI met with a problem:\r\n\r\n#### Description\r\nWhen I run KernelPCA for dimension reduction for the same datasets, the results are different in signs.\r\n\r\n#### Steps/Code to Reproduce\r\nJust to reduce the dimension to 7 with rbf kernel:\r\npca = KernelPCA(n_components=7, kernel='rbf', copy_X=False, n_jobs=-1)\r\npca.fit_transform(X)\r\n\r\n#### Expected Results\r\nThe same result.\r\n\r\n#### Actual Results\r\nThe results are the same except for their signs:(\r\n[[-0.44457617 -0.18155886 -0.10873474  0.13548386 -0.1437174  -0.057469\t0.18124364]] \r\n\r\n[[ 0.44457617  0.18155886  0.10873474 -0.13548386 -0.1437174  -0.057469 -0.18124364]] \r\n\r\n[[-0.44457617 -0.18155886  0.10873474  0.13548386  0.1437174   0.057469  0.18124364]] \r\n\r\n#### Versions\r\n0.18.1\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sklearn/decomposition/kernel_pca.py"
+    ],
+    "locations": [
+      "sklearn/decomposition/kernel_pca.py::KernelPCA",
+      "sklearn/decomposition/kernel_pca.py::KernelPCA._fit_transform"
+    ]
+  },
+  "predictions": [
+    "sklearn/decomposition/tests/test_kernel_pca.py::test_nested_circles",
+    "sklearn/neighbors/base.py::RadiusNeighborsMixin.radius_neighbors",
+    "sklearn/decomposition/tests/test_kernel_pca.py::test_kernel_pca_linear_kernel",
+    "sklearn/gaussian_process/tests/test_kernels.py::test_matern_kernel",
+    "sklearn/tests/test_random_projection.py::test_correct_RandomProjection_dimensions_embedding",
+    "sklearn/decomposition/tests/test_pca.py::test_pca_validation",
+    "sklearn/pipeline.py::make_union",
+    "sklearn/pipeline.py::FeatureUnion.fit_transform",
+    "sklearn/svm/tests/test_sparse.py::test_svc",
+    "sklearn/datasets/svmlight_format.py::load_svmlight_files"
+  ],
+  "metadata": {
+    "repo": "scikit-learn/scikit-learn",
+    "commit": "f8b108d0c6f2f82b2dc4e32a6793f9d9ac9cf2f4",
+    "total_functions_indexed": 6783,
+    "retrieval_time_seconds": 0.28310346603393555
+  },
+  "raw_output": "[{\"doc_id\": \"sklearn/decomposition/tests/test_kernel_pca.py::test_nested_circles\", \"score\": 110.80551615985998}, {\"doc_id\": \"sklearn/neighbors/base.py::RadiusNeighborsMixin.radius_neighbors\", \"score\": 95.41971184655746}, {\"doc_id\": \"sklearn/decomposition/tests/test_kernel_pca.py::test_kernel_pca_linear_kernel\", \"score\": 93.60047946506566}, {\"doc_id\": \"sklearn/gaussian_process/tests/test_kernels.py::test_matern_kernel\", \"score\": 89.42747461591769}, {\"doc_id\": \"sklearn/tests/test_random_projection.py::test_correct_RandomProjection_dimensions_embedding\", \"score\": 87.2352393860644}, {\"doc_id\": \"sklearn/decomposition/tests/test_pca.py::test_pca_validation\", \"score\": 86.76926044420463}, {\"doc_id\": \"sklearn/pipeline.py::make_union\", \"score\": 85.154834958098}, {\"doc_id\": \"sklearn/pipeline.py::FeatureUnion.fit_transform\", \"score\": 84.78221629249059}, {\"doc_id\": \"sklearn/svm/tests/test_sparse.py::test_svc\", \"score\": 84.7054151029216}, {\"doc_id\": \"sklearn/datasets/svmlight_format.py::load_svmlight_files\", \"score\": 84.1866938639925}]"
+}

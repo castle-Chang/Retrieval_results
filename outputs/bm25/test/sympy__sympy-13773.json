@@ -1,0 +1,34 @@
+{
+  "instance_id": "sympy__sympy-13773",
+  "query": "@ (__matmul__) should fail if one argument is not a matrix\n```\r\n>>> A = Matrix([[1, 2], [3, 4]])\r\n>>> B = Matrix([[2, 3], [1, 2]])\r\n>>> A@B\r\nMatrix([\r\n[ 4,  7],\r\n[10, 17]])\r\n>>> 2@B\r\nMatrix([\r\n[4, 6],\r\n[2, 4]])\r\n```\r\n\r\nRight now `@` (`__matmul__`) just copies `__mul__`, but it should actually only work if the multiplication is actually a matrix multiplication. \r\n\r\nThis is also how NumPy works\r\n\r\n```\r\n>>> import numpy as np\r\n>>> a = np.array([[1, 2], [3, 4]])\r\n>>> 2*a\r\narray([[2, 4],\r\n       [6, 8]])\r\n>>> 2@a\r\nTraceback (most recent call last):\r\n  File \"<stdin>\", line 1, in <module>\r\nValueError: Scalar operands are not allowed, use '*' instead\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/matrices/common.py"
+    ],
+    "locations": [
+      "sympy/matrices/common.py::MatrixArithmetic",
+      "sympy/matrices/common.py::MatrixArithmetic.__matmul__",
+      "sympy/matrices/common.py::MatrixArithmetic.__radd__",
+      "sympy/matrices/common.py::MatrixArithmetic.__rmatmul__"
+    ]
+  },
+  "predictions": [
+    "sympy/matrices/common.py::MatrixArithmetic.__mul__",
+    "sympy/solvers/solveset.py::linsolve",
+    "sympy/matrices/matrices.py::MatrixBase.D",
+    "sympy/matrices/matrices.py::MatrixBase.gauss_jordan_solve",
+    "sympy/matrices/tests/test_matrices.py::test_gauss_jordan_solve",
+    "sympy/matrices/tests/test_commonmatrix.py::test_permute",
+    "sympy/matrices/dense.py::diag",
+    "sympy/matrices/tests/test_matrices.py::test_from_ndarray",
+    "sympy/tensor/tensor.py::TensExpr.get_matrix",
+    "sympy/combinatorics/permutations.py::Permutation.__new__"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "7121bdf1facdd90d05b6994b4c2e5b2865a4638a",
+    "total_functions_indexed": 22391,
+    "retrieval_time_seconds": 0.8889648914337158
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/matrices/common.py::MatrixArithmetic.__mul__\", \"score\": 189.37078211678593}, {\"doc_id\": \"sympy/solvers/solveset.py::linsolve\", \"score\": 162.50212376938262}, {\"doc_id\": \"sympy/matrices/matrices.py::MatrixBase.D\", \"score\": 154.06504275015797}, {\"doc_id\": \"sympy/matrices/matrices.py::MatrixBase.gauss_jordan_solve\", \"score\": 149.45384756288104}, {\"doc_id\": \"sympy/matrices/tests/test_matrices.py::test_gauss_jordan_solve\", \"score\": 147.99986659482613}, {\"doc_id\": \"sympy/matrices/tests/test_commonmatrix.py::test_permute\", \"score\": 147.07663773969355}, {\"doc_id\": \"sympy/matrices/dense.py::diag\", \"score\": 146.2794186258408}, {\"doc_id\": \"sympy/matrices/tests/test_matrices.py::test_from_ndarray\", \"score\": 145.9070230465151}, {\"doc_id\": \"sympy/tensor/tensor.py::TensExpr.get_matrix\", \"score\": 143.59481482483483}, {\"doc_id\": \"sympy/combinatorics/permutations.py::Permutation.__new__\", \"score\": 143.34375378851274}]"
+}

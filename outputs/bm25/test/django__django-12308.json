@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-12308",
+  "query": "JSONField are not properly displayed in admin when they are readonly.\nDescription\n\t\nJSONField values are displayed as dict when readonly in the admin.\nFor example, {\"foo\": \"bar\"} would be displayed as {'foo': 'bar'}, which is not valid JSON.\nI believe the fix would be to add a special case in django.contrib.admin.utils.display_for_field to call the prepare_value of the JSONField (not calling json.dumps directly to take care of the InvalidJSONInput case).\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admin/utils.py"
+    ],
+    "locations": [
+      "django/contrib/admin/utils.py::display_for_field"
+    ]
+  },
+  "predictions": [
+    "tests/expressions_case/tests.py::CaseExpressionTests.test_join_promotion_multiple_annotations",
+    "django/contrib/admin/options.py::ModelAdmin.get_list_filter",
+    "tests/queries/tests.py::Queries1Tests.test_tickets_5321_7070",
+    "django/contrib/admin/filters.py::ListFilter.choices",
+    "django/contrib/admin/options.py::ModelAdmin.get_list_display_links",
+    "tests/forms_tests/field_tests/test_jsonfield.py::JSONFieldTest.test_redisplay_wrong_input",
+    "tests/expressions_case/tests.py::CaseExpressionTests.test_join_promotion",
+    "django/db/models/query.py::QuerySet.defer",
+    "django/forms/fields.py::JSONField.prepare_value",
+    "django/db/models/deletion.py::Collector.add"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "2e0f04507b17362239ba49830d26fec504d46978",
+    "total_functions_indexed": 23387,
+    "retrieval_time_seconds": 0.7806763648986816
+  },
+  "raw_output": "[{\"doc_id\": \"tests/expressions_case/tests.py::CaseExpressionTests.test_join_promotion_multiple_annotations\", \"score\": 78.23052818080926}, {\"doc_id\": \"django/contrib/admin/options.py::ModelAdmin.get_list_filter\", \"score\": 76.63872693546438}, {\"doc_id\": \"tests/queries/tests.py::Queries1Tests.test_tickets_5321_7070\", \"score\": 74.97166350570457}, {\"doc_id\": \"django/contrib/admin/filters.py::ListFilter.choices\", \"score\": 73.17613436175523}, {\"doc_id\": \"django/contrib/admin/options.py::ModelAdmin.get_list_display_links\", \"score\": 70.34514760631933}, {\"doc_id\": \"tests/forms_tests/field_tests/test_jsonfield.py::JSONFieldTest.test_redisplay_wrong_input\", \"score\": 69.17489730692765}, {\"doc_id\": \"tests/expressions_case/tests.py::CaseExpressionTests.test_join_promotion\", \"score\": 68.87003218089019}, {\"doc_id\": \"django/db/models/query.py::QuerySet.defer\", \"score\": 67.84902221677642}, {\"doc_id\": \"django/forms/fields.py::JSONField.prepare_value\", \"score\": 66.86400798860565}, {\"doc_id\": \"django/db/models/deletion.py::Collector.add\", \"score\": 65.05477437698542}]"
+}

@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-16873",
+  "query": "Template filter `join` should not escape the joining string if `autoescape` is `off`\nDescription\n\t\nConsider the following template code snippet:\n{% autoescape off %}\n{{ some_list|join:some_var }}\n{% endautoescape %}\nin this case, the items inside some_list will not be escaped (matching the expected behavior) but some_var will forcibly be escaped. From the docs for autoescape or join I don't think this is expected behavior.\nThe following testcase illustrates what I think is a bug in the join filter (run inside the template_tests/filter_tests folder):\nfrom django.template.defaultfilters import escape\nfrom django.test import SimpleTestCase\nfrom ..utils import setup\nclass RegressionTests(SimpleTestCase):\n\t@setup({\"join01\": '{{ some_list|join:some_var }}'})\n\tdef test_join01(self):\n\t\tsome_list = [\"<p>Hello World!</p>\", \"beta & me\", \"<script>Hi!</script>\"]\n\t\tsome_var = \"<br/>\"\n\t\toutput = self.engine.render_to_string(\"join01\", {\"some_list\": some_list, \"some_var\": some_var})\n\t\tself.assertEqual(output, escape(some_var.join(some_list)))\n\t@setup({\"join02\": '{% autoescape off %}{{ some_list|join:some_var }}{% endautoescape %}'})\n\tdef test_join02(self):\n\t\tsome_list = [\"<p>Hello World!</p>\", \"beta & me\", \"<script>Hi!</script>\"]\n\t\tsome_var = \"<br/>\"\n\t\toutput = self.engine.render_to_string(\"join02\", {\"some_list\": some_list, \"some_var\": some_var})\n\t\tself.assertEqual(output, some_var.join(some_list))\nResult of this run in current main is:\n.F\n======================================================================\nFAIL: test_join02 (template_tests.filter_tests.test_regression.RegressionTests.test_join02)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n File \"/home/nessita/fellowship/django/django/test/utils.py\", line 443, in inner\n\treturn func(*args, **kwargs)\n\t\t ^^^^^^^^^^^^^^^^^^^^^\n File \"/home/nessita/fellowship/django/tests/template_tests/utils.py\", line 58, in inner\n\tfunc(self)\n File \"/home/nessita/fellowship/django/tests/template_tests/filter_tests/test_regression.py\", line 21, in test_join02\n\tself.assertEqual(output, some_var.join(some_list))\nAssertionError: '<p>Hello World!</p>&lt;br/&gt;beta & me&lt;br/&gt;<script>Hi!</script>' != '<p>Hello World!</p><br/>beta & me<br/><script>Hi!</script>'\n----------------------------------------------------------------------\nRan 2 tests in 0.007s\n",
+  "ground_truth": {
+    "files": [
+      "django/template/defaultfilters.py"
+    ],
+    "locations": [
+      "django/template/defaultfilters.py::join"
+    ]
+  },
+  "predictions": [
+    "tests/template_tests/filter_tests/test_join.py::JoinTests.test_join02",
+    "tests/template_tests/filter_tests/test_length_is.py::LengthIsTests.test_length_is01",
+    "tests/template_tests/filter_tests/test_length_is.py::LengthIsTests.test_length_is02",
+    "django/utils/html.py::linebreaks",
+    "tests/utils_tests/test_html.py::TestUtilsHtml.test_strip_tags",
+    "tests/template_tests/filter_tests/test_join.py::JoinTests.test_join01",
+    "tests/template_tests/filter_tests/test_join.py::FunctionTests.test_autoescape_off",
+    "django/utils/html.py::json_script",
+    "tests/template_tests/filter_tests/test_urlize.py::UrlizeTests.test_urlize06",
+    "tests/template_tests/filter_tests/test_linebreaks.py::LinebreaksTests.test_linebreaks02"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "fce90950bef348803fa7cc3e6bc65f4bce429b82",
+    "total_functions_indexed": 26652,
+    "retrieval_time_seconds": 2.379220962524414
+  },
+  "raw_output": "[{\"doc_id\": \"tests/template_tests/filter_tests/test_join.py::JoinTests.test_join02\", \"score\": 259.2420198668374}, {\"doc_id\": \"tests/template_tests/filter_tests/test_length_is.py::LengthIsTests.test_length_is01\", \"score\": 245.55810389152944}, {\"doc_id\": \"tests/template_tests/filter_tests/test_length_is.py::LengthIsTests.test_length_is02\", \"score\": 245.43547384133544}, {\"doc_id\": \"django/utils/html.py::linebreaks\", \"score\": 240.58418683185442}, {\"doc_id\": \"tests/utils_tests/test_html.py::TestUtilsHtml.test_strip_tags\", \"score\": 219.33075402900397}, {\"doc_id\": \"tests/template_tests/filter_tests/test_join.py::JoinTests.test_join01\", \"score\": 218.02882529108936}, {\"doc_id\": \"tests/template_tests/filter_tests/test_join.py::FunctionTests.test_autoescape_off\", \"score\": 217.51786808692648}, {\"doc_id\": \"django/utils/html.py::json_script\", \"score\": 216.58133591601043}, {\"doc_id\": \"tests/template_tests/filter_tests/test_urlize.py::UrlizeTests.test_urlize06\", \"score\": 212.91798961157426}, {\"doc_id\": \"tests/template_tests/filter_tests/test_linebreaks.py::LinebreaksTests.test_linebreaks02\", \"score\": 197.41114053573813}]"
+}

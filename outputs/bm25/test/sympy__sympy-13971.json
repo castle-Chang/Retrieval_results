@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-13971",
+  "query": "Display of SeqFormula()\n```\r\nimport sympy as sp\r\nk, m, n = sp.symbols('k m n', integer=True)\r\nsp.init_printing()\r\n\r\nsp.SeqFormula(n**2, (n,0,sp.oo))\r\n```\r\n\r\nThe Jupyter rendering of this command backslash-escapes the brackets producing:\r\n\r\n`\\left\\[0, 1, 4, 9, \\ldots\\right\\]`\r\n\r\nCopying this output to a markdown cell this does not render properly.  Whereas:\r\n\r\n`[0, 1, 4, 9, \\ldots ]`\r\n\r\ndoes render just fine.  \r\n\r\nSo - sequence output should not backslash-escape square brackets, or, `\\]` should instead render?\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/latex.py"
+    ],
+    "locations": [
+      "sympy/printing/latex.py::LatexPrinter",
+      "sympy/printing/latex.py::LatexPrinter._print_SeqFormula"
+    ]
+  },
+  "predictions": [
+    "sympy/crypto/crypto.py::lfsr_sequence",
+    "sympy/polys/ring_series.py::rs_series_reversion",
+    "sympy/printing/tests/test_latex.py::test_latex_sequences",
+    "sympy/series/sequences.py::SeqBase.__sub__",
+    "sympy/series/sequences.py::SeqBase.__mul__",
+    "sympy/series/sequences.py::SeqBase.__add__",
+    "sympy/integrals/risch.py::recognize_log_derivative",
+    "sympy/ntheory/factor_.py::smoothness_p",
+    "sympy/printing/latex.py::LatexPrinter._print_Function",
+    "sympy/series/sequences.py::SeqBase.coeff_mul"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "84c125972ad535b2dfb245f8d311d347b45e5b8a",
+    "total_functions_indexed": 22514,
+    "retrieval_time_seconds": 1.4983806610107422
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/crypto/crypto.py::lfsr_sequence\", \"score\": 105.45291731105243}, {\"doc_id\": \"sympy/polys/ring_series.py::rs_series_reversion\", \"score\": 95.99915205259104}, {\"doc_id\": \"sympy/printing/tests/test_latex.py::test_latex_sequences\", \"score\": 94.94871969317276}, {\"doc_id\": \"sympy/series/sequences.py::SeqBase.__sub__\", \"score\": 88.78204579500594}, {\"doc_id\": \"sympy/series/sequences.py::SeqBase.__mul__\", \"score\": 88.7532549109801}, {\"doc_id\": \"sympy/series/sequences.py::SeqBase.__add__\", \"score\": 88.33787006229066}, {\"doc_id\": \"sympy/integrals/risch.py::recognize_log_derivative\", \"score\": 87.90932094340722}, {\"doc_id\": \"sympy/ntheory/factor_.py::smoothness_p\", \"score\": 87.45606831588839}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_Function\", \"score\": 87.22279344244649}, {\"doc_id\": \"sympy/series/sequences.py::SeqBase.coeff_mul\", \"score\": 87.04093644664184}]"
+}

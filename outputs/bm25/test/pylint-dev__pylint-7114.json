@@ -1,0 +1,31 @@
+{
+  "instance_id": "pylint-dev__pylint-7114",
+  "query": "Linting fails if module contains module of the same name\n### Steps to reproduce\r\n\r\nGiven multiple files:\r\n```\r\n.\r\n`-- a/\r\n    |-- a.py\r\n    `-- b.py\r\n```\r\nWhich are all empty, running `pylint a` fails:\r\n\r\n```\r\n$ pylint a\r\n************* Module a\r\na/__init__.py:1:0: F0010: error while code parsing: Unable to load file a/__init__.py:\r\n[Errno 2] No such file or directory: 'a/__init__.py' (parse-error)\r\n$\r\n```\r\n\r\nHowever, if I rename `a.py`, `pylint a` succeeds:\r\n\r\n```\r\n$ mv a/a.py a/c.py\r\n$ pylint a\r\n$\r\n```\r\nAlternatively, I can also `touch a/__init__.py`, but that shouldn't be necessary anymore.\r\n\r\n### Current behavior\r\n\r\nRunning `pylint a` if `a/a.py` is present fails while searching for an `__init__.py` file.\r\n\r\n### Expected behavior\r\n\r\nRunning `pylint a` if `a/a.py` is present should succeed.\r\n\r\n### pylint --version output\r\n\r\nResult of `pylint --version` output:\r\n\r\n```\r\npylint 3.0.0a3\r\nastroid 2.5.6\r\nPython 3.8.5 (default, Jan 27 2021, 15:41:15) \r\n[GCC 9.3.0]\r\n```\r\n\r\n### Additional info\r\n\r\nThis also has some side-effects in module resolution. For example, if I create another file `r.py`:\r\n\r\n```\r\n.\r\n|-- a\r\n|   |-- a.py\r\n|   `-- b.py\r\n`-- r.py\r\n```\r\n\r\nWith the content:\r\n\r\n```\r\nfrom a import b\r\n```\r\n\r\nRunning `pylint -E r` will run fine, but `pylint -E r a` will fail. Not just for module a, but for module r as well.\r\n\r\n```\r\n************* Module r\r\nr.py:1:0: E0611: No name 'b' in module 'a' (no-name-in-module)\r\n************* Module a\r\na/__init__.py:1:0: F0010: error while code parsing: Unable to load file a/__init__.py:\r\n[Errno 2] No such file or directory: 'a/__init__.py' (parse-error)\r\n```\r\n\r\nAgain, if I rename `a.py` to `c.py`, `pylint -E r a` will work perfectly.\n",
+  "ground_truth": {
+    "files": [
+      "pylint/lint/expand_modules.py"
+    ],
+    "locations": [
+      "pylint/lint/expand_modules.py::expand_modules"
+    ]
+  },
+  "predictions": [
+    "tests/test_self.py::TestRunTC.test_relative_imports",
+    "pylint/config/help_formatter.py::_HelpFormatter.get_long_description",
+    "tests/config/test_find_default_config_files.py::test_pylintrc_parentdir",
+    "pylint/epylint.py::lint",
+    "pylint/interfaces.py::ITokenChecker.process_tokens",
+    "tests/lint/unittest_lint.py::test_pylintrc_parentdir",
+    "tests/checkers/unittest_unicode/unittest_bad_chars.py::TestBadCharsChecker.test_bad_chars_that_would_currently_crash_python",
+    "pylint/checkers/imports.py::_make_tree_defs",
+    "tests/functional/s/string/string_formatting.py::print_good",
+    "pylint/utils/utils.py::register_plugins"
+  ],
+  "metadata": {
+    "repo": "pylint-dev/pylint",
+    "commit": "397c1703e8ae6349d33f7b99f45b2ccaf581e666",
+    "total_functions_indexed": 5971,
+    "retrieval_time_seconds": 0.5174484252929688
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_self.py::TestRunTC.test_relative_imports\", \"score\": 226.78328394683868}, {\"doc_id\": \"pylint/config/help_formatter.py::_HelpFormatter.get_long_description\", \"score\": 208.4434270352857}, {\"doc_id\": \"tests/config/test_find_default_config_files.py::test_pylintrc_parentdir\", \"score\": 195.6366300953674}, {\"doc_id\": \"pylint/epylint.py::lint\", \"score\": 185.47980228978463}, {\"doc_id\": \"pylint/interfaces.py::ITokenChecker.process_tokens\", \"score\": 178.95702947237598}, {\"doc_id\": \"tests/lint/unittest_lint.py::test_pylintrc_parentdir\", \"score\": 178.11106481133547}, {\"doc_id\": \"tests/checkers/unittest_unicode/unittest_bad_chars.py::TestBadCharsChecker.test_bad_chars_that_would_currently_crash_python\", \"score\": 177.8968995761674}, {\"doc_id\": \"pylint/checkers/imports.py::_make_tree_defs\", \"score\": 177.32330336053235}, {\"doc_id\": \"tests/functional/s/string/string_formatting.py::print_good\", \"score\": 175.6851906608021}, {\"doc_id\": \"pylint/utils/utils.py::register_plugins\", \"score\": 170.6664526758691}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-15011",
+  "query": "lambdify does not work with certain MatrixSymbol names even with dummify=True\n`lambdify` is happy with curly braces in a symbol name and with `MatrixSymbol`s, but not with both at the same time, even if `dummify` is `True`.\r\n\r\nHere is some basic code that gives the error.\r\n```\r\nimport sympy as sy\r\ncurlyx = sy.symbols(\"{x}\")\r\nv = sy.MatrixSymbol(\"v\", 2, 1)\r\ncurlyv = sy.MatrixSymbol(\"{v}\", 2, 1)\r\n```\r\n\r\nThe following two lines of code work:\r\n```\r\ncurlyScalarId = sy.lambdify(curlyx, curlyx)\r\nvectorId = sy.lambdify(v,v)\r\n```\r\n\r\nThe following two lines of code give a `SyntaxError`:\r\n```\r\ncurlyVectorId = sy.lambdify(curlyv, curlyv)\r\ncurlyVectorIdDummified = sy.lambdify(curlyv, curlyv, dummify=True)\r\n```\r\n\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/utilities/lambdify.py"
+    ],
+    "locations": [
+      "sympy/utilities/lambdify.py::_EvaluatorPrinter",
+      "sympy/utilities/lambdify.py::_EvaluatorPrinter._preprocess"
+    ]
+  },
+  "predictions": [
+    "sympy/utilities/lambdify.py::lambdify",
+    "sympy/printing/codeprinter.py::CodePrinter.doprint",
+    "sympy/printing/tests/test_theanocode.py::test_DenseMatrix",
+    "sympy/physics/quantum/tests/test_pauli.py::test_pauli_operators_multiplication",
+    "sympy/printing/tests/test_theanocode.py::test_Piecewise",
+    "sympy/sets/fancysets.py::ImageSet._contains",
+    "sympy/plotting/pygletplot/plot_rotation.py::get_sphere_mapping",
+    "sympy/utilities/lambdify.py::implemented_function",
+    "sympy/utilities/lambdify.py::_EvaluatorPrinter._print_funcargwrapping",
+    "sympy/printing/julia.py::julia_code"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "b7c5ba2bf3ffd5cf453b25af7c8ddd9a639800cb",
+    "total_functions_indexed": 23949,
+    "retrieval_time_seconds": 1.0045979022979736
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/utilities/lambdify.py::lambdify\", \"score\": 162.6857307658526}, {\"doc_id\": \"sympy/printing/codeprinter.py::CodePrinter.doprint\", \"score\": 148.31773530683867}, {\"doc_id\": \"sympy/printing/tests/test_theanocode.py::test_DenseMatrix\", \"score\": 138.2054264645927}, {\"doc_id\": \"sympy/physics/quantum/tests/test_pauli.py::test_pauli_operators_multiplication\", \"score\": 133.92952585860786}, {\"doc_id\": \"sympy/printing/tests/test_theanocode.py::test_Piecewise\", \"score\": 133.26774560621976}, {\"doc_id\": \"sympy/sets/fancysets.py::ImageSet._contains\", \"score\": 129.14846452396247}, {\"doc_id\": \"sympy/plotting/pygletplot/plot_rotation.py::get_sphere_mapping\", \"score\": 128.1051179478783}, {\"doc_id\": \"sympy/utilities/lambdify.py::implemented_function\", \"score\": 127.6560204438884}, {\"doc_id\": \"sympy/utilities/lambdify.py::_EvaluatorPrinter._print_funcargwrapping\", \"score\": 127.43373253837579}, {\"doc_id\": \"sympy/printing/julia.py::julia_code\", \"score\": 126.84888535404178}]"
+}

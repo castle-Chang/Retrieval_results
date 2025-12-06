@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-19254",
+  "query": "sympy.polys.factortools.dmp_zz_mignotte_bound improvement\nThe method `dup_zz_mignotte_bound(f, K)` can be significantly improved by using the **Knuth-Cohen bound** instead. After our research with Prof. Ag.Akritas we have implemented the Knuth-Cohen bound among others, and compare them among dozens of polynomials with different degree, density and coefficients range. Considering the results and the feedback from Mr.Kalevi Suominen, our proposal is that the mignotte_bound should be replaced by the knuth-cohen bound.\r\nAlso, `dmp_zz_mignotte_bound(f, u, K)` for mutli-variants polynomials should be replaced appropriately.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/polys/factortools.py"
+    ],
+    "locations": [
+      "sympy/polys/factortools.py::dup_zz_mignotte_bound",
+      "sympy/polys/factortools.py::dmp_zz_mignotte_bound"
+    ]
+  },
+  "predictions": [
+    "sympy/polys/rootisolation.py::dup_root_lower_bound",
+    "sympy/core/basic.py::Basic.as_dummy",
+    "sympy/polys/modulargcd.py::_modgcd_multivariate_p",
+    "sympy/polys/subresultants_qq_zz.py::res_z",
+    "sympy/polys/subresultants_qq_zz.py::res_q",
+    "sympy/core/expr.py::Expr.aseries",
+    "sympy/polys/modulargcd.py::_degree_bound_bivariate",
+    "sympy/polys/subresultants_qq_zz.py::res",
+    "sympy/polys/factortools.py::dmp_zz_mignotte_bound",
+    "sympy/polys/subresultants_qq_zz.py::sturm_amv"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "e0ef1da13e2ab2a77866c05246f73c871ca9388c",
+    "total_functions_indexed": 34455,
+    "retrieval_time_seconds": 1.0996079444885254
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/polys/rootisolation.py::dup_root_lower_bound\", \"score\": 123.71664626457812}, {\"doc_id\": \"sympy/core/basic.py::Basic.as_dummy\", \"score\": 116.13565837759428}, {\"doc_id\": \"sympy/polys/modulargcd.py::_modgcd_multivariate_p\", \"score\": 112.84405915720713}, {\"doc_id\": \"sympy/polys/subresultants_qq_zz.py::res_z\", \"score\": 109.99043050585206}, {\"doc_id\": \"sympy/polys/subresultants_qq_zz.py::res_q\", \"score\": 109.79097106229752}, {\"doc_id\": \"sympy/core/expr.py::Expr.aseries\", \"score\": 107.64436933752603}, {\"doc_id\": \"sympy/polys/modulargcd.py::_degree_bound_bivariate\", \"score\": 106.4841687365699}, {\"doc_id\": \"sympy/polys/subresultants_qq_zz.py::res\", \"score\": 104.47724657121398}, {\"doc_id\": \"sympy/polys/factortools.py::dmp_zz_mignotte_bound\", \"score\": 103.11040885265317}, {\"doc_id\": \"sympy/polys/subresultants_qq_zz.py::sturm_amv\", \"score\": 102.94156321673188}]"
+}

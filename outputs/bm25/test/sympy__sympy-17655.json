@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-17655",
+  "query": "Unexpected exception when multiplying geometry.Point and number\n```python\r\nfrom sympy import geometry as ge\r\nimport sympy\r\n\r\npoint1 = ge.Point(0,0)\r\npoint2 = ge.Point(1,1)\r\n```\r\n\r\nThis line works fine\r\n```python\r\npoint1 + point2 * sympy.sympify(2.0)\r\n```\r\n\r\nBut when I write the same this way it raises an exception\r\n```python\r\npoint1 + sympy.sympify(2.0) * point2\r\n```\r\n\r\n```\r\n---------------------------------------------------------------------------\r\nTypeError                                 Traceback (most recent call last)\r\n~/.virtualenvs/test/lib/python3.6/site-packages/sympy/geometry/point.py in __add__(self, other)\r\n    219         try:\r\n--> 220             s, o = Point._normalize_dimension(self, Point(other, evaluate=False))\r\n    221         except TypeError:\r\n\r\n~/.virtualenvs/test/lib/python3.6/site-packages/sympy/geometry/point.py in __new__(cls, *args, **kwargs)\r\n    128                 Expecting sequence of coordinates, not `{}`'''\r\n--> 129                                        .format(func_name(coords))))\r\n    130         # A point where only `dim` is specified is initialized\r\n\r\nTypeError: \r\nExpecting sequence of coordinates, not `Mul`\r\n\r\nDuring handling of the above exception, another exception occurred:\r\n\r\nGeometryError                             Traceback (most recent call last)\r\n<ipython-input-20-6dcbddac1ee2> in <module>\r\n----> 1 point1 + sympy.sympify(2.0)* point2\r\n\r\n~/.virtualenvs/test/lib/python3.6/site-packages/sympy/geometry/point.py in __add__(self, other)\r\n    220             s, o = Point._normalize_dimension(self, Point(other, evaluate=False))\r\n    221         except TypeError:\r\n--> 222             raise GeometryError(\"Don't know how to add {} and a Point object\".format(other))\r\n    223 \r\n    224         coords = [simplify(a + b) for a, b in zip(s, o)]\r\n\r\nGeometryError: Don't know how to add 2.0*Point2D(1, 1) and a Point object\r\n```\r\n\r\nThe expected behaviour is, that both lines give the same result\n",
+  "ground_truth": {
+    "files": [
+      "sympy/geometry/point.py"
+    ],
+    "locations": [
+      "sympy/geometry/point.py::Point",
+      "sympy/geometry/point.py::Point.__mul__",
+      "sympy/geometry/point.py::Point.__neg__"
+    ]
+  },
+  "predictions": [
+    "sympy/geometry/point.py::Point.__add__",
+    "sympy/geometry/point.py::Point.distance",
+    "sympy/geometry/point.py::Point.__mul__",
+    "sympy/geometry/point.py::Point.__new__",
+    "sympy/geometry/line.py::LinearEntity.projection",
+    "sympy/geometry/polygon.py::Polygon._do_poly_distance",
+    "sympy/geometry/entity.py::GeometryEntity.parameter_value",
+    "sympy/geometry/point.py::Point.intersection",
+    "sympy/geometry/point.py::Point.canberra_distance",
+    "sympy/geometry/point.py::Point.evalf"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "f5e965947af2410ded92cfad987aaf45262ea434",
+    "total_functions_indexed": 33342,
+    "retrieval_time_seconds": 2.689842462539673
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/geometry/point.py::Point.__add__\", \"score\": 484.2730000103628}, {\"doc_id\": \"sympy/geometry/point.py::Point.distance\", \"score\": 343.70210123590175}, {\"doc_id\": \"sympy/geometry/point.py::Point.__mul__\", \"score\": 336.6015743297143}, {\"doc_id\": \"sympy/geometry/point.py::Point.__new__\", \"score\": 333.4339257886459}, {\"doc_id\": \"sympy/geometry/line.py::LinearEntity.projection\", \"score\": 330.99868316892054}, {\"doc_id\": \"sympy/geometry/polygon.py::Polygon._do_poly_distance\", \"score\": 312.8409419848262}, {\"doc_id\": \"sympy/geometry/entity.py::GeometryEntity.parameter_value\", \"score\": 300.0372914223009}, {\"doc_id\": \"sympy/geometry/point.py::Point.intersection\", \"score\": 299.62488764933875}, {\"doc_id\": \"sympy/geometry/point.py::Point.canberra_distance\", \"score\": 299.270632903549}, {\"doc_id\": \"sympy/geometry/point.py::Point.evalf\", \"score\": 296.22216390564756}]"
+}

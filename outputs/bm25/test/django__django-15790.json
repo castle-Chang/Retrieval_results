@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-15790",
+  "query": "check_for_template_tags_with_the_same_name with libraries in TEMPLATES\nDescription\n\t\nI didn't explore this thoroughly, but I think there might be an issue with the check_for_template_tags_with_the_same_name when you add a template tag library into TEMPLATES['OPTIONS']['librairies'].\nI'm getting an error like: \n(templates.E003) 'my_tags' is used for multiple template tag modules: 'someapp.templatetags.my_tags', 'someapp.templatetags.my_tags'\n",
+  "ground_truth": {
+    "files": [
+      "django/core/checks/templates.py"
+    ],
+    "locations": [
+      "django/core/checks/templates.py::check_for_template_tags_with_the_same_name"
+    ]
+  },
+  "predictions": [
+    "tests/check_framework/test_templates.py::CheckTemplateTagLibrariesWithSameName.test_template_tags_with_same_library_name_and_module_name",
+    "django/core/checks/templates.py::check_for_template_tags_with_the_same_name",
+    "tests/template_tests/utils.py::setup",
+    "tests/check_framework/test_templates.py::CheckTemplateTagLibrariesWithSameName.test_template_tags_with_different_library_name",
+    "tests/check_framework/test_templates.py::CheckTemplateTagLibrariesWithSameName.test_template_tags_with_same_library_name",
+    "django/template/defaulttags.py::load",
+    "django/template/utils.py::EngineHandler.__init__",
+    "tests/template_tests/syntax_tests/test_include.py::IncludeTests.test_include_cache",
+    "tests/urlpatterns_reverse/views.py::bad_view",
+    "tests/urlpatterns_reverse/tests.py::DefaultErrorHandlerTests.test_default_handler"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "c627226d05dd52aef59447dcfb29cec2c2b11b8a",
+    "total_functions_indexed": 26050,
+    "retrieval_time_seconds": 0.5713663101196289
+  },
+  "raw_output": "[{\"doc_id\": \"tests/check_framework/test_templates.py::CheckTemplateTagLibrariesWithSameName.test_template_tags_with_same_library_name_and_module_name\", \"score\": 71.91687707104005}, {\"doc_id\": \"django/core/checks/templates.py::check_for_template_tags_with_the_same_name\", \"score\": 67.06676198631544}, {\"doc_id\": \"tests/template_tests/utils.py::setup\", \"score\": 64.01652263431305}, {\"doc_id\": \"tests/check_framework/test_templates.py::CheckTemplateTagLibrariesWithSameName.test_template_tags_with_different_library_name\", \"score\": 61.001288635041995}, {\"doc_id\": \"tests/check_framework/test_templates.py::CheckTemplateTagLibrariesWithSameName.test_template_tags_with_same_library_name\", \"score\": 59.85610364757912}, {\"doc_id\": \"django/template/defaulttags.py::load\", \"score\": 58.47234527289055}, {\"doc_id\": \"django/template/utils.py::EngineHandler.__init__\", \"score\": 57.101647037859834}, {\"doc_id\": \"tests/template_tests/syntax_tests/test_include.py::IncludeTests.test_include_cache\", \"score\": 55.10069167696417}, {\"doc_id\": \"tests/urlpatterns_reverse/views.py::bad_view\", \"score\": 54.499864156536056}, {\"doc_id\": \"tests/urlpatterns_reverse/tests.py::DefaultErrorHandlerTests.test_default_handler\", \"score\": 52.1275661745839}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12983",
+  "query": "Make django.utils.text.slugify() strip dashes and underscores\nDescription\n\t \n\t\t(last modified by Elinaldo do Nascimento Monteiro)\n\t \nBug generation slug\nExample:\nfrom django.utils import text\ntext.slugify(\"___This is a test ---\")\noutput: ___this-is-a-test-\nImprovement after correction\nfrom django.utils import text\ntext.slugify(\"___This is a test ---\")\noutput: this-is-a-test\n​PR\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/text.py"
+    ],
+    "locations": [
+      "django/utils/text.py::slugify",
+      "django/utils/text.py::camel_case_to_spaces"
+    ]
+  },
+  "predictions": [
+    "django/utils/text.py::smart_split",
+    "tests/utils_tests/test_text.py::TestUtilsText.test_slugify",
+    "django/utils/text.py::slugify",
+    "django/contrib/admin/tests.py::AdminSeleniumTestCase.wait_for_text",
+    "django/utils/text.py::unescape_entities",
+    "django/contrib/admin/tests.py::AdminSeleniumTestCase.wait_for_value",
+    "django/utils/html.py::escape",
+    "django/utils/text.py::Truncator._text_chars",
+    "django/utils/html.py::conditional_escape",
+    "tests/admin_widgets/tests.py::AdminURLWidgetTest.test_render_quoting"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "3bc4240d979812bd11365ede04c028ea13fdc8c6",
+    "total_functions_indexed": 23486,
+    "retrieval_time_seconds": 0.5221633911132812
+  },
+  "raw_output": "[{\"doc_id\": \"django/utils/text.py::smart_split\", \"score\": 79.27522292618298}, {\"doc_id\": \"tests/utils_tests/test_text.py::TestUtilsText.test_slugify\", \"score\": 68.09193436586828}, {\"doc_id\": \"django/utils/text.py::slugify\", \"score\": 66.96464448509523}, {\"doc_id\": \"django/contrib/admin/tests.py::AdminSeleniumTestCase.wait_for_text\", \"score\": 66.30603032553839}, {\"doc_id\": \"django/utils/text.py::unescape_entities\", \"score\": 65.29448712894866}, {\"doc_id\": \"django/contrib/admin/tests.py::AdminSeleniumTestCase.wait_for_value\", \"score\": 62.2952282522165}, {\"doc_id\": \"django/utils/html.py::escape\", \"score\": 60.36330475506568}, {\"doc_id\": \"django/utils/text.py::Truncator._text_chars\", \"score\": 58.167170281936066}, {\"doc_id\": \"django/utils/html.py::conditional_escape\", \"score\": 57.83386885673893}, {\"doc_id\": \"tests/admin_widgets/tests.py::AdminURLWidgetTest.test_render_quoting\", \"score\": 57.73866545035559}]"
+}

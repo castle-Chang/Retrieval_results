@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-22005",
+  "query": "detection of infinite solution request\n```python\r\n>>> solve_poly_system((x - 1,), x, y)\r\nTraceback (most recent call last):\r\n...\r\nNotImplementedError:\r\nonly zero-dimensional systems supported (finite number of solutions)\r\n>>> solve_poly_system((y - 1,), x, y)  <--- this is not handled correctly\r\n[(1,)]\r\n```\r\n```diff\r\ndiff --git a/sympy/solvers/polysys.py b/sympy/solvers/polysys.py\r\nindex b9809fd4e9..674322d4eb 100644\r\n--- a/sympy/solvers/polysys.py\r\n+++ b/sympy/solvers/polysys.py\r\n@@ -240,7 +240,7 @@ def _solve_reduced_system(system, gens, entry=False):\r\n \r\n         univariate = list(filter(_is_univariate, basis))\r\n \r\n-        if len(univariate) == 1:\r\n+        if len(univariate) == 1 and len(gens) == 1:\r\n             f = univariate.pop()\r\n         else:\r\n             raise NotImplementedError(filldedent('''\r\ndiff --git a/sympy/solvers/tests/test_polysys.py b/sympy/solvers/tests/test_polysys.py\r\nindex 58419f8762..9e674a6fe6 100644\r\n--- a/sympy/solvers/tests/test_polysys.py\r\n+++ b/sympy/solvers/tests/test_polysys.py\r\n@@ -48,6 +48,10 @@ def test_solve_poly_system():\r\n     raises(NotImplementedError, lambda: solve_poly_system(\r\n         [z, -2*x*y**2 + x + y**2*z, y**2*(-z - 4) + 2]))\r\n     raises(PolynomialError, lambda: solve_poly_system([1/x], x))\r\n+    raises(NotImplementedError, lambda: solve_poly_system(\r\n+        Poly(x - 1, x, y), (x, y)))\r\n+    raises(NotImplementedError, lambda: solve_poly_system(\r\n+        Poly(y - 1, x, y), (x, y)))\r\n \r\n \r\n def test_solve_biquadratic():\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/solvers/polysys.py"
+    ],
+    "locations": [
+      "sympy/solvers/polysys.py::solve_generic"
+    ]
+  },
+  "predictions": [
+    "sympy/solvers/tests/test_polysys.py::test_solve_poly_system",
+    "sympy/solvers/polysys.py::solve_generic",
+    "sympy/solvers/polysys.py::solve_poly_system",
+    "sympy/solvers/tests/test_polysys.py::test_solve_biquadratic",
+    "sympy/solvers/tests/test_polysys.py::test_solve_issue_3686",
+    "sympy/solvers/polysys.py::solve_biquadratic",
+    "sympy/solvers/solveset.py::nonlinsolve",
+    "sympy/solvers/diophantine/tests/test_diophantine.py::test_classify_diop",
+    "sympy/solvers/tests/test_inequalities.py::test_reduce_inequalities_errors",
+    "sympy/solvers/tests/test_solveset.py::test_raise_exception_nonlinsolve"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "2c83657ff1c62fc2761b639469fdac7f7561a72a",
+    "total_functions_indexed": 37018,
+    "retrieval_time_seconds": 4.314149856567383
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/solvers/tests/test_polysys.py::test_solve_poly_system\", \"score\": 357.19250665132864}, {\"doc_id\": \"sympy/solvers/polysys.py::solve_generic\", \"score\": 309.0701292127603}, {\"doc_id\": \"sympy/solvers/polysys.py::solve_poly_system\", \"score\": 267.2282404062798}, {\"doc_id\": \"sympy/solvers/tests/test_polysys.py::test_solve_biquadratic\", \"score\": 252.11247252308078}, {\"doc_id\": \"sympy/solvers/tests/test_polysys.py::test_solve_issue_3686\", \"score\": 249.0356383665328}, {\"doc_id\": \"sympy/solvers/polysys.py::solve_biquadratic\", \"score\": 241.5238054753179}, {\"doc_id\": \"sympy/solvers/solveset.py::nonlinsolve\", \"score\": 225.85515211415418}, {\"doc_id\": \"sympy/solvers/diophantine/tests/test_diophantine.py::test_classify_diop\", \"score\": 213.42001774957643}, {\"doc_id\": \"sympy/solvers/tests/test_inequalities.py::test_reduce_inequalities_errors\", \"score\": 210.0474274596712}, {\"doc_id\": \"sympy/solvers/tests/test_solveset.py::test_raise_exception_nonlinsolve\", \"score\": 206.40280453080976}]"
+}

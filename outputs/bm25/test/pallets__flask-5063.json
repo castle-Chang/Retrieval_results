@@ -1,0 +1,31 @@
+{
+  "instance_id": "pallets__flask-5063",
+  "query": "Flask routes to return domain/sub-domains information\nCurrently when checking **flask routes** it provides all routes but **it is no way to see which routes are assigned to which subdomain**.\r\n\r\n**Default server name:**\r\nSERVER_NAME: 'test.local'\r\n\r\n**Domains (sub-domains):**\r\ntest.test.local\r\nadmin.test.local\r\ntest.local\r\n\r\n**Adding blueprints:**\r\napp.register_blueprint(admin_blueprint,url_prefix='',subdomain='admin')\r\napp.register_blueprint(test_subdomain_blueprint,url_prefix='',subdomain='test')\r\n\r\n\r\n```\r\n$ flask routes\r\n * Tip: There are .env or .flaskenv files present. Do \"pip install python-dotenv\" to use them.\r\nEndpoint                                                 Methods    Rule\r\n-------------------------------------------------------  ---------  ------------------------------------------------\r\nadmin_blueprint.home                                      GET        /home\r\ntest_subdomain_blueprint.home                             GET        /home\r\nstatic                                                    GET        /static/<path:filename>\r\n...\r\n```\r\n\r\n\r\n**Feature request**\r\nIt will be good to see something like below (that will make more clear which route for which subdomain, because now need to go and check configuration).\r\n**If it is not possible to fix routes**, can you add or tell which method(s) should be used to get below information from flask? \r\n\r\n```\r\n$ flask routes\r\n * Tip: There are .env or .flaskenv files present. Do \"pip install python-dotenv\" to use them.\r\nDomain                Endpoint                                             Methods    Rule\r\n-----------------   ----------------------------------------------------  ----------  ------------------------------------------------\r\nadmin.test.local     admin_blueprint.home                                  GET        /home\r\ntest.test.local      test_subdomain_blueprint.home                         GET        /home\r\ntest.local           static                                                GET        /static/<path:filename>\r\n...\r\n```\r\n\n",
+  "ground_truth": {
+    "files": [
+      "src/flask/cli.py"
+    ],
+    "locations": [
+      "src/flask/cli.py::routes_command"
+    ]
+  },
+  "predictions": [
+    "src/flask/cli.py::load_dotenv",
+    "src/flask/app.py::Flask.register_blueprint",
+    "src/flask/app.py::Flask.test_request_context",
+    "tests/test_basic.py::test_server_name_subdomain",
+    "src/flask/app.py::Flask.run",
+    "tests/test_blueprints.py::test_templates_and_static",
+    "tests/test_cli.py::TestRoutes.test_sort",
+    "src/flask/blueprints.py::BlueprintSetupState.__init__",
+    "src/flask/helpers.py::make_response",
+    "src/flask/ctx.py::has_request_context"
+  ],
+  "metadata": {
+    "repo": "pallets/flask",
+    "commit": "182ce3dd15dfa3537391c3efaf9c3ff407d134d4",
+    "total_functions_indexed": 820,
+    "retrieval_time_seconds": 0.061899662017822266
+  },
+  "raw_output": "[{\"doc_id\": \"src/flask/cli.py::load_dotenv\", \"score\": 152.75989032317156}, {\"doc_id\": \"src/flask/app.py::Flask.register_blueprint\", \"score\": 121.78844782203653}, {\"doc_id\": \"src/flask/app.py::Flask.test_request_context\", \"score\": 120.16678761047899}, {\"doc_id\": \"tests/test_basic.py::test_server_name_subdomain\", \"score\": 119.44791985035717}, {\"doc_id\": \"src/flask/app.py::Flask.run\", \"score\": 116.65559553988884}, {\"doc_id\": \"tests/test_blueprints.py::test_templates_and_static\", \"score\": 114.42767610331455}, {\"doc_id\": \"tests/test_cli.py::TestRoutes.test_sort\", \"score\": 111.30390331413253}, {\"doc_id\": \"src/flask/blueprints.py::BlueprintSetupState.__init__\", \"score\": 108.64262733009802}, {\"doc_id\": \"src/flask/helpers.py::make_response\", \"score\": 103.01198727834681}, {\"doc_id\": \"src/flask/ctx.py::has_request_context\", \"score\": 102.86016055986384}]"
+}

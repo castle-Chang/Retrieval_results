@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-13043",
+  "query": "decompose() function in intpoly returns a list of arbitrary order\nThe decompose() function, with separate=True, returns `list(poly_dict.values())`, which is ordered arbitrarily.  \r\n\r\nWhat is this used for? It should be sorted somehow, or returning a set (in which case, why not just use the returned dictionary and have the caller take the values). This is causing test failures for me after some changes to the core. \r\n\r\nCC @ArifAhmed1995 @certik \n",
+  "ground_truth": {
+    "files": [
+      "sympy/integrals/intpoly.py"
+    ],
+    "locations": [
+      "sympy/integrals/intpoly.py::decompose"
+    ]
+  },
+  "predictions": [
+    "sympy/integrals/intpoly.py::decompose",
+    "sympy/core/compatibility.py::ordered",
+    "sympy/solvers/deutils.py::_desolve",
+    "sympy/solvers/pde.py::pdsolve",
+    "sympy/solvers/ode.py::dsolve",
+    "sympy/utilities/runtests.py::run_in_subprocess_with_hash_randomization",
+    "sympy/utilities/enumerative.py::MultisetPartitionTraverser.count_partitions",
+    "sympy/physics/quantum/operatorset.py::operators_to_state",
+    "sympy/physics/mechanics/kane.py::KanesMethod.linearize",
+    "sympy/solvers/solveset.py::linsolve"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "a3389a25ec84d36f5cf04a4f2562d820f131db64",
+    "total_functions_indexed": 20976,
+    "retrieval_time_seconds": 0.6171383857727051
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/integrals/intpoly.py::decompose\", \"score\": 99.79224932991964}, {\"doc_id\": \"sympy/core/compatibility.py::ordered\", \"score\": 97.69840591279774}, {\"doc_id\": \"sympy/solvers/deutils.py::_desolve\", \"score\": 91.67034901391635}, {\"doc_id\": \"sympy/solvers/pde.py::pdsolve\", \"score\": 91.66910925471544}, {\"doc_id\": \"sympy/solvers/ode.py::dsolve\", \"score\": 90.48968589587136}, {\"doc_id\": \"sympy/utilities/runtests.py::run_in_subprocess_with_hash_randomization\", \"score\": 87.03962286159228}, {\"doc_id\": \"sympy/utilities/enumerative.py::MultisetPartitionTraverser.count_partitions\", \"score\": 87.00738189132066}, {\"doc_id\": \"sympy/physics/quantum/operatorset.py::operators_to_state\", \"score\": 85.44106119974185}, {\"doc_id\": \"sympy/physics/mechanics/kane.py::KanesMethod.linearize\", \"score\": 85.28444448207524}, {\"doc_id\": \"sympy/solvers/solveset.py::linsolve\", \"score\": 85.16863009926195}]"
+}

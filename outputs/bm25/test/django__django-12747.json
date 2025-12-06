@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12747",
+  "query": "QuerySet.Delete - inconsistent result when zero objects deleted\nDescription\n\t\nThe result format of the QuerySet.Delete method is a tuple: (X, Y) \nX - is the total amount of deleted objects (including foreign key deleted objects)\nY - is a dictionary specifying counters of deleted objects for each specific model (the key is the _meta.label of the model and the value is counter of deleted objects of this model).\nExample: <class 'tuple'>: (2, {'my_app.FileAccess': 1, 'my_app.File': 1})\nWhen there are zero objects to delete in total - the result is inconsistent:\nFor models with foreign keys - the result will be: <class 'tuple'>: (0, {})\nFor \"simple\" models without foreign key - the result will be: <class 'tuple'>: (0, {'my_app.BlockLibrary': 0})\nI would expect there will be no difference between the two cases: Either both will have the empty dictionary OR both will have dictionary with model-label keys and zero value.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/deletion.py"
+    ],
+    "locations": [
+      "django/db/models/deletion.py::Collector",
+      "django/db/models/deletion.py::Collector.delete"
+    ]
+  },
+  "predictions": [
+    "django/db/models/deletion.py::Collector.can_fast_delete",
+    "django/forms/utils.py::flatatt",
+    "tests/delete/tests.py::DeletionTests.test_queryset_delete_returns_num_rows",
+    "django/db/models/deletion.py::Collector.add",
+    "django/db/models/deletion.py::Collector.collect",
+    "tests/custom_managers/tests.py::CustomManagersRegressTestCase.test_delete_related_on_filtered_manager",
+    "django/utils/translation/trans_real.py::parse_accept_lang_header",
+    "django/db/models/query.py::QuerySet.delete",
+    "django/contrib/gis/utils/ogrinspect.py::ogrinspect",
+    "django/db/models/sql/subqueries.py::UpdateQuery.get_related_updates"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "c86201b6ed4f8256b0a0520c08aa674f623d4127",
+    "total_functions_indexed": 23411,
+    "retrieval_time_seconds": 1.3397514820098877
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/deletion.py::Collector.can_fast_delete\", \"score\": 170.93562901029574}, {\"doc_id\": \"django/forms/utils.py::flatatt\", \"score\": 154.1398276706805}, {\"doc_id\": \"tests/delete/tests.py::DeletionTests.test_queryset_delete_returns_num_rows\", \"score\": 152.4103039392942}, {\"doc_id\": \"django/db/models/deletion.py::Collector.add\", \"score\": 148.82531128769634}, {\"doc_id\": \"django/db/models/deletion.py::Collector.collect\", \"score\": 145.01740066812394}, {\"doc_id\": \"tests/custom_managers/tests.py::CustomManagersRegressTestCase.test_delete_related_on_filtered_manager\", \"score\": 144.4785414069173}, {\"doc_id\": \"django/utils/translation/trans_real.py::parse_accept_lang_header\", \"score\": 142.30196576501316}, {\"doc_id\": \"django/db/models/query.py::QuerySet.delete\", \"score\": 140.55941300951557}, {\"doc_id\": \"django/contrib/gis/utils/ogrinspect.py::ogrinspect\", \"score\": 140.24087935478227}, {\"doc_id\": \"django/db/models/sql/subqueries.py::UpdateQuery.get_related_updates\", \"score\": 138.46859151751022}]"
+}

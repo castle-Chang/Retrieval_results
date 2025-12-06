@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-16408",
+  "query": "Multi-level FilteredRelation with select_related() may set wrong related object.\nDescription\n\t\ntest case:\n# add to known_related_objects.tests.ExistingRelatedInstancesTests\n\tdef test_wrong_select_related(self):\n\t\twith self.assertNumQueries(3):\n\t\t\tp = list(PoolStyle.objects.annotate(\n\t\t\t\ttournament_pool=FilteredRelation('pool__tournament__pool'),\n\t\t\t\t).select_related('tournament_pool'))\n\t\t\tself.assertEqual(p[0].pool.tournament, p[0].tournament_pool.tournament)\nresult:\n======================================================================\nFAIL: test_wrong_select_related (known_related_objects.tests.ExistingRelatedInstancesTests.test_wrong_select_related)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n File \"D:\\Work\\django\\tests\\known_related_objects\\tests.py\", line 171, in test_wrong_select_related\n\tself.assertEqual(p[0].pool.tournament, p[0].tournament_pool.tournament)\nAssertionError: <Tournament: Tournament object (1)> != <PoolStyle: PoolStyle object (1)>\n----------------------------------------------------------------------\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/sql/compiler.py"
+    ],
+    "locations": [
+      "django/db/models/sql/compiler.py::SQLCompiler",
+      "django/db/models/sql/compiler.py::SQLCompiler.get_related_selections"
+    ]
+  },
+  "predictions": [
+    "tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_foreign_key",
+    "tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_foreign_key_prefetch_related",
+    "tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.setUpTestData",
+    "tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_foreign_key_multiple_prefetch",
+    "tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_reverse_fk_select_related_multiple",
+    "tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_one_to_one_multi_select_related",
+    "tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_queryset_or_different_cached_items",
+    "tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_queryset_and",
+    "tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_queryset_or_only_one_with_precache",
+    "tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_reverse_one_to_one_multi_select_related"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "ef85b6bf0bc5a8b194f0724cf5bbedbcee402b96",
+    "total_functions_indexed": 26331,
+    "retrieval_time_seconds": 0.8545727729797363
+  },
+  "raw_output": "[{\"doc_id\": \"tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_foreign_key\", \"score\": 192.9128057186432}, {\"doc_id\": \"tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_foreign_key_prefetch_related\", \"score\": 190.54267093109715}, {\"doc_id\": \"tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.setUpTestData\", \"score\": 169.29533292111668}, {\"doc_id\": \"tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_foreign_key_multiple_prefetch\", \"score\": 158.90629344436215}, {\"doc_id\": \"tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_reverse_fk_select_related_multiple\", \"score\": 156.61303623792986}, {\"doc_id\": \"tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_one_to_one_multi_select_related\", \"score\": 156.60082694908488}, {\"doc_id\": \"tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_queryset_or_different_cached_items\", \"score\": 154.34748720673556}, {\"doc_id\": \"tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_queryset_and\", \"score\": 154.34748720673556}, {\"doc_id\": \"tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_queryset_or_only_one_with_precache\", \"score\": 146.51362167216706}, {\"doc_id\": \"tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_reverse_one_to_one_multi_select_related\", \"score\": 144.47101951492374}]"
+}

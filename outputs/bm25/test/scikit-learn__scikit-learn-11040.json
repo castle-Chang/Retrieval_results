@@ -1,0 +1,34 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-11040",
+  "query": "Missing parameter validation in Neighbors estimator for float n_neighbors\n```python\r\nfrom sklearn.neighbors import NearestNeighbors\r\nfrom sklearn.datasets import make_blobs\r\nX, y = make_blobs()\r\nneighbors = NearestNeighbors(n_neighbors=3.)\r\nneighbors.fit(X)\r\nneighbors.kneighbors(X)\r\n```\r\n```\r\n~/checkout/scikit-learn/sklearn/neighbors/binary_tree.pxi in sklearn.neighbors.kd_tree.NeighborsHeap.__init__()\r\n\r\nTypeError: 'float' object cannot be interpreted as an integer\r\n```\r\nThis should be caught earlier and a more helpful error message should be raised (or we could be lenient and cast to integer, but I think a better error might be better).\r\n\r\nWe need to make sure that \r\n```python\r\nneighbors.kneighbors(X, n_neighbors=3.)\r\n```\r\nalso works.\n",
+  "ground_truth": {
+    "files": [
+      "sklearn/neighbors/base.py"
+    ],
+    "locations": [
+      "sklearn/neighbors/base.py::NeighborsBase",
+      "sklearn/neighbors/base.py::NeighborsBase._fit",
+      "sklearn/neighbors/base.py::KNeighborsMixin",
+      "sklearn/neighbors/base.py::KNeighborsMixin.kneighbors"
+    ]
+  },
+  "predictions": [
+    "sklearn/neighbors/tests/test_approximate.py::test_kneighbors",
+    "sklearn/neighbors/tests/test_neighbors.py::test_valid_brute_metric_for_auto_algorithm",
+    "sklearn/neighbors/tests/test_neighbors.py::test_unsupervised_inputs",
+    "sklearn/neighbors/base.py::KNeighborsMixin.kneighbors_graph",
+    "sklearn/neighbors/tests/test_approximate.py::test_candidates",
+    "sklearn/neighbors/tests/test_approximate.py::test_distances",
+    "sklearn/manifold/locally_linear.py::barycenter_kneighbors_graph",
+    "sklearn/neighbors/tests/test_neighbors.py::test_precomputed",
+    "sklearn/neighbors/approximate.py::LSHForest.kneighbors",
+    "sklearn/manifold/locally_linear.py::locally_linear_embedding"
+  ],
+  "metadata": {
+    "repo": "scikit-learn/scikit-learn",
+    "commit": "96a02f3934952d486589dddd3f00b40d5a5ab5f2",
+    "total_functions_indexed": 6244,
+    "retrieval_time_seconds": 0.2595839500427246
+  },
+  "raw_output": "[{\"doc_id\": \"sklearn/neighbors/tests/test_approximate.py::test_kneighbors\", \"score\": 134.82573397318674}, {\"doc_id\": \"sklearn/neighbors/tests/test_neighbors.py::test_valid_brute_metric_for_auto_algorithm\", \"score\": 126.08406211562738}, {\"doc_id\": \"sklearn/neighbors/tests/test_neighbors.py::test_unsupervised_inputs\", \"score\": 124.07743942420765}, {\"doc_id\": \"sklearn/neighbors/base.py::KNeighborsMixin.kneighbors_graph\", \"score\": 123.74745410440444}, {\"doc_id\": \"sklearn/neighbors/tests/test_approximate.py::test_candidates\", \"score\": 122.27614876358284}, {\"doc_id\": \"sklearn/neighbors/tests/test_approximate.py::test_distances\", \"score\": 118.52849201733713}, {\"doc_id\": \"sklearn/manifold/locally_linear.py::barycenter_kneighbors_graph\", \"score\": 118.30204143960343}, {\"doc_id\": \"sklearn/neighbors/tests/test_neighbors.py::test_precomputed\", \"score\": 115.13142206573806}, {\"doc_id\": \"sklearn/neighbors/approximate.py::LSHForest.kneighbors\", \"score\": 114.59539618372773}, {\"doc_id\": \"sklearn/manifold/locally_linear.py::locally_linear_embedding\", \"score\": 113.5713199976741}]"
+}

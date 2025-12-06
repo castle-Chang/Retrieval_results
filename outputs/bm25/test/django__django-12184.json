@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12184",
+  "query": "Optional URL params crash some view functions.\nDescription\n\t\nMy use case, running fine with Django until 2.2:\nURLConf:\nurlpatterns += [\n\t...\n\tre_path(r'^module/(?P<format>(html|json|xml))?/?$', views.modules, name='modules'),\n]\nView:\ndef modules(request, format='html'):\n\t...\n\treturn render(...)\nWith Django 3.0, this is now producing an error:\nTraceback (most recent call last):\n File \"/l10n/venv/lib/python3.6/site-packages/django/core/handlers/exception.py\", line 34, in inner\n\tresponse = get_response(request)\n File \"/l10n/venv/lib/python3.6/site-packages/django/core/handlers/base.py\", line 115, in _get_response\n\tresponse = self.process_exception_by_middleware(e, request)\n File \"/l10n/venv/lib/python3.6/site-packages/django/core/handlers/base.py\", line 113, in _get_response\n\tresponse = wrapped_callback(request, *callback_args, **callback_kwargs)\nException Type: TypeError at /module/\nException Value: modules() takes from 1 to 2 positional arguments but 3 were given\n",
+  "ground_truth": {
+    "files": [
+      "django/urls/resolvers.py"
+    ],
+    "locations": [
+      "django/urls/resolvers.py::RegexPattern",
+      "django/urls/resolvers.py::RegexPattern.match"
+    ]
+  },
+  "predictions": [
+    "django/core/handlers/base.py::BaseHandler._get_response",
+    "django/core/handlers/base.py::BaseHandler.process_exception_by_middleware",
+    "django/core/handlers/exception.py::convert_exception_to_response",
+    "django/core/handlers/base.py::BaseHandler.get_response",
+    "django/core/handlers/exception.py::get_exception_response",
+    "django/urls/resolvers.py::URLResolver._check_custom_error_handlers",
+    "tests/handlers/tests_custom_error_handlers.py::MiddlewareAccessingContent.__call__",
+    "django/core/handlers/asgi.py::ASGIHandler.handle_uncaught_exception",
+    "tests/view_tests/tests/test_debug.py::PlainTextReportTests.test_template_exception",
+    "django/views/debug.py::technical_404_response"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "5d674eac871a306405b0fbbaeb17bbeba9c68bf3",
+    "total_functions_indexed": 23071,
+    "retrieval_time_seconds": 1.1458826065063477
+  },
+  "raw_output": "[{\"doc_id\": \"django/core/handlers/base.py::BaseHandler._get_response\", \"score\": 136.432719553984}, {\"doc_id\": \"django/core/handlers/base.py::BaseHandler.process_exception_by_middleware\", \"score\": 117.37199797414982}, {\"doc_id\": \"django/core/handlers/exception.py::convert_exception_to_response\", \"score\": 103.34522203494464}, {\"doc_id\": \"django/core/handlers/base.py::BaseHandler.get_response\", \"score\": 97.53212776281191}, {\"doc_id\": \"django/core/handlers/exception.py::get_exception_response\", \"score\": 95.94299454486182}, {\"doc_id\": \"django/urls/resolvers.py::URLResolver._check_custom_error_handlers\", \"score\": 86.99028302145231}, {\"doc_id\": \"tests/handlers/tests_custom_error_handlers.py::MiddlewareAccessingContent.__call__\", \"score\": 86.06807488846746}, {\"doc_id\": \"django/core/handlers/asgi.py::ASGIHandler.handle_uncaught_exception\", \"score\": 85.9944252798493}, {\"doc_id\": \"tests/view_tests/tests/test_debug.py::PlainTextReportTests.test_template_exception\", \"score\": 84.85439834606589}, {\"doc_id\": \"django/views/debug.py::technical_404_response\", \"score\": 82.36907952434356}]"
+}

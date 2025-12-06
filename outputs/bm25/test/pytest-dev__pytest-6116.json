@@ -1,0 +1,31 @@
+{
+  "instance_id": "pytest-dev__pytest-6116",
+  "query": "pytest --collect-only needs a one char shortcut command\nI find myself needing to run `--collect-only` very often and that cli argument is a very long to type one. \r\n\r\nI do think that it would be great to allocate a character for it, not sure which one yet. Please use up/down thumbs to vote if you would find it useful or not and eventually proposing which char should be used. \r\n\r\nClearly this is a change very easy to implement but first I want to see if others would find it useful or not.\npytest --collect-only needs a one char shortcut command\nI find myself needing to run `--collect-only` very often and that cli argument is a very long to type one. \r\n\r\nI do think that it would be great to allocate a character for it, not sure which one yet. Please use up/down thumbs to vote if you would find it useful or not and eventually proposing which char should be used. \r\n\r\nClearly this is a change very easy to implement but first I want to see if others would find it useful or not.\n",
+  "ground_truth": {
+    "files": [
+      "src/_pytest/main.py"
+    ],
+    "locations": [
+      "src/_pytest/main.py::pytest_addoption"
+    ]
+  },
+  "predictions": [
+    "src/_pytest/python_api.py::ApproxNumpy._yield_comparisons",
+    "src/_pytest/capture.py::_readline_workaround",
+    "src/_pytest/python_api.py::approx",
+    "src/_pytest/hookspec.py::pytest_pycollect_makemodule",
+    "src/_pytest/reports.py::TestReport.__init__",
+    "src/_pytest/fixtures.py::FixtureRequest.getfixturevalue",
+    "src/_pytest/assertion/rewrite.py::_saferepr",
+    "src/_pytest/assertion/__init__.py::register_assert_rewrite",
+    "src/_pytest/recwarn.py::deprecated_call",
+    "src/_pytest/python.py::pytest_configure"
+  ],
+  "metadata": {
+    "repo": "pytest-dev/pytest",
+    "commit": "e670ff76cbad80108bde9bab616b66771b8653cf",
+    "total_functions_indexed": 3617,
+    "retrieval_time_seconds": 0.22926092147827148
+  },
+  "raw_output": "[{\"doc_id\": \"src/_pytest/python_api.py::ApproxNumpy._yield_comparisons\", \"score\": 183.43230061592374}, {\"doc_id\": \"src/_pytest/capture.py::_readline_workaround\", \"score\": 176.27357778101683}, {\"doc_id\": \"src/_pytest/python_api.py::approx\", \"score\": 175.81222030729518}, {\"doc_id\": \"src/_pytest/hookspec.py::pytest_pycollect_makemodule\", \"score\": 168.42320114438445}, {\"doc_id\": \"src/_pytest/reports.py::TestReport.__init__\", \"score\": 159.62535693616775}, {\"doc_id\": \"src/_pytest/fixtures.py::FixtureRequest.getfixturevalue\", \"score\": 155.99888171696412}, {\"doc_id\": \"src/_pytest/assertion/rewrite.py::_saferepr\", \"score\": 155.95456646343425}, {\"doc_id\": \"src/_pytest/assertion/__init__.py::register_assert_rewrite\", \"score\": 155.44268820270207}, {\"doc_id\": \"src/_pytest/recwarn.py::deprecated_call\", \"score\": 153.30475545570837}, {\"doc_id\": \"src/_pytest/python.py::pytest_configure\", \"score\": 150.31139216870446}]"
+}

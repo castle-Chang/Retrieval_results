@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-11630",
+  "query": "Django throws error when different apps with different models have the same name table name.\nDescription\n\t\nError message:\ntable_name: (models.E028) db_table 'table_name' is used by multiple models: base.ModelName, app2.ModelName.\nWe have a Base app that points to a central database and that has its own tables. We then have multiple Apps that talk to their own databases. Some share the same table names.\nWe have used this setup for a while, but after upgrading to Django 2.2 we're getting an error saying we're not allowed 2 apps, with 2 different models to have the same table names. \nIs this correct behavior? We've had to roll back to Django 2.0 for now.\n",
+  "ground_truth": {
+    "files": [
+      "django/core/checks/model_checks.py"
+    ],
+    "locations": [
+      "django/core/checks/model_checks.py::check_all_models"
+    ]
+  },
+  "predictions": [
+    "django/contrib/auth/management/__init__.py::create_permissions",
+    "django/db/models/sql/query.py::JoinPromoter.update_join_types",
+    "tests/migrations/test_commands.py::MigrateTests.test_regression_22823_unmigrated_fk_to_migrated_model",
+    "django/utils/module_loading.py::autodiscover_modules",
+    "tests/fixtures_regress/tests.py::TestFixtures.test_close_connection_after_loaddata",
+    "django/db/models/sql/query.py::Query.combine",
+    "django/db/models/fields/files.py::FileDescriptor.__get__",
+    "django/db/models/options.py::Options._get_fields",
+    "django/db/backends/sqlite3/introspection.py::DatabaseIntrospection.get_key_columns",
+    "django/db/migrations/operations/special.py::RunPython.database_forwards"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "65e86948b80262574058a94ccaae3a9b59c3faea",
+    "total_functions_indexed": 22707,
+    "retrieval_time_seconds": 1.3488779067993164
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/auth/management/__init__.py::create_permissions\", \"score\": 115.25598543713362}, {\"doc_id\": \"django/db/models/sql/query.py::JoinPromoter.update_join_types\", \"score\": 114.51775238260309}, {\"doc_id\": \"tests/migrations/test_commands.py::MigrateTests.test_regression_22823_unmigrated_fk_to_migrated_model\", \"score\": 114.12787312138639}, {\"doc_id\": \"django/utils/module_loading.py::autodiscover_modules\", \"score\": 109.15907431864872}, {\"doc_id\": \"tests/fixtures_regress/tests.py::TestFixtures.test_close_connection_after_loaddata\", \"score\": 108.65480580530453}, {\"doc_id\": \"django/db/models/sql/query.py::Query.combine\", \"score\": 106.28472518376113}, {\"doc_id\": \"django/db/models/fields/files.py::FileDescriptor.__get__\", \"score\": 104.4280236974944}, {\"doc_id\": \"django/db/models/options.py::Options._get_fields\", \"score\": 104.15320458389732}, {\"doc_id\": \"django/db/backends/sqlite3/introspection.py::DatabaseIntrospection.get_key_columns\", \"score\": 103.51840124222215}, {\"doc_id\": \"django/db/migrations/operations/special.py::RunPython.database_forwards\", \"score\": 102.6320454602791}]"
+}

@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-11848",
+  "query": "django.utils.http.parse_http_date two digit year check is incorrect\nDescription\n\t \n\t\t(last modified by Ad Timmering)\n\t \nRFC 850 does not mention this, but in RFC 7231 (and there's something similar in RFC 2822), there's the following quote:\nRecipients of a timestamp value in rfc850-date format, which uses a\ntwo-digit year, MUST interpret a timestamp that appears to be more\nthan 50 years in the future as representing the most recent year in\nthe past that had the same last two digits.\nCurrent logic is hard coded to consider 0-69 to be in 2000-2069, and 70-99 to be 1970-1999, instead of comparing versus the current year.\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/http.py"
+    ],
+    "locations": [
+      "django/utils/http.py::parse_http_date"
+    ]
+  },
+  "predictions": [
+    "django/utils/http.py::parse_http_date",
+    "django/utils/encoding.py::iri_to_uri",
+    "django/forms/widgets.py::SelectDateWidget.format_value",
+    "django/utils/cache.py::_if_match_passes",
+    "django/utils/datetime_safe.py::strftime",
+    "django/utils/cache.py::_if_none_match_passes",
+    "django/utils/cache.py::_not_modified",
+    "tests/utils_tests/test_autoreload.py::ReloaderTests.ensure_file",
+    "django/utils/http.py::_url_has_allowed_host_and_scheme",
+    "django/views/generic/dates.py::_get_next_prev"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "f0adf3b9b7a19cdee05368ff0c0c2d087f011180",
+    "total_functions_indexed": 22862,
+    "retrieval_time_seconds": 0.9542984962463379
+  },
+  "raw_output": "[{\"doc_id\": \"django/utils/http.py::parse_http_date\", \"score\": 120.3843074084432}, {\"doc_id\": \"django/utils/encoding.py::iri_to_uri\", \"score\": 102.94460676757707}, {\"doc_id\": \"django/forms/widgets.py::SelectDateWidget.format_value\", \"score\": 94.99939953570943}, {\"doc_id\": \"django/utils/cache.py::_if_match_passes\", \"score\": 94.63147817032552}, {\"doc_id\": \"django/utils/datetime_safe.py::strftime\", \"score\": 92.52346664272945}, {\"doc_id\": \"django/utils/cache.py::_if_none_match_passes\", \"score\": 92.42464175667243}, {\"doc_id\": \"django/utils/cache.py::_not_modified\", \"score\": 91.47283641787904}, {\"doc_id\": \"tests/utils_tests/test_autoreload.py::ReloaderTests.ensure_file\", \"score\": 90.65637016140944}, {\"doc_id\": \"django/utils/http.py::_url_has_allowed_host_and_scheme\", \"score\": 87.53822733867526}, {\"doc_id\": \"django/views/generic/dates.py::_get_next_prev\", \"score\": 85.84353114131038}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-13230",
+  "query": "Add support for item_comments to syndication framework\nDescription\n\t\nAdd comments argument to feed.add_item() in syndication.views so that item_comments can be defined directly without having to take the detour via item_extra_kwargs .\nAdditionally, comments is already explicitly mentioned in the feedparser, but not implemented in the view.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/syndication/views.py"
+    ],
+    "locations": [
+      "django/contrib/syndication/views.py::Feed",
+      "django/contrib/syndication/views.py::Feed.get_feed"
+    ]
+  },
+  "predictions": [
+    "django/contrib/syndication/views.py::Feed.item_extra_kwargs",
+    "django/utils/feedgenerator.py::SyndicationFeed.add_item",
+    "tests/test_client_regress/views.py::view_with_argument",
+    "django/contrib/syndication/views.py::Feed.feed_extra_kwargs",
+    "django/db/models/deletion.py::Collector.add",
+    "django/contrib/admin/options.py::BaseModelAdmin.has_module_permission",
+    "django/contrib/syndication/views.py::Feed.__call__",
+    "django/db/models/sql/query.py::Query.deferred_to_data",
+    "django/db/models/sql/compiler.py::SQLCompiler.get_group_by",
+    "django/middleware/common.py::BrokenLinkEmailsMiddleware.is_ignorable_request"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "184a6eebb0ef56d5f1b1315a8e666830e37f3f81",
+    "total_functions_indexed": 23747,
+    "retrieval_time_seconds": 0.428102970123291
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/syndication/views.py::Feed.item_extra_kwargs\", \"score\": 65.66965559481172}, {\"doc_id\": \"django/utils/feedgenerator.py::SyndicationFeed.add_item\", \"score\": 52.491675218593564}, {\"doc_id\": \"tests/test_client_regress/views.py::view_with_argument\", \"score\": 48.050876103630785}, {\"doc_id\": \"django/contrib/syndication/views.py::Feed.feed_extra_kwargs\", \"score\": 43.03705533298023}, {\"doc_id\": \"django/db/models/deletion.py::Collector.add\", \"score\": 42.88473337109307}, {\"doc_id\": \"django/contrib/admin/options.py::BaseModelAdmin.has_module_permission\", \"score\": 42.73010950008492}, {\"doc_id\": \"django/contrib/syndication/views.py::Feed.__call__\", \"score\": 42.598155926981825}, {\"doc_id\": \"django/db/models/sql/query.py::Query.deferred_to_data\", \"score\": 42.5933831617206}, {\"doc_id\": \"django/db/models/sql/compiler.py::SQLCompiler.get_group_by\", \"score\": 42.48473996028247}, {\"doc_id\": \"django/middleware/common.py::BrokenLinkEmailsMiddleware.is_ignorable_request\", \"score\": 41.92242900359184}]"
+}

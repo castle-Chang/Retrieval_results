@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-13471",
+  "query": "Python 2->3 pickle fails with float-containing expressions\nDumping a pickled sympy expression containing a float in Python 2, then loading it in Python 3 generates an error.\r\n\r\nHere is a minimum working example, verified with sympy git commit 3546ac7 (master at time of writing), Python 2.7 and Python 3.6:\r\n\r\n```python\r\npython2 -c 'import pickle; import sympy; x = sympy.symbols(\"x\"); print pickle.dumps(x + 1.0, 2)' | python3 -c 'import pickle; import sys; print(pickle.loads(sys.stdin.buffer.read()))'\r\n```\r\n\r\nand the result:\r\n\r\n```\r\nTraceback (most recent call last):\r\n  File \"<string>\", line 1, in <module>\r\n  File \"/Users/alex/git/VU/sympy/sympy/core/numbers.py\", line 1045, in __new__\r\n    num[1] = long(num[1], 16)\r\nValueError: invalid literal for int() with base 16: '1L'\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/numbers.py"
+    ],
+    "locations": [
+      "sympy/core/numbers.py::Float",
+      "sympy/core/numbers.py::Float.__new__"
+    ]
+  },
+  "predictions": [
+    "sympy/utilities/tests/test_pickling.py::check",
+    "sympy/utilities/tests/test_pickling.py::test_Singletons",
+    "sympy/utilities/runtests.py::run_in_subprocess_with_hash_randomization",
+    "sympy/core/containers.py::Tuple.index",
+    "sympy/interactive/session.py::int_to_Integer",
+    "sympy/core/sympify.py::sympify",
+    "sympy/core/sympify.py::_sympify",
+    "release/fabfile.py::prepare_apt",
+    "release/fabfile.py::compare_tar_against_git",
+    "sympy/matrices/matrices.py::MatrixBase.D"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "3546ac7ed78e1780c1a76929864bb33330055740",
+    "total_functions_indexed": 22243,
+    "retrieval_time_seconds": 1.0644934177398682
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/utilities/tests/test_pickling.py::check\", \"score\": 169.1403582961141}, {\"doc_id\": \"sympy/utilities/tests/test_pickling.py::test_Singletons\", \"score\": 151.94694777675278}, {\"doc_id\": \"sympy/utilities/runtests.py::run_in_subprocess_with_hash_randomization\", \"score\": 150.58034824602834}, {\"doc_id\": \"sympy/core/containers.py::Tuple.index\", \"score\": 139.99783455232185}, {\"doc_id\": \"sympy/interactive/session.py::int_to_Integer\", \"score\": 133.6347309815011}, {\"doc_id\": \"sympy/core/sympify.py::sympify\", \"score\": 133.6279970645675}, {\"doc_id\": \"sympy/core/sympify.py::_sympify\", \"score\": 129.69765433157883}, {\"doc_id\": \"release/fabfile.py::prepare_apt\", \"score\": 126.21722053937913}, {\"doc_id\": \"release/fabfile.py::compare_tar_against_git\", \"score\": 123.02578111425527}, {\"doc_id\": \"sympy/matrices/matrices.py::MatrixBase.D\", \"score\": 122.76338631558833}]"
+}

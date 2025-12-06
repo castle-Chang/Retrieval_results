@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-15498",
+  "query": "Fix handling empty string for If-Modified-Since header\nDescription\n\t\nEmpty string used to be ignored for If-Modified-Since header, but now raises exception since d6aff369ad3.\nFix handling empty string for If-Modified-Since header\nDescription\n\t\nEmpty string used to be ignored for If-Modified-Since header, but now raises exception since d6aff369ad3.\n",
+  "ground_truth": {
+    "files": [
+      "django/views/static.py"
+    ],
+    "locations": [
+      "django/views/static.py::was_modified_since"
+    ]
+  },
+  "predictions": [
+    "django/views/static.py::was_modified_since",
+    "django/utils/cache.py::_not_modified",
+    "django/contrib/sessions/backends/base.py::SessionBase.clear",
+    "django/utils/timesince.py::timesince",
+    "tests/migrations/test_autodetector.py::AutodetectorTests.test_empty_foo_together",
+    "django/utils/cache.py::_if_modified_since_passes",
+    "tests/view_tests/tests/test_static.py::StaticTests.test_invalid_if_modified_since",
+    "tests/view_tests/tests/test_static.py::StaticTests.test_invalid_if_modified_since2",
+    "tests/sitemaps_tests/test_http.py::HTTPSitemapTests.test_sitemap_last_modified_tz",
+    "django/contrib/gis/db/backends/postgis/pgraster.py::from_pgraster"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "d90e34c61b27fba2527834806639eebbcfab9631",
+    "total_functions_indexed": 25711,
+    "retrieval_time_seconds": 0.515345573425293
+  },
+  "raw_output": "[{\"doc_id\": \"django/views/static.py::was_modified_since\", \"score\": 95.56956502844815}, {\"doc_id\": \"django/utils/cache.py::_not_modified\", \"score\": 79.04939112087195}, {\"doc_id\": \"django/contrib/sessions/backends/base.py::SessionBase.clear\", \"score\": 78.10300109644426}, {\"doc_id\": \"django/utils/timesince.py::timesince\", \"score\": 74.64569214388543}, {\"doc_id\": \"tests/migrations/test_autodetector.py::AutodetectorTests.test_empty_foo_together\", \"score\": 73.98866643917425}, {\"doc_id\": \"django/utils/cache.py::_if_modified_since_passes\", \"score\": 71.39119272408641}, {\"doc_id\": \"tests/view_tests/tests/test_static.py::StaticTests.test_invalid_if_modified_since\", \"score\": 66.56484652160127}, {\"doc_id\": \"tests/view_tests/tests/test_static.py::StaticTests.test_invalid_if_modified_since2\", \"score\": 65.55125562479135}, {\"doc_id\": \"tests/sitemaps_tests/test_http.py::HTTPSitemapTests.test_sitemap_last_modified_tz\", \"score\": 64.80835697278465}, {\"doc_id\": \"django/contrib/gis/db/backends/postgis/pgraster.py::from_pgraster\", \"score\": 64.20664257814407}]"
+}

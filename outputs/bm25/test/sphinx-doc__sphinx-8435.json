@@ -1,0 +1,34 @@
+{
+  "instance_id": "sphinx-doc__sphinx-8435",
+  "query": "autodoc_type_aliases does not effect to variables and attributes\n**Describe the bug**\r\nautodoc_type_aliases does not effect to variables and attributes\r\n\r\n**To Reproduce**\r\n\r\n```\r\n# example.py\r\nfrom __future__ import annotations\r\n\r\n\r\n#: blah blah blah\r\nvar: String\r\n\r\n\r\nclass MyString:\r\n    \"mystring\"\r\n\r\n    #: blah blah blah\r\n    var: String\r\n```\r\n```\r\n# index.rst\r\n.. automodule:: example\r\n   :members:\r\n   :undoc-members:\r\n```\r\n```\r\n# conf.py\r\nautodoc_type_aliases = {\r\n    'String': 'example.MyString'\r\n}\r\n```\r\n\r\n**Expected behavior**\r\n`autodoc_type_aliases` should be applied to `example.var` and `example.MyString.var`.\r\n\r\n**Your project**\r\nN/A\r\n\r\n**Screenshots**\r\nN/A\r\n\r\n**Environment info**\r\n- OS: Mac\r\n- Python version: 3.9.0\r\n- Sphinx version: HEAD of 3.x branch\r\n- Sphinx extensions: sphinx.ext.autodoc\r\n- Extra tools: Nothing\r\n\r\n**Additional context**\r\nN/A\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/ext/autodoc/__init__.py"
+    ],
+    "locations": [
+      "sphinx/ext/autodoc/__init__.py::DataDocumenter",
+      "sphinx/ext/autodoc/__init__.py::DataDocumenter.add_directive_header",
+      "sphinx/ext/autodoc/__init__.py::AttributeDocumenter",
+      "sphinx/ext/autodoc/__init__.py::AttributeDocumenter.add_directive_header"
+    ]
+  },
+  "predictions": [
+    "tests/test_domain_py.py::test_pydata",
+    "sphinx/application.py::Sphinx.add_js_file",
+    "tests/test_util_docstrings.py::test_extract_metadata",
+    "tests/test_ext_autosummary.py::test_extract_summary",
+    "tests/test_ext_apidoc.py::test_module_file",
+    "tests/test_ext_apidoc.py::test_module_file_noheadings",
+    "tests/test_build_epub.py::test_epub_anchor_id",
+    "tests/test_ext_apidoc.py::test_package_file_separate",
+    "tests/test_ext_apidoc.py::test_package_file_module_first",
+    "tests/test_util_nodes.py::test_NodeMatcher"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "5d8d6275a54f2c5fb72b82383b5712c22d337634",
+    "total_functions_indexed": 5539,
+    "retrieval_time_seconds": 0.2002120018005371
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_domain_py.py::test_pydata\", \"score\": 110.11691694169254}, {\"doc_id\": \"sphinx/application.py::Sphinx.add_js_file\", \"score\": 96.82830733251856}, {\"doc_id\": \"tests/test_util_docstrings.py::test_extract_metadata\", \"score\": 95.76923546506559}, {\"doc_id\": \"tests/test_ext_autosummary.py::test_extract_summary\", \"score\": 93.29915268540078}, {\"doc_id\": \"tests/test_ext_apidoc.py::test_module_file\", \"score\": 87.5764692016576}, {\"doc_id\": \"tests/test_ext_apidoc.py::test_module_file_noheadings\", \"score\": 85.28265216789994}, {\"doc_id\": \"tests/test_build_epub.py::test_epub_anchor_id\", \"score\": 85.12665844572018}, {\"doc_id\": \"tests/test_ext_apidoc.py::test_package_file_separate\", \"score\": 83.78712363968576}, {\"doc_id\": \"tests/test_ext_apidoc.py::test_package_file_module_first\", \"score\": 80.11700146590059}, {\"doc_id\": \"tests/test_util_nodes.py::test_NodeMatcher\", \"score\": 78.82216099305684}]"
+}

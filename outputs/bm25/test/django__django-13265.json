@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-13265",
+  "query": "AlterOrderWithRespectTo() with ForeignKey crash when _order is included in Index().\nDescription\n\t\n\tclass Meta:\n\t\tdb_table = 'look_image'\n\t\torder_with_respect_to = 'look'\n\t\tindexes = [\n\t\t\tmodels.Index(fields=['look', '_order']),\n\t\t\tmodels.Index(fields=['created_at']),\n\t\t\tmodels.Index(fields=['updated_at']),\n\t\t]\nmigrations.CreateModel(\n\t\t\tname='LookImage',\n\t\t\tfields=[\n\t\t\t\t('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n\t\t\t\t('look', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='images', to='posts.Look', verbose_name='LOOK')),\n\t\t\t\t('image_url', models.URLField(blank=True, max_length=10000, null=True)),\n\t\t\t\t('image', models.ImageField(max_length=2000, upload_to='')),\n\t\t\t\t('deleted', models.DateTimeField(editable=False, null=True)),\n\t\t\t\t('created_at', models.DateTimeField(auto_now_add=True)),\n\t\t\t\t('updated_at', models.DateTimeField(auto_now=True)),\n\t\t\t],\n\t\t),\n\t\tmigrations.AddIndex(\n\t\t\tmodel_name='lookimage',\n\t\t\tindex=models.Index(fields=['look', '_order'], name='look_image_look_id_eaff30_idx'),\n\t\t),\n\t\tmigrations.AddIndex(\n\t\t\tmodel_name='lookimage',\n\t\t\tindex=models.Index(fields=['created_at'], name='look_image_created_f746cf_idx'),\n\t\t),\n\t\tmigrations.AddIndex(\n\t\t\tmodel_name='lookimage',\n\t\t\tindex=models.Index(fields=['updated_at'], name='look_image_updated_aceaf9_idx'),\n\t\t),\n\t\tmigrations.AlterOrderWithRespectTo(\n\t\t\tname='lookimage',\n\t\t\torder_with_respect_to='look',\n\t\t),\nI added orders_with_respect_to in new model class's Meta class and also made index for '_order' field by combining with other field. And a new migration file based on the model looks like the code above.\nThe problem is operation AlterOrderWithRespectTo after AddIndex of '_order' raising error because '_order' field had not been created yet.\nIt seems to be AlterOrderWithRespectTo has to proceed before AddIndex of '_order'.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/autodetector.py"
+    ],
+    "locations": [
+      "django/db/migrations/autodetector.py::MigrationAutodetector",
+      "django/db/migrations/autodetector.py::MigrationAutodetector._detect_changes",
+      "django/db/migrations/autodetector.py::MigrationAutodetector.generate_created_models"
+    ]
+  },
+  "predictions": [
+    "django/db/migrations/operations/models.py::AddIndex.describe",
+    "tests/migrations/test_base.py::OperationTestBase.set_up_test_model",
+    "tests/migrations/test_autodetector.py::AutodetectorTests.test_create_model_with_indexes",
+    "django/db/migrations/operations/models.py::AddIndex.__init__",
+    "tests/migrations/test_operations.py::OperationTests.test_add_index",
+    "tests/migrations/test_state.py::ModelStateTests.test_explicit_index_name",
+    "tests/migrations/test_state.py::ModelStateTests.test_abstract_model_children_inherit_indexes",
+    "tests/check_framework/test_model_checks.py::IndexNameTests.test_collision_in_different_models",
+    "tests/invalid_models_tests/test_models.py::IndexesTests.test_name_constraints",
+    "tests/check_framework/test_model_checks.py::IndexNameTests.test_collision_in_same_model"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "b2b0711b555fa292751763c2df4fe577c396f265",
+    "total_functions_indexed": 23790,
+    "retrieval_time_seconds": 1.6458325386047363
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/migrations/operations/models.py::AddIndex.describe\", \"score\": 254.00209517883465}, {\"doc_id\": \"tests/migrations/test_base.py::OperationTestBase.set_up_test_model\", \"score\": 245.23244478364563}, {\"doc_id\": \"tests/migrations/test_autodetector.py::AutodetectorTests.test_create_model_with_indexes\", \"score\": 243.38821787647512}, {\"doc_id\": \"django/db/migrations/operations/models.py::AddIndex.__init__\", \"score\": 242.64261604272835}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_add_index\", \"score\": 241.5513794217577}, {\"doc_id\": \"tests/migrations/test_state.py::ModelStateTests.test_explicit_index_name\", \"score\": 221.90024192476227}, {\"doc_id\": \"tests/migrations/test_state.py::ModelStateTests.test_abstract_model_children_inherit_indexes\", \"score\": 218.12627931151385}, {\"doc_id\": \"tests/check_framework/test_model_checks.py::IndexNameTests.test_collision_in_different_models\", \"score\": 213.36978549695013}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::IndexesTests.test_name_constraints\", \"score\": 211.25296282561746}, {\"doc_id\": \"tests/check_framework/test_model_checks.py::IndexNameTests.test_collision_in_same_model\", \"score\": 210.90044495293597}]"
+}

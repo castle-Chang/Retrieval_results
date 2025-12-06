@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-15678",
+  "query": "Some issues with idiff\nidiff doesn't support Eq, and it also doesn't support f(x) instead of y. Both should be easy to correct.\r\n\r\n```\r\n>>> idiff(Eq(y*exp(y), x*exp(x)), y, x)\r\nTraceback (most recent call last):\r\n  File \"<stdin>\", line 1, in <module>\r\n  File \"./sympy/geometry/util.py\", line 582, in idiff\r\n    yp = solve(eq.diff(x), dydx)[0].subs(derivs)\r\nIndexError: list index out of range\r\n>>> idiff(f(x)*exp(f(x)) - x*exp(x), f(x), x)\r\nTraceback (most recent call last):\r\n  File \"<stdin>\", line 1, in <module>\r\n  File \"./sympy/geometry/util.py\", line 574, in idiff\r\n    raise ValueError(\"expecting x-dependent symbol(s) but got: %s\" % y)\r\nValueError: expecting x-dependent symbol(s) but got: f(x)\r\n>>> idiff(y*exp(y)- x*exp(x), y, x)\r\n(x + 1)*exp(x - y)/(y + 1)\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/geometry/util.py"
+    ],
+    "locations": [
+      "sympy/geometry/util.py::idiff"
+    ]
+  },
+  "predictions": [
+    "sympy/geometry/util.py::idiff",
+    "sympy/geometry/tests/test_util.py::test_idiff",
+    "sympy/solvers/solveset.py::linear_coeffs",
+    "sympy/core/function.py::diff",
+    "sympy/geometry/ellipse.py::Ellipse.reflect",
+    "sympy/geometry/ellipse.py::Ellipse.tangent_lines",
+    "sympy/geometry/ellipse.py::Ellipse.normal_lines",
+    "sympy/utilities/tests/test_wester.py::test_U8",
+    "sympy/solvers/solveset.py::linear_eq_to_matrix",
+    "sympy/solvers/pde.py::pde_1st_linear_constant_coeff"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "31c68eef3ffef39e2e792b0ec92cd92b7010eb2a",
+    "total_functions_indexed": 24378,
+    "retrieval_time_seconds": 1.3230159282684326
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/geometry/util.py::idiff\", \"score\": 396.8988930182305}, {\"doc_id\": \"sympy/geometry/tests/test_util.py::test_idiff\", \"score\": 262.98919313447374}, {\"doc_id\": \"sympy/solvers/solveset.py::linear_coeffs\", \"score\": 237.95333410431456}, {\"doc_id\": \"sympy/core/function.py::diff\", \"score\": 231.6245922893289}, {\"doc_id\": \"sympy/geometry/ellipse.py::Ellipse.reflect\", \"score\": 216.06080631056426}, {\"doc_id\": \"sympy/geometry/ellipse.py::Ellipse.tangent_lines\", \"score\": 214.9385086802777}, {\"doc_id\": \"sympy/geometry/ellipse.py::Ellipse.normal_lines\", \"score\": 205.92453279722872}, {\"doc_id\": \"sympy/utilities/tests/test_wester.py::test_U8\", \"score\": 202.51221779497797}, {\"doc_id\": \"sympy/solvers/solveset.py::linear_eq_to_matrix\", \"score\": 198.35995711858487}, {\"doc_id\": \"sympy/solvers/pde.py::pde_1st_linear_constant_coeff\", \"score\": 195.26840721286155}]"
+}

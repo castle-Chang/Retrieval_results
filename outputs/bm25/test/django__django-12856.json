@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12856",
+  "query": "Add check for fields of UniqueConstraints.\nDescription\n\t \n\t\t(last modified by Marnanel Thurman)\n\t \nWhen a model gains a UniqueConstraint, makemigrations doesn't check that the fields named therein actually exist.\nThis is in contrast to the older unique_together syntax, which raises models.E012 if the fields don't exist.\nIn the attached demonstration, you'll need to uncomment \"with_unique_together\" in settings.py in order to show that unique_together raises E012.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/base.py"
+    ],
+    "locations": [
+      "django/db/models/base.py::Model",
+      "django/db/models/base.py::Model._check_constraints"
+    ]
+  },
+  "predictions": [
+    "django/db/models/base.py::Model._get_unique_checks",
+    "django/db/models/sql/query.py::Query.deferred_to_data",
+    "tests/invalid_models_tests/test_models.py::UniqueTogetherTests.test_pointing_to_missing_field",
+    "tests/model_forms/tests.py::UniqueTest.test_unique_together_exclusion",
+    "django/forms/models.py::BaseModelForm._get_validation_exclusions",
+    "tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_foreign_object_to_non_unique_fields",
+    "django/db/models/base.py::Model._check_unique_together",
+    "django/db/models/options.py::Options._get_fields",
+    "tests/invalid_models_tests/test_relative_fields.py::M2mThroughFieldsTests.test_superset_foreign_object",
+    "django/db/models/fields/related.py::ForeignObject._check_unique_target"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "8328811f048fed0dd22573224def8c65410c9f2e",
+    "total_functions_indexed": 23434,
+    "retrieval_time_seconds": 0.6432390213012695
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/base.py::Model._get_unique_checks\", \"score\": 74.0039052624616}, {\"doc_id\": \"django/db/models/sql/query.py::Query.deferred_to_data\", \"score\": 66.33630866547898}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::UniqueTogetherTests.test_pointing_to_missing_field\", \"score\": 66.04185394068094}, {\"doc_id\": \"tests/model_forms/tests.py::UniqueTest.test_unique_together_exclusion\", \"score\": 65.49207023140161}, {\"doc_id\": \"django/forms/models.py::BaseModelForm._get_validation_exclusions\", \"score\": 63.59004543703087}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_foreign_object_to_non_unique_fields\", \"score\": 62.60615532356351}, {\"doc_id\": \"django/db/models/base.py::Model._check_unique_together\", \"score\": 62.35154753997271}, {\"doc_id\": \"django/db/models/options.py::Options._get_fields\", \"score\": 61.05909063357427}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::M2mThroughFieldsTests.test_superset_foreign_object\", \"score\": 60.815967004117326}, {\"doc_id\": \"django/db/models/fields/related.py::ForeignObject._check_unique_target\", \"score\": 60.69502289559999}]"
+}

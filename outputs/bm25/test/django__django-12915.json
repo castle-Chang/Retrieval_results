@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-12915",
+  "query": "Add get_response_async for ASGIStaticFilesHandler\nDescription\n\t\nIt looks like the StaticFilesHandlerMixin is missing the the async response function.\nWithout this, when trying to use the ASGIStaticFilesHandler, this is the traceback:\nException inside application: 'NoneType' object is not callable\nTraceback (most recent call last):\n File \".../lib/python3.7/site-packages/daphne/cli.py\", line 30, in asgi\n\tawait self.app(scope, receive, send)\n File \".../src/django/django/contrib/staticfiles/handlers.py\", line 86, in __call__\n\treturn await super().__call__(scope, receive, send)\n File \".../src/django/django/core/handlers/asgi.py\", line 161, in __call__\n\tresponse = await self.get_response_async(request)\n File \".../src/django/django/core/handlers/base.py\", line 148, in get_response_async\n\tresponse = await self._middleware_chain(request)\nTypeError: 'NoneType' object is not callable\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/staticfiles/handlers.py"
+    ],
+    "locations": [
+      "django/contrib/staticfiles/handlers.py::StaticFilesHandlerMixin",
+      "django/contrib/staticfiles/handlers.py::StaticFilesHandlerMixin.get_response",
+      "django/contrib/staticfiles/handlers.py::StaticFilesHandler"
+    ]
+  },
+  "predictions": [
+    "django/core/handlers/asgi.py::ASGIHandler.__call__",
+    "django/contrib/staticfiles/handlers.py::ASGIStaticFilesHandler.__call__",
+    "django/test/client.py::AsyncClientHandler.__call__",
+    "django/core/handlers/base.py::BaseHandler.get_response_async",
+    "django/utils/deprecation.py::MiddlewareMixin.__acall__",
+    "django/core/handlers/base.py::BaseHandler._get_response_async",
+    "django/core/handlers/asgi.py::ASGIHandler.read_body",
+    "tests/asgi/tests.py::ASGITest.test_file_response",
+    "django/core/handlers/asgi.py::ASGIHandler.send_response",
+    "tests/asgi/tests.py::ASGITest.test_get_asgi_application"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "4652f1f0aa459a7b980441d629648707c32e36bf",
+    "total_functions_indexed": 23543,
+    "retrieval_time_seconds": 1.0611333847045898
+  },
+  "raw_output": "[{\"doc_id\": \"django/core/handlers/asgi.py::ASGIHandler.__call__\", \"score\": 211.53959377309602}, {\"doc_id\": \"django/contrib/staticfiles/handlers.py::ASGIStaticFilesHandler.__call__\", \"score\": 210.88954826083176}, {\"doc_id\": \"django/test/client.py::AsyncClientHandler.__call__\", \"score\": 156.23990610846295}, {\"doc_id\": \"django/core/handlers/base.py::BaseHandler.get_response_async\", \"score\": 141.98051641522216}, {\"doc_id\": \"django/utils/deprecation.py::MiddlewareMixin.__acall__\", \"score\": 122.89549162961377}, {\"doc_id\": \"django/core/handlers/base.py::BaseHandler._get_response_async\", \"score\": 120.5054994557253}, {\"doc_id\": \"django/core/handlers/asgi.py::ASGIHandler.read_body\", \"score\": 114.2550409641342}, {\"doc_id\": \"tests/asgi/tests.py::ASGITest.test_file_response\", \"score\": 111.86631364726559}, {\"doc_id\": \"django/core/handlers/asgi.py::ASGIHandler.send_response\", \"score\": 110.49472955398947}, {\"doc_id\": \"tests/asgi/tests.py::ASGITest.test_get_asgi_application\", \"score\": 109.66741059388367}]"
+}

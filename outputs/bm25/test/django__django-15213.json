@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-15213",
+  "query": "ExpressionWrapper for ~Q(pk__in=[]) crashes.\nDescription\n\t \n\t\t(last modified by Stefan Brand)\n\t \nProblem Description\nI'm reducing some Q objects (similar to what is described in ticket:32554. Everything is fine for the case where the result is ExpressionWrapper(Q(pk__in=[])). However, when I reduce to ExpressionWrapper(~Q(pk__in=[])) the query breaks.\nSymptoms\nWorking for ExpressionWrapper(Q(pk__in=[]))\nprint(queryset.annotate(foo=ExpressionWrapper(Q(pk__in=[]), output_field=BooleanField())).values(\"foo\").query)\nSELECT 0 AS \"foo\" FROM \"table\"\nNot working for ExpressionWrapper(~Q(pk__in=[]))\nprint(queryset.annotate(foo=ExpressionWrapper(~Q(pk__in=[]), output_field=BooleanField())).values(\"foo\").query)\nSELECT AS \"foo\" FROM \"table\"\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/__init__.py"
+    ],
+    "locations": [
+      "django/db/models/fields/__init__.py::BooleanField",
+      "django/db/models/fields/__init__.py::BooleanField.formfield",
+      "django/db/models/fields/__init__.py::CharField"
+    ]
+  },
+  "predictions": [
+    "tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_empty_expression_annotation",
+    "tests/expressions/tests.py::BasicExpressionsTests.test_filtering_on_annotate_that_uses_q",
+    "tests/queries/tests.py::Ticket12807Tests.test_ticket_12807",
+    "tests/expressions/tests.py::BasicExpressionsTests.test_filtering_on_q_that_is_boolean",
+    "tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_grouping_by_q_expression_annotation",
+    "tests/lookup/tests.py::LookupQueryingTests.test_filter_wrapped_lookup_lhs",
+    "tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_q_expression_annotation_with_aggregation",
+    "tests/or_lookups/tests.py::OrLookupsTests.test_empty_in",
+    "tests/queries/tests.py::Queries1Tests.test_ticket7235",
+    "tests/expressions/tests.py::ExpressionsNumericTests.test_filter_decimal_expression"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "03cadb912c78b769d6bf4a943a2a35fc1d952960",
+    "total_functions_indexed": 25410,
+    "retrieval_time_seconds": 1.0595967769622803
+  },
+  "raw_output": "[{\"doc_id\": \"tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_empty_expression_annotation\", \"score\": 216.67578788032512}, {\"doc_id\": \"tests/expressions/tests.py::BasicExpressionsTests.test_filtering_on_annotate_that_uses_q\", \"score\": 142.69733430047543}, {\"doc_id\": \"tests/queries/tests.py::Ticket12807Tests.test_ticket_12807\", \"score\": 140.91750566916338}, {\"doc_id\": \"tests/expressions/tests.py::BasicExpressionsTests.test_filtering_on_q_that_is_boolean\", \"score\": 139.65357014635524}, {\"doc_id\": \"tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_grouping_by_q_expression_annotation\", \"score\": 137.20697830871663}, {\"doc_id\": \"tests/lookup/tests.py::LookupQueryingTests.test_filter_wrapped_lookup_lhs\", \"score\": 129.9716820436289}, {\"doc_id\": \"tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_q_expression_annotation_with_aggregation\", \"score\": 127.44600450414038}, {\"doc_id\": \"tests/or_lookups/tests.py::OrLookupsTests.test_empty_in\", \"score\": 125.43920648536405}, {\"doc_id\": \"tests/queries/tests.py::Queries1Tests.test_ticket7235\", \"score\": 124.82409413089728}, {\"doc_id\": \"tests/expressions/tests.py::ExpressionsNumericTests.test_filter_decimal_expression\", \"score\": 124.33743043991531}]"
+}

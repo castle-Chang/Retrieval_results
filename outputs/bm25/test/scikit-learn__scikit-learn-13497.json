@@ -1,0 +1,31 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-13497",
+  "query": "Comparing string to array in _estimate_mi\nIn ``_estimate_mi`` there is ``discrete_features == 'auto'`` but discrete features can be an array of indices or a boolean mask.\r\nThis will error in future versions of numpy.\r\nAlso this means we never test this function with discrete features != 'auto', it seems?\n",
+  "ground_truth": {
+    "files": [
+      "sklearn/feature_selection/mutual_info_.py"
+    ],
+    "locations": [
+      "sklearn/feature_selection/mutual_info_.py::_estimate_mi"
+    ]
+  },
+  "predictions": [
+    "sklearn/feature_selection/mutual_info_.py::mutual_info_classif",
+    "sklearn/feature_selection/mutual_info_.py::mutual_info_regression",
+    "sklearn/feature_selection/mutual_info_.py::_estimate_mi",
+    "sklearn/feature_selection/base.py::SelectorMixin.get_support",
+    "sklearn/utils/__init__.py::axis0_safe_slice",
+    "sklearn/datasets/svmlight_format.py::load_svmlight_files",
+    "sklearn/datasets/svmlight_format.py::load_svmlight_file",
+    "sklearn/model_selection/_search.py::fit_grid_point",
+    "sklearn/preprocessing/_encoders.py::OneHotEncoder._handle_deprecations",
+    "sklearn/model_selection/_validation.py::validation_curve"
+  ],
+  "metadata": {
+    "repo": "scikit-learn/scikit-learn",
+    "commit": "26f690961a52946dd2f53bf0fdd4264b2ae5be90",
+    "total_functions_indexed": 6941,
+    "retrieval_time_seconds": 0.1791694164276123
+  },
+  "raw_output": "[{\"doc_id\": \"sklearn/feature_selection/mutual_info_.py::mutual_info_classif\", \"score\": 75.59774311446056}, {\"doc_id\": \"sklearn/feature_selection/mutual_info_.py::mutual_info_regression\", \"score\": 74.66883606954153}, {\"doc_id\": \"sklearn/feature_selection/mutual_info_.py::_estimate_mi\", \"score\": 73.79710198352389}, {\"doc_id\": \"sklearn/feature_selection/base.py::SelectorMixin.get_support\", \"score\": 64.1032567198725}, {\"doc_id\": \"sklearn/utils/__init__.py::axis0_safe_slice\", \"score\": 62.35255656655185}, {\"doc_id\": \"sklearn/datasets/svmlight_format.py::load_svmlight_files\", \"score\": 59.98112307567147}, {\"doc_id\": \"sklearn/datasets/svmlight_format.py::load_svmlight_file\", \"score\": 57.82802372824138}, {\"doc_id\": \"sklearn/model_selection/_search.py::fit_grid_point\", \"score\": 54.555903987478004}, {\"doc_id\": \"sklearn/preprocessing/_encoders.py::OneHotEncoder._handle_deprecations\", \"score\": 51.7298367753553}, {\"doc_id\": \"sklearn/model_selection/_validation.py::validation_curve\", \"score\": 49.43421795040441}]"
+}

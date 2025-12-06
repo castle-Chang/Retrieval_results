@@ -1,0 +1,31 @@
+{
+  "instance_id": "pytest-dev__pytest-7432",
+  "query": "skipping: --runxfail breaks pytest.mark.skip location reporting\npytest versions: 5.4.x, current master\r\n\r\nWhen `@pytest.mark.skip`/`skipif` marks are used to skip a test, for example\r\n\r\n```py\r\nimport pytest\r\n@pytest.mark.skip\r\ndef test_skip_location() -> None:\r\n    assert 0\r\n```\r\n\r\nthe expected skip location reported should point to the item itself, and this is indeed what happens when running with `pytest -rs`:\r\n\r\n```\r\nSKIPPED [1] test_it.py:3: unconditional skip\r\n```\r\n\r\nHowever, adding `pytest -rs --runxfail` breaks this:\r\n\r\n```\r\nSKIPPED [1] src/_pytest/skipping.py:238: unconditional skip\r\n```\r\n\r\nThe `--runxfail` is only about xfail and should not affect this at all.\r\n\r\n---\r\n\r\nHint: the bug is in `src/_pytest/skipping.py`, the `pytest_runtest_makereport` hook.\n",
+  "ground_truth": {
+    "files": [
+      "src/_pytest/skipping.py"
+    ],
+    "locations": [
+      "src/_pytest/skipping.py::pytest_runtest_makereport"
+    ]
+  },
+  "predictions": [
+    "src/_pytest/skipping.py::pytest_configure",
+    "src/_pytest/outcomes.py::skip",
+    "src/_pytest/skipping.py::evaluate_skip_marks",
+    "testing/test_skipping.py::TestSkip.test_skip_no_reason",
+    "testing/test_skipping.py::TestSkip.test_strict_and_skip",
+    "testing/test_terminal.py::TestTerminalFunctional.test_summary_s_alias",
+    "src/_pytest/doctest.py::_check_all_skipped",
+    "testing/test_skipping.py::test_relpath_rootdir",
+    "src/_pytest/skipping.py::pytest_runtest_setup",
+    "src/_pytest/skipping.py::pytest_runtest_makereport"
+  ],
+  "metadata": {
+    "repo": "pytest-dev/pytest",
+    "commit": "e6e300e729dd33956e5448d8be9a0b1540b4e53a",
+    "total_functions_indexed": 3926,
+    "retrieval_time_seconds": 0.17479825019836426
+  },
+  "raw_output": "[{\"doc_id\": \"src/_pytest/skipping.py::pytest_configure\", \"score\": 121.94040951867815}, {\"doc_id\": \"src/_pytest/outcomes.py::skip\", \"score\": 121.16365249318596}, {\"doc_id\": \"src/_pytest/skipping.py::evaluate_skip_marks\", \"score\": 119.4371217126285}, {\"doc_id\": \"testing/test_skipping.py::TestSkip.test_skip_no_reason\", \"score\": 106.41334071940523}, {\"doc_id\": \"testing/test_skipping.py::TestSkip.test_strict_and_skip\", \"score\": 106.41334071940523}, {\"doc_id\": \"testing/test_terminal.py::TestTerminalFunctional.test_summary_s_alias\", \"score\": 104.95142569511363}, {\"doc_id\": \"src/_pytest/doctest.py::_check_all_skipped\", \"score\": 98.99092189053911}, {\"doc_id\": \"testing/test_skipping.py::test_relpath_rootdir\", \"score\": 98.19563098895094}, {\"doc_id\": \"src/_pytest/skipping.py::pytest_runtest_setup\", \"score\": 94.88116820658477}, {\"doc_id\": \"src/_pytest/skipping.py::pytest_runtest_makereport\", \"score\": 94.63369669108683}]"
+}

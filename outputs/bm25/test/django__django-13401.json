@@ -1,0 +1,35 @@
+{
+  "instance_id": "django__django-13401",
+  "query": "Abstract model field should not be equal across models\nDescription\n\t\nConsider the following models:\nclass A(models.Model):\n\tclass Meta:\n\t\tabstract = True\n\tmyfield = IntegerField()\nclass B(A):\n\tpass\nclass C(A):\n\tpass\nIf I pull the fields of B and C into a shared set, one will be de-duplicated away, because they compare as equal. I found this surprising, though in practice using a list was sufficient for my need. The root of the issue is that they compare equal, as fields only consider self.creation_counter when comparing for equality.\nlen({B._meta.get_field('myfield'), C._meta.get_field('myfield')}) == 1\nB._meta.get_field('myfield') == C._meta.get_field('myfield')\nWe should adjust __eq__ so that if the field.model is different, they will compare unequal. Similarly, it is probably wise to adjust __hash__ and __lt__ to match.\nWhen adjusting __lt__, it may be wise to order first by self.creation_counter so that cases not affected by this equality collision won't be re-ordered. In my experimental branch, there was one test that broke if I ordered them by model first.\nI brought this up on IRC django-dev to check my intuitions, and those conversing with me there seemed to agree that the current behavior is not intuitive.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/__init__.py"
+    ],
+    "locations": [
+      "django/db/models/fields/__init__.py::Field",
+      "django/db/models/fields/__init__.py::Field.__eq__",
+      "django/db/models/fields/__init__.py::Field.__lt__",
+      "django/db/models/fields/__init__.py::Field.__hash__",
+      "django/db/models/fields/__init__.py::Field.__deepcopy__"
+    ]
+  },
+  "predictions": [
+    "tests/check_framework/test_model_field_deprecation.py::TestDeprecatedField.test_user_specified_details",
+    "django/db/models/sql/query.py::Query.deferred_to_data",
+    "django/db/models/options.py::Options._populate_directed_relation_graph",
+    "django/forms/models.py::BaseModelForm._get_validation_exclusions",
+    "tests/model_inheritance/tests.py::ModelInheritanceTests.test_abstract_parent_link",
+    "tests/check_framework/test_model_field_deprecation.py::TestRemovedField.test_user_specified_details",
+    "tests/check_framework/test_model_field_deprecation.py::TestRemovedField.test_default_details",
+    "tests/check_framework/test_model_field_deprecation.py::TestDeprecatedField.test_default_details",
+    "django/db/models/query.py::QuerySet._next_is_sticky",
+    "tests/schema/tests.py::SchemaTests.test_alter_int_pk_to_int_unique"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "453967477e3ddae704cd739eac2449c0e13d464c",
+    "total_functions_indexed": 23855,
+    "retrieval_time_seconds": 1.7652666568756104
+  },
+  "raw_output": "[{\"doc_id\": \"tests/check_framework/test_model_field_deprecation.py::TestDeprecatedField.test_user_specified_details\", \"score\": 186.3542718513936}, {\"doc_id\": \"django/db/models/sql/query.py::Query.deferred_to_data\", \"score\": 172.75115949285214}, {\"doc_id\": \"django/db/models/options.py::Options._populate_directed_relation_graph\", \"score\": 172.4955185141574}, {\"doc_id\": \"django/forms/models.py::BaseModelForm._get_validation_exclusions\", \"score\": 168.46379538195706}, {\"doc_id\": \"tests/model_inheritance/tests.py::ModelInheritanceTests.test_abstract_parent_link\", \"score\": 168.06594343332577}, {\"doc_id\": \"tests/check_framework/test_model_field_deprecation.py::TestRemovedField.test_user_specified_details\", \"score\": 166.4450365931952}, {\"doc_id\": \"tests/check_framework/test_model_field_deprecation.py::TestRemovedField.test_default_details\", \"score\": 164.85476916144896}, {\"doc_id\": \"tests/check_framework/test_model_field_deprecation.py::TestDeprecatedField.test_default_details\", \"score\": 164.22246108121854}, {\"doc_id\": \"django/db/models/query.py::QuerySet._next_is_sticky\", \"score\": 163.90670829345066}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_alter_int_pk_to_int_unique\", \"score\": 162.87638732317103}]"
+}

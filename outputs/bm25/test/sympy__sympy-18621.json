@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-18621",
+  "query": "BlockDiagMatrix with one element cannot be converted to regular Matrix\nCreating a BlockDiagMatrix with one Matrix element will raise if trying to convert it back to a regular Matrix:\r\n\r\n```python\r\nM = sympy.Matrix([[1, 2], [3, 4]])\r\nD = sympy.BlockDiagMatrix(M)\r\nB = sympy.Matrix(D)\r\n```\r\n\r\n```\r\nTraceback (most recent call last):\r\n\r\n  File \"<ipython-input-37-5b65c1f8f23e>\", line 3, in <module>\r\n    B = sympy.Matrix(D)\r\n\r\n  File \"/home/rikard/.local/lib/python3.7/site-packages/sympy/matrices/dense.py\", line 430, in __new__\r\n    return cls._new(*args, **kwargs)\r\n\r\n  File \"/home/rikard/.local/lib/python3.7/site-packages/sympy/matrices/dense.py\", line 442, in _new\r\n    rows, cols, flat_list = cls._handle_creation_inputs(*args, **kwargs)\r\n\r\n  File \"/home/rikard/.local/lib/python3.7/site-packages/sympy/matrices/matrices.py\", line 2528, in _handle_creation_inputs\r\n    return args[0].rows, args[0].cols, args[0].as_explicit()._mat\r\n\r\n  File \"/home/rikard/.local/lib/python3.7/site-packages/sympy/matrices/expressions/matexpr.py\", line 340, in as_explicit\r\n    for i in range(self.rows)])\r\n\r\n  File \"/home/rikard/.local/lib/python3.7/site-packages/sympy/matrices/expressions/matexpr.py\", line 340, in <listcomp>\r\n    for i in range(self.rows)])\r\n\r\n  File \"/home/rikard/.local/lib/python3.7/site-packages/sympy/matrices/expressions/matexpr.py\", line 339, in <listcomp>\r\n    for j in range(self.cols)]\r\n\r\n  File \"/home/rikard/.local/lib/python3.7/site-packages/sympy/matrices/expressions/matexpr.py\", line 289, in __getitem__\r\n    return self._entry(i, j)\r\n\r\n  File \"/home/rikard/.local/lib/python3.7/site-packages/sympy/matrices/expressions/blockmatrix.py\", line 248, in _entry\r\n    return self.blocks[row_block, col_block][i, j]\r\n\r\nTypeError: 'One' object is not subscriptable\r\n```\r\n\r\nInstead having two elements will work as expected:\r\n\r\n```python\r\nM = sympy.Matrix([[1, 2], [3, 4]])\r\nD = sympy.BlockDiagMatrix(M, M)\r\nB = sympy.Matrix(D)\r\n```\r\n\r\n```\r\nMatrix([\r\n[1, 2, 0, 0],\r\n[3, 4, 0, 0],\r\n[0, 0, 1, 2],\r\n[0, 0, 3, 4]])\r\n```\r\nThis issue exists for sympy 1.5.1 but not for sympy 1.4\n",
+  "ground_truth": {
+    "files": [
+      "sympy/matrices/expressions/blockmatrix.py"
+    ],
+    "locations": [
+      "sympy/matrices/expressions/blockmatrix.py::BlockDiagMatrix",
+      "sympy/matrices/expressions/blockmatrix.py::BlockDiagMatrix.blocks",
+      "sympy/matrices/expressions/blockmatrix.py::BlockDiagMatrix.shape"
+    ]
+  },
+  "predictions": [
+    "sympy/matrices/matrices.py::MatrixBase._handle_creation_inputs",
+    "sympy/matrices/matrices.py::MatrixBase.irregular",
+    "sympy/matrices/common.py::MatrixSpecial.diag",
+    "sympy/matrices/matrices.py::MatrixBase.D",
+    "sympy/matrices/matrices.py::MatrixBase.print_nonzero",
+    "sympy/matrices/expressions/matexpr.py::MatrixExpr.as_explicit",
+    "sympy/matrices/common.py::MatrixShaping.tolist",
+    "sympy/matrices/determinant.py::_minor_submatrix",
+    "sympy/matrices/expressions/kronecker.py::matrix_kronecker_product",
+    "sympy/matrices/expressions/blockmatrix.py::BlockMatrix.__new__"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "b17ef6effe278d5b861d65896cc53442a6370d8f",
+    "total_functions_indexed": 34062,
+    "retrieval_time_seconds": 3.5494372844696045
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/matrices/matrices.py::MatrixBase._handle_creation_inputs\", \"score\": 401.41591482102854}, {\"doc_id\": \"sympy/matrices/matrices.py::MatrixBase.irregular\", \"score\": 394.0338807965415}, {\"doc_id\": \"sympy/matrices/common.py::MatrixSpecial.diag\", \"score\": 384.61750248413864}, {\"doc_id\": \"sympy/matrices/matrices.py::MatrixBase.D\", \"score\": 384.50811288661356}, {\"doc_id\": \"sympy/matrices/matrices.py::MatrixBase.print_nonzero\", \"score\": 383.53043437332246}, {\"doc_id\": \"sympy/matrices/expressions/matexpr.py::MatrixExpr.as_explicit\", \"score\": 380.0393916211857}, {\"doc_id\": \"sympy/matrices/common.py::MatrixShaping.tolist\", \"score\": 371.17278601997884}, {\"doc_id\": \"sympy/matrices/determinant.py::_minor_submatrix\", \"score\": 361.63006350177136}, {\"doc_id\": \"sympy/matrices/expressions/kronecker.py::matrix_kronecker_product\", \"score\": 356.694687500398}, {\"doc_id\": \"sympy/matrices/expressions/blockmatrix.py::BlockMatrix.__new__\", \"score\": 342.07579238645593}]"
+}

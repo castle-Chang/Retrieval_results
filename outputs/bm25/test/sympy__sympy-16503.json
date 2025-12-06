@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-16503",
+  "query": "Bad centering for Sum pretty print\n```\r\n>>> pprint(Sum(x, (x, 1, oo)) + 3)\r\n  ∞\r\n ___\r\n ╲\r\n  ╲   x\r\n  ╱     + 3\r\n ╱\r\n ‾‾‾\r\nx = 1\r\n```\r\n\r\nThe `x` and the `+ 3` should be aligned. I'm not sure if the `x` should be lower of if the `+ 3` should be higher. \n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/pretty/pretty.py"
+    ],
+    "locations": [
+      "sympy/printing/pretty/pretty.py::PrettyPrinter",
+      "sympy/printing/pretty/pretty.py::PrettyPrinter._print_Sum"
+    ]
+  },
+  "predictions": [
+    "sympy/utilities/runtests.py::split_list",
+    "sympy/core/basic.py::Basic._subs",
+    "sympy/concrete/summations.py::summation",
+    "sympy/core/expr.py::Expr.as_content_primitive",
+    "sympy/core/expr.py::Expr.as_coeff_mul",
+    "sympy/solvers/diophantine.py::classify_diop",
+    "sympy/core/compatibility.py::ordered",
+    "sympy/solvers/solveset.py::_transolve",
+    "sympy/core/expr.py::Expr.as_coeff_add",
+    "sympy/discrete/convolutions.py::convolution"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "a7e6f093c98a3c4783848a19fce646e32b6e0161",
+    "total_functions_indexed": 24850,
+    "retrieval_time_seconds": 0.4998495578765869
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/utilities/runtests.py::split_list\", \"score\": 86.84293324418475}, {\"doc_id\": \"sympy/core/basic.py::Basic._subs\", \"score\": 82.6086572886716}, {\"doc_id\": \"sympy/concrete/summations.py::summation\", \"score\": 78.30716878752374}, {\"doc_id\": \"sympy/core/expr.py::Expr.as_content_primitive\", \"score\": 77.99291767242435}, {\"doc_id\": \"sympy/core/expr.py::Expr.as_coeff_mul\", \"score\": 77.62548634533134}, {\"doc_id\": \"sympy/solvers/diophantine.py::classify_diop\", \"score\": 77.32046919056985}, {\"doc_id\": \"sympy/core/compatibility.py::ordered\", \"score\": 76.7612561971735}, {\"doc_id\": \"sympy/solvers/solveset.py::_transolve\", \"score\": 76.7008784846642}, {\"doc_id\": \"sympy/core/expr.py::Expr.as_coeff_add\", \"score\": 74.60746826428769}, {\"doc_id\": \"sympy/discrete/convolutions.py::convolution\", \"score\": 74.52161201667207}]"
+}

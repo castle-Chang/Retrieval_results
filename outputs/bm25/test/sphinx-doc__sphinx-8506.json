@@ -1,0 +1,32 @@
+{
+  "instance_id": "sphinx-doc__sphinx-8506",
+  "query": "Sphinx 3.2 complains about option:: syntax that earlier versions accepted\nSphinx 3.2 complains about use of the option:: directive that earlier versions accepted without complaint.\r\n\r\nThe QEMU documentation includes this:\r\n```\r\n.. option:: [enable=]PATTERN\r\n\r\n   Immediately enable events matching *PATTERN*\r\n```\r\n\r\nas part of the documentation of the command line options of one of its programs. Earlier versions of Sphinx were fine with this, but Sphinx 3.2 complains:\r\n\r\n```\r\nWarning, treated as error:\r\n../../docs/qemu-option-trace.rst.inc:4:Malformed option description '[enable=]PATTERN', should look like \"opt\", \"-opt args\", \"--opt args\", \"/opt args\" or \"+opt args\"\r\n```\r\n\r\nSphinx ideally shouldn't change in ways that break the building of documentation that worked in older versions, because this makes it unworkably difficult to have documentation that builds with whatever the Linux distro's sphinx-build is.\r\n\r\nThe error message suggests that Sphinx has a very restrictive idea of what option syntax is; it would be better if it just accepted any string, because not all programs and OSes have option syntax that matches the limited list the error message indicates.\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/domains/std.py"
+    ],
+    "locations": [
+      "sphinx/domains/std.py::Cmdoption",
+      "sphinx/domains/std.py::Cmdoption.handle_signature"
+    ]
+  },
+  "predictions": [
+    "sphinx/domains/std.py::Cmdoption.handle_signature",
+    "doc/usage/extensions/example_numpy.py::module_level_function",
+    "doc/usage/extensions/example_google.py::module_level_function",
+    "sphinx/builders/__init__.py::Builder.get_builder_config",
+    "sphinx/application.py::Sphinx.add_object_type",
+    "sphinx/ext/napoleon/__init__.py::_process_docstring",
+    "sphinx/application.py::Sphinx.add_config_value",
+    "sphinx/ext/imgmath.py::compile_math",
+    "sphinx/domains/__init__.py::Domain.resolve_any_xref",
+    "sphinx/ext/autodoc/__init__.py::Documenter.format_name"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "e4bd3bd3ddd42c6642ff779a4f7381f219655c2c",
+    "total_functions_indexed": 5578,
+    "retrieval_time_seconds": 0.3147432804107666
+  },
+  "raw_output": "[{\"doc_id\": \"sphinx/domains/std.py::Cmdoption.handle_signature\", \"score\": 141.7390120625481}, {\"doc_id\": \"doc/usage/extensions/example_numpy.py::module_level_function\", \"score\": 140.30092327372245}, {\"doc_id\": \"doc/usage/extensions/example_google.py::module_level_function\", \"score\": 140.03265257757445}, {\"doc_id\": \"sphinx/builders/__init__.py::Builder.get_builder_config\", \"score\": 136.71744501754108}, {\"doc_id\": \"sphinx/application.py::Sphinx.add_object_type\", \"score\": 136.63934493028412}, {\"doc_id\": \"sphinx/ext/napoleon/__init__.py::_process_docstring\", \"score\": 130.11582668134767}, {\"doc_id\": \"sphinx/application.py::Sphinx.add_config_value\", \"score\": 124.40343077258193}, {\"doc_id\": \"sphinx/ext/imgmath.py::compile_math\", \"score\": 123.57030788220507}, {\"doc_id\": \"sphinx/domains/__init__.py::Domain.resolve_any_xref\", \"score\": 122.70991661777099}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::Documenter.format_name\", \"score\": 122.43996585082138}]"
+}

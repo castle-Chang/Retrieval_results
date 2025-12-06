@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-15902",
+  "query": "\"default.html\" deprecation warning raised for ManagementForm's\nDescription\n\t\nI have a project where I never render forms with the {{ form }} expression. However, I'm still getting the new template deprecation warning because of the formset management form production, during which the template used is insignificant (only hidden inputs are produced).\nIs it worth special-casing this and avoid producing the warning for the management forms?\n",
+  "ground_truth": {
+    "files": [
+      "django/forms/formsets.py"
+    ],
+    "locations": [
+      "django/forms/formsets.py::ManagementForm"
+    ]
+  },
+  "predictions": [
+    "django/forms/formsets.py::BaseFormSet._construct_form",
+    "django/forms/formsets.py::BaseFormSet.deleted_forms",
+    "django/forms/formsets.py::BaseFormSet.ordered_forms",
+    "django/template/defaulttags.py::CsrfTokenNode.render",
+    "django/utils/autoreload.py::WatchmanReloader._watch_root",
+    "tests/deprecation/test_use_l10n.py::DeprecationTests.test_override_settings_warning",
+    "tests/gis_tests/geos_tests/test_geos.py::GEOSTest.test_mutable_geometries",
+    "docs/_ext/djangodocs.py::html_page_context_hook",
+    "django/template/base.py::TextNode.render_annotated",
+    "tests/forms_tests/tests/test_formsets.py::FormsFormsetTestCase.test_clean_hook"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "44c24bf02835323d5418512ebe8e76166739ebf8",
+    "total_functions_indexed": 26079,
+    "retrieval_time_seconds": 0.6379783153533936
+  },
+  "raw_output": "[{\"doc_id\": \"django/forms/formsets.py::BaseFormSet._construct_form\", \"score\": 69.57668912864004}, {\"doc_id\": \"django/forms/formsets.py::BaseFormSet.deleted_forms\", \"score\": 65.70988600538979}, {\"doc_id\": \"django/forms/formsets.py::BaseFormSet.ordered_forms\", \"score\": 62.493611003744945}, {\"doc_id\": \"django/template/defaulttags.py::CsrfTokenNode.render\", \"score\": 61.02586689228004}, {\"doc_id\": \"django/utils/autoreload.py::WatchmanReloader._watch_root\", \"score\": 60.68469705813533}, {\"doc_id\": \"tests/deprecation/test_use_l10n.py::DeprecationTests.test_override_settings_warning\", \"score\": 60.52622886211182}, {\"doc_id\": \"tests/gis_tests/geos_tests/test_geos.py::GEOSTest.test_mutable_geometries\", \"score\": 59.08756082279872}, {\"doc_id\": \"docs/_ext/djangodocs.py::html_page_context_hook\", \"score\": 58.914398617907416}, {\"doc_id\": \"django/template/base.py::TextNode.render_annotated\", \"score\": 57.771533873089105}, {\"doc_id\": \"tests/forms_tests/tests/test_formsets.py::FormsFormsetTestCase.test_clean_hook\", \"score\": 56.77556158753711}]"
+}

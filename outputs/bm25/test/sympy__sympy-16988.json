@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-16988",
+  "query": "Intersection should remove duplicates\n```python\r\n>>> Intersection({1},{1},{x})\r\nEmptySet()\r\n>>> Intersection({1},{x})\r\n{1}\r\n```\r\nThe answer should be `Piecewise(({1}, Eq(x, 1)), (S.EmptySet, True))` or remain unevaluated.\r\n\r\nThe routine should give the same answer if duplicates are present; my initial guess is that duplicates should just be removed at the outset of instantiation. Ordering them will produce canonical processing.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/sets/sets.py"
+    ],
+    "locations": [
+      "sympy/sets/sets.py::Intersection",
+      "sympy/sets/sets.py::Intersection.__new__"
+    ]
+  },
+  "predictions": [
+    "sympy/solvers/solveset.py::substitution",
+    "sympy/core/basic.py::Basic._subs",
+    "sympy/geometry/util.py::intersection",
+    "sympy/functions/elementary/piecewise.py::Piecewise.eval",
+    "sympy/core/expr.py::Expr.as_content_primitive",
+    "sympy/solvers/solveset.py::_invert",
+    "sympy/sets/tests/test_sets.py::test_finite_set_intersection",
+    "sympy/printing/rust.py::rust_code",
+    "sympy/functions/elementary/tests/test_piecewise.py::test__intervals",
+    "sympy/sets/sets.py::Intersection._handle_finite_sets"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "e727339af6dc22321b00f52d971cda39e4ce89fb",
+    "total_functions_indexed": 25216,
+    "retrieval_time_seconds": 0.756019115447998
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/solvers/solveset.py::substitution\", \"score\": 98.11247820838983}, {\"doc_id\": \"sympy/core/basic.py::Basic._subs\", \"score\": 92.47124944474294}, {\"doc_id\": \"sympy/geometry/util.py::intersection\", \"score\": 89.15101161146436}, {\"doc_id\": \"sympy/functions/elementary/piecewise.py::Piecewise.eval\", \"score\": 86.61274428825371}, {\"doc_id\": \"sympy/core/expr.py::Expr.as_content_primitive\", \"score\": 86.29335918099913}, {\"doc_id\": \"sympy/solvers/solveset.py::_invert\", \"score\": 84.84865320890013}, {\"doc_id\": \"sympy/sets/tests/test_sets.py::test_finite_set_intersection\", \"score\": 82.43927200220408}, {\"doc_id\": \"sympy/printing/rust.py::rust_code\", \"score\": 81.79983326679931}, {\"doc_id\": \"sympy/functions/elementary/tests/test_piecewise.py::test__intervals\", \"score\": 81.67433518735874}, {\"doc_id\": \"sympy/sets/sets.py::Intersection._handle_finite_sets\", \"score\": 81.12936755207474}]"
+}

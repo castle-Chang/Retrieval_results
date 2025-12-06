@@ -1,0 +1,31 @@
+{
+  "instance_id": "pytest-dev__pytest-9359",
+  "query": "Error message prints extra code line when using assert in python3.9\n<!--\r\nThanks for submitting an issue!\r\n\r\nQuick check-list while reporting bugs:\r\n-->\r\n\r\n- [x] a detailed description of the bug or problem you are having\r\n- [x] output of `pip list` from the virtual environment you are using\r\n- [x] pytest and operating system versions\r\n- [ ] minimal example if possible\r\n### Description\r\nI have a test like this:\r\n```\r\nfrom pytest import fixture\r\n\r\n\r\ndef t(foo):\r\n    return foo\r\n\r\n\r\n@fixture\r\ndef foo():\r\n    return 1\r\n\r\n\r\ndef test_right_statement(foo):\r\n    assert foo == (3 + 2) * (6 + 9)\r\n\r\n    @t\r\n    def inner():\r\n        return 2\r\n\r\n    assert 2 == inner\r\n\r\n\r\n@t\r\ndef outer():\r\n    return 2\r\n```\r\nThe test \"test_right_statement\" fails at the first assertion,but print extra code (the \"t\" decorator) in error details, like this:\r\n\r\n```\r\n ============================= test session starts =============================\r\nplatform win32 -- Python 3.9.6, pytest-6.2.5, py-1.10.0, pluggy-0.13.1 -- \r\ncachedir: .pytest_cache\r\nrootdir: \r\nplugins: allure-pytest-2.9.45\r\ncollecting ... collected 1 item\r\n\r\ntest_statement.py::test_right_statement FAILED                           [100%]\r\n\r\n================================== FAILURES ===================================\r\n____________________________ test_right_statement _____________________________\r\n\r\nfoo = 1\r\n\r\n    def test_right_statement(foo):\r\n>       assert foo == (3 + 2) * (6 + 9)\r\n    \r\n        @t\r\nE       assert 1 == 75\r\nE         +1\r\nE         -75\r\n\r\ntest_statement.py:14: AssertionError\r\n=========================== short test summary info ===========================\r\nFAILED test_statement.py::test_right_statement - assert 1 == 75\r\n============================== 1 failed in 0.12s ==============================\r\n```\r\nAnd the same thing **did not** happen when using python3.7.10：\r\n```\r\n============================= test session starts =============================\r\nplatform win32 -- Python 3.7.10, pytest-6.2.5, py-1.11.0, pluggy-1.0.0 -- \r\ncachedir: .pytest_cache\r\nrootdir: \r\ncollecting ... collected 1 item\r\n\r\ntest_statement.py::test_right_statement FAILED                           [100%]\r\n\r\n================================== FAILURES ===================================\r\n____________________________ test_right_statement _____________________________\r\n\r\nfoo = 1\r\n\r\n    def test_right_statement(foo):\r\n>       assert foo == (3 + 2) * (6 + 9)\r\nE       assert 1 == 75\r\nE         +1\r\nE         -75\r\n\r\ntest_statement.py:14: AssertionError\r\n=========================== short test summary info ===========================\r\nFAILED test_statement.py::test_right_statement - assert 1 == 75\r\n============================== 1 failed in 0.03s ==============================\r\n```\r\nIs there some problems when calculate the statement lineno?\r\n\r\n### pip list \r\n```\r\n$ pip list\r\nPackage            Version\r\n------------------ -------\r\natomicwrites       1.4.0\r\nattrs              21.2.0\r\ncolorama           0.4.4\r\nimportlib-metadata 4.8.2\r\niniconfig          1.1.1\r\npackaging          21.3\r\npip                21.3.1\r\npluggy             1.0.0\r\npy                 1.11.0\r\npyparsing          3.0.6\r\npytest             6.2.5\r\nsetuptools         59.4.0\r\ntoml               0.10.2\r\ntyping_extensions  4.0.0\r\nzipp               3.6.0\r\n\r\n```\r\n### pytest and operating system versions\r\npytest 6.2.5\r\nWindows 10 \r\nSeems to happen in python 3.9,not 3.7\r\n\n",
+  "ground_truth": {
+    "files": [
+      "src/_pytest/_code/source.py"
+    ],
+    "locations": [
+      "src/_pytest/_code/source.py::get_statement_startend2"
+    ]
+  },
+  "predictions": [
+    "testing/python/fixtures.py::TestFixtureMarker.test_multiple_parametrization_issue_736",
+    "testing/test_doctest.py::TestDoctestReportingOption._run_doctest_report",
+    "testing/code/test_excinfo.py::TestFormattedExcinfo.test_repr_local_truncated",
+    "testing/test_pytester.py::TestSysPathsSnapshot.test_restore",
+    "testing/python/approx.py::TestApprox.test_error_messages_invalid_args",
+    "testing/python/metafunc.py::TestMetafunc.test_parametrize_ids_iterator_without_mark",
+    "testing/test_doctest.py::TestDoctestReportingOption.test_doctest_report_cdiff",
+    "testing/code/test_source.py::TestSourceParsing.test_getstatementrange_within_constructs",
+    "testing/test_doctest.py::TestDoctestReportingOption.test_doctest_report_none_or_only_first_failure",
+    "testing/test_doctest.py::TestDoctests.test_docstring_partial_context_around_error"
+  ],
+  "metadata": {
+    "repo": "pytest-dev/pytest",
+    "commit": "e2ee3144ed6e241dea8d96215fcdca18b3892551",
+    "total_functions_indexed": 4262,
+    "retrieval_time_seconds": 0.5252671241760254
+  },
+  "raw_output": "[{\"doc_id\": \"testing/python/fixtures.py::TestFixtureMarker.test_multiple_parametrization_issue_736\", \"score\": 358.36264566379765}, {\"doc_id\": \"testing/test_doctest.py::TestDoctestReportingOption._run_doctest_report\", \"score\": 351.23350582110965}, {\"doc_id\": \"testing/code/test_excinfo.py::TestFormattedExcinfo.test_repr_local_truncated\", \"score\": 319.7012121548049}, {\"doc_id\": \"testing/test_pytester.py::TestSysPathsSnapshot.test_restore\", \"score\": 315.2509557016926}, {\"doc_id\": \"testing/python/approx.py::TestApprox.test_error_messages_invalid_args\", \"score\": 312.8912739643539}, {\"doc_id\": \"testing/python/metafunc.py::TestMetafunc.test_parametrize_ids_iterator_without_mark\", \"score\": 310.94350846929524}, {\"doc_id\": \"testing/test_doctest.py::TestDoctestReportingOption.test_doctest_report_cdiff\", \"score\": 310.31913315889796}, {\"doc_id\": \"testing/code/test_source.py::TestSourceParsing.test_getstatementrange_within_constructs\", \"score\": 308.1596443511423}, {\"doc_id\": \"testing/test_doctest.py::TestDoctestReportingOption.test_doctest_report_none_or_only_first_failure\", \"score\": 305.0769236315234}, {\"doc_id\": \"testing/test_doctest.py::TestDoctests.test_docstring_partial_context_around_error\", \"score\": 295.0977484572687}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12470",
+  "query": "Inherited model doesn't correctly order by \"-pk\" when specified on Parent.Meta.ordering\nDescription\n\t\nGiven the following model definition:\nfrom django.db import models\nclass Parent(models.Model):\n\tclass Meta:\n\t\tordering = [\"-pk\"]\nclass Child(Parent):\n\tpass\nQuerying the Child class results in the following:\n>>> print(Child.objects.all().query)\nSELECT \"myapp_parent\".\"id\", \"myapp_child\".\"parent_ptr_id\" FROM \"myapp_child\" INNER JOIN \"myapp_parent\" ON (\"myapp_child\".\"parent_ptr_id\" = \"myapp_parent\".\"id\") ORDER BY \"myapp_parent\".\"id\" ASC\nThe query is ordered ASC but I expect the order to be DESC.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/sql/compiler.py"
+    ],
+    "locations": [
+      "django/db/models/sql/compiler.py::SQLCompiler",
+      "django/db/models/sql/compiler.py::SQLCompiler.find_ordering_name"
+    ]
+  },
+  "predictions": [
+    "tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_missing_related_model_field",
+    "tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_multiple_times_to_model_fields",
+    "tests/invalid_models_tests/test_models.py::ShadowingFieldsTests.test_field_name_clash_with_child_accessor",
+    "tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_non_related_field",
+    "tests/invalid_models_tests/test_models.py::ShadowingFieldsTests.test_multiinheritance_clash",
+    "tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_related_model_pk",
+    "tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_foreignkey_field",
+    "tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_to_fields_exist",
+    "tests/invalid_models_tests/test_models.py::ShadowingFieldsTests.test_inheritance_clash",
+    "tests/invalid_models_tests/test_models.py::ShadowingFieldsTests.test_multigeneration_inheritance"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "142ab6846ac09d6d401e26fc8b6b988a583ac0f5",
+    "total_functions_indexed": 23378,
+    "retrieval_time_seconds": 0.7042021751403809
+  },
+  "raw_output": "[{\"doc_id\": \"tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_missing_related_model_field\", \"score\": 126.87638525120445}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_multiple_times_to_model_fields\", \"score\": 117.6091571378499}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::ShadowingFieldsTests.test_field_name_clash_with_child_accessor\", \"score\": 114.6879059698075}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_non_related_field\", \"score\": 114.2698203067485}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::ShadowingFieldsTests.test_multiinheritance_clash\", \"score\": 113.68931612477616}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_related_model_pk\", \"score\": 113.47863643057339}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_foreignkey_field\", \"score\": 113.47863643057339}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_to_fields_exist\", \"score\": 112.50400987240167}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::ShadowingFieldsTests.test_inheritance_clash\", \"score\": 107.04670814970217}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::ShadowingFieldsTests.test_multigeneration_inheritance\", \"score\": 104.2440873391212}]"
+}

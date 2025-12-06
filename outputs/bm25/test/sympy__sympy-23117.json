@@ -1,0 +1,34 @@
+{
+  "instance_id": "sympy__sympy-23117",
+  "query": "sympy.Array([]) fails, while sympy.Matrix([]) works\nSymPy 1.4 does not allow to construct empty Array (see code below). Is this the intended behavior?\r\n\r\n```\r\n>>> import sympy\r\nKeyboardInterrupt\r\n>>> import sympy\r\n>>> from sympy import Array\r\n>>> sympy.__version__\r\n'1.4'\r\n>>> a = Array([])\r\nTraceback (most recent call last):\r\n  File \"<stdin>\", line 1, in <module>\r\n  File \"/Users/hcui7/miniconda3/envs/a/lib/python3.7/site-packages/sympy/tensor/array/dense_ndim_array.py\", line 130, in __new__\r\n    return cls._new(iterable, shape, **kwargs)\r\n  File \"/Users/hcui7/miniconda3/envs/a/lib/python3.7/site-packages/sympy/tensor/array/dense_ndim_array.py\", line 136, in _new\r\n    shape, flat_list = cls._handle_ndarray_creation_inputs(iterable, shape, **kwargs)\r\n  File \"/Users/hcui7/miniconda3/envs/a/lib/python3.7/site-packages/sympy/tensor/array/ndim_array.py\", line 142, in _handle_ndarray_creation_inputs\r\n    iterable, shape = cls._scan_iterable_shape(iterable)\r\n  File \"/Users/hcui7/miniconda3/envs/a/lib/python3.7/site-packages/sympy/tensor/array/ndim_array.py\", line 127, in _scan_iterable_shape\r\n    return f(iterable)\r\n  File \"/Users/hcui7/miniconda3/envs/a/lib/python3.7/site-packages/sympy/tensor/array/ndim_array.py\", line 120, in f\r\n    elems, shapes = zip(*[f(i) for i in pointer])\r\nValueError: not enough values to unpack (expected 2, got 0)\r\n```\r\n\r\n@czgdp1807 \n",
+  "ground_truth": {
+    "files": [
+      "sympy/tensor/array/ndim_array.py"
+    ],
+    "locations": [
+      "sympy/tensor/array/ndim_array.py::NDimArray",
+      "sympy/tensor/array/ndim_array.py::NDimArray._parse_index",
+      "sympy/tensor/array/ndim_array.py::NDimArray._scan_iterable_shape",
+      "sympy/tensor/array/ndim_array.py::NDimArray._check_index_for_getitem"
+    ]
+  },
+  "predictions": [
+    "sympy/tensor/array/ndim_array.py::NDimArray._handle_ndarray_creation_inputs",
+    "sympy/tensor/array/ndim_array.py::NDimArray._scan_iterable_shape",
+    "sympy/tensor/array/dense_ndim_array.py::MutableDenseNDimArray._new",
+    "sympy/tensor/array/ndim_array.py::NDimArray.__new__",
+    "sympy/tensor/array/dense_ndim_array.py::ImmutableDenseNDimArray._new",
+    "sympy/tensor/array/dense_ndim_array.py::ImmutableDenseNDimArray.__new__",
+    "sympy/tensor/array/dense_ndim_array.py::MutableDenseNDimArray.__new__",
+    "sympy/tensor/array/sparse_ndim_array.py::MutableSparseNDimArray.__new__",
+    "sympy/tensor/array/sparse_ndim_array.py::ImmutableSparseNDimArray.__new__",
+    "sympy/tensor/array/ndim_array.py::NDimArray.__truediv__"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "c5cef2499d6eed024b0db5c792d6ec7c53baa470",
+    "total_functions_indexed": 37704,
+    "retrieval_time_seconds": 2.468858242034912
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/tensor/array/ndim_array.py::NDimArray._handle_ndarray_creation_inputs\", \"score\": 306.9537123052904}, {\"doc_id\": \"sympy/tensor/array/ndim_array.py::NDimArray._scan_iterable_shape\", \"score\": 302.8690119657571}, {\"doc_id\": \"sympy/tensor/array/dense_ndim_array.py::MutableDenseNDimArray._new\", \"score\": 262.13775507866916}, {\"doc_id\": \"sympy/tensor/array/ndim_array.py::NDimArray.__new__\", \"score\": 261.92833210864484}, {\"doc_id\": \"sympy/tensor/array/dense_ndim_array.py::ImmutableDenseNDimArray._new\", \"score\": 259.14514039162424}, {\"doc_id\": \"sympy/tensor/array/dense_ndim_array.py::ImmutableDenseNDimArray.__new__\", \"score\": 251.29012556473597}, {\"doc_id\": \"sympy/tensor/array/dense_ndim_array.py::MutableDenseNDimArray.__new__\", \"score\": 249.97449993495403}, {\"doc_id\": \"sympy/tensor/array/sparse_ndim_array.py::MutableSparseNDimArray.__new__\", \"score\": 246.95926933567037}, {\"doc_id\": \"sympy/tensor/array/sparse_ndim_array.py::ImmutableSparseNDimArray.__new__\", \"score\": 240.77561279681487}, {\"doc_id\": \"sympy/tensor/array/ndim_array.py::NDimArray.__truediv__\", \"score\": 222.86497932045134}]"
+}

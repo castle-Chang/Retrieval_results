@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-14667",
+  "query": "QuerySet.defer() doesn't clear deferred field when chaining with only().\nDescription\n\t\nConsidering a simple Company model with four fields: id, name, trade_number and country. If we evaluate a queryset containing a .defer() following a .only(), the generated sql query selects unexpected fields. For example: \nCompany.objects.only(\"name\").defer(\"name\")\nloads all the fields with the following query:\nSELECT \"company\".\"id\", \"company\".\"name\", \"company\".\"trade_number\", \"company\".\"country\" FROM \"company\"\nand \nCompany.objects.only(\"name\").defer(\"name\").defer(\"country\")\nalso loads all the fields with the same query:\nSELECT \"company\".\"id\", \"company\".\"name\", \"company\".\"trade_number\", \"company\".\"country\" FROM \"company\"\nIn those two cases, i would expect the sql query to be:\nSELECT \"company\".\"id\" FROM \"company\"\nIn the following example, we get the expected behavior:\nCompany.objects.only(\"name\", \"country\").defer(\"name\")\nonly loads \"id\" and \"country\" fields with the following query:\nSELECT \"company\".\"id\", \"company\".\"country\" FROM \"company\"\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/sql/query.py"
+    ],
+    "locations": [
+      "django/db/models/sql/query.py::Query",
+      "django/db/models/sql/query.py::Query.add_deferred_loading",
+      "django/db/models/sql/query.py::Query.add_immediate_loading"
+    ]
+  },
+  "predictions": [
+    "tests/expressions/tests.py::BasicExpressionsTests.test_filter_with_join",
+    "tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_custom_functions",
+    "tests/expressions/tests.py::BasicExpressionsTests.test_object_update_unsaved_objects",
+    "tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_custom_functions_can_ref_other_functions",
+    "tests/admin_docs/test_views.py::TestModelDetailView.test_method_data_types",
+    "tests/expressions/tests.py::ExpressionsTests.test_F_reuse",
+    "tests/expressions/tests.py::IterableLookupInnerExpressionsTests.setUpTestData",
+    "tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_chaining_transforms",
+    "tests/admin_docs/models.py::Person.rename_company",
+    "tests/expressions/tests.py::BasicExpressionsTests.test_subquery_eq"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "6a970a8b4600eb91be25f38caed0a52269d6303d",
+    "total_functions_indexed": 24858,
+    "retrieval_time_seconds": 1.265000820159912
+  },
+  "raw_output": "[{\"doc_id\": \"tests/expressions/tests.py::BasicExpressionsTests.test_filter_with_join\", \"score\": 257.35545667083807}, {\"doc_id\": \"tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_custom_functions\", \"score\": 254.58337044222384}, {\"doc_id\": \"tests/expressions/tests.py::BasicExpressionsTests.test_object_update_unsaved_objects\", \"score\": 254.0058919563969}, {\"doc_id\": \"tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_custom_functions_can_ref_other_functions\", \"score\": 242.79093983226804}, {\"doc_id\": \"tests/admin_docs/test_views.py::TestModelDetailView.test_method_data_types\", \"score\": 241.3058592593684}, {\"doc_id\": \"tests/expressions/tests.py::ExpressionsTests.test_F_reuse\", \"score\": 236.57374720829682}, {\"doc_id\": \"tests/expressions/tests.py::IterableLookupInnerExpressionsTests.setUpTestData\", \"score\": 235.26814031022906}, {\"doc_id\": \"tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_chaining_transforms\", \"score\": 232.7211970736118}, {\"doc_id\": \"tests/admin_docs/models.py::Person.rename_company\", \"score\": 224.4042701563273}, {\"doc_id\": \"tests/expressions/tests.py::BasicExpressionsTests.test_subquery_eq\", \"score\": 224.35875039469255}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-13496",
+  "query": "Expose warm_start in Isolation forest\nIt seems to me that `sklearn.ensemble.IsolationForest` supports incremental addition of new trees with the `warm_start` parameter of its parent class, `sklearn.ensemble.BaseBagging`.\r\n\r\nEven though this parameter is not exposed in `__init__()` , it gets inherited from `BaseBagging` and one can use it by changing it to `True` after initialization. To make it work, you have to also increment `n_estimators` on every iteration. \r\n\r\nIt took me a while to notice that it actually works, and I had to inspect the source code of both `IsolationForest` and `BaseBagging`. Also, it looks to me that the behavior is in-line with `sklearn.ensemble.BaseForest` that is behind e.g. `sklearn.ensemble.RandomForestClassifier`.\r\n\r\nTo make it more easier to use, I'd suggest to:\r\n* expose `warm_start` in `IsolationForest.__init__()`, default `False`;\r\n* document it in the same way as it is documented for `RandomForestClassifier`, i.e. say:\r\n```py\r\n    warm_start : bool, optional (default=False)\r\n        When set to ``True``, reuse the solution of the previous call to fit\r\n        and add more estimators to the ensemble, otherwise, just fit a whole\r\n        new forest. See :term:`the Glossary <warm_start>`.\r\n```\r\n* add a test to make sure it works properly;\r\n* possibly also mention in the \"IsolationForest example\" documentation entry;\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sklearn/ensemble/iforest.py"
+    ],
+    "locations": [
+      "sklearn/ensemble/iforest.py::IsolationForest",
+      "sklearn/ensemble/iforest.py::IsolationForest.__init__"
+    ]
+  },
+  "predictions": [
+    "sklearn/covariance/tests/test_robust_covariance.py::test_mcd_issue3367",
+    "sklearn/datasets/svmlight_format.py::load_svmlight_file",
+    "sklearn/preprocessing/data.py::quantile_transform",
+    "sklearn/externals/joblib/my_exceptions.py::JoblibException.__init__",
+    "sklearn/neighbors/lof.py::LocalOutlierFactor.score_samples",
+    "sklearn/externals/joblib/parallel.py::effective_n_jobs",
+    "sklearn/externals/joblib/_memmapping_reducer.py::ArrayMemmapReducer.__call__",
+    "sklearn/datasets/svmlight_format.py::load_svmlight_files",
+    "sklearn/externals/joblib/func_inspect.py::get_func_code",
+    "sklearn/feature_selection/mutual_info_.py::mutual_info_regression"
+  ],
+  "metadata": {
+    "repo": "scikit-learn/scikit-learn",
+    "commit": "3aefc834dce72e850bff48689bea3c7dff5f3fad",
+    "total_functions_indexed": 6939,
+    "retrieval_time_seconds": 0.5015082359313965
+  },
+  "raw_output": "[{\"doc_id\": \"sklearn/covariance/tests/test_robust_covariance.py::test_mcd_issue3367\", \"score\": 178.70228227363668}, {\"doc_id\": \"sklearn/datasets/svmlight_format.py::load_svmlight_file\", \"score\": 175.3089111656329}, {\"doc_id\": \"sklearn/preprocessing/data.py::quantile_transform\", \"score\": 174.04837228118942}, {\"doc_id\": \"sklearn/externals/joblib/my_exceptions.py::JoblibException.__init__\", \"score\": 171.4082667433375}, {\"doc_id\": \"sklearn/neighbors/lof.py::LocalOutlierFactor.score_samples\", \"score\": 170.16751492205847}, {\"doc_id\": \"sklearn/externals/joblib/parallel.py::effective_n_jobs\", \"score\": 168.9960584544956}, {\"doc_id\": \"sklearn/externals/joblib/_memmapping_reducer.py::ArrayMemmapReducer.__call__\", \"score\": 168.8247487592232}, {\"doc_id\": \"sklearn/datasets/svmlight_format.py::load_svmlight_files\", \"score\": 168.81404087523998}, {\"doc_id\": \"sklearn/externals/joblib/func_inspect.py::get_func_code\", \"score\": 168.17318434663983}, {\"doc_id\": \"sklearn/feature_selection/mutual_info_.py::mutual_info_regression\", \"score\": 168.11470561311344}]"
+}

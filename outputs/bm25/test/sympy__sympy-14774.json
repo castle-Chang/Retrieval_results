@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-14774",
+  "query": "Latex printer does not support full inverse trig function names for acsc and asec\nFor example\r\n`latex(asin(x), inv_trig_style=\"full\")` works as expected returning `'\\\\arcsin{\\\\left (x \\\\right )}'`\r\nBut `latex(acsc(x), inv_trig_style=\"full\")` gives `'\\\\operatorname{acsc}{\\\\left (x \\\\right )}'` instead of `'\\\\operatorname{arccsc}{\\\\left (x \\\\right )}'`\r\n\r\nA fix seems to be to change line 743 of sympy/printing/latex.py from\r\n`inv_trig_table = [\"asin\", \"acos\", \"atan\", \"acot\"]` to\r\n`inv_trig_table = [\"asin\", \"acos\", \"atan\", \"acsc\", \"asec\", \"acot\"]`\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/latex.py"
+    ],
+    "locations": [
+      "sympy/printing/latex.py::LatexPrinter",
+      "sympy/printing/latex.py::LatexPrinter._print_Function"
+    ]
+  },
+  "predictions": [
+    "sympy/printing/latex.py::LatexPrinter._print_Function",
+    "sympy/physics/vector/printing.py::VectorLatexPrinter._print_Function",
+    "sympy/printing/latex.py::latex",
+    "sympy/functions/elementary/tests/test_trigonometric.py::test_asin_rewrite",
+    "sympy/functions/elementary/tests/test_trigonometric.py::test_acsc",
+    "sympy/functions/elementary/tests/test_trigonometric.py::test_acos_rewrite",
+    "sympy/printing/tests/test_latex.py::test_latex_functions",
+    "sympy/functions/elementary/tests/test_trigonometric.py::test_atan_rewrite",
+    "sympy/functions/elementary/tests/test_trigonometric.py::test_acot_rewrite",
+    "sympy/integrals/rubi/utility_function.py::InverseTrigQ"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "8fc63c2d71752389a44367b8ef4aba8a91af6a45",
+    "total_functions_indexed": 23158,
+    "retrieval_time_seconds": 0.7393012046813965
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_Function\", \"score\": 209.40851002473696}, {\"doc_id\": \"sympy/physics/vector/printing.py::VectorLatexPrinter._print_Function\", \"score\": 179.21217985225704}, {\"doc_id\": \"sympy/printing/latex.py::latex\", \"score\": 168.13427731741007}, {\"doc_id\": \"sympy/functions/elementary/tests/test_trigonometric.py::test_asin_rewrite\", \"score\": 162.49484631924216}, {\"doc_id\": \"sympy/functions/elementary/tests/test_trigonometric.py::test_acsc\", \"score\": 157.61856310873486}, {\"doc_id\": \"sympy/functions/elementary/tests/test_trigonometric.py::test_acos_rewrite\", \"score\": 155.09350070626832}, {\"doc_id\": \"sympy/printing/tests/test_latex.py::test_latex_functions\", \"score\": 150.49018424842842}, {\"doc_id\": \"sympy/functions/elementary/tests/test_trigonometric.py::test_atan_rewrite\", \"score\": 146.5042793482688}, {\"doc_id\": \"sympy/functions/elementary/tests/test_trigonometric.py::test_acot_rewrite\", \"score\": 145.6710556013453}, {\"doc_id\": \"sympy/integrals/rubi/utility_function.py::InverseTrigQ\", \"score\": 145.1654864033346}]"
+}

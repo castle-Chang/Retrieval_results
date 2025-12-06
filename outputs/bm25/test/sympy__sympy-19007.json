@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-19007",
+  "query": "Wrong matrix element fetched from BlockMatrix\nGiven this code:\r\n```\r\nfrom sympy import *\r\nn, i = symbols('n, i', integer=True)\r\nA = MatrixSymbol('A', 1, 1)\r\nB = MatrixSymbol('B', n, 1)\r\nC = BlockMatrix([[A], [B]])\r\nprint('C is')\r\npprint(C)\r\nprint('C[i, 0] is')\r\npprint(C[i, 0])\r\n```\r\nI get this output:\r\n```\r\nC is\r\n⎡A⎤\r\n⎢ ⎥\r\n⎣B⎦\r\nC[i, 0] is\r\n(A)[i, 0]\r\n```\r\n`(A)[i, 0]` is the wrong here. `C[i, 0]` should not be simplified as that element may come from either `A` or `B`.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/matrices/expressions/blockmatrix.py"
+    ],
+    "locations": [
+      "sympy/matrices/expressions/blockmatrix.py::BlockMatrix",
+      "sympy/matrices/expressions/blockmatrix.py::BlockMatrix._entry"
+    ]
+  },
+  "predictions": [
+    "sympy/utilities/iterables.py::_set_partitions",
+    "sympy/matrices/expressions/blockmatrix.py::block_collapse",
+    "sympy/codegen/array_utils.py::CodegenArrayContraction._get_contraction_links",
+    "sympy/printing/ccode.py::ccode",
+    "sympy/matrices/expressions/tests/test_blockmatrix.py::test_squareBlockMatrix",
+    "sympy/codegen/array_utils.py::recognize_matrix_expression",
+    "sympy/printing/rust.py::rust_code",
+    "sympy/core/facts.py::rules_2prereq",
+    "sympy/printing/rcode.py::rcode",
+    "sympy/combinatorics/perm_groups.py::PermutationGroup.coset_factor"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "f9e030b57623bebdc2efa7f297c1b5ede08fcebf",
+    "total_functions_indexed": 34294,
+    "retrieval_time_seconds": 1.1251883506774902
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/utilities/iterables.py::_set_partitions\", \"score\": 149.3997205143255}, {\"doc_id\": \"sympy/matrices/expressions/blockmatrix.py::block_collapse\", \"score\": 145.9987095678404}, {\"doc_id\": \"sympy/codegen/array_utils.py::CodegenArrayContraction._get_contraction_links\", \"score\": 144.79991280783793}, {\"doc_id\": \"sympy/printing/ccode.py::ccode\", \"score\": 141.05974220741697}, {\"doc_id\": \"sympy/matrices/expressions/tests/test_blockmatrix.py::test_squareBlockMatrix\", \"score\": 140.66138338891977}, {\"doc_id\": \"sympy/codegen/array_utils.py::recognize_matrix_expression\", \"score\": 138.5296064880802}, {\"doc_id\": \"sympy/printing/rust.py::rust_code\", \"score\": 134.9874243865475}, {\"doc_id\": \"sympy/core/facts.py::rules_2prereq\", \"score\": 134.54028610210938}, {\"doc_id\": \"sympy/printing/rcode.py::rcode\", \"score\": 134.48172896231338}, {\"doc_id\": \"sympy/combinatorics/perm_groups.py::PermutationGroup.coset_factor\", \"score\": 134.00818912308605}]"
+}

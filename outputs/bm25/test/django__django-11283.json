@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11283",
+  "query": "Migration auth.0011_update_proxy_permissions fails for models recreated as a proxy.\nDescription\n\t \n\t\t(last modified by Mariusz Felisiak)\n\t \nI am trying to update my project to Django 2.2. When I launch python manage.py migrate, I get this error message when migration auth.0011_update_proxy_permissions is applying (full stacktrace is available ​here):\ndjango.db.utils.IntegrityError: duplicate key value violates unique constraint \"idx_18141_auth_permission_content_type_id_01ab375a_uniq\" DETAIL: Key (co.ntent_type_id, codename)=(12, add_agency) already exists.\nIt looks like the migration is trying to re-create already existing entries in the auth_permission table. At first I though it cloud because we recently renamed a model. But after digging and deleting the entries associated with the renamed model from our database in the auth_permission table, the problem still occurs with other proxy models.\nI tried to update directly from 2.0.13 and 2.1.8. The issues appeared each time. I also deleted my venv and recreated it without an effect.\nI searched for a ticket about this on the bug tracker but found nothing. I also posted this on ​django-users and was asked to report this here.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/auth/migrations/0011_update_proxy_permissions.py"
+    ],
+    "locations": [
+      "django/contrib/auth/migrations/0011_update_proxy_permissions.py::update_proxy_model_permissions",
+      "django/contrib/auth/migrations/0011_update_proxy_permissions.py::revert_proxy_model_permissions"
+    ]
+  },
+  "predictions": [
+    "django/utils/encoding.py::iri_to_uri",
+    "tests/schema/tests.py::SchemaTests.test_alter_int_pk_to_int_unique",
+    "django/forms/formsets.py::BaseFormSet.ordered_forms",
+    "django/db/migrations/loader.py::MigrationLoader.build_graph",
+    "django/db/models/base.py::Model._do_update",
+    "django/db/migrations/executor.py::MigrationExecutor.detect_soft_applied",
+    "django/db/migrations/optimizer.py::MigrationOptimizer.optimize_inner",
+    "tests/migrations/test_executor.py::ExecutorTests.test_detect_soft_applied_add_field_manytomanyfield",
+    "tests/migrations/test_commands.py::MigrateTests.test_regression_22823_unmigrated_fk_to_migrated_model",
+    "tests/get_or_create/tests.py::UpdateOrCreateTransactionTests.test_creation_in_transaction"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "08a4ee06510ae45562c228eefbdcaac84bd38c7a",
+    "total_functions_indexed": 22444,
+    "retrieval_time_seconds": 1.900111198425293
+  },
+  "raw_output": "[{\"doc_id\": \"django/utils/encoding.py::iri_to_uri\", \"score\": 132.51138146388124}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_alter_int_pk_to_int_unique\", \"score\": 129.37755804559922}, {\"doc_id\": \"django/forms/formsets.py::BaseFormSet.ordered_forms\", \"score\": 128.98016861102715}, {\"doc_id\": \"django/db/migrations/loader.py::MigrationLoader.build_graph\", \"score\": 125.93573882365465}, {\"doc_id\": \"django/db/models/base.py::Model._do_update\", \"score\": 125.67113943559913}, {\"doc_id\": \"django/db/migrations/executor.py::MigrationExecutor.detect_soft_applied\", \"score\": 121.13643780656201}, {\"doc_id\": \"django/db/migrations/optimizer.py::MigrationOptimizer.optimize_inner\", \"score\": 120.66823352759677}, {\"doc_id\": \"tests/migrations/test_executor.py::ExecutorTests.test_detect_soft_applied_add_field_manytomanyfield\", \"score\": 120.31888834473814}, {\"doc_id\": \"tests/migrations/test_commands.py::MigrateTests.test_regression_22823_unmigrated_fk_to_migrated_model\", \"score\": 120.14009582500171}, {\"doc_id\": \"tests/get_or_create/tests.py::UpdateOrCreateTransactionTests.test_creation_in_transaction\", \"score\": 118.2364239052176}]"
+}

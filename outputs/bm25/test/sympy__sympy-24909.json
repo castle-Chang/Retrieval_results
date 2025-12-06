@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-24909",
+  "query": "Bug with milli prefix\nWhat happened:\r\n```\r\nIn [1]: from sympy.physics.units import milli, W\r\nIn [2]: milli*W == 1\r\nOut[2]: True\r\nIn [3]: W*milli\r\nOut[3]: watt*Prefix(milli, m, -3, 10)\r\n```\r\nWhat I expected to happen: milli*W should evaluate to milli watts / mW\r\n\r\n`milli*W` or more generally `milli` times some unit evaluates to the number 1. I have tried this with Watts and Volts, I'm not sure what other cases this happens. I'm using sympy version 1.11.1-1 on Arch Linux with Python 3.10.9. If you cannot reproduce I would be happy to be of any assitance.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/physics/units/prefixes.py"
+    ],
+    "locations": [
+      "sympy/physics/units/prefixes.py::Prefix",
+      "sympy/physics/units/prefixes.py::Prefix.__mul__",
+      "sympy/physics/units/prefixes.py::Prefix.__truediv__"
+    ]
+  },
+  "predictions": [
+    "sympy/printing/tests/test_latex.py::test_unit_printing",
+    "sympy/physics/units/tests/test_unitsystem.py::test_get_units_non_prefixed",
+    "sympy/plotting/textplot.py::textplot_str",
+    "sympy/polys/matrices/normalforms.py::_hermite_normal_form_modulo_D",
+    "sympy/utilities/iterables.py::ordered_partitions",
+    "sympy/combinatorics/fp_groups.py::FpSubgroup.__contains__",
+    "sympy/core/tests/test_evalf.py::test_evalf_with_bounded_error",
+    "sympy/matrices/normalforms.py::hermite_normal_form",
+    "sympy/concrete/guess.py::guess_generating_function",
+    "sympy/physics/continuum_mechanics/tests/test_beam.py::test_beam_units"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "d3b4158dea271485e3daa11bf82e69b8dab348ce",
+    "total_functions_indexed": 30240,
+    "retrieval_time_seconds": 1.3615446090698242
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/printing/tests/test_latex.py::test_unit_printing\", \"score\": 153.80351592785084}, {\"doc_id\": \"sympy/physics/units/tests/test_unitsystem.py::test_get_units_non_prefixed\", \"score\": 143.58280235318307}, {\"doc_id\": \"sympy/plotting/textplot.py::textplot_str\", \"score\": 117.65563897575034}, {\"doc_id\": \"sympy/polys/matrices/normalforms.py::_hermite_normal_form_modulo_D\", \"score\": 115.77370384929436}, {\"doc_id\": \"sympy/utilities/iterables.py::ordered_partitions\", \"score\": 107.9451102068118}, {\"doc_id\": \"sympy/combinatorics/fp_groups.py::FpSubgroup.__contains__\", \"score\": 106.99032176797326}, {\"doc_id\": \"sympy/core/tests/test_evalf.py::test_evalf_with_bounded_error\", \"score\": 106.59700353189092}, {\"doc_id\": \"sympy/matrices/normalforms.py::hermite_normal_form\", \"score\": 106.25362465895863}, {\"doc_id\": \"sympy/concrete/guess.py::guess_generating_function\", \"score\": 106.15152672932916}, {\"doc_id\": \"sympy/physics/continuum_mechanics/tests/test_beam.py::test_beam_units\", \"score\": 105.44924979959093}]"
+}

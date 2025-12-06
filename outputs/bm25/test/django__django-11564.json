@@ -1,0 +1,36 @@
+{
+  "instance_id": "django__django-11564",
+  "query": "Add support for SCRIPT_NAME in STATIC_URL and MEDIA_URL\nDescription\n\t \n\t\t(last modified by Rostyslav Bryzgunov)\n\t \nBy default, {% static '...' %} tag just appends STATIC_URL in the path. When running on sub-path, using SCRIPT_NAME WSGI param, it results in incorrect static URL - it doesn't prepend SCRIPT_NAME prefix.\nThis problem can be solved with prepending SCRIPT_NAME to STATIC_URL in settings.py but that doesn't work when SCRIPT_NAME is a dynamic value.\nThis can be easily added into default Django static tag and django.contrib.staticfiles tag as following:\ndef render(self, context):\n\turl = self.url(context)\n\t# Updating url here with request.META['SCRIPT_NAME'] \n\tif self.varname is None:\n\t\treturn url\n\tcontext[self.varname] = url\n\t\treturn ''\nOn more research I found that FileSystemStorage and StaticFilesStorage ignores SCRIPT_NAME as well. \nWe might have to do a lot of changes but I think it's worth the efforts.\n",
+  "ground_truth": {
+    "files": [
+      "django/conf/__init__.py"
+    ],
+    "locations": [
+      "django/conf/__init__.py::LazySettings",
+      "django/conf/__init__.py::LazySettings.configure",
+      "django/conf/__init__.py::LazySettings.configured",
+      "django/conf/__init__.py::LazySettings.PASSWORD_RESET_TIMEOUT_DAYS",
+      "django/conf/__init__.py::Settings",
+      "django/conf/__init__.py::Settings.__init__"
+    ]
+  },
+  "predictions": [
+    "django/contrib/admin/sites.py::AdminSite.each_context",
+    "django/core/handlers/wsgi.py::get_script_name",
+    "django/core/handlers/wsgi.py::WSGIRequest.__init__",
+    "django/templatetags/static.py::StaticNode.render",
+    "django/core/handlers/asgi.py::ASGIRequest.__init__",
+    "tests/requests/tests.py::RequestsTests.test_wsgirequest_with_script_name",
+    "django/contrib/staticfiles/urls.py::staticfiles_urlpatterns",
+    "django/contrib/staticfiles/storage.py::HashedFilesMixin.url_converter",
+    "django/utils/http.py::url_has_allowed_host_and_scheme",
+    "tests/requests/tests.py::RequestsTests.test_wsgirequest_script_url_double_slashes"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "580e644f24f1c5ae5b94784fb73a9953a178fd26",
+    "total_functions_indexed": 22854,
+    "retrieval_time_seconds": 1.6838035583496094
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/admin/sites.py::AdminSite.each_context\", \"score\": 159.96998620128383}, {\"doc_id\": \"django/core/handlers/wsgi.py::get_script_name\", \"score\": 147.95227944960357}, {\"doc_id\": \"django/core/handlers/wsgi.py::WSGIRequest.__init__\", \"score\": 144.9992336788016}, {\"doc_id\": \"django/templatetags/static.py::StaticNode.render\", \"score\": 133.32917024599493}, {\"doc_id\": \"django/core/handlers/asgi.py::ASGIRequest.__init__\", \"score\": 128.20907520927693}, {\"doc_id\": \"tests/requests/tests.py::RequestsTests.test_wsgirequest_with_script_name\", \"score\": 126.53317356637194}, {\"doc_id\": \"django/contrib/staticfiles/urls.py::staticfiles_urlpatterns\", \"score\": 125.55022638670069}, {\"doc_id\": \"django/contrib/staticfiles/storage.py::HashedFilesMixin.url_converter\", \"score\": 124.16817978296928}, {\"doc_id\": \"django/utils/http.py::url_has_allowed_host_and_scheme\", \"score\": 124.08189982297567}, {\"doc_id\": \"tests/requests/tests.py::RequestsTests.test_wsgirequest_script_url_double_slashes\", \"score\": 122.29200795278533}]"
+}

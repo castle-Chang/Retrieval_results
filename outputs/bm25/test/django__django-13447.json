@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-13447",
+  "query": "Added model class to app_list context\nDescription\n\t \n\t\t(last modified by Raffaele Salmaso)\n\t \nI need to manipulate the app_list in my custom admin view, and the easiest way to get the result is to have access to the model class (currently the dictionary is a serialized model).\nIn addition I would make the _build_app_dict method public, as it is used by the two views index and app_index.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admin/sites.py"
+    ],
+    "locations": [
+      "django/contrib/admin/sites.py::AdminSite",
+      "django/contrib/admin/sites.py::AdminSite._build_app_dict"
+    ]
+  },
+  "predictions": [
+    "django/contrib/contenttypes/fields.py::GenericRelation._get_path_info_with_parent",
+    "django/apps/registry.py::Apps.get_swappable_settings_name",
+    "django/db/models/sql/compiler.py::SQLCompiler.get_default_columns",
+    "django/db/models/sql/compiler.py::SQLCompiler.get_group_by",
+    "django/views/generic/edit.py::ModelFormMixin.get_form_class",
+    "django/db/models/base.py::subclass_exception",
+    "django/db/models/options.py::Options._populate_directed_relation_graph",
+    "django/template/defaulttags.py::regroup",
+    "tests/schema/tests.py::SchemaTests.test_alter_int_pk_to_int_unique",
+    "django/core/serializers/__init__.py::sort_dependencies"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "0456d3e42795481a186db05719300691fe2a1029",
+    "total_functions_indexed": 24564,
+    "retrieval_time_seconds": 0.6319074630737305
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/contenttypes/fields.py::GenericRelation._get_path_info_with_parent\", \"score\": 70.50625917358961}, {\"doc_id\": \"django/apps/registry.py::Apps.get_swappable_settings_name\", \"score\": 69.93828626145103}, {\"doc_id\": \"django/db/models/sql/compiler.py::SQLCompiler.get_default_columns\", \"score\": 69.70729043258773}, {\"doc_id\": \"django/db/models/sql/compiler.py::SQLCompiler.get_group_by\", \"score\": 69.12418598678387}, {\"doc_id\": \"django/views/generic/edit.py::ModelFormMixin.get_form_class\", \"score\": 68.49626679606172}, {\"doc_id\": \"django/db/models/base.py::subclass_exception\", \"score\": 68.35756062648613}, {\"doc_id\": \"django/db/models/options.py::Options._populate_directed_relation_graph\", \"score\": 67.77100892130856}, {\"doc_id\": \"django/template/defaulttags.py::regroup\", \"score\": 67.12859901066243}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_alter_int_pk_to_int_unique\", \"score\": 66.92383172217319}, {\"doc_id\": \"django/core/serializers/__init__.py::sort_dependencies\", \"score\": 66.62144987043828}]"
+}

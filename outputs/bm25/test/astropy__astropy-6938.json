@@ -1,0 +1,33 @@
+{
+  "instance_id": "astropy__astropy-6938",
+  "query": "Possible bug in io.fits related to D exponents\nI came across the following code in ``fitsrec.py``:\r\n\r\n```python\r\n        # Replace exponent separator in floating point numbers\r\n        if 'D' in format:\r\n            output_field.replace(encode_ascii('E'), encode_ascii('D'))\r\n```\r\n\r\nI think this may be incorrect because as far as I can tell ``replace`` is not an in-place operation for ``chararray`` (it returns a copy). Commenting out this code doesn't cause any tests to fail so I think this code isn't being tested anyway.\n",
+  "ground_truth": {
+    "files": [
+      "astropy/io/fits/fitsrec.py"
+    ],
+    "locations": [
+      "astropy/io/fits/fitsrec.py::FITS_rec",
+      "astropy/io/fits/fitsrec.py::FITS_rec._scale_back_ascii",
+      "astropy/io/fits/fitsrec.py::_get_recarray_field"
+    ]
+  },
+  "predictions": [
+    "astropy/io/fits/fitsrec.py::FITS_rec._scale_back_ascii",
+    "astropy/io/fits/util.py::_rstrip_inplace",
+    "astropy/io/fits/column.py::_convert_ascii_format",
+    "astropy/io/fits/column.py::_AsciiColumnFormat.canonical",
+    "astropy/wcs/tests/extension/test_extension.py::test_wcsapi_extension",
+    "astropy/io/fits/hdu/table.py::BinTableHDU._calculate_datasum_with_heap",
+    "astropy/io/fits/fitsrec.py::FITS_rec._convert_ascii",
+    "astropy/io/fits/tests/test_header.py::TestHeaderFunctions.test_invalid_float_cards2",
+    "astropy/io/fits/tests/test_table.py::TestVLATables.test_variable_length_table_format_pa_from_object_array",
+    "astropy/coordinates/transformations.py::TransformGraph.find_shortest_path"
+  ],
+  "metadata": {
+    "repo": "astropy/astropy",
+    "commit": "c76af9ed6bb89bfba45b9f5bc1e635188278e2fa",
+    "total_functions_indexed": 9848,
+    "retrieval_time_seconds": 0.4698762893676758
+  },
+  "raw_output": "[{\"doc_id\": \"astropy/io/fits/fitsrec.py::FITS_rec._scale_back_ascii\", \"score\": 99.68157014399473}, {\"doc_id\": \"astropy/io/fits/util.py::_rstrip_inplace\", \"score\": 80.07898208614813}, {\"doc_id\": \"astropy/io/fits/column.py::_convert_ascii_format\", \"score\": 78.47613143666813}, {\"doc_id\": \"astropy/io/fits/column.py::_AsciiColumnFormat.canonical\", \"score\": 77.84032036777451}, {\"doc_id\": \"astropy/wcs/tests/extension/test_extension.py::test_wcsapi_extension\", \"score\": 74.01449249077841}, {\"doc_id\": \"astropy/io/fits/hdu/table.py::BinTableHDU._calculate_datasum_with_heap\", \"score\": 73.12194508704886}, {\"doc_id\": \"astropy/io/fits/fitsrec.py::FITS_rec._convert_ascii\", \"score\": 72.68903849119165}, {\"doc_id\": \"astropy/io/fits/tests/test_header.py::TestHeaderFunctions.test_invalid_float_cards2\", \"score\": 71.05554768091527}, {\"doc_id\": \"astropy/io/fits/tests/test_table.py::TestVLATables.test_variable_length_table_format_pa_from_object_array\", \"score\": 70.29714063033718}, {\"doc_id\": \"astropy/coordinates/transformations.py::TransformGraph.find_shortest_path\", \"score\": 69.76308946324386}]"
+}

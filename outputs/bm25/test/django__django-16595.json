@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-16595",
+  "query": "Migration optimizer does not reduce multiple AlterField\nDescription\n\t\nLet's consider the following operations: \noperations = [\n\tmigrations.AddField(\n\t\tmodel_name=\"book\",\n\t\tname=\"title\",\n\t\tfield=models.CharField(max_length=256, null=True),\n\t),\n\tmigrations.AlterField(\n\t\tmodel_name=\"book\",\n\t\tname=\"title\",\n\t\tfield=models.CharField(max_length=128, null=True),\n\t),\n\tmigrations.AlterField(\n\t\tmodel_name=\"book\",\n\t\tname=\"title\",\n\t\tfield=models.CharField(max_length=128, null=True, help_text=\"help\"),\n\t),\n\tmigrations.AlterField(\n\t\tmodel_name=\"book\",\n\t\tname=\"title\",\n\t\tfield=models.CharField(max_length=128, null=True, help_text=\"help\", default=None),\n\t),\n]\nIf I run the optimizer, I get only the AddField, as we could expect. However, if the AddField model is separated from the AlterField (e.g. because of a non-elidable migration, or inside a non-squashed migration), none of the AlterField are reduced:\noptimizer.optimize(operations[1:], \"books\") \n[<AlterField model_name='book', name='title', field=<django.db.models.fields.CharField>>,\n <AlterField model_name='book', name='title', field=<django.db.models.fields.CharField>>,\n <AlterField model_name='book', name='title', field=<django.db.models.fields.CharField>>]\nIndeed, the AlterField.reduce does not consider the the case where operation is also an AlterField. \nIs this behaviour intended? If so, could it be documented? \nOtherwise, would it make sense to add something like\n\t\tif isinstance(operation, AlterField) and self.is_same_field_operation(\n\t\t\toperation\n\t\t):\n\t\t\treturn [operation]\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/operations/fields.py"
+    ],
+    "locations": [
+      "django/db/migrations/operations/fields.py::AlterField",
+      "django/db/migrations/operations/fields.py::AlterField.migration_name_fragment",
+      "django/db/migrations/operations/fields.py::AlterField.reduce"
+    ]
+  },
+  "predictions": [
+    "django/db/migrations/operations/fields.py::AlterField.reduce",
+    "django/db/migrations/operations/fields.py::AddField.reduce",
+    "tests/migrations/test_optimizer.py::OptimizerTests.test_alter_field_rename_field",
+    "tests/migrations/test_operations.py::OperationTests.test_alter_field_reloads_state_on_fk_target_changes",
+    "tests/migrations/test_operations.py::OperationTests.test_alter_field_reloads_state_on_fk_with_to_field_target_changes",
+    "django/db/migrations/operations/fields.py::AlterField.__init__",
+    "django/db/migrations/operations/fields.py::AlterField.deconstruct",
+    "tests/migrations/test_operations.py::OperationTests.test_alter_field_pk_fk_char_to_int",
+    "tests/migrations/test_operations.py::OperationTests.test_alter_field",
+    "django/db/migrations/autodetector.py::MigrationAutodetector.generate_renamed_fields"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "f9fe062de5fc0896d6bbbf3f260b5c44473b3c77",
+    "total_functions_indexed": 26410,
+    "retrieval_time_seconds": 1.7580454349517822
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/migrations/operations/fields.py::AlterField.reduce\", \"score\": 326.2976694788344}, {\"doc_id\": \"django/db/migrations/operations/fields.py::AddField.reduce\", \"score\": 324.5932513592013}, {\"doc_id\": \"tests/migrations/test_optimizer.py::OptimizerTests.test_alter_field_rename_field\", \"score\": 312.97442531743684}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_alter_field_reloads_state_on_fk_target_changes\", \"score\": 276.08466725455753}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_alter_field_reloads_state_on_fk_with_to_field_target_changes\", \"score\": 275.200010729241}, {\"doc_id\": \"django/db/migrations/operations/fields.py::AlterField.__init__\", \"score\": 265.5562858859568}, {\"doc_id\": \"django/db/migrations/operations/fields.py::AlterField.deconstruct\", \"score\": 257.3440993027139}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_alter_field_pk_fk_char_to_int\", \"score\": 255.1129611029775}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_alter_field\", \"score\": 248.68887790851835}, {\"doc_id\": \"django/db/migrations/autodetector.py::MigrationAutodetector.generate_renamed_fields\", \"score\": 244.8118271355575}]"
+}

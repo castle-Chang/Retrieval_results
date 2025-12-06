@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-11400",
+  "query": "ccode(sinc(x)) doesn't work\n```\nIn [30]: ccode(sinc(x))\nOut[30]: '// Not supported in C:\\n// sinc\\nsinc(x)'\n```\n\nI don't think `math.h` has `sinc`, but it could print\n\n```\nIn [38]: ccode(Piecewise((sin(theta)/theta, Ne(theta, 0)), (1, True)))\nOut[38]: '((Ne(theta, 0)) ? (\\n   sin(theta)/theta\\n)\\n: (\\n   1\\n))'\n```\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/ccode.py"
+    ],
+    "locations": [
+      "sympy/printing/ccode.py::CCodePrinter",
+      "sympy/printing/ccode.py::CCodePrinter._print_Symbol",
+      "sympy/printing/ccode.py::CCodePrinter._print_AugmentedAssignment"
+    ]
+  },
+  "predictions": [
+    "sympy/functions/special/spherical_harmonics.py::Ynm.eval",
+    "sympy/functions/elementary/tests/test_trigonometric.py::test_sinc",
+    "sympy/functions/special/spherical_harmonics.py::Ynm._eval_expand_func",
+    "sympy/functions/special/spherical_harmonics.py::Ynm._eval_rewrite_as_cos",
+    "examples/intermediate/partial_differential_eqs.py::main",
+    "sympy/functions/special/spherical_harmonics.py::Ynm.fdiff",
+    "sympy/functions/special/spherical_harmonics.py::Ynm.as_real_imag",
+    "sympy/stats/tests/test_continuous_rv.py::test_gamma",
+    "sympy/solvers/tests/test_pde.py::test_pde_separate_mul",
+    "sympy/stats/crv_types.py::Gamma"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "8dcb12a6cf500e8738d6729ab954a261758f49ca",
+    "total_functions_indexed": 19897,
+    "retrieval_time_seconds": 0.5687713623046875
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/functions/special/spherical_harmonics.py::Ynm.eval\", \"score\": 108.19429825822618}, {\"doc_id\": \"sympy/functions/elementary/tests/test_trigonometric.py::test_sinc\", \"score\": 105.12548699381927}, {\"doc_id\": \"sympy/functions/special/spherical_harmonics.py::Ynm._eval_expand_func\", \"score\": 103.88946269026411}, {\"doc_id\": \"sympy/functions/special/spherical_harmonics.py::Ynm._eval_rewrite_as_cos\", \"score\": 102.73969813487241}, {\"doc_id\": \"examples/intermediate/partial_differential_eqs.py::main\", \"score\": 101.30392709905756}, {\"doc_id\": \"sympy/functions/special/spherical_harmonics.py::Ynm.fdiff\", \"score\": 98.08948094946994}, {\"doc_id\": \"sympy/functions/special/spherical_harmonics.py::Ynm.as_real_imag\", \"score\": 96.20103383197875}, {\"doc_id\": \"sympy/stats/tests/test_continuous_rv.py::test_gamma\", \"score\": 95.07612434404223}, {\"doc_id\": \"sympy/solvers/tests/test_pde.py::test_pde_separate_mul\", \"score\": 95.02305969974283}, {\"doc_id\": \"sympy/stats/crv_types.py::Gamma\", \"score\": 93.93152465219069}]"
+}

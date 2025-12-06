@@ -1,0 +1,31 @@
+{
+  "instance_id": "pydata__xarray-4248",
+  "query": "Feature request: show units in dataset overview\nHere's a hypothetical dataset:\r\n\r\n```\r\n<xarray.Dataset>\r\nDimensions:  (time: 3, x: 988, y: 822)\r\nCoordinates:\r\n  * x         (x) float64 ...\r\n  * y         (y) float64 ...\r\n  * time      (time) datetime64[ns] ...\r\nData variables:\r\n    rainfall  (time, y, x) float32 ...\r\n    max_temp  (time, y, x) float32 ...\r\n```\r\n\r\nIt would be really nice if the units of the coordinates and of the data variables were shown in the `Dataset` repr, for example as:\r\n\r\n```\r\n<xarray.Dataset>\r\nDimensions:  (time: 3, x: 988, y: 822)\r\nCoordinates:\r\n  * x, in metres         (x)            float64 ...\r\n  * y, in metres         (y)            float64 ...\r\n  * time                 (time)         datetime64[ns] ...\r\nData variables:\r\n    rainfall, in mm      (time, y, x)   float32 ...\r\n    max_temp, in deg C   (time, y, x)   float32 ...\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "xarray/core/formatting.py"
+    ],
+    "locations": [
+      "xarray/core/formatting.py::inline_variable_array_repr"
+    ]
+  },
+  "predictions": [
+    "xarray/core/dataset.py::Dataset.filter_by_attrs",
+    "xarray/core/merge.py::merge",
+    "xarray/core/dataset.py::Dataset.reindex",
+    "xarray/core/dataset.py::Dataset.integrate",
+    "xarray/core/combine.py::combine_by_coords",
+    "xarray/core/dataset.py::Dataset.drop_sel",
+    "xarray/core/dataset.py::Dataset.set_index",
+    "xarray/tests/test_dataset.py::TestDataset.test_repr",
+    "xarray/tests/test_dataarray.py::TestDataArray.test_resample_drop_nondim_coords",
+    "xarray/tests/test_dataset.py::ds"
+  ],
+  "metadata": {
+    "repo": "pydata/xarray",
+    "commit": "98dc1f4ea18738492e074e9e51ddfed5cd30ab94",
+    "total_functions_indexed": 4245,
+    "retrieval_time_seconds": 0.1648387908935547
+  },
+  "raw_output": "[{\"doc_id\": \"xarray/core/dataset.py::Dataset.filter_by_attrs\", \"score\": 178.95344920271526}, {\"doc_id\": \"xarray/core/merge.py::merge\", \"score\": 157.02977776905504}, {\"doc_id\": \"xarray/core/dataset.py::Dataset.reindex\", \"score\": 151.1405453307109}, {\"doc_id\": \"xarray/core/dataset.py::Dataset.integrate\", \"score\": 146.42058198477093}, {\"doc_id\": \"xarray/core/combine.py::combine_by_coords\", \"score\": 143.45695528056564}, {\"doc_id\": \"xarray/core/dataset.py::Dataset.drop_sel\", \"score\": 141.13428767843953}, {\"doc_id\": \"xarray/core/dataset.py::Dataset.set_index\", \"score\": 136.48149154563262}, {\"doc_id\": \"xarray/tests/test_dataset.py::TestDataset.test_repr\", \"score\": 134.80204086572166}, {\"doc_id\": \"xarray/tests/test_dataarray.py::TestDataArray.test_resample_drop_nondim_coords\", \"score\": 133.2225798681334}, {\"doc_id\": \"xarray/tests/test_dataset.py::ds\", \"score\": 133.05546202441334}]"
+}

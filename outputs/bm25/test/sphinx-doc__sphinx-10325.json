@@ -1,0 +1,35 @@
+{
+  "instance_id": "sphinx-doc__sphinx-10325",
+  "query": "inherited-members should support more than one class\n**Is your feature request related to a problem? Please describe.**\r\nI have two situations:\r\n- A class inherits from multiple other classes. I want to document members from some of the base classes but ignore some of the base classes\r\n- A module contains several class definitions that inherit from different classes that should all be ignored (e.g., classes that inherit from list or set or tuple). I want to ignore members from list, set, and tuple while documenting all other inherited members in classes in the module.\r\n\r\n**Describe the solution you'd like**\r\nThe :inherited-members: option to automodule should accept a list of classes. If any of these classes are encountered as base classes when instantiating autoclass documentation, they should be ignored.\r\n\r\n**Describe alternatives you've considered**\r\nThe alternative is to not use automodule, but instead manually enumerate several autoclass blocks for a module. This only addresses the second bullet in the problem description and not the first. It is also tedious for modules containing many class definitions.\r\n\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/ext/autodoc/__init__.py"
+    ],
+    "locations": [
+      "sphinx/ext/autodoc/__init__.py::exclude_members_option",
+      "sphinx/ext/autodoc/__init__.py::inherited_members_option",
+      "sphinx/ext/autodoc/__init__.py::member_order_option",
+      "sphinx/ext/autodoc/__init__.py::Documenter",
+      "sphinx/ext/autodoc/__init__.py::Documenter.filter_members"
+    ]
+  },
+  "predictions": [
+    "sphinx/ext/inheritance_diagram.py::InheritanceGraph._class_info",
+    "sphinx/domains/python.py::PyObject.after_content",
+    "doc/usage/extensions/example_numpy.py::module_level_function",
+    "doc/usage/extensions/example_google.py::module_level_function",
+    "sphinx/ext/autodoc/__init__.py::Documenter.document_members",
+    "sphinx/ext/autodoc/__init__.py::Documenter.generate",
+    "sphinx/domains/python.py::PyObject.before_content",
+    "sphinx/application.py::Sphinx.add_object_type",
+    "tests/test_ext_inheritance_diagram.py::test_import_classes",
+    "sphinx/ext/autosummary/__init__.py::get_documenter"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "7bdc11e87c7d86dcc2a087eccb7a7c129a473415",
+    "total_functions_indexed": 5832,
+    "retrieval_time_seconds": 0.35660815238952637
+  },
+  "raw_output": "[{\"doc_id\": \"sphinx/ext/inheritance_diagram.py::InheritanceGraph._class_info\", \"score\": 177.01737349036128}, {\"doc_id\": \"sphinx/domains/python.py::PyObject.after_content\", \"score\": 168.74293842295867}, {\"doc_id\": \"doc/usage/extensions/example_numpy.py::module_level_function\", \"score\": 166.5374210523266}, {\"doc_id\": \"doc/usage/extensions/example_google.py::module_level_function\", \"score\": 165.8364551633857}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::Documenter.document_members\", \"score\": 162.474376880487}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::Documenter.generate\", \"score\": 162.06501749044457}, {\"doc_id\": \"sphinx/domains/python.py::PyObject.before_content\", \"score\": 158.53067810502142}, {\"doc_id\": \"sphinx/application.py::Sphinx.add_object_type\", \"score\": 156.94060366784282}, {\"doc_id\": \"tests/test_ext_inheritance_diagram.py::test_import_classes\", \"score\": 155.77093309432217}, {\"doc_id\": \"sphinx/ext/autosummary/__init__.py::get_documenter\", \"score\": 153.89757009392835}]"
+}

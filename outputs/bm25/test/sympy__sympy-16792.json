@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-16792",
+  "query": "autowrap with cython backend fails when array arguments do not appear in wrapped expr\nWhen using the cython backend for autowrap, it appears that the code is not correctly generated when the function in question has array arguments that do not appear in the final expression. A minimal counterexample is:\r\n\r\n```python\r\nfrom sympy.utilities.autowrap import autowrap\r\nfrom sympy import MatrixSymbol\r\nimport numpy as np\r\n\r\nx = MatrixSymbol('x', 2, 1)\r\nexpr = 1.0\r\nf = autowrap(expr, args=(x,), backend='cython')\r\n\r\nf(np.array([[1.0, 2.0]]))\r\n```\r\n\r\nThis should of course return `1.0` but instead fails with:\r\n```python\r\nTypeError: only size-1 arrays can be converted to Python scalars\r\n```\r\n\r\nA little inspection reveals that this is because the corresponding C function is generated with an incorrect signature:\r\n\r\n```C\r\ndouble autofunc(double x) {\r\n\r\n   double autofunc_result;\r\n   autofunc_result = 1.0;\r\n   return autofunc_result;\r\n\r\n}\r\n```\r\n\r\n(`x` should be `double *`, not `double` in this case)\r\n\r\nI've found that this error won't occur so long as `expr` depends at least in part on each argument. For example this slight modification of the above counterexample works perfectly:\r\n\r\n```python\r\nfrom sympy.utilities.autowrap import autowrap\r\nfrom sympy import MatrixSymbol\r\nimport numpy as np\r\n\r\nx = MatrixSymbol('x', 2, 1)\r\n# now output depends on x\r\nexpr = x[0,0]\r\nf = autowrap(expr, args=(x,), backend='cython')\r\n\r\n# returns 1.0 as expected, without failure\r\nf(np.array([[1.0, 2.0]]))\r\n```\r\n\r\nThis may seem like a silly issue (\"why even have `x` as an argument if it doesn't appear in the expression you're trying to evaluate?\"). But of course in interfacing with external libraries (e.g. for numerical integration), one often needs functions to have a pre-defined signature regardless of whether a given argument contributes to the output.\r\n\r\nI think I've identified the problem in `codegen` and will suggest a PR shortly.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/utilities/codegen.py"
+    ],
+    "locations": [
+      "sympy/utilities/codegen.py::CodeGen",
+      "sympy/utilities/codegen.py::CodeGen.routine"
+    ]
+  },
+  "predictions": [
+    "sympy/utilities/autowrap.py::ufuncify",
+    "sympy/utilities/autowrap.py::autowrap",
+    "sympy/utilities/lambdify.py::lambdify",
+    "examples/advanced/autowrap_integrators.py::main",
+    "sympy/external/tests/test_autowrap.py::test_autowrap_custom_printer",
+    "sympy/core/sympify.py::sympify",
+    "sympy/utilities/codegen.py::codegen",
+    "sympy/external/tests/test_autowrap.py::runtest_issue_10274",
+    "sympy/utilities/codegen.py::OutputArgument.__init__",
+    "sympy/external/tests/test_autowrap.py::runtest_issue_15337"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "09786a173e7a0a488f46dd6000177c23e5d24eed",
+    "total_functions_indexed": 25019,
+    "retrieval_time_seconds": 2.6820952892303467
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/utilities/autowrap.py::ufuncify\", \"score\": 560.0398841784221}, {\"doc_id\": \"sympy/utilities/autowrap.py::autowrap\", \"score\": 497.7203101970684}, {\"doc_id\": \"sympy/utilities/lambdify.py::lambdify\", \"score\": 481.85928302145135}, {\"doc_id\": \"examples/advanced/autowrap_integrators.py::main\", \"score\": 420.23497217113663}, {\"doc_id\": \"sympy/external/tests/test_autowrap.py::test_autowrap_custom_printer\", \"score\": 412.12334993612063}, {\"doc_id\": \"sympy/core/sympify.py::sympify\", \"score\": 402.4335047368551}, {\"doc_id\": \"sympy/utilities/codegen.py::codegen\", \"score\": 392.19277583372246}, {\"doc_id\": \"sympy/external/tests/test_autowrap.py::runtest_issue_10274\", \"score\": 384.02305296020967}, {\"doc_id\": \"sympy/utilities/codegen.py::OutputArgument.__init__\", \"score\": 382.5111372813893}, {\"doc_id\": \"sympy/external/tests/test_autowrap.py::runtest_issue_15337\", \"score\": 381.03309479569657}]"
+}

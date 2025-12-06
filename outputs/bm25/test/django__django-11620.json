@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-11620",
+  "query": "When DEBUG is True, raising Http404 in a path converter's to_python method does not result in a technical response\nDescription\n\t\nThis is the response I get (plain text): \nA server error occurred. Please contact the administrator.\nI understand a ValueError should be raised which tells the URL resolver \"this path does not match, try next one\" but Http404 is what came to my mind intuitively and the error message was not very helpful.\nOne could also make a point that raising a Http404 should be valid way to tell the resolver \"this is indeed the right path but the current parameter value does not match anything so stop what you are doing and let the handler return the 404 page (including a helpful error message when DEBUG is True instead of the default 'Django tried these URL patterns')\".\nThis would prove useful for example to implement a path converter that uses get_object_or_404.\n",
+  "ground_truth": {
+    "files": [
+      "django/views/debug.py"
+    ],
+    "locations": [
+      "django/views/debug.py::technical_404_response"
+    ]
+  },
+  "predictions": [
+    "django/urls/base.py::is_valid_path",
+    "django/db/models/query.py::QuerySet._next_is_sticky",
+    "django/urls/resolvers.py::_route_to_regex",
+    "django/contrib/auth/admin.py::UserAdmin._add_view",
+    "django/contrib/staticfiles/views.py::serve",
+    "django/views/static.py::serve",
+    "django/utils/encoding.py::filepath_to_uri",
+    "tests/admin_widgets/tests.py::AdminForeignKeyRawIdWidget.test_invalid_target_id",
+    "tests/file_uploads/tests.py::FileUploadTests.test_file_error_blocking",
+    "django/template/defaulttags.py::url"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "514efa3129792ec2abb2444f3e7aeb3f21a38386",
+    "total_functions_indexed": 22708,
+    "retrieval_time_seconds": 1.6378984451293945
+  },
+  "raw_output": "[{\"doc_id\": \"django/urls/base.py::is_valid_path\", \"score\": 141.5080969543656}, {\"doc_id\": \"django/db/models/query.py::QuerySet._next_is_sticky\", \"score\": 133.66278410099085}, {\"doc_id\": \"django/urls/resolvers.py::_route_to_regex\", \"score\": 129.9510487443454}, {\"doc_id\": \"django/contrib/auth/admin.py::UserAdmin._add_view\", \"score\": 129.57170921527916}, {\"doc_id\": \"django/contrib/staticfiles/views.py::serve\", \"score\": 128.46496672640782}, {\"doc_id\": \"django/views/static.py::serve\", \"score\": 128.2270251630969}, {\"doc_id\": \"django/utils/encoding.py::filepath_to_uri\", \"score\": 127.01222345259656}, {\"doc_id\": \"tests/admin_widgets/tests.py::AdminForeignKeyRawIdWidget.test_invalid_target_id\", \"score\": 126.75508315832272}, {\"doc_id\": \"tests/file_uploads/tests.py::FileUploadTests.test_file_error_blocking\", \"score\": 126.16158203130797}, {\"doc_id\": \"django/template/defaulttags.py::url\", \"score\": 124.13194148651188}]"
+}

@@ -1,0 +1,34 @@
+{
+  "instance_id": "pallets__flask-4045",
+  "query": "Raise error when blueprint name contains a dot\nThis is required since every dot is now significant since blueprints can be nested. An error was already added for endpoint names in 1.0, but should have been added for this as well.\n",
+  "ground_truth": {
+    "files": [
+      "src/flask/blueprints.py"
+    ],
+    "locations": [
+      "src/flask/blueprints.py::Blueprint",
+      "src/flask/blueprints.py::Blueprint.__init__",
+      "src/flask/blueprints.py::Blueprint.add_url_rule",
+      "src/flask/blueprints.py::Blueprint.app_template_filter"
+    ]
+  },
+  "predictions": [
+    "src/flask/helpers.py::url_for",
+    "src/flask/blueprints.py::BlueprintSetupState.__init__",
+    "src/flask/scaffold.py::Scaffold.add_url_rule",
+    "src/flask/app.py::Flask.templates_auto_reload",
+    "src/flask/app.py::Flask.handle_exception",
+    "src/flask/blueprints.py::Blueprint.record",
+    "src/flask/app.py::Flask.finalize_request",
+    "src/flask/app.py::Flask.__init__",
+    "src/flask/app.py::Flask.logger",
+    "src/flask/app.py::Flask.wsgi_app"
+  ],
+  "metadata": {
+    "repo": "pallets/flask",
+    "commit": "d8c37f43724cd9fb0870f77877b7c4c7e38a19e0",
+    "total_functions_indexed": 769,
+    "retrieval_time_seconds": 0.01898193359375
+  },
+  "raw_output": "[{\"doc_id\": \"src/flask/helpers.py::url_for\", \"score\": 41.87050147319535}, {\"doc_id\": \"src/flask/blueprints.py::BlueprintSetupState.__init__\", \"score\": 38.06439071336033}, {\"doc_id\": \"src/flask/scaffold.py::Scaffold.add_url_rule\", \"score\": 37.933666793952284}, {\"doc_id\": \"src/flask/app.py::Flask.templates_auto_reload\", \"score\": 36.97031511679575}, {\"doc_id\": \"src/flask/app.py::Flask.handle_exception\", \"score\": 36.378283354638036}, {\"doc_id\": \"src/flask/blueprints.py::Blueprint.record\", \"score\": 33.86490312637221}, {\"doc_id\": \"src/flask/app.py::Flask.finalize_request\", \"score\": 33.246063276274896}, {\"doc_id\": \"src/flask/app.py::Flask.__init__\", \"score\": 32.90795859316557}, {\"doc_id\": \"src/flask/app.py::Flask.logger\", \"score\": 32.74729442701055}, {\"doc_id\": \"src/flask/app.py::Flask.wsgi_app\", \"score\": 32.12593170272899}]"
+}

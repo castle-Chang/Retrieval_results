@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-11999",
+  "query": "Cannot override get_FOO_display() in Django 2.2+.\nDescription\n\t\nI cannot override the get_FIELD_display function on models since version 2.2. It works in version 2.1.\nExample:\nclass FooBar(models.Model):\n\tfoo_bar = models.CharField(_(\"foo\"), choices=[(1, 'foo'), (2, 'bar')])\n\tdef __str__(self):\n\t\treturn self.get_foo_bar_display() # This returns 'foo' or 'bar' in 2.2, but 'something' in 2.1\n\tdef get_foo_bar_display(self):\n\t\treturn \"something\"\nWhat I expect is that I should be able to override this function.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/__init__.py"
+    ],
+    "locations": [
+      "django/db/models/fields/__init__.py::Field",
+      "django/db/models/fields/__init__.py::Field.contribute_to_class",
+      "django/db/models/fields/__init__.py::Field.get_filter_kwargs_for_object"
+    ]
+  },
+  "predictions": [
+    "tests/template_tests/filter_tests/test_dictsort.py::FunctionTests.test_dictsort_complex_sorting_key",
+    "tests/template_tests/syntax_tests/test_regroup.py::RegroupTagTests.test_regroup01",
+    "tests/template_tests/syntax_tests/test_regroup.py::RegroupTagTests.test_regroup_unpack",
+    "tests/expressions_case/tests.py::CaseExpressionTests.test_join_promotion_multiple_annotations",
+    "tests/cache/tests.py::BaseCacheTests.test_cache_versioning_add",
+    "tests/invalid_models_tests/test_ordinary_fields.py::CharFieldTests.test_choices_containing_lazy",
+    "tests/gis_tests/tests.py::TestPostGISVersionCheck.test_valid_version_numbers",
+    "tests/validation/test_unique.py::GetUniqueCheckTests.test_unique_together_normalization",
+    "tests/test_utils/tests.py::AssertURLEqualTests.test_not_equal",
+    "tests/gis_tests/gdal_tests/test_raster.py::GDALRasterTests.test_geotransform_bad_inputs"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "84633905273fc916e3d17883810d9969c03f73c2",
+    "total_functions_indexed": 22949,
+    "retrieval_time_seconds": 0.6541590690612793
+  },
+  "raw_output": "[{\"doc_id\": \"tests/template_tests/filter_tests/test_dictsort.py::FunctionTests.test_dictsort_complex_sorting_key\", \"score\": 89.60553779247344}, {\"doc_id\": \"tests/template_tests/syntax_tests/test_regroup.py::RegroupTagTests.test_regroup01\", \"score\": 82.89412172074857}, {\"doc_id\": \"tests/template_tests/syntax_tests/test_regroup.py::RegroupTagTests.test_regroup_unpack\", \"score\": 82.89412172074857}, {\"doc_id\": \"tests/expressions_case/tests.py::CaseExpressionTests.test_join_promotion_multiple_annotations\", \"score\": 80.77461488561022}, {\"doc_id\": \"tests/cache/tests.py::BaseCacheTests.test_cache_versioning_add\", \"score\": 80.21872463718606}, {\"doc_id\": \"tests/invalid_models_tests/test_ordinary_fields.py::CharFieldTests.test_choices_containing_lazy\", \"score\": 78.4090865670041}, {\"doc_id\": \"tests/gis_tests/tests.py::TestPostGISVersionCheck.test_valid_version_numbers\", \"score\": 78.11788145086791}, {\"doc_id\": \"tests/validation/test_unique.py::GetUniqueCheckTests.test_unique_together_normalization\", \"score\": 78.00112506432615}, {\"doc_id\": \"tests/test_utils/tests.py::AssertURLEqualTests.test_not_equal\", \"score\": 77.68051490559965}, {\"doc_id\": \"tests/gis_tests/gdal_tests/test_raster.py::GDALRasterTests.test_geotransform_bad_inputs\", \"score\": 77.10456930318327}]"
+}
