@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-13710",
+  "query": "Use Admin Inline verbose_name as default for Inline verbose_name_plural\nDescription\n\t\nDjango allows specification of a verbose_name and a verbose_name_plural for Inline classes in admin views. However, verbose_name_plural for an Inline is not currently based on a specified verbose_name. Instead, it continues to be based on the model name, or an a verbose_name specified in the model's Meta class. This was confusing to me initially (I didn't understand why I had to specify both name forms for an Inline if I wanted to overrule the default name), and seems inconsistent with the approach for a model's Meta class (which does automatically base the plural form on a specified verbose_name). I propose that verbose_name_plural for an Inline class should by default be based on the verbose_name for an Inline if that is specified.\nI have written a patch to implement this, including tests. Would be happy to submit that.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admin/options.py"
+    ],
+    "locations": [
+      "django/contrib/admin/options.py::InlineModelAdmin",
+      "django/contrib/admin/options.py::InlineModelAdmin.__init__",
+      "django/contrib/admin/options.py::InlineModelAdmin.media"
+    ]
+  },
+  "predictions": [
+    "django/contrib/admin/options.py::InlineModelAdmin.__init__",
+    "django/db/models/options.py::Options.verbose_name_raw",
+    "tests/admin_inlines/tests.py::TestVerboseNameInlineForms.test_verbose_name_plural_inline",
+    "tests/admin_inlines/tests.py::TestVerboseNameInlineForms.test_both_verbose_names_inline",
+    "django/contrib/contenttypes/models.py::ContentType.name",
+    "tests/auth_tests/test_basic.py::BasicTestCase.test_user_verbose_names_translatable",
+    "django/contrib/admin/utils.py::model_format_dict",
+    "tests/model_inheritance_regress/tests.py::ModelInheritanceTest.test_abstract_verbose_name_plural_inheritance",
+    "tests/model_fields/tests.py::BasicFieldTests.test_field_verbose_name",
+    "django/contrib/admin/utils.py::model_ngettext"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "1bd6a7a0acc11e249fca11c017505ad39f15ebf6",
+    "total_functions_indexed": 25051,
+    "retrieval_time_seconds": 0.09493422508239746
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/admin/options.py::InlineModelAdmin.__init__\", \"score\": 0.4983290135860443}, {\"doc_id\": \"django/db/models/options.py::Options.verbose_name_raw\", \"score\": 0.4881208837032318}, {\"doc_id\": \"tests/admin_inlines/tests.py::TestVerboseNameInlineForms.test_verbose_name_plural_inline\", \"score\": 0.47321537137031555}, {\"doc_id\": \"tests/admin_inlines/tests.py::TestVerboseNameInlineForms.test_both_verbose_names_inline\", \"score\": 0.46808335185050964}, {\"doc_id\": \"django/contrib/contenttypes/models.py::ContentType.name\", \"score\": 0.4454161822795868}, {\"doc_id\": \"tests/auth_tests/test_basic.py::BasicTestCase.test_user_verbose_names_translatable\", \"score\": 0.43119651079177856}, {\"doc_id\": \"django/contrib/admin/utils.py::model_format_dict\", \"score\": 0.40223050117492676}, {\"doc_id\": \"tests/model_inheritance_regress/tests.py::ModelInheritanceTest.test_abstract_verbose_name_plural_inheritance\", \"score\": 0.40216168761253357}, {\"doc_id\": \"tests/model_fields/tests.py::BasicFieldTests.test_field_verbose_name\", \"score\": 0.3938193917274475}, {\"doc_id\": \"django/contrib/admin/utils.py::model_ngettext\", \"score\": 0.3847280740737915}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-21627",
+  "query": "Bug: maximum recusion depth error when checking is_zero of cosh expression\nThe following code causes a `RecursionError: maximum recursion depth exceeded while calling a Python object` error when checked if it is zero:\r\n```\r\nexpr =sympify(\"cosh(acos(-i + acosh(-g + i)))\")\r\nexpr.is_zero\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/functions/elementary/complexes.py"
+    ],
+    "locations": [
+      "sympy/functions/elementary/complexes.py::Abs",
+      "sympy/functions/elementary/complexes.py::Abs.eval"
+    ]
+  },
+  "predictions": [
+    "sympy/functions/special/error_functions.py::Shi._eval_is_zero",
+    "sympy/functions/elementary/hyperbolic.py::cosh._eval_is_real",
+    "sympy/assumptions/handlers/order.py::_",
+    "sympy/functions/elementary/hyperbolic.py::cosh._eval_is_positive",
+    "sympy/functions/elementary/hyperbolic.py::cosh._eval_is_finite",
+    "sympy/core/tests/test_evalf.py::test_issue_17421",
+    "sympy/functions/special/error_functions.py::li._eval_is_zero",
+    "sympy/functions/elementary/hyperbolic.py::sinh._eval_is_zero",
+    "sympy/functions/elementary/complexes.py::sign._eval_is_zero",
+    "sympy/functions/special/error_functions.py::Shi._atneginf"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "126f80578140e752ad5135aac77b8ff887eede3e",
+    "total_functions_indexed": 36569,
+    "retrieval_time_seconds": 0.1975860595703125
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/functions/special/error_functions.py::Shi._eval_is_zero\", \"score\": 0.45517274737358093}, {\"doc_id\": \"sympy/functions/elementary/hyperbolic.py::cosh._eval_is_real\", \"score\": 0.42178380489349365}, {\"doc_id\": \"sympy/assumptions/handlers/order.py::_\", \"score\": 0.4091947078704834}, {\"doc_id\": \"sympy/functions/elementary/hyperbolic.py::cosh._eval_is_positive\", \"score\": 0.40436968207359314}, {\"doc_id\": \"sympy/functions/elementary/hyperbolic.py::cosh._eval_is_finite\", \"score\": 0.40055689215660095}, {\"doc_id\": \"sympy/core/tests/test_evalf.py::test_issue_17421\", \"score\": 0.3979305326938629}, {\"doc_id\": \"sympy/functions/special/error_functions.py::li._eval_is_zero\", \"score\": 0.38690340518951416}, {\"doc_id\": \"sympy/functions/elementary/hyperbolic.py::sinh._eval_is_zero\", \"score\": 0.3850822448730469}, {\"doc_id\": \"sympy/functions/elementary/complexes.py::sign._eval_is_zero\", \"score\": 0.3850155174732208}, {\"doc_id\": \"sympy/functions/special/error_functions.py::Shi._atneginf\", \"score\": 0.3837730884552002}]"
+}

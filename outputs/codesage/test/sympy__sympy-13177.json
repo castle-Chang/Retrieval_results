@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-13177",
+  "query": "Mod(x**2, x) is not (always) 0\nWhen the base is not an integer, `x**2 % x` is not 0. The base is not tested to be an integer in Mod's eval logic:\r\n\r\n```\r\nif (p == q or p == -q or\r\n        p.is_Pow and p.exp.is_Integer and p.base == q or\r\n        p.is_integer and q == 1):\r\n    return S.Zero\r\n```\r\n\r\nso\r\n\r\n```\r\n>>> Mod(x**2, x)\r\n0\r\n```\r\nbut\r\n```\r\n>>> x = S(1.5)\r\n>>> Mod(x**2, x)\r\n0.75\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/mod.py"
+    ],
+    "locations": [
+      "sympy/core/mod.py::Mod",
+      "sympy/core/mod.py::Mod.eval"
+    ]
+  },
+  "predictions": [
+    "sympy/core/mod.py::Mod.eval",
+    "sympy/core/mod.py::Mod._eval_is_integer",
+    "sympy/core/power.py::Pow._eval_is_prime",
+    "sympy/core/power.py::Pow.as_real_imag",
+    "sympy/core/power.py::Pow._eval_is_odd",
+    "sympy/core/power.py::Pow._eval_is_zero",
+    "sympy/core/power.py::Pow.as_base_exp",
+    "sympy/core/power.py::Pow.as_numer_denom",
+    "sympy/core/power.py::Pow.matches",
+    "sympy/core/power.py::Pow._eval_is_algebraic"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "662cfb818e865f580e18b59efbb3540c34232beb",
+    "total_functions_indexed": 21211,
+    "retrieval_time_seconds": 0.09653472900390625
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/mod.py::Mod.eval\", \"score\": 0.43786361813545227}, {\"doc_id\": \"sympy/core/mod.py::Mod._eval_is_integer\", \"score\": 0.40615421533584595}, {\"doc_id\": \"sympy/core/power.py::Pow._eval_is_prime\", \"score\": 0.39230233430862427}, {\"doc_id\": \"sympy/core/power.py::Pow.as_real_imag\", \"score\": 0.38821208477020264}, {\"doc_id\": \"sympy/core/power.py::Pow._eval_is_odd\", \"score\": 0.3852775990962982}, {\"doc_id\": \"sympy/core/power.py::Pow._eval_is_zero\", \"score\": 0.38429906964302063}, {\"doc_id\": \"sympy/core/power.py::Pow.as_base_exp\", \"score\": 0.3758123517036438}, {\"doc_id\": \"sympy/core/power.py::Pow.as_numer_denom\", \"score\": 0.37170833349227905}, {\"doc_id\": \"sympy/core/power.py::Pow.matches\", \"score\": 0.36821356415748596}, {\"doc_id\": \"sympy/core/power.py::Pow._eval_is_algebraic\", \"score\": 0.3673354983329773}]"
+}

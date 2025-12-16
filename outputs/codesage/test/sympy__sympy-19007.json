@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-19007",
+  "query": "Wrong matrix element fetched from BlockMatrix\nGiven this code:\r\n```\r\nfrom sympy import *\r\nn, i = symbols('n, i', integer=True)\r\nA = MatrixSymbol('A', 1, 1)\r\nB = MatrixSymbol('B', n, 1)\r\nC = BlockMatrix([[A], [B]])\r\nprint('C is')\r\npprint(C)\r\nprint('C[i, 0] is')\r\npprint(C[i, 0])\r\n```\r\nI get this output:\r\n```\r\nC is\r\n⎡A⎤\r\n⎢ ⎥\r\n⎣B⎦\r\nC[i, 0] is\r\n(A)[i, 0]\r\n```\r\n`(A)[i, 0]` is the wrong here. `C[i, 0]` should not be simplified as that element may come from either `A` or `B`.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/matrices/expressions/blockmatrix.py"
+    ],
+    "locations": [
+      "sympy/matrices/expressions/blockmatrix.py::BlockMatrix",
+      "sympy/matrices/expressions/blockmatrix.py::BlockMatrix._entry"
+    ]
+  },
+  "predictions": [
+    "sympy/matrices/expressions/blockmatrix.py::BlockMatrix.blockshape",
+    "sympy/matrices/expressions/blockmatrix.py::BlockMatrix.blocks",
+    "sympy/matrices/expressions/blockmatrix.py::BlockMatrix._entry",
+    "sympy/matrices/expressions/blockmatrix.py::BlockMatrix.colblocksizes",
+    "sympy/matrices/expressions/tests/test_blockmatrix.py::test_squareBlockMatrix",
+    "sympy/matrices/expressions/blockmatrix.py::BlockMatrix.is_structurally_symmetric",
+    "sympy/matrices/expressions/blockmatrix.py::BlockMatrix.shape",
+    "sympy/matrices/expressions/blockmatrix.py::BlockMatrix.equals",
+    "sympy/matrices/expressions/blockmatrix.py::BlockMatrix.rowblocksizes",
+    "sympy/matrices/expressions/blockmatrix.py::BlockMatrix.structurally_equal"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "f9e030b57623bebdc2efa7f297c1b5ede08fcebf",
+    "total_functions_indexed": 34294,
+    "retrieval_time_seconds": 0.2389378547668457
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/matrices/expressions/blockmatrix.py::BlockMatrix.blockshape\", \"score\": 0.5009223818778992}, {\"doc_id\": \"sympy/matrices/expressions/blockmatrix.py::BlockMatrix.blocks\", \"score\": 0.4979711174964905}, {\"doc_id\": \"sympy/matrices/expressions/blockmatrix.py::BlockMatrix._entry\", \"score\": 0.48422613739967346}, {\"doc_id\": \"sympy/matrices/expressions/blockmatrix.py::BlockMatrix.colblocksizes\", \"score\": 0.48417025804519653}, {\"doc_id\": \"sympy/matrices/expressions/tests/test_blockmatrix.py::test_squareBlockMatrix\", \"score\": 0.47777897119522095}, {\"doc_id\": \"sympy/matrices/expressions/blockmatrix.py::BlockMatrix.is_structurally_symmetric\", \"score\": 0.47444331645965576}, {\"doc_id\": \"sympy/matrices/expressions/blockmatrix.py::BlockMatrix.shape\", \"score\": 0.47402021288871765}, {\"doc_id\": \"sympy/matrices/expressions/blockmatrix.py::BlockMatrix.equals\", \"score\": 0.4727083444595337}, {\"doc_id\": \"sympy/matrices/expressions/blockmatrix.py::BlockMatrix.rowblocksizes\", \"score\": 0.470159649848938}, {\"doc_id\": \"sympy/matrices/expressions/blockmatrix.py::BlockMatrix.structurally_equal\", \"score\": 0.4681307077407837}]"
+}

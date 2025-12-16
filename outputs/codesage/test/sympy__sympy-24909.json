@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-24909",
+  "query": "Bug with milli prefix\nWhat happened:\r\n```\r\nIn [1]: from sympy.physics.units import milli, W\r\nIn [2]: milli*W == 1\r\nOut[2]: True\r\nIn [3]: W*milli\r\nOut[3]: watt*Prefix(milli, m, -3, 10)\r\n```\r\nWhat I expected to happen: milli*W should evaluate to milli watts / mW\r\n\r\n`milli*W` or more generally `milli` times some unit evaluates to the number 1. I have tried this with Watts and Volts, I'm not sure what other cases this happens. I'm using sympy version 1.11.1-1 on Arch Linux with Python 3.10.9. If you cannot reproduce I would be happy to be of any assitance.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/physics/units/prefixes.py"
+    ],
+    "locations": [
+      "sympy/physics/units/prefixes.py::Prefix",
+      "sympy/physics/units/prefixes.py::Prefix.__mul__",
+      "sympy/physics/units/prefixes.py::Prefix.__truediv__"
+    ]
+  },
+  "predictions": [
+    "sympy/physics/units/prefixes.py::Prefix.base",
+    "sympy/physics/units/prefixes.py::Prefix.abbrev",
+    "sympy/physics/units/prefixes.py::Prefix.name",
+    "sympy/physics/units/prefixes.py::Prefix.__str__",
+    "sympy/physics/units/prefixes.py::Prefix.__repr__",
+    "sympy/physics/units/prefixes.py::Prefix.scale_factor",
+    "sympy/physics/units/tests/test_prefixes.py::test_prefix_operations",
+    "sympy/physics/units/prefixes.py::Prefix.__new__",
+    "sympy/core/tests/test_args.py::test_sympy__physics__units__prefixes__Prefix",
+    "sympy/physics/units/prefixes.py::Prefix.__rtruediv__"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "d3b4158dea271485e3daa11bf82e69b8dab348ce",
+    "total_functions_indexed": 30240,
+    "retrieval_time_seconds": 0.01508021354675293
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/physics/units/prefixes.py::Prefix.base\", \"score\": 0.4010850489139557}, {\"doc_id\": \"sympy/physics/units/prefixes.py::Prefix.abbrev\", \"score\": 0.398537278175354}, {\"doc_id\": \"sympy/physics/units/prefixes.py::Prefix.name\", \"score\": 0.3894613981246948}, {\"doc_id\": \"sympy/physics/units/prefixes.py::Prefix.__str__\", \"score\": 0.38802123069763184}, {\"doc_id\": \"sympy/physics/units/prefixes.py::Prefix.__repr__\", \"score\": 0.3773214519023895}, {\"doc_id\": \"sympy/physics/units/prefixes.py::Prefix.scale_factor\", \"score\": 0.374473512172699}, {\"doc_id\": \"sympy/physics/units/tests/test_prefixes.py::test_prefix_operations\", \"score\": 0.3696935176849365}, {\"doc_id\": \"sympy/physics/units/prefixes.py::Prefix.__new__\", \"score\": 0.3687831163406372}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__physics__units__prefixes__Prefix\", \"score\": 0.36559760570526123}, {\"doc_id\": \"sympy/physics/units/prefixes.py::Prefix.__rtruediv__\", \"score\": 0.34245094656944275}]"
+}

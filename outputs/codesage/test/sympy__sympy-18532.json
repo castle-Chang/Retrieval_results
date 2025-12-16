@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-18532",
+  "query": "expr.atoms() should return objects with no args instead of subclasses of Atom\n`expr.atoms()` with no arguments returns subclasses of `Atom` in `expr`. But the correct definition of a leaf node should be that it has no `.args`. \n\nThis should be easy to fix, but one needs to check that this doesn't affect the performance. \n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/basic.py"
+    ],
+    "locations": [
+      "sympy/core/basic.py::Basic",
+      "sympy/core/basic.py::Basic.atoms"
+    ]
+  },
+  "predictions": [
+    "sympy/core/tests/test_expr.py::test_atoms",
+    "sympy/core/tests/test_args.py::test_sympy__core__basic__Atom",
+    "sympy/core/tests/test_args.py::test_sympy__core__expr__Expr",
+    "sympy/core/tests/test_args.py::test_sympy__core__expr__AtomicExpr",
+    "sympy/core/basic.py::Atom._sorted_args",
+    "sympy/core/tests/test_basic.py::test_atoms",
+    "sympy/matrices/tests/test_matrices.py::test_atoms",
+    "sympy/utilities/tests/test_lambdify.py::test_atoms",
+    "sympy/codegen/tests/test_ast.py::test_none",
+    "sympy/core/tests/test_args.py::test_sympy__core__expr__UnevaluatedExpr"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "74227f900b05009d4eed62e34a166228788a32ca",
+    "total_functions_indexed": 33971,
+    "retrieval_time_seconds": 0.16887927055358887
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/tests/test_expr.py::test_atoms\", \"score\": 0.5466248989105225}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__core__basic__Atom\", \"score\": 0.46331703662872314}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__core__expr__Expr\", \"score\": 0.4309538006782532}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__core__expr__AtomicExpr\", \"score\": 0.4301602244377136}, {\"doc_id\": \"sympy/core/basic.py::Atom._sorted_args\", \"score\": 0.4052271246910095}, {\"doc_id\": \"sympy/core/tests/test_basic.py::test_atoms\", \"score\": 0.4002978801727295}, {\"doc_id\": \"sympy/matrices/tests/test_matrices.py::test_atoms\", \"score\": 0.39417764544487}, {\"doc_id\": \"sympy/utilities/tests/test_lambdify.py::test_atoms\", \"score\": 0.3858267068862915}, {\"doc_id\": \"sympy/codegen/tests/test_ast.py::test_none\", \"score\": 0.3843863606452942}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__core__expr__UnevaluatedExpr\", \"score\": 0.38282644748687744}]"
+}

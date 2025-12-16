@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-15902",
+  "query": "\"default.html\" deprecation warning raised for ManagementForm's\nDescription\n\t\nI have a project where I never render forms with the {{ form }} expression. However, I'm still getting the new template deprecation warning because of the formset management form production, during which the template used is insignificant (only hidden inputs are produced).\nIs it worth special-casing this and avoid producing the warning for the management forms?\n",
+  "ground_truth": {
+    "files": [
+      "django/forms/formsets.py"
+    ],
+    "locations": [
+      "django/forms/formsets.py::ManagementForm"
+    ]
+  },
+  "predictions": [
+    "tests/forms_tests/tests/test_forms.py::DeprecationTests.test_warning",
+    "tests/forms_tests/tests/test_formsets.py::DeprecationTests.test_warning",
+    "tests/forms_tests/tests/test_deprecation_forms.py::DeprecationTests.test_deprecation_warning_html_output",
+    "tests/test_utils/tests.py::AssertFormErrorDeprecationTests.test_assert_form_error_errors_none_warning",
+    "tests/test_utils/tests.py::AssertFormErrorDeprecationTests.test_assert_formset_error_errors_none_warning",
+    "tests/forms_tests/tests/test_deprecation_forms.py::DeprecationTests.test_deprecation_warning_error_list",
+    "tests/test_utils/tests.py::AssertFormErrorDeprecationTests.test_assert_form_error_old_api",
+    "tests/test_utils/tests.py::AssertFormErrorDeprecationTests.test_assert_formset_error_old_api",
+    "tests/test_utils/tests.py::AssertFormErrorDeprecationTests.test_assert_form_error_old_api_assertion_error",
+    "django/test/testcases.py::_AssertFormErrorDeprecationHelper.assertFormError"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "44c24bf02835323d5418512ebe8e76166739ebf8",
+    "total_functions_indexed": 26079,
+    "retrieval_time_seconds": 0.009179353713989258
+  },
+  "raw_output": "[{\"doc_id\": \"tests/forms_tests/tests/test_forms.py::DeprecationTests.test_warning\", \"score\": 0.4285578727722168}, {\"doc_id\": \"tests/forms_tests/tests/test_formsets.py::DeprecationTests.test_warning\", \"score\": 0.4162026643753052}, {\"doc_id\": \"tests/forms_tests/tests/test_deprecation_forms.py::DeprecationTests.test_deprecation_warning_html_output\", \"score\": 0.41238611936569214}, {\"doc_id\": \"tests/test_utils/tests.py::AssertFormErrorDeprecationTests.test_assert_form_error_errors_none_warning\", \"score\": 0.38917285203933716}, {\"doc_id\": \"tests/test_utils/tests.py::AssertFormErrorDeprecationTests.test_assert_formset_error_errors_none_warning\", \"score\": 0.37823718786239624}, {\"doc_id\": \"tests/forms_tests/tests/test_deprecation_forms.py::DeprecationTests.test_deprecation_warning_error_list\", \"score\": 0.358908087015152}, {\"doc_id\": \"tests/test_utils/tests.py::AssertFormErrorDeprecationTests.test_assert_form_error_old_api\", \"score\": 0.35292723774909973}, {\"doc_id\": \"tests/test_utils/tests.py::AssertFormErrorDeprecationTests.test_assert_formset_error_old_api\", \"score\": 0.33324623107910156}, {\"doc_id\": \"tests/test_utils/tests.py::AssertFormErrorDeprecationTests.test_assert_form_error_old_api_assertion_error\", \"score\": 0.3330838084220886}, {\"doc_id\": \"django/test/testcases.py::_AssertFormErrorDeprecationHelper.assertFormError\", \"score\": 0.32947465777397156}]"
+}

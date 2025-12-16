@@ -1,0 +1,31 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-13497",
+  "query": "Comparing string to array in _estimate_mi\nIn ``_estimate_mi`` there is ``discrete_features == 'auto'`` but discrete features can be an array of indices or a boolean mask.\r\nThis will error in future versions of numpy.\r\nAlso this means we never test this function with discrete features != 'auto', it seems?\n",
+  "ground_truth": {
+    "files": [
+      "sklearn/feature_selection/mutual_info_.py"
+    ],
+    "locations": [
+      "sklearn/feature_selection/mutual_info_.py::_estimate_mi"
+    ]
+  },
+  "predictions": [
+    "sklearn/feature_selection/mutual_info_.py::_estimate_mi",
+    "sklearn/feature_selection/mutual_info_.py::mutual_info_classif",
+    "sklearn/feature_selection/mutual_info_.py::mutual_info_regression",
+    "sklearn/feature_selection/mutual_info_.py::_compute_mi",
+    "sklearn/feature_selection/tests/test_mutual_info.py::test_compute_mi_dd",
+    "sklearn/feature_extraction/text.py::_make_int_array",
+    "sklearn/feature_extraction/tests/test_text.py::lazy_analyze",
+    "sklearn/feature_selection/tests/test_mutual_info.py::test_compute_mi_cd_unique_label",
+    "sklearn/feature_selection/from_model.py::_get_feature_importances",
+    "sklearn/feature_selection/tests/test_mutual_info.py::test_mutual_info_classif_mixed"
+  ],
+  "metadata": {
+    "repo": "scikit-learn/scikit-learn",
+    "commit": "26f690961a52946dd2f53bf0fdd4264b2ae5be90",
+    "total_functions_indexed": 6941,
+    "retrieval_time_seconds": 0.004948616027832031
+  },
+  "raw_output": "[{\"doc_id\": \"sklearn/feature_selection/mutual_info_.py::_estimate_mi\", \"score\": 0.3909257650375366}, {\"doc_id\": \"sklearn/feature_selection/mutual_info_.py::mutual_info_classif\", \"score\": 0.33286410570144653}, {\"doc_id\": \"sklearn/feature_selection/mutual_info_.py::mutual_info_regression\", \"score\": 0.32469820976257324}, {\"doc_id\": \"sklearn/feature_selection/mutual_info_.py::_compute_mi\", \"score\": 0.31066757440567017}, {\"doc_id\": \"sklearn/feature_selection/tests/test_mutual_info.py::test_compute_mi_dd\", \"score\": 0.3037337064743042}, {\"doc_id\": \"sklearn/feature_extraction/text.py::_make_int_array\", \"score\": 0.27279189229011536}, {\"doc_id\": \"sklearn/feature_extraction/tests/test_text.py::lazy_analyze\", \"score\": 0.26815858483314514}, {\"doc_id\": \"sklearn/feature_selection/tests/test_mutual_info.py::test_compute_mi_cd_unique_label\", \"score\": 0.2646399736404419}, {\"doc_id\": \"sklearn/feature_selection/from_model.py::_get_feature_importances\", \"score\": 0.2502431571483612}, {\"doc_id\": \"sklearn/feature_selection/tests/test_mutual_info.py::test_mutual_info_classif_mixed\", \"score\": 0.2422638237476349}]"
+}

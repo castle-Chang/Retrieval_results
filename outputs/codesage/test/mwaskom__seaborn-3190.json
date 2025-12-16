@@ -1,0 +1,32 @@
+{
+  "instance_id": "mwaskom__seaborn-3190",
+  "query": "Color mapping fails with boolean data\n```python\r\nso.Plot([\"a\", \"b\"], [1, 2], color=[True, False]).add(so.Bar())\r\n```\r\n```python-traceback\r\n---------------------------------------------------------------------------\r\nTypeError                                 Traceback (most recent call last)\r\n...\r\nFile ~/code/seaborn/seaborn/_core/plot.py:841, in Plot._plot(self, pyplot)\r\n    838 plotter._compute_stats(self, layers)\r\n    840 # Process scale spec for semantic variables and coordinates computed by stat\r\n--> 841 plotter._setup_scales(self, common, layers)\r\n    843 # TODO Remove these after updating other methods\r\n    844 # ---- Maybe have debug= param that attaches these when True?\r\n    845 plotter._data = common\r\n\r\nFile ~/code/seaborn/seaborn/_core/plot.py:1252, in Plotter._setup_scales(self, p, common, layers, variables)\r\n   1250     self._scales[var] = Scale._identity()\r\n   1251 else:\r\n-> 1252     self._scales[var] = scale._setup(var_df[var], prop)\r\n   1254 # Everything below here applies only to coordinate variables\r\n   1255 # We additionally skip it when we're working with a value\r\n   1256 # that is derived from a coordinate we've already processed.\r\n   1257 # e.g., the Stat consumed y and added ymin/ymax. In that case,\r\n   1258 # we've already setup the y scale and ymin/max are in scale space.\r\n   1259 if axis is None or (var != coord and coord in p._variables):\r\n\r\nFile ~/code/seaborn/seaborn/_core/scales.py:351, in ContinuousBase._setup(self, data, prop, axis)\r\n    349 vmin, vmax = axis.convert_units((vmin, vmax))\r\n    350 a = forward(vmin)\r\n--> 351 b = forward(vmax) - forward(vmin)\r\n    353 def normalize(x):\r\n    354     return (x - a) / b\r\n\r\nTypeError: numpy boolean subtract, the `-` operator, is not supported, use the bitwise_xor, the `^` operator, or the logical_xor function instead.\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "seaborn/_core/scales.py"
+    ],
+    "locations": [
+      "seaborn/_core/scales.py::ContinuousBase",
+      "seaborn/_core/scales.py::ContinuousBase._setup"
+    ]
+  },
+  "predictions": [
+    "seaborn/_core/plot.py::Plotter._setup_scales",
+    "seaborn/_core/scales.py::Scale._setup",
+    "seaborn/_core/plot.py::Plotter._compute_stats",
+    "seaborn/_core/plot.py::Plot.scale",
+    "seaborn/_core/plot.py::Plotter._get_scale",
+    "seaborn/_core/properties.py::Property.default_scale",
+    "seaborn/_core/scales.py::Nominal._setup",
+    "seaborn/_core/scales.py::ContinuousBase._setup",
+    "seaborn/_core/properties.py::Color.infer_scale",
+    "seaborn/_core/properties.py::Property.infer_scale"
+  ],
+  "metadata": {
+    "repo": "mwaskom/seaborn",
+    "commit": "4a9e54962a29c12a8b103d75f838e0e795a6974d",
+    "total_functions_indexed": 2308,
+    "retrieval_time_seconds": 0.0905294418334961
+  },
+  "raw_output": "[{\"doc_id\": \"seaborn/_core/plot.py::Plotter._setup_scales\", \"score\": 0.7265108823776245}, {\"doc_id\": \"seaborn/_core/scales.py::Scale._setup\", \"score\": 0.4962899684906006}, {\"doc_id\": \"seaborn/_core/plot.py::Plotter._compute_stats\", \"score\": 0.49148839712142944}, {\"doc_id\": \"seaborn/_core/plot.py::Plot.scale\", \"score\": 0.4497319757938385}, {\"doc_id\": \"seaborn/_core/plot.py::Plotter._get_scale\", \"score\": 0.4469054043292999}, {\"doc_id\": \"seaborn/_core/properties.py::Property.default_scale\", \"score\": 0.4235982894897461}, {\"doc_id\": \"seaborn/_core/scales.py::Nominal._setup\", \"score\": 0.4049893617630005}, {\"doc_id\": \"seaborn/_core/scales.py::ContinuousBase._setup\", \"score\": 0.40323466062545776}, {\"doc_id\": \"seaborn/_core/properties.py::Color.infer_scale\", \"score\": 0.3986721634864807}, {\"doc_id\": \"seaborn/_core/properties.py::Property.infer_scale\", \"score\": 0.3966556787490845}]"
+}

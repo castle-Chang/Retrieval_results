@@ -1,0 +1,32 @@
+{
+  "instance_id": "matplotlib__matplotlib-24334",
+  "query": "[ENH]: Axes.set_xticks/Axis.set_ticks only validates kwargs if ticklabels are set, but they should\n### Problem\n\nPer the doc of `Axis.set_ticks`:\r\n```\r\n        **kwargs\r\n            `.Text` properties for the labels. These take effect only if you\r\n            pass *labels*. In other cases, please use `~.Axes.tick_params`.\r\n```\r\nThis means that in e.g. `ax.set_xticks([0, 1], xticklabels=[\"a\", \"b\"])`, the incorrect `xticklabels` silently do nothing; they are not even validated (because `labels` has not been passed).\n\n### Proposed solution\n\nWe should at least check that `kwargs` are valid Text properties in all cases; we could even consider making any kwargs an error if `labels` is not set.\n",
+  "ground_truth": {
+    "files": [
+      "lib/matplotlib/axis.py"
+    ],
+    "locations": [
+      "lib/matplotlib/axis.py::Axis",
+      "lib/matplotlib/axis.py::Axis._get_tick_boxes_siblings"
+    ]
+  },
+  "predictions": [
+    "lib/matplotlib/tests/test_axes.py::test_set_noniterable_ticklabels",
+    "lib/matplotlib/tests/test_axes.py::test_set_ticks_with_labels",
+    "lib/matplotlib/axis.py::Axis.set_ticklabels",
+    "lib/matplotlib/tests/test_axes.py::test_mismatched_ticklabels",
+    "lib/matplotlib/pyplot.py::xticks",
+    "lib/mpl_toolkits/axisartist/axis_artist.py::TickLabels.set_axis_direction",
+    "lib/matplotlib/colorbar.py::Colorbar.set_ticklabels",
+    "lib/matplotlib/axis.py::Axis.set_tick_params",
+    "lib/matplotlib/pyplot.py::yticks",
+    "lib/matplotlib/tests/test_axes.py::test_set_get_ticklabels"
+  ],
+  "metadata": {
+    "repo": "matplotlib/matplotlib",
+    "commit": "332937997d03e0c173be6d9fc1841e9186e857df",
+    "total_functions_indexed": 9058,
+    "retrieval_time_seconds": 0.09513354301452637
+  },
+  "raw_output": "[{\"doc_id\": \"lib/matplotlib/tests/test_axes.py::test_set_noniterable_ticklabels\", \"score\": 0.551162600517273}, {\"doc_id\": \"lib/matplotlib/tests/test_axes.py::test_set_ticks_with_labels\", \"score\": 0.4856574535369873}, {\"doc_id\": \"lib/matplotlib/axis.py::Axis.set_ticklabels\", \"score\": 0.4827616214752197}, {\"doc_id\": \"lib/matplotlib/tests/test_axes.py::test_mismatched_ticklabels\", \"score\": 0.4792289733886719}, {\"doc_id\": \"lib/matplotlib/pyplot.py::xticks\", \"score\": 0.47720444202423096}, {\"doc_id\": \"lib/mpl_toolkits/axisartist/axis_artist.py::TickLabels.set_axis_direction\", \"score\": 0.45913293957710266}, {\"doc_id\": \"lib/matplotlib/colorbar.py::Colorbar.set_ticklabels\", \"score\": 0.45737165212631226}, {\"doc_id\": \"lib/matplotlib/axis.py::Axis.set_tick_params\", \"score\": 0.4503459930419922}, {\"doc_id\": \"lib/matplotlib/pyplot.py::yticks\", \"score\": 0.4464995861053467}, {\"doc_id\": \"lib/matplotlib/tests/test_axes.py::test_set_get_ticklabels\", \"score\": 0.4430605173110962}]"
+}

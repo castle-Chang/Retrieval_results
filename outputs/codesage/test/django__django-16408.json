@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-16408",
+  "query": "Multi-level FilteredRelation with select_related() may set wrong related object.\nDescription\n\t\ntest case:\n# add to known_related_objects.tests.ExistingRelatedInstancesTests\n\tdef test_wrong_select_related(self):\n\t\twith self.assertNumQueries(3):\n\t\t\tp = list(PoolStyle.objects.annotate(\n\t\t\t\ttournament_pool=FilteredRelation('pool__tournament__pool'),\n\t\t\t\t).select_related('tournament_pool'))\n\t\t\tself.assertEqual(p[0].pool.tournament, p[0].tournament_pool.tournament)\nresult:\n======================================================================\nFAIL: test_wrong_select_related (known_related_objects.tests.ExistingRelatedInstancesTests.test_wrong_select_related)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n File \"D:\\Work\\django\\tests\\known_related_objects\\tests.py\", line 171, in test_wrong_select_related\n\tself.assertEqual(p[0].pool.tournament, p[0].tournament_pool.tournament)\nAssertionError: <Tournament: Tournament object (1)> != <PoolStyle: PoolStyle object (1)>\n----------------------------------------------------------------------\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/sql/compiler.py"
+    ],
+    "locations": [
+      "django/db/models/sql/compiler.py::SQLCompiler",
+      "django/db/models/sql/compiler.py::SQLCompiler.get_related_selections"
+    ]
+  },
+  "predictions": [
+    "tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_reverse_fk_select_related_multiple",
+    "tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_one_to_one_select_related",
+    "tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_one_to_one_multi_select_related",
+    "tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_reverse_one_to_one_select_related",
+    "tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_reverse_one_to_one_multi_select_related",
+    "tests/select_related/tests.py::SelectRelatedValidationTests.test_non_relational_field",
+    "tests/select_related/tests.py::SelectRelatedTests.test_none_clears_list",
+    "tests/select_related/tests.py::SelectRelatedValidationTests.test_many_to_many_field",
+    "tests/select_related/tests.py::SelectRelatedValidationTests.test_non_relational_field_nested",
+    "tests/select_related/tests.py::SelectRelatedValidationTests.test_invalid_field"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "ef85b6bf0bc5a8b194f0724cf5bbedbcee402b96",
+    "total_functions_indexed": 26331,
+    "retrieval_time_seconds": 0.008563041687011719
+  },
+  "raw_output": "[{\"doc_id\": \"tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_reverse_fk_select_related_multiple\", \"score\": 0.7566285133361816}, {\"doc_id\": \"tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_one_to_one_select_related\", \"score\": 0.743828296661377}, {\"doc_id\": \"tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_one_to_one_multi_select_related\", \"score\": 0.7363309860229492}, {\"doc_id\": \"tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_reverse_one_to_one_select_related\", \"score\": 0.7222639322280884}, {\"doc_id\": \"tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_reverse_one_to_one_multi_select_related\", \"score\": 0.6919929385185242}, {\"doc_id\": \"tests/select_related/tests.py::SelectRelatedValidationTests.test_non_relational_field\", \"score\": 0.6233634352684021}, {\"doc_id\": \"tests/select_related/tests.py::SelectRelatedTests.test_none_clears_list\", \"score\": 0.6164994835853577}, {\"doc_id\": \"tests/select_related/tests.py::SelectRelatedValidationTests.test_many_to_many_field\", \"score\": 0.6133415699005127}, {\"doc_id\": \"tests/select_related/tests.py::SelectRelatedValidationTests.test_non_relational_field_nested\", \"score\": 0.6125075817108154}, {\"doc_id\": \"tests/select_related/tests.py::SelectRelatedValidationTests.test_invalid_field\", \"score\": 0.6076347827911377}]"
+}

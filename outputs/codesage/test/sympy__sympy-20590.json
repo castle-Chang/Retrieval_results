@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-20590",
+  "query": "Symbol instances have __dict__ since 1.7?\nIn version 1.6.2 Symbol instances had no `__dict__` attribute\r\n```python\r\n>>> sympy.Symbol('s').__dict__\r\n---------------------------------------------------------------------------\r\nAttributeError                            Traceback (most recent call last)\r\n<ipython-input-3-e2060d5eec73> in <module>\r\n----> 1 sympy.Symbol('s').__dict__\r\n\r\nAttributeError: 'Symbol' object has no attribute '__dict__'\r\n>>> sympy.Symbol('s').__slots__\r\n('name',)\r\n```\r\n\r\nThis changes in 1.7 where `sympy.Symbol('s').__dict__` now exists (and returns an empty dict)\r\nI may misinterpret this, but given the purpose of `__slots__`, I assume this is a bug, introduced because some parent class accidentally stopped defining `__slots__`.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/_print_helpers.py"
+    ],
+    "locations": [
+      "sympy/core/_print_helpers.py::Printable",
+      "sympy/core/_print_helpers.py::Printable.__str__"
+    ]
+  },
+  "predictions": [
+    "sympy/core/symbol.py::Symbol.free_symbols",
+    "sympy/core/symbol.py::Symbol.assumptions0",
+    "sympy/core/containers.py::Dict.__getitem__",
+    "sympy/core/containers.py::Dict.get",
+    "sympy/core/basic.py::Basic.match",
+    "sympy/core/containers.py::Dict.__iter__",
+    "sympy/core/symbol.py::Wild.matches",
+    "sympy/core/containers.py::Dict.__setitem__",
+    "sympy/core/symbol.py::Symbol.__getstate__",
+    "sympy/core/mul.py::Mul.as_coefficients_dict"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "cffd4e0f86fefd4802349a9f9b19ed70934ea354",
+    "total_functions_indexed": 35419,
+    "retrieval_time_seconds": 0.1804943084716797
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/symbol.py::Symbol.free_symbols\", \"score\": 0.41123849153518677}, {\"doc_id\": \"sympy/core/symbol.py::Symbol.assumptions0\", \"score\": 0.3915000855922699}, {\"doc_id\": \"sympy/core/containers.py::Dict.__getitem__\", \"score\": 0.38956427574157715}, {\"doc_id\": \"sympy/core/containers.py::Dict.get\", \"score\": 0.3840200901031494}, {\"doc_id\": \"sympy/core/basic.py::Basic.match\", \"score\": 0.3795369267463684}, {\"doc_id\": \"sympy/core/containers.py::Dict.__iter__\", \"score\": 0.37643614411354065}, {\"doc_id\": \"sympy/core/symbol.py::Wild.matches\", \"score\": 0.37581920623779297}, {\"doc_id\": \"sympy/core/containers.py::Dict.__setitem__\", \"score\": 0.3694217801094055}, {\"doc_id\": \"sympy/core/symbol.py::Symbol.__getstate__\", \"score\": 0.35786622762680054}, {\"doc_id\": \"sympy/core/mul.py::Mul.as_coefficients_dict\", \"score\": 0.3559122085571289}]"
+}

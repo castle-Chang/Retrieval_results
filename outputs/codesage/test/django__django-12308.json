@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-12308",
+  "query": "JSONField are not properly displayed in admin when they are readonly.\nDescription\n\t\nJSONField values are displayed as dict when readonly in the admin.\nFor example, {\"foo\": \"bar\"} would be displayed as {'foo': 'bar'}, which is not valid JSON.\nI believe the fix would be to add a special case in django.contrib.admin.utils.display_for_field to call the prepare_value of the JSONField (not calling json.dumps directly to take care of the InvalidJSONInput case).\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admin/utils.py"
+    ],
+    "locations": [
+      "django/contrib/admin/utils.py::display_for_field"
+    ]
+  },
+  "predictions": [
+    "tests/forms_tests/field_tests/test_jsonfield.py::JSONFieldTest.test_prepare_value",
+    "django/forms/fields.py::JSONField.prepare_value",
+    "tests/forms_tests/field_tests/test_jsonfield.py::JSONFieldTest.test_custom_encoder_decoder",
+    "tests/forms_tests/field_tests/test_jsonfield.py::JSONFieldTest.test_formfield_disabled",
+    "django/forms/fields.py::JSONField.to_python",
+    "django/forms/fields.py::JSONField.bound_data",
+    "tests/forms_tests/field_tests/test_jsonfield.py::JSONFieldTest.test_redisplay_wrong_input",
+    "django/db/models/fields/json.py::JSONField.get_prep_value",
+    "tests/forms_tests/field_tests/test_jsonfield.py::JSONFieldTest.test_converted_value",
+    "tests/forms_tests/field_tests/test_jsonfield.py::JSONFieldTest.test_valid"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "2e0f04507b17362239ba49830d26fec504d46978",
+    "total_functions_indexed": 23387,
+    "retrieval_time_seconds": 0.0067822933197021484
+  },
+  "raw_output": "[{\"doc_id\": \"tests/forms_tests/field_tests/test_jsonfield.py::JSONFieldTest.test_prepare_value\", \"score\": 0.6026698350906372}, {\"doc_id\": \"django/forms/fields.py::JSONField.prepare_value\", \"score\": 0.5365514755249023}, {\"doc_id\": \"tests/forms_tests/field_tests/test_jsonfield.py::JSONFieldTest.test_custom_encoder_decoder\", \"score\": 0.5218003392219543}, {\"doc_id\": \"tests/forms_tests/field_tests/test_jsonfield.py::JSONFieldTest.test_formfield_disabled\", \"score\": 0.5163540840148926}, {\"doc_id\": \"django/forms/fields.py::JSONField.to_python\", \"score\": 0.5037478804588318}, {\"doc_id\": \"django/forms/fields.py::JSONField.bound_data\", \"score\": 0.5026118755340576}, {\"doc_id\": \"tests/forms_tests/field_tests/test_jsonfield.py::JSONFieldTest.test_redisplay_wrong_input\", \"score\": 0.4915670156478882}, {\"doc_id\": \"django/db/models/fields/json.py::JSONField.get_prep_value\", \"score\": 0.4680394232273102}, {\"doc_id\": \"tests/forms_tests/field_tests/test_jsonfield.py::JSONFieldTest.test_converted_value\", \"score\": 0.4601700007915497}, {\"doc_id\": \"tests/forms_tests/field_tests/test_jsonfield.py::JSONFieldTest.test_valid\", \"score\": 0.4567556381225586}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "psf__requests-1963",
+  "query": "`Session.resolve_redirects` copies the original request for all subsequent requests, can cause incorrect method selection\nConsider the following redirection chain:\n\n```\nPOST /do_something HTTP/1.1\nHost: server.example.com\n...\n\nHTTP/1.1 303 See Other\nLocation: /new_thing_1513\n\nGET /new_thing_1513\nHost: server.example.com\n...\n\nHTTP/1.1 307 Temporary Redirect\nLocation: //failover.example.com/new_thing_1513\n```\n\nThe intermediate 303 See Other has caused the POST to be converted to\na GET.  The subsequent 307 should preserve the GET.  However, because\n`Session.resolve_redirects` starts each iteration by copying the _original_\nrequest object, Requests will issue a POST!\n\n",
+  "ground_truth": {
+    "files": [
+      "requests/sessions.py"
+    ],
+    "locations": [
+      "requests/sessions.py::SessionRedirectMixin",
+      "requests/sessions.py::SessionRedirectMixin.resolve_redirects"
+    ]
+  },
+  "predictions": [
+    "requests/sessions.py::SessionRedirectMixin.resolve_redirects",
+    "requests/sessions.py::Session.send",
+    "requests/models.py::Response.is_redirect",
+    "test_requests.py::RequestsTestCase.test_request_cookie_overrides_session_cookie",
+    "requests/cookies.py::MockRequest.add_unredirected_header",
+    "requests/sessions.py::Session.prepare_request",
+    "test_requests.py::RequestsTestCase.test_uppercase_scheme_redirect",
+    "test_requests.py::RequestsTestCase.test_session_hooks_are_used_with_no_request_hooks",
+    "test_requests.py::RequestsTestCase.test_requests_in_history_are_not_overridden",
+    "requests/sessions.py::Session.options"
+  ],
+  "metadata": {
+    "repo": "psf/requests",
+    "commit": "110048f9837f8441ea536804115e80b69f400277",
+    "total_functions_indexed": 587,
+    "retrieval_time_seconds": 0.09025073051452637
+  },
+  "raw_output": "[{\"doc_id\": \"requests/sessions.py::SessionRedirectMixin.resolve_redirects\", \"score\": 0.45663702487945557}, {\"doc_id\": \"requests/sessions.py::Session.send\", \"score\": 0.3734215795993805}, {\"doc_id\": \"requests/models.py::Response.is_redirect\", \"score\": 0.32242852449417114}, {\"doc_id\": \"test_requests.py::RequestsTestCase.test_request_cookie_overrides_session_cookie\", \"score\": 0.3218175172805786}, {\"doc_id\": \"requests/cookies.py::MockRequest.add_unredirected_header\", \"score\": 0.3148224949836731}, {\"doc_id\": \"requests/sessions.py::Session.prepare_request\", \"score\": 0.31195831298828125}, {\"doc_id\": \"test_requests.py::RequestsTestCase.test_uppercase_scheme_redirect\", \"score\": 0.29949823021888733}, {\"doc_id\": \"test_requests.py::RequestsTestCase.test_session_hooks_are_used_with_no_request_hooks\", \"score\": 0.2966642677783966}, {\"doc_id\": \"test_requests.py::RequestsTestCase.test_requests_in_history_are_not_overridden\", \"score\": 0.2944015860557556}, {\"doc_id\": \"requests/sessions.py::Session.options\", \"score\": 0.2942858040332794}]"
+}

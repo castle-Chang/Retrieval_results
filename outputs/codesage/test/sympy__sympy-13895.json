@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-13895",
+  "query": "(-x/4 - S(1)/12)**x - 1 simplifies to an inequivalent expression\n    >>> from sympy import *\r\n    >>> x = Symbol('x')\r\n    >>> e = (-x/4 - S(1)/12)**x - 1\r\n    >>> e\r\n    (-x/4 - 1/12)**x - 1\r\n    >>> f = simplify(e)\r\n    >>> f\r\n    12**(-x)*(-12**x + (-3*x - 1)**x)\r\n    >>> a = S(9)/5\r\n    >>> simplify(e.subs(x,a))\r\n    -1 - 32*15**(1/5)*2**(2/5)/225\r\n    >>> simplify(f.subs(x,a))\r\n    -1 - 32*(-1)**(4/5)*60**(1/5)/225\r\n    >>> N(e.subs(x,a))\r\n    -1.32255049319339\r\n    >>> N(f.subs(x,a))\r\n    -0.739051169462523 - 0.189590423018741*I\r\n\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/numbers.py"
+    ],
+    "locations": [
+      "sympy/core/numbers.py::Integer",
+      "sympy/core/numbers.py::Integer._eval_power",
+      "sympy/core/numbers.py::Integer._eval_is_prime"
+    ]
+  },
+  "predictions": [
+    "sympy/core/function.py::Subs.expr",
+    "sympy/core/function.py::Subs._eval_as_leading_term",
+    "sympy/core/expr.py::Expr._eval_interval",
+    "sympy/core/numbers.py::Infinity._eval_subs",
+    "sympy/core/exprtools.py::_monotonic_sign",
+    "sympy/core/function.py::Subs._eval_derivative",
+    "sympy/core/tests/test_subs.py::test_issue_6419_6421",
+    "sympy/core/power.py::Pow._eval_subs",
+    "examples/beginner/substitution.py::main",
+    "sympy/core/tests/test_subs.py::test_powers"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "4da0b64558e9551a11a99bccc63557ba34f50c58",
+    "total_functions_indexed": 22459,
+    "retrieval_time_seconds": 0.18391132354736328
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/function.py::Subs.expr\", \"score\": 0.46032601594924927}, {\"doc_id\": \"sympy/core/function.py::Subs._eval_as_leading_term\", \"score\": 0.45969265699386597}, {\"doc_id\": \"sympy/core/expr.py::Expr._eval_interval\", \"score\": 0.4446249306201935}, {\"doc_id\": \"sympy/core/numbers.py::Infinity._eval_subs\", \"score\": 0.4399406909942627}, {\"doc_id\": \"sympy/core/exprtools.py::_monotonic_sign\", \"score\": 0.43757951259613037}, {\"doc_id\": \"sympy/core/function.py::Subs._eval_derivative\", \"score\": 0.426801860332489}, {\"doc_id\": \"sympy/core/tests/test_subs.py::test_issue_6419_6421\", \"score\": 0.42440900206565857}, {\"doc_id\": \"sympy/core/power.py::Pow._eval_subs\", \"score\": 0.42079800367355347}, {\"doc_id\": \"examples/beginner/substitution.py::main\", \"score\": 0.41996490955352783}, {\"doc_id\": \"sympy/core/tests/test_subs.py::test_powers\", \"score\": 0.41433390974998474}]"
+}

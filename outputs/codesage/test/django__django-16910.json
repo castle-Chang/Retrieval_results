@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-16910",
+  "query": "QuerySet.only() doesn't work with select_related() on a reverse OneToOneField relation.\nDescription\n\t\nOn Django 4.2 calling only() with select_related() on a query using the reverse lookup for a OneToOne relation does not generate the correct query.\nAll the fields from the related model are still included in the generated SQL.\nSample models:\nclass Main(models.Model):\n\tmain_field_1 = models.CharField(blank=True, max_length=45)\n\tmain_field_2 = models.CharField(blank=True, max_length=45)\n\tmain_field_3 = models.CharField(blank=True, max_length=45)\nclass Secondary(models.Model):\n\tmain = models.OneToOneField(Main, primary_key=True, related_name='secondary', on_delete=models.CASCADE)\n\tsecondary_field_1 = models.CharField(blank=True, max_length=45)\n\tsecondary_field_2 = models.CharField(blank=True, max_length=45)\n\tsecondary_field_3 = models.CharField(blank=True, max_length=45)\nSample code:\nMain.objects.select_related('secondary').only('main_field_1', 'secondary__secondary_field_1')\nGenerated query on Django 4.2.1:\nSELECT \"bugtest_main\".\"id\", \"bugtest_main\".\"main_field_1\", \"bugtest_secondary\".\"main_id\", \"bugtest_secondary\".\"secondary_field_1\", \"bugtest_secondary\".\"secondary_field_2\", \"bugtest_secondary\".\"secondary_field_3\" FROM \"bugtest_main\" LEFT OUTER JOIN \"bugtest_secondary\" ON (\"bugtest_main\".\"id\" = \"bugtest_secondary\".\"main_id\")\nGenerated query on Django 4.1.9:\nSELECT \"bugtest_main\".\"id\", \"bugtest_main\".\"main_field_1\", \"bugtest_secondary\".\"main_id\", \"bugtest_secondary\".\"secondary_field_1\" FROM \"bugtest_main\" LEFT OUTER JOIN \"bugtest_secondary\" ON (\"bugtest_main\".\"id\" = \"bugtest_secondary\".\"main_id\")\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/sql/query.py"
+    ],
+    "locations": [
+      "django/db/models/sql/query.py::Query",
+      "django/db/models/sql/query.py::Query._get_only_select_mask"
+    ]
+  },
+  "predictions": [
+    "tests/select_related/tests.py::SelectRelatedTests.test_certain_fields",
+    "tests/select_related/tests.py::SelectRelatedTests.test_more_certain_fields",
+    "tests/select_related/tests.py::SelectRelatedTests.test_none_clears_list",
+    "tests/select_related_onetoone/tests.py::ReverseSelectRelatedTestCase.test_inheritance_deferred2",
+    "tests/select_related/tests.py::SelectRelatedTests.test_list_with_depth",
+    "tests/select_related_onetoone/tests.py::ReverseSelectRelatedTestCase.test_follow_inheritance",
+    "tests/select_related/tests.py::SelectRelatedTests.test_field_traversal",
+    "tests/select_related/tests.py::SelectRelatedTests.test_list_with_select_related",
+    "tests/select_related/tests.py::SelectRelatedTests.test_chaining",
+    "tests/select_related_onetoone/tests.py::ReverseSelectRelatedTestCase.test_multiple_subclass"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "4142739af1cda53581af4169dbe16d6cd5e26948",
+    "total_functions_indexed": 26678,
+    "retrieval_time_seconds": 0.020436763763427734
+  },
+  "raw_output": "[{\"doc_id\": \"tests/select_related/tests.py::SelectRelatedTests.test_certain_fields\", \"score\": 0.6439169645309448}, {\"doc_id\": \"tests/select_related/tests.py::SelectRelatedTests.test_more_certain_fields\", \"score\": 0.6316255331039429}, {\"doc_id\": \"tests/select_related/tests.py::SelectRelatedTests.test_none_clears_list\", \"score\": 0.6283974051475525}, {\"doc_id\": \"tests/select_related_onetoone/tests.py::ReverseSelectRelatedTestCase.test_inheritance_deferred2\", \"score\": 0.6254162192344666}, {\"doc_id\": \"tests/select_related/tests.py::SelectRelatedTests.test_list_with_depth\", \"score\": 0.5888198614120483}, {\"doc_id\": \"tests/select_related_onetoone/tests.py::ReverseSelectRelatedTestCase.test_follow_inheritance\", \"score\": 0.5888185501098633}, {\"doc_id\": \"tests/select_related/tests.py::SelectRelatedTests.test_field_traversal\", \"score\": 0.5873069763183594}, {\"doc_id\": \"tests/select_related/tests.py::SelectRelatedTests.test_list_with_select_related\", \"score\": 0.5869665145874023}, {\"doc_id\": \"tests/select_related/tests.py::SelectRelatedTests.test_chaining\", \"score\": 0.5848152041435242}, {\"doc_id\": \"tests/select_related_onetoone/tests.py::ReverseSelectRelatedTestCase.test_multiple_subclass\", \"score\": 0.5833536386489868}]"
+}

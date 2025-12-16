@@ -1,0 +1,36 @@
+{
+  "instance_id": "sphinx-doc__sphinx-8282",
+  "query": "autodoc_typehints does not effect to overloaded callables\n**Describe the bug**\r\nautodoc_typehints does not effect to overloaded callables.\r\n\r\n**To Reproduce**\r\n\r\n```\r\n# in conf.py\r\nautodoc_typehints = 'none'\r\n```\r\n```\r\n# in index.rst\r\n.. automodule:: example\r\n   :members:\r\n   :undoc-members:\r\n```\r\n```\r\n# in example.py\r\nfrom typing import overload\r\n\r\n\r\n@overload\r\ndef foo(x: int) -> int:\r\n    ...\r\n\r\n\r\n@overload\r\ndef foo(x: float) -> float:\r\n    ...\r\n\r\n\r\ndef foo(x):\r\n    return x\r\n```\r\n\r\n**Expected behavior**\r\nAll typehints for overloaded callables are obeyed `autodoc_typehints` setting.\r\n\r\n**Your project**\r\nNo\r\n\r\n**Screenshots**\r\nNo\r\n\r\n**Environment info**\r\n- OS: Mac\r\n- Python version: 3.8.2\r\n- Sphinx version: 3.1.0dev\r\n- Sphinx extensions: sphinx.ext.autodoc\r\n- Extra tools: No\r\n\r\n**Additional context**\r\nNo\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/ext/autodoc/__init__.py"
+    ],
+    "locations": [
+      "sphinx/ext/autodoc/__init__.py::FunctionDocumenter",
+      "sphinx/ext/autodoc/__init__.py::FunctionDocumenter.format_signature",
+      "sphinx/ext/autodoc/__init__.py::ClassDocumenter",
+      "sphinx/ext/autodoc/__init__.py::ClassDocumenter.format_signature",
+      "sphinx/ext/autodoc/__init__.py::MethodDocumenter",
+      "sphinx/ext/autodoc/__init__.py::MethodDocumenter.format_signature"
+    ]
+  },
+  "predictions": [
+    "tests/test_ext_autodoc_configs.py::test_autodoc_typehints_none",
+    "tests/test_ext_autodoc_configs.py::test_autodoc_typehints_signature",
+    "sphinx/ext/autodoc/typehints.py::setup",
+    "tests/test_ext_autodoc_configs.py::test_autodoc_typehints_description",
+    "tests/test_ext_autodoc.py::test_autodoc_TYPE_CHECKING",
+    "tests/test_ext_autodoc_configs.py::test_autodoc_type_aliases",
+    "sphinx/ext/autodoc/typehints.py::merge_typehints",
+    "tests/roots/test-ext-autodoc/target/typehints.py::Math.nothing",
+    "tests/roots/test-ext-autodoc/target/typehints.py::_MetaclassWithCall.__call__",
+    "tests/test_ext_autodoc_configs.py::test_autodoc_default_options"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "2c2335bbb8af99fa132e1573bbf45dc91584d5a2",
+    "total_functions_indexed": 5489,
+    "retrieval_time_seconds": 0.011170387268066406
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_ext_autodoc_configs.py::test_autodoc_typehints_none\", \"score\": 0.6567568778991699}, {\"doc_id\": \"tests/test_ext_autodoc_configs.py::test_autodoc_typehints_signature\", \"score\": 0.656596302986145}, {\"doc_id\": \"sphinx/ext/autodoc/typehints.py::setup\", \"score\": 0.6245821714401245}, {\"doc_id\": \"tests/test_ext_autodoc_configs.py::test_autodoc_typehints_description\", \"score\": 0.607369065284729}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_TYPE_CHECKING\", \"score\": 0.5536869764328003}, {\"doc_id\": \"tests/test_ext_autodoc_configs.py::test_autodoc_type_aliases\", \"score\": 0.5525065064430237}, {\"doc_id\": \"sphinx/ext/autodoc/typehints.py::merge_typehints\", \"score\": 0.5324515104293823}, {\"doc_id\": \"tests/roots/test-ext-autodoc/target/typehints.py::Math.nothing\", \"score\": 0.5202817320823669}, {\"doc_id\": \"tests/roots/test-ext-autodoc/target/typehints.py::_MetaclassWithCall.__call__\", \"score\": 0.516067624092102}, {\"doc_id\": \"tests/test_ext_autodoc_configs.py::test_autodoc_default_options\", \"score\": 0.5071884989738464}]"
+}

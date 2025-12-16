@@ -1,0 +1,31 @@
+{
+  "instance_id": "pydata__xarray-4248",
+  "query": "Feature request: show units in dataset overview\nHere's a hypothetical dataset:\r\n\r\n```\r\n<xarray.Dataset>\r\nDimensions:  (time: 3, x: 988, y: 822)\r\nCoordinates:\r\n  * x         (x) float64 ...\r\n  * y         (y) float64 ...\r\n  * time      (time) datetime64[ns] ...\r\nData variables:\r\n    rainfall  (time, y, x) float32 ...\r\n    max_temp  (time, y, x) float32 ...\r\n```\r\n\r\nIt would be really nice if the units of the coordinates and of the data variables were shown in the `Dataset` repr, for example as:\r\n\r\n```\r\n<xarray.Dataset>\r\nDimensions:  (time: 3, x: 988, y: 822)\r\nCoordinates:\r\n  * x, in metres         (x)            float64 ...\r\n  * y, in metres         (y)            float64 ...\r\n  * time                 (time)         datetime64[ns] ...\r\nData variables:\r\n    rainfall, in mm      (time, y, x)   float32 ...\r\n    max_temp, in deg C   (time, y, x)   float32 ...\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "xarray/core/formatting.py"
+    ],
+    "locations": [
+      "xarray/core/formatting.py::inline_variable_array_repr"
+    ]
+  },
+  "predictions": [
+    "xarray/tests/test_dataset.py::TestDataset.test_reduce",
+    "xarray/tests/test_units.py::TestDataset.test_resample",
+    "xarray/tests/test_units.py::TestDataset.test_repr",
+    "xarray/tests/test_units.py::TestDataArray.test_resample",
+    "xarray/tests/test_dataset.py::TestDataset.test_repr",
+    "xarray/tests/test_units.py::TestDataset.test_init",
+    "xarray/core/formatting.py::dataset_repr",
+    "xarray/core/dataset.py::DataVariables.__getitem__",
+    "xarray/core/dataset.py::DataVariables.__len__",
+    "xarray/tests/test_units.py::TestDataset.test_computation_objects"
+  ],
+  "metadata": {
+    "repo": "pydata/xarray",
+    "commit": "98dc1f4ea18738492e074e9e51ddfed5cd30ab94",
+    "total_functions_indexed": 4245,
+    "retrieval_time_seconds": 0.2695341110229492
+  },
+  "raw_output": "[{\"doc_id\": \"xarray/tests/test_dataset.py::TestDataset.test_reduce\", \"score\": 0.35548654198646545}, {\"doc_id\": \"xarray/tests/test_units.py::TestDataset.test_resample\", \"score\": 0.34760552644729614}, {\"doc_id\": \"xarray/tests/test_units.py::TestDataset.test_repr\", \"score\": 0.30488336086273193}, {\"doc_id\": \"xarray/tests/test_units.py::TestDataArray.test_resample\", \"score\": 0.3029666543006897}, {\"doc_id\": \"xarray/tests/test_dataset.py::TestDataset.test_repr\", \"score\": 0.3005947172641754}, {\"doc_id\": \"xarray/tests/test_units.py::TestDataset.test_init\", \"score\": 0.29481348395347595}, {\"doc_id\": \"xarray/core/formatting.py::dataset_repr\", \"score\": 0.2914617359638214}, {\"doc_id\": \"xarray/core/dataset.py::DataVariables.__getitem__\", \"score\": 0.29121676087379456}, {\"doc_id\": \"xarray/core/dataset.py::DataVariables.__len__\", \"score\": 0.2902805507183075}, {\"doc_id\": \"xarray/tests/test_units.py::TestDataset.test_computation_objects\", \"score\": 0.2873055338859558}]"
+}

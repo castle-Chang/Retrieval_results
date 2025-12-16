@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-20049",
+  "query": "Point.vel() should calculate the velocity if possible\nIf you specify the orientation of two reference frames and then ask for the angular velocity between the two reference frames the angular velocity will be calculated. But if you try to do the same thing with velocities, this doesn't work. See below:\r\n\r\n```\r\nIn [1]: import sympy as sm                                                                               \r\n\r\nIn [2]: import sympy.physics.mechanics as me                                                             \r\n\r\nIn [3]: A = me.ReferenceFrame('A')                                                                       \r\n\r\nIn [5]: q = me.dynamicsymbols('q')                                                                       \r\n\r\nIn [6]: B = A.orientnew('B', 'Axis', (q, A.x))                                                           \r\n\r\nIn [7]: B.ang_vel_in(A)                                                                                  \r\nOut[7]: q'*A.x\r\n\r\nIn [9]: P = me.Point('P')                                                                                \r\n\r\nIn [10]: Q = me.Point('Q')                                                                               \r\n\r\nIn [11]: r = q*A.x + 2*q*A.y                                                                             \r\n\r\nIn [12]: Q.set_pos(P, r)                                                                                 \r\n\r\nIn [13]: Q.vel(A)                                                                                        \r\n---------------------------------------------------------------------------\r\nValueError                                Traceback (most recent call last)\r\n<ipython-input-13-0fc8041904cc> in <module>\r\n----> 1 Q.vel(A)\r\n\r\n~/miniconda3/lib/python3.6/site-packages/sympy/physics/vector/point.py in vel(self, frame)\r\n    453         if not (frame in self._vel_dict):\r\n    454             raise ValueError('Velocity of point ' + self.name + ' has not been'\r\n--> 455                              ' defined in ReferenceFrame ' + frame.name)\r\n    456         return self._vel_dict[frame]\r\n    457 \r\n\r\nValueError: Velocity of point Q has not been defined in ReferenceFrame A\r\n```\r\n\r\nThe expected result of the `Q.vel(A)` should be:\r\n\r\n```\r\nIn [14]: r.dt(A)                                                                                         \r\nOut[14]: q'*A.x + 2*q'*A.y\r\n```\r\n\r\nI think that this is possible. Maybe there is a reason it isn't implemented. But we should try to implement it because it is confusing why this works for orientations and not positions.\r\n\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/physics/vector/point.py"
+    ],
+    "locations": [
+      "sympy/physics/vector/point.py::Point",
+      "sympy/physics/vector/point.py::Point.v2pt_theory",
+      "sympy/physics/vector/point.py::Point.vel"
+    ]
+  },
+  "predictions": [
+    "sympy/physics/vector/point.py::Point.vel",
+    "sympy/physics/vector/frame.py::ReferenceFrame.ang_vel_in",
+    "sympy/physics/vector/point.py::Point.acc",
+    "sympy/physics/vector/frame.py::ReferenceFrame.ang_acc_in",
+    "sympy/physics/vector/tests/test_frame.py::test_ang_vel",
+    "sympy/physics/mechanics/rigidbody.py::RigidBody.angular_momentum",
+    "sympy/physics/mechanics/particle.py::Particle.angular_momentum",
+    "sympy/physics/mechanics/particle.py::Particle.linear_momentum",
+    "sympy/physics/vector/point.py::Point.v1pt_theory",
+    "sympy/physics/vector/point.py::Point.set_vel"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "d57aaf064041fe52c0fa357639b069100f8b28e1",
+    "total_functions_indexed": 35312,
+    "retrieval_time_seconds": 0.09444189071655273
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/physics/vector/point.py::Point.vel\", \"score\": 0.6615657806396484}, {\"doc_id\": \"sympy/physics/vector/frame.py::ReferenceFrame.ang_vel_in\", \"score\": 0.5768182277679443}, {\"doc_id\": \"sympy/physics/vector/point.py::Point.acc\", \"score\": 0.549610435962677}, {\"doc_id\": \"sympy/physics/vector/frame.py::ReferenceFrame.ang_acc_in\", \"score\": 0.5416285991668701}, {\"doc_id\": \"sympy/physics/vector/tests/test_frame.py::test_ang_vel\", \"score\": 0.5073815584182739}, {\"doc_id\": \"sympy/physics/mechanics/rigidbody.py::RigidBody.angular_momentum\", \"score\": 0.49679476022720337}, {\"doc_id\": \"sympy/physics/mechanics/particle.py::Particle.angular_momentum\", \"score\": 0.495130330324173}, {\"doc_id\": \"sympy/physics/mechanics/particle.py::Particle.linear_momentum\", \"score\": 0.49152642488479614}, {\"doc_id\": \"sympy/physics/vector/point.py::Point.v1pt_theory\", \"score\": 0.48889702558517456}, {\"doc_id\": \"sympy/physics/vector/point.py::Point.set_vel\", \"score\": 0.48716187477111816}]"
+}

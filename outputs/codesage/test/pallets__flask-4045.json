@@ -1,0 +1,34 @@
+{
+  "instance_id": "pallets__flask-4045",
+  "query": "Raise error when blueprint name contains a dot\nThis is required since every dot is now significant since blueprints can be nested. An error was already added for endpoint names in 1.0, but should have been added for this as well.\n",
+  "ground_truth": {
+    "files": [
+      "src/flask/blueprints.py"
+    ],
+    "locations": [
+      "src/flask/blueprints.py::Blueprint",
+      "src/flask/blueprints.py::Blueprint.__init__",
+      "src/flask/blueprints.py::Blueprint.add_url_rule",
+      "src/flask/blueprints.py::Blueprint.app_template_filter"
+    ]
+  },
+  "predictions": [
+    "tests/test_blueprints.py::test_endpoint_decorator",
+    "tests/test_blueprints.py::test_blueprint_prefix_slash",
+    "tests/test_blueprints.py::test_blueprint_specific_user_error_handling",
+    "tests/test_blueprints.py::test_dotted_names_from_app",
+    "tests/test_blueprints.py::test_dotted_names",
+    "tests/test_blueprints.py::test_route_decorator_custom_endpoint_with_dots",
+    "src/flask/wrappers.py::Request.blueprint",
+    "tests/test_blueprints.py::test_blueprint_app_error_handling",
+    "tests/test_blueprints.py::test_nested_blueprint",
+    "tests/test_user_error_handler.py::test_error_handler_blueprint"
+  ],
+  "metadata": {
+    "repo": "pallets/flask",
+    "commit": "d8c37f43724cd9fb0870f77877b7c4c7e38a19e0",
+    "total_functions_indexed": 769,
+    "retrieval_time_seconds": 0.0005671977996826172
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_blueprints.py::test_endpoint_decorator\", \"score\": 0.4435269832611084}, {\"doc_id\": \"tests/test_blueprints.py::test_blueprint_prefix_slash\", \"score\": 0.4232851564884186}, {\"doc_id\": \"tests/test_blueprints.py::test_blueprint_specific_user_error_handling\", \"score\": 0.40790510177612305}, {\"doc_id\": \"tests/test_blueprints.py::test_dotted_names_from_app\", \"score\": 0.4078404903411865}, {\"doc_id\": \"tests/test_blueprints.py::test_dotted_names\", \"score\": 0.3996615409851074}, {\"doc_id\": \"tests/test_blueprints.py::test_route_decorator_custom_endpoint_with_dots\", \"score\": 0.39929452538490295}, {\"doc_id\": \"src/flask/wrappers.py::Request.blueprint\", \"score\": 0.3873245418071747}, {\"doc_id\": \"tests/test_blueprints.py::test_blueprint_app_error_handling\", \"score\": 0.37631961703300476}, {\"doc_id\": \"tests/test_blueprints.py::test_nested_blueprint\", \"score\": 0.3645452857017517}, {\"doc_id\": \"tests/test_user_error_handler.py::test_error_handler_blueprint\", \"score\": 0.36239519715309143}]"
+}

@@ -1,0 +1,35 @@
+{
+  "instance_id": "sphinx-doc__sphinx-10325",
+  "query": "inherited-members should support more than one class\n**Is your feature request related to a problem? Please describe.**\r\nI have two situations:\r\n- A class inherits from multiple other classes. I want to document members from some of the base classes but ignore some of the base classes\r\n- A module contains several class definitions that inherit from different classes that should all be ignored (e.g., classes that inherit from list or set or tuple). I want to ignore members from list, set, and tuple while documenting all other inherited members in classes in the module.\r\n\r\n**Describe the solution you'd like**\r\nThe :inherited-members: option to automodule should accept a list of classes. If any of these classes are encountered as base classes when instantiating autoclass documentation, they should be ignored.\r\n\r\n**Describe alternatives you've considered**\r\nThe alternative is to not use automodule, but instead manually enumerate several autoclass blocks for a module. This only addresses the second bullet in the problem description and not the first. It is also tedious for modules containing many class definitions.\r\n\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/ext/autodoc/__init__.py"
+    ],
+    "locations": [
+      "sphinx/ext/autodoc/__init__.py::exclude_members_option",
+      "sphinx/ext/autodoc/__init__.py::inherited_members_option",
+      "sphinx/ext/autodoc/__init__.py::member_order_option",
+      "sphinx/ext/autodoc/__init__.py::Documenter",
+      "sphinx/ext/autodoc/__init__.py::Documenter.filter_members"
+    ]
+  },
+  "predictions": [
+    "tests/test_ext_autodoc.py::test_autodoc_inherited_members_Base",
+    "tests/test_ext_autodoc.py::test_abstractmethods",
+    "tests/test_ext_autodoc.py::test_autodoc_inherited_members",
+    "tests/test_ext_autodoc.py::test_autodoc_members",
+    "tests/test_ext_autodoc_configs.py::test_autoclass_content_class",
+    "tests/test_ext_autodoc.py::test_cython",
+    "tests/test_ext_autodoc.py::test_class_attributes",
+    "tests/test_ext_autodoc.py::test_autodoc_classmethod",
+    "tests/test_ext_autodoc_autoclass.py::test_class_doc_from_class",
+    "tests/test_ext_autodoc.py::test_autodoc_exclude_members"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "7bdc11e87c7d86dcc2a087eccb7a7c129a473415",
+    "total_functions_indexed": 5832,
+    "retrieval_time_seconds": 0.09111952781677246
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_inherited_members_Base\", \"score\": 0.47231996059417725}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_abstractmethods\", \"score\": 0.47000938653945923}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_inherited_members\", \"score\": 0.4665261507034302}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_members\", \"score\": 0.45373719930648804}, {\"doc_id\": \"tests/test_ext_autodoc_configs.py::test_autoclass_content_class\", \"score\": 0.44451767206192017}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_cython\", \"score\": 0.44368860125541687}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_class_attributes\", \"score\": 0.44150155782699585}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_classmethod\", \"score\": 0.43897244334220886}, {\"doc_id\": \"tests/test_ext_autodoc_autoclass.py::test_class_doc_from_class\", \"score\": 0.43564996123313904}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_exclude_members\", \"score\": 0.4350017309188843}]"
+}

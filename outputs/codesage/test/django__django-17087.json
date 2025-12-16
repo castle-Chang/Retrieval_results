@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-17087",
+  "query": "Class methods from nested classes cannot be used as Field.default.\nDescription\n\t \n\t\t(last modified by Mariusz Felisiak)\n\t \nGiven the following model:\n \nclass Profile(models.Model):\n\tclass Capability(models.TextChoices):\n\t\tBASIC = (\"BASIC\", \"Basic\")\n\t\tPROFESSIONAL = (\"PROFESSIONAL\", \"Professional\")\n\t\t\n\t\t@classmethod\n\t\tdef default(cls) -> list[str]:\n\t\t\treturn [cls.BASIC]\n\tcapabilities = ArrayField(\n\t\tmodels.CharField(choices=Capability.choices, max_length=30, blank=True),\n\t\tnull=True,\n\t\tdefault=Capability.default\n\t)\nThe resulting migration contained the following:\n # ...\n\t migrations.AddField(\n\t\t model_name='profile',\n\t\t name='capabilities',\n\t\t field=django.contrib.postgres.fields.ArrayField(base_field=models.CharField(blank=True, choices=[('BASIC', 'Basic'), ('PROFESSIONAL', 'Professional')], max_length=30), default=appname.models.Capability.default, null=True, size=None),\n\t ),\n # ...\nAs you can see, migrations.AddField is passed as argument \"default\" a wrong value \"appname.models.Capability.default\", which leads to an error when trying to migrate. The right value should be \"appname.models.Profile.Capability.default\".\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/serializer.py"
+    ],
+    "locations": [
+      "django/db/migrations/serializer.py::FunctionTypeSerializer",
+      "django/db/migrations/serializer.py::FunctionTypeSerializer.serialize"
+    ]
+  },
+  "predictions": [
+    "django/db/migrations/operations/fields.py::AddField.__init__",
+    "django/db/migrations/questioner.py::MigrationQuestioner.ask_not_null_addition",
+    "django/db/migrations/operations/fields.py::AddField.state_forwards",
+    "django/db/migrations/operations/fields.py::AddField.database_forwards",
+    "django/db/migrations/operations/fields.py::AddField.migration_name_fragment",
+    "django/db/migrations/questioner.py::MigrationQuestioner.ask_unique_callable_default_addition",
+    "django/db/migrations/operations/fields.py::AlterField.__init__",
+    "django/db/migrations/questioner.py::MigrationQuestioner.ask_auto_now_add_addition",
+    "django/db/migrations/operations/fields.py::AddField.describe",
+    "django/db/migrations/operations/fields.py::AddField.database_backwards"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "4a72da71001f154ea60906a2f74898d32b7322a7",
+    "total_functions_indexed": 26796,
+    "retrieval_time_seconds": 0.010991811752319336
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/migrations/operations/fields.py::AddField.__init__\", \"score\": 0.5090097188949585}, {\"doc_id\": \"django/db/migrations/questioner.py::MigrationQuestioner.ask_not_null_addition\", \"score\": 0.49910634756088257}, {\"doc_id\": \"django/db/migrations/operations/fields.py::AddField.state_forwards\", \"score\": 0.4892767667770386}, {\"doc_id\": \"django/db/migrations/operations/fields.py::AddField.database_forwards\", \"score\": 0.48384779691696167}, {\"doc_id\": \"django/db/migrations/operations/fields.py::AddField.migration_name_fragment\", \"score\": 0.483407199382782}, {\"doc_id\": \"django/db/migrations/questioner.py::MigrationQuestioner.ask_unique_callable_default_addition\", \"score\": 0.4788876175880432}, {\"doc_id\": \"django/db/migrations/operations/fields.py::AlterField.__init__\", \"score\": 0.47787201404571533}, {\"doc_id\": \"django/db/migrations/questioner.py::MigrationQuestioner.ask_auto_now_add_addition\", \"score\": 0.46920716762542725}, {\"doc_id\": \"django/db/migrations/operations/fields.py::AddField.describe\", \"score\": 0.46897804737091064}, {\"doc_id\": \"django/db/migrations/operations/fields.py::AddField.database_backwards\", \"score\": 0.4648687243461609}]"
+}

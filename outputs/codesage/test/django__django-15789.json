@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-15789",
+  "query": "Add an encoder parameter to django.utils.html.json_script().\nDescription\n\t\nI have a use case where I want to customize the JSON encoding of some values to output to the template layer. It looks like django.utils.html.json_script is a good utility for that, however the JSON encoder is hardcoded to DjangoJSONEncoder. I think it would be nice to be able to pass a custom encoder class.\nBy the way, django.utils.html.json_script is not documented (only its template filter counterpart is), would it be a good thing to add to the docs?\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/html.py"
+    ],
+    "locations": [
+      "django/utils/html.py::json_script"
+    ]
+  },
+  "predictions": [
+    "django/forms/fields.py::JSONField.__init__",
+    "django/db/models/fields/json.py::JSONField.__init__",
+    "django/template/defaultfilters.py::json_script",
+    "django/core/serializers/json.py::Serializer._init_options",
+    "django/core/serializers/jsonl.py::Serializer._init_options",
+    "django/db/models/fields/json.py::JSONField.formfield",
+    "django/template/defaultfilters.py::escapejs_filter",
+    "django/forms/fields.py::JSONField.prepare_value",
+    "django/db/models/fields/json.py::JSONField.get_prep_value",
+    "django/db/models/fields/json.py::KeyTransformIn.resolve_expression_parameter"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "d4d5427571b4bf3a21c902276c2a00215c2a37cc",
+    "total_functions_indexed": 26051,
+    "retrieval_time_seconds": 0.009058713912963867
+  },
+  "raw_output": "[{\"doc_id\": \"django/forms/fields.py::JSONField.__init__\", \"score\": 0.3738166093826294}, {\"doc_id\": \"django/db/models/fields/json.py::JSONField.__init__\", \"score\": 0.36015787720680237}, {\"doc_id\": \"django/template/defaultfilters.py::json_script\", \"score\": 0.3600286543369293}, {\"doc_id\": \"django/core/serializers/json.py::Serializer._init_options\", \"score\": 0.3485831022262573}, {\"doc_id\": \"django/core/serializers/jsonl.py::Serializer._init_options\", \"score\": 0.3393363356590271}, {\"doc_id\": \"django/db/models/fields/json.py::JSONField.formfield\", \"score\": 0.3368416726589203}, {\"doc_id\": \"django/template/defaultfilters.py::escapejs_filter\", \"score\": 0.30924752354621887}, {\"doc_id\": \"django/forms/fields.py::JSONField.prepare_value\", \"score\": 0.3058631122112274}, {\"doc_id\": \"django/db/models/fields/json.py::JSONField.get_prep_value\", \"score\": 0.3053358495235443}, {\"doc_id\": \"django/db/models/fields/json.py::KeyTransformIn.resolve_expression_parameter\", \"score\": 0.2866451144218445}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "psf__requests-2674",
+  "query": "urllib3 exceptions passing through requests API\nI don't know if it's a design goal of requests to hide urllib3's exceptions and wrap them around requests.exceptions types.\n\n(If it's not IMHO it should be, but that's another discussion)\n\nIf it is, I have at least two of them passing through that I have to catch in addition to requests' exceptions. They are requests.packages.urllib3.exceptions.DecodeError and requests.packages.urllib3.exceptions.TimeoutError (this one I get when a proxy timeouts)\n\nThanks!\n\n",
+  "ground_truth": {
+    "files": [
+      "requests/adapters.py"
+    ],
+    "locations": [
+      "requests/adapters.py::HTTPAdapter",
+      "requests/adapters.py::HTTPAdapter.send"
+    ]
+  },
+  "predictions": [
+    "requests/packages/urllib3/exceptions.py::RequestError.__reduce__",
+    "requests/packages/urllib3/exceptions.py::MaxRetryError.__init__",
+    "requests/packages/urllib3/exceptions.py::RequestError.__init__",
+    "requests/packages/urllib3/exceptions.py::PoolError.__init__",
+    "requests/packages/urllib3/connectionpool.py::HTTPConnectionPool._raise_timeout",
+    "requests/packages/urllib3/util/retry.py::Retry._is_connection_error",
+    "requests/packages/urllib3/exceptions.py::HostChangedError.__init__",
+    "requests/packages/urllib3/util/retry.py::Retry._is_read_error",
+    "requests/packages/urllib3/exceptions.py::PoolError.__reduce__",
+    "test_requests.py::test_urllib3_retries"
+  ],
+  "metadata": {
+    "repo": "psf/requests",
+    "commit": "0be38a0c37c59c4b66ce908731da15b401655113",
+    "total_functions_indexed": 700,
+    "retrieval_time_seconds": 0.09021782875061035
+  },
+  "raw_output": "[{\"doc_id\": \"requests/packages/urllib3/exceptions.py::RequestError.__reduce__\", \"score\": 0.4634237587451935}, {\"doc_id\": \"requests/packages/urllib3/exceptions.py::MaxRetryError.__init__\", \"score\": 0.4579606056213379}, {\"doc_id\": \"requests/packages/urllib3/exceptions.py::RequestError.__init__\", \"score\": 0.4537805914878845}, {\"doc_id\": \"requests/packages/urllib3/exceptions.py::PoolError.__init__\", \"score\": 0.425728440284729}, {\"doc_id\": \"requests/packages/urllib3/connectionpool.py::HTTPConnectionPool._raise_timeout\", \"score\": 0.42434805631637573}, {\"doc_id\": \"requests/packages/urllib3/util/retry.py::Retry._is_connection_error\", \"score\": 0.42287495732307434}, {\"doc_id\": \"requests/packages/urllib3/exceptions.py::HostChangedError.__init__\", \"score\": 0.4158022403717041}, {\"doc_id\": \"requests/packages/urllib3/util/retry.py::Retry._is_read_error\", \"score\": 0.4021407961845398}, {\"doc_id\": \"requests/packages/urllib3/exceptions.py::PoolError.__reduce__\", \"score\": 0.40093719959259033}, {\"doc_id\": \"test_requests.py::test_urllib3_retries\", \"score\": 0.39440757036209106}]"
+}

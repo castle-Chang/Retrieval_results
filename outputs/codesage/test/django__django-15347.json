@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-15347",
+  "query": "Messages framework incorrectly serializes/deserializes extra_tags when it's an empty string\nDescription\n\t\nWhen a message is serialised and then deserialised with any of the built in storage backends, then extra_tags==\"\" is converted to extra_tags==None. This is because MessageEncoder checks for the truthyness of extra_tags rather than checking it is not None.\nTo replicate this bug\n>>> from django.conf import settings\n>>> settings.configure() # Just to allow the following import\n>>> from django.contrib.messages.storage.base import Message\n>>> from django.contrib.messages.storage.cookie import MessageEncoder, MessageDecoder\n>>> original_message = Message(10, \"Here is a message\", extra_tags=\"\")\n>>> encoded_message = MessageEncoder().encode(original_message)\n>>> decoded_message = MessageDecoder().decode(encoded_message)\n>>> original_message.extra_tags == \"\"\nTrue\n>>> decoded_message.extra_tags is None\nTrue\nEffect of the bug in application behaviour\nThis error occurred in the wild with a template tag similar to the following:\n{% if x not in message.extra_tags %}\nWhen the message was displayed as part of a redirect, it had been serialised and deserialized which meant that extra_tags was None instead of the empty string. This caused an error.\nIt's important to note that this bug affects all of the standard API (messages.debug, messages.info etc. all have a default value of extra_tags equal to \"\").\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/messages/storage/cookie.py"
+    ],
+    "locations": [
+      "django/contrib/messages/storage/cookie.py::MessageEncoder",
+      "django/contrib/messages/storage/cookie.py::MessageEncoder.default"
+    ]
+  },
+  "predictions": [
+    "django/contrib/messages/storage/base.py::Message._prepare",
+    "django/contrib/messages/storage/base.py::Message.tags",
+    "django/contrib/messages/storage/base.py::Message.__init__",
+    "tests/messages_tests/base.py::BaseTests.get_existing_storage",
+    "django/contrib/messages/storage/cookie.py::MessageEncoder.default",
+    "tests/messages_tests/base.py::BaseTests.test_tags",
+    "tests/admin_views/admin.py::MessageTestingAdmin.message_extra_tags",
+    "tests/view_tests/templatetags/debugtags.py::go_boom",
+    "tests/generic_relations/tests.py::GenericRelationsTests.test_add_rejects_unsaved_objects",
+    "django/core/serializers/__init__.py::BadSerializer.__call__"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "7c4f3965098baad2396e24501e09237425a7bd6f",
+    "total_functions_indexed": 25550,
+    "retrieval_time_seconds": 0.09555673599243164
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/messages/storage/base.py::Message._prepare\", \"score\": 0.5246894359588623}, {\"doc_id\": \"django/contrib/messages/storage/base.py::Message.tags\", \"score\": 0.4286026358604431}, {\"doc_id\": \"django/contrib/messages/storage/base.py::Message.__init__\", \"score\": 0.4053143262863159}, {\"doc_id\": \"tests/messages_tests/base.py::BaseTests.get_existing_storage\", \"score\": 0.3911813199520111}, {\"doc_id\": \"django/contrib/messages/storage/cookie.py::MessageEncoder.default\", \"score\": 0.3753588795661926}, {\"doc_id\": \"tests/messages_tests/base.py::BaseTests.test_tags\", \"score\": 0.3640170097351074}, {\"doc_id\": \"tests/admin_views/admin.py::MessageTestingAdmin.message_extra_tags\", \"score\": 0.34107375144958496}, {\"doc_id\": \"tests/view_tests/templatetags/debugtags.py::go_boom\", \"score\": 0.3405580520629883}, {\"doc_id\": \"tests/generic_relations/tests.py::GenericRelationsTests.test_add_rejects_unsaved_objects\", \"score\": 0.3342728912830353}, {\"doc_id\": \"django/core/serializers/__init__.py::BadSerializer.__call__\", \"score\": 0.3245639204978943}]"
+}

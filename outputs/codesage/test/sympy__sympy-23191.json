@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-23191",
+  "query": "display bug while using pretty_print with sympy.vector object in the terminal\nThe following code jumbles some of the outputs in the terminal, essentially by inserting the unit vector in the middle -\r\n```python\r\nfrom sympy import *\r\nfrom sympy.vector import CoordSys3D, Del\r\n\r\ninit_printing()\r\n\r\ndelop = Del()\r\nCC_ = CoordSys3D(\"C\")\r\nx,    y,    z    = CC_.x, CC_.y, CC_.z\r\nxhat, yhat, zhat = CC_.i, CC_.j, CC_.k\r\n\r\nt = symbols(\"t\")\r\nten = symbols(\"10\", positive=True)\r\neps, mu = 4*pi*ten**(-11), ten**(-5)\r\n\r\nBx = 2 * ten**(-4) * cos(ten**5 * t) * sin(ten**(-3) * y)\r\nvecB = Bx * xhat\r\nvecE = (1/eps) * Integral(delop.cross(vecB/mu).doit(), t)\r\n\r\npprint(vecB)\r\nprint()\r\npprint(vecE)\r\nprint()\r\npprint(vecE.doit())\r\n```\r\n\r\nOutput:\r\n```python\r\n⎛     ⎛y_C⎞    ⎛  5  ⎞⎞    \r\n⎜2⋅sin⎜───⎟ i_C⋅cos⎝10 ⋅t⎠⎟\r\n⎜     ⎜  3⎟           ⎟    \r\n⎜     ⎝10 ⎠           ⎟    \r\n⎜─────────────────────⎟    \r\n⎜           4         ⎟    \r\n⎝         10          ⎠    \r\n\r\n⎛     ⌠                           ⎞    \r\n⎜     ⎮       ⎛y_C⎞    ⎛  5  ⎞    ⎟ k_C\r\n⎜     ⎮ -2⋅cos⎜───⎟⋅cos⎝10 ⋅t⎠    ⎟    \r\n⎜     ⎮       ⎜  3⎟               ⎟    \r\n⎜  11 ⎮       ⎝10 ⎠               ⎟    \r\n⎜10  ⋅⎮ ─────────────────────── dt⎟    \r\n⎜     ⎮             2             ⎟    \r\n⎜     ⎮           10              ⎟    \r\n⎜     ⌡                           ⎟    \r\n⎜─────────────────────────────────⎟    \r\n⎝               4⋅π               ⎠    \r\n\r\n⎛   4    ⎛  5  ⎞    ⎛y_C⎞ ⎞    \r\n⎜-10 ⋅sin⎝10 ⋅t⎠⋅cos⎜───⎟ k_C ⎟\r\n⎜                   ⎜  3⎟ ⎟    \r\n⎜                   ⎝10 ⎠ ⎟    \r\n⎜─────────────────────────⎟    \r\n⎝           2⋅π           ⎠    ```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/pretty/pretty.py"
+    ],
+    "locations": [
+      "sympy/printing/pretty/pretty.py::PrettyPrinter",
+      "sympy/printing/pretty/pretty.py::PrettyPrinter._print_BasisDependent"
+    ]
+  },
+  "predictions": [
+    "sympy/printing/pretty/tests/test_pretty.py::test_vector_expr_pretty_printing",
+    "sympy/physics/vector/vector.py::Vector._pretty",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_mathieuc",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_Feedback",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_BaseVectorField",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_mathieucprime",
+    "sympy/physics/vector/printing.py::vpprint",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_mathieus",
+    "sympy/physics/vector/printing.py::VectorStrPrinter._print_Derivative",
+    "sympy/vector/tests/test_printing.py::test_pretty_printing_ascii"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "fa9b4b140ec0eaf75a62c1111131626ef0f6f524",
+    "total_functions_indexed": 37727,
+    "retrieval_time_seconds": 0.0989222526550293
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/printing/pretty/tests/test_pretty.py::test_vector_expr_pretty_printing\", \"score\": 0.5087854266166687}, {\"doc_id\": \"sympy/physics/vector/vector.py::Vector._pretty\", \"score\": 0.5052337646484375}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_mathieuc\", \"score\": 0.4917547106742859}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_Feedback\", \"score\": 0.48589253425598145}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_BaseVectorField\", \"score\": 0.485260546207428}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_mathieucprime\", \"score\": 0.48397332429885864}, {\"doc_id\": \"sympy/physics/vector/printing.py::vpprint\", \"score\": 0.4823116064071655}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_mathieus\", \"score\": 0.48211565613746643}, {\"doc_id\": \"sympy/physics/vector/printing.py::VectorStrPrinter._print_Derivative\", \"score\": 0.48162293434143066}, {\"doc_id\": \"sympy/vector/tests/test_printing.py::test_pretty_printing_ascii\", \"score\": 0.47040942311286926}]"
+}

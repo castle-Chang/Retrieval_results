@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12470",
+  "query": "Inherited model doesn't correctly order by \"-pk\" when specified on Parent.Meta.ordering\nDescription\n\t\nGiven the following model definition:\nfrom django.db import models\nclass Parent(models.Model):\n\tclass Meta:\n\t\tordering = [\"-pk\"]\nclass Child(Parent):\n\tpass\nQuerying the Child class results in the following:\n>>> print(Child.objects.all().query)\nSELECT \"myapp_parent\".\"id\", \"myapp_child\".\"parent_ptr_id\" FROM \"myapp_child\" INNER JOIN \"myapp_parent\" ON (\"myapp_child\".\"parent_ptr_id\" = \"myapp_parent\".\"id\") ORDER BY \"myapp_parent\".\"id\" ASC\nThe query is ordered ASC but I expect the order to be DESC.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/sql/compiler.py"
+    ],
+    "locations": [
+      "django/db/models/sql/compiler.py::SQLCompiler",
+      "django/db/models/sql/compiler.py::SQLCompiler.find_ordering_name"
+    ]
+  },
+  "predictions": [
+    "tests/ordering/tests.py::OrderingTests.test_order_by_pk",
+    "tests/ordering/tests.py::OrderingTests.test_default_ordering_override",
+    "tests/admin_ordering/tests.py::TestAdminOrdering.test_default_ordering",
+    "tests/ordering/tests.py::OrderingTests.test_order_by_fk_attname",
+    "tests/model_inheritance_regress/tests.py::ModelInheritanceTest.test_inherited_fields",
+    "tests/queries/tests.py::Queries1Tests.test_ticket17429",
+    "tests/postgres_tests/test_json.py::TestModelMetaOrdering.test_ordering_by_json_field_value",
+    "tests/ordering/tests.py::OrderingTests.test_default_ordering_by_f_expression",
+    "tests/ordering/tests.py::OrderingTests.test_reverse_meta_ordering_pure",
+    "tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_related_model_pk"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "142ab6846ac09d6d401e26fc8b6b988a583ac0f5",
+    "total_functions_indexed": 23378,
+    "retrieval_time_seconds": 0.0930938720703125
+  },
+  "raw_output": "[{\"doc_id\": \"tests/ordering/tests.py::OrderingTests.test_order_by_pk\", \"score\": 0.6636555194854736}, {\"doc_id\": \"tests/ordering/tests.py::OrderingTests.test_default_ordering_override\", \"score\": 0.6040667295455933}, {\"doc_id\": \"tests/admin_ordering/tests.py::TestAdminOrdering.test_default_ordering\", \"score\": 0.5912301540374756}, {\"doc_id\": \"tests/ordering/tests.py::OrderingTests.test_order_by_fk_attname\", \"score\": 0.5779726505279541}, {\"doc_id\": \"tests/model_inheritance_regress/tests.py::ModelInheritanceTest.test_inherited_fields\", \"score\": 0.5718544721603394}, {\"doc_id\": \"tests/queries/tests.py::Queries1Tests.test_ticket17429\", \"score\": 0.554606556892395}, {\"doc_id\": \"tests/postgres_tests/test_json.py::TestModelMetaOrdering.test_ordering_by_json_field_value\", \"score\": 0.5431356430053711}, {\"doc_id\": \"tests/ordering/tests.py::OrderingTests.test_default_ordering_by_f_expression\", \"score\": 0.5418809056282043}, {\"doc_id\": \"tests/ordering/tests.py::OrderingTests.test_reverse_meta_ordering_pure\", \"score\": 0.5367953777313232}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_related_model_pk\", \"score\": 0.5248334407806396}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-14817",
+  "query": "Error pretty printing MatAdd\n```py\r\n>>> pprint(MatrixSymbol('x', n, n) + MatrixSymbol('y*', n, n))\r\nTraceback (most recent call last):\r\n  File \"./sympy/core/sympify.py\", line 368, in sympify\r\n    expr = parse_expr(a, local_dict=locals, transformations=transformations, evaluate=evaluate)\r\n  File \"./sympy/parsing/sympy_parser.py\", line 950, in parse_expr\r\n    return eval_expr(code, local_dict, global_dict)\r\n  File \"./sympy/parsing/sympy_parser.py\", line 863, in eval_expr\r\n    code, global_dict, local_dict)  # take local objects in preference\r\n  File \"<string>\", line 1\r\n    Symbol ('y' )*\r\n                 ^\r\nSyntaxError: unexpected EOF while parsing\r\n\r\nDuring handling of the above exception, another exception occurred:\r\n\r\nTraceback (most recent call last):\r\n  File \"<stdin>\", line 1, in <module>\r\n  File \"./sympy/printing/pretty/pretty.py\", line 2371, in pretty_print\r\n    use_unicode_sqrt_char=use_unicode_sqrt_char))\r\n  File \"./sympy/printing/pretty/pretty.py\", line 2331, in pretty\r\n    return pp.doprint(expr)\r\n  File \"./sympy/printing/pretty/pretty.py\", line 62, in doprint\r\n    return self._print(expr).render(**self._settings)\r\n  File \"./sympy/printing/printer.py\", line 274, in _print\r\n    return getattr(self, printmethod)(expr, *args, **kwargs)\r\n  File \"./sympy/printing/pretty/pretty.py\", line 828, in _print_MatAdd\r\n    if S(item.args[0]).is_negative:\r\n  File \"./sympy/core/sympify.py\", line 370, in sympify\r\n    raise SympifyError('could not parse %r' % a, exc)\r\nsympy.core.sympify.SympifyError: Sympify of expression 'could not parse 'y*'' failed, because of exception being raised:\r\nSyntaxError: unexpected EOF while parsing (<string>, line 1)\r\n```\r\n\r\nThe code shouldn't be using sympify to handle string arguments from MatrixSymbol.\r\n\r\nI don't even understand what the code is doing. Why does it omit the `+` when the first argument is negative? This seems to assume that the arguments of MatAdd have a certain form, and that they will always print a certain way if they are negative. \n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/pretty/pretty.py"
+    ],
+    "locations": [
+      "sympy/printing/pretty/pretty.py::PrettyPrinter",
+      "sympy/printing/pretty/pretty.py::PrettyPrinter._print_MatAdd"
+    ]
+  },
+  "predictions": [
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_MatAdd",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_HadamardProduct",
+    "sympy/core/sympify.py::_sympify",
+    "sympy/matrices/expressions/matexpr.py::MatrixSymbol._eval_simplify",
+    "sympy/printing/str.py::StrPrinter._print_MatrixElement",
+    "sympy/printing/mathematica.py::MCodePrinter._print_NegativeInfinity",
+    "sympy/printing/latex.py::LatexPrinter._print_MatAdd",
+    "sympy/printing/rcode.py::RCodePrinter._print_MatrixElement",
+    "sympy/matrices/expressions/matexpr.py::MatrixSymbol._eval_subs",
+    "sympy/printing/codeprinter.py::CodePrinter.doprint"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "0dbdc0ea83d339936da175f8c3a97d0d6bafb9f8",
+    "total_functions_indexed": 23185,
+    "retrieval_time_seconds": 0.18528962135314941
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_MatAdd\", \"score\": 0.53880774974823}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_HadamardProduct\", \"score\": 0.5169278383255005}, {\"doc_id\": \"sympy/core/sympify.py::_sympify\", \"score\": 0.5022664070129395}, {\"doc_id\": \"sympy/matrices/expressions/matexpr.py::MatrixSymbol._eval_simplify\", \"score\": 0.4996100664138794}, {\"doc_id\": \"sympy/printing/str.py::StrPrinter._print_MatrixElement\", \"score\": 0.498993843793869}, {\"doc_id\": \"sympy/printing/mathematica.py::MCodePrinter._print_NegativeInfinity\", \"score\": 0.49554798007011414}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_MatAdd\", \"score\": 0.49431535601615906}, {\"doc_id\": \"sympy/printing/rcode.py::RCodePrinter._print_MatrixElement\", \"score\": 0.48999616503715515}, {\"doc_id\": \"sympy/matrices/expressions/matexpr.py::MatrixSymbol._eval_subs\", \"score\": 0.48973119258880615}, {\"doc_id\": \"sympy/printing/codeprinter.py::CodePrinter.doprint\", \"score\": 0.48834389448165894}]"
+}

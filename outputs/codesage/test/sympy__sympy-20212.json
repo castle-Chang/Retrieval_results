@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-20212",
+  "query": "0**-oo produces 0, the documentation says it should produce zoo\nUsing SymPy 1.5.1, evaluate `0**-oo` produces `0`.\r\n\r\nThe documentation for the Pow class states that it should return `ComplexInfinity`, aka `zoo`\r\n\r\n| expr | value | reason |\r\n| :-- | :-- | :--|\r\n| `0**-oo` | `zoo` | This is not strictly true, as 0**oo may be oscillating between positive and negative values or rotating in the complex plane. It is convenient, however, when the base is positive.|\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/power.py"
+    ],
+    "locations": [
+      "sympy/core/power.py::Pow",
+      "sympy/core/power.py::Pow.__new__"
+    ]
+  },
+  "predictions": [
+    "sympy/core/numbers.py::Zero._eval_power",
+    "sympy/core/numbers.py::ComplexInfinity._eval_power",
+    "sympy/core/numbers.py::ComplexInfinity.__neg__",
+    "sympy/core/numbers.py::ComplexInfinity.__abs__",
+    "sympy/core/power.py::Pow._eval_is_complex",
+    "sympy/core/tests/test_numbers.py::test_issue_10020",
+    "sympy/core/power.py::Pow._eval_adjoint",
+    "sympy/core/numbers.py::Infinity._eval_power",
+    "sympy/core/power.py::Pow._eval_conjugate",
+    "sympy/core/numbers.py::NegativeInfinity.as_powers_dict"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "a106f4782a9dbe7f8fd16030f15401d977e03ae9",
+    "total_functions_indexed": 35357,
+    "retrieval_time_seconds": 0.2707653045654297
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/numbers.py::Zero._eval_power\", \"score\": 0.4954230785369873}, {\"doc_id\": \"sympy/core/numbers.py::ComplexInfinity._eval_power\", \"score\": 0.4794497489929199}, {\"doc_id\": \"sympy/core/numbers.py::ComplexInfinity.__neg__\", \"score\": 0.45687735080718994}, {\"doc_id\": \"sympy/core/numbers.py::ComplexInfinity.__abs__\", \"score\": 0.4525876045227051}, {\"doc_id\": \"sympy/core/power.py::Pow._eval_is_complex\", \"score\": 0.43463134765625}, {\"doc_id\": \"sympy/core/tests/test_numbers.py::test_issue_10020\", \"score\": 0.426183819770813}, {\"doc_id\": \"sympy/core/power.py::Pow._eval_adjoint\", \"score\": 0.4205797612667084}, {\"doc_id\": \"sympy/core/numbers.py::Infinity._eval_power\", \"score\": 0.416973352432251}, {\"doc_id\": \"sympy/core/power.py::Pow._eval_conjugate\", \"score\": 0.4143502116203308}, {\"doc_id\": \"sympy/core/numbers.py::NegativeInfinity.as_powers_dict\", \"score\": 0.414129376411438}]"
+}

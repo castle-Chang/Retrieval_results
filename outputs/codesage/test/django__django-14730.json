@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-14730",
+  "query": "Prevent developers from defining a related_name on symmetrical ManyToManyFields\nDescription\n\t\nIn ManyToManyField, if the symmetrical argument is passed, or if it's a self-referential ManyToMany relationship, the related field on the target model is not created. However, if a developer passes in the related_name not understanding this fact, they may be confused until they find the information about symmetrical relationship. Thus, it is proposed to raise an error when the user defines a ManyToManyField in this condition.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/related.py"
+    ],
+    "locations": [
+      "django/db/models/fields/related.py::ManyToManyField",
+      "django/db/models/fields/related.py::ManyToManyField._check_ignored_options",
+      "django/db/models/fields/related.py::ManyToManyField._check_relationship_model"
+    ]
+  },
+  "predictions": [
+    "django/db/models/fields/related.py::ManyToManyField.__init__",
+    "django/db/models/fields/reverse_related.py::ManyToManyRel.__init__",
+    "django/db/models/fields/reverse_related.py::ManyToOneRel.__init__",
+    "django/db/models/fields/related.py::ManyToManyField.db_check",
+    "django/db/models/fields/reverse_related.py::ManyToOneRel.get_related_field",
+    "django/db/models/fields/related.py::ManyToManyField.db_type",
+    "django/db/models/fields/related.py::ManyToManyField._get_m2m_reverse_attr",
+    "django/db/models/fields/reverse_related.py::ManyToManyRel.get_related_field",
+    "tests/schema/fields.py::CustomManyToManyField.__init__",
+    "django/db/models/fields/reverse_related.py::ManyToOneRel.set_field_name"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "4fe3774c729f3fd5105b3001fe69a70bdca95ac3",
+    "total_functions_indexed": 24925,
+    "retrieval_time_seconds": 0.005845785140991211
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/fields/related.py::ManyToManyField.__init__\", \"score\": 0.5425062775611877}, {\"doc_id\": \"django/db/models/fields/reverse_related.py::ManyToManyRel.__init__\", \"score\": 0.5406626462936401}, {\"doc_id\": \"django/db/models/fields/reverse_related.py::ManyToOneRel.__init__\", \"score\": 0.5102522373199463}, {\"doc_id\": \"django/db/models/fields/related.py::ManyToManyField.db_check\", \"score\": 0.5033898949623108}, {\"doc_id\": \"django/db/models/fields/reverse_related.py::ManyToOneRel.get_related_field\", \"score\": 0.4889680743217468}, {\"doc_id\": \"django/db/models/fields/related.py::ManyToManyField.db_type\", \"score\": 0.4820568263530731}, {\"doc_id\": \"django/db/models/fields/related.py::ManyToManyField._get_m2m_reverse_attr\", \"score\": 0.4702455699443817}, {\"doc_id\": \"django/db/models/fields/reverse_related.py::ManyToManyRel.get_related_field\", \"score\": 0.46998676657676697}, {\"doc_id\": \"tests/schema/fields.py::CustomManyToManyField.__init__\", \"score\": 0.4683503806591034}, {\"doc_id\": \"django/db/models/fields/reverse_related.py::ManyToOneRel.set_field_name\", \"score\": 0.4667373299598694}]"
+}

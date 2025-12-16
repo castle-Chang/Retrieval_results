@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12983",
+  "query": "Make django.utils.text.slugify() strip dashes and underscores\nDescription\n\t \n\t\t(last modified by Elinaldo do Nascimento Monteiro)\n\t \nBug generation slug\nExample:\nfrom django.utils import text\ntext.slugify(\"___This is a test ---\")\noutput: ___this-is-a-test-\nImprovement after correction\nfrom django.utils import text\ntext.slugify(\"___This is a test ---\")\noutput: this-is-a-test\n​PR\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/text.py"
+    ],
+    "locations": [
+      "django/utils/text.py::slugify",
+      "django/utils/text.py::camel_case_to_spaces"
+    ]
+  },
+  "predictions": [
+    "django/template/defaultfilters.py::slugify",
+    "django/utils/text.py::slugify",
+    "tests/template_tests/filter_tests/test_slugify.py::FunctionTests.test_unicode",
+    "tests/template_tests/filter_tests/test_slugify.py::FunctionTests.test_slugify",
+    "django/utils/text.py::get_valid_filename",
+    "tests/utils_tests/test_text.py::TestUtilsText.test_slugify",
+    "tests/template_tests/filter_tests/test_slugify.py::FunctionTests.test_non_string_input",
+    "django/utils/text.py::capfirst",
+    "tests/template_tests/filter_tests/test_slugify.py::FunctionTests.test_slugify_lazy_string",
+    "django/forms/utils.py::pretty_name"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "3bc4240d979812bd11365ede04c028ea13fdc8c6",
+    "total_functions_indexed": 23486,
+    "retrieval_time_seconds": 0.006175041198730469
+  },
+  "raw_output": "[{\"doc_id\": \"django/template/defaultfilters.py::slugify\", \"score\": 0.5139615535736084}, {\"doc_id\": \"django/utils/text.py::slugify\", \"score\": 0.4908507764339447}, {\"doc_id\": \"tests/template_tests/filter_tests/test_slugify.py::FunctionTests.test_unicode\", \"score\": 0.46427279710769653}, {\"doc_id\": \"tests/template_tests/filter_tests/test_slugify.py::FunctionTests.test_slugify\", \"score\": 0.4389166235923767}, {\"doc_id\": \"django/utils/text.py::get_valid_filename\", \"score\": 0.40332353115081787}, {\"doc_id\": \"tests/utils_tests/test_text.py::TestUtilsText.test_slugify\", \"score\": 0.40293529629707336}, {\"doc_id\": \"tests/template_tests/filter_tests/test_slugify.py::FunctionTests.test_non_string_input\", \"score\": 0.3831302523612976}, {\"doc_id\": \"django/utils/text.py::capfirst\", \"score\": 0.38129696249961853}, {\"doc_id\": \"tests/template_tests/filter_tests/test_slugify.py::FunctionTests.test_slugify_lazy_string\", \"score\": 0.37722569704055786}, {\"doc_id\": \"django/forms/utils.py::pretty_name\", \"score\": 0.36747071146965027}]"
+}

@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-18189",
+  "query": "diophantine: incomplete results depending on syms order with permute=True\n```\r\nIn [10]: diophantine(n**4 + m**4 - 2**4 - 3**4, syms=(m,n), permute=True)\r\nOut[10]: {(-3, -2), (-3, 2), (-2, -3), (-2, 3), (2, -3), (2, 3), (3, -2), (3, 2)}\r\n\r\nIn [11]: diophantine(n**4 + m**4 - 2**4 - 3**4, syms=(n,m), permute=True)\r\nOut[11]: {(3, 2)}\r\n```\r\n\ndiophantine: incomplete results depending on syms order with permute=True\n```\r\nIn [10]: diophantine(n**4 + m**4 - 2**4 - 3**4, syms=(m,n), permute=True)\r\nOut[10]: {(-3, -2), (-3, 2), (-2, -3), (-2, 3), (2, -3), (2, 3), (3, -2), (3, 2)}\r\n\r\nIn [11]: diophantine(n**4 + m**4 - 2**4 - 3**4, syms=(n,m), permute=True)\r\nOut[11]: {(3, 2)}\r\n```\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/solvers/diophantine.py"
+    ],
+    "locations": [
+      "sympy/solvers/diophantine.py::diophantine"
+    ]
+  },
+  "predictions": [
+    "sympy/solvers/diophantine.py::diophantine",
+    "sympy/solvers/tests/test_diophantine.py::test_diophantine_permute_sign",
+    "sympy/solvers/tests/test_diophantine.py::test_not_implemented",
+    "sympy/solvers/tests/test_diophantine.py::test_issue_9538",
+    "sympy/solvers/diophantine.py::_sorted_tuple",
+    "sympy/polys/compatibility.py::IPolys.dmp_zz_diophantine",
+    "sympy/solvers/tests/test_diophantine.py::test_assumptions",
+    "sympy/polys/compatibility.py::IPolys.dup_zz_diophantine",
+    "sympy/polys/compatibility.py::IPolys.dmp_prs_resultant",
+    "sympy/solvers/diophantine.py::_even"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "1923822ddf8265199dbd9ef9ce09641d3fd042b9",
+    "total_functions_indexed": 33741,
+    "retrieval_time_seconds": 0.008351325988769531
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/solvers/diophantine.py::diophantine\", \"score\": 0.5030074119567871}, {\"doc_id\": \"sympy/solvers/tests/test_diophantine.py::test_diophantine_permute_sign\", \"score\": 0.4968532621860504}, {\"doc_id\": \"sympy/solvers/tests/test_diophantine.py::test_not_implemented\", \"score\": 0.4789942800998688}, {\"doc_id\": \"sympy/solvers/tests/test_diophantine.py::test_issue_9538\", \"score\": 0.46141862869262695}, {\"doc_id\": \"sympy/solvers/diophantine.py::_sorted_tuple\", \"score\": 0.45693591237068176}, {\"doc_id\": \"sympy/polys/compatibility.py::IPolys.dmp_zz_diophantine\", \"score\": 0.428834468126297}, {\"doc_id\": \"sympy/solvers/tests/test_diophantine.py::test_assumptions\", \"score\": 0.4260466396808624}, {\"doc_id\": \"sympy/polys/compatibility.py::IPolys.dup_zz_diophantine\", \"score\": 0.41347193717956543}, {\"doc_id\": \"sympy/polys/compatibility.py::IPolys.dmp_prs_resultant\", \"score\": 0.39921319484710693}, {\"doc_id\": \"sympy/solvers/diophantine.py::_even\", \"score\": 0.3936781883239746}]"
+}

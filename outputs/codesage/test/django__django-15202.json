@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-15202",
+  "query": "URLField throws ValueError instead of ValidationError on clean\nDescription\n\t\nforms.URLField( ).clean('////]@N.AN')\nresults in:\n\tValueError: Invalid IPv6 URL\n\tTraceback (most recent call last):\n\t File \"basic_fuzzer.py\", line 22, in TestOneInput\n\t File \"fuzzers.py\", line 350, in test_forms_URLField\n\t File \"django/forms/fields.py\", line 151, in clean\n\t File \"django/forms/fields.py\", line 136, in run_validators\n\t File \"django/core/validators.py\", line 130, in __call__\n\t File \"urllib/parse.py\", line 440, in urlsplit\n",
+  "ground_truth": {
+    "files": [
+      "django/core/validators.py"
+    ],
+    "locations": [
+      "django/core/validators.py::URLValidator",
+      "django/core/validators.py::URLValidator.__call__"
+    ]
+  },
+  "predictions": [
+    "tests/forms_tests/field_tests/test_urlfield.py::URLFieldTest.test_urlfield_clean_invalid",
+    "tests/forms_tests/field_tests/test_urlfield.py::URLFieldTest.test_urlfield_clean_required",
+    "tests/forms_tests/field_tests/test_urlfield.py::URLFieldTest.test_urlfield_clean",
+    "tests/forms_tests/field_tests/test_urlfield.py::URLFieldTest.test_urlfield_widget_max_min_length",
+    "tests/forms_tests/field_tests/test_urlfield.py::URLFieldTest.test_urlfield_clean_not_required",
+    "tests/forms_tests/field_tests/test_urlfield.py::URLFieldTest.test_urlfield_strip_on_none_value",
+    "tests/forms_tests/tests/test_error_messages.py::FormsErrorMessagesTestCase.test_urlfield",
+    "tests/forms_tests/field_tests/test_genericipaddressfield.py::GenericIPAddressFieldTest.test_generic_ipaddress_as_ipv6_only",
+    "tests/model_fields/test_genericipaddressfield.py::GenericIPAddressFieldTests.test_genericipaddressfield_formfield_protocol",
+    "tests/forms_tests/field_tests/test_genericipaddressfield.py::GenericIPAddressFieldTest.test_generic_ipaddress_as_ipv4_only"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "4fd3044ca0135da903a70dfb66992293f529ecf1",
+    "total_functions_indexed": 25399,
+    "retrieval_time_seconds": 0.0069386959075927734
+  },
+  "raw_output": "[{\"doc_id\": \"tests/forms_tests/field_tests/test_urlfield.py::URLFieldTest.test_urlfield_clean_invalid\", \"score\": 0.7413923740386963}, {\"doc_id\": \"tests/forms_tests/field_tests/test_urlfield.py::URLFieldTest.test_urlfield_clean_required\", \"score\": 0.7233381271362305}, {\"doc_id\": \"tests/forms_tests/field_tests/test_urlfield.py::URLFieldTest.test_urlfield_clean\", \"score\": 0.6796168088912964}, {\"doc_id\": \"tests/forms_tests/field_tests/test_urlfield.py::URLFieldTest.test_urlfield_widget_max_min_length\", \"score\": 0.662947952747345}, {\"doc_id\": \"tests/forms_tests/field_tests/test_urlfield.py::URLFieldTest.test_urlfield_clean_not_required\", \"score\": 0.6563436985015869}, {\"doc_id\": \"tests/forms_tests/field_tests/test_urlfield.py::URLFieldTest.test_urlfield_strip_on_none_value\", \"score\": 0.649635910987854}, {\"doc_id\": \"tests/forms_tests/tests/test_error_messages.py::FormsErrorMessagesTestCase.test_urlfield\", \"score\": 0.5790466070175171}, {\"doc_id\": \"tests/forms_tests/field_tests/test_genericipaddressfield.py::GenericIPAddressFieldTest.test_generic_ipaddress_as_ipv6_only\", \"score\": 0.5730119943618774}, {\"doc_id\": \"tests/model_fields/test_genericipaddressfield.py::GenericIPAddressFieldTests.test_genericipaddressfield_formfield_protocol\", \"score\": 0.5638332962989807}, {\"doc_id\": \"tests/forms_tests/field_tests/test_genericipaddressfield.py::GenericIPAddressFieldTest.test_generic_ipaddress_as_ipv4_only\", \"score\": 0.5552289485931396}]"
+}

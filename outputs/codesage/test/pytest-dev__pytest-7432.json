@@ -1,0 +1,31 @@
+{
+  "instance_id": "pytest-dev__pytest-7432",
+  "query": "skipping: --runxfail breaks pytest.mark.skip location reporting\npytest versions: 5.4.x, current master\r\n\r\nWhen `@pytest.mark.skip`/`skipif` marks are used to skip a test, for example\r\n\r\n```py\r\nimport pytest\r\n@pytest.mark.skip\r\ndef test_skip_location() -> None:\r\n    assert 0\r\n```\r\n\r\nthe expected skip location reported should point to the item itself, and this is indeed what happens when running with `pytest -rs`:\r\n\r\n```\r\nSKIPPED [1] test_it.py:3: unconditional skip\r\n```\r\n\r\nHowever, adding `pytest -rs --runxfail` breaks this:\r\n\r\n```\r\nSKIPPED [1] src/_pytest/skipping.py:238: unconditional skip\r\n```\r\n\r\nThe `--runxfail` is only about xfail and should not affect this at all.\r\n\r\n---\r\n\r\nHint: the bug is in `src/_pytest/skipping.py`, the `pytest_runtest_makereport` hook.\n",
+  "ground_truth": {
+    "files": [
+      "src/_pytest/skipping.py"
+    ],
+    "locations": [
+      "src/_pytest/skipping.py::pytest_runtest_makereport"
+    ]
+  },
+  "predictions": [
+    "testing/test_skipping.py::TestXFail.test_dynamic_xfail_no_run",
+    "testing/test_skipping.py::test_xfail_item",
+    "testing/test_skipping.py::test_mark_xfail_item",
+    "src/_pytest/skipping.py::pytest_runtest_call",
+    "testing/test_skipping.py::TestXFail.test_xfail_simple",
+    "testing/test_skipping.py::TestXFail.test_xfail_run_anyway",
+    "testing/test_skipping.py::test_xfail_skipif_with_globals",
+    "testing/test_skipping.py::TestXFail.test_xfail_imperative",
+    "testing/test_skipping.py::TestXFail.test_xfail_xpassed",
+    "src/_pytest/skipping.py::pytest_runtest_setup"
+  ],
+  "metadata": {
+    "repo": "pytest-dev/pytest",
+    "commit": "e6e300e729dd33956e5448d8be9a0b1540b4e53a",
+    "total_functions_indexed": 3926,
+    "retrieval_time_seconds": 0.1842944622039795
+  },
+  "raw_output": "[{\"doc_id\": \"testing/test_skipping.py::TestXFail.test_dynamic_xfail_no_run\", \"score\": 0.6148995757102966}, {\"doc_id\": \"testing/test_skipping.py::test_xfail_item\", \"score\": 0.613071084022522}, {\"doc_id\": \"testing/test_skipping.py::test_mark_xfail_item\", \"score\": 0.606493353843689}, {\"doc_id\": \"src/_pytest/skipping.py::pytest_runtest_call\", \"score\": 0.6057875156402588}, {\"doc_id\": \"testing/test_skipping.py::TestXFail.test_xfail_simple\", \"score\": 0.5998877286911011}, {\"doc_id\": \"testing/test_skipping.py::TestXFail.test_xfail_run_anyway\", \"score\": 0.5994370579719543}, {\"doc_id\": \"testing/test_skipping.py::test_xfail_skipif_with_globals\", \"score\": 0.5984048843383789}, {\"doc_id\": \"testing/test_skipping.py::TestXFail.test_xfail_imperative\", \"score\": 0.5974833369255066}, {\"doc_id\": \"testing/test_skipping.py::TestXFail.test_xfail_xpassed\", \"score\": 0.5964788198471069}, {\"doc_id\": \"src/_pytest/skipping.py::pytest_runtest_setup\", \"score\": 0.5942319631576538}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "sphinx-doc__sphinx-8474",
+  "query": "v3.3 upgrade started generating \"WARNING: no number is assigned for table\" warnings\nWe've updated to Sphinx 3.3 in our documentation, and suddenly the following warning started popping up in our builds when we build either `singlehtml` or `latex`.:\r\n\r\n`WARNING: no number is assigned for table:`\r\n\r\nI looked through the changelog but it didn't seem like there was anything related to `numref` that was changed, but perhaps I missed something? Could anyone point me to a change in the numref logic so I can figure out where these warnings are coming from?\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/domains/std.py"
+    ],
+    "locations": [
+      "sphinx/domains/std.py::StandardDomain",
+      "sphinx/domains/std.py::StandardDomain._resolve_numref_xref"
+    ]
+  },
+  "predictions": [
+    "tests/test_build_html.py::test_numfig_with_numbered_toctree_warn",
+    "tests/test_build_html.py::test_numfig_without_numbered_toctree_warn",
+    "tests/test_build_html.py::test_numfig_with_prefix_warn",
+    "tests/test_build_html.py::test_numfig_disabled_warn",
+    "tests/test_build_html.py::test_numfig_with_secnum_depth_warn",
+    "sphinx/domains/std.py::StandardDomain._resolve_numref_xref",
+    "sphinx/writers/latex.py::LaTeXTranslator.no_contractions",
+    "sphinx/transforms/__init__.py::UnreferencedFootnotesDetector.apply",
+    "sphinx/ext/autosummary/generate.py::_simple_warn",
+    "tests/test_toctree.py::test_numbered_toctree"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "3ea1ec84cc610f7a9f4f6b354e264565254923ff",
+    "total_functions_indexed": 5557,
+    "retrieval_time_seconds": 0.09116721153259277
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_build_html.py::test_numfig_with_numbered_toctree_warn\", \"score\": 0.4972185492515564}, {\"doc_id\": \"tests/test_build_html.py::test_numfig_without_numbered_toctree_warn\", \"score\": 0.4694790542125702}, {\"doc_id\": \"tests/test_build_html.py::test_numfig_with_prefix_warn\", \"score\": 0.4666527509689331}, {\"doc_id\": \"tests/test_build_html.py::test_numfig_disabled_warn\", \"score\": 0.4578835964202881}, {\"doc_id\": \"tests/test_build_html.py::test_numfig_with_secnum_depth_warn\", \"score\": 0.41800355911254883}, {\"doc_id\": \"sphinx/domains/std.py::StandardDomain._resolve_numref_xref\", \"score\": 0.4118921458721161}, {\"doc_id\": \"sphinx/writers/latex.py::LaTeXTranslator.no_contractions\", \"score\": 0.3996930718421936}, {\"doc_id\": \"sphinx/transforms/__init__.py::UnreferencedFootnotesDetector.apply\", \"score\": 0.3896332085132599}, {\"doc_id\": \"sphinx/ext/autosummary/generate.py::_simple_warn\", \"score\": 0.36412471532821655}, {\"doc_id\": \"tests/test_toctree.py::test_numbered_toctree\", \"score\": 0.363239049911499}]"
+}

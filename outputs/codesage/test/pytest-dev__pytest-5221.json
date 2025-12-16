@@ -1,0 +1,32 @@
+{
+  "instance_id": "pytest-dev__pytest-5221",
+  "query": "Display fixture scope with `pytest --fixtures`\nIt would be useful to show fixture scopes with `pytest --fixtures`; currently the only way to learn the scope of a fixture is look at the docs (when that is documented) or at the source code.\n",
+  "ground_truth": {
+    "files": [
+      "src/_pytest/python.py"
+    ],
+    "locations": [
+      "src/_pytest/python.py::_showfixtures_main",
+      "src/_pytest/python.py::write_docstring"
+    ]
+  },
+  "predictions": [
+    "src/_pytest/python.py::_showfixtures_main",
+    "src/_pytest/python.py::_find_parametrized_scope",
+    "testing/python/fixtures.py::TestShowFixtures.test_show_fixtures_indented_doc",
+    "src/_pytest/python.py::_show_fixtures_per_test",
+    "testing/python/fixtures.py::TestShowFixtures.test_show_fixtures_indented_doc_first_line_unindented",
+    "testing/python/fixtures.py::TestShowFixtures.test_show_fixtures_conftest",
+    "testing/python/fixtures.py::TestShowFixtures.test_show_fixtures_with_same_name",
+    "testing/python/fixtures.py::TestFixtureMarker.test_scope_mismatch",
+    "testing/python/fixtures.py::TestShowFixtures.test_show_fixtures_testmodule",
+    "testing/python/fixtures.py::TestScopeOrdering.test_func_closure_module"
+  ],
+  "metadata": {
+    "repo": "pytest-dev/pytest",
+    "commit": "4a2fdce62b73944030cff9b3e52862868ca9584d",
+    "total_functions_indexed": 3466,
+    "retrieval_time_seconds": 0.10220909118652344
+  },
+  "raw_output": "[{\"doc_id\": \"src/_pytest/python.py::_showfixtures_main\", \"score\": 0.5765762329101562}, {\"doc_id\": \"src/_pytest/python.py::_find_parametrized_scope\", \"score\": 0.5553488731384277}, {\"doc_id\": \"testing/python/fixtures.py::TestShowFixtures.test_show_fixtures_indented_doc\", \"score\": 0.5404061675071716}, {\"doc_id\": \"src/_pytest/python.py::_show_fixtures_per_test\", \"score\": 0.5181886553764343}, {\"doc_id\": \"testing/python/fixtures.py::TestShowFixtures.test_show_fixtures_indented_doc_first_line_unindented\", \"score\": 0.5160986185073853}, {\"doc_id\": \"testing/python/fixtures.py::TestShowFixtures.test_show_fixtures_conftest\", \"score\": 0.513486385345459}, {\"doc_id\": \"testing/python/fixtures.py::TestShowFixtures.test_show_fixtures_with_same_name\", \"score\": 0.5091425180435181}, {\"doc_id\": \"testing/python/fixtures.py::TestFixtureMarker.test_scope_mismatch\", \"score\": 0.5085577368736267}, {\"doc_id\": \"testing/python/fixtures.py::TestShowFixtures.test_show_fixtures_testmodule\", \"score\": 0.5070042014122009}, {\"doc_id\": \"testing/python/fixtures.py::TestScopeOrdering.test_func_closure_module\", \"score\": 0.5066354274749756}]"
+}

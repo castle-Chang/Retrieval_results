@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-16400",
+  "query": "migrate management command does not respect database parameter when adding Permissions.\nDescription\n\t \n\t\t(last modified by Vasanth)\n\t \nWhen invoking migrate with a database parameter, the migration runs successfully. However, there seems to be a DB read request that runs after the migration. This call does not respect the db param and invokes the db router .\nWhen naming the db as a parameter, all DB calls in the context of the migrate command are expected to use the database specified.\nI came across this as I am currently using a thread-local variable to get the active DB with a custom DB router for a multi-tenant service .\nMinimal example \nSetup the custom middleware and custom DB Router as show below. Then run any DB migration. We see that \"read {}\" is being printed before the exception message.\nIdeally none of this code must be called as the DB was specified during management command.\nfrom threading import local\nfrom django.conf import settings\nlocal_state = local()\nclass InvalidTenantException(Exception):\n\tpass\nclass TenantSubdomainMiddleware:\n\tdef __init__(self, get_response):\n\t\tself.get_response = get_response\n\tdef __call__(self, request):\n\t\t## Get Subdomain\n\t\thost = request.get_host().split(\":\")[0]\n\t\tlocal_state.subdomain = (\n\t\t\t# We assume single level of subdomain : app.service.com \n\t\t\t# HOST_IP : used to for local dev. \n\t\t\thost if host in settings.HOST_IP else host.split(\".\")[0]\n\t\t)\n\t\tresponse = self.get_response(request)\n\t\treturn response\nclass TenantDatabaseRouter:\n\tdef _default_db(self):\n\t\tsubdomain = getattr(local_state, \"subdomain\", None)\n\t\tif subdomain is not None and subdomain in settings.TENANT_MAP:\n\t\t\tdb_name = settings.TENANT_MAP[local_state.subdomain]\n\t\t\treturn db_name\n\t\telse:\n\t\t\traise InvalidTenantException()\n\tdef db_for_read(self, model, **hints):\n\t\tprint(\"read\", hints)\n\t\treturn self._default_db()\n\tdef db_for_write(self, model, **hints):\n\t\tprint(\"write\", hints)\n\t\treturn self._default_db()\n\tdef allow_relation(self, obj1, obj2, **hints):\n\t\treturn None\n\tdef allow_migrate(self, db, app_label, model_name=None, **hints):\n\t\treturn None\n## settings.py\nMIDDLEWARE = [\n\t\"utils.tenant_db_router.TenantSubdomainMiddleware\",\n\t\"django.middleware.security.SecurityMiddleware\",\n\t...\n]\nTENANT_MAP = {\"localhost\":\"default\", \"tenant_1\":\"default\"}\nDATABASE_ROUTERS = [\"utils.tenant_db_router.TenantDatabaseRouter\"]\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/auth/management/__init__.py"
+    ],
+    "locations": [
+      "django/contrib/auth/management/__init__.py::create_permissions"
+    ]
+  },
+  "predictions": [
+    "django/db/utils.py::ConnectionRouter.allow_migrate_model",
+    "tests/migrations/test_multidb.py::MigrateEverythingRouter.allow_migrate",
+    "tests/auth_tests/test_admin_multidb.py::Router.db_for_read",
+    "tests/migrations/test_multidb.py::AgnosticRouter.allow_migrate",
+    "tests/multiple_database/routers.py::TestRouter.allow_migrate",
+    "tests/migrations/test_multidb.py::MigrateWhenFooRouter.allow_migrate",
+    "tests/multiple_database/tests.py::AntiPetRouter.allow_migrate",
+    "django/core/management/commands/migrate.py::Command.sync_apps",
+    "tests/admin_views/test_multidb.py::Router.db_for_read",
+    "tests/check_framework/test_multi_db.py::TestRouter.allow_migrate"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "0bd2c0c9015b53c41394a1c0989afbfd94dc2830",
+    "total_functions_indexed": 26357,
+    "retrieval_time_seconds": 0.09404635429382324
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/utils.py::ConnectionRouter.allow_migrate_model\", \"score\": 0.46075981855392456}, {\"doc_id\": \"tests/migrations/test_multidb.py::MigrateEverythingRouter.allow_migrate\", \"score\": 0.45271602272987366}, {\"doc_id\": \"tests/auth_tests/test_admin_multidb.py::Router.db_for_read\", \"score\": 0.4488409161567688}, {\"doc_id\": \"tests/migrations/test_multidb.py::AgnosticRouter.allow_migrate\", \"score\": 0.4409869313240051}, {\"doc_id\": \"tests/multiple_database/routers.py::TestRouter.allow_migrate\", \"score\": 0.438625693321228}, {\"doc_id\": \"tests/migrations/test_multidb.py::MigrateWhenFooRouter.allow_migrate\", \"score\": 0.43791043758392334}, {\"doc_id\": \"tests/multiple_database/tests.py::AntiPetRouter.allow_migrate\", \"score\": 0.4308061897754669}, {\"doc_id\": \"django/core/management/commands/migrate.py::Command.sync_apps\", \"score\": 0.4268187880516052}, {\"doc_id\": \"tests/admin_views/test_multidb.py::Router.db_for_read\", \"score\": 0.4253775477409363}, {\"doc_id\": \"tests/check_framework/test_multi_db.py::TestRouter.allow_migrate\", \"score\": 0.4244298040866852}]"
+}

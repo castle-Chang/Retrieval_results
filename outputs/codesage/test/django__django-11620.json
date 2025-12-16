@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-11620",
+  "query": "When DEBUG is True, raising Http404 in a path converter's to_python method does not result in a technical response\nDescription\n\t\nThis is the response I get (plain text): \nA server error occurred. Please contact the administrator.\nI understand a ValueError should be raised which tells the URL resolver \"this path does not match, try next one\" but Http404 is what came to my mind intuitively and the error message was not very helpful.\nOne could also make a point that raising a Http404 should be valid way to tell the resolver \"this is indeed the right path but the current parameter value does not match anything so stop what you are doing and let the handler return the 404 page (including a helpful error message when DEBUG is True instead of the default 'Django tried these URL patterns')\".\nThis would prove useful for example to implement a path converter that uses get_object_or_404.\n",
+  "ground_truth": {
+    "files": [
+      "django/views/debug.py"
+    ],
+    "locations": [
+      "django/views/debug.py::technical_404_response"
+    ]
+  },
+  "predictions": [
+    "django/views/debug.py::technical_404_response",
+    "django/views/defaults.py::page_not_found",
+    "django/views/defaults.py::bad_request",
+    "tests/view_tests/views.py::Http404View.get",
+    "django/views/debug.py::ExceptionReporter.get_traceback_text",
+    "tests/view_tests/views.py::technical404",
+    "django/views/debug.py::ExceptionReporter.get_traceback_html",
+    "django/views/debug.py::technical_500_response",
+    "django/core/handlers/exception.py::handle_uncaught_exception",
+    "tests/view_tests/views.py::raises_template_does_not_exist"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "514efa3129792ec2abb2444f3e7aeb3f21a38386",
+    "total_functions_indexed": 22708,
+    "retrieval_time_seconds": 0.007680177688598633
+  },
+  "raw_output": "[{\"doc_id\": \"django/views/debug.py::technical_404_response\", \"score\": 0.6417863368988037}, {\"doc_id\": \"django/views/defaults.py::page_not_found\", \"score\": 0.5770697593688965}, {\"doc_id\": \"django/views/defaults.py::bad_request\", \"score\": 0.5181968212127686}, {\"doc_id\": \"tests/view_tests/views.py::Http404View.get\", \"score\": 0.506511926651001}, {\"doc_id\": \"django/views/debug.py::ExceptionReporter.get_traceback_text\", \"score\": 0.4807904362678528}, {\"doc_id\": \"tests/view_tests/views.py::technical404\", \"score\": 0.4788056015968323}, {\"doc_id\": \"django/views/debug.py::ExceptionReporter.get_traceback_html\", \"score\": 0.4732714891433716}, {\"doc_id\": \"django/views/debug.py::technical_500_response\", \"score\": 0.46376270055770874}, {\"doc_id\": \"django/core/handlers/exception.py::handle_uncaught_exception\", \"score\": 0.45710423588752747}, {\"doc_id\": \"tests/view_tests/views.py::raises_template_does_not_exist\", \"score\": 0.44731760025024414}]"
+}

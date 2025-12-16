@@ -1,0 +1,32 @@
+{
+  "instance_id": "matplotlib__matplotlib-26011",
+  "query": "xlim_changed not emitted on shared axis\n<!--To help us understand and resolve your issue, please fill out the form to the best of your ability.-->\r\n<!--You can feel free to delete the sections that do not apply.-->\r\n\r\n### Bug report\r\n\r\n**Bug summary**\r\n\r\nWhen an axis is shared with another its registered \"xlim_changed\" callbacks does not get called when the change is induced by a shared axis (via sharex=). \r\n\r\nIn _base.py the set_xlim for sibling axis are called with emit=False:\r\n\r\n```\r\nmatplotlib/lib/matplotlib/axes/_base.py:\r\n\r\n/.../\r\ndef set_xlim(...)\r\n/.../\r\n        if emit:\r\n            self.callbacks.process('xlim_changed', self)\r\n            # Call all of the other x-axes that are shared with this one\r\n            for other in self._shared_x_axes.get_siblings(self):\r\n                if other is not self:\r\n                    other.set_xlim(self.viewLim.intervalx,\r\n                                   emit=False, auto=auto)\r\n```\r\n\r\nI'm very new to matplotlib, so perhaps there is a good reason for this? emit=False seems to disable both continued \"inheritance\" of axis (why?) and triggering of change callbacks (looking at the code above).\r\n\r\nIt seems like one would at least want to trigger the xlim_changed callbacks as they would be intended to react to any change in axis limits.\r\n\r\nEdit: Setting emit=True seems to introduce a recursion issue (not sure why but as inheritance seems to be passed along anyway it doesn't really matter). Moving the callback call to outside of the \"if emit:\"-statement seems to solve the issue as far as I can see when trying it out. Any reason to keep it inside the if-statement? \r\n\n",
+  "ground_truth": {
+    "files": [
+      "lib/matplotlib/axis.py"
+    ],
+    "locations": [
+      "lib/matplotlib/axis.py::Axis",
+      "lib/matplotlib/axis.py::Axis._set_lim"
+    ]
+  },
+  "predictions": [
+    "lib/matplotlib/axes/_base.py::_AxesBase.set_xlim",
+    "lib/matplotlib/axis.py::Axis._set_lim",
+    "lib/matplotlib/axis.py::XAxis.set_default_intervals",
+    "lib/matplotlib/tests/test_axes.py::test_remove_shared_axes_relim",
+    "lib/matplotlib/axes/_base.py::_AxesBase.axis",
+    "lib/mpl_toolkits/mplot3d/axes3d.py::Axes3D.get_xlim",
+    "lib/matplotlib/axis.py::YAxis.set_default_intervals",
+    "lib/mpl_toolkits/axisartist/axislines.py::_AxisArtistHelperBase.update_lim",
+    "lib/mpl_toolkits/axisartist/axislines.py::GridHelperBase.update_lim",
+    "lib/matplotlib/axes/_base.py::_AxesBase.invert_xaxis"
+  ],
+  "metadata": {
+    "repo": "matplotlib/matplotlib",
+    "commit": "00afcc0c6d4d2e4390338127f05b8f4fdb4e7087",
+    "total_functions_indexed": 9289,
+    "retrieval_time_seconds": 0.0036363601684570312
+  },
+  "raw_output": "[{\"doc_id\": \"lib/matplotlib/axes/_base.py::_AxesBase.set_xlim\", \"score\": 0.5350874066352844}, {\"doc_id\": \"lib/matplotlib/axis.py::Axis._set_lim\", \"score\": 0.5241294503211975}, {\"doc_id\": \"lib/matplotlib/axis.py::XAxis.set_default_intervals\", \"score\": 0.490167498588562}, {\"doc_id\": \"lib/matplotlib/tests/test_axes.py::test_remove_shared_axes_relim\", \"score\": 0.46408289670944214}, {\"doc_id\": \"lib/matplotlib/axes/_base.py::_AxesBase.axis\", \"score\": 0.4319240152835846}, {\"doc_id\": \"lib/mpl_toolkits/mplot3d/axes3d.py::Axes3D.get_xlim\", \"score\": 0.42420169711112976}, {\"doc_id\": \"lib/matplotlib/axis.py::YAxis.set_default_intervals\", \"score\": 0.42302966117858887}, {\"doc_id\": \"lib/mpl_toolkits/axisartist/axislines.py::_AxisArtistHelperBase.update_lim\", \"score\": 0.4126715660095215}, {\"doc_id\": \"lib/mpl_toolkits/axisartist/axislines.py::GridHelperBase.update_lim\", \"score\": 0.4100348949432373}, {\"doc_id\": \"lib/matplotlib/axes/_base.py::_AxesBase.invert_xaxis\", \"score\": 0.4089735746383667}]"
+}

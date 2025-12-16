@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-21614",
+  "query": "Wrong Derivative kind attribute\nI'm playing around with the `kind` attribute.\r\n\r\nThe following is correct:\r\n\r\n```\r\nfrom sympy import Integral, Derivative\r\nfrom sympy import MatrixSymbol\r\nfrom sympy.abc import x\r\nA = MatrixSymbol('A', 2, 2)\r\ni = Integral(A, x)\r\ni.kind\r\n# MatrixKind(NumberKind)\r\n```\r\n\r\nThis one is wrong:\r\n```\r\nd = Derivative(A, x)\r\nd.kind\r\n# UndefinedKind\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/function.py"
+    ],
+    "locations": [
+      "sympy/core/function.py::Derivative",
+      "sympy/core/function.py::Derivative.free_symbols",
+      "sympy/core/function.py::Derivative._eval_subs"
+    ]
+  },
+  "predictions": [
+    "sympy/matrices/matrices.py::MatrixBase.kind",
+    "sympy/matrices/common.py::MatrixKind.__repr__",
+    "sympy/core/tests/test_kind.py::test_Integral_kind",
+    "sympy/core/kind.py::_UndefinedKind.__repr__",
+    "sympy/matrices/common.py::MatrixKind.__new__",
+    "sympy/matrices/matrices.py::num_mat_mul",
+    "sympy/core/kind.py::_UndefinedKind.__new__",
+    "sympy/matrices/matrices.py::mat_mat_mul",
+    "sympy/core/kind.py::_NumberKind.__new__",
+    "sympy/core/symbol.py::Symbol.kind"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "b4777fdcef467b7132c055f8ac2c9a5059e6a145",
+    "total_functions_indexed": 36564,
+    "retrieval_time_seconds": 0.12166047096252441
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/matrices/matrices.py::MatrixBase.kind\", \"score\": 0.5147133469581604}, {\"doc_id\": \"sympy/matrices/common.py::MatrixKind.__repr__\", \"score\": 0.4866247773170471}, {\"doc_id\": \"sympy/core/tests/test_kind.py::test_Integral_kind\", \"score\": 0.4781803488731384}, {\"doc_id\": \"sympy/core/kind.py::_UndefinedKind.__repr__\", \"score\": 0.46560952067375183}, {\"doc_id\": \"sympy/matrices/common.py::MatrixKind.__new__\", \"score\": 0.45940452814102173}, {\"doc_id\": \"sympy/matrices/matrices.py::num_mat_mul\", \"score\": 0.45859068632125854}, {\"doc_id\": \"sympy/core/kind.py::_UndefinedKind.__new__\", \"score\": 0.45818179845809937}, {\"doc_id\": \"sympy/matrices/matrices.py::mat_mat_mul\", \"score\": 0.4540403485298157}, {\"doc_id\": \"sympy/core/kind.py::_NumberKind.__new__\", \"score\": 0.45019182562828064}, {\"doc_id\": \"sympy/core/symbol.py::Symbol.kind\", \"score\": 0.4497296214103699}]"
+}

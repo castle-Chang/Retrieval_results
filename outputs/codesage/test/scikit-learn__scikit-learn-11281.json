@@ -1,0 +1,33 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-11281",
+  "query": "Should mixture models have a clusterer-compatible interface\nMixture models are currently a bit different. They are basically clusterers, except they are probabilistic, and are applied to inductive problems unlike many clusterers. But they are unlike clusterers in API:\r\n* they have an `n_components` parameter, with identical purpose to `n_clusters`\r\n* they do not store the `labels_` of the training data\r\n* they do not have a `fit_predict` method\r\n\r\nAnd they are almost entirely documented separately.\r\n\r\nShould we make the MMs more like clusterers?\n",
+  "ground_truth": {
+    "files": [
+      "sklearn/mixture/base.py"
+    ],
+    "locations": [
+      "sklearn/mixture/base.py::BaseMixture",
+      "sklearn/mixture/base.py::BaseMixture.fit",
+      "sklearn/mixture/base.py::BaseMixture._e_step"
+    ]
+  },
+  "predictions": [
+    "sklearn/utils/estimator_checks.py::check_clusterer_compute_labels_predict",
+    "sklearn/utils/estimator_checks.py::_yield_clustering_checks",
+    "sklearn/mixture/tests/test_gaussian_mixture.py::test_regularisation",
+    "sklearn/cluster/tests/test_k_means.py::_check_fitted_model",
+    "sklearn/utils/estimator_checks.py::check_clustering",
+    "sklearn/mixture/gaussian_mixture.py::GaussianMixture._check_is_fitted",
+    "sklearn/cluster/tests/test_bicluster.py::test_errors",
+    "sklearn/cluster/tests/test_k_means.py::test_minibatch_sensible_reassign_partial_fit",
+    "sklearn/mixture/tests/test_gaussian_mixture.py::test_gaussian_mixture_n_parameters",
+    "sklearn/cluster/bicluster.py::SpectralBiclustering._check_parameters"
+  ],
+  "metadata": {
+    "repo": "scikit-learn/scikit-learn",
+    "commit": "4143356c3c51831300789e4fdf795d83716dbab6",
+    "total_functions_indexed": 6353,
+    "retrieval_time_seconds": 0.3615000247955322
+  },
+  "raw_output": "[{\"doc_id\": \"sklearn/utils/estimator_checks.py::check_clusterer_compute_labels_predict\", \"score\": 0.42906951904296875}, {\"doc_id\": \"sklearn/utils/estimator_checks.py::_yield_clustering_checks\", \"score\": 0.4230119287967682}, {\"doc_id\": \"sklearn/mixture/tests/test_gaussian_mixture.py::test_regularisation\", \"score\": 0.4175910949707031}, {\"doc_id\": \"sklearn/cluster/tests/test_k_means.py::_check_fitted_model\", \"score\": 0.4014780819416046}, {\"doc_id\": \"sklearn/utils/estimator_checks.py::check_clustering\", \"score\": 0.3951478898525238}, {\"doc_id\": \"sklearn/mixture/gaussian_mixture.py::GaussianMixture._check_is_fitted\", \"score\": 0.37723708152770996}, {\"doc_id\": \"sklearn/cluster/tests/test_bicluster.py::test_errors\", \"score\": 0.37049418687820435}, {\"doc_id\": \"sklearn/cluster/tests/test_k_means.py::test_minibatch_sensible_reassign_partial_fit\", \"score\": 0.3646950125694275}, {\"doc_id\": \"sklearn/mixture/tests/test_gaussian_mixture.py::test_gaussian_mixture_n_parameters\", \"score\": 0.36394622921943665}, {\"doc_id\": \"sklearn/cluster/bicluster.py::SpectralBiclustering._check_parameters\", \"score\": 0.36186403036117554}]"
+}

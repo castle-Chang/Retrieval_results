@@ -1,0 +1,36 @@
+{
+  "instance_id": "sympy__sympy-11870",
+  "query": "simplifying exponential -> trig identities\n```\r\nf = 1 / 2 * (-I*exp(I*k) + I*exp(-I*k))\r\ntrigsimp(f)\r\n```\r\n\r\nIdeally, this would yield `sin(k)`. Is there a way to do this?\r\n\r\nAs a corollary, it would be awesome if \r\n\r\n```\r\nf = 1 / 2 / k* (-I*exp(I*k) + I*exp(-I*k))\r\ntrigsimp(f)\r\n```\r\n\r\ncould yield `sinc(k)`. Thank you for your consideration!\n",
+  "ground_truth": {
+    "files": [
+      "sympy/functions/elementary/trigonometric.py"
+    ],
+    "locations": [
+      "sympy/functions/elementary/trigonometric.py::sin",
+      "sympy/functions/elementary/trigonometric.py::sin._eval_rewrite_as_pow",
+      "sympy/functions/elementary/trigonometric.py::sin._eval_rewrite_as_sqrt",
+      "sympy/functions/elementary/trigonometric.py::sin._eval_rewrite_as_csc",
+      "sympy/functions/elementary/trigonometric.py::sinc",
+      "sympy/functions/elementary/trigonometric.py::sinc.eval"
+    ]
+  },
+  "predictions": [
+    "sympy/simplify/trigsimp.py::exptrigsimp",
+    "sympy/simplify/tests/test_trigsimp.py::test_trigsimp_issues",
+    "sympy/simplify/tests/test_trigsimp.py::test_issue_3210",
+    "sympy/simplify/trigsimp.py::_futrig",
+    "sympy/simplify/trigsimp.py::__trigsimp",
+    "sympy/simplify/tests/test_trigsimp.py::test_trigsimp_issue_4032",
+    "sympy/simplify/trigsimp.py::trigsimp_old",
+    "sympy/functions/elementary/trigonometric.py::sinc._eval_nseries",
+    "sympy/simplify/tests/test_trigsimp.py::test_trigsimp1",
+    "sympy/simplify/tests/test_trigsimp.py::test_trigsimp_issue_2515"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "5c2e1f96a7ff562d4a778f4ca9ffc9c81557197e",
+    "total_functions_indexed": 22195,
+    "retrieval_time_seconds": 0.18798255920410156
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/simplify/trigsimp.py::exptrigsimp\", \"score\": 0.4776408076286316}, {\"doc_id\": \"sympy/simplify/tests/test_trigsimp.py::test_trigsimp_issues\", \"score\": 0.44927436113357544}, {\"doc_id\": \"sympy/simplify/tests/test_trigsimp.py::test_issue_3210\", \"score\": 0.44184887409210205}, {\"doc_id\": \"sympy/simplify/trigsimp.py::_futrig\", \"score\": 0.4391169548034668}, {\"doc_id\": \"sympy/simplify/trigsimp.py::__trigsimp\", \"score\": 0.4384393095970154}, {\"doc_id\": \"sympy/simplify/tests/test_trigsimp.py::test_trigsimp_issue_4032\", \"score\": 0.4363657236099243}, {\"doc_id\": \"sympy/simplify/trigsimp.py::trigsimp_old\", \"score\": 0.43465399742126465}, {\"doc_id\": \"sympy/functions/elementary/trigonometric.py::sinc._eval_nseries\", \"score\": 0.43449848890304565}, {\"doc_id\": \"sympy/simplify/tests/test_trigsimp.py::test_trigsimp1\", \"score\": 0.4308892488479614}, {\"doc_id\": \"sympy/simplify/tests/test_trigsimp.py::test_trigsimp_issue_2515\", \"score\": 0.4253445863723755}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12184",
+  "query": "Optional URL params crash some view functions.\nDescription\n\t\nMy use case, running fine with Django until 2.2:\nURLConf:\nurlpatterns += [\n\t...\n\tre_path(r'^module/(?P<format>(html|json|xml))?/?$', views.modules, name='modules'),\n]\nView:\ndef modules(request, format='html'):\n\t...\n\treturn render(...)\nWith Django 3.0, this is now producing an error:\nTraceback (most recent call last):\n File \"/l10n/venv/lib/python3.6/site-packages/django/core/handlers/exception.py\", line 34, in inner\n\tresponse = get_response(request)\n File \"/l10n/venv/lib/python3.6/site-packages/django/core/handlers/base.py\", line 115, in _get_response\n\tresponse = self.process_exception_by_middleware(e, request)\n File \"/l10n/venv/lib/python3.6/site-packages/django/core/handlers/base.py\", line 113, in _get_response\n\tresponse = wrapped_callback(request, *callback_args, **callback_kwargs)\nException Type: TypeError at /module/\nException Value: modules() takes from 1 to 2 positional arguments but 3 were given\n",
+  "ground_truth": {
+    "files": [
+      "django/urls/resolvers.py"
+    ],
+    "locations": [
+      "django/urls/resolvers.py::RegexPattern",
+      "django/urls/resolvers.py::RegexPattern.match"
+    ]
+  },
+  "predictions": [
+    "tests/urlpatterns_reverse/views.py::erroneous_view",
+    "tests/middleware_exceptions/middleware.py::ProcessViewMiddleware.process_view",
+    "tests/middleware_exceptions/views.py::exception_in_render",
+    "tests/middleware_exceptions/views.py::server_error",
+    "tests/urlpatterns_reverse/nonimported_module.py::view",
+    "tests/middleware_exceptions/middleware.py::ProcessViewNoneMiddleware.process_view",
+    "tests/urlpatterns_reverse/views.py::nested_view",
+    "tests/middleware_exceptions/middleware.py::ProcessViewTemplateResponseMiddleware.process_view",
+    "tests/middleware_exceptions/views.py::normal_view",
+    "tests/check_framework/urls/good_error_handlers.py::good_handler"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "5d674eac871a306405b0fbbaeb17bbeba9c68bf3",
+    "total_functions_indexed": 23071,
+    "retrieval_time_seconds": 0.007900238037109375
+  },
+  "raw_output": "[{\"doc_id\": \"tests/urlpatterns_reverse/views.py::erroneous_view\", \"score\": 0.5306382775306702}, {\"doc_id\": \"tests/middleware_exceptions/middleware.py::ProcessViewMiddleware.process_view\", \"score\": 0.49314945936203003}, {\"doc_id\": \"tests/middleware_exceptions/views.py::exception_in_render\", \"score\": 0.4863808751106262}, {\"doc_id\": \"tests/middleware_exceptions/views.py::server_error\", \"score\": 0.4779628813266754}, {\"doc_id\": \"tests/urlpatterns_reverse/nonimported_module.py::view\", \"score\": 0.4625282883644104}, {\"doc_id\": \"tests/middleware_exceptions/middleware.py::ProcessViewNoneMiddleware.process_view\", \"score\": 0.4465784728527069}, {\"doc_id\": \"tests/urlpatterns_reverse/views.py::nested_view\", \"score\": 0.4450252056121826}, {\"doc_id\": \"tests/middleware_exceptions/middleware.py::ProcessViewTemplateResponseMiddleware.process_view\", \"score\": 0.44434934854507446}, {\"doc_id\": \"tests/middleware_exceptions/views.py::normal_view\", \"score\": 0.43732455372810364}, {\"doc_id\": \"tests/check_framework/urls/good_error_handlers.py::good_handler\", \"score\": 0.4319007694721222}]"
+}

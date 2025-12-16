@@ -1,0 +1,34 @@
+{
+  "instance_id": "matplotlib__matplotlib-24265",
+  "query": "[Bug]: Setting matplotlib.pyplot.style.library['seaborn-colorblind'] result in key error on matplotlib v3.6.1\n### Bug summary\n\nI have code that executes:\r\n```\r\nimport matplotlib.pyplot as plt\r\nthe_rc = plt.style.library[\"seaborn-colorblind\"]\r\n```\r\n\r\nUsing version 3.4.3 of matplotlib, this works fine. I recently installed my code on a machine with matplotlib version 3.6.1 and upon importing my code, this generated a key error for line `the_rc = plt.style.library[\"seaborn-colorblind\"]` saying \"seaborn-colorblind\" was a bad key.\n\n### Code for reproduction\n\n```python\nimport matplotlib.pyplot as plt\r\nthe_rc = plt.style.library[\"seaborn-colorblind\"]\n```\n\n\n### Actual outcome\n\nTraceback (most recent call last):\r\nKeyError: 'seaborn-colorblind'\n\n### Expected outcome\n\nseaborn-colorblind should be set as the matplotlib library style and I should be able to continue plotting with that style.\n\n### Additional information\n\n- Bug occurs with matplotlib version 3.6.1\r\n- Bug does not occur with matplotlib version 3.4.3\r\n- Tested on MacOSX and Ubuntu (same behavior on both)\n\n### Operating system\n\nOS/X\n\n### Matplotlib Version\n\n3.6.1\n\n### Matplotlib Backend\n\nMacOSX\n\n### Python version\n\n3.9.7\n\n### Jupyter version\n\n_No response_\n\n### Installation\n\npip\n",
+  "ground_truth": {
+    "files": [
+      "lib/matplotlib/style/core.py"
+    ],
+    "locations": [
+      "lib/matplotlib/style/core.py::_remove_blacklisted_style_params",
+      "lib/matplotlib/style/core.py::use",
+      "lib/matplotlib/style/core.py::update_nested_dict",
+      "lib/matplotlib/style/core.py::reload_library"
+    ]
+  },
+  "predictions": [
+    "lib/matplotlib/tests/test_style.py::test_deprecated_seaborn_styles",
+    "lib/matplotlib/_api/deprecation.py::suppress_matplotlib_deprecation_warning",
+    "lib/matplotlib/__init__.py::_check_versions",
+    "lib/matplotlib/_api/__init__.py::warn_external",
+    "lib/matplotlib/testing/conftest.py::mpl_test_settings",
+    "lib/matplotlib/style/core.py::reload_library",
+    "lib/matplotlib/tests/test_pyplot.py::test_pylab_integration",
+    "lib/matplotlib/tests/test_backend_ps.py::test_failing_latex",
+    "lib/matplotlib/backends/backend_pgf.py::LatexError.__init__",
+    "lib/matplotlib/tests/test_figure.py::test_savefig_backend"
+  ],
+  "metadata": {
+    "repo": "matplotlib/matplotlib",
+    "commit": "e148998d9bed9d1b53a91587ad48f9bb43c7737f",
+    "total_functions_indexed": 9109,
+    "retrieval_time_seconds": 0.09665679931640625
+  },
+  "raw_output": "[{\"doc_id\": \"lib/matplotlib/tests/test_style.py::test_deprecated_seaborn_styles\", \"score\": 0.46231138706207275}, {\"doc_id\": \"lib/matplotlib/_api/deprecation.py::suppress_matplotlib_deprecation_warning\", \"score\": 0.4406192898750305}, {\"doc_id\": \"lib/matplotlib/__init__.py::_check_versions\", \"score\": 0.41849666833877563}, {\"doc_id\": \"lib/matplotlib/_api/__init__.py::warn_external\", \"score\": 0.41702353954315186}, {\"doc_id\": \"lib/matplotlib/testing/conftest.py::mpl_test_settings\", \"score\": 0.4057289958000183}, {\"doc_id\": \"lib/matplotlib/style/core.py::reload_library\", \"score\": 0.4031294882297516}, {\"doc_id\": \"lib/matplotlib/tests/test_pyplot.py::test_pylab_integration\", \"score\": 0.39184805750846863}, {\"doc_id\": \"lib/matplotlib/tests/test_backend_ps.py::test_failing_latex\", \"score\": 0.3825279176235199}, {\"doc_id\": \"lib/matplotlib/backends/backend_pgf.py::LatexError.__init__\", \"score\": 0.37936705350875854}, {\"doc_id\": \"lib/matplotlib/tests/test_figure.py::test_savefig_backend\", \"score\": 0.37935274839401245}]"
+}

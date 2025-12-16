@@ -1,0 +1,31 @@
+{
+  "instance_id": "pytest-dev__pytest-6116",
+  "query": "pytest --collect-only needs a one char shortcut command\nI find myself needing to run `--collect-only` very often and that cli argument is a very long to type one. \r\n\r\nI do think that it would be great to allocate a character for it, not sure which one yet. Please use up/down thumbs to vote if you would find it useful or not and eventually proposing which char should be used. \r\n\r\nClearly this is a change very easy to implement but first I want to see if others would find it useful or not.\npytest --collect-only needs a one char shortcut command\nI find myself needing to run `--collect-only` very often and that cli argument is a very long to type one. \r\n\r\nI do think that it would be great to allocate a character for it, not sure which one yet. Please use up/down thumbs to vote if you would find it useful or not and eventually proposing which char should be used. \r\n\r\nClearly this is a change very easy to implement but first I want to see if others would find it useful or not.\n",
+  "ground_truth": {
+    "files": [
+      "src/_pytest/main.py"
+    ],
+    "locations": [
+      "src/_pytest/main.py::pytest_addoption"
+    ]
+  },
+  "predictions": [
+    "testing/test_terminal.py::TestCollectonly.test_collectonly_more_quiet",
+    "testing/test_terminal.py::TestCollectonly.test_collectonly_quiet",
+    "testing/test_terminal.py::TestCollectonly.test_collectonly_fatal",
+    "testing/test_terminal.py::TestCollectonly.test_collectonly_basic",
+    "testing/test_terminal.py::TestCollectonly.test_collectonly_simple",
+    "testing/test_terminal.py::TestCollectonly.test_collectonly_skipped_module",
+    "testing/test_terminal.py::TestCollectonly.test_collectonly_failed_module",
+    "testing/test_terminal.py::TestCollectonly.test_collectonly_display_test_description",
+    "testing/test_terminal.py::TestCollectonly.test_collectonly_error",
+    "testing/python/collect.py::TestConftestCustomization.test_pytest_pycollect_makeitem"
+  ],
+  "metadata": {
+    "repo": "pytest-dev/pytest",
+    "commit": "e670ff76cbad80108bde9bab616b66771b8653cf",
+    "total_functions_indexed": 3617,
+    "retrieval_time_seconds": 0.18050003051757812
+  },
+  "raw_output": "[{\"doc_id\": \"testing/test_terminal.py::TestCollectonly.test_collectonly_more_quiet\", \"score\": 0.5888980031013489}, {\"doc_id\": \"testing/test_terminal.py::TestCollectonly.test_collectonly_quiet\", \"score\": 0.5878511667251587}, {\"doc_id\": \"testing/test_terminal.py::TestCollectonly.test_collectonly_fatal\", \"score\": 0.5682750940322876}, {\"doc_id\": \"testing/test_terminal.py::TestCollectonly.test_collectonly_basic\", \"score\": 0.5612114667892456}, {\"doc_id\": \"testing/test_terminal.py::TestCollectonly.test_collectonly_simple\", \"score\": 0.5558366775512695}, {\"doc_id\": \"testing/test_terminal.py::TestCollectonly.test_collectonly_skipped_module\", \"score\": 0.5455657243728638}, {\"doc_id\": \"testing/test_terminal.py::TestCollectonly.test_collectonly_failed_module\", \"score\": 0.5327640771865845}, {\"doc_id\": \"testing/test_terminal.py::TestCollectonly.test_collectonly_display_test_description\", \"score\": 0.5166952610015869}, {\"doc_id\": \"testing/test_terminal.py::TestCollectonly.test_collectonly_error\", \"score\": 0.4954788088798523}, {\"doc_id\": \"testing/python/collect.py::TestConftestCustomization.test_pytest_pycollect_makeitem\", \"score\": 0.49085497856140137}]"
+}

@@ -1,0 +1,33 @@
+{
+  "instance_id": "matplotlib__matplotlib-25498",
+  "query": "Update colorbar after changing mappable.norm\nHow can I update a colorbar, after I changed the norm instance of the colorbar?\n\n`colorbar.update_normal(mappable)` has now effect and `colorbar.update_bruteforce(mappable)` throws a `ZeroDivsionError`-Exception.\n\nConsider this example:\n\n``` python\nimport matplotlib.pyplot as plt\nfrom matplotlib.colors import LogNorm\nimport numpy as np\n\nimg = 10**np.random.normal(1, 1, size=(50, 50))\n\nfig, ax = plt.subplots(1, 1)\nplot = ax.imshow(img, cmap='gray')\ncb = fig.colorbar(plot, ax=ax)\nplot.norm = LogNorm()\ncb.update_normal(plot)  # no effect\ncb.update_bruteforce(plot)  # throws ZeroDivisionError\nplt.show()\n```\n\nOutput for `cb.update_bruteforce(plot)`:\n\n```\nTraceback (most recent call last):\n  File \"test_norm.py\", line 12, in <module>\n    cb.update_bruteforce(plot)\n  File \"/home/maxnoe/.local/anaconda3/lib/python3.4/site-packages/matplotlib/colorbar.py\", line 967, in update_bruteforce\n    self.draw_all()\n  File \"/home/maxnoe/.local/anaconda3/lib/python3.4/site-packages/matplotlib/colorbar.py\", line 342, in draw_all\n    self._process_values()\n  File \"/home/maxnoe/.local/anaconda3/lib/python3.4/site-packages/matplotlib/colorbar.py\", line 664, in _process_values\n    b = self.norm.inverse(self._uniform_y(self.cmap.N + 1))\n  File \"/home/maxnoe/.local/anaconda3/lib/python3.4/site-packages/matplotlib/colors.py\", line 1011, in inverse\n    return vmin * ma.power((vmax / vmin), val)\nZeroDivisionError: division by zero\n```\n\n",
+  "ground_truth": {
+    "files": [
+      "lib/matplotlib/colorbar.py"
+    ],
+    "locations": [
+      "lib/matplotlib/colorbar.py::Colorbar",
+      "lib/matplotlib/colorbar.py::Colorbar.__init__",
+      "lib/matplotlib/colorbar.py::Colorbar._process_values"
+    ]
+  },
+  "predictions": [
+    "lib/matplotlib/colorbar.py::Colorbar.update_normal",
+    "lib/matplotlib/tests/test_colorbar.py::test_colorbar_renorm",
+    "lib/matplotlib/colorbar.py::Colorbar._set_view",
+    "lib/matplotlib/colors.py::BoundaryNorm.inverse",
+    "lib/matplotlib/colorbar.py::Colorbar._reset_locator_formatter_scale",
+    "lib/matplotlib/colors.py::CenteredNorm.vmin",
+    "lib/matplotlib/tests/test_colorbar.py::test_nonorm",
+    "lib/matplotlib/colors.py::CenteredNorm.vmax",
+    "lib/matplotlib/tests/test_colorbar.py::test_colorbar_format",
+    "lib/matplotlib/cm.py::ScalarMappable.set_norm"
+  ],
+  "metadata": {
+    "repo": "matplotlib/matplotlib",
+    "commit": "78bf53caacbb5ce0dc7aa73f07a74c99f1ed919b",
+    "total_functions_indexed": 9125,
+    "retrieval_time_seconds": 0.0931553840637207
+  },
+  "raw_output": "[{\"doc_id\": \"lib/matplotlib/colorbar.py::Colorbar.update_normal\", \"score\": 0.5402222871780396}, {\"doc_id\": \"lib/matplotlib/tests/test_colorbar.py::test_colorbar_renorm\", \"score\": 0.4965299665927887}, {\"doc_id\": \"lib/matplotlib/colorbar.py::Colorbar._set_view\", \"score\": 0.4833432734012604}, {\"doc_id\": \"lib/matplotlib/colors.py::BoundaryNorm.inverse\", \"score\": 0.4693542718887329}, {\"doc_id\": \"lib/matplotlib/colorbar.py::Colorbar._reset_locator_formatter_scale\", \"score\": 0.4654059410095215}, {\"doc_id\": \"lib/matplotlib/colors.py::CenteredNorm.vmin\", \"score\": 0.46529707312583923}, {\"doc_id\": \"lib/matplotlib/tests/test_colorbar.py::test_nonorm\", \"score\": 0.4612160623073578}, {\"doc_id\": \"lib/matplotlib/colors.py::CenteredNorm.vmax\", \"score\": 0.460613489151001}, {\"doc_id\": \"lib/matplotlib/tests/test_colorbar.py::test_colorbar_format\", \"score\": 0.46036431193351746}, {\"doc_id\": \"lib/matplotlib/cm.py::ScalarMappable.set_norm\", \"score\": 0.4552490711212158}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-16792",
+  "query": "autowrap with cython backend fails when array arguments do not appear in wrapped expr\nWhen using the cython backend for autowrap, it appears that the code is not correctly generated when the function in question has array arguments that do not appear in the final expression. A minimal counterexample is:\r\n\r\n```python\r\nfrom sympy.utilities.autowrap import autowrap\r\nfrom sympy import MatrixSymbol\r\nimport numpy as np\r\n\r\nx = MatrixSymbol('x', 2, 1)\r\nexpr = 1.0\r\nf = autowrap(expr, args=(x,), backend='cython')\r\n\r\nf(np.array([[1.0, 2.0]]))\r\n```\r\n\r\nThis should of course return `1.0` but instead fails with:\r\n```python\r\nTypeError: only size-1 arrays can be converted to Python scalars\r\n```\r\n\r\nA little inspection reveals that this is because the corresponding C function is generated with an incorrect signature:\r\n\r\n```C\r\ndouble autofunc(double x) {\r\n\r\n   double autofunc_result;\r\n   autofunc_result = 1.0;\r\n   return autofunc_result;\r\n\r\n}\r\n```\r\n\r\n(`x` should be `double *`, not `double` in this case)\r\n\r\nI've found that this error won't occur so long as `expr` depends at least in part on each argument. For example this slight modification of the above counterexample works perfectly:\r\n\r\n```python\r\nfrom sympy.utilities.autowrap import autowrap\r\nfrom sympy import MatrixSymbol\r\nimport numpy as np\r\n\r\nx = MatrixSymbol('x', 2, 1)\r\n# now output depends on x\r\nexpr = x[0,0]\r\nf = autowrap(expr, args=(x,), backend='cython')\r\n\r\n# returns 1.0 as expected, without failure\r\nf(np.array([[1.0, 2.0]]))\r\n```\r\n\r\nThis may seem like a silly issue (\"why even have `x` as an argument if it doesn't appear in the expression you're trying to evaluate?\"). But of course in interfacing with external libraries (e.g. for numerical integration), one often needs functions to have a pre-defined signature regardless of whether a given argument contributes to the output.\r\n\r\nI think I've identified the problem in `codegen` and will suggest a PR shortly.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/utilities/codegen.py"
+    ],
+    "locations": [
+      "sympy/utilities/codegen.py::CodeGen",
+      "sympy/utilities/codegen.py::CodeGen.routine"
+    ]
+  },
+  "predictions": [
+    "sympy/utilities/tests/test_autowrap.py::test_autowrap_dummy",
+    "sympy/external/tests/test_autowrap.py::runtest_autowrap_trace",
+    "sympy/utilities/autowrap.py::CythonCodeWrapper._call_arg",
+    "sympy/utilities/autowrap.py::CythonCodeWrapper._prototype_arg",
+    "sympy/utilities/tests/test_autowrap.py::test_autowrap_args",
+    "sympy/utilities/autowrap.py::CythonCodeWrapper._get_wrapped_function",
+    "sympy/utilities/autowrap.py::ufuncify",
+    "sympy/external/tests/test_autowrap.py::runtest_issue_15337",
+    "sympy/external/tests/test_autowrap.py::runtest_autowrap_twice",
+    "sympy/external/tests/test_autowrap.py::test_autowrap_matrix_matrix_C_cython"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "09786a173e7a0a488f46dd6000177c23e5d24eed",
+    "total_functions_indexed": 25019,
+    "retrieval_time_seconds": 0.19642424583435059
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/utilities/tests/test_autowrap.py::test_autowrap_dummy\", \"score\": 0.5403966307640076}, {\"doc_id\": \"sympy/external/tests/test_autowrap.py::runtest_autowrap_trace\", \"score\": 0.5284216403961182}, {\"doc_id\": \"sympy/utilities/autowrap.py::CythonCodeWrapper._call_arg\", \"score\": 0.5192321538925171}, {\"doc_id\": \"sympy/utilities/autowrap.py::CythonCodeWrapper._prototype_arg\", \"score\": 0.514132022857666}, {\"doc_id\": \"sympy/utilities/tests/test_autowrap.py::test_autowrap_args\", \"score\": 0.5137304663658142}, {\"doc_id\": \"sympy/utilities/autowrap.py::CythonCodeWrapper._get_wrapped_function\", \"score\": 0.5113038420677185}, {\"doc_id\": \"sympy/utilities/autowrap.py::ufuncify\", \"score\": 0.5052213668823242}, {\"doc_id\": \"sympy/external/tests/test_autowrap.py::runtest_issue_15337\", \"score\": 0.5034226179122925}, {\"doc_id\": \"sympy/external/tests/test_autowrap.py::runtest_autowrap_twice\", \"score\": 0.5015373229980469}, {\"doc_id\": \"sympy/external/tests/test_autowrap.py::test_autowrap_matrix_matrix_C_cython\", \"score\": 0.4999261200428009}]"
+}

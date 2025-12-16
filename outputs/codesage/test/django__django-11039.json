@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11039",
+  "query": "sqlmigrate wraps it's outpout in BEGIN/COMMIT even if the database doesn't support transactional DDL\nDescription\n\t \n\t\t(last modified by Simon Charette)\n\t \nThe migration executor only adds the outer BEGIN/COMMIT ​if the migration is atomic and ​the schema editor can rollback DDL but the current sqlmigrate logic only takes migration.atomic into consideration.\nThe issue can be addressed by\nChanging sqlmigrate ​assignment of self.output_transaction to consider connection.features.can_rollback_ddl as well.\nAdding a test in tests/migrations/test_commands.py based on ​an existing test for non-atomic migrations that mocks connection.features.can_rollback_ddl to False instead of overdidding MIGRATION_MODULES to point to a non-atomic migration.\nI marked the ticket as easy picking because I included the above guidelines but feel free to uncheck it if you deem it inappropriate.\n",
+  "ground_truth": {
+    "files": [
+      "django/core/management/commands/sqlmigrate.py"
+    ],
+    "locations": [
+      "django/core/management/commands/sqlmigrate.py::Command",
+      "django/core/management/commands/sqlmigrate.py::Command.handle"
+    ]
+  },
+  "predictions": [
+    "tests/migrations/test_commands.py::MigrateTests.test_sqlmigrate_for_non_atomic_migration",
+    "tests/migrations/test_executor.py::ExecutorTests.test_atomic_operation_in_non_atomic_migration",
+    "tests/migrations/test_executor.py::ExecutorTests.test_non_atomic_migration",
+    "tests/backends/sqlite/tests.py::SchemaTests.test_table_rename_inside_atomic_block",
+    "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor.__init__",
+    "tests/migrations/test_migrations_atomic_operation/0001_initial.py::raise_error",
+    "tests/transactions/tests.py::AtomicErrorsTests.test_atomic_prevents_queries_in_broken_transaction",
+    "tests/schema/tests.py::SchemaTests.test_rename_table_renames_deferred_sql_references",
+    "tests/migrations/test_migrations_non_atomic/0001_initial.py::raise_error",
+    "tests/transaction_hooks/tests.py::TestConnectionOnCommit.test_does_not_execute_if_transaction_rolled_back"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "d5276398046ce4a102776a1e67dcac2884d80dfe",
+    "total_functions_indexed": 22327,
+    "retrieval_time_seconds": 0.013090848922729492
+  },
+  "raw_output": "[{\"doc_id\": \"tests/migrations/test_commands.py::MigrateTests.test_sqlmigrate_for_non_atomic_migration\", \"score\": 0.37746989727020264}, {\"doc_id\": \"tests/migrations/test_executor.py::ExecutorTests.test_atomic_operation_in_non_atomic_migration\", \"score\": 0.3760656714439392}, {\"doc_id\": \"tests/migrations/test_executor.py::ExecutorTests.test_non_atomic_migration\", \"score\": 0.3422788381576538}, {\"doc_id\": \"tests/backends/sqlite/tests.py::SchemaTests.test_table_rename_inside_atomic_block\", \"score\": 0.330076664686203}, {\"doc_id\": \"django/db/backends/base/schema.py::BaseDatabaseSchemaEditor.__init__\", \"score\": 0.3178042471408844}, {\"doc_id\": \"tests/migrations/test_migrations_atomic_operation/0001_initial.py::raise_error\", \"score\": 0.3095802068710327}, {\"doc_id\": \"tests/transactions/tests.py::AtomicErrorsTests.test_atomic_prevents_queries_in_broken_transaction\", \"score\": 0.30285173654556274}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_rename_table_renames_deferred_sql_references\", \"score\": 0.2930545210838318}, {\"doc_id\": \"tests/migrations/test_migrations_non_atomic/0001_initial.py::raise_error\", \"score\": 0.29108595848083496}, {\"doc_id\": \"tests/transaction_hooks/tests.py::TestConnectionOnCommit.test_does_not_execute_if_transaction_rolled_back\", \"score\": 0.290897011756897}]"
+}

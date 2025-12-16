@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-13471",
+  "query": "Python 2->3 pickle fails with float-containing expressions\nDumping a pickled sympy expression containing a float in Python 2, then loading it in Python 3 generates an error.\r\n\r\nHere is a minimum working example, verified with sympy git commit 3546ac7 (master at time of writing), Python 2.7 and Python 3.6:\r\n\r\n```python\r\npython2 -c 'import pickle; import sympy; x = sympy.symbols(\"x\"); print pickle.dumps(x + 1.0, 2)' | python3 -c 'import pickle; import sys; print(pickle.loads(sys.stdin.buffer.read()))'\r\n```\r\n\r\nand the result:\r\n\r\n```\r\nTraceback (most recent call last):\r\n  File \"<string>\", line 1, in <module>\r\n  File \"/Users/alex/git/VU/sympy/sympy/core/numbers.py\", line 1045, in __new__\r\n    num[1] = long(num[1], 16)\r\nValueError: invalid literal for int() with base 16: '1L'\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/numbers.py"
+    ],
+    "locations": [
+      "sympy/core/numbers.py::Float",
+      "sympy/core/numbers.py::Float.__new__"
+    ]
+  },
+  "predictions": [
+    "sympy/core/numbers.py::Float.__hash__",
+    "sympy/printing/pycode.py::PythonCodePrinter._print_Infinity",
+    "sympy/printing/pycode.py::PythonCodePrinter._print_NaN",
+    "sympy/core/numbers.py::Float.__getnewargs__",
+    "sympy/core/exprtools.py::_isnumber",
+    "sympy/core/numbers.py::_literal_float",
+    "sympy/printing/python.py::PythonPrinter._print_module",
+    "sympy/core/numbers.py::NumberSymbol.__long__",
+    "sympy/printing/julia.py::JuliaCodePrinter._print_Exp1",
+    "sympy/printing/repr.py::ReprPrinter._print_Integer"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "3546ac7ed78e1780c1a76929864bb33330055740",
+    "total_functions_indexed": 22243,
+    "retrieval_time_seconds": 0.15680241584777832
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/numbers.py::Float.__hash__\", \"score\": 0.38522258400917053}, {\"doc_id\": \"sympy/printing/pycode.py::PythonCodePrinter._print_Infinity\", \"score\": 0.3610016107559204}, {\"doc_id\": \"sympy/printing/pycode.py::PythonCodePrinter._print_NaN\", \"score\": 0.3568357825279236}, {\"doc_id\": \"sympy/core/numbers.py::Float.__getnewargs__\", \"score\": 0.3552889823913574}, {\"doc_id\": \"sympy/core/exprtools.py::_isnumber\", \"score\": 0.3523409962654114}, {\"doc_id\": \"sympy/core/numbers.py::_literal_float\", \"score\": 0.3484719395637512}, {\"doc_id\": \"sympy/printing/python.py::PythonPrinter._print_module\", \"score\": 0.3479061722755432}, {\"doc_id\": \"sympy/core/numbers.py::NumberSymbol.__long__\", \"score\": 0.3478829860687256}, {\"doc_id\": \"sympy/printing/julia.py::JuliaCodePrinter._print_Exp1\", \"score\": 0.34519943594932556}, {\"doc_id\": \"sympy/printing/repr.py::ReprPrinter._print_Integer\", \"score\": 0.34284675121307373}]"
+}

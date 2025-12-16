@@ -1,0 +1,37 @@
+{
+  "instance_id": "django__django-11019",
+  "query": "Merging 3 or more media objects can throw unnecessary MediaOrderConflictWarnings\nDescription\n\t\nConsider the following form definition, where text-editor-extras.js depends on text-editor.js but all other JS files are independent:\nfrom django import forms\nclass ColorPicker(forms.Widget):\n\tclass Media:\n\t\tjs = ['color-picker.js']\nclass SimpleTextWidget(forms.Widget):\n\tclass Media:\n\t\tjs = ['text-editor.js']\nclass FancyTextWidget(forms.Widget):\n\tclass Media:\n\t\tjs = ['text-editor.js', 'text-editor-extras.js', 'color-picker.js']\nclass MyForm(forms.Form):\n\tbackground_color = forms.CharField(widget=ColorPicker())\n\tintro = forms.CharField(widget=SimpleTextWidget())\n\tbody = forms.CharField(widget=FancyTextWidget())\nDjango should be able to resolve the JS files for the final form into the order text-editor.js, text-editor-extras.js, color-picker.js. However, accessing MyForm().media results in:\n/projects/django/django/forms/widgets.py:145: MediaOrderConflictWarning: Detected duplicate Media files in an opposite order:\ntext-editor-extras.js\ntext-editor.js\n MediaOrderConflictWarning,\nMedia(css={}, js=['text-editor-extras.js', 'color-picker.js', 'text-editor.js'])\nThe MediaOrderConflictWarning is a result of the order that the additions happen in: ColorPicker().media + SimpleTextWidget().media produces Media(css={}, js=['color-picker.js', 'text-editor.js']), which (wrongly) imposes the constraint that color-picker.js must appear before text-editor.js.\nThe final result is particularly unintuitive here, as it's worse than the \"naïve\" result produced by Django 1.11 before order-checking was added (color-picker.js, text-editor.js, text-editor-extras.js), and the pair of files reported in the warning message seems wrong too (aren't color-picker.js and text-editor.js the wrong-ordered ones?)\n",
+  "ground_truth": {
+    "files": [
+      "django/forms/widgets.py"
+    ],
+    "locations": [
+      "django/forms/widgets.py::Media",
+      "django/forms/widgets.py::Media._css",
+      "django/forms/widgets.py::Media._js",
+      "django/forms/widgets.py::Media.render",
+      "django/forms/widgets.py::Media.__getitem__",
+      "django/forms/widgets.py::Media.merge",
+      "django/forms/widgets.py::Media.__add__"
+    ]
+  },
+  "predictions": [
+    "tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_merge_js_three_way",
+    "tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_merge_warning",
+    "tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_merge_css_three_way",
+    "tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_combine_media",
+    "django/forms/widgets.py::Media.merge",
+    "tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_form_media",
+    "tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_media_inheritance_from_property",
+    "tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_media_inheritance_extends",
+    "tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_media_inheritance",
+    "tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_media_inheritance_single_type"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "93e892bb645b16ebaf287beb5fe7f3ffe8d10408",
+    "total_functions_indexed": 22311,
+    "retrieval_time_seconds": 0.007650136947631836
+  },
+  "raw_output": "[{\"doc_id\": \"tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_merge_js_three_way\", \"score\": 0.6511057615280151}, {\"doc_id\": \"tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_merge_warning\", \"score\": 0.5620896816253662}, {\"doc_id\": \"tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_merge_css_three_way\", \"score\": 0.5454360246658325}, {\"doc_id\": \"tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_combine_media\", \"score\": 0.52173912525177}, {\"doc_id\": \"django/forms/widgets.py::Media.merge\", \"score\": 0.4616355299949646}, {\"doc_id\": \"tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_form_media\", \"score\": 0.4595487117767334}, {\"doc_id\": \"tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_media_inheritance_from_property\", \"score\": 0.4558083713054657}, {\"doc_id\": \"tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_media_inheritance_extends\", \"score\": 0.4487619698047638}, {\"doc_id\": \"tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_media_inheritance\", \"score\": 0.4435690641403198}, {\"doc_id\": \"tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_media_inheritance_single_type\", \"score\": 0.43815577030181885}]"
+}

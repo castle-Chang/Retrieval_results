@@ -1,0 +1,32 @@
+{
+  "instance_id": "matplotlib__matplotlib-23314",
+  "query": "[Bug]: set_visible() not working for 3d projection \n### Bug summary\r\n\r\nin the subplot projection=\"3d\" the set_visible function doesn't work even if the value is set to False\r\n\r\n### Code for reproduction\r\n\r\n```python\r\nimport matplotlib.pyplot as plt\r\nfrom matplotlib.gridspec import GridSpec\r\n\r\nfig, (ax1, ax2) = plt.subplots(1, 2, subplot_kw={'projection': '3d'})\r\nax1.scatter(1,1,1)\r\nax2.scatter(1,1,1, c='r')\r\nax1.set_visible(False)\r\n\r\nplt.show()\r\n# Thanks Tim for your help! \r\n```\r\n\r\n\r\n### Actual outcome\r\n\r\nthe subplot remains visible which should not happen if the value is set to False\r\n\r\n### Expected outcome\r\n\r\nthe subplot is not visible if the value is set to False\r\n\r\n### Additional information\r\n\r\n_No response_\r\n\r\n### Operating system\r\n\r\n_No response_\r\n\r\n### Matplotlib Version\r\n\r\n3.4.2\r\n\r\n### Matplotlib Backend\r\n\r\nQt5Agg\r\n\r\n### Python version\r\n\r\n3.8.10\r\n\r\n### Jupyter version\r\n\r\n_No response_\r\n\r\n### Installation\r\n\r\n_No response_\n",
+  "ground_truth": {
+    "files": [
+      "lib/mpl_toolkits/mplot3d/axes3d.py"
+    ],
+    "locations": [
+      "lib/mpl_toolkits/mplot3d/axes3d.py::Axes3D",
+      "lib/mpl_toolkits/mplot3d/axes3d.py::Axes3D.draw"
+    ]
+  },
+  "predictions": [
+    "lib/matplotlib/tests/test_tightlayout.py::test_tight_layout9",
+    "lib/mpl_toolkits/tests/test_mplot3d.py::test_subfigure_simple",
+    "lib/matplotlib/tests/test_pyplot.py::test_subplot_replace_projection",
+    "lib/matplotlib/tests/test_figure.py::test_subfigure_ss",
+    "lib/mpl_toolkits/axes_grid1/mpl_axes.py::SimpleAxisArtist.set_visible",
+    "lib/matplotlib/tests/test_axes.py::test_relim_visible_only",
+    "lib/matplotlib/tests/test_pyplot.py::test_subplot_change_projection",
+    "lib/mpl_toolkits/tests/test_mplot3d.py::test_axes3d_cla",
+    "lib/matplotlib/tests/test_figure.py::test_subfigure_double",
+    "lib/mpl_toolkits/tests/test_mplot3d.py::test_axes3d_ortho"
+  ],
+  "metadata": {
+    "repo": "matplotlib/matplotlib",
+    "commit": "97fc1154992f64cfb2f86321155a7404efeb2d8a",
+    "total_functions_indexed": 8969,
+    "retrieval_time_seconds": 0.0059719085693359375
+  },
+  "raw_output": "[{\"doc_id\": \"lib/matplotlib/tests/test_tightlayout.py::test_tight_layout9\", \"score\": 0.4453764855861664}, {\"doc_id\": \"lib/mpl_toolkits/tests/test_mplot3d.py::test_subfigure_simple\", \"score\": 0.43984454870224}, {\"doc_id\": \"lib/matplotlib/tests/test_pyplot.py::test_subplot_replace_projection\", \"score\": 0.4082464277744293}, {\"doc_id\": \"lib/matplotlib/tests/test_figure.py::test_subfigure_ss\", \"score\": 0.404583215713501}, {\"doc_id\": \"lib/mpl_toolkits/axes_grid1/mpl_axes.py::SimpleAxisArtist.set_visible\", \"score\": 0.40281620621681213}, {\"doc_id\": \"lib/matplotlib/tests/test_axes.py::test_relim_visible_only\", \"score\": 0.3948245048522949}, {\"doc_id\": \"lib/matplotlib/tests/test_pyplot.py::test_subplot_change_projection\", \"score\": 0.3931804895401001}, {\"doc_id\": \"lib/mpl_toolkits/tests/test_mplot3d.py::test_axes3d_cla\", \"score\": 0.3719361126422882}, {\"doc_id\": \"lib/matplotlib/tests/test_figure.py::test_subfigure_double\", \"score\": 0.3704442083835602}, {\"doc_id\": \"lib/mpl_toolkits/tests/test_mplot3d.py::test_axes3d_ortho\", \"score\": 0.3703696131706238}]"
+}

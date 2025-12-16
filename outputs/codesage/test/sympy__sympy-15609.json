@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-15609",
+  "query": "Indexed matrix-expression LaTeX printer is not compilable\n```python\r\ni, j, k = symbols(\"i j k\")\r\nM = MatrixSymbol(\"M\", k, k)\r\nN = MatrixSymbol(\"N\", k, k)\r\nlatex((M*N)[i, j])\r\n```\r\n\r\nThe LaTeX string produced by the last command is:\r\n```\r\n\\sum_{i_{1}=0}^{k - 1} M_{i, _i_1} N_{_i_1, j}\r\n```\r\nLaTeX complains about a double subscript `_`. This expression won't render in MathJax either.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/latex.py"
+    ],
+    "locations": [
+      "sympy/printing/latex.py::LatexPrinter",
+      "sympy/printing/latex.py::LatexPrinter._print_MatrixElement",
+      "sympy/printing/latex.py::LatexPrinter._print_MatrixSlice"
+    ]
+  },
+  "predictions": [
+    "sympy/printing/latex.py::LatexPrinter._print_MatrixElement",
+    "sympy/printing/latex.py::LatexPrinter._print_MatrixSlice",
+    "sympy/printing/latex.py::LatexPrinter._print_meijerg",
+    "sympy/printing/latex.py::LatexPrinter._print_Adjoint",
+    "sympy/printing/latex.py::LatexPrinter._print_Transpose",
+    "sympy/printing/latex.py::LatexPrinter._print_Trace",
+    "sympy/printing/latex.py::LatexPrinter._print_TensorIndex",
+    "sympy/printing/latex.py::LatexPrinter._print_Tr",
+    "sympy/printing/latex.py::LatexPrinter._print_MatrixBase",
+    "sympy/printing/latex.py::LatexPrinter._print_Identity"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "15f56f3b0006d2ed2c29bde3c43e91618012c849",
+    "total_functions_indexed": 24316,
+    "retrieval_time_seconds": 0.18895983695983887
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_MatrixElement\", \"score\": 0.5952087640762329}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_MatrixSlice\", \"score\": 0.5632590055465698}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_meijerg\", \"score\": 0.5476337671279907}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_Adjoint\", \"score\": 0.5457346439361572}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_Transpose\", \"score\": 0.5313816666603088}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_Trace\", \"score\": 0.527733564376831}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_TensorIndex\", \"score\": 0.5264584422111511}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_Tr\", \"score\": 0.5239418148994446}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_MatrixBase\", \"score\": 0.5191841125488281}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_Identity\", \"score\": 0.5158698558807373}]"
+}

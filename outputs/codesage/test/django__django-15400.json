@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-15400",
+  "query": "SimpleLazyObject doesn't implement __radd__\nDescription\n\t\nTechnically, there's a whole bunch of magic methods it doesn't implement, compared to a complete proxy implementation, like that of wrapt.ObjectProxy, but __radd__ being missing is the one that's biting me at the moment.\nAs far as I can tell, the implementation can't just be\n__radd__ = new_method_proxy(operator.radd)\nbecause that doesn't exist, which is rubbish.\n__radd__ = new_method_proxy(operator.attrgetter(\"__radd__\"))\nalso won't work because types may not have that attr, and attrgetter doesn't supress the exception (correctly)\nThe minimal implementation I've found that works for me is:\n\tdef __radd__(self, other):\n\t\tif self._wrapped is empty:\n\t\t\tself._setup()\n\t\treturn other + self._wrapped\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/functional.py"
+    ],
+    "locations": [
+      "django/utils/functional.py::SimpleLazyObject",
+      "django/utils/functional.py::SimpleLazyObject.__deepcopy__",
+      "django/utils/functional.py::partition"
+    ]
+  },
+  "predictions": [
+    "django/utils/functional.py::SimpleLazyObject.__deepcopy__",
+    "django/utils/functional.py::SimpleLazyObject.__copy__",
+    "django/utils/functional.py::LazyObject.__setattr__",
+    "django/utils/functional.py::LazyObject.__copy__",
+    "django/utils/functional.py::LazyObject.__init__",
+    "django/utils/functional.py::LazyObject.__deepcopy__",
+    "django/utils/functional.py::SimpleLazyObject._setup",
+    "django/utils/functional.py::LazyObject._setup",
+    "django/utils/functional.py::LazyObject.__delattr__",
+    "django/utils/functional.py::SimpleLazyObject.__repr__"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "4c76ffc2d6c77c850b4bef8d9acc197d11c47937",
+    "total_functions_indexed": 25616,
+    "retrieval_time_seconds": 0.011379241943359375
+  },
+  "raw_output": "[{\"doc_id\": \"django/utils/functional.py::SimpleLazyObject.__deepcopy__\", \"score\": 0.5342203378677368}, {\"doc_id\": \"django/utils/functional.py::SimpleLazyObject.__copy__\", \"score\": 0.5213162302970886}, {\"doc_id\": \"django/utils/functional.py::LazyObject.__setattr__\", \"score\": 0.49920448660850525}, {\"doc_id\": \"django/utils/functional.py::LazyObject.__copy__\", \"score\": 0.48360463976860046}, {\"doc_id\": \"django/utils/functional.py::LazyObject.__init__\", \"score\": 0.48285025358200073}, {\"doc_id\": \"django/utils/functional.py::LazyObject.__deepcopy__\", \"score\": 0.481438010931015}, {\"doc_id\": \"django/utils/functional.py::SimpleLazyObject._setup\", \"score\": 0.47263529896736145}, {\"doc_id\": \"django/utils/functional.py::LazyObject._setup\", \"score\": 0.4648720622062683}, {\"doc_id\": \"django/utils/functional.py::LazyObject.__delattr__\", \"score\": 0.4560266137123108}, {\"doc_id\": \"django/utils/functional.py::SimpleLazyObject.__repr__\", \"score\": 0.45394158363342285}]"
+}

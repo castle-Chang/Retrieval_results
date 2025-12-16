@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-18087",
+  "query": "Simplify of simple trig expression fails\ntrigsimp in various versions, including 1.5, incorrectly simplifies cos(x)+sqrt(sin(x)**2) as though it were cos(x)+sin(x) for general complex x. (Oddly it gets this right if x is real.)\r\n\r\nEmbarrassingly I found this by accident while writing sympy-based teaching material...\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/exprtools.py"
+    ],
+    "locations": [
+      "sympy/core/exprtools.py::Factors",
+      "sympy/core/exprtools.py::Factors.__init__",
+      "sympy/core/exprtools.py::Factors.as_expr"
+    ]
+  },
+  "predictions": [
+    "sympy/simplify/tests/test_trigsimp.py::test_trigsimp_issue_2515",
+    "sympy/simplify/tests/test_trigsimp.py::test_issue_4775",
+    "sympy/simplify/tests/test_trigsimp.py::test_trigsimp1",
+    "sympy/simplify/tests/test_trigsimp.py::test_issue_4373",
+    "sympy/simplify/tests/test_trigsimp.py::test_issue_4280",
+    "sympy/simplify/tests/test_trigsimp.py::test_trigsimp3",
+    "sympy/simplify/tests/test_trigsimp.py::test_trigsimp_issues",
+    "sympy/simplify/tests/test_trigsimp.py::test_issue_4494",
+    "sympy/simplify/tests/test_trigsimp.py::test_issue_6811_fail",
+    "sympy/simplify/tests/test_trigsimp.py::test_trigsimp_noncommutative"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "9da013ad0ddc3cd96fe505f2e47c63e372040916",
+    "total_functions_indexed": 33602,
+    "retrieval_time_seconds": 0.10160446166992188
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/simplify/tests/test_trigsimp.py::test_trigsimp_issue_2515\", \"score\": 0.6203038692474365}, {\"doc_id\": \"sympy/simplify/tests/test_trigsimp.py::test_issue_4775\", \"score\": 0.6056108474731445}, {\"doc_id\": \"sympy/simplify/tests/test_trigsimp.py::test_trigsimp1\", \"score\": 0.605603039264679}, {\"doc_id\": \"sympy/simplify/tests/test_trigsimp.py::test_issue_4373\", \"score\": 0.6018185019493103}, {\"doc_id\": \"sympy/simplify/tests/test_trigsimp.py::test_issue_4280\", \"score\": 0.6008944511413574}, {\"doc_id\": \"sympy/simplify/tests/test_trigsimp.py::test_trigsimp3\", \"score\": 0.5970731973648071}, {\"doc_id\": \"sympy/simplify/tests/test_trigsimp.py::test_trigsimp_issues\", \"score\": 0.5928326845169067}, {\"doc_id\": \"sympy/simplify/tests/test_trigsimp.py::test_issue_4494\", \"score\": 0.5878676176071167}, {\"doc_id\": \"sympy/simplify/tests/test_trigsimp.py::test_issue_6811_fail\", \"score\": 0.5877711772918701}, {\"doc_id\": \"sympy/simplify/tests/test_trigsimp.py::test_trigsimp_noncommutative\", \"score\": 0.5866999626159668}]"
+}

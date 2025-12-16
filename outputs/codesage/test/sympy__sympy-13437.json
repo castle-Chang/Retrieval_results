@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-13437",
+  "query": "bell(n).limit(n, oo) should be oo rather than bell(oo)\n`bell(n).limit(n,oo)` should take the value infinity, but the current output is `bell(oo)`. As the Bell numbers represent the number of partitions of a set, it seems natural that `bell(oo)` should be able to be evaluated rather than be returned unevaluated. This issue is also in line with the recent fixes to the corresponding limit for the Fibonacci numbers and Lucas numbers.\n\n```\nfrom sympy import *\nn = symbols('n')\nbell(n).limit(n,oo)\n\nOutput:\nbell(oo)\n```\n\nI'm new to Sympy, so I'd appreciate the opportunity to fix this bug myself if that's alright.\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/functions/combinatorial/numbers.py"
+    ],
+    "locations": [
+      "sympy/functions/combinatorial/numbers.py::bell",
+      "sympy/functions/combinatorial/numbers.py::bell._bell_incomplete_poly"
+    ]
+  },
+  "predictions": [
+    "sympy/functions/combinatorial/numbers.py::bell.eval",
+    "sympy/functions/combinatorial/numbers.py::bell._bell_incomplete_poly",
+    "sympy/series/limitseq.py::_limit_inf",
+    "sympy/series/limits.py::Limit.doit",
+    "sympy/functions/combinatorial/numbers.py::bell._bell_poly",
+    "sympy/functions/combinatorial/tests/test_comb_numbers.py::test_bell",
+    "sympy/functions/combinatorial/numbers.py::bell._eval_rewrite_as_Sum",
+    "sympy/concrete/expr_with_limits.py::ExprWithLimits.function",
+    "sympy/core/tests/test_args.py::test_sympy__functions__combinatorial__numbers__bell",
+    "sympy/concrete/products.py::Product.reverse_order"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "674afc619d7f5c519b6a5393a8b0532a131e57e0",
+    "total_functions_indexed": 22202,
+    "retrieval_time_seconds": 0.2703986167907715
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/functions/combinatorial/numbers.py::bell.eval\", \"score\": 0.5907885432243347}, {\"doc_id\": \"sympy/functions/combinatorial/numbers.py::bell._bell_incomplete_poly\", \"score\": 0.5652860999107361}, {\"doc_id\": \"sympy/series/limitseq.py::_limit_inf\", \"score\": 0.5213410258293152}, {\"doc_id\": \"sympy/series/limits.py::Limit.doit\", \"score\": 0.5096862316131592}, {\"doc_id\": \"sympy/functions/combinatorial/numbers.py::bell._bell_poly\", \"score\": 0.5042826533317566}, {\"doc_id\": \"sympy/functions/combinatorial/tests/test_comb_numbers.py::test_bell\", \"score\": 0.46244150400161743}, {\"doc_id\": \"sympy/functions/combinatorial/numbers.py::bell._eval_rewrite_as_Sum\", \"score\": 0.46140336990356445}, {\"doc_id\": \"sympy/concrete/expr_with_limits.py::ExprWithLimits.function\", \"score\": 0.45107710361480713}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__functions__combinatorial__numbers__bell\", \"score\": 0.4375317096710205}, {\"doc_id\": \"sympy/concrete/products.py::Product.reverse_order\", \"score\": 0.4365997612476349}]"
+}

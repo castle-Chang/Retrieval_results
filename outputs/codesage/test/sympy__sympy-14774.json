@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-14774",
+  "query": "Latex printer does not support full inverse trig function names for acsc and asec\nFor example\r\n`latex(asin(x), inv_trig_style=\"full\")` works as expected returning `'\\\\arcsin{\\\\left (x \\\\right )}'`\r\nBut `latex(acsc(x), inv_trig_style=\"full\")` gives `'\\\\operatorname{acsc}{\\\\left (x \\\\right )}'` instead of `'\\\\operatorname{arccsc}{\\\\left (x \\\\right )}'`\r\n\r\nA fix seems to be to change line 743 of sympy/printing/latex.py from\r\n`inv_trig_table = [\"asin\", \"acos\", \"atan\", \"acot\"]` to\r\n`inv_trig_table = [\"asin\", \"acos\", \"atan\", \"acsc\", \"asec\", \"acot\"]`\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/latex.py"
+    ],
+    "locations": [
+      "sympy/printing/latex.py::LatexPrinter",
+      "sympy/printing/latex.py::LatexPrinter._print_Function"
+    ]
+  },
+  "predictions": [
+    "sympy/printing/latex.py::LatexPrinter._print_Function",
+    "sympy/printing/latex.py::LatexPrinter._print_InverseSineTransform",
+    "sympy/printing/latex.py::LatexPrinter._print_SineTransform",
+    "sympy/physics/vector/printing.py::VectorLatexPrinter._print_Function",
+    "sympy/printing/latex.py::LatexPrinter._hprint_Function",
+    "sympy/printing/latex.py::LatexPrinter._print_ComplexRootOf",
+    "sympy/printing/latex.py::LatexPrinter._print_InverseCosineTransform",
+    "sympy/printing/tests/test_latex.py::test_builtin_without_args_mismatched_names",
+    "sympy/printing/latex.py::LatexPrinter._print_Poly",
+    "sympy/printing/tests/test_latex.py::test_builtins_without_args"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "8fc63c2d71752389a44367b8ef4aba8a91af6a45",
+    "total_functions_indexed": 23158,
+    "retrieval_time_seconds": 0.2191603183746338
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_Function\", \"score\": 0.5142261981964111}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_InverseSineTransform\", \"score\": 0.4764725863933563}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_SineTransform\", \"score\": 0.4721708297729492}, {\"doc_id\": \"sympy/physics/vector/printing.py::VectorLatexPrinter._print_Function\", \"score\": 0.4683219790458679}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._hprint_Function\", \"score\": 0.46184128522872925}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_ComplexRootOf\", \"score\": 0.458955317735672}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_InverseCosineTransform\", \"score\": 0.4233192801475525}, {\"doc_id\": \"sympy/printing/tests/test_latex.py::test_builtin_without_args_mismatched_names\", \"score\": 0.416159451007843}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_Poly\", \"score\": 0.4152173697948456}, {\"doc_id\": \"sympy/printing/tests/test_latex.py::test_builtins_without_args\", \"score\": 0.4139167070388794}]"
+}

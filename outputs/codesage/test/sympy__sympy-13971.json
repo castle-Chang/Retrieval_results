@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-13971",
+  "query": "Display of SeqFormula()\n```\r\nimport sympy as sp\r\nk, m, n = sp.symbols('k m n', integer=True)\r\nsp.init_printing()\r\n\r\nsp.SeqFormula(n**2, (n,0,sp.oo))\r\n```\r\n\r\nThe Jupyter rendering of this command backslash-escapes the brackets producing:\r\n\r\n`\\left\\[0, 1, 4, 9, \\ldots\\right\\]`\r\n\r\nCopying this output to a markdown cell this does not render properly.  Whereas:\r\n\r\n`[0, 1, 4, 9, \\ldots ]`\r\n\r\ndoes render just fine.  \r\n\r\nSo - sequence output should not backslash-escape square brackets, or, `\\]` should instead render?\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/latex.py"
+    ],
+    "locations": [
+      "sympy/printing/latex.py::LatexPrinter",
+      "sympy/printing/latex.py::LatexPrinter._print_SeqFormula"
+    ]
+  },
+  "predictions": [
+    "sympy/printing/latex.py::LatexPrinter._print_SeqFormula",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_SeqFormula",
+    "sympy/printing/latex.py::LatexPrinter._print_Tr",
+    "sympy/physics/quantum/commutator.py::Commutator._latex",
+    "sympy/physics/secondquant.py::Commutator._latex",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_atan2",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_AccumulationBounds",
+    "sympy/physics/quantum/qexpr.py::QExpr._print_sequence_pretty",
+    "sympy/physics/quantum/anticommutator.py::AntiCommutator._latex",
+    "sympy/series/sequences.py::SeqFormula.coeff_mul"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "84c125972ad535b2dfb245f8d311d347b45e5b8a",
+    "total_functions_indexed": 22514,
+    "retrieval_time_seconds": 0.18357300758361816
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_SeqFormula\", \"score\": 0.4842855632305145}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_SeqFormula\", \"score\": 0.41670939326286316}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_Tr\", \"score\": 0.40348532795906067}, {\"doc_id\": \"sympy/physics/quantum/commutator.py::Commutator._latex\", \"score\": 0.4001213312149048}, {\"doc_id\": \"sympy/physics/secondquant.py::Commutator._latex\", \"score\": 0.39980006217956543}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_atan2\", \"score\": 0.39636871218681335}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_AccumulationBounds\", \"score\": 0.3922792673110962}, {\"doc_id\": \"sympy/physics/quantum/qexpr.py::QExpr._print_sequence_pretty\", \"score\": 0.39071470499038696}, {\"doc_id\": \"sympy/physics/quantum/anticommutator.py::AntiCommutator._latex\", \"score\": 0.38749822974205017}, {\"doc_id\": \"sympy/series/sequences.py::SeqFormula.coeff_mul\", \"score\": 0.3862880766391754}]"
+}

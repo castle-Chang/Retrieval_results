@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-15498",
+  "query": "Fix handling empty string for If-Modified-Since header\nDescription\n\t\nEmpty string used to be ignored for If-Modified-Since header, but now raises exception since d6aff369ad3.\nFix handling empty string for If-Modified-Since header\nDescription\n\t\nEmpty string used to be ignored for If-Modified-Since header, but now raises exception since d6aff369ad3.\n",
+  "ground_truth": {
+    "files": [
+      "django/views/static.py"
+    ],
+    "locations": [
+      "django/views/static.py::was_modified_since"
+    ]
+  },
+  "predictions": [
+    "django/utils/cache.py::_if_modified_since_passes",
+    "tests/view_tests/tests/test_static.py::StaticTests.test_invalid_if_modified_since",
+    "django/utils/cache.py::_if_unmodified_since_passes",
+    "tests/view_tests/tests/test_static.py::StaticTests.test_invalid_if_modified_since2",
+    "django/views/static.py::was_modified_since",
+    "django/http/response.py::HttpResponseNotModified.__init__",
+    "tests/conditional_processing/tests.py::ConditionalGet.test_single_condition_7",
+    "django/utils/cache.py::set_response_etag",
+    "django/utils/http.py::quote_etag",
+    "tests/conditional_processing/tests.py::ConditionalGet.test_unquoted_if_none_match"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "d90e34c61b27fba2527834806639eebbcfab9631",
+    "total_functions_indexed": 25711,
+    "retrieval_time_seconds": 0.09711217880249023
+  },
+  "raw_output": "[{\"doc_id\": \"django/utils/cache.py::_if_modified_since_passes\", \"score\": 0.23938676714897156}, {\"doc_id\": \"tests/view_tests/tests/test_static.py::StaticTests.test_invalid_if_modified_since\", \"score\": 0.2319488525390625}, {\"doc_id\": \"django/utils/cache.py::_if_unmodified_since_passes\", \"score\": 0.23190566897392273}, {\"doc_id\": \"tests/view_tests/tests/test_static.py::StaticTests.test_invalid_if_modified_since2\", \"score\": 0.23033839464187622}, {\"doc_id\": \"django/views/static.py::was_modified_since\", \"score\": 0.22632387280464172}, {\"doc_id\": \"django/http/response.py::HttpResponseNotModified.__init__\", \"score\": 0.22630947828292847}, {\"doc_id\": \"tests/conditional_processing/tests.py::ConditionalGet.test_single_condition_7\", \"score\": 0.16326448321342468}, {\"doc_id\": \"django/utils/cache.py::set_response_etag\", \"score\": 0.1629563271999359}, {\"doc_id\": \"django/utils/http.py::quote_etag\", \"score\": 0.15870335698127747}, {\"doc_id\": \"tests/conditional_processing/tests.py::ConditionalGet.test_unquoted_if_none_match\", \"score\": 0.15740074217319489}]"
+}

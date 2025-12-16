@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-14308",
+  "query": "vectors break pretty printing\n```py\r\nIn [1]: from sympy.vector import *\r\n\r\nIn [2]: e = CoordSysCartesian('e')\r\n\r\nIn [3]: (x/y)**t*e.j\r\nOut[3]:\r\n⎛   t⎞ e_j\r\n⎜⎛x⎞ e_j ⎟\r\n⎜⎜─⎟ ⎟\r\n⎝⎝y⎠ ⎠\r\n```\r\n\r\nAlso, when it does print correctly, the baseline is wrong (it should be centered). \n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/pretty/pretty.py"
+    ],
+    "locations": [
+      "sympy/printing/pretty/pretty.py::PrettyPrinter",
+      "sympy/printing/pretty/pretty.py::PrettyPrinter._print_BasisDependent"
+    ]
+  },
+  "predictions": [
+    "sympy/printing/pretty/tests/test_pretty.py::test_vector_expr_pretty_printing",
+    "sympy/physics/vector/vector.py::Vector._pretty",
+    "sympy/physics/vector/tests/test_printing.py::ascii_vpretty",
+    "sympy/vector/tests/test_printing.py::pretty",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_BaseVectorField",
+    "sympy/physics/vector/printing.py::vpprint",
+    "sympy/physics/vector/tests/test_printing.py::test_vector_pretty_print",
+    "sympy/physics/vector/tests/test_printing.py::unicode_vpretty",
+    "sympy/vector/tests/test_printing.py::upretty",
+    "sympy/printing/str.py::StrPrinter._print_BaseVectorField"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "fb536869fb7aa28b2695ad7a3b70949926b291c4",
+    "total_functions_indexed": 22941,
+    "retrieval_time_seconds": 0.10245537757873535
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/printing/pretty/tests/test_pretty.py::test_vector_expr_pretty_printing\", \"score\": 0.4753621816635132}, {\"doc_id\": \"sympy/physics/vector/vector.py::Vector._pretty\", \"score\": 0.4110299348831177}, {\"doc_id\": \"sympy/physics/vector/tests/test_printing.py::ascii_vpretty\", \"score\": 0.40161603689193726}, {\"doc_id\": \"sympy/vector/tests/test_printing.py::pretty\", \"score\": 0.39918869733810425}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_BaseVectorField\", \"score\": 0.3945813477039337}, {\"doc_id\": \"sympy/physics/vector/printing.py::vpprint\", \"score\": 0.39365190267562866}, {\"doc_id\": \"sympy/physics/vector/tests/test_printing.py::test_vector_pretty_print\", \"score\": 0.3926907181739807}, {\"doc_id\": \"sympy/physics/vector/tests/test_printing.py::unicode_vpretty\", \"score\": 0.3917196989059448}, {\"doc_id\": \"sympy/vector/tests/test_printing.py::upretty\", \"score\": 0.39022958278656006}, {\"doc_id\": \"sympy/printing/str.py::StrPrinter._print_BaseVectorField\", \"score\": 0.3898690938949585}]"
+}

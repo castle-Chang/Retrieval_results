@@ -1,0 +1,32 @@
+{
+  "instance_id": "mwaskom__seaborn-2848",
+  "query": "pairplot fails with hue_order not containing all hue values in seaborn 0.11.1\nIn seaborn < 0.11, one could plot only a subset of the values in the hue column, by passing a hue_order list containing only the desired values. Points with hue values not in the list were simply not plotted.\n```python\niris = sns.load_dataset(\"iris\")`\n# The hue column contains three different species; here we want to plot two\nsns.pairplot(iris, hue=\"species\", hue_order=[\"setosa\", \"versicolor\"])\n```\n\nThis no longer works in 0.11.1. Passing a hue_order list that does not contain some of the values in the hue column raises a long, ugly error traceback. The first exception arises in seaborn/_core.py:\n```\nTypeError: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''\n```\nseaborn version: 0.11.1\nmatplotlib version: 3.3.2\nmatplotlib backends: MacOSX, Agg or jupyter notebook inline.",
+  "ground_truth": {
+    "files": [
+      "seaborn/_oldcore.py"
+    ],
+    "locations": [
+      "seaborn/_oldcore.py::HueMapping",
+      "seaborn/_oldcore.py::HueMapping._lookup_single"
+    ]
+  },
+  "predictions": [
+    "tests/test_axisgrid.py::TestPairGrid.test_hue_order_missing_level",
+    "tests/test_axisgrid.py::TestPairGrid.test_hue_order",
+    "tests/test_axisgrid.py::TestPairGrid.test_hue_kws",
+    "tests/test_axisgrid.py::TestPairGrid.test_hue_in_map",
+    "seaborn/axisgrid.py::PairGrid._plot_bivariate_iter_hue",
+    "tests/test_axisgrid.py::TestPairGrid.test_pairplot_reg_hue",
+    "seaborn/categorical.py::_CategoricalPlotterNew._palette_without_hue_backcompat",
+    "tests/test_categorical.py::TestCategoricalPlotter.test_hue_order",
+    "tests/test_distributions.py::TestHistPlotUnivariate.test_hue_as_numpy_dodged",
+    "seaborn/axisgrid.py::PairGrid._plot_bivariate"
+  ],
+  "metadata": {
+    "repo": "mwaskom/seaborn",
+    "commit": "94621cef29f80282436d73e8d2c0aa76dab81273",
+    "total_functions_indexed": 2099,
+    "retrieval_time_seconds": 0.0007913112640380859
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_axisgrid.py::TestPairGrid.test_hue_order_missing_level\", \"score\": 0.5907882452011108}, {\"doc_id\": \"tests/test_axisgrid.py::TestPairGrid.test_hue_order\", \"score\": 0.5813359022140503}, {\"doc_id\": \"tests/test_axisgrid.py::TestPairGrid.test_hue_kws\", \"score\": 0.5682886838912964}, {\"doc_id\": \"tests/test_axisgrid.py::TestPairGrid.test_hue_in_map\", \"score\": 0.5483330488204956}, {\"doc_id\": \"seaborn/axisgrid.py::PairGrid._plot_bivariate_iter_hue\", \"score\": 0.5479435324668884}, {\"doc_id\": \"tests/test_axisgrid.py::TestPairGrid.test_pairplot_reg_hue\", \"score\": 0.5392239093780518}, {\"doc_id\": \"seaborn/categorical.py::_CategoricalPlotterNew._palette_without_hue_backcompat\", \"score\": 0.538395345211029}, {\"doc_id\": \"tests/test_categorical.py::TestCategoricalPlotter.test_hue_order\", \"score\": 0.5308759212493896}, {\"doc_id\": \"tests/test_distributions.py::TestHistPlotUnivariate.test_hue_as_numpy_dodged\", \"score\": 0.5209438800811768}, {\"doc_id\": \"seaborn/axisgrid.py::PairGrid._plot_bivariate\", \"score\": 0.511876106262207}]"
+}

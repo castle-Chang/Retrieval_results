@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-15996",
+  "query": "Support for serialization of combination of Enum flags.\nDescription\n\t \n\t\t(last modified by Willem Van Onsem)\n\t \nIf we work with a field:\nregex_flags = models.IntegerField(default=re.UNICODE | re.IGNORECASE)\nThis is turned into a migration with:\ndefault=re.RegexFlag[None]\nThis is due to the fact that the EnumSerializer aims to work with the .name of the item, but if there is no single item for the given value, then there is no such name.\nIn that case, we can use enum._decompose to obtain a list of names, and create an expression to create the enum value by \"ORing\" the items together.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/serializer.py"
+    ],
+    "locations": [
+      "django/db/migrations/serializer.py::BaseSerializer",
+      "django/db/migrations/serializer.py::EnumSerializer",
+      "django/db/migrations/serializer.py::EnumSerializer.serialize"
+    ]
+  },
+  "predictions": [
+    "django/db/migrations/serializer.py::RegexSerializer.serialize",
+    "django/core/validators.py::RegexValidator.__init__",
+    "django/db/migrations/utils.py::RegexObject.__init__",
+    "django/db/migrations/serializer.py::EnumSerializer.serialize",
+    "tests/postgres_tests/fields.py::EnumField.get_prep_value",
+    "django/db/migrations/serializer.py::SetSerializer._format",
+    "tests/migrations/test_writer.py::WriterTests.test_serialize_enum_flags",
+    "tests/validators/tests.py::TestValidators.test_regex_validator_flags",
+    "django/forms/fields.py::RegexField.__init__",
+    "django/db/models/enums.py::Choices.__str__"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "b30c0081d4d8a31ab7dc7f72a4c7099af606ef29",
+    "total_functions_indexed": 26129,
+    "retrieval_time_seconds": 0.009614706039428711
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/migrations/serializer.py::RegexSerializer.serialize\", \"score\": 0.39425456523895264}, {\"doc_id\": \"django/core/validators.py::RegexValidator.__init__\", \"score\": 0.3600996136665344}, {\"doc_id\": \"django/db/migrations/utils.py::RegexObject.__init__\", \"score\": 0.3411829471588135}, {\"doc_id\": \"django/db/migrations/serializer.py::EnumSerializer.serialize\", \"score\": 0.33690696954727173}, {\"doc_id\": \"tests/postgres_tests/fields.py::EnumField.get_prep_value\", \"score\": 0.3069092333316803}, {\"doc_id\": \"django/db/migrations/serializer.py::SetSerializer._format\", \"score\": 0.28711074590682983}, {\"doc_id\": \"tests/migrations/test_writer.py::WriterTests.test_serialize_enum_flags\", \"score\": 0.2869946360588074}, {\"doc_id\": \"tests/validators/tests.py::TestValidators.test_regex_validator_flags\", \"score\": 0.2837257385253906}, {\"doc_id\": \"django/forms/fields.py::RegexField.__init__\", \"score\": 0.28313225507736206}, {\"doc_id\": \"django/db/models/enums.py::Choices.__str__\", \"score\": 0.2824384570121765}]"
+}

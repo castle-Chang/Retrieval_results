@@ -1,0 +1,33 @@
+{
+  "instance_id": "astropy__astropy-6938",
+  "query": "Possible bug in io.fits related to D exponents\nI came across the following code in ``fitsrec.py``:\r\n\r\n```python\r\n        # Replace exponent separator in floating point numbers\r\n        if 'D' in format:\r\n            output_field.replace(encode_ascii('E'), encode_ascii('D'))\r\n```\r\n\r\nI think this may be incorrect because as far as I can tell ``replace`` is not an in-place operation for ``chararray`` (it returns a copy). Commenting out this code doesn't cause any tests to fail so I think this code isn't being tested anyway.\n",
+  "ground_truth": {
+    "files": [
+      "astropy/io/fits/fitsrec.py"
+    ],
+    "locations": [
+      "astropy/io/fits/fitsrec.py::FITS_rec",
+      "astropy/io/fits/fitsrec.py::FITS_rec._scale_back_ascii",
+      "astropy/io/fits/fitsrec.py::_get_recarray_field"
+    ]
+  },
+  "predictions": [
+    "astropy/io/fits/fitsrec.py::FITS_rec._scale_back_ascii",
+    "astropy/io/fits/fitsrec.py::FITS_rec._scale_back_strings",
+    "astropy/io/fits/column.py::_convert_record2fits",
+    "astropy/io/fits/card.py::_format_float",
+    "astropy/io/fits/fitsrec.py::FITS_rec._convert_other",
+    "astropy/io/fits/column.py::_convert_fits2record",
+    "astropy/io/fits/fitsrec.py::FITS_rec._convert_x",
+    "astropy/io/votable/converters.py::FloatingPoint.output_format",
+    "astropy/io/fits/column.py::_AsciiColumnFormat.canonical",
+    "astropy/io/fits/column.py::_AsciiColumnFormat.recformat"
+  ],
+  "metadata": {
+    "repo": "astropy/astropy",
+    "commit": "c76af9ed6bb89bfba45b9f5bc1e635188278e2fa",
+    "total_functions_indexed": 9848,
+    "retrieval_time_seconds": 0.0029897689819335938
+  },
+  "raw_output": "[{\"doc_id\": \"astropy/io/fits/fitsrec.py::FITS_rec._scale_back_ascii\", \"score\": 0.5022377967834473}, {\"doc_id\": \"astropy/io/fits/fitsrec.py::FITS_rec._scale_back_strings\", \"score\": 0.42724376916885376}, {\"doc_id\": \"astropy/io/fits/column.py::_convert_record2fits\", \"score\": 0.40174925327301025}, {\"doc_id\": \"astropy/io/fits/card.py::_format_float\", \"score\": 0.36384183168411255}, {\"doc_id\": \"astropy/io/fits/fitsrec.py::FITS_rec._convert_other\", \"score\": 0.3389795422554016}, {\"doc_id\": \"astropy/io/fits/column.py::_convert_fits2record\", \"score\": 0.3380725681781769}, {\"doc_id\": \"astropy/io/fits/fitsrec.py::FITS_rec._convert_x\", \"score\": 0.3021140396595001}, {\"doc_id\": \"astropy/io/votable/converters.py::FloatingPoint.output_format\", \"score\": 0.30040213465690613}, {\"doc_id\": \"astropy/io/fits/column.py::_AsciiColumnFormat.canonical\", \"score\": 0.29997026920318604}, {\"doc_id\": \"astropy/io/fits/column.py::_AsciiColumnFormat.recformat\", \"score\": 0.2967187762260437}]"
+}

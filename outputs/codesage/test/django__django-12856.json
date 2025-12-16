@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12856",
+  "query": "Add check for fields of UniqueConstraints.\nDescription\n\t \n\t\t(last modified by Marnanel Thurman)\n\t \nWhen a model gains a UniqueConstraint, makemigrations doesn't check that the fields named therein actually exist.\nThis is in contrast to the older unique_together syntax, which raises models.E012 if the fields don't exist.\nIn the attached demonstration, you'll need to uncomment \"with_unique_together\" in settings.py in order to show that unique_together raises E012.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/base.py"
+    ],
+    "locations": [
+      "django/db/models/base.py::Model",
+      "django/db/models/base.py::Model._check_constraints"
+    ]
+  },
+  "predictions": [
+    "tests/schema/tests.py::SchemaTests.test_unique_together",
+    "tests/schema/tests.py::SchemaTests.test_unique_together_with_fk_with_existing_index",
+    "tests/schema/tests.py::SchemaTests.test_unique_together_with_fk",
+    "django/db/models/base.py::Model.unique_error_message",
+    "tests/constraints/tests.py::UniqueConstraintTests.test_eq",
+    "tests/model_forms/tests.py::UniqueTest.test_unique_together_exclusion",
+    "tests/constraints/tests.py::UniqueConstraintTests.test_repr",
+    "tests/schema/tests.py::SchemaTests.test_remove_unique_together_does_not_remove_meta_constraints",
+    "tests/constraints/tests.py::UniqueConstraintTests.test_eq_with_condition",
+    "tests/schema/tests.py::SchemaTests.test_remove_field_unique_does_not_remove_meta_constraints"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "8328811f048fed0dd22573224def8c65410c9f2e",
+    "total_functions_indexed": 23434,
+    "retrieval_time_seconds": 0.00656437873840332
+  },
+  "raw_output": "[{\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_unique_together\", \"score\": 0.6759841442108154}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_unique_together_with_fk_with_existing_index\", \"score\": 0.6722474098205566}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_unique_together_with_fk\", \"score\": 0.6511728167533875}, {\"doc_id\": \"django/db/models/base.py::Model.unique_error_message\", \"score\": 0.609061598777771}, {\"doc_id\": \"tests/constraints/tests.py::UniqueConstraintTests.test_eq\", \"score\": 0.6037687063217163}, {\"doc_id\": \"tests/model_forms/tests.py::UniqueTest.test_unique_together_exclusion\", \"score\": 0.5940439701080322}, {\"doc_id\": \"tests/constraints/tests.py::UniqueConstraintTests.test_repr\", \"score\": 0.5866138935089111}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_remove_unique_together_does_not_remove_meta_constraints\", \"score\": 0.5813611745834351}, {\"doc_id\": \"tests/constraints/tests.py::UniqueConstraintTests.test_eq_with_condition\", \"score\": 0.5752596855163574}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_remove_field_unique_does_not_remove_meta_constraints\", \"score\": 0.5723053216934204}]"
+}

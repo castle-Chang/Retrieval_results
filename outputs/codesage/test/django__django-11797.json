@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11797",
+  "query": "Filtering on query result overrides GROUP BY of internal query\nDescription\n\t\nfrom django.contrib.auth import models\na = models.User.objects.filter(email__isnull=True).values('email').annotate(m=Max('id')).values('m')\nprint(a.query) # good\n# SELECT MAX(\"auth_user\".\"id\") AS \"m\" FROM \"auth_user\" WHERE \"auth_user\".\"email\" IS NULL GROUP BY \"auth_user\".\"email\"\nprint(a[:1].query) # good\n# SELECT MAX(\"auth_user\".\"id\") AS \"m\" FROM \"auth_user\" WHERE \"auth_user\".\"email\" IS NULL GROUP BY \"auth_user\".\"email\" LIMIT 1\nb = models.User.objects.filter(id=a[:1])\nprint(b.query) # GROUP BY U0.\"id\" should be GROUP BY U0.\"email\"\n# SELECT ... FROM \"auth_user\" WHERE \"auth_user\".\"id\" = (SELECT U0.\"id\" FROM \"auth_user\" U0 WHERE U0.\"email\" IS NULL GROUP BY U0.\"id\" LIMIT 1)\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/lookups.py"
+    ],
+    "locations": [
+      "django/db/models/lookups.py::Exact",
+      "django/db/models/lookups.py::Exact.process_rhs"
+    ]
+  },
+  "predictions": [
+    "tests/aggregation_regress/tests.py::AggregationTests.test_negated_aggregation",
+    "tests/aggregation/tests.py::AggregateTestCase.test_aggregation_subquery_annotation",
+    "tests/aggregation/tests.py::AggregateTestCase.test_group_by_subquery_annotation",
+    "tests/aggregation_regress/tests.py::AggregationTests.test_aggregate_duplicate_columns",
+    "tests/expressions_case/tests.py::CaseExpressionTests.test_filter_with_aggregation_in_predicate",
+    "tests/aggregation_regress/tests.py::AggregationTests.test_more_more",
+    "tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_rawsql_group_by_collapse",
+    "tests/aggregation_regress/tests.py::AggregationTests.test_aggregate_duplicate_columns_only",
+    "tests/aggregation/test_filter_argument.py::FilteredAggregateTests.test_filtered_reused_subquery",
+    "tests/expressions_case/tests.py::CaseExpressionTests.test_m2m_reuse"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "3346b78a8a872286a245d1e77ef4718fc5e6be1a",
+    "total_functions_indexed": 22833,
+    "retrieval_time_seconds": 0.010794401168823242
+  },
+  "raw_output": "[{\"doc_id\": \"tests/aggregation_regress/tests.py::AggregationTests.test_negated_aggregation\", \"score\": 0.4232862591743469}, {\"doc_id\": \"tests/aggregation/tests.py::AggregateTestCase.test_aggregation_subquery_annotation\", \"score\": 0.4212120771408081}, {\"doc_id\": \"tests/aggregation/tests.py::AggregateTestCase.test_group_by_subquery_annotation\", \"score\": 0.40922409296035767}, {\"doc_id\": \"tests/aggregation_regress/tests.py::AggregationTests.test_aggregate_duplicate_columns\", \"score\": 0.40892189741134644}, {\"doc_id\": \"tests/expressions_case/tests.py::CaseExpressionTests.test_filter_with_aggregation_in_predicate\", \"score\": 0.4073438048362732}, {\"doc_id\": \"tests/aggregation_regress/tests.py::AggregationTests.test_more_more\", \"score\": 0.4054096043109894}, {\"doc_id\": \"tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_rawsql_group_by_collapse\", \"score\": 0.4024898111820221}, {\"doc_id\": \"tests/aggregation_regress/tests.py::AggregationTests.test_aggregate_duplicate_columns_only\", \"score\": 0.4014897346496582}, {\"doc_id\": \"tests/aggregation/test_filter_argument.py::FilteredAggregateTests.test_filtered_reused_subquery\", \"score\": 0.39633673429489136}, {\"doc_id\": \"tests/expressions_case/tests.py::CaseExpressionTests.test_m2m_reuse\", \"score\": 0.3922750651836395}]"
+}

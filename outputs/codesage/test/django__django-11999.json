@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-11999",
+  "query": "Cannot override get_FOO_display() in Django 2.2+.\nDescription\n\t\nI cannot override the get_FIELD_display function on models since version 2.2. It works in version 2.1.\nExample:\nclass FooBar(models.Model):\n\tfoo_bar = models.CharField(_(\"foo\"), choices=[(1, 'foo'), (2, 'bar')])\n\tdef __str__(self):\n\t\treturn self.get_foo_bar_display() # This returns 'foo' or 'bar' in 2.2, but 'something' in 2.1\n\tdef get_foo_bar_display(self):\n\t\treturn \"something\"\nWhat I expect is that I should be able to override this function.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/__init__.py"
+    ],
+    "locations": [
+      "django/db/models/fields/__init__.py::Field",
+      "django/db/models/fields/__init__.py::Field.contribute_to_class",
+      "django/db/models/fields/__init__.py::Field.get_filter_kwargs_for_object"
+    ]
+  },
+  "predictions": [
+    "tests/model_fields/tests.py::GetFieldDisplayTests.test_choices_and_field_display",
+    "tests/admin_utils/tests.py::UtilsTests.test_null_display_for_field",
+    "tests/model_fields/tests.py::GetFieldDisplayTests.test_get_FIELD_display_translated",
+    "tests/admin_utils/tests.py::UtilsTests.test_number_formats_display_for_field",
+    "tests/admin_utils/tests.py::UtilsTests.test_values_from_lookup_field",
+    "tests/admin_utils/tests.py::UtilsTests.test_number_formats_with_thousand_separator_display_for_field",
+    "tests/forms_tests/models.py::ChoiceOptionModel.__str__",
+    "tests/model_fields/tests.py::GetChoicesOrderingTests.setUpTestData",
+    "tests/model_fields/tests.py::BasicFieldTests.test_formfield_disabled",
+    "tests/model_fields/tests.py::BasicFieldTests.test_field_name"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "84633905273fc916e3d17883810d9969c03f73c2",
+    "total_functions_indexed": 22949,
+    "retrieval_time_seconds": 0.006534099578857422
+  },
+  "raw_output": "[{\"doc_id\": \"tests/model_fields/tests.py::GetFieldDisplayTests.test_choices_and_field_display\", \"score\": 0.5509226322174072}, {\"doc_id\": \"tests/admin_utils/tests.py::UtilsTests.test_null_display_for_field\", \"score\": 0.5120725631713867}, {\"doc_id\": \"tests/model_fields/tests.py::GetFieldDisplayTests.test_get_FIELD_display_translated\", \"score\": 0.5026670694351196}, {\"doc_id\": \"tests/admin_utils/tests.py::UtilsTests.test_number_formats_display_for_field\", \"score\": 0.46366244554519653}, {\"doc_id\": \"tests/admin_utils/tests.py::UtilsTests.test_values_from_lookup_field\", \"score\": 0.4543266296386719}, {\"doc_id\": \"tests/admin_utils/tests.py::UtilsTests.test_number_formats_with_thousand_separator_display_for_field\", \"score\": 0.44586944580078125}, {\"doc_id\": \"tests/forms_tests/models.py::ChoiceOptionModel.__str__\", \"score\": 0.44308972358703613}, {\"doc_id\": \"tests/model_fields/tests.py::GetChoicesOrderingTests.setUpTestData\", \"score\": 0.4399799108505249}, {\"doc_id\": \"tests/model_fields/tests.py::BasicFieldTests.test_formfield_disabled\", \"score\": 0.43453720211982727}, {\"doc_id\": \"tests/model_fields/tests.py::BasicFieldTests.test_field_name\", \"score\": 0.4342964291572571}]"
+}

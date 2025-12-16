@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11905",
+  "query": "Prevent using __isnull lookup with non-boolean value.\nDescription\n\t \n\t\t(last modified by Mariusz Felisiak)\n\t \n__isnull should not allow for non-boolean values. Using truthy/falsey doesn't promote INNER JOIN to an OUTER JOIN but works fine for a simple queries. Using non-boolean values is ​undocumented and untested. IMO we should raise an error for non-boolean values to avoid confusion and for consistency.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/lookups.py"
+    ],
+    "locations": [
+      "django/db/models/lookups.py::IsNull",
+      "django/db/models/lookups.py::IsNull.as_sql"
+    ]
+  },
+  "predictions": [
+    "tests/queries/tests.py::IsNullTests.test_to_field",
+    "tests/postgres_tests/test_json.py::TestQuerying.test_isnull_key",
+    "tests/queries/tests.py::IsNullTests.test_primary_key",
+    "tests/gis_tests/geoapp/tests.py::GeoLookupTest.test_null_geometries",
+    "tests/postgres_tests/test_json.py::TestQuerying.test_isnull_key_or_none",
+    "tests/queries/tests.py::NullJoinPromotionOrTest.test_isnull_filter_promotion",
+    "tests/lookup/tests.py::LookupTests.test_custom_field_none_rhs",
+    "tests/postgres_tests/test_hstore.py::TestQuerying.test_key_isnull",
+    "tests/postgres_tests/test_array.py::TestQuerying.test_isnull",
+    "tests/postgres_tests/test_json.py::TestQuerying.test_isnull"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "2f72480fbd27896c986c45193e1603e35c0b19a7",
+    "total_functions_indexed": 22904,
+    "retrieval_time_seconds": 0.01184391975402832
+  },
+  "raw_output": "[{\"doc_id\": \"tests/queries/tests.py::IsNullTests.test_to_field\", \"score\": 0.4709581732749939}, {\"doc_id\": \"tests/postgres_tests/test_json.py::TestQuerying.test_isnull_key\", \"score\": 0.42009955644607544}, {\"doc_id\": \"tests/queries/tests.py::IsNullTests.test_primary_key\", \"score\": 0.4152607321739197}, {\"doc_id\": \"tests/gis_tests/geoapp/tests.py::GeoLookupTest.test_null_geometries\", \"score\": 0.37114250659942627}, {\"doc_id\": \"tests/postgres_tests/test_json.py::TestQuerying.test_isnull_key_or_none\", \"score\": 0.35801637172698975}, {\"doc_id\": \"tests/queries/tests.py::NullJoinPromotionOrTest.test_isnull_filter_promotion\", \"score\": 0.3452112078666687}, {\"doc_id\": \"tests/lookup/tests.py::LookupTests.test_custom_field_none_rhs\", \"score\": 0.33682364225387573}, {\"doc_id\": \"tests/postgres_tests/test_hstore.py::TestQuerying.test_key_isnull\", \"score\": 0.3367745280265808}, {\"doc_id\": \"tests/postgres_tests/test_array.py::TestQuerying.test_isnull\", \"score\": 0.3298763930797577}, {\"doc_id\": \"tests/postgres_tests/test_json.py::TestQuerying.test_isnull\", \"score\": 0.3265012502670288}]"
+}

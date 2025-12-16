@@ -1,0 +1,34 @@
+{
+  "instance_id": "sympy__sympy-14024",
+  "query": "Inconsistency when simplifying (-a)**x * a**(-x), a a positive integer\nCompare:\r\n\r\n```\r\n>>> a = Symbol('a', integer=True, positive=True)\r\n>>> e = (-a)**x * a**(-x)\r\n>>> f = simplify(e)\r\n>>> print(e)\r\na**(-x)*(-a)**x\r\n>>> print(f)\r\n(-1)**x\r\n>>> t = -S(10)/3\r\n>>> n1 = e.subs(x,t)\r\n>>> n2 = f.subs(x,t)\r\n>>> print(N(n1))\r\n-0.5 + 0.866025403784439*I\r\n>>> print(N(n2))\r\n-0.5 + 0.866025403784439*I\r\n```\r\n\r\nvs\r\n\r\n```\r\n>>> a = S(2)\r\n>>> e = (-a)**x * a**(-x)\r\n>>> f = simplify(e)\r\n>>> print(e)\r\n(-2)**x*2**(-x)\r\n>>> print(f)\r\n(-1)**x\r\n>>> t = -S(10)/3\r\n>>> n1 = e.subs(x,t)\r\n>>> n2 = f.subs(x,t)\r\n>>> print(N(n1))\r\n0.5 - 0.866025403784439*I\r\n>>> print(N(n2))\r\n-0.5 + 0.866025403784439*I\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/numbers.py"
+    ],
+    "locations": [
+      "sympy/core/numbers.py::Rational",
+      "sympy/core/numbers.py::Rational._eval_power",
+      "sympy/core/numbers.py::Integer",
+      "sympy/core/numbers.py::Integer._eval_power"
+    ]
+  },
+  "predictions": [
+    "sympy/core/exprtools.py::_monotonic_sign",
+    "sympy/core/tests/test_numbers.py::test_issue_13890",
+    "sympy/core/expr.py::Expr.equals",
+    "sympy/functions/special/singularity_functions.py::SingularityFunction.eval",
+    "sympy/core/add.py::Add._eval_is_positive",
+    "sympy/functions/special/delta_functions.py::Heaviside.eval",
+    "sympy/core/function.py::Subs._eval_as_leading_term",
+    "sympy/functions/special/error_functions.py::expint._eval_nseries",
+    "sympy/functions/special/delta_functions.py::DiracDelta.eval",
+    "sympy/solvers/solvers.py::_invert"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "b17abcb09cbcee80a90f6750e0f9b53f0247656c",
+    "total_functions_indexed": 22631,
+    "retrieval_time_seconds": 0.09479784965515137
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/exprtools.py::_monotonic_sign\", \"score\": 0.47231054306030273}, {\"doc_id\": \"sympy/core/tests/test_numbers.py::test_issue_13890\", \"score\": 0.40481194853782654}, {\"doc_id\": \"sympy/core/expr.py::Expr.equals\", \"score\": 0.3996139168739319}, {\"doc_id\": \"sympy/functions/special/singularity_functions.py::SingularityFunction.eval\", \"score\": 0.39879661798477173}, {\"doc_id\": \"sympy/core/add.py::Add._eval_is_positive\", \"score\": 0.3912438452243805}, {\"doc_id\": \"sympy/functions/special/delta_functions.py::Heaviside.eval\", \"score\": 0.38900136947631836}, {\"doc_id\": \"sympy/core/function.py::Subs._eval_as_leading_term\", \"score\": 0.38797909021377563}, {\"doc_id\": \"sympy/functions/special/error_functions.py::expint._eval_nseries\", \"score\": 0.38737952709198}, {\"doc_id\": \"sympy/functions/special/delta_functions.py::DiracDelta.eval\", \"score\": 0.3869319260120392}, {\"doc_id\": \"sympy/solvers/solvers.py::_invert\", \"score\": 0.3859785795211792}]"
+}

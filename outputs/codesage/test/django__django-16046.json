@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-16046",
+  "query": "Fix numberformat.py \"string index out of range\" when null\nDescription\n\t\nWhen:\nif str_number[0] == \"-\"\nencounters a number field that's null when formatting for the admin list_display this causes an \nIndexError: string index out of range\nI can attach the proposed fix here, or open a pull request on GitHub if you like?\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/numberformat.py"
+    ],
+    "locations": [
+      "django/utils/numberformat.py::format"
+    ]
+  },
+  "predictions": [
+    "django/db/backends/oracle/base.py::FormatStylePlaceholderCursor._output_number_converter",
+    "django/forms/fields.py::IntegerField.to_python",
+    "tests/postgres_tests/test_ranges.py::TestFormField.test_decimal_invalid_upper",
+    "django/contrib/postgres/fields/ranges.py::DecimalRangeField.db_type",
+    "django/db/models/functions/text.py::StrIndex.as_postgresql",
+    "django/utils/numberformat.py::format",
+    "tests/postgres_tests/test_ranges.py::TestFormField.test_decimal_invalid_lower",
+    "django/utils/translation/trans_null.py::npgettext",
+    "tests/db_functions/text/test_strindex.py::StrIndexTests.test_filtering",
+    "tests/pagination/tests.py::PaginationTests.test_invalid_page_number"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "ec13e801b820614ff374cb0046092caab8d67249",
+    "total_functions_indexed": 26158,
+    "retrieval_time_seconds": 0.09723758697509766
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/backends/oracle/base.py::FormatStylePlaceholderCursor._output_number_converter\", \"score\": 0.27495071291923523}, {\"doc_id\": \"django/forms/fields.py::IntegerField.to_python\", \"score\": 0.2709786891937256}, {\"doc_id\": \"tests/postgres_tests/test_ranges.py::TestFormField.test_decimal_invalid_upper\", \"score\": 0.2601619362831116}, {\"doc_id\": \"django/contrib/postgres/fields/ranges.py::DecimalRangeField.db_type\", \"score\": 0.2587290406227112}, {\"doc_id\": \"django/db/models/functions/text.py::StrIndex.as_postgresql\", \"score\": 0.2571818232536316}, {\"doc_id\": \"django/utils/numberformat.py::format\", \"score\": 0.2537022829055786}, {\"doc_id\": \"tests/postgres_tests/test_ranges.py::TestFormField.test_decimal_invalid_lower\", \"score\": 0.2535061538219452}, {\"doc_id\": \"django/utils/translation/trans_null.py::npgettext\", \"score\": 0.253201961517334}, {\"doc_id\": \"tests/db_functions/text/test_strindex.py::StrIndexTests.test_filtering\", \"score\": 0.25317317247390747}, {\"doc_id\": \"tests/pagination/tests.py::PaginationTests.test_invalid_page_number\", \"score\": 0.25256288051605225}]"
+}

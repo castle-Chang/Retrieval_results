@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-13146",
+  "query": "Exponent doesn't fully simplify\nSay I have code like this:\n\n```\nimport sympy\nfrom sympy import *\nx=Symbol('x')\nexpr1 = S(1)/2*x**2.5\nexpr2 = S(1)*x**(S(5)/2)/2\nres = expr1-expr2\nres= simplify(res.evalf(5))\nprint res\n```\n\nThe output is\n`-0.5*x**2.5 + 0.5*x**2.5`\nHow do I simplify it to 0?\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/operations.py"
+    ],
+    "locations": [
+      "sympy/core/operations.py::AssocOp",
+      "sympy/core/operations.py::AssocOp._eval_evalf",
+      "sympy/core/operations.py::AssocOp.make_args"
+    ]
+  },
+  "predictions": [
+    "sympy/core/evalf.py::N",
+    "sympy/functions/elementary/miscellaneous.py::sqrt",
+    "sympy/core/numbers.py::Exp1._eval_rewrite_as_sin",
+    "sympy/core/power.py::Pow._eval_refine",
+    "sympy/core/power.py::Pow.exp",
+    "sympy/core/expr.py::Expr.powsimp",
+    "sympy/functions/elementary/exponential.py::exp._eval_refine",
+    "sympy/core/numbers.py::Exp1._eval_rewrite_as_cos",
+    "sympy/codegen/cfunctions.py::_expm1",
+    "sympy/core/power.py::Pow._eval_nseries"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "b678d8103e48fdb1af335dbf0080b3d5366f2d17",
+    "total_functions_indexed": 21188,
+    "retrieval_time_seconds": 0.09620499610900879
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/evalf.py::N\", \"score\": 0.5686326026916504}, {\"doc_id\": \"sympy/functions/elementary/miscellaneous.py::sqrt\", \"score\": 0.5467205047607422}, {\"doc_id\": \"sympy/core/numbers.py::Exp1._eval_rewrite_as_sin\", \"score\": 0.5399840474128723}, {\"doc_id\": \"sympy/core/power.py::Pow._eval_refine\", \"score\": 0.539932131767273}, {\"doc_id\": \"sympy/core/power.py::Pow.exp\", \"score\": 0.5384114384651184}, {\"doc_id\": \"sympy/core/expr.py::Expr.powsimp\", \"score\": 0.5322994589805603}, {\"doc_id\": \"sympy/functions/elementary/exponential.py::exp._eval_refine\", \"score\": 0.5320988893508911}, {\"doc_id\": \"sympy/core/numbers.py::Exp1._eval_rewrite_as_cos\", \"score\": 0.5229175090789795}, {\"doc_id\": \"sympy/codegen/cfunctions.py::_expm1\", \"score\": 0.5213851928710938}, {\"doc_id\": \"sympy/core/power.py::Pow._eval_nseries\", \"score\": 0.5212472081184387}]"
+}

@@ -1,0 +1,36 @@
+{
+  "instance_id": "django__django-11564",
+  "query": "Add support for SCRIPT_NAME in STATIC_URL and MEDIA_URL\nDescription\n\t \n\t\t(last modified by Rostyslav Bryzgunov)\n\t \nBy default, {% static '...' %} tag just appends STATIC_URL in the path. When running on sub-path, using SCRIPT_NAME WSGI param, it results in incorrect static URL - it doesn't prepend SCRIPT_NAME prefix.\nThis problem can be solved with prepending SCRIPT_NAME to STATIC_URL in settings.py but that doesn't work when SCRIPT_NAME is a dynamic value.\nThis can be easily added into default Django static tag and django.contrib.staticfiles tag as following:\ndef render(self, context):\n\turl = self.url(context)\n\t# Updating url here with request.META['SCRIPT_NAME'] \n\tif self.varname is None:\n\t\treturn url\n\tcontext[self.varname] = url\n\t\treturn ''\nOn more research I found that FileSystemStorage and StaticFilesStorage ignores SCRIPT_NAME as well. \nWe might have to do a lot of changes but I think it's worth the efforts.\n",
+  "ground_truth": {
+    "files": [
+      "django/conf/__init__.py"
+    ],
+    "locations": [
+      "django/conf/__init__.py::LazySettings",
+      "django/conf/__init__.py::LazySettings.configure",
+      "django/conf/__init__.py::LazySettings.configured",
+      "django/conf/__init__.py::LazySettings.PASSWORD_RESET_TIMEOUT_DAYS",
+      "django/conf/__init__.py::Settings",
+      "django/conf/__init__.py::Settings.__init__"
+    ]
+  },
+  "predictions": [
+    "django/templatetags/static.py::StaticNode.handle_simple",
+    "django/templatetags/static.py::StaticNode.render",
+    "django/templatetags/static.py::do_static",
+    "django/contrib/staticfiles/handlers.py::StaticFilesHandlerMixin.get_base_url",
+    "django/test/testcases.py::_StaticFilesHandler.get_base_url",
+    "django/templatetags/static.py::get_static_prefix",
+    "django/templatetags/static.py::StaticNode.url",
+    "django/forms/widgets.py::Media.absolute_path",
+    "django/core/handlers/wsgi.py::get_script_name",
+    "django/template/context_processors.py::static"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "580e644f24f1c5ae5b94784fb73a9953a178fd26",
+    "total_functions_indexed": 22854,
+    "retrieval_time_seconds": 0.007279396057128906
+  },
+  "raw_output": "[{\"doc_id\": \"django/templatetags/static.py::StaticNode.handle_simple\", \"score\": 0.5404671430587769}, {\"doc_id\": \"django/templatetags/static.py::StaticNode.render\", \"score\": 0.5289163589477539}, {\"doc_id\": \"django/templatetags/static.py::do_static\", \"score\": 0.5050062537193298}, {\"doc_id\": \"django/contrib/staticfiles/handlers.py::StaticFilesHandlerMixin.get_base_url\", \"score\": 0.487265944480896}, {\"doc_id\": \"django/test/testcases.py::_StaticFilesHandler.get_base_url\", \"score\": 0.4803878664970398}, {\"doc_id\": \"django/templatetags/static.py::get_static_prefix\", \"score\": 0.47415637969970703}, {\"doc_id\": \"django/templatetags/static.py::StaticNode.url\", \"score\": 0.45921123027801514}, {\"doc_id\": \"django/forms/widgets.py::Media.absolute_path\", \"score\": 0.45570528507232666}, {\"doc_id\": \"django/core/handlers/wsgi.py::get_script_name\", \"score\": 0.4554198384284973}, {\"doc_id\": \"django/template/context_processors.py::static\", \"score\": 0.4540833830833435}]"
+}

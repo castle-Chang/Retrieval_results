@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11179",
+  "query": "delete() on instances of models without any dependencies doesn't clear PKs.\nDescription\n\t\nDeleting any model with no dependencies not updates the PK on the model. It should be set to None after .delete() call.\nSee Django.db.models.deletion:276-281. Should update the model line 280.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/deletion.py"
+    ],
+    "locations": [
+      "django/db/models/deletion.py::Collector",
+      "django/db/models/deletion.py::Collector.delete"
+    ]
+  },
+  "predictions": [
+    "tests/delete/tests.py::DeletionTests.test_instance_update",
+    "tests/delete/tests.py::OnDeleteTests.test_setnull",
+    "tests/delete/tests.py::OnDeleteTests.test_o2o_setnull",
+    "tests/delete/tests.py::OnDeleteTests.test_do_nothing_qscount",
+    "tests/delete/tests.py::OnDeleteTests.test_setdefault_none",
+    "tests/delete/tests.py::OnDeleteTests.test_do_nothing",
+    "tests/delete/tests.py::OnDeleteTests.test_cascade_nullable",
+    "tests/delete/tests.py::OnDeleteTests.test_setvalue",
+    "tests/delete/tests.py::OnDeleteTests.test_setnull_from_child",
+    "tests/delete/tests.py::OnDeleteTests.test_inheritance_cascade_up"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "19fc6376ce67d01ca37a91ef2f55ef769f50513a",
+    "total_functions_indexed": 22420,
+    "retrieval_time_seconds": 0.013759851455688477
+  },
+  "raw_output": "[{\"doc_id\": \"tests/delete/tests.py::DeletionTests.test_instance_update\", \"score\": 0.5416051149368286}, {\"doc_id\": \"tests/delete/tests.py::OnDeleteTests.test_setnull\", \"score\": 0.5089156627655029}, {\"doc_id\": \"tests/delete/tests.py::OnDeleteTests.test_o2o_setnull\", \"score\": 0.4808655381202698}, {\"doc_id\": \"tests/delete/tests.py::OnDeleteTests.test_do_nothing_qscount\", \"score\": 0.4764549136161804}, {\"doc_id\": \"tests/delete/tests.py::OnDeleteTests.test_setdefault_none\", \"score\": 0.46828383207321167}, {\"doc_id\": \"tests/delete/tests.py::OnDeleteTests.test_do_nothing\", \"score\": 0.46764683723449707}, {\"doc_id\": \"tests/delete/tests.py::OnDeleteTests.test_cascade_nullable\", \"score\": 0.45754528045654297}, {\"doc_id\": \"tests/delete/tests.py::OnDeleteTests.test_setvalue\", \"score\": 0.45708924531936646}, {\"doc_id\": \"tests/delete/tests.py::OnDeleteTests.test_setnull_from_child\", \"score\": 0.4532201588153839}, {\"doc_id\": \"tests/delete/tests.py::OnDeleteTests.test_inheritance_cascade_up\", \"score\": 0.4531034231185913}]"
+}

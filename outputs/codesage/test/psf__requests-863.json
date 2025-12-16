@@ -1,0 +1,33 @@
+{
+  "instance_id": "psf__requests-863",
+  "query": "Allow lists in the dict values of the hooks argument\nCurrently the Request class has a .register_hook() method but it parses the dictionary it expects from it's hooks argument weirdly: the argument can only specify one hook function per hook.  If you pass in a list of hook functions per hook the code in Request.**init**() will wrap the list in a list which then fails when the hooks are consumed (since a list is not callable).  This is especially annoying since you can not use multiple hooks from a session.  The only way to get multiple hooks now is to create the request object without sending it, then call .register_hook() multiple times and then finally call .send().\n\nThis would all be much easier if Request.**init**() parsed the hooks parameter in a way that it accepts lists as it's values.\n\n",
+  "ground_truth": {
+    "files": [
+      "requests/models.py"
+    ],
+    "locations": [
+      "requests/models.py::Request",
+      "requests/models.py::Request.register_hook",
+      "requests/models.py::Request.deregister_hook"
+    ]
+  },
+  "predictions": [
+    "requests/hooks.py::dispatch_hook",
+    "requests/models.py::Request.register_hook",
+    "tests/test_requests.py::RequestsTestSuite.test_multiple_hooks",
+    "tests/test_requests.py::RequestsTestSuite.test_single_hook",
+    "requests/auth.py::AuthBase.__call__",
+    "requests/auth.py::HTTPKerberosAuth.__call__",
+    "requests/models.py::Request.deregister_hook",
+    "requests/sessions.py::Session.__init__",
+    "requests/cookies.py::MockRequest.__init__",
+    "requests/cookies.py::RequestsCookieJar.__setitem__"
+  ],
+  "metadata": {
+    "repo": "psf/requests",
+    "commit": "a0df2cbb10419037d11d04352b3175405ab52941",
+    "total_functions_indexed": 627,
+    "retrieval_time_seconds": 0.09024596214294434
+  },
+  "raw_output": "[{\"doc_id\": \"requests/hooks.py::dispatch_hook\", \"score\": 0.4596821963787079}, {\"doc_id\": \"requests/models.py::Request.register_hook\", \"score\": 0.4157276153564453}, {\"doc_id\": \"tests/test_requests.py::RequestsTestSuite.test_multiple_hooks\", \"score\": 0.33692651987075806}, {\"doc_id\": \"tests/test_requests.py::RequestsTestSuite.test_single_hook\", \"score\": 0.3095918893814087}, {\"doc_id\": \"requests/auth.py::AuthBase.__call__\", \"score\": 0.3021976053714752}, {\"doc_id\": \"requests/auth.py::HTTPKerberosAuth.__call__\", \"score\": 0.24205312132835388}, {\"doc_id\": \"requests/models.py::Request.deregister_hook\", \"score\": 0.2381158173084259}, {\"doc_id\": \"requests/sessions.py::Session.__init__\", \"score\": 0.2184385061264038}, {\"doc_id\": \"requests/cookies.py::MockRequest.__init__\", \"score\": 0.1899988204240799}, {\"doc_id\": \"requests/cookies.py::RequestsCookieJar.__setitem__\", \"score\": 0.17477408051490784}]"
+}

@@ -1,0 +1,34 @@
+{
+  "instance_id": "sympy__sympy-20322",
+  "query": "Inconsistent behavior for sympify/simplify with ceiling\nIn sympy v1.5.1:\r\n```python\r\nIn [16]: sympy.sympify('4*ceiling(x/4 - 3/4)', evaluate=False).simplify()\r\nOut[16]: 4*ceiling(x/4 - 3/4)\r\n\r\nIn [17]: sympy.sympify('4*ceiling(x/4 - 3/4)', evaluate=True).simplify()\r\nOut[17]: 4*ceiling(x/4 - 3/4)\r\n```\r\n\r\nIn sympy v.1.6.2:\r\n```python\r\nIn [16]: sympy.sympify('4*ceiling(x/4 - 3/4)', evaluate=False).simplify()\r\nOut[16]: 4*ceiling(x/4) - 3\r\n\r\nIn [17]: sympy.sympify('4*ceiling(x/4 - 3/4)', evaluate=True).simplify()\r\nOut [17]: 4*ceiling(x/4 - 3/4)\r\n```\r\n\r\nIs there a way to ensure that the behavior is consistent, even though evaluate is equal to `False` when parsing?\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/mul.py"
+    ],
+    "locations": [
+      "sympy/core/mul.py::Mul",
+      "sympy/core/mul.py::Mul._eval_is_zero",
+      "sympy/core/mul.py::Mul._eval_is_integer",
+      "sympy/core/mul.py::Mul._eval_is_polar"
+    ]
+  },
+  "predictions": [
+    "sympy/functions/elementary/integers.py::ceiling._eval_is_positive",
+    "sympy/functions/elementary/integers.py::ceiling.__ge__",
+    "sympy/functions/elementary/integers.py::ceiling._eval_is_nonpositive",
+    "sympy/functions/elementary/integers.py::ceiling.__le__",
+    "sympy/functions/elementary/integers.py::ceiling.__lt__",
+    "sympy/functions/elementary/integers.py::ceiling.__gt__",
+    "sympy/core/tests/test_evalf.py::test_issue_10323",
+    "sympy/functions/elementary/integers.py::ceiling._eval_number",
+    "sympy/core/evalf.py::evalf_ceiling",
+    "sympy/functions/elementary/tests/test_integers.py::test_issue_18421"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "ab864967e71c950a15771bb6c3723636026ba876",
+    "total_functions_indexed": 35363,
+    "retrieval_time_seconds": 0.19211483001708984
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/functions/elementary/integers.py::ceiling._eval_is_positive\", \"score\": 0.5353289842605591}, {\"doc_id\": \"sympy/functions/elementary/integers.py::ceiling.__ge__\", \"score\": 0.532231867313385}, {\"doc_id\": \"sympy/functions/elementary/integers.py::ceiling._eval_is_nonpositive\", \"score\": 0.5307782888412476}, {\"doc_id\": \"sympy/functions/elementary/integers.py::ceiling.__le__\", \"score\": 0.5143737196922302}, {\"doc_id\": \"sympy/functions/elementary/integers.py::ceiling.__lt__\", \"score\": 0.511756956577301}, {\"doc_id\": \"sympy/functions/elementary/integers.py::ceiling.__gt__\", \"score\": 0.5117095708847046}, {\"doc_id\": \"sympy/core/tests/test_evalf.py::test_issue_10323\", \"score\": 0.5080327391624451}, {\"doc_id\": \"sympy/functions/elementary/integers.py::ceiling._eval_number\", \"score\": 0.5060940980911255}, {\"doc_id\": \"sympy/core/evalf.py::evalf_ceiling\", \"score\": 0.4911767840385437}, {\"doc_id\": \"sympy/functions/elementary/tests/test_integers.py::test_issue_18421\", \"score\": 0.4859050512313843}]"
+}

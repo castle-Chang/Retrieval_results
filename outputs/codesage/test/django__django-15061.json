@@ -1,0 +1,34 @@
+{
+  "instance_id": "django__django-15061",
+  "query": "Remove \"for = ...\" from MultiWidget's <label>.\nDescription\n\t\nThe instance from Raw MultiWidget class generate id_for_label like f'{id_}0'\nIt has not sense.\nFor example ChoiceWidget has self.add_id_index and I can decide it myself, how I will see label_id - with or without index.\nI think, it is better to remove completely id_for_label method from MultiWidget Class.\n",
+  "ground_truth": {
+    "files": [
+      "django/forms/widgets.py"
+    ],
+    "locations": [
+      "django/forms/widgets.py::MultiWidget",
+      "django/forms/widgets.py::MultiWidget.get_context",
+      "django/forms/widgets.py::MultiWidget.id_for_label",
+      "django/forms/widgets.py::MultiWidget.value_from_datadict"
+    ]
+  },
+  "predictions": [
+    "django/forms/widgets.py::ChoiceWidget.id_for_label",
+    "django/forms/widgets.py::MultiWidget.id_for_label",
+    "django/forms/widgets.py::Widget.id_for_label",
+    "django/forms/boundfield.py::BoundField.id_for_label",
+    "django/forms/widgets.py::RadioSelect.id_for_label",
+    "django/contrib/postgres/forms/array.py::SplitArrayWidget.id_for_label",
+    "django/contrib/admin/widgets.py::RelatedFieldWidgetWrapper.id_for_label",
+    "django/contrib/admin/widgets.py::ManyToManyRawIdWidget.label_and_url_for_value",
+    "django/forms/widgets.py::SelectDateWidget.id_for_label",
+    "django/forms/boundfield.py::BoundField.auto_id"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "2c01ebb4be5d53cbf6450f356c10e436025d6d07",
+    "total_functions_indexed": 25265,
+    "retrieval_time_seconds": 0.007549762725830078
+  },
+  "raw_output": "[{\"doc_id\": \"django/forms/widgets.py::ChoiceWidget.id_for_label\", \"score\": 0.6441243290901184}, {\"doc_id\": \"django/forms/widgets.py::MultiWidget.id_for_label\", \"score\": 0.6037213206291199}, {\"doc_id\": \"django/forms/widgets.py::Widget.id_for_label\", \"score\": 0.5773997902870178}, {\"doc_id\": \"django/forms/boundfield.py::BoundField.id_for_label\", \"score\": 0.5477721095085144}, {\"doc_id\": \"django/forms/widgets.py::RadioSelect.id_for_label\", \"score\": 0.5011489987373352}, {\"doc_id\": \"django/contrib/postgres/forms/array.py::SplitArrayWidget.id_for_label\", \"score\": 0.47602614760398865}, {\"doc_id\": \"django/contrib/admin/widgets.py::RelatedFieldWidgetWrapper.id_for_label\", \"score\": 0.463816374540329}, {\"doc_id\": \"django/contrib/admin/widgets.py::ManyToManyRawIdWidget.label_and_url_for_value\", \"score\": 0.4256002902984619}, {\"doc_id\": \"django/forms/widgets.py::SelectDateWidget.id_for_label\", \"score\": 0.41514086723327637}, {\"doc_id\": \"django/forms/boundfield.py::BoundField.auto_id\", \"score\": 0.40227192640304565}]"
+}

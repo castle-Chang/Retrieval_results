@@ -1,0 +1,31 @@
+{
+  "instance_id": "pallets__flask-5063",
+  "query": "Flask routes to return domain/sub-domains information\nCurrently when checking **flask routes** it provides all routes but **it is no way to see which routes are assigned to which subdomain**.\r\n\r\n**Default server name:**\r\nSERVER_NAME: 'test.local'\r\n\r\n**Domains (sub-domains):**\r\ntest.test.local\r\nadmin.test.local\r\ntest.local\r\n\r\n**Adding blueprints:**\r\napp.register_blueprint(admin_blueprint,url_prefix='',subdomain='admin')\r\napp.register_blueprint(test_subdomain_blueprint,url_prefix='',subdomain='test')\r\n\r\n\r\n```\r\n$ flask routes\r\n * Tip: There are .env or .flaskenv files present. Do \"pip install python-dotenv\" to use them.\r\nEndpoint                                                 Methods    Rule\r\n-------------------------------------------------------  ---------  ------------------------------------------------\r\nadmin_blueprint.home                                      GET        /home\r\ntest_subdomain_blueprint.home                             GET        /home\r\nstatic                                                    GET        /static/<path:filename>\r\n...\r\n```\r\n\r\n\r\n**Feature request**\r\nIt will be good to see something like below (that will make more clear which route for which subdomain, because now need to go and check configuration).\r\n**If it is not possible to fix routes**, can you add or tell which method(s) should be used to get below information from flask? \r\n\r\n```\r\n$ flask routes\r\n * Tip: There are .env or .flaskenv files present. Do \"pip install python-dotenv\" to use them.\r\nDomain                Endpoint                                             Methods    Rule\r\n-----------------   ----------------------------------------------------  ----------  ------------------------------------------------\r\nadmin.test.local     admin_blueprint.home                                  GET        /home\r\ntest.test.local      test_subdomain_blueprint.home                         GET        /home\r\ntest.local           static                                                GET        /static/<path:filename>\r\n...\r\n```\r\n\n",
+  "ground_truth": {
+    "files": [
+      "src/flask/cli.py"
+    ],
+    "locations": [
+      "src/flask/cli.py::routes_command"
+    ]
+  },
+  "predictions": [
+    "tests/test_testing.py::test_blueprint_with_subdomain",
+    "tests/test_basic.py::test_server_name_subdomain",
+    "src/flask/wrappers.py::Request.blueprints",
+    "tests/test_basic.py::test_subdomain_matching_other_name",
+    "tests/test_blueprints.py::test_nesting_subdomains",
+    "tests/test_basic.py::test_subdomain_basic_support",
+    "src/flask/scaffold.py::Scaffold.get",
+    "src/flask/blueprints.py::Blueprint.__init__",
+    "tests/test_basic.py::test_subdomain_matching",
+    "tests/test_blueprints.py::test_child_and_parent_subdomain"
+  ],
+  "metadata": {
+    "repo": "pallets/flask",
+    "commit": "182ce3dd15dfa3537391c3efaf9c3ff407d134d4",
+    "total_functions_indexed": 820,
+    "retrieval_time_seconds": 0.0008227825164794922
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_testing.py::test_blueprint_with_subdomain\", \"score\": 0.3664557933807373}, {\"doc_id\": \"tests/test_basic.py::test_server_name_subdomain\", \"score\": 0.33246350288391113}, {\"doc_id\": \"src/flask/wrappers.py::Request.blueprints\", \"score\": 0.3225930333137512}, {\"doc_id\": \"tests/test_basic.py::test_subdomain_matching_other_name\", \"score\": 0.32181161642074585}, {\"doc_id\": \"tests/test_blueprints.py::test_nesting_subdomains\", \"score\": 0.32170385122299194}, {\"doc_id\": \"tests/test_basic.py::test_subdomain_basic_support\", \"score\": 0.31920623779296875}, {\"doc_id\": \"src/flask/scaffold.py::Scaffold.get\", \"score\": 0.3118896484375}, {\"doc_id\": \"src/flask/blueprints.py::Blueprint.__init__\", \"score\": 0.30762118101119995}, {\"doc_id\": \"tests/test_basic.py::test_subdomain_matching\", \"score\": 0.3070261478424072}, {\"doc_id\": \"tests/test_blueprints.py::test_child_and_parent_subdomain\", \"score\": 0.3064815402030945}]"
+}

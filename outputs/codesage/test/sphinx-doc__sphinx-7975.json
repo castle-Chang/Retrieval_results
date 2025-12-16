@@ -1,0 +1,32 @@
+{
+  "instance_id": "sphinx-doc__sphinx-7975",
+  "query": "Two sections called Symbols in index\nWhen using index entries with the following leading characters: _@_, _£_, and _←_ I get two sections called _Symbols_ in the HTML output, the first containing all _@_ entries before ”normal” words and the second containing _£_ and _←_ entries after the ”normal” words.  Both have the same anchor in HTML so the links at the top of the index page contain two _Symbols_ links, one before the letters and one after, but both lead to the first section.\n\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/environment/adapters/indexentries.py"
+    ],
+    "locations": [
+      "sphinx/environment/adapters/indexentries.py::IndexEntries",
+      "sphinx/environment/adapters/indexentries.py::IndexEntries.create_index"
+    ]
+  },
+  "predictions": [
+    "tests/test_environment_indexentries.py::test_create_single_index",
+    "tests/test_environment_indexentries.py::test_create_pair_index",
+    "tests/test_build_html.py::test_html_anchor_for_figure",
+    "sphinx/writers/latex.py::LaTeXTranslator.visit_index",
+    "tests/test_intl.py::test_html_index_entries",
+    "tests/test_build_latex.py::test_latex_index",
+    "sphinx/domains/c.py::Symbol.get_full_nested_name",
+    "tests/test_environment_indexentries.py::test_create_main_index",
+    "sphinx/domains/cpp.py::Symbol.get_full_nested_name",
+    "tests/test_search.py::test_term_in_heading_and_section"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "4ec6cbe341fd84468c448e20082c778043bbea4b",
+    "total_functions_indexed": 5409,
+    "retrieval_time_seconds": 0.0023131370544433594
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_environment_indexentries.py::test_create_single_index\", \"score\": 0.26583805680274963}, {\"doc_id\": \"tests/test_environment_indexentries.py::test_create_pair_index\", \"score\": 0.26067352294921875}, {\"doc_id\": \"tests/test_build_html.py::test_html_anchor_for_figure\", \"score\": 0.2489423304796219}, {\"doc_id\": \"sphinx/writers/latex.py::LaTeXTranslator.visit_index\", \"score\": 0.2421349585056305}, {\"doc_id\": \"tests/test_intl.py::test_html_index_entries\", \"score\": 0.24033160507678986}, {\"doc_id\": \"tests/test_build_latex.py::test_latex_index\", \"score\": 0.22810044884681702}, {\"doc_id\": \"sphinx/domains/c.py::Symbol.get_full_nested_name\", \"score\": 0.22708263993263245}, {\"doc_id\": \"tests/test_environment_indexentries.py::test_create_main_index\", \"score\": 0.22688058018684387}, {\"doc_id\": \"sphinx/domains/cpp.py::Symbol.get_full_nested_name\", \"score\": 0.2229759395122528}, {\"doc_id\": \"tests/test_search.py::test_term_in_heading_and_section\", \"score\": 0.21786127984523773}]"
+}

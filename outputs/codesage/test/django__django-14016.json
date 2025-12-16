@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-14016",
+  "query": "\"TypeError: cannot pickle\" when applying | operator to a Q object\nDescription\n\t \n\t\t(last modified by Daniel Izquierdo)\n\t \nUsing a reference to a non-pickleable type of object such as dict_keys in a Q object makes the | operator fail:\n>>> from django.db.models import Q\n>>> Q(x__in={}.keys())\n<Q: (AND: ('x__in', dict_keys([])))>\n>>> Q() | Q(x__in={}.keys())\nTraceback (most recent call last):\n...\nTypeError: cannot pickle 'dict_keys' object\nEven though this particular example could be solved by doing Q() | Q(x__in={}) it still feels like using .keys() should work.\nI can work on a patch if there's agreement that this should not crash.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/query_utils.py"
+    ],
+    "locations": [
+      "django/db/models/query_utils.py::Q",
+      "django/db/models/query_utils.py::Q._combine"
+    ]
+  },
+  "predictions": [
+    "tests/queryset_pickle/tests.py::PickleabilityTestCase.test_model_pickle",
+    "tests/queryset_pickle/tests.py::PickleabilityTestCase.test_unsupported_unpickle",
+    "tests/queryset_pickle/tests.py::PickleabilityTestCase.assert_pickles",
+    "tests/queryset_pickle/tests.py::PickleabilityTestCase.test_doesnotexist_exception",
+    "tests/queryset_pickle/tests.py::PickleabilityTestCase.test_doesnotexist_class",
+    "tests/queryset_pickle/tests.py::PickleabilityTestCase.test_missing_django_version_unpickling",
+    "tests/queryset_pickle/tests.py::PickleabilityTestCase.test_pickle_subquery_queryset_not_evaluated",
+    "tests/queryset_pickle/tests.py::PickleabilityTestCase.test_manager_pickle",
+    "tests/queries/test_q.py::QTests.test_combine_not_q_object",
+    "tests/queryset_pickle/tests.py::PickleabilityTestCase.test_model_pickle_dynamic"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "1710cdbe79c90665046034fe1700933d038d90ad",
+    "total_functions_indexed": 24279,
+    "retrieval_time_seconds": 0.09546399116516113
+  },
+  "raw_output": "[{\"doc_id\": \"tests/queryset_pickle/tests.py::PickleabilityTestCase.test_model_pickle\", \"score\": 0.4830426275730133}, {\"doc_id\": \"tests/queryset_pickle/tests.py::PickleabilityTestCase.test_unsupported_unpickle\", \"score\": 0.4680597484111786}, {\"doc_id\": \"tests/queryset_pickle/tests.py::PickleabilityTestCase.assert_pickles\", \"score\": 0.4678109586238861}, {\"doc_id\": \"tests/queryset_pickle/tests.py::PickleabilityTestCase.test_doesnotexist_exception\", \"score\": 0.46371185779571533}, {\"doc_id\": \"tests/queryset_pickle/tests.py::PickleabilityTestCase.test_doesnotexist_class\", \"score\": 0.4613990783691406}, {\"doc_id\": \"tests/queryset_pickle/tests.py::PickleabilityTestCase.test_missing_django_version_unpickling\", \"score\": 0.4528975188732147}, {\"doc_id\": \"tests/queryset_pickle/tests.py::PickleabilityTestCase.test_pickle_subquery_queryset_not_evaluated\", \"score\": 0.4485222399234772}, {\"doc_id\": \"tests/queryset_pickle/tests.py::PickleabilityTestCase.test_manager_pickle\", \"score\": 0.4383370280265808}, {\"doc_id\": \"tests/queries/test_q.py::QTests.test_combine_not_q_object\", \"score\": 0.4342131018638611}, {\"doc_id\": \"tests/queryset_pickle/tests.py::PickleabilityTestCase.test_model_pickle_dynamic\", \"score\": 0.4299626052379608}]"
+}

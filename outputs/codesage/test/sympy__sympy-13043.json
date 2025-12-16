@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-13043",
+  "query": "decompose() function in intpoly returns a list of arbitrary order\nThe decompose() function, with separate=True, returns `list(poly_dict.values())`, which is ordered arbitrarily.  \r\n\r\nWhat is this used for? It should be sorted somehow, or returning a set (in which case, why not just use the returned dictionary and have the caller take the values). This is causing test failures for me after some changes to the core. \r\n\r\nCC @ArifAhmed1995 @certik \n",
+  "ground_truth": {
+    "files": [
+      "sympy/integrals/intpoly.py"
+    ],
+    "locations": [
+      "sympy/integrals/intpoly.py::decompose"
+    ]
+  },
+  "predictions": [
+    "sympy/integrals/intpoly.py::decompose",
+    "sympy/integrals/tests/test_intpoly.py::test_decompose",
+    "sympy/polys/rings.py::PolyElement.listmonoms",
+    "sympy/polys/tests/test_polytools.py::test_compose",
+    "sympy/polys/compatibility.py::IPolys.fateman_poly_F_3",
+    "sympy/polys/tests/test_polytools.py::test_Poly_as_dict",
+    "sympy/polys/compatibility.py::IPolys.fateman_poly_F_1",
+    "sympy/polys/compatibility.py::IPolys.fateman_poly_F_2",
+    "sympy/polys/polyoptions.py::Sort.default",
+    "sympy/solvers/solveset.py::_separate_poly_nonpoly"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "a3389a25ec84d36f5cf04a4f2562d820f131db64",
+    "total_functions_indexed": 20976,
+    "retrieval_time_seconds": 0.27813220024108887
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/integrals/intpoly.py::decompose\", \"score\": 0.48110231757164}, {\"doc_id\": \"sympy/integrals/tests/test_intpoly.py::test_decompose\", \"score\": 0.39918988943099976}, {\"doc_id\": \"sympy/polys/rings.py::PolyElement.listmonoms\", \"score\": 0.363782674074173}, {\"doc_id\": \"sympy/polys/tests/test_polytools.py::test_compose\", \"score\": 0.3612401485443115}, {\"doc_id\": \"sympy/polys/compatibility.py::IPolys.fateman_poly_F_3\", \"score\": 0.3532108664512634}, {\"doc_id\": \"sympy/polys/tests/test_polytools.py::test_Poly_as_dict\", \"score\": 0.35262900590896606}, {\"doc_id\": \"sympy/polys/compatibility.py::IPolys.fateman_poly_F_1\", \"score\": 0.35172298550605774}, {\"doc_id\": \"sympy/polys/compatibility.py::IPolys.fateman_poly_F_2\", \"score\": 0.35146838426589966}, {\"doc_id\": \"sympy/polys/polyoptions.py::Sort.default\", \"score\": 0.3389444053173065}, {\"doc_id\": \"sympy/solvers/solveset.py::_separate_poly_nonpoly\", \"score\": 0.33477115631103516}]"
+}

@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-15213",
+  "query": "ExpressionWrapper for ~Q(pk__in=[]) crashes.\nDescription\n\t \n\t\t(last modified by Stefan Brand)\n\t \nProblem Description\nI'm reducing some Q objects (similar to what is described in ticket:32554. Everything is fine for the case where the result is ExpressionWrapper(Q(pk__in=[])). However, when I reduce to ExpressionWrapper(~Q(pk__in=[])) the query breaks.\nSymptoms\nWorking for ExpressionWrapper(Q(pk__in=[]))\nprint(queryset.annotate(foo=ExpressionWrapper(Q(pk__in=[]), output_field=BooleanField())).values(\"foo\").query)\nSELECT 0 AS \"foo\" FROM \"table\"\nNot working for ExpressionWrapper(~Q(pk__in=[]))\nprint(queryset.annotate(foo=ExpressionWrapper(~Q(pk__in=[]), output_field=BooleanField())).values(\"foo\").query)\nSELECT AS \"foo\" FROM \"table\"\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/__init__.py"
+    ],
+    "locations": [
+      "django/db/models/fields/__init__.py::BooleanField",
+      "django/db/models/fields/__init__.py::BooleanField.formfield",
+      "django/db/models/fields/__init__.py::CharField"
+    ]
+  },
+  "predictions": [
+    "tests/model_fields/test_jsonfield.py::TestQuerying.test_expression_wrapper_key_transform",
+    "tests/queries/tests.py::Queries1Tests.test_ticket10432",
+    "tests/expressions/tests.py::BasicExpressionsTests.test_in_subquery",
+    "tests/expressions_case/tests.py::CaseExpressionTests.test_m2m_exclude",
+    "tests/postgres_tests/test_array.py::TestQuerying.test_in",
+    "tests/queries/tests.py::TestTicket24279.test_ticket_24278",
+    "tests/expressions/tests.py::BasicExpressionsTests.test_uuid_pk_subquery",
+    "tests/queries/tests.py::Ticket12807Tests.test_ticket_12807",
+    "tests/queries/tests.py::EmptyQuerySetTests.test_values_subquery",
+    "tests/queries/tests.py::Queries1Tests.test_ticket_20250"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "03cadb912c78b769d6bf4a943a2a35fc1d952960",
+    "total_functions_indexed": 25410,
+    "retrieval_time_seconds": 0.0946664810180664
+  },
+  "raw_output": "[{\"doc_id\": \"tests/model_fields/test_jsonfield.py::TestQuerying.test_expression_wrapper_key_transform\", \"score\": 0.43391740322113037}, {\"doc_id\": \"tests/queries/tests.py::Queries1Tests.test_ticket10432\", \"score\": 0.4313510060310364}, {\"doc_id\": \"tests/expressions/tests.py::BasicExpressionsTests.test_in_subquery\", \"score\": 0.4278414845466614}, {\"doc_id\": \"tests/expressions_case/tests.py::CaseExpressionTests.test_m2m_exclude\", \"score\": 0.4270716905593872}, {\"doc_id\": \"tests/postgres_tests/test_array.py::TestQuerying.test_in\", \"score\": 0.4196171760559082}, {\"doc_id\": \"tests/queries/tests.py::TestTicket24279.test_ticket_24278\", \"score\": 0.4126008152961731}, {\"doc_id\": \"tests/expressions/tests.py::BasicExpressionsTests.test_uuid_pk_subquery\", \"score\": 0.41221505403518677}, {\"doc_id\": \"tests/queries/tests.py::Ticket12807Tests.test_ticket_12807\", \"score\": 0.41071832180023193}, {\"doc_id\": \"tests/queries/tests.py::EmptyQuerySetTests.test_values_subquery\", \"score\": 0.4016953110694885}, {\"doc_id\": \"tests/queries/tests.py::Queries1Tests.test_ticket_20250\", \"score\": 0.39498528838157654}]"
+}

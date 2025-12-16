@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-15738",
+  "query": "Models migration with change field foreign to many and deleting unique together.\nDescription\n\t \n\t\t(last modified by Simon Charette)\n\t \nI have models like\nclass Authors(models.Model):\n\tproject_data_set = models.ForeignKey(\n\t\tProjectDataSet,\n\t\ton_delete=models.PROTECT\n\t)\n\tstate = models.IntegerField()\n\tstart_date = models.DateField()\n\tclass Meta:\n\t\t unique_together = (('project_data_set', 'state', 'start_date'),)\nand\nclass DataSet(models.Model):\n\tname = models.TextField(max_length=50)\nclass Project(models.Model):\n\tdata_sets = models.ManyToManyField(\n\t\tDataSet,\n\t\tthrough='ProjectDataSet',\n\t)\n\tname = models.TextField(max_length=50)\nclass ProjectDataSet(models.Model):\n\t\"\"\"\n\tCross table of data set and project\n\t\"\"\"\n\tdata_set = models.ForeignKey(DataSet, on_delete=models.PROTECT)\n\tproject = models.ForeignKey(Project, on_delete=models.PROTECT)\n\tclass Meta:\n\t\tunique_together = (('data_set', 'project'),)\nwhen i want to change field project_data_set in Authors model from foreign key field to many to many field I must delete a unique_together, cause it can't be on many to many field.\nThen my model should be like:\nclass Authors(models.Model):\n\tproject_data_set = models.ManyToManyField(\n\t\tProjectDataSet,\n\t)\n\tstate = models.IntegerField()\n\tstart_date = models.DateField()\nBut when I want to do a migrations.\npython3 manage.py makemigrations\npython3 manage.py migrate\nI have error:\nValueError: Found wrong number (0) of constraints for app_authors(project_data_set, state, start_date)\nThe database is on production, so I can't delete previous initial migrations, and this error isn't depending on database, cause I delete it and error is still the same.\nMy solve is to first delete unique_together, then do a makemigrations and then migrate. After that change the field from foreign key to many to many field, then do a makemigrations and then migrate.\nBut in this way I have 2 migrations instead of one.\nI added attachment with this project, download it and then do makemigrations and then migrate to see this error.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/autodetector.py"
+    ],
+    "locations": [
+      "django/db/migrations/autodetector.py::MigrationAutodetector",
+      "django/db/migrations/autodetector.py::MigrationAutodetector._generate_added_field"
+    ]
+  },
+  "predictions": [
+    "django/db/migrations/operations/models.py::AlterModelManagers.__init__",
+    "django/db/migrations/operations/models.py::AlterModelManagers.database_forwards",
+    "django/db/migrations/operations/models.py::AlterModelManagers.database_backwards",
+    "django/db/migrations/state.py::ProjectState.alter_model_managers",
+    "django/db/migrations/state.py::ProjectState.rename_model",
+    "django/db/migrations/operations/models.py::AlterModelManagers.state_forwards",
+    "tests/migration_test_data_persistence/migrations/0002_add_book.py::add_book",
+    "django/db/migrations/state.py::ProjectState.reload_models",
+    "django/db/migrations/operations/models.py::AlterModelTable.database_backwards",
+    "tests/migrations/test_state.py::RelatedModelsTests.setUp"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "6f73eb9d90cfec684529aab48d517e3d6449ba8c",
+    "total_functions_indexed": 25994,
+    "retrieval_time_seconds": 0.014594078063964844
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/migrations/operations/models.py::AlterModelManagers.__init__\", \"score\": 0.516562819480896}, {\"doc_id\": \"django/db/migrations/operations/models.py::AlterModelManagers.database_forwards\", \"score\": 0.5119165182113647}, {\"doc_id\": \"django/db/migrations/operations/models.py::AlterModelManagers.database_backwards\", \"score\": 0.5109989047050476}, {\"doc_id\": \"django/db/migrations/state.py::ProjectState.alter_model_managers\", \"score\": 0.48805323243141174}, {\"doc_id\": \"django/db/migrations/state.py::ProjectState.rename_model\", \"score\": 0.4790116846561432}, {\"doc_id\": \"django/db/migrations/operations/models.py::AlterModelManagers.state_forwards\", \"score\": 0.4732913374900818}, {\"doc_id\": \"tests/migration_test_data_persistence/migrations/0002_add_book.py::add_book\", \"score\": 0.4714035987854004}, {\"doc_id\": \"django/db/migrations/state.py::ProjectState.reload_models\", \"score\": 0.4688444137573242}, {\"doc_id\": \"django/db/migrations/operations/models.py::AlterModelTable.database_backwards\", \"score\": 0.46781837940216064}, {\"doc_id\": \"tests/migrations/test_state.py::RelatedModelsTests.setUp\", \"score\": 0.4659286141395569}]"
+}

@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-13768",
+  "query": "Log exceptions handled in Signal.send_robust()\nDescription\n\t\nAs pointed out by ​Haki Benita on Twitter, by default Signal.send_robust() doesn't have any log messages for exceptions raised in receivers. Since Django logs exceptions in other similar situations, such as missing template variables, I think it would be worth adding a logger.exception() call in the except clause of send_robust() . Users would then see such exceptions in their error handling tools, e.g. Sentry, and be able to figure out what action to take from there. Ultimately any *expected* exception should be caught with a try in the receiver function.\n",
+  "ground_truth": {
+    "files": [
+      "django/dispatch/dispatcher.py"
+    ],
+    "locations": [
+      "django/dispatch/dispatcher.py::_make_id",
+      "django/dispatch/dispatcher.py::Signal",
+      "django/dispatch/dispatcher.py::Signal.send_robust"
+    ]
+  },
+  "predictions": [
+    "tests/dispatch/tests.py::DispatcherTests.test_send_robust_fail",
+    "tests/dispatch/tests.py::DispatcherTests.test_send_robust_no_receivers",
+    "tests/dispatch/tests.py::DispatcherTests.test_send_robust_ignored_sender",
+    "tests/dispatch/tests.py::DispatcherTests.test_send_robust_success",
+    "django/dispatch/dispatcher.py::Signal.send_robust",
+    "tests/logging_tests/views.py::uncaught_exception",
+    "tests/view_tests/views.py::custom_exception_reporter_filter_view",
+    "django/test/utils.py::override_settings.disable",
+    "tests/view_tests/views.py::custom_reporter_class_view",
+    "tests/logging_tests/tests.py::AdminEmailHandlerTest.test_custom_exception_reporter_is_used"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "965d2d95c630939b53eb60d9c169f5dfc77ee0c6",
+    "total_functions_indexed": 24204,
+    "retrieval_time_seconds": 0.00781559944152832
+  },
+  "raw_output": "[{\"doc_id\": \"tests/dispatch/tests.py::DispatcherTests.test_send_robust_fail\", \"score\": 0.5227933526039124}, {\"doc_id\": \"tests/dispatch/tests.py::DispatcherTests.test_send_robust_no_receivers\", \"score\": 0.49211978912353516}, {\"doc_id\": \"tests/dispatch/tests.py::DispatcherTests.test_send_robust_ignored_sender\", \"score\": 0.47333505749702454}, {\"doc_id\": \"tests/dispatch/tests.py::DispatcherTests.test_send_robust_success\", \"score\": 0.464119017124176}, {\"doc_id\": \"django/dispatch/dispatcher.py::Signal.send_robust\", \"score\": 0.35532891750335693}, {\"doc_id\": \"tests/logging_tests/views.py::uncaught_exception\", \"score\": 0.3321431279182434}, {\"doc_id\": \"tests/view_tests/views.py::custom_exception_reporter_filter_view\", \"score\": 0.32544106245040894}, {\"doc_id\": \"django/test/utils.py::override_settings.disable\", \"score\": 0.32454031705856323}, {\"doc_id\": \"tests/view_tests/views.py::custom_reporter_class_view\", \"score\": 0.3200739026069641}, {\"doc_id\": \"tests/logging_tests/tests.py::AdminEmailHandlerTest.test_custom_exception_reporter_is_used\", \"score\": 0.31369706988334656}]"
+}

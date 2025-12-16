@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11283",
+  "query": "Migration auth.0011_update_proxy_permissions fails for models recreated as a proxy.\nDescription\n\t \n\t\t(last modified by Mariusz Felisiak)\n\t \nI am trying to update my project to Django 2.2. When I launch python manage.py migrate, I get this error message when migration auth.0011_update_proxy_permissions is applying (full stacktrace is available ​here):\ndjango.db.utils.IntegrityError: duplicate key value violates unique constraint \"idx_18141_auth_permission_content_type_id_01ab375a_uniq\" DETAIL: Key (co.ntent_type_id, codename)=(12, add_agency) already exists.\nIt looks like the migration is trying to re-create already existing entries in the auth_permission table. At first I though it cloud because we recently renamed a model. But after digging and deleting the entries associated with the renamed model from our database in the auth_permission table, the problem still occurs with other proxy models.\nI tried to update directly from 2.0.13 and 2.1.8. The issues appeared each time. I also deleted my venv and recreated it without an effect.\nI searched for a ticket about this on the bug tracker but found nothing. I also posted this on ​django-users and was asked to report this here.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/auth/migrations/0011_update_proxy_permissions.py"
+    ],
+    "locations": [
+      "django/contrib/auth/migrations/0011_update_proxy_permissions.py::update_proxy_model_permissions",
+      "django/contrib/auth/migrations/0011_update_proxy_permissions.py::revert_proxy_model_permissions"
+    ]
+  },
+  "predictions": [
+    "tests/auth_tests/test_migrations.py::ProxyModelWithDifferentAppLabelTests.test_user_keeps_same_permissions_after_migrating_backward",
+    "django/contrib/auth/migrations/0011_update_proxy_permissions.py::revert_proxy_model_permissions",
+    "tests/auth_tests/test_migrations.py::ProxyModelWithDifferentAppLabelTests.test_migrate_backwards",
+    "tests/auth_tests/test_migrations.py::ProxyModelWithSameAppLabelTests.test_user_keeps_same_permissions_after_migrating_backward",
+    "tests/auth_tests/test_migrations.py::ProxyModelWithSameAppLabelTests.test_migrate_backwards",
+    "django/contrib/auth/migrations/0011_update_proxy_permissions.py::update_proxy_model_permissions",
+    "tests/auth_tests/test_migrations.py::ProxyModelWithDifferentAppLabelTests.test_user_has_now_proxy_model_permissions",
+    "tests/auth_tests/test_migrations.py::ProxyModelWithDifferentAppLabelTests.setUp",
+    "tests/auth_tests/test_migrations.py::ProxyModelWithSameAppLabelTests.test_user_still_has_proxy_model_permissions",
+    "tests/auth_tests/test_migrations.py::ProxyModelWithSameAppLabelTests.setUp"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "08a4ee06510ae45562c228eefbdcaac84bd38c7a",
+    "total_functions_indexed": 22444,
+    "retrieval_time_seconds": 0.007004499435424805
+  },
+  "raw_output": "[{\"doc_id\": \"tests/auth_tests/test_migrations.py::ProxyModelWithDifferentAppLabelTests.test_user_keeps_same_permissions_after_migrating_backward\", \"score\": 0.5611018538475037}, {\"doc_id\": \"django/contrib/auth/migrations/0011_update_proxy_permissions.py::revert_proxy_model_permissions\", \"score\": 0.5606956481933594}, {\"doc_id\": \"tests/auth_tests/test_migrations.py::ProxyModelWithDifferentAppLabelTests.test_migrate_backwards\", \"score\": 0.558522641658783}, {\"doc_id\": \"tests/auth_tests/test_migrations.py::ProxyModelWithSameAppLabelTests.test_user_keeps_same_permissions_after_migrating_backward\", \"score\": 0.5506658554077148}, {\"doc_id\": \"tests/auth_tests/test_migrations.py::ProxyModelWithSameAppLabelTests.test_migrate_backwards\", \"score\": 0.546329140663147}, {\"doc_id\": \"django/contrib/auth/migrations/0011_update_proxy_permissions.py::update_proxy_model_permissions\", \"score\": 0.5415478944778442}, {\"doc_id\": \"tests/auth_tests/test_migrations.py::ProxyModelWithDifferentAppLabelTests.test_user_has_now_proxy_model_permissions\", \"score\": 0.5400010347366333}, {\"doc_id\": \"tests/auth_tests/test_migrations.py::ProxyModelWithDifferentAppLabelTests.setUp\", \"score\": 0.5394966006278992}, {\"doc_id\": \"tests/auth_tests/test_migrations.py::ProxyModelWithSameAppLabelTests.test_user_still_has_proxy_model_permissions\", \"score\": 0.5353116989135742}, {\"doc_id\": \"tests/auth_tests/test_migrations.py::ProxyModelWithSameAppLabelTests.setUp\", \"score\": 0.5327014923095703}]"
+}
