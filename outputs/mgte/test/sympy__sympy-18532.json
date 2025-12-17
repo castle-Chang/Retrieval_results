@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-18532",
+  "query": "expr.atoms() should return objects with no args instead of subclasses of Atom\n`expr.atoms()` with no arguments returns subclasses of `Atom` in `expr`. But the correct definition of a leaf node should be that it has no `.args`. \n\nThis should be easy to fix, but one needs to check that this doesn't affect the performance. \n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/basic.py"
+    ],
+    "locations": [
+      "sympy/core/basic.py::Basic",
+      "sympy/core/basic.py::Basic.atoms"
+    ]
+  },
+  "predictions": [
+    "sympy/integrals/rubi/utility_function.py::AtomQ",
+    "sympy/plotting/experimental_lambdify.py::Lambdifier.sympy_atoms_namespace",
+    "sympy/core/basic.py::_atomic",
+    "sympy/parsing/latex/_antlr/latexparser.py::LaTeXParser.atom",
+    "sympy/utilities/tests/test_lambdify.py::test_atoms",
+    "sympy/core/basic.py::Basic.atoms",
+    "sympy/core/basic.py::Atom._sorted_args",
+    "sympy/core/basic.py::Atom.matches",
+    "sympy/codegen/ast.py::Token.is_Atom",
+    "sympy/core/tests/test_args.py::test_sympy__core__basic__Atom"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "74227f900b05009d4eed62e34a166228788a32ca",
+    "total_functions_indexed": 33971,
+    "retrieval_time_seconds": 0.010856389999389648
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/integrals/rubi/utility_function.py::AtomQ\", \"score\": 0.7606663107872009}, {\"doc_id\": \"sympy/plotting/experimental_lambdify.py::Lambdifier.sympy_atoms_namespace\", \"score\": 0.7387012243270874}, {\"doc_id\": \"sympy/core/basic.py::_atomic\", \"score\": 0.7151511907577515}, {\"doc_id\": \"sympy/parsing/latex/_antlr/latexparser.py::LaTeXParser.atom\", \"score\": 0.7036099433898926}, {\"doc_id\": \"sympy/utilities/tests/test_lambdify.py::test_atoms\", \"score\": 0.6961880922317505}, {\"doc_id\": \"sympy/core/basic.py::Basic.atoms\", \"score\": 0.6911810040473938}, {\"doc_id\": \"sympy/core/basic.py::Atom._sorted_args\", \"score\": 0.6859521269798279}, {\"doc_id\": \"sympy/core/basic.py::Atom.matches\", \"score\": 0.6820778846740723}, {\"doc_id\": \"sympy/codegen/ast.py::Token.is_Atom\", \"score\": 0.6769146919250488}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__core__basic__Atom\", \"score\": 0.6731389760971069}]"
+}

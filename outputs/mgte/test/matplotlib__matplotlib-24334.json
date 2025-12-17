@@ -1,0 +1,32 @@
+{
+  "instance_id": "matplotlib__matplotlib-24334",
+  "query": "[ENH]: Axes.set_xticks/Axis.set_ticks only validates kwargs if ticklabels are set, but they should\n### Problem\n\nPer the doc of `Axis.set_ticks`:\r\n```\r\n        **kwargs\r\n            `.Text` properties for the labels. These take effect only if you\r\n            pass *labels*. In other cases, please use `~.Axes.tick_params`.\r\n```\r\nThis means that in e.g. `ax.set_xticks([0, 1], xticklabels=[\"a\", \"b\"])`, the incorrect `xticklabels` silently do nothing; they are not even validated (because `labels` has not been passed).\n\n### Proposed solution\n\nWe should at least check that `kwargs` are valid Text properties in all cases; we could even consider making any kwargs an error if `labels` is not set.\n",
+  "ground_truth": {
+    "files": [
+      "lib/matplotlib/axis.py"
+    ],
+    "locations": [
+      "lib/matplotlib/axis.py::Axis",
+      "lib/matplotlib/axis.py::Axis._get_tick_boxes_siblings"
+    ]
+  },
+  "predictions": [
+    "lib/matplotlib/axis.py::Axis._set_ticklabels",
+    "lib/matplotlib/axis.py::Axis.set_ticklabels",
+    "lib/matplotlib/colorbar.py::Colorbar.set_ticklabels",
+    "lib/matplotlib/axis.py::Axis.set_ticks",
+    "lib/matplotlib/pyplot.py::xticks",
+    "lib/matplotlib/tests/test_axes.py::test_set_get_ticklabels",
+    "lib/matplotlib/colorbar.py::Colorbar.set_ticks",
+    "lib/matplotlib/axes/_base.py::_AxesBase.tick_params",
+    "lib/mpl_toolkits/mplot3d/axes3d.py::Axes3D.tick_params",
+    "lib/matplotlib/axis.py::Tick._apply_params"
+  ],
+  "metadata": {
+    "repo": "matplotlib/matplotlib",
+    "commit": "332937997d03e0c173be6d9fc1841e9186e857df",
+    "total_functions_indexed": 9058,
+    "retrieval_time_seconds": 0.1535320281982422
+  },
+  "raw_output": "[{\"doc_id\": \"lib/matplotlib/axis.py::Axis._set_ticklabels\", \"score\": 0.7793762683868408}, {\"doc_id\": \"lib/matplotlib/axis.py::Axis.set_ticklabels\", \"score\": 0.7732724547386169}, {\"doc_id\": \"lib/matplotlib/colorbar.py::Colorbar.set_ticklabels\", \"score\": 0.761165201663971}, {\"doc_id\": \"lib/matplotlib/axis.py::Axis.set_ticks\", \"score\": 0.757581353187561}, {\"doc_id\": \"lib/matplotlib/pyplot.py::xticks\", \"score\": 0.7440223097801208}, {\"doc_id\": \"lib/matplotlib/tests/test_axes.py::test_set_get_ticklabels\", \"score\": 0.7345612049102783}, {\"doc_id\": \"lib/matplotlib/colorbar.py::Colorbar.set_ticks\", \"score\": 0.7275710105895996}, {\"doc_id\": \"lib/matplotlib/axes/_base.py::_AxesBase.tick_params\", \"score\": 0.7273884415626526}, {\"doc_id\": \"lib/mpl_toolkits/mplot3d/axes3d.py::Axes3D.tick_params\", \"score\": 0.7273337841033936}, {\"doc_id\": \"lib/matplotlib/axis.py::Tick._apply_params\", \"score\": 0.7259847521781921}]"
+}

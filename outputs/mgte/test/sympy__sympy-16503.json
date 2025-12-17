@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-16503",
+  "query": "Bad centering for Sum pretty print\n```\r\n>>> pprint(Sum(x, (x, 1, oo)) + 3)\r\n  ∞\r\n ___\r\n ╲\r\n  ╲   x\r\n  ╱     + 3\r\n ╱\r\n ‾‾‾\r\nx = 1\r\n```\r\n\r\nThe `x` and the `+ 3` should be aligned. I'm not sure if the `x` should be lower of if the `+ 3` should be higher. \n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/pretty/pretty.py"
+    ],
+    "locations": [
+      "sympy/printing/pretty/pretty.py::PrettyPrinter",
+      "sympy/printing/pretty/pretty.py::PrettyPrinter._print_Sum"
+    ]
+  },
+  "predictions": [
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_Sum",
+    "sympy/printing/pretty/tests/test_pretty.py::test_pretty_sum",
+    "sympy/printing/latex.py::LatexPrinter._print_Sum",
+    "sympy/concrete/tests/test_sums_products.py::test_issue_4668",
+    "sympy/printing/str.py::StrPrinter._print_Sum",
+    "sympy/concrete/tests/test_sums_products.py::test_issue_15852",
+    "sympy/printing/mathml.py::MathMLPresentationPrinter._print_Sum",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_Add",
+    "sympy/simplify/simplify.py::_is_sum_surds",
+    "sympy/core/tests/test_arit.py::test_mul_flatten_oo"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "a7e6f093c98a3c4783848a19fce646e32b6e0161",
+    "total_functions_indexed": 24850,
+    "retrieval_time_seconds": 0.007729053497314453
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_Sum\", \"score\": 0.7363678216934204}, {\"doc_id\": \"sympy/printing/pretty/tests/test_pretty.py::test_pretty_sum\", \"score\": 0.7116202712059021}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_Sum\", \"score\": 0.6966453194618225}, {\"doc_id\": \"sympy/concrete/tests/test_sums_products.py::test_issue_4668\", \"score\": 0.6832619309425354}, {\"doc_id\": \"sympy/printing/str.py::StrPrinter._print_Sum\", \"score\": 0.6831591129302979}, {\"doc_id\": \"sympy/concrete/tests/test_sums_products.py::test_issue_15852\", \"score\": 0.6822308301925659}, {\"doc_id\": \"sympy/printing/mathml.py::MathMLPresentationPrinter._print_Sum\", \"score\": 0.681249737739563}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_Add\", \"score\": 0.6792975068092346}, {\"doc_id\": \"sympy/simplify/simplify.py::_is_sum_surds\", \"score\": 0.6790921688079834}, {\"doc_id\": \"sympy/core/tests/test_arit.py::test_mul_flatten_oo\", \"score\": 0.6787628531455994}]"
+}

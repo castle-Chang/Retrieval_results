@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-14730",
+  "query": "Prevent developers from defining a related_name on symmetrical ManyToManyFields\nDescription\n\t\nIn ManyToManyField, if the symmetrical argument is passed, or if it's a self-referential ManyToMany relationship, the related field on the target model is not created. However, if a developer passes in the related_name not understanding this fact, they may be confused until they find the information about symmetrical relationship. Thus, it is proposed to raise an error when the user defines a ManyToManyField in this condition.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/related.py"
+    ],
+    "locations": [
+      "django/db/models/fields/related.py::ManyToManyField",
+      "django/db/models/fields/related.py::ManyToManyField._check_ignored_options",
+      "django/db/models/fields/related.py::ManyToManyField._check_relationship_model"
+    ]
+  },
+  "predictions": [
+    "django/db/models/fields/reverse_related.py::ManyToManyRel.get_related_field",
+    "tests/m2m_through/tests.py::M2mThroughReferentialTests.test_self_referential_symmetrical",
+    "tests/invalid_models_tests/test_relative_fields.py::SelfReferentialM2MClashTests.test_reverse_query_name_clash",
+    "django/db/models/fields/related.py::ManyToManyField._check_table_uniqueness",
+    "tests/invalid_models_tests/test_relative_fields.py::SelfReferentialM2MClashTests.test_accessor_clash",
+    "django/db/migrations/autodetector.py::MigrationAutodetector.only_relation_agnostic_fields",
+    "django/db/models/fields/related.py::RelatedField._check_related_query_name_is_valid",
+    "tests/invalid_models_tests/test_relative_fields.py::SelfReferentialM2MClashTests.test_clash_between_accessors",
+    "tests/invalid_models_tests/test_relative_fields.py::SelfReferentialM2MClashTests.test_valid_model",
+    "tests/m2m_through/tests.py::M2mThroughReferentialTests.test_self_referential_non_symmetrical_clear_first_side"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "4fe3774c729f3fd5105b3001fe69a70bdca95ac3",
+    "total_functions_indexed": 24925,
+    "retrieval_time_seconds": 0.1560516357421875
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/fields/reverse_related.py::ManyToManyRel.get_related_field\", \"score\": 0.7079167366027832}, {\"doc_id\": \"tests/m2m_through/tests.py::M2mThroughReferentialTests.test_self_referential_symmetrical\", \"score\": 0.7009639143943787}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::SelfReferentialM2MClashTests.test_reverse_query_name_clash\", \"score\": 0.6977407336235046}, {\"doc_id\": \"django/db/models/fields/related.py::ManyToManyField._check_table_uniqueness\", \"score\": 0.6974600553512573}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::SelfReferentialM2MClashTests.test_accessor_clash\", \"score\": 0.6969271898269653}, {\"doc_id\": \"django/db/migrations/autodetector.py::MigrationAutodetector.only_relation_agnostic_fields\", \"score\": 0.6962875723838806}, {\"doc_id\": \"django/db/models/fields/related.py::RelatedField._check_related_query_name_is_valid\", \"score\": 0.6960969567298889}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::SelfReferentialM2MClashTests.test_clash_between_accessors\", \"score\": 0.6936836838722229}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::SelfReferentialM2MClashTests.test_valid_model\", \"score\": 0.6930938959121704}, {\"doc_id\": \"tests/m2m_through/tests.py::M2mThroughReferentialTests.test_self_referential_non_symmetrical_clear_first_side\", \"score\": 0.6930199265480042}]"
+}

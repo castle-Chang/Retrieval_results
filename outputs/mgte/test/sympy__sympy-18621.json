@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-18621",
+  "query": "BlockDiagMatrix with one element cannot be converted to regular Matrix\nCreating a BlockDiagMatrix with one Matrix element will raise if trying to convert it back to a regular Matrix:\r\n\r\n```python\r\nM = sympy.Matrix([[1, 2], [3, 4]])\r\nD = sympy.BlockDiagMatrix(M)\r\nB = sympy.Matrix(D)\r\n```\r\n\r\n```\r\nTraceback (most recent call last):\r\n\r\n  File \"<ipython-input-37-5b65c1f8f23e>\", line 3, in <module>\r\n    B = sympy.Matrix(D)\r\n\r\n  File \"/home/rikard/.local/lib/python3.7/site-packages/sympy/matrices/dense.py\", line 430, in __new__\r\n    return cls._new(*args, **kwargs)\r\n\r\n  File \"/home/rikard/.local/lib/python3.7/site-packages/sympy/matrices/dense.py\", line 442, in _new\r\n    rows, cols, flat_list = cls._handle_creation_inputs(*args, **kwargs)\r\n\r\n  File \"/home/rikard/.local/lib/python3.7/site-packages/sympy/matrices/matrices.py\", line 2528, in _handle_creation_inputs\r\n    return args[0].rows, args[0].cols, args[0].as_explicit()._mat\r\n\r\n  File \"/home/rikard/.local/lib/python3.7/site-packages/sympy/matrices/expressions/matexpr.py\", line 340, in as_explicit\r\n    for i in range(self.rows)])\r\n\r\n  File \"/home/rikard/.local/lib/python3.7/site-packages/sympy/matrices/expressions/matexpr.py\", line 340, in <listcomp>\r\n    for i in range(self.rows)])\r\n\r\n  File \"/home/rikard/.local/lib/python3.7/site-packages/sympy/matrices/expressions/matexpr.py\", line 339, in <listcomp>\r\n    for j in range(self.cols)]\r\n\r\n  File \"/home/rikard/.local/lib/python3.7/site-packages/sympy/matrices/expressions/matexpr.py\", line 289, in __getitem__\r\n    return self._entry(i, j)\r\n\r\n  File \"/home/rikard/.local/lib/python3.7/site-packages/sympy/matrices/expressions/blockmatrix.py\", line 248, in _entry\r\n    return self.blocks[row_block, col_block][i, j]\r\n\r\nTypeError: 'One' object is not subscriptable\r\n```\r\n\r\nInstead having two elements will work as expected:\r\n\r\n```python\r\nM = sympy.Matrix([[1, 2], [3, 4]])\r\nD = sympy.BlockDiagMatrix(M, M)\r\nB = sympy.Matrix(D)\r\n```\r\n\r\n```\r\nMatrix([\r\n[1, 2, 0, 0],\r\n[3, 4, 0, 0],\r\n[0, 0, 1, 2],\r\n[0, 0, 3, 4]])\r\n```\r\nThis issue exists for sympy 1.5.1 but not for sympy 1.4\n",
+  "ground_truth": {
+    "files": [
+      "sympy/matrices/expressions/blockmatrix.py"
+    ],
+    "locations": [
+      "sympy/matrices/expressions/blockmatrix.py::BlockDiagMatrix",
+      "sympy/matrices/expressions/blockmatrix.py::BlockDiagMatrix.blocks",
+      "sympy/matrices/expressions/blockmatrix.py::BlockDiagMatrix.shape"
+    ]
+  },
+  "predictions": [
+    "sympy/matrices/expressions/blockmatrix.py::BlockDiagMatrix.__new__",
+    "sympy/matrices/common.py::MatrixShaping.get_diag_blocks",
+    "sympy/core/tests/test_args.py::test_sympy__matrices__expressions__blockmatrix__BlockDiagMatrix",
+    "sympy/matrices/expressions/blockmatrix.py::BlockDiagMatrix.blocks",
+    "sympy/matrices/expressions/tests/test_blockmatrix.py::test_BlockDiagMatrix",
+    "sympy/matrices/expressions/blockmatrix.py::deblock",
+    "sympy/matrices/expressions/blockmatrix.py::BlockMatrix.__new__",
+    "sympy/matrices/expressions/blockmatrix.py::BlockDiagMatrix._blockadd",
+    "sympy/matrices/expressions/blockmatrix.py::BlockDiagMatrix._blockmul",
+    "sympy/matrices/expressions/blockmatrix.py::BlockDiagMatrix.diag"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "b17ef6effe278d5b861d65896cc53442a6370d8f",
+    "total_functions_indexed": 34062,
+    "retrieval_time_seconds": 0.009022235870361328
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/matrices/expressions/blockmatrix.py::BlockDiagMatrix.__new__\", \"score\": 0.8003284931182861}, {\"doc_id\": \"sympy/matrices/common.py::MatrixShaping.get_diag_blocks\", \"score\": 0.787946343421936}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__matrices__expressions__blockmatrix__BlockDiagMatrix\", \"score\": 0.7839508652687073}, {\"doc_id\": \"sympy/matrices/expressions/blockmatrix.py::BlockDiagMatrix.blocks\", \"score\": 0.7831753492355347}, {\"doc_id\": \"sympy/matrices/expressions/tests/test_blockmatrix.py::test_BlockDiagMatrix\", \"score\": 0.7796508073806763}, {\"doc_id\": \"sympy/matrices/expressions/blockmatrix.py::deblock\", \"score\": 0.7725570201873779}, {\"doc_id\": \"sympy/matrices/expressions/blockmatrix.py::BlockMatrix.__new__\", \"score\": 0.7701587677001953}, {\"doc_id\": \"sympy/matrices/expressions/blockmatrix.py::BlockDiagMatrix._blockadd\", \"score\": 0.7691246271133423}, {\"doc_id\": \"sympy/matrices/expressions/blockmatrix.py::BlockDiagMatrix._blockmul\", \"score\": 0.765886664390564}, {\"doc_id\": \"sympy/matrices/expressions/blockmatrix.py::BlockDiagMatrix.diag\", \"score\": 0.7592629194259644}]"
+}

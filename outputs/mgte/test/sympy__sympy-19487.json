@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-19487",
+  "query": "Rewrite sign as abs\nIn sympy the `sign` function is defined as\r\n```\r\n    sign(z)  :=  z / Abs(z)\r\n```\r\nfor all complex non-zero `z`. There should be a way to rewrite the sign in terms of `Abs` e.g.:\r\n```\r\n>>> sign(x).rewrite(Abs)                                                                                                                   \r\n x \r\n───\r\n│x│\r\n```\r\nI'm not sure how the possibility of `x` being zero should be handled currently we have\r\n```\r\n>>> sign(0)                                                                                                                               \r\n0\r\n>>> 0 / Abs(0)                                                                                                                            \r\nnan\r\n```\r\nMaybe `sign(0)` should be `nan` as well. Otherwise maybe rewrite as Abs would have to be careful about the possibility of the arg being zero (that would make the rewrite fail in most cases).\n",
+  "ground_truth": {
+    "files": [
+      "sympy/functions/elementary/complexes.py"
+    ],
+    "locations": [
+      "sympy/functions/elementary/complexes.py::sign",
+      "sympy/functions/elementary/complexes.py::sign._eval_rewrite_as_Heaviside",
+      "sympy/functions/elementary/complexes.py::sign._eval_simplify"
+    ]
+  },
+  "predictions": [
+    "sympy/functions/elementary/complexes.py::Abs._eval_rewrite_as_sign",
+    "sympy/functions/elementary/tests/test_complexes.py::test_Abs_rewrite",
+    "sympy/functions/elementary/miscellaneous.py::MinMaxBase._eval_rewrite_as_Abs",
+    "sympy/functions/elementary/tests/test_miscellaneous.py::test_rewrite_as_Abs",
+    "sympy/functions/elementary/complexes.py::Abs._eval_rewrite_as_Heaviside",
+    "sympy/functions/special/error_functions.py::Si._eval_rewrite_as_sinc",
+    "sympy/functions/elementary/complexes.py::Abs._eval_rewrite_as_Piecewise",
+    "sympy/core/numbers.py::Exp1._eval_rewrite_as_sin",
+    "sympy/functions/special/error_functions.py::expint._eval_rewrite_as_Si",
+    "sympy/integrals/transforms.py::_rewrite_sin"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "25fbcce5b1a4c7e3956e6062930f4a44ce95a632",
+    "total_functions_indexed": 34589,
+    "retrieval_time_seconds": 0.029044628143310547
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/functions/elementary/complexes.py::Abs._eval_rewrite_as_sign\", \"score\": 0.8089346289634705}, {\"doc_id\": \"sympy/functions/elementary/tests/test_complexes.py::test_Abs_rewrite\", \"score\": 0.7685861587524414}, {\"doc_id\": \"sympy/functions/elementary/miscellaneous.py::MinMaxBase._eval_rewrite_as_Abs\", \"score\": 0.7591366171836853}, {\"doc_id\": \"sympy/functions/elementary/tests/test_miscellaneous.py::test_rewrite_as_Abs\", \"score\": 0.7411081194877625}, {\"doc_id\": \"sympy/functions/elementary/complexes.py::Abs._eval_rewrite_as_Heaviside\", \"score\": 0.7268965244293213}, {\"doc_id\": \"sympy/functions/special/error_functions.py::Si._eval_rewrite_as_sinc\", \"score\": 0.7225533723831177}, {\"doc_id\": \"sympy/functions/elementary/complexes.py::Abs._eval_rewrite_as_Piecewise\", \"score\": 0.7210454344749451}, {\"doc_id\": \"sympy/core/numbers.py::Exp1._eval_rewrite_as_sin\", \"score\": 0.7210112810134888}, {\"doc_id\": \"sympy/functions/special/error_functions.py::expint._eval_rewrite_as_Si\", \"score\": 0.7203911542892456}, {\"doc_id\": \"sympy/integrals/transforms.py::_rewrite_sin\", \"score\": 0.720289945602417}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "psf__requests-1963",
+  "query": "`Session.resolve_redirects` copies the original request for all subsequent requests, can cause incorrect method selection\nConsider the following redirection chain:\n\n```\nPOST /do_something HTTP/1.1\nHost: server.example.com\n...\n\nHTTP/1.1 303 See Other\nLocation: /new_thing_1513\n\nGET /new_thing_1513\nHost: server.example.com\n...\n\nHTTP/1.1 307 Temporary Redirect\nLocation: //failover.example.com/new_thing_1513\n```\n\nThe intermediate 303 See Other has caused the POST to be converted to\na GET.  The subsequent 307 should preserve the GET.  However, because\n`Session.resolve_redirects` starts each iteration by copying the _original_\nrequest object, Requests will issue a POST!\n\n",
+  "ground_truth": {
+    "files": [
+      "requests/sessions.py"
+    ],
+    "locations": [
+      "requests/sessions.py::SessionRedirectMixin",
+      "requests/sessions.py::SessionRedirectMixin.resolve_redirects"
+    ]
+  },
+  "predictions": [
+    "requests/sessions.py::SessionRedirectMixin.resolve_redirects",
+    "test_requests.py::RequestsTestCase.test_HTTP_302_ALLOW_REDIRECT_GET",
+    "test_requests.py::RequestsTestCase.test_requests_in_history_are_not_overridden",
+    "test_requests.py::RequestsTestCase.test_cookie_sent_on_redirect",
+    "requests/models.py::Response.is_redirect",
+    "requests/packages/urllib3/poolmanager.py::PoolManager.urlopen",
+    "test_requests.py::RequestsTestCase.test_pyopenssl_redirect",
+    "requests/sessions.py::Session.send",
+    "test_requests.py::RequestsTestCase.test_uppercase_scheme_redirect",
+    "requests/packages/urllib3/response.py::HTTPResponse.get_redirect_location"
+  ],
+  "metadata": {
+    "repo": "psf/requests",
+    "commit": "110048f9837f8441ea536804115e80b69f400277",
+    "total_functions_indexed": 587,
+    "retrieval_time_seconds": 0.03684854507446289
+  },
+  "raw_output": "[{\"doc_id\": \"requests/sessions.py::SessionRedirectMixin.resolve_redirects\", \"score\": 0.7957949042320251}, {\"doc_id\": \"test_requests.py::RequestsTestCase.test_HTTP_302_ALLOW_REDIRECT_GET\", \"score\": 0.6803695559501648}, {\"doc_id\": \"test_requests.py::RequestsTestCase.test_requests_in_history_are_not_overridden\", \"score\": 0.6627212762832642}, {\"doc_id\": \"test_requests.py::RequestsTestCase.test_cookie_sent_on_redirect\", \"score\": 0.6622136235237122}, {\"doc_id\": \"requests/models.py::Response.is_redirect\", \"score\": 0.6614017486572266}, {\"doc_id\": \"requests/packages/urllib3/poolmanager.py::PoolManager.urlopen\", \"score\": 0.6566987037658691}, {\"doc_id\": \"test_requests.py::RequestsTestCase.test_pyopenssl_redirect\", \"score\": 0.6547538638114929}, {\"doc_id\": \"requests/sessions.py::Session.send\", \"score\": 0.649884045124054}, {\"doc_id\": \"test_requests.py::RequestsTestCase.test_uppercase_scheme_redirect\", \"score\": 0.6413296461105347}, {\"doc_id\": \"requests/packages/urllib3/response.py::HTTPResponse.get_redirect_location\", \"score\": 0.640714168548584}]"
+}

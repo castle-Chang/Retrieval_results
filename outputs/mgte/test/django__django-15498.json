@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-15498",
+  "query": "Fix handling empty string for If-Modified-Since header\nDescription\n\t\nEmpty string used to be ignored for If-Modified-Since header, but now raises exception since d6aff369ad3.\nFix handling empty string for If-Modified-Since header\nDescription\n\t\nEmpty string used to be ignored for If-Modified-Since header, but now raises exception since d6aff369ad3.\n",
+  "ground_truth": {
+    "files": [
+      "django/views/static.py"
+    ],
+    "locations": [
+      "django/views/static.py::was_modified_since"
+    ]
+  },
+  "predictions": [
+    "django/views/static.py::was_modified_since",
+    "tests/view_tests/tests/test_static.py::StaticTests.test_invalid_if_modified_since2",
+    "tests/sitemaps_tests/test_http.py::HTTPSitemapTests.test_sitemaps_lastmod_mixed_ascending_last_modified_missing",
+    "tests/sitemaps_tests/test_http.py::HTTPSitemapTests.test_sitemap_last_modified_missing",
+    "tests/view_tests/tests/test_static.py::StaticUtilsTests.test_was_modified_since_fp",
+    "tests/conditional_processing/tests.py::ConditionalGet.test_if_modified_since",
+    "tests/sitemaps_tests/test_http.py::HTTPSitemapTests.test_sitemaps_lastmod_mixed_descending_last_modified_missing",
+    "tests/view_tests/tests/test_static.py::StaticTests.test_invalid_if_modified_since",
+    "tests/conditional_processing/tests.py::ConditionalGet.test_if_unmodified_since",
+    "tests/sitemaps_tests/test_http.py::HTTPSitemapTests.test_sitemap_last_modified_date"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "d90e34c61b27fba2527834806639eebbcfab9631",
+    "total_functions_indexed": 25711,
+    "retrieval_time_seconds": 0.1380479335784912
+  },
+  "raw_output": "[{\"doc_id\": \"django/views/static.py::was_modified_since\", \"score\": 0.6758624911308289}, {\"doc_id\": \"tests/view_tests/tests/test_static.py::StaticTests.test_invalid_if_modified_since2\", \"score\": 0.6189838647842407}, {\"doc_id\": \"tests/sitemaps_tests/test_http.py::HTTPSitemapTests.test_sitemaps_lastmod_mixed_ascending_last_modified_missing\", \"score\": 0.6179550886154175}, {\"doc_id\": \"tests/sitemaps_tests/test_http.py::HTTPSitemapTests.test_sitemap_last_modified_missing\", \"score\": 0.6165748834609985}, {\"doc_id\": \"tests/view_tests/tests/test_static.py::StaticUtilsTests.test_was_modified_since_fp\", \"score\": 0.6151901483535767}, {\"doc_id\": \"tests/conditional_processing/tests.py::ConditionalGet.test_if_modified_since\", \"score\": 0.613591194152832}, {\"doc_id\": \"tests/sitemaps_tests/test_http.py::HTTPSitemapTests.test_sitemaps_lastmod_mixed_descending_last_modified_missing\", \"score\": 0.6130123138427734}, {\"doc_id\": \"tests/view_tests/tests/test_static.py::StaticTests.test_invalid_if_modified_since\", \"score\": 0.609978437423706}, {\"doc_id\": \"tests/conditional_processing/tests.py::ConditionalGet.test_if_unmodified_since\", \"score\": 0.6082775592803955}, {\"doc_id\": \"tests/sitemaps_tests/test_http.py::HTTPSitemapTests.test_sitemap_last_modified_date\", \"score\": 0.6067524552345276}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "sphinx-doc__sphinx-8627",
+  "query": "autodoc isn't able to resolve struct.Struct type annotations\n**Describe the bug**\r\nIf `struct.Struct` is declared in any type annotations, I get `class reference target not found: Struct`\r\n\r\n**To Reproduce**\r\nSimple `index.rst`\r\n```\r\nHello World\r\n===========\r\n\r\ncode docs\r\n=========\r\n\r\n.. automodule:: helloworld.helloworld\r\n```\r\n\r\nSimple `helloworld.py`\r\n```\r\nimport struct\r\nimport pathlib\r\n\r\ndef consume_struct(_: struct.Struct) -> None:\r\n    pass\r\n\r\ndef make_struct() -> struct.Struct:\r\n    mystruct = struct.Struct('HH')\r\n    return mystruct\r\n\r\ndef make_path() -> pathlib.Path:\r\n    return pathlib.Path()\r\n```\r\n\r\nCommand line:\r\n```\r\npython3 -m sphinx -b html docs/ doc-out -nvWT\r\n```\r\n\r\n**Expected behavior**\r\nIf you comment out the 2 functions that have `Struct` type annotations, you'll see that `pathlib.Path` resolves fine and shows up in the resulting documentation. I'd expect that `Struct` would also resolve correctly.\r\n\r\n**Your project**\r\nn/a\r\n\r\n**Screenshots**\r\nn/a\r\n\r\n**Environment info**\r\n- OS: Ubuntu 18.04, 20.04\r\n- Python version: 3.8.2\r\n- Sphinx version: 3.2.1\r\n- Sphinx extensions:  'sphinx.ext.autodoc',\r\n              'sphinx.ext.autosectionlabel',\r\n              'sphinx.ext.intersphinx',\r\n              'sphinx.ext.doctest',\r\n              'sphinx.ext.todo'\r\n- Extra tools: \r\n\r\n**Additional context**\r\n\r\n\r\n- [e.g. URL or Ticket]\r\n\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/util/typing.py"
+    ],
+    "locations": [
+      "sphinx/util/typing.py::restify",
+      "sphinx/util/typing.py::stringify"
+    ]
+  },
+  "predictions": [
+    "tests/test_ext_autodoc_configs.py::test_autodoc_typehints_description_for_invalid_node",
+    "sphinx/util/typing.py::stringify",
+    "tests/test_ext_autodoc_configs.py::test_autodoc_typehints_none_for_overload",
+    "sphinx/registry.py::SphinxComponentRegistry.add_autodoc_attrgetter",
+    "tests/test_ext_autodoc_configs.py::test_autodoc_typehints_none",
+    "tests/test_ext_autodoc_configs.py::test_autodoc_typehints_description_and_type_aliases",
+    "sphinx/ext/autodoc/__init__.py::Documenter.__init__",
+    "sphinx/domains/std.py::StandardDomain.resolve_any_xref",
+    "sphinx/domains/std.py::StandardDomain.note_hyperlink_target",
+    "sphinx/application.py::Sphinx.add_autodoc_attrgetter"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "332d80ba8433aea41c3709fa52737ede4405072b",
+    "total_functions_indexed": 5629,
+    "retrieval_time_seconds": 0.0016777515411376953
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_ext_autodoc_configs.py::test_autodoc_typehints_description_for_invalid_node\", \"score\": 0.7205744981765747}, {\"doc_id\": \"sphinx/util/typing.py::stringify\", \"score\": 0.698156476020813}, {\"doc_id\": \"tests/test_ext_autodoc_configs.py::test_autodoc_typehints_none_for_overload\", \"score\": 0.6978133916854858}, {\"doc_id\": \"sphinx/registry.py::SphinxComponentRegistry.add_autodoc_attrgetter\", \"score\": 0.696258544921875}, {\"doc_id\": \"tests/test_ext_autodoc_configs.py::test_autodoc_typehints_none\", \"score\": 0.6959215402603149}, {\"doc_id\": \"tests/test_ext_autodoc_configs.py::test_autodoc_typehints_description_and_type_aliases\", \"score\": 0.6951619982719421}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::Documenter.__init__\", \"score\": 0.6925417184829712}, {\"doc_id\": \"sphinx/domains/std.py::StandardDomain.resolve_any_xref\", \"score\": 0.6920996904373169}, {\"doc_id\": \"sphinx/domains/std.py::StandardDomain.note_hyperlink_target\", \"score\": 0.6920769214630127}, {\"doc_id\": \"sphinx/application.py::Sphinx.add_autodoc_attrgetter\", \"score\": 0.6910009384155273}]"
+}

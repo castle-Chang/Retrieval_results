@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-13265",
+  "query": "AlterOrderWithRespectTo() with ForeignKey crash when _order is included in Index().\nDescription\n\t\n\tclass Meta:\n\t\tdb_table = 'look_image'\n\t\torder_with_respect_to = 'look'\n\t\tindexes = [\n\t\t\tmodels.Index(fields=['look', '_order']),\n\t\t\tmodels.Index(fields=['created_at']),\n\t\t\tmodels.Index(fields=['updated_at']),\n\t\t]\nmigrations.CreateModel(\n\t\t\tname='LookImage',\n\t\t\tfields=[\n\t\t\t\t('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n\t\t\t\t('look', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='images', to='posts.Look', verbose_name='LOOK')),\n\t\t\t\t('image_url', models.URLField(blank=True, max_length=10000, null=True)),\n\t\t\t\t('image', models.ImageField(max_length=2000, upload_to='')),\n\t\t\t\t('deleted', models.DateTimeField(editable=False, null=True)),\n\t\t\t\t('created_at', models.DateTimeField(auto_now_add=True)),\n\t\t\t\t('updated_at', models.DateTimeField(auto_now=True)),\n\t\t\t],\n\t\t),\n\t\tmigrations.AddIndex(\n\t\t\tmodel_name='lookimage',\n\t\t\tindex=models.Index(fields=['look', '_order'], name='look_image_look_id_eaff30_idx'),\n\t\t),\n\t\tmigrations.AddIndex(\n\t\t\tmodel_name='lookimage',\n\t\t\tindex=models.Index(fields=['created_at'], name='look_image_created_f746cf_idx'),\n\t\t),\n\t\tmigrations.AddIndex(\n\t\t\tmodel_name='lookimage',\n\t\t\tindex=models.Index(fields=['updated_at'], name='look_image_updated_aceaf9_idx'),\n\t\t),\n\t\tmigrations.AlterOrderWithRespectTo(\n\t\t\tname='lookimage',\n\t\t\torder_with_respect_to='look',\n\t\t),\nI added orders_with_respect_to in new model class's Meta class and also made index for '_order' field by combining with other field. And a new migration file based on the model looks like the code above.\nThe problem is operation AlterOrderWithRespectTo after AddIndex of '_order' raising error because '_order' field had not been created yet.\nIt seems to be AlterOrderWithRespectTo has to proceed before AddIndex of '_order'.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/autodetector.py"
+    ],
+    "locations": [
+      "django/db/migrations/autodetector.py::MigrationAutodetector",
+      "django/db/migrations/autodetector.py::MigrationAutodetector._detect_changes",
+      "django/db/migrations/autodetector.py::MigrationAutodetector.generate_created_models"
+    ]
+  },
+  "predictions": [
+    "django/db/migrations/operations/models.py::AlterOrderWithRespectTo.__init__",
+    "django/db/migrations/autodetector.py::MigrationAutodetector.generate_altered_order_with_respect_to",
+    "django/db/migrations/operations/models.py::AlterOrderWithRespectTo.database_forwards",
+    "django/db/migrations/operations/models.py::AlterOrderWithRespectTo.deconstruct",
+    "django/db/migrations/operations/models.py::AlterOrderWithRespectTo.describe",
+    "tests/migrations/test_operations.py::OperationTests.test_alter_order_with_respect_to",
+    "django/db/migrations/operations/models.py::AlterOrderWithRespectTo.migration_name_fragment",
+    "django/db/migrations/operations/models.py::AlterOrderWithRespectTo.state_forwards",
+    "tests/migrations/test_autodetector.py::AutodetectorTests.test_add_alter_order_with_respect_to",
+    "django/db/models/options.py::Options._prepare"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "b2b0711b555fa292751763c2df4fe577c396f265",
+    "total_functions_indexed": 23790,
+    "retrieval_time_seconds": 0.006964206695556641
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/migrations/operations/models.py::AlterOrderWithRespectTo.__init__\", \"score\": 0.8115689754486084}, {\"doc_id\": \"django/db/migrations/autodetector.py::MigrationAutodetector.generate_altered_order_with_respect_to\", \"score\": 0.7935643196105957}, {\"doc_id\": \"django/db/migrations/operations/models.py::AlterOrderWithRespectTo.database_forwards\", \"score\": 0.7891696691513062}, {\"doc_id\": \"django/db/migrations/operations/models.py::AlterOrderWithRespectTo.deconstruct\", \"score\": 0.7653498649597168}, {\"doc_id\": \"django/db/migrations/operations/models.py::AlterOrderWithRespectTo.describe\", \"score\": 0.7456901669502258}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_alter_order_with_respect_to\", \"score\": 0.7451648116111755}, {\"doc_id\": \"django/db/migrations/operations/models.py::AlterOrderWithRespectTo.migration_name_fragment\", \"score\": 0.7436111569404602}, {\"doc_id\": \"django/db/migrations/operations/models.py::AlterOrderWithRespectTo.state_forwards\", \"score\": 0.7415523529052734}, {\"doc_id\": \"tests/migrations/test_autodetector.py::AutodetectorTests.test_add_alter_order_with_respect_to\", \"score\": 0.7354691028594971}, {\"doc_id\": \"django/db/models/options.py::Options._prepare\", \"score\": 0.7304734587669373}]"
+}

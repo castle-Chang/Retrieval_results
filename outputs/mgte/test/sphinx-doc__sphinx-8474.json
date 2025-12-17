@@ -1,0 +1,32 @@
+{
+  "instance_id": "sphinx-doc__sphinx-8474",
+  "query": "v3.3 upgrade started generating \"WARNING: no number is assigned for table\" warnings\nWe've updated to Sphinx 3.3 in our documentation, and suddenly the following warning started popping up in our builds when we build either `singlehtml` or `latex`.:\r\n\r\n`WARNING: no number is assigned for table:`\r\n\r\nI looked through the changelog but it didn't seem like there was anything related to `numref` that was changed, but perhaps I missed something? Could anyone point me to a change in the numref logic so I can figure out where these warnings are coming from?\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/domains/std.py"
+    ],
+    "locations": [
+      "sphinx/domains/std.py::StandardDomain",
+      "sphinx/domains/std.py::StandardDomain._resolve_numref_xref"
+    ]
+  },
+  "predictions": [
+    "sphinx/domains/std.py::StandardDomain._resolve_numref_xref",
+    "sphinx/writers/latex.py::LaTeXTranslator.visit_number_reference",
+    "tests/test_build_latex.py::test_numref_with_prefix2",
+    "tests/test_build_latex.py::test_numref_with_prefix1",
+    "tests/test_build_html.py::test_numfig_with_numbered_toctree_warn",
+    "tests/test_build_html.py::test_numfig_without_numbered_toctree_warn",
+    "tests/test_build_latex.py::test_numref",
+    "sphinx/writers/html.py::HTMLTranslator.visit_number_reference",
+    "sphinx/writers/latex.py::LaTeXTranslator.generate_numfig_format",
+    "sphinx/writers/html5.py::HTML5Translator.visit_number_reference"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "3ea1ec84cc610f7a9f4f6b354e264565254923ff",
+    "total_functions_indexed": 5557,
+    "retrieval_time_seconds": 0.0878744125366211
+  },
+  "raw_output": "[{\"doc_id\": \"sphinx/domains/std.py::StandardDomain._resolve_numref_xref\", \"score\": 0.6928853988647461}, {\"doc_id\": \"sphinx/writers/latex.py::LaTeXTranslator.visit_number_reference\", \"score\": 0.6847481727600098}, {\"doc_id\": \"tests/test_build_latex.py::test_numref_with_prefix2\", \"score\": 0.6814059019088745}, {\"doc_id\": \"tests/test_build_latex.py::test_numref_with_prefix1\", \"score\": 0.6771502494812012}, {\"doc_id\": \"tests/test_build_html.py::test_numfig_with_numbered_toctree_warn\", \"score\": 0.6743552088737488}, {\"doc_id\": \"tests/test_build_html.py::test_numfig_without_numbered_toctree_warn\", \"score\": 0.6732645034790039}, {\"doc_id\": \"tests/test_build_latex.py::test_numref\", \"score\": 0.6721633076667786}, {\"doc_id\": \"sphinx/writers/html.py::HTMLTranslator.visit_number_reference\", \"score\": 0.6704196333885193}, {\"doc_id\": \"sphinx/writers/latex.py::LaTeXTranslator.generate_numfig_format\", \"score\": 0.6581794619560242}, {\"doc_id\": \"sphinx/writers/html5.py::HTML5Translator.visit_number_reference\", \"score\": 0.6581361293792725}]"
+}

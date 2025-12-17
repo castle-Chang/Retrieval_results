@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-15738",
+  "query": "Models migration with change field foreign to many and deleting unique together.\nDescription\n\t \n\t\t(last modified by Simon Charette)\n\t \nI have models like\nclass Authors(models.Model):\n\tproject_data_set = models.ForeignKey(\n\t\tProjectDataSet,\n\t\ton_delete=models.PROTECT\n\t)\n\tstate = models.IntegerField()\n\tstart_date = models.DateField()\n\tclass Meta:\n\t\t unique_together = (('project_data_set', 'state', 'start_date'),)\nand\nclass DataSet(models.Model):\n\tname = models.TextField(max_length=50)\nclass Project(models.Model):\n\tdata_sets = models.ManyToManyField(\n\t\tDataSet,\n\t\tthrough='ProjectDataSet',\n\t)\n\tname = models.TextField(max_length=50)\nclass ProjectDataSet(models.Model):\n\t\"\"\"\n\tCross table of data set and project\n\t\"\"\"\n\tdata_set = models.ForeignKey(DataSet, on_delete=models.PROTECT)\n\tproject = models.ForeignKey(Project, on_delete=models.PROTECT)\n\tclass Meta:\n\t\tunique_together = (('data_set', 'project'),)\nwhen i want to change field project_data_set in Authors model from foreign key field to many to many field I must delete a unique_together, cause it can't be on many to many field.\nThen my model should be like:\nclass Authors(models.Model):\n\tproject_data_set = models.ManyToManyField(\n\t\tProjectDataSet,\n\t)\n\tstate = models.IntegerField()\n\tstart_date = models.DateField()\nBut when I want to do a migrations.\npython3 manage.py makemigrations\npython3 manage.py migrate\nI have error:\nValueError: Found wrong number (0) of constraints for app_authors(project_data_set, state, start_date)\nThe database is on production, so I can't delete previous initial migrations, and this error isn't depending on database, cause I delete it and error is still the same.\nMy solve is to first delete unique_together, then do a makemigrations and then migrate. After that change the field from foreign key to many to many field, then do a makemigrations and then migrate.\nBut in this way I have 2 migrations instead of one.\nI added attachment with this project, download it and then do makemigrations and then migrate to see this error.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/autodetector.py"
+    ],
+    "locations": [
+      "django/db/migrations/autodetector.py::MigrationAutodetector",
+      "django/db/migrations/autodetector.py::MigrationAutodetector._generate_added_field"
+    ]
+  },
+  "predictions": [
+    "django/db/migrations/operations/models.py::AlterUniqueTogether.__init__",
+    "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor.alter_unique_together",
+    "tests/migrations/test_autodetector.py::AutodetectorTests.test_many_to_many_removed_before_through_model_2",
+    "tests/migrations/test_autodetector.py::AutodetectorTests.test_many_to_many_removed_before_through_model",
+    "tests/migrations/test_autodetector.py::AutodetectorTests.test_create_model_and_unique_together",
+    "tests/migrations/test_operations.py::OperationTests.test_remove_unique_together_on_unique_field",
+    "tests/migrations/test_autodetector.py::AutodetectorTests.test_remove_field_and_foo_together",
+    "tests/migrations/test_autodetector.py::AutodetectorTests.test_foo_together_remove_fk",
+    "django/db/migrations/autodetector.py::MigrationAutodetector.generate_deleted_models",
+    "django/db/migrations/operations/models.py::RemoveConstraint.database_forwards"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "6f73eb9d90cfec684529aab48d517e3d6449ba8c",
+    "total_functions_indexed": 25994,
+    "retrieval_time_seconds": 0.007332801818847656
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/migrations/operations/models.py::AlterUniqueTogether.__init__\", \"score\": 0.7443372011184692}, {\"doc_id\": \"django/db/backends/base/schema.py::BaseDatabaseSchemaEditor.alter_unique_together\", \"score\": 0.7328900098800659}, {\"doc_id\": \"tests/migrations/test_autodetector.py::AutodetectorTests.test_many_to_many_removed_before_through_model_2\", \"score\": 0.7178241014480591}, {\"doc_id\": \"tests/migrations/test_autodetector.py::AutodetectorTests.test_many_to_many_removed_before_through_model\", \"score\": 0.7176313400268555}, {\"doc_id\": \"tests/migrations/test_autodetector.py::AutodetectorTests.test_create_model_and_unique_together\", \"score\": 0.7145265340805054}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_remove_unique_together_on_unique_field\", \"score\": 0.7093644142150879}, {\"doc_id\": \"tests/migrations/test_autodetector.py::AutodetectorTests.test_remove_field_and_foo_together\", \"score\": 0.7081674337387085}, {\"doc_id\": \"tests/migrations/test_autodetector.py::AutodetectorTests.test_foo_together_remove_fk\", \"score\": 0.7079719305038452}, {\"doc_id\": \"django/db/migrations/autodetector.py::MigrationAutodetector.generate_deleted_models\", \"score\": 0.7039969563484192}, {\"doc_id\": \"django/db/migrations/operations/models.py::RemoveConstraint.database_forwards\", \"score\": 0.7025653123855591}]"
+}

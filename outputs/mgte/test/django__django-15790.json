@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-15790",
+  "query": "check_for_template_tags_with_the_same_name with libraries in TEMPLATES\nDescription\n\t\nI didn't explore this thoroughly, but I think there might be an issue with the check_for_template_tags_with_the_same_name when you add a template tag library into TEMPLATES['OPTIONS']['librairies'].\nI'm getting an error like: \n(templates.E003) 'my_tags' is used for multiple template tag modules: 'someapp.templatetags.my_tags', 'someapp.templatetags.my_tags'\n",
+  "ground_truth": {
+    "files": [
+      "django/core/checks/templates.py"
+    ],
+    "locations": [
+      "django/core/checks/templates.py::check_for_template_tags_with_the_same_name"
+    ]
+  },
+  "predictions": [
+    "django/core/checks/templates.py::check_for_template_tags_with_the_same_name",
+    "tests/check_framework/test_templates.py::CheckTemplateTagLibrariesWithSameName.test_template_tags_with_same_library_name_and_module_name",
+    "tests/check_framework/test_templates.py::CheckTemplateTagLibrariesWithSameName.test_template_tags_with_same_library_name",
+    "tests/check_framework/test_templates.py::CheckTemplateTagLibrariesWithSameName.test_template_tags_with_different_library_name",
+    "tests/check_framework/test_templates.py::CheckTemplateTagLibrariesWithSameName.test_template_tags_with_same_name",
+    "tests/check_framework/test_templates.py::CheckTemplateTagLibrariesWithSameName.test_template_tags_with_different_name",
+    "tests/check_framework/test_templates.py::CheckTemplateTagLibrariesWithSameName.setUpClass",
+    "django/template/backends/django.py::get_template_tag_modules",
+    "django/template/defaulttags.py::find_library",
+    "django/template/backends/django.py::DjangoTemplates.get_templatetag_libraries"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "c627226d05dd52aef59447dcfb29cec2c2b11b8a",
+    "total_functions_indexed": 26050,
+    "retrieval_time_seconds": 0.008664131164550781
+  },
+  "raw_output": "[{\"doc_id\": \"django/core/checks/templates.py::check_for_template_tags_with_the_same_name\", \"score\": 0.851536214351654}, {\"doc_id\": \"tests/check_framework/test_templates.py::CheckTemplateTagLibrariesWithSameName.test_template_tags_with_same_library_name_and_module_name\", \"score\": 0.8414938449859619}, {\"doc_id\": \"tests/check_framework/test_templates.py::CheckTemplateTagLibrariesWithSameName.test_template_tags_with_same_library_name\", \"score\": 0.8363462686538696}, {\"doc_id\": \"tests/check_framework/test_templates.py::CheckTemplateTagLibrariesWithSameName.test_template_tags_with_different_library_name\", \"score\": 0.829910159111023}, {\"doc_id\": \"tests/check_framework/test_templates.py::CheckTemplateTagLibrariesWithSameName.test_template_tags_with_same_name\", \"score\": 0.8067817091941833}, {\"doc_id\": \"tests/check_framework/test_templates.py::CheckTemplateTagLibrariesWithSameName.test_template_tags_with_different_name\", \"score\": 0.8012080192565918}, {\"doc_id\": \"tests/check_framework/test_templates.py::CheckTemplateTagLibrariesWithSameName.setUpClass\", \"score\": 0.7760530710220337}, {\"doc_id\": \"django/template/backends/django.py::get_template_tag_modules\", \"score\": 0.7392858266830444}, {\"doc_id\": \"django/template/defaulttags.py::find_library\", \"score\": 0.7361804842948914}, {\"doc_id\": \"django/template/backends/django.py::DjangoTemplates.get_templatetag_libraries\", \"score\": 0.7324954271316528}]"
+}

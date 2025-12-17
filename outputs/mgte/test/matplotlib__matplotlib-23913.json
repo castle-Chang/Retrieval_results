@@ -1,0 +1,32 @@
+{
+  "instance_id": "matplotlib__matplotlib-23913",
+  "query": "legend draggable as keyword\n<!--To help us understand and resolve your issue, please fill out the form to the best of your ability.-->\r\n<!--You can feel free to delete the sections that do not apply.-->\r\n\r\n### Feature request\r\n\r\n**There is not keyword to make legend draggable at creation**\r\n\r\n<!--A short 1-2 sentences that succinctly describes the bug-->\r\n\r\nIs there a code reason why one can not add a \"draggable=True\" keyword to the __init__ function for Legend?  This would be more handy than having to call it after legend creation.  And, naively, it would seem simple to do.  But maybe there is a reason why it would not work?\n",
+  "ground_truth": {
+    "files": [
+      "lib/matplotlib/legend.py"
+    ],
+    "locations": [
+      "lib/matplotlib/legend.py::Legend",
+      "lib/matplotlib/legend.py::Legend.__init__"
+    ]
+  },
+  "predictions": [
+    "lib/matplotlib/legend.py::Legend.get_draggable",
+    "lib/matplotlib/legend.py::DraggableLegend.__init__",
+    "lib/matplotlib/legend.py::Legend.set_draggable",
+    "lib/matplotlib/tests/test_legend.py::test_get_set_draggable",
+    "lib/matplotlib/legend.py::Legend.__init__",
+    "lib/matplotlib/legend.py::Legend._init_legend_box",
+    "lib/matplotlib/legend.py::DraggableLegend._update_loc",
+    "lib/matplotlib/legend.py::DraggableLegend._update_bbox_to_anchor",
+    "lib/matplotlib/legend.py::DraggableLegend.finalize_offset",
+    "lib/matplotlib/text.py::_AnnotationBase.draggable"
+  ],
+  "metadata": {
+    "repo": "matplotlib/matplotlib",
+    "commit": "5c4595267ccd3daf78f5fd05693b7ecbcd575c1e",
+    "total_functions_indexed": 9078,
+    "retrieval_time_seconds": 0.11505794525146484
+  },
+  "raw_output": "[{\"doc_id\": \"lib/matplotlib/legend.py::Legend.get_draggable\", \"score\": 0.8027312755584717}, {\"doc_id\": \"lib/matplotlib/legend.py::DraggableLegend.__init__\", \"score\": 0.7915736436843872}, {\"doc_id\": \"lib/matplotlib/legend.py::Legend.set_draggable\", \"score\": 0.7843666672706604}, {\"doc_id\": \"lib/matplotlib/tests/test_legend.py::test_get_set_draggable\", \"score\": 0.7665195465087891}, {\"doc_id\": \"lib/matplotlib/legend.py::Legend.__init__\", \"score\": 0.7261230945587158}, {\"doc_id\": \"lib/matplotlib/legend.py::Legend._init_legend_box\", \"score\": 0.7150148153305054}, {\"doc_id\": \"lib/matplotlib/legend.py::DraggableLegend._update_loc\", \"score\": 0.7137137651443481}, {\"doc_id\": \"lib/matplotlib/legend.py::DraggableLegend._update_bbox_to_anchor\", \"score\": 0.7079964280128479}, {\"doc_id\": \"lib/matplotlib/legend.py::DraggableLegend.finalize_offset\", \"score\": 0.7015411853790283}, {\"doc_id\": \"lib/matplotlib/text.py::_AnnotationBase.draggable\", \"score\": 0.7008222341537476}]"
+}

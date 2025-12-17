@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-11400",
+  "query": "ccode(sinc(x)) doesn't work\n```\nIn [30]: ccode(sinc(x))\nOut[30]: '// Not supported in C:\\n// sinc\\nsinc(x)'\n```\n\nI don't think `math.h` has `sinc`, but it could print\n\n```\nIn [38]: ccode(Piecewise((sin(theta)/theta, Ne(theta, 0)), (1, True)))\nOut[38]: '((Ne(theta, 0)) ? (\\n   sin(theta)/theta\\n)\\n: (\\n   1\\n))'\n```\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/ccode.py"
+    ],
+    "locations": [
+      "sympy/printing/ccode.py::CCodePrinter",
+      "sympy/printing/ccode.py::CCodePrinter._print_Symbol",
+      "sympy/printing/ccode.py::CCodePrinter._print_AugmentedAssignment"
+    ]
+  },
+  "predictions": [
+    "sympy/printing/octave.py::OctaveCodePrinter._print_sinc",
+    "sympy/printing/tests/test_octave.py::test_sinc",
+    "sympy/core/tests/test_args.py::test_sympy__functions__elementary__trigonometric__sinc",
+    "sympy/functions/elementary/tests/test_trigonometric.py::test_sinc",
+    "sympy/functions/elementary/trigonometric.py::sinc.fdiff",
+    "sympy/plotting/intervalmath/lib_interval.py::sinh",
+    "sympy/printing/tests/test_ccode.py::test_ccode_functions",
+    "sympy/plotting/intervalmath/lib_interval.py::sin",
+    "sympy/functions/elementary/trigonometric.py::sin.fdiff",
+    "sympy/printing/tests/test_jscode.py::test_jscode_Piecewise"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "8dcb12a6cf500e8738d6729ab954a261758f49ca",
+    "total_functions_indexed": 19897,
+    "retrieval_time_seconds": 0.09299516677856445
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/printing/octave.py::OctaveCodePrinter._print_sinc\", \"score\": 0.7727706432342529}, {\"doc_id\": \"sympy/printing/tests/test_octave.py::test_sinc\", \"score\": 0.7505214214324951}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__functions__elementary__trigonometric__sinc\", \"score\": 0.7502112984657288}, {\"doc_id\": \"sympy/functions/elementary/tests/test_trigonometric.py::test_sinc\", \"score\": 0.7477223873138428}, {\"doc_id\": \"sympy/functions/elementary/trigonometric.py::sinc.fdiff\", \"score\": 0.7439041137695312}, {\"doc_id\": \"sympy/plotting/intervalmath/lib_interval.py::sinh\", \"score\": 0.7420563697814941}, {\"doc_id\": \"sympy/printing/tests/test_ccode.py::test_ccode_functions\", \"score\": 0.7403424978256226}, {\"doc_id\": \"sympy/plotting/intervalmath/lib_interval.py::sin\", \"score\": 0.7397220134735107}, {\"doc_id\": \"sympy/functions/elementary/trigonometric.py::sin.fdiff\", \"score\": 0.7392065525054932}, {\"doc_id\": \"sympy/printing/tests/test_jscode.py::test_jscode_Piecewise\", \"score\": 0.7382477521896362}]"
+}

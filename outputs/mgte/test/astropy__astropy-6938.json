@@ -1,0 +1,33 @@
+{
+  "instance_id": "astropy__astropy-6938",
+  "query": "Possible bug in io.fits related to D exponents\nI came across the following code in ``fitsrec.py``:\r\n\r\n```python\r\n        # Replace exponent separator in floating point numbers\r\n        if 'D' in format:\r\n            output_field.replace(encode_ascii('E'), encode_ascii('D'))\r\n```\r\n\r\nI think this may be incorrect because as far as I can tell ``replace`` is not an in-place operation for ``chararray`` (it returns a copy). Commenting out this code doesn't cause any tests to fail so I think this code isn't being tested anyway.\n",
+  "ground_truth": {
+    "files": [
+      "astropy/io/fits/fitsrec.py"
+    ],
+    "locations": [
+      "astropy/io/fits/fitsrec.py::FITS_rec",
+      "astropy/io/fits/fitsrec.py::FITS_rec._scale_back_ascii",
+      "astropy/io/fits/fitsrec.py::_get_recarray_field"
+    ]
+  },
+  "predictions": [
+    "astropy/tests/tests/test_run_tests.py::test_doctest_float_replacement",
+    "astropy/io/fits/fitsrec.py::_ascii_encode",
+    "astropy/io/fits/tests/test_header.py::TestHeaderFunctions.test_invalid_float_cards2",
+    "astropy/io/fits/fitsrec.py::FITS_rec._scale_back_ascii",
+    "astropy/io/fits/fitsrec.py::FITS_rec._convert_ascii",
+    "astropy/io/fits/fitsrec.py::_get_recarray_field",
+    "astropy/units/tests/test_quantity_ufuncs.py::TestQuantityMathFuncs.test_frexp_invalid_units",
+    "astropy/io/fits/tests/test_header.py::TestHeaderFunctions.test_invalid_float_cards",
+    "astropy/io/ascii/tests/test_c_reader.py::test_fortran_invalid_exp",
+    "astropy/units/tests/test_format.py::test_cds_non_ascii_unit"
+  ],
+  "metadata": {
+    "repo": "astropy/astropy",
+    "commit": "c76af9ed6bb89bfba45b9f5bc1e635188278e2fa",
+    "total_functions_indexed": 9848,
+    "retrieval_time_seconds": 0.006175041198730469
+  },
+  "raw_output": "[{\"doc_id\": \"astropy/tests/tests/test_run_tests.py::test_doctest_float_replacement\", \"score\": 0.6491988301277161}, {\"doc_id\": \"astropy/io/fits/fitsrec.py::_ascii_encode\", \"score\": 0.6450082659721375}, {\"doc_id\": \"astropy/io/fits/tests/test_header.py::TestHeaderFunctions.test_invalid_float_cards2\", \"score\": 0.6425970792770386}, {\"doc_id\": \"astropy/io/fits/fitsrec.py::FITS_rec._scale_back_ascii\", \"score\": 0.6403390169143677}, {\"doc_id\": \"astropy/io/fits/fitsrec.py::FITS_rec._convert_ascii\", \"score\": 0.639072597026825}, {\"doc_id\": \"astropy/io/fits/fitsrec.py::_get_recarray_field\", \"score\": 0.6329755783081055}, {\"doc_id\": \"astropy/units/tests/test_quantity_ufuncs.py::TestQuantityMathFuncs.test_frexp_invalid_units\", \"score\": 0.6325104236602783}, {\"doc_id\": \"astropy/io/fits/tests/test_header.py::TestHeaderFunctions.test_invalid_float_cards\", \"score\": 0.6300859451293945}, {\"doc_id\": \"astropy/io/ascii/tests/test_c_reader.py::test_fortran_invalid_exp\", \"score\": 0.6292771697044373}, {\"doc_id\": \"astropy/units/tests/test_format.py::test_cds_non_ascii_unit\", \"score\": 0.6257309317588806}]"
+}

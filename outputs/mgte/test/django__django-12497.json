@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12497",
+  "query": "Wrong hint about recursive relationship.\nDescription\n\t \n\t\t(last modified by Matheus Cunha Motta)\n\t \nWhen there's more than 2 ForeignKeys in an intermediary model of a m2m field and no through_fields have been set, Django will show an error with the following hint:\nhint=(\n\t'If you want to create a recursive relationship, '\n\t'use ForeignKey(\"%s\", symmetrical=False, through=\"%s\").'\nBut 'symmetrical' and 'through' are m2m keyword arguments, not ForeignKey.\nThis was probably a small mistake where the developer thought ManyToManyField but typed ForeignKey instead. And the symmetrical=False is an outdated requirement to recursive relationships with intermediary model to self, not required since 3.0. I'll provide a PR with a proposed correction shortly after.\nEdit: fixed description.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/related.py"
+    ],
+    "locations": [
+      "django/db/models/fields/related.py::ManyToManyField",
+      "django/db/models/fields/related.py::ManyToManyField._check_relationship_model"
+    ]
+  },
+  "predictions": [
+    "django/db/models/fields/related.py::ManyToManyField._check_relationship_model",
+    "tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_too_many_foreign_keys_in_self_referential_model",
+    "django/db/models/base.py::Model._check_m2m_through_same_relationship",
+    "django/db/models/fields/related_descriptors.py::ForwardManyToOneDescriptor.get_queryset",
+    "django/db/models/fields/reverse_related.py::ManyToManyRel.__init__",
+    "tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_ambiguous_relationship_model",
+    "django/db/models/fields/related_descriptors.py::ReverseOneToOneDescriptor.get_queryset",
+    "tests/invalid_models_tests/test_relative_fields.py::M2mThroughFieldsTests.test_invalid_order",
+    "django/db/models/fields/related_descriptors.py::create_forward_many_to_many_manager",
+    "django/db/models/fields/related_descriptors.py::ForwardManyToOneDescriptor.RelatedObjectDoesNotExist"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "a4881f5e5d7ee38b7e83301331a0b4962845ef8a",
+    "total_functions_indexed": 23263,
+    "retrieval_time_seconds": 0.007953643798828125
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/fields/related.py::ManyToManyField._check_relationship_model\", \"score\": 0.7479655742645264}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_too_many_foreign_keys_in_self_referential_model\", \"score\": 0.7441645860671997}, {\"doc_id\": \"django/db/models/base.py::Model._check_m2m_through_same_relationship\", \"score\": 0.7427329421043396}, {\"doc_id\": \"django/db/models/fields/related_descriptors.py::ForwardManyToOneDescriptor.get_queryset\", \"score\": 0.7421760559082031}, {\"doc_id\": \"django/db/models/fields/reverse_related.py::ManyToManyRel.__init__\", \"score\": 0.7344684600830078}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_ambiguous_relationship_model\", \"score\": 0.7316335439682007}, {\"doc_id\": \"django/db/models/fields/related_descriptors.py::ReverseOneToOneDescriptor.get_queryset\", \"score\": 0.729536771774292}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::M2mThroughFieldsTests.test_invalid_order\", \"score\": 0.7294604778289795}, {\"doc_id\": \"django/db/models/fields/related_descriptors.py::create_forward_many_to_many_manager\", \"score\": 0.7289767861366272}, {\"doc_id\": \"django/db/models/fields/related_descriptors.py::ForwardManyToOneDescriptor.RelatedObjectDoesNotExist\", \"score\": 0.7271901965141296}]"
+}

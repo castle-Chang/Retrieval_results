@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-15902",
+  "query": "\"default.html\" deprecation warning raised for ManagementForm's\nDescription\n\t\nI have a project where I never render forms with the {{ form }} expression. However, I'm still getting the new template deprecation warning because of the formset management form production, during which the template used is insignificant (only hidden inputs are produced).\nIs it worth special-casing this and avoid producing the warning for the management forms?\n",
+  "ground_truth": {
+    "files": [
+      "django/forms/formsets.py"
+    ],
+    "locations": [
+      "django/forms/formsets.py::ManagementForm"
+    ]
+  },
+  "predictions": [
+    "django/forms/utils.py::RenderableMixin.render",
+    "tests/forms_tests/tests/test_deprecation_forms.py::DeprecationTests.test_deprecation_warning_html_output",
+    "tests/forms_tests/tests/test_formsets.py::DeprecationTests.test_warning",
+    "tests/forms_tests/tests/test_forms.py::DeprecationTests.test_warning",
+    "django/forms/forms.py::BaseForm._html_output",
+    "tests/forms_tests/tests/test_deprecation_forms.py::DeprecationTests.test_deprecation_warning_error_list",
+    "django/forms/formsets.py::BaseFormSet.__bool__",
+    "django/test/testcases.py::_AssertFormErrorDeprecationHelper.assertFormsetError",
+    "django/forms/formsets.py::BaseFormSet.management_form",
+    "tests/forms_tests/tests/test_deprecation_forms.py::DeprecatedTests.test_field_name_with_hidden_input"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "44c24bf02835323d5418512ebe8e76166739ebf8",
+    "total_functions_indexed": 26079,
+    "retrieval_time_seconds": 0.2745954990386963
+  },
+  "raw_output": "[{\"doc_id\": \"django/forms/utils.py::RenderableMixin.render\", \"score\": 0.6705460548400879}, {\"doc_id\": \"tests/forms_tests/tests/test_deprecation_forms.py::DeprecationTests.test_deprecation_warning_html_output\", \"score\": 0.6481655240058899}, {\"doc_id\": \"tests/forms_tests/tests/test_formsets.py::DeprecationTests.test_warning\", \"score\": 0.6470470428466797}, {\"doc_id\": \"tests/forms_tests/tests/test_forms.py::DeprecationTests.test_warning\", \"score\": 0.6418931484222412}, {\"doc_id\": \"django/forms/forms.py::BaseForm._html_output\", \"score\": 0.631438672542572}, {\"doc_id\": \"tests/forms_tests/tests/test_deprecation_forms.py::DeprecationTests.test_deprecation_warning_error_list\", \"score\": 0.6286630630493164}, {\"doc_id\": \"django/forms/formsets.py::BaseFormSet.__bool__\", \"score\": 0.609441339969635}, {\"doc_id\": \"django/test/testcases.py::_AssertFormErrorDeprecationHelper.assertFormsetError\", \"score\": 0.6080303192138672}, {\"doc_id\": \"django/forms/formsets.py::BaseFormSet.management_form\", \"score\": 0.6041121482849121}, {\"doc_id\": \"tests/forms_tests/tests/test_deprecation_forms.py::DeprecatedTests.test_field_name_with_hidden_input\", \"score\": 0.6002047657966614}]"
+}

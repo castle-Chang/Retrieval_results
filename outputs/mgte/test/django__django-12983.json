@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12983",
+  "query": "Make django.utils.text.slugify() strip dashes and underscores\nDescription\n\t \n\t\t(last modified by Elinaldo do Nascimento Monteiro)\n\t \nBug generation slug\nExample:\nfrom django.utils import text\ntext.slugify(\"___This is a test ---\")\noutput: ___this-is-a-test-\nImprovement after correction\nfrom django.utils import text\ntext.slugify(\"___This is a test ---\")\noutput: this-is-a-test\n​PR\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/text.py"
+    ],
+    "locations": [
+      "django/utils/text.py::slugify",
+      "django/utils/text.py::camel_case_to_spaces"
+    ]
+  },
+  "predictions": [
+    "django/template/defaultfilters.py::slugify",
+    "django/utils/text.py::slugify",
+    "tests/utils_tests/test_text.py::TestUtilsText.test_slugify",
+    "tests/template_tests/filter_tests/test_slugify.py::FunctionTests.test_slugify_lazy_string",
+    "tests/template_tests/filter_tests/test_slugify.py::FunctionTests.test_slugify",
+    "tests/template_tests/filter_tests/test_slugify.py::SlugifyTests.test_slugify01",
+    "tests/template_tests/filter_tests/test_slugify.py::SlugifyTests.test_slugify02",
+    "tests/forms_tests/field_tests/test_slugfield.py::SlugFieldTest.test_slugfield_unicode_normalization",
+    "tests/template_tests/filter_tests/test_slugify.py::FunctionTests.test_unicode",
+    "tests/forms_tests/field_tests/test_slugfield.py::SlugFieldTest.test_slugfield_normalization"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "3bc4240d979812bd11365ede04c028ea13fdc8c6",
+    "total_functions_indexed": 23486,
+    "retrieval_time_seconds": 0.007159233093261719
+  },
+  "raw_output": "[{\"doc_id\": \"django/template/defaultfilters.py::slugify\", \"score\": 0.8323169946670532}, {\"doc_id\": \"django/utils/text.py::slugify\", \"score\": 0.8195688724517822}, {\"doc_id\": \"tests/utils_tests/test_text.py::TestUtilsText.test_slugify\", \"score\": 0.7707729935646057}, {\"doc_id\": \"tests/template_tests/filter_tests/test_slugify.py::FunctionTests.test_slugify_lazy_string\", \"score\": 0.7356982231140137}, {\"doc_id\": \"tests/template_tests/filter_tests/test_slugify.py::FunctionTests.test_slugify\", \"score\": 0.727496325969696}, {\"doc_id\": \"tests/template_tests/filter_tests/test_slugify.py::SlugifyTests.test_slugify01\", \"score\": 0.7227018475532532}, {\"doc_id\": \"tests/template_tests/filter_tests/test_slugify.py::SlugifyTests.test_slugify02\", \"score\": 0.7164976000785828}, {\"doc_id\": \"tests/forms_tests/field_tests/test_slugfield.py::SlugFieldTest.test_slugfield_unicode_normalization\", \"score\": 0.704479455947876}, {\"doc_id\": \"tests/template_tests/filter_tests/test_slugify.py::FunctionTests.test_unicode\", \"score\": 0.6976794004440308}, {\"doc_id\": \"tests/forms_tests/field_tests/test_slugfield.py::SlugFieldTest.test_slugfield_normalization\", \"score\": 0.6854594945907593}]"
+}

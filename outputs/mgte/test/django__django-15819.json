@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-15819",
+  "query": "inspectdb should generate related_name on same relation links.\nDescription\n\t\nHi!\nAfter models generation with inspectdb command we have issue with relations to same enities\nmodule.Model.field1: (fields.E304) Reverse accessor for 'module.Model.field1' clashes with reverse accessor for 'module.Model.field2'.\nHINT: Add or change a related_name argument to the definition for 'module.Model.field1' or 'module.Model.field2'.\n*\nMaybe we can autogenerate\nrelated_name='attribute_name'\nto all fields in model if related Model was used for this table\n",
+  "ground_truth": {
+    "files": [
+      "django/core/management/commands/inspectdb.py"
+    ],
+    "locations": [
+      "django/core/management/commands/inspectdb.py::Command",
+      "django/core/management/commands/inspectdb.py::Command.handle_inspection"
+    ]
+  },
+  "predictions": [
+    "django/db/models/fields/related.py::RelatedField.related_query_name",
+    "django/db/models/fields/reverse_related.py::ForeignObjectRel.set_field_name",
+    "django/db/models/fields/related.py::RelatedField._check_related_query_name_is_valid",
+    "tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_related_field_has_invalid_related_name",
+    "django/db/models/fields/reverse_related.py::ForeignObjectRel.name",
+    "django/db/models/fields/related.py::RelatedField.set_attributes_from_rel",
+    "django/db/models/fields/reverse_related.py::ManyToOneRel.set_field_name",
+    "django/db/models/fields/related.py::RelatedField._check_related_name_is_valid",
+    "django/db/models/fields/reverse_related.py::ManyToOneRel.identity",
+    "tests/invalid_models_tests/test_relative_fields.py::ReverseQueryNameClashTests._test_reverse_query_name_clash"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "877c800f255ccaa7abde1fb944de45d1616f5cc9",
+    "total_functions_indexed": 26058,
+    "retrieval_time_seconds": 0.12592864036560059
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/fields/related.py::RelatedField.related_query_name\", \"score\": 0.7630768418312073}, {\"doc_id\": \"django/db/models/fields/reverse_related.py::ForeignObjectRel.set_field_name\", \"score\": 0.7577946186065674}, {\"doc_id\": \"django/db/models/fields/related.py::RelatedField._check_related_query_name_is_valid\", \"score\": 0.7505452036857605}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_related_field_has_invalid_related_name\", \"score\": 0.7496370077133179}, {\"doc_id\": \"django/db/models/fields/reverse_related.py::ForeignObjectRel.name\", \"score\": 0.7491611242294312}, {\"doc_id\": \"django/db/models/fields/related.py::RelatedField.set_attributes_from_rel\", \"score\": 0.7491341829299927}, {\"doc_id\": \"django/db/models/fields/reverse_related.py::ManyToOneRel.set_field_name\", \"score\": 0.7433496713638306}, {\"doc_id\": \"django/db/models/fields/related.py::RelatedField._check_related_name_is_valid\", \"score\": 0.740867555141449}, {\"doc_id\": \"django/db/models/fields/reverse_related.py::ManyToOneRel.identity\", \"score\": 0.7401366233825684}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::ReverseQueryNameClashTests._test_reverse_query_name_clash\", \"score\": 0.7395651936531067}]"
+}

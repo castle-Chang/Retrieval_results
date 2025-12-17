@@ -1,0 +1,34 @@
+{
+  "instance_id": "sphinx-doc__sphinx-8435",
+  "query": "autodoc_type_aliases does not effect to variables and attributes\n**Describe the bug**\r\nautodoc_type_aliases does not effect to variables and attributes\r\n\r\n**To Reproduce**\r\n\r\n```\r\n# example.py\r\nfrom __future__ import annotations\r\n\r\n\r\n#: blah blah blah\r\nvar: String\r\n\r\n\r\nclass MyString:\r\n    \"mystring\"\r\n\r\n    #: blah blah blah\r\n    var: String\r\n```\r\n```\r\n# index.rst\r\n.. automodule:: example\r\n   :members:\r\n   :undoc-members:\r\n```\r\n```\r\n# conf.py\r\nautodoc_type_aliases = {\r\n    'String': 'example.MyString'\r\n}\r\n```\r\n\r\n**Expected behavior**\r\n`autodoc_type_aliases` should be applied to `example.var` and `example.MyString.var`.\r\n\r\n**Your project**\r\nN/A\r\n\r\n**Screenshots**\r\nN/A\r\n\r\n**Environment info**\r\n- OS: Mac\r\n- Python version: 3.9.0\r\n- Sphinx version: HEAD of 3.x branch\r\n- Sphinx extensions: sphinx.ext.autodoc\r\n- Extra tools: Nothing\r\n\r\n**Additional context**\r\nN/A\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/ext/autodoc/__init__.py"
+    ],
+    "locations": [
+      "sphinx/ext/autodoc/__init__.py::DataDocumenter",
+      "sphinx/ext/autodoc/__init__.py::DataDocumenter.add_directive_header",
+      "sphinx/ext/autodoc/__init__.py::AttributeDocumenter",
+      "sphinx/ext/autodoc/__init__.py::AttributeDocumenter.add_directive_header"
+    ]
+  },
+  "predictions": [
+    "tests/test_ext_autodoc_configs.py::test_autodoc_type_aliases",
+    "tests/test_ext_autodoc.py::test_autodoc_GenericAlias",
+    "tests/test_ext_autodoc.py::test_autodoc_TypeVar",
+    "tests/test_ext_autodoc.py::test_autodoc_typed_instance_variables",
+    "sphinx/ext/autodoc/__init__.py::GenericAliasDocumenter.add_content",
+    "sphinx/ext/autodoc/__init__.py::TypeVarDocumenter.add_content",
+    "tests/test_ext_autodoc.py::test_autodoc_undoc_members",
+    "tests/test_ext_autodoc.py::test_autodoc_TYPE_CHECKING",
+    "sphinx/ext/autodoc/__init__.py::autodoc_attrgetter",
+    "tests/test_ext_autodoc_configs.py::test_autodoc_typehints_none"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "5d8d6275a54f2c5fb72b82383b5712c22d337634",
+    "total_functions_indexed": 5539,
+    "retrieval_time_seconds": 0.0014450550079345703
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_ext_autodoc_configs.py::test_autodoc_type_aliases\", \"score\": 0.8231247663497925}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_GenericAlias\", \"score\": 0.7864338159561157}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_TypeVar\", \"score\": 0.7621506452560425}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_typed_instance_variables\", \"score\": 0.7567908763885498}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::GenericAliasDocumenter.add_content\", \"score\": 0.7496928572654724}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::TypeVarDocumenter.add_content\", \"score\": 0.7471407055854797}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_undoc_members\", \"score\": 0.7326683402061462}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_TYPE_CHECKING\", \"score\": 0.730430006980896}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::autodoc_attrgetter\", \"score\": 0.7297319173812866}, {\"doc_id\": \"tests/test_ext_autodoc_configs.py::test_autodoc_typehints_none\", \"score\": 0.7292344570159912}]"
+}

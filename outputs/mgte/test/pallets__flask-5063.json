@@ -1,0 +1,31 @@
+{
+  "instance_id": "pallets__flask-5063",
+  "query": "Flask routes to return domain/sub-domains information\nCurrently when checking **flask routes** it provides all routes but **it is no way to see which routes are assigned to which subdomain**.\r\n\r\n**Default server name:**\r\nSERVER_NAME: 'test.local'\r\n\r\n**Domains (sub-domains):**\r\ntest.test.local\r\nadmin.test.local\r\ntest.local\r\n\r\n**Adding blueprints:**\r\napp.register_blueprint(admin_blueprint,url_prefix='',subdomain='admin')\r\napp.register_blueprint(test_subdomain_blueprint,url_prefix='',subdomain='test')\r\n\r\n\r\n```\r\n$ flask routes\r\n * Tip: There are .env or .flaskenv files present. Do \"pip install python-dotenv\" to use them.\r\nEndpoint                                                 Methods    Rule\r\n-------------------------------------------------------  ---------  ------------------------------------------------\r\nadmin_blueprint.home                                      GET        /home\r\ntest_subdomain_blueprint.home                             GET        /home\r\nstatic                                                    GET        /static/<path:filename>\r\n...\r\n```\r\n\r\n\r\n**Feature request**\r\nIt will be good to see something like below (that will make more clear which route for which subdomain, because now need to go and check configuration).\r\n**If it is not possible to fix routes**, can you add or tell which method(s) should be used to get below information from flask? \r\n\r\n```\r\n$ flask routes\r\n * Tip: There are .env or .flaskenv files present. Do \"pip install python-dotenv\" to use them.\r\nDomain                Endpoint                                             Methods    Rule\r\n-----------------   ----------------------------------------------------  ----------  ------------------------------------------------\r\nadmin.test.local     admin_blueprint.home                                  GET        /home\r\ntest.test.local      test_subdomain_blueprint.home                         GET        /home\r\ntest.local           static                                                GET        /static/<path:filename>\r\n...\r\n```\r\n\n",
+  "ground_truth": {
+    "files": [
+      "src/flask/cli.py"
+    ],
+    "locations": [
+      "src/flask/cli.py::routes_command"
+    ]
+  },
+  "predictions": [
+    "tests/test_testing.py::test_blueprint_with_subdomain",
+    "src/flask/cli.py::routes_command",
+    "tests/test_blueprints.py::test_nesting_subdomains",
+    "tests/test_blueprints.py::test_child_and_parent_subdomain",
+    "tests/test_blueprints.py::test_route_decorator_custom_endpoint",
+    "tests/test_blueprints.py::test_route_decorator_custom_endpoint_with_dots",
+    "tests/test_blueprints.py::test_endpoint_decorator",
+    "src/flask/blueprints.py::Blueprint.__init__",
+    "tests/test_basic.py::test_subdomain_matching_other_name",
+    "tests/test_async.py::_async_app"
+  ],
+  "metadata": {
+    "repo": "pallets/flask",
+    "commit": "182ce3dd15dfa3537391c3efaf9c3ff407d134d4",
+    "total_functions_indexed": 820,
+    "retrieval_time_seconds": 0.0985574722290039
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_testing.py::test_blueprint_with_subdomain\", \"score\": 0.7776520252227783}, {\"doc_id\": \"src/flask/cli.py::routes_command\", \"score\": 0.7687317132949829}, {\"doc_id\": \"tests/test_blueprints.py::test_nesting_subdomains\", \"score\": 0.7664781808853149}, {\"doc_id\": \"tests/test_blueprints.py::test_child_and_parent_subdomain\", \"score\": 0.7662291526794434}, {\"doc_id\": \"tests/test_blueprints.py::test_route_decorator_custom_endpoint\", \"score\": 0.7569680213928223}, {\"doc_id\": \"tests/test_blueprints.py::test_route_decorator_custom_endpoint_with_dots\", \"score\": 0.7555997967720032}, {\"doc_id\": \"tests/test_blueprints.py::test_endpoint_decorator\", \"score\": 0.7499332427978516}, {\"doc_id\": \"src/flask/blueprints.py::Blueprint.__init__\", \"score\": 0.7373427152633667}, {\"doc_id\": \"tests/test_basic.py::test_subdomain_matching_other_name\", \"score\": 0.7341355085372925}, {\"doc_id\": \"tests/test_async.py::_async_app\", \"score\": 0.7339142560958862}]"
+}

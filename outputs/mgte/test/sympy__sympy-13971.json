@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-13971",
+  "query": "Display of SeqFormula()\n```\r\nimport sympy as sp\r\nk, m, n = sp.symbols('k m n', integer=True)\r\nsp.init_printing()\r\n\r\nsp.SeqFormula(n**2, (n,0,sp.oo))\r\n```\r\n\r\nThe Jupyter rendering of this command backslash-escapes the brackets producing:\r\n\r\n`\\left\\[0, 1, 4, 9, \\ldots\\right\\]`\r\n\r\nCopying this output to a markdown cell this does not render properly.  Whereas:\r\n\r\n`[0, 1, 4, 9, \\ldots ]`\r\n\r\ndoes render just fine.  \r\n\r\nSo - sequence output should not backslash-escape square brackets, or, `\\]` should instead render?\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/latex.py"
+    ],
+    "locations": [
+      "sympy/printing/latex.py::LatexPrinter",
+      "sympy/printing/latex.py::LatexPrinter._print_SeqFormula"
+    ]
+  },
+  "predictions": [
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_SeqFormula",
+    "sympy/printing/latex.py::LatexPrinter._print_SeqFormula",
+    "sympy/printing/lambdarepr.py::NumExprPrinter._print_seq",
+    "sympy/physics/quantum/qexpr.py::QExpr._print_sequence_pretty",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_seq",
+    "sympy/printing/pretty/tests/test_pretty.py::test_pretty_seq",
+    "sympy/printing/pycode.py::NumPyPrinter._print_seq",
+    "sympy/series/tests/test_sequences.py::test_SeqFormula",
+    "sympy/printing/latex.py::LatexPrinter._needs_brackets",
+    "sympy/core/tests/test_args.py::test_sympy__series__sequences__SeqFormula"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "84c125972ad535b2dfb245f8d311d347b45e5b8a",
+    "total_functions_indexed": 22514,
+    "retrieval_time_seconds": 0.009989023208618164
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_SeqFormula\", \"score\": 0.7527832984924316}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_SeqFormula\", \"score\": 0.7422003746032715}, {\"doc_id\": \"sympy/printing/lambdarepr.py::NumExprPrinter._print_seq\", \"score\": 0.7238593101501465}, {\"doc_id\": \"sympy/physics/quantum/qexpr.py::QExpr._print_sequence_pretty\", \"score\": 0.7106542587280273}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_seq\", \"score\": 0.7100018262863159}, {\"doc_id\": \"sympy/printing/pretty/tests/test_pretty.py::test_pretty_seq\", \"score\": 0.695521891117096}, {\"doc_id\": \"sympy/printing/pycode.py::NumPyPrinter._print_seq\", \"score\": 0.6883749961853027}, {\"doc_id\": \"sympy/series/tests/test_sequences.py::test_SeqFormula\", \"score\": 0.6825189590454102}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._needs_brackets\", \"score\": 0.6787717342376709}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__series__sequences__SeqFormula\", \"score\": 0.6762881875038147}]"
+}

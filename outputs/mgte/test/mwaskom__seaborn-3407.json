@@ -1,0 +1,32 @@
+{
+  "instance_id": "mwaskom__seaborn-3407",
+  "query": "pairplot raises KeyError with MultiIndex DataFrame\nWhen trying to pairplot a MultiIndex DataFrame, `pairplot` raises a `KeyError`:\r\n\r\nMRE:\r\n\r\n```python\r\nimport numpy as np\r\nimport pandas as pd\r\nimport seaborn as sns\r\n\r\n\r\ndata = {\r\n    (\"A\", \"1\"): np.random.rand(100),\r\n    (\"A\", \"2\"): np.random.rand(100),\r\n    (\"B\", \"1\"): np.random.rand(100),\r\n    (\"B\", \"2\"): np.random.rand(100),\r\n}\r\ndf = pd.DataFrame(data)\r\nsns.pairplot(df)\r\n```\r\n\r\nOutput:\r\n\r\n```\r\n[c:\\Users\\KLuu\\anaconda3\\lib\\site-packages\\seaborn\\axisgrid.py](file:///C:/Users/KLuu/anaconda3/lib/site-packages/seaborn/axisgrid.py) in pairplot(data, hue, hue_order, palette, vars, x_vars, y_vars, kind, diag_kind, markers, height, aspect, corner, dropna, plot_kws, diag_kws, grid_kws, size)\r\n   2142     diag_kws.setdefault(\"legend\", False)\r\n   2143     if diag_kind == \"hist\":\r\n-> 2144         grid.map_diag(histplot, **diag_kws)\r\n   2145     elif diag_kind == \"kde\":\r\n   2146         diag_kws.setdefault(\"fill\", True)\r\n\r\n[c:\\Users\\KLuu\\anaconda3\\lib\\site-packages\\seaborn\\axisgrid.py](file:///C:/Users/KLuu/anaconda3/lib/site-packages/seaborn/axisgrid.py) in map_diag(self, func, **kwargs)\r\n   1488                 plt.sca(ax)\r\n   1489 \r\n-> 1490             vector = self.data[var]\r\n   1491             if self._hue_var is not None:\r\n   1492                 hue = self.data[self._hue_var]\r\n\r\n[c:\\Users\\KLuu\\anaconda3\\lib\\site-packages\\pandas\\core\\frame.py](file:///C:/Users/KLuu/anaconda3/lib/site-packages/pandas/core/frame.py) in __getitem__(self, key)\r\n   3765             if is_iterator(key):\r\n   3766                 key = list(key)\r\n-> 3767             indexer = self.columns._get_indexer_strict(key, \"columns\")[1]\r\n   3768 \r\n   3769         # take() does not accept boolean indexers\r\n\r\n[c:\\Users\\KLuu\\anaconda3\\lib\\site-packages\\pandas\\core\\indexes\\multi.py](file:///C:/Users/KLuu/anaconda3/lib/site-packages/pandas/core/indexes/multi.py) in _get_indexer_strict(self, key, axis_name)\r\n   2534             indexer = self._get_indexer_level_0(keyarr)\r\n   2535 \r\n-> 2536             self._raise_if_missing(key, indexer, axis_name)\r\n   2537             return self[indexer], indexer\r\n   2538 \r\n\r\n[c:\\Users\\KLuu\\anaconda3\\lib\\site-packages\\pandas\\core\\indexes\\multi.py](file:///C:/Users/KLuu/anaconda3/lib/site-packages/pandas/core/indexes/multi.py) in _raise_if_missing(self, key, indexer, axis_name)\r\n   2552                 cmask = check == -1\r\n   2553                 if cmask.any():\r\n-> 2554                     raise KeyError(f\"{keyarr[cmask]} not in index\")\r\n   2555                 # We get here when levels still contain values which are not\r\n   2556                 # actually in Index anymore\r\n\r\nKeyError: \"['1'] not in index\"\r\n```\r\n\r\nA workaround is to \"flatten\" the columns:\r\n\r\n```python\r\ndf.columns = [\"\".join(column) for column in df.columns]\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "seaborn/axisgrid.py"
+    ],
+    "locations": [
+      "seaborn/axisgrid.py::PairGrid",
+      "seaborn/axisgrid.py::PairGrid.map_diag"
+    ]
+  },
+  "predictions": [
+    "seaborn/axisgrid.py::pairplot",
+    "seaborn/axisgrid.py::PairGrid._map_bivariate",
+    "seaborn/_core/plot.py::Plotter._generate_pairings",
+    "tests/test_axisgrid.py::TestPairGrid.test_pairplot_diag_kde",
+    "seaborn/axisgrid.py::jointplot",
+    "seaborn/axisgrid.py::PairGrid.__init__",
+    "tests/test_axisgrid.py::TestPairGrid.test_pairplot_kde",
+    "seaborn/axisgrid.py::PairGrid._map_diag_iter_hue",
+    "seaborn/axisgrid.py::PairGrid._plot_bivariate_iter_hue",
+    "seaborn/_core/plot.py::Plot.pair"
+  ],
+  "metadata": {
+    "repo": "mwaskom/seaborn",
+    "commit": "515286e02be3e4c0ff2ef4addb34a53c4a676ee4",
+    "total_functions_indexed": 2463,
+    "retrieval_time_seconds": 0.0902409553527832
+  },
+  "raw_output": "[{\"doc_id\": \"seaborn/axisgrid.py::pairplot\", \"score\": 0.8207705020904541}, {\"doc_id\": \"seaborn/axisgrid.py::PairGrid._map_bivariate\", \"score\": 0.7672221064567566}, {\"doc_id\": \"seaborn/_core/plot.py::Plotter._generate_pairings\", \"score\": 0.7646510601043701}, {\"doc_id\": \"tests/test_axisgrid.py::TestPairGrid.test_pairplot_diag_kde\", \"score\": 0.7528066635131836}, {\"doc_id\": \"seaborn/axisgrid.py::jointplot\", \"score\": 0.7525910139083862}, {\"doc_id\": \"seaborn/axisgrid.py::PairGrid.__init__\", \"score\": 0.7510058879852295}, {\"doc_id\": \"tests/test_axisgrid.py::TestPairGrid.test_pairplot_kde\", \"score\": 0.7498905658721924}, {\"doc_id\": \"seaborn/axisgrid.py::PairGrid._map_diag_iter_hue\", \"score\": 0.7497439980506897}, {\"doc_id\": \"seaborn/axisgrid.py::PairGrid._plot_bivariate_iter_hue\", \"score\": 0.747572660446167}, {\"doc_id\": \"seaborn/_core/plot.py::Plot.pair\", \"score\": 0.7415699362754822}]"
+}

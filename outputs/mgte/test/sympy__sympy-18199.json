@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-18199",
+  "query": "nthroot_mod function misses one root of x = 0 mod p.\nWhen in the equation x**n = a mod p , when a % p == 0. Then x = 0 mod p is also a root of this equation. But right now `nthroot_mod` does not check for this condition. `nthroot_mod(17*17, 5 , 17)` has a root `0 mod 17`. But it does not return it.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/ntheory/residue_ntheory.py"
+    ],
+    "locations": [
+      "sympy/ntheory/residue_ntheory.py::_nthroot_mod1",
+      "sympy/ntheory/residue_ntheory.py::nthroot_mod"
+    ]
+  },
+  "predictions": [
+    "sympy/ntheory/residue_ntheory.py::nthroot_mod",
+    "sympy/ntheory/residue_ntheory.py::_nthroot_mod2",
+    "sympy/ntheory/residue_ntheory.py::_nthroot_mod1",
+    "sympy/ntheory/residue_ntheory.py::sqrt_mod",
+    "sympy/simplify/simplify.py::_nthroot_solve",
+    "sympy/simplify/tests/test_simplify.py::test_nthroot",
+    "sympy/integrals/rubi/utility_function.py::NthRoot",
+    "sympy/simplify/tests/test_simplify.py::test_nthroot1",
+    "sympy/ntheory/residue_ntheory.py::_sqrt_mod1",
+    "sympy/core/power.py::integer_nthroot"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "ba80d1e493f21431b4bf729b3e0452cd47eb9566",
+    "total_functions_indexed": 33778,
+    "retrieval_time_seconds": 0.09373950958251953
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/ntheory/residue_ntheory.py::nthroot_mod\", \"score\": 0.7862002849578857}, {\"doc_id\": \"sympy/ntheory/residue_ntheory.py::_nthroot_mod2\", \"score\": 0.7659491300582886}, {\"doc_id\": \"sympy/ntheory/residue_ntheory.py::_nthroot_mod1\", \"score\": 0.7461420297622681}, {\"doc_id\": \"sympy/ntheory/residue_ntheory.py::sqrt_mod\", \"score\": 0.7043592929840088}, {\"doc_id\": \"sympy/simplify/simplify.py::_nthroot_solve\", \"score\": 0.697242021560669}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_nthroot\", \"score\": 0.6970871686935425}, {\"doc_id\": \"sympy/integrals/rubi/utility_function.py::NthRoot\", \"score\": 0.6951605677604675}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_nthroot1\", \"score\": 0.6932075023651123}, {\"doc_id\": \"sympy/ntheory/residue_ntheory.py::_sqrt_mod1\", \"score\": 0.6915836334228516}, {\"doc_id\": \"sympy/core/power.py::integer_nthroot\", \"score\": 0.6888370513916016}]"
+}

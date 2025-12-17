@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-11848",
+  "query": "django.utils.http.parse_http_date two digit year check is incorrect\nDescription\n\t \n\t\t(last modified by Ad Timmering)\n\t \nRFC 850 does not mention this, but in RFC 7231 (and there's something similar in RFC 2822), there's the following quote:\nRecipients of a timestamp value in rfc850-date format, which uses a\ntwo-digit year, MUST interpret a timestamp that appears to be more\nthan 50 years in the future as representing the most recent year in\nthe past that had the same last two digits.\nCurrent logic is hard coded to consider 0-69 to be in 2000-2069, and 70-99 to be 1970-1999, instead of comparing versus the current year.\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/http.py"
+    ],
+    "locations": [
+      "django/utils/http.py::parse_http_date"
+    ]
+  },
+  "predictions": [
+    "django/utils/http.py::parse_http_date",
+    "tests/utils_tests/test_http.py::HttpDateProcessingTests.test_parsing_rfc850",
+    "django/utils/http.py::parse_http_date_safe",
+    "django/utils/http.py::http_date",
+    "tests/utils_tests/test_http.py::HttpDateProcessingTests.test_parsing_year_less_than_70",
+    "tests/utils_tests/test_http.py::HttpDateProcessingTests.test_parsing_rfc1123",
+    "tests/utils_tests/test_http.py::HttpDateProcessingTests.test_http_date",
+    "tests/utils_tests/test_http.py::HttpDateProcessingTests.test_parsing_asctime",
+    "django/utils/feedgenerator.py::rfc2822_date",
+    "django/utils/dateformat.py::DateFormat.y"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "f0adf3b9b7a19cdee05368ff0c0c2d087f011180",
+    "total_functions_indexed": 22862,
+    "retrieval_time_seconds": 0.006758689880371094
+  },
+  "raw_output": "[{\"doc_id\": \"django/utils/http.py::parse_http_date\", \"score\": 0.8087576627731323}, {\"doc_id\": \"tests/utils_tests/test_http.py::HttpDateProcessingTests.test_parsing_rfc850\", \"score\": 0.7763779759407043}, {\"doc_id\": \"django/utils/http.py::parse_http_date_safe\", \"score\": 0.7564178705215454}, {\"doc_id\": \"django/utils/http.py::http_date\", \"score\": 0.7467677593231201}, {\"doc_id\": \"tests/utils_tests/test_http.py::HttpDateProcessingTests.test_parsing_year_less_than_70\", \"score\": 0.7434349060058594}, {\"doc_id\": \"tests/utils_tests/test_http.py::HttpDateProcessingTests.test_parsing_rfc1123\", \"score\": 0.7223590612411499}, {\"doc_id\": \"tests/utils_tests/test_http.py::HttpDateProcessingTests.test_http_date\", \"score\": 0.6938337087631226}, {\"doc_id\": \"tests/utils_tests/test_http.py::HttpDateProcessingTests.test_parsing_asctime\", \"score\": 0.6825754642486572}, {\"doc_id\": \"django/utils/feedgenerator.py::rfc2822_date\", \"score\": 0.6776226162910461}, {\"doc_id\": \"django/utils/dateformat.py::DateFormat.y\", \"score\": 0.6754147410392761}]"
+}

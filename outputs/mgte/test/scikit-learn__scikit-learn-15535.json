@@ -1,0 +1,31 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-15535",
+  "query": "regression in input validation of clustering metrics\n```python\r\nfrom sklearn.metrics.cluster import mutual_info_score\r\nimport numpy as np\r\n\r\nx = np.random.choice(['a', 'b'], size=20).astype(object)\r\nmutual_info_score(x, x)\r\n```\r\nValueError: could not convert string to float: 'b'\r\n\r\nwhile\r\n```python\r\nx = np.random.choice(['a', 'b'], size=20)\r\nmutual_info_score(x, x)\r\n```\r\nworks with a warning?\r\n\r\nthis worked in 0.21.1 without a warning (as I think it should)\r\n\r\n\r\nEdit by @ogrisel: I removed the `.astype(object)` in the second code snippet.\n",
+  "ground_truth": {
+    "files": [
+      "sklearn/metrics/cluster/_supervised.py"
+    ],
+    "locations": [
+      "sklearn/metrics/cluster/_supervised.py::check_clusterings"
+    ]
+  },
+  "predictions": [
+    "sklearn/metrics/cluster/_supervised.py::normalized_mutual_info_score",
+    "sklearn/feature_selection/tests/test_feature_select.py::test_mutual_info_regression",
+    "sklearn/feature_selection/tests/test_mutual_info.py::test_mutual_info_regression",
+    "sklearn/metrics/cluster/tests/test_supervised.py::test_int_overflow_mutual_info_fowlkes_mallows_score",
+    "sklearn/metrics/cluster/_supervised.py::mutual_info_score",
+    "sklearn/metrics/cluster/tests/test_supervised.py::test_v_measure_and_mutual_information",
+    "sklearn/metrics/cluster/tests/test_supervised.py::test_adjusted_mutual_info_score",
+    "sklearn/metrics/cluster/tests/test_unsupervised.py::assert_raises_on_all_points_same_cluster",
+    "sklearn/feature_selection/tests/test_mutual_info.py::test_mutual_info_options",
+    "examples/cluster/plot_adjusted_for_chance_measures.py::ami_score"
+  ],
+  "metadata": {
+    "repo": "scikit-learn/scikit-learn",
+    "commit": "70b0ddea992c01df1a41588fa9e2d130fb6b13f8",
+    "total_functions_indexed": 7104,
+    "retrieval_time_seconds": 0.08710765838623047
+  },
+  "raw_output": "[{\"doc_id\": \"sklearn/metrics/cluster/_supervised.py::normalized_mutual_info_score\", \"score\": 0.750239372253418}, {\"doc_id\": \"sklearn/feature_selection/tests/test_feature_select.py::test_mutual_info_regression\", \"score\": 0.7498558759689331}, {\"doc_id\": \"sklearn/feature_selection/tests/test_mutual_info.py::test_mutual_info_regression\", \"score\": 0.7484190464019775}, {\"doc_id\": \"sklearn/metrics/cluster/tests/test_supervised.py::test_int_overflow_mutual_info_fowlkes_mallows_score\", \"score\": 0.7448712587356567}, {\"doc_id\": \"sklearn/metrics/cluster/_supervised.py::mutual_info_score\", \"score\": 0.7421653270721436}, {\"doc_id\": \"sklearn/metrics/cluster/tests/test_supervised.py::test_v_measure_and_mutual_information\", \"score\": 0.7415176630020142}, {\"doc_id\": \"sklearn/metrics/cluster/tests/test_supervised.py::test_adjusted_mutual_info_score\", \"score\": 0.7404454350471497}, {\"doc_id\": \"sklearn/metrics/cluster/tests/test_unsupervised.py::assert_raises_on_all_points_same_cluster\", \"score\": 0.7334955930709839}, {\"doc_id\": \"sklearn/feature_selection/tests/test_mutual_info.py::test_mutual_info_options\", \"score\": 0.732308030128479}, {\"doc_id\": \"examples/cluster/plot_adjusted_for_chance_measures.py::ami_score\", \"score\": 0.731824517250061}]"
+}

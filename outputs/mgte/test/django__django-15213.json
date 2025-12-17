@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-15213",
+  "query": "ExpressionWrapper for ~Q(pk__in=[]) crashes.\nDescription\n\t \n\t\t(last modified by Stefan Brand)\n\t \nProblem Description\nI'm reducing some Q objects (similar to what is described in ticket:32554. Everything is fine for the case where the result is ExpressionWrapper(Q(pk__in=[])). However, when I reduce to ExpressionWrapper(~Q(pk__in=[])) the query breaks.\nSymptoms\nWorking for ExpressionWrapper(Q(pk__in=[]))\nprint(queryset.annotate(foo=ExpressionWrapper(Q(pk__in=[]), output_field=BooleanField())).values(\"foo\").query)\nSELECT 0 AS \"foo\" FROM \"table\"\nNot working for ExpressionWrapper(~Q(pk__in=[]))\nprint(queryset.annotate(foo=ExpressionWrapper(~Q(pk__in=[]), output_field=BooleanField())).values(\"foo\").query)\nSELECT AS \"foo\" FROM \"table\"\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/__init__.py"
+    ],
+    "locations": [
+      "django/db/models/fields/__init__.py::BooleanField",
+      "django/db/models/fields/__init__.py::BooleanField.formfield",
+      "django/db/models/fields/__init__.py::CharField"
+    ]
+  },
+  "predictions": [
+    "django/contrib/postgres/expressions.py::ArraySubquery.__init__",
+    "tests/expressions/tests.py::BasicExpressionsTests.test_subquery",
+    "django/db/models/sql/query.py::Query.rewrite_cols",
+    "django/db/models/expressions.py::ResolvedOuterRef.as_sql",
+    "tests/queries/tests.py::Queries6Tests.test_tickets_8921_9188",
+    "django/db/models/query_utils.py::Q.resolve_expression",
+    "tests/expressions_case/tests.py::CaseExpressionTests.test_in_subquery",
+    "tests/postgres_tests/test_array.py::TestQuerying.test_annotated_array_subquery",
+    "tests/db_functions/comparison/test_cast.py::CastTests.test_expression_wrapped_with_parentheses_on_postgresql",
+    "django/db/models/expressions.py::ExpressionWrapper.as_sql"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "03cadb912c78b769d6bf4a943a2a35fc1d952960",
+    "total_functions_indexed": 25410,
+    "retrieval_time_seconds": 0.09224343299865723
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/postgres/expressions.py::ArraySubquery.__init__\", \"score\": 0.7029675245285034}, {\"doc_id\": \"tests/expressions/tests.py::BasicExpressionsTests.test_subquery\", \"score\": 0.6931911110877991}, {\"doc_id\": \"django/db/models/sql/query.py::Query.rewrite_cols\", \"score\": 0.6911725997924805}, {\"doc_id\": \"django/db/models/expressions.py::ResolvedOuterRef.as_sql\", \"score\": 0.69072425365448}, {\"doc_id\": \"tests/queries/tests.py::Queries6Tests.test_tickets_8921_9188\", \"score\": 0.6897932291030884}, {\"doc_id\": \"django/db/models/query_utils.py::Q.resolve_expression\", \"score\": 0.6884100437164307}, {\"doc_id\": \"tests/expressions_case/tests.py::CaseExpressionTests.test_in_subquery\", \"score\": 0.6834486126899719}, {\"doc_id\": \"tests/postgres_tests/test_array.py::TestQuerying.test_annotated_array_subquery\", \"score\": 0.6793503165245056}, {\"doc_id\": \"tests/db_functions/comparison/test_cast.py::CastTests.test_expression_wrapped_with_parentheses_on_postgresql\", \"score\": 0.6777013540267944}, {\"doc_id\": \"django/db/models/expressions.py::ExpressionWrapper.as_sql\", \"score\": 0.6775045990943909}]"
+}

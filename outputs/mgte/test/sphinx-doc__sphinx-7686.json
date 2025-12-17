@@ -1,0 +1,31 @@
+{
+  "instance_id": "sphinx-doc__sphinx-7686",
+  "query": "autosummary: The members variable for module template contains imported members\n**Describe the bug**\r\nautosummary: The members variable for module template contains imported members even if autosummary_imported_members is False.\r\n\r\n**To Reproduce**\r\n\r\n```\r\n# _templates/autosummary/module.rst\r\n{{ fullname | escape | underline }}\r\n\r\n.. automodule:: {{ fullname }}\r\n\r\n   .. autosummary::\r\n   {% for item in members %}\r\n      {{ item }}\r\n   {%- endfor %}\r\n\r\n```\r\n```\r\n# example.py\r\nimport os\r\n```\r\n```\r\n# index.rst\r\n.. autosummary::\r\n   :toctree: generated\r\n\r\n   example\r\n```\r\n```\r\n# conf.py\r\nautosummary_generate = True\r\nautosummary_imported_members = False\r\n```\r\n\r\nAs a result, I got following output:\r\n```\r\n# generated/example.rst\r\nexample\r\n=======\r\n\r\n.. automodule:: example\r\n\r\n   .. autosummary::\r\n\r\n      __builtins__\r\n      __cached__\r\n      __doc__\r\n      __file__\r\n      __loader__\r\n      __name__\r\n      __package__\r\n      __spec__\r\n      os\r\n```\r\n\r\n**Expected behavior**\r\nThe template variable `members` should not contain imported members when `autosummary_imported_members` is False.\r\n\r\n**Your project**\r\nNo\r\n\r\n**Screenshots**\r\nNo\r\n\r\n**Environment info**\r\n- OS: Mac\r\n- Python version: 3.8.2\r\n- Sphinx version: 3.1.0dev\r\n- Sphinx extensions:  sphinx.ext.autosummary\r\n- Extra tools: No\r\n\r\n**Additional context**\r\nNo\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/ext/autosummary/generate.py"
+    ],
+    "locations": [
+      "sphinx/ext/autosummary/generate.py::generate_autosummary_content"
+    ]
+  },
+  "predictions": [
+    "sphinx/ext/autosummary/generate.py::generate_autosummary_content",
+    "tests/test_ext_autosummary.py::test_autosummary_imported_members",
+    "sphinx/ext/autosummary/generate.py::generate_autosummary_docs",
+    "sphinx/ext/autosummary/generate.py::find_autosummary_in_lines",
+    "sphinx/ext/autosummary/__init__.py::autosummary_noop",
+    "tests/test_ext_autosummary.py::test_import_by_name",
+    "tests/test_ext_autosummary.py::test_autosummary_generate",
+    "sphinx/ext/autosummary/__init__.py::Autosummary.get_items",
+    "sphinx/ext/autosummary/__init__.py::Autosummary.run",
+    "sphinx/ext/autosummary/generate.py::find_autosummary_in_docstring"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "752d3285d250bbaf673cff25e83f03f247502021",
+    "total_functions_indexed": 5295,
+    "retrieval_time_seconds": 0.001317739486694336
+  },
+  "raw_output": "[{\"doc_id\": \"sphinx/ext/autosummary/generate.py::generate_autosummary_content\", \"score\": 0.8824467658996582}, {\"doc_id\": \"tests/test_ext_autosummary.py::test_autosummary_imported_members\", \"score\": 0.8326714038848877}, {\"doc_id\": \"sphinx/ext/autosummary/generate.py::generate_autosummary_docs\", \"score\": 0.8196300864219666}, {\"doc_id\": \"sphinx/ext/autosummary/generate.py::find_autosummary_in_lines\", \"score\": 0.8116862177848816}, {\"doc_id\": \"sphinx/ext/autosummary/__init__.py::autosummary_noop\", \"score\": 0.8070952892303467}, {\"doc_id\": \"tests/test_ext_autosummary.py::test_import_by_name\", \"score\": 0.7875665426254272}, {\"doc_id\": \"tests/test_ext_autosummary.py::test_autosummary_generate\", \"score\": 0.7860509157180786}, {\"doc_id\": \"sphinx/ext/autosummary/__init__.py::Autosummary.get_items\", \"score\": 0.7857308983802795}, {\"doc_id\": \"sphinx/ext/autosummary/__init__.py::Autosummary.run\", \"score\": 0.7845805883407593}, {\"doc_id\": \"sphinx/ext/autosummary/generate.py::find_autosummary_in_docstring\", \"score\": 0.7841668128967285}]"
+}

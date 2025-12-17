@@ -1,0 +1,33 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-11281",
+  "query": "Should mixture models have a clusterer-compatible interface\nMixture models are currently a bit different. They are basically clusterers, except they are probabilistic, and are applied to inductive problems unlike many clusterers. But they are unlike clusterers in API:\r\n* they have an `n_components` parameter, with identical purpose to `n_clusters`\r\n* they do not store the `labels_` of the training data\r\n* they do not have a `fit_predict` method\r\n\r\nAnd they are almost entirely documented separately.\r\n\r\nShould we make the MMs more like clusterers?\n",
+  "ground_truth": {
+    "files": [
+      "sklearn/mixture/base.py"
+    ],
+    "locations": [
+      "sklearn/mixture/base.py::BaseMixture",
+      "sklearn/mixture/base.py::BaseMixture.fit",
+      "sklearn/mixture/base.py::BaseMixture._e_step"
+    ]
+  },
+  "predictions": [
+    "sklearn/utils/estimator_checks.py::check_clustering",
+    "sklearn/utils/estimator_checks.py::check_clusterer_compute_labels_predict",
+    "sklearn/metrics/cluster/supervised.py::check_clusterings",
+    "sklearn/base.py::ClusterMixin.fit_predict",
+    "sklearn/cluster/spectral.py::spectral_clustering",
+    "sklearn/metrics/cluster/supervised.py::normalized_mutual_info_score",
+    "sklearn/cluster/hierarchical.py::AgglomerativeClustering.__init__",
+    "sklearn/cluster/k_means_.py::MiniBatchKMeans.__init__",
+    "sklearn/utils/estimator_checks.py::_yield_clustering_checks",
+    "sklearn/cluster/birch.py::Birch._global_clustering"
+  ],
+  "metadata": {
+    "repo": "scikit-learn/scikit-learn",
+    "commit": "4143356c3c51831300789e4fdf795d83716dbab6",
+    "total_functions_indexed": 6353,
+    "retrieval_time_seconds": 0.09102416038513184
+  },
+  "raw_output": "[{\"doc_id\": \"sklearn/utils/estimator_checks.py::check_clustering\", \"score\": 0.6812872886657715}, {\"doc_id\": \"sklearn/utils/estimator_checks.py::check_clusterer_compute_labels_predict\", \"score\": 0.6751189231872559}, {\"doc_id\": \"sklearn/metrics/cluster/supervised.py::check_clusterings\", \"score\": 0.6724423170089722}, {\"doc_id\": \"sklearn/base.py::ClusterMixin.fit_predict\", \"score\": 0.6665201783180237}, {\"doc_id\": \"sklearn/cluster/spectral.py::spectral_clustering\", \"score\": 0.6498208045959473}, {\"doc_id\": \"sklearn/metrics/cluster/supervised.py::normalized_mutual_info_score\", \"score\": 0.648589015007019}, {\"doc_id\": \"sklearn/cluster/hierarchical.py::AgglomerativeClustering.__init__\", \"score\": 0.6467255353927612}, {\"doc_id\": \"sklearn/cluster/k_means_.py::MiniBatchKMeans.__init__\", \"score\": 0.6462764739990234}, {\"doc_id\": \"sklearn/utils/estimator_checks.py::_yield_clustering_checks\", \"score\": 0.6436123847961426}, {\"doc_id\": \"sklearn/cluster/birch.py::Birch._global_clustering\", \"score\": 0.6433309316635132}]"
+}

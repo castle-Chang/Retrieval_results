@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-15678",
+  "query": "Some issues with idiff\nidiff doesn't support Eq, and it also doesn't support f(x) instead of y. Both should be easy to correct.\r\n\r\n```\r\n>>> idiff(Eq(y*exp(y), x*exp(x)), y, x)\r\nTraceback (most recent call last):\r\n  File \"<stdin>\", line 1, in <module>\r\n  File \"./sympy/geometry/util.py\", line 582, in idiff\r\n    yp = solve(eq.diff(x), dydx)[0].subs(derivs)\r\nIndexError: list index out of range\r\n>>> idiff(f(x)*exp(f(x)) - x*exp(x), f(x), x)\r\nTraceback (most recent call last):\r\n  File \"<stdin>\", line 1, in <module>\r\n  File \"./sympy/geometry/util.py\", line 574, in idiff\r\n    raise ValueError(\"expecting x-dependent symbol(s) but got: %s\" % y)\r\nValueError: expecting x-dependent symbol(s) but got: f(x)\r\n>>> idiff(y*exp(y)- x*exp(x), y, x)\r\n(x + 1)*exp(x - y)/(y + 1)\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/geometry/util.py"
+    ],
+    "locations": [
+      "sympy/geometry/util.py::idiff"
+    ]
+  },
+  "predictions": [
+    "sympy/geometry/util.py::idiff",
+    "sympy/geometry/tests/test_util.py::test_idiff",
+    "sympy/core/tests/test_function.py::test_fdiff_argument_index_error",
+    "sympy/functions/special/error_functions.py::erf2inv.fdiff",
+    "sympy/functions/special/error_functions.py::erf2.fdiff",
+    "sympy/core/tests/test_function.py::test_diff_wrt_not_allowed",
+    "sympy/functions/special/error_functions.py::Ei.fdiff",
+    "sympy/core/function.py::Function.fdiff",
+    "sympy/functions/special/error_functions.py::expint.fdiff",
+    "sympy/core/tests/test_diff.py::test_diff_no_eval_derivative"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "31c68eef3ffef39e2e792b0ec92cd92b7010eb2a",
+    "total_functions_indexed": 24378,
+    "retrieval_time_seconds": 0.007454633712768555
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/geometry/util.py::idiff\", \"score\": 0.8376681208610535}, {\"doc_id\": \"sympy/geometry/tests/test_util.py::test_idiff\", \"score\": 0.79412442445755}, {\"doc_id\": \"sympy/core/tests/test_function.py::test_fdiff_argument_index_error\", \"score\": 0.7508513927459717}, {\"doc_id\": \"sympy/functions/special/error_functions.py::erf2inv.fdiff\", \"score\": 0.7439827919006348}, {\"doc_id\": \"sympy/functions/special/error_functions.py::erf2.fdiff\", \"score\": 0.7381787896156311}, {\"doc_id\": \"sympy/core/tests/test_function.py::test_diff_wrt_not_allowed\", \"score\": 0.7368463277816772}, {\"doc_id\": \"sympy/functions/special/error_functions.py::Ei.fdiff\", \"score\": 0.7354562878608704}, {\"doc_id\": \"sympy/core/function.py::Function.fdiff\", \"score\": 0.7304271459579468}, {\"doc_id\": \"sympy/functions/special/error_functions.py::expint.fdiff\", \"score\": 0.7299913167953491}, {\"doc_id\": \"sympy/core/tests/test_diff.py::test_diff_no_eval_derivative\", \"score\": 0.7282760143280029}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-16910",
+  "query": "QuerySet.only() doesn't work with select_related() on a reverse OneToOneField relation.\nDescription\n\t\nOn Django 4.2 calling only() with select_related() on a query using the reverse lookup for a OneToOne relation does not generate the correct query.\nAll the fields from the related model are still included in the generated SQL.\nSample models:\nclass Main(models.Model):\n\tmain_field_1 = models.CharField(blank=True, max_length=45)\n\tmain_field_2 = models.CharField(blank=True, max_length=45)\n\tmain_field_3 = models.CharField(blank=True, max_length=45)\nclass Secondary(models.Model):\n\tmain = models.OneToOneField(Main, primary_key=True, related_name='secondary', on_delete=models.CASCADE)\n\tsecondary_field_1 = models.CharField(blank=True, max_length=45)\n\tsecondary_field_2 = models.CharField(blank=True, max_length=45)\n\tsecondary_field_3 = models.CharField(blank=True, max_length=45)\nSample code:\nMain.objects.select_related('secondary').only('main_field_1', 'secondary__secondary_field_1')\nGenerated query on Django 4.2.1:\nSELECT \"bugtest_main\".\"id\", \"bugtest_main\".\"main_field_1\", \"bugtest_secondary\".\"main_id\", \"bugtest_secondary\".\"secondary_field_1\", \"bugtest_secondary\".\"secondary_field_2\", \"bugtest_secondary\".\"secondary_field_3\" FROM \"bugtest_main\" LEFT OUTER JOIN \"bugtest_secondary\" ON (\"bugtest_main\".\"id\" = \"bugtest_secondary\".\"main_id\")\nGenerated query on Django 4.1.9:\nSELECT \"bugtest_main\".\"id\", \"bugtest_main\".\"main_field_1\", \"bugtest_secondary\".\"main_id\", \"bugtest_secondary\".\"secondary_field_1\" FROM \"bugtest_main\" LEFT OUTER JOIN \"bugtest_secondary\" ON (\"bugtest_main\".\"id\" = \"bugtest_secondary\".\"main_id\")\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/sql/query.py"
+    ],
+    "locations": [
+      "django/db/models/sql/query.py::Query",
+      "django/db/models/sql/query.py::Query._get_only_select_mask"
+    ]
+  },
+  "predictions": [
+    "django/db/models/query.py::QuerySet.select_related",
+    "tests/select_related_onetoone/tests.py::ReverseSelectRelatedTestCase.test_parent_only",
+    "django/db/models/sql/compiler.py::SQLCompiler.get_related_selections",
+    "tests/defer/tests.py::InvalidDeferTests.test_only_select_related_raises_invalid_query",
+    "tests/select_related/tests.py::SelectRelatedValidationTests.test_reverse_relational_field",
+    "tests/select_related_onetoone/tests.py::ReverseSelectRelatedTestCase.test_inheritance_deferred",
+    "django/db/models/fields/reverse_related.py::OneToOneRel.__init__",
+    "tests/select_related_onetoone/tests.py::ReverseSelectRelatedTestCase.test_inheritance_deferred2",
+    "django/db/models/fields/reverse_related.py::ForeignObjectRel.get_choices",
+    "tests/select_related_onetoone/tests.py::ReverseSelectRelatedTestCase.test_self_relation"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "4142739af1cda53581af4169dbe16d6cd5e26948",
+    "total_functions_indexed": 26678,
+    "retrieval_time_seconds": 0.1853041648864746
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/query.py::QuerySet.select_related\", \"score\": 0.8126497268676758}, {\"doc_id\": \"tests/select_related_onetoone/tests.py::ReverseSelectRelatedTestCase.test_parent_only\", \"score\": 0.7881087064743042}, {\"doc_id\": \"django/db/models/sql/compiler.py::SQLCompiler.get_related_selections\", \"score\": 0.7841203212738037}, {\"doc_id\": \"tests/defer/tests.py::InvalidDeferTests.test_only_select_related_raises_invalid_query\", \"score\": 0.781100869178772}, {\"doc_id\": \"tests/select_related/tests.py::SelectRelatedValidationTests.test_reverse_relational_field\", \"score\": 0.7800928354263306}, {\"doc_id\": \"tests/select_related_onetoone/tests.py::ReverseSelectRelatedTestCase.test_inheritance_deferred\", \"score\": 0.778921365737915}, {\"doc_id\": \"django/db/models/fields/reverse_related.py::OneToOneRel.__init__\", \"score\": 0.7787182331085205}, {\"doc_id\": \"tests/select_related_onetoone/tests.py::ReverseSelectRelatedTestCase.test_inheritance_deferred2\", \"score\": 0.7780138850212097}, {\"doc_id\": \"django/db/models/fields/reverse_related.py::ForeignObjectRel.get_choices\", \"score\": 0.776688277721405}, {\"doc_id\": \"tests/select_related_onetoone/tests.py::ReverseSelectRelatedTestCase.test_self_relation\", \"score\": 0.7724097371101379}]"
+}

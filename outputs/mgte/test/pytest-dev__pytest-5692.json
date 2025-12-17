@@ -1,0 +1,32 @@
+{
+  "instance_id": "pytest-dev__pytest-5692",
+  "query": "Hostname and timestamp properties in generated JUnit XML reports\nPytest enables generating JUnit XML reports of the tests.\r\n\r\nHowever, there are some properties missing, specifically `hostname` and `timestamp` from the `testsuite` XML element. Is there an option to include them?\r\n\r\nExample of a pytest XML report:\r\n```xml\r\n<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<testsuite errors=\"0\" failures=\"2\" name=\"check\" skipped=\"0\" tests=\"4\" time=\"0.049\">\r\n\t<testcase classname=\"test_sample.TestClass\" file=\"test_sample.py\" line=\"3\" name=\"test_addOne_normal\" time=\"0.001\"></testcase>\r\n\t<testcase classname=\"test_sample.TestClass\" file=\"test_sample.py\" line=\"6\" name=\"test_addOne_edge\" time=\"0.001\"></testcase>\r\n</testsuite>\r\n```\r\n\r\nExample of a junit XML report:\r\n```xml\r\n<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<testsuite name=\"location.GeoLocationTest\" tests=\"2\" skipped=\"0\" failures=\"0\" errors=\"0\" timestamp=\"2019-04-22T10:32:27\" hostname=\"Anass-MacBook-Pro.local\" time=\"0.048\">\r\n  <properties/>\r\n  <testcase name=\"testIoException()\" classname=\"location.GeoLocationTest\" time=\"0.044\"/>\r\n  <testcase name=\"testJsonDeserialization()\" classname=\"location.GeoLocationTest\" time=\"0.003\"/>\r\n  <system-out><![CDATA[]]></system-out>\r\n  <system-err><![CDATA[]]></system-err>\r\n</testsuite>\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "src/_pytest/junitxml.py"
+    ],
+    "locations": [
+      "src/_pytest/junitxml.py::LogXML",
+      "src/_pytest/junitxml.py::LogXML.pytest_sessionfinish"
+    ]
+  },
+  "predictions": [
+    "src/_pytest/junitxml.py::record_testsuite_property",
+    "testing/test_junitxml.py::test_url_property",
+    "src/_pytest/junitxml.py::LogXML.pytest_sessionstart",
+    "src/_pytest/junitxml.py::_NodeReporter.to_xml",
+    "testing/test_junitxml.py::TestPython.test_junit_duration_report",
+    "testing/test_junitxml.py::TestPython.test_classname_instance",
+    "testing/test_junitxml.py::test_root_testsuites_tag",
+    "testing/test_junitxml.py::TestPython.test_timing_function",
+    "testing/test_junitxml.py::test_record_testsuite_property",
+    "testing/test_junitxml.py::TestPython.test_setup_error"
+  ],
+  "metadata": {
+    "repo": "pytest-dev/pytest",
+    "commit": "29e336bd9bf87eaef8e2683196ee1975f1ad4088",
+    "total_functions_indexed": 3528,
+    "retrieval_time_seconds": 0.3731391429901123
+  },
+  "raw_output": "[{\"doc_id\": \"src/_pytest/junitxml.py::record_testsuite_property\", \"score\": 0.7756307721138}, {\"doc_id\": \"testing/test_junitxml.py::test_url_property\", \"score\": 0.757861852645874}, {\"doc_id\": \"src/_pytest/junitxml.py::LogXML.pytest_sessionstart\", \"score\": 0.7533366680145264}, {\"doc_id\": \"src/_pytest/junitxml.py::_NodeReporter.to_xml\", \"score\": 0.7525355219841003}, {\"doc_id\": \"testing/test_junitxml.py::TestPython.test_junit_duration_report\", \"score\": 0.7489480972290039}, {\"doc_id\": \"testing/test_junitxml.py::TestPython.test_classname_instance\", \"score\": 0.7389423847198486}, {\"doc_id\": \"testing/test_junitxml.py::test_root_testsuites_tag\", \"score\": 0.737363874912262}, {\"doc_id\": \"testing/test_junitxml.py::TestPython.test_timing_function\", \"score\": 0.7369270324707031}, {\"doc_id\": \"testing/test_junitxml.py::test_record_testsuite_property\", \"score\": 0.734852135181427}, {\"doc_id\": \"testing/test_junitxml.py::TestPython.test_setup_error\", \"score\": 0.7334463596343994}]"
+}

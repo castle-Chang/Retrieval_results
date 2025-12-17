@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-14999",
+  "query": "RenameModel with db_table should be a noop.\nDescription\n\t\nA RenameModel operation that already has db_table defined must be a noop.\nIn Postgres, it drops and recreates foreign key constraints. In sqlite it recreates the table (as expected for a table renaming).\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/operations/models.py"
+    ],
+    "locations": [
+      "django/db/migrations/operations/models.py::RenameModel",
+      "django/db/migrations/operations/models.py::RenameModel.database_forwards"
+    ]
+  },
+  "predictions": [
+    "django/db/backends/sqlite3/schema.py::DatabaseSchemaEditor._remake_table",
+    "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor.alter_db_table",
+    "django/db/backends/sqlite3/schema.py::DatabaseSchemaEditor.alter_db_table",
+    "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._rename_field_sql",
+    "django/db/backends/mysql/schema.py::DatabaseSchemaEditor.sql_rename_column",
+    "django/db/migrations/operations/models.py::RenameModel.database_forwards",
+    "django/db/backends/mysql/schema.py::DatabaseSchemaEditor._rename_field_sql",
+    "django/db/migrations/operations/models.py::RenameModel.database_backwards",
+    "django/db/backends/ddl_references.py::ForeignKeyName.rename_table_references",
+    "django/db/migrations/operations/models.py::RenameModel.__init__"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "a754b82dac511475b6276039471ccd17cc64aeb8",
+    "total_functions_indexed": 25228,
+    "retrieval_time_seconds": 0.2762763500213623
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/backends/sqlite3/schema.py::DatabaseSchemaEditor._remake_table\", \"score\": 0.8007791042327881}, {\"doc_id\": \"django/db/backends/base/schema.py::BaseDatabaseSchemaEditor.alter_db_table\", \"score\": 0.7968747019767761}, {\"doc_id\": \"django/db/backends/sqlite3/schema.py::DatabaseSchemaEditor.alter_db_table\", \"score\": 0.7837837934494019}, {\"doc_id\": \"django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._rename_field_sql\", \"score\": 0.7662450075149536}, {\"doc_id\": \"django/db/backends/mysql/schema.py::DatabaseSchemaEditor.sql_rename_column\", \"score\": 0.754461944103241}, {\"doc_id\": \"django/db/migrations/operations/models.py::RenameModel.database_forwards\", \"score\": 0.7542797327041626}, {\"doc_id\": \"django/db/backends/mysql/schema.py::DatabaseSchemaEditor._rename_field_sql\", \"score\": 0.7525349855422974}, {\"doc_id\": \"django/db/migrations/operations/models.py::RenameModel.database_backwards\", \"score\": 0.7523037195205688}, {\"doc_id\": \"django/db/backends/ddl_references.py::ForeignKeyName.rename_table_references\", \"score\": 0.7494195699691772}, {\"doc_id\": \"django/db/migrations/operations/models.py::RenameModel.__init__\", \"score\": 0.7490019798278809}]"
+}

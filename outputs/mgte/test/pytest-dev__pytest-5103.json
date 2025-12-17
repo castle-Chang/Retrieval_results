@@ -1,0 +1,35 @@
+{
+  "instance_id": "pytest-dev__pytest-5103",
+  "query": "Unroll the iterable for all/any calls to get better reports\nSometime I need to assert some predicate on all of an iterable, and for that the builtin functions `all`/`any` are great - but the failure messages aren't useful at all!\r\nFor example - the same test written in three ways:\r\n\r\n- A generator expression\r\n```sh                                                                                                                                                                                                                         \r\n    def test_all_even():\r\n        even_stevens = list(range(1,100,2))\r\n>       assert all(is_even(number) for number in even_stevens)\r\nE       assert False\r\nE        +  where False = all(<generator object test_all_even.<locals>.<genexpr> at 0x101f82ed0>)\r\n```\r\n- A list comprehension\r\n```sh\r\n    def test_all_even():\r\n        even_stevens = list(range(1,100,2))\r\n>       assert all([is_even(number) for number in even_stevens])\r\nE       assert False\r\nE        +  where False = all([False, False, False, False, False, False, ...])\r\n```\r\n- A for loop\r\n```sh\r\n    def test_all_even():\r\n        even_stevens = list(range(1,100,2))\r\n        for number in even_stevens:\r\n>           assert is_even(number)\r\nE           assert False\r\nE            +  where False = is_even(1)\r\n\r\ntest_all_any.py:7: AssertionError\r\n```\r\nThe only one that gives a meaningful report is the for loop - but it's way more wordy, and `all` asserts don't translate to a for loop nicely (I'll have to write a `break` or a helper function - yuck)\r\nI propose the assertion re-writer \"unrolls\" the iterator to the third form, and then uses the already existing reports.\r\n\r\n- [x] Include a detailed description of the bug or suggestion\r\n- [x] `pip list` of the virtual environment you are using\r\n```\r\nPackage        Version\r\n-------------- -------\r\natomicwrites   1.3.0  \r\nattrs          19.1.0 \r\nmore-itertools 7.0.0  \r\npip            19.0.3 \r\npluggy         0.9.0  \r\npy             1.8.0  \r\npytest         4.4.0  \r\nsetuptools     40.8.0 \r\nsix            1.12.0 \r\n```\r\n- [x] pytest and operating system versions\r\n`platform darwin -- Python 3.7.3, pytest-4.4.0, py-1.8.0, pluggy-0.9.0`\r\n- [x] Minimal example if possible\r\n\n",
+  "ground_truth": {
+    "files": [
+      "src/_pytest/assertion/rewrite.py"
+    ],
+    "locations": [
+      "src/_pytest/assertion/rewrite.py::AssertionRewriter",
+      "src/_pytest/assertion/rewrite.py::AssertionRewriter.visit_BinOp",
+      "src/_pytest/assertion/rewrite.py::AssertionRewriter.visit_Call_35",
+      "src/_pytest/assertion/rewrite.py::AssertionRewriter.visit_Starred",
+      "src/_pytest/assertion/rewrite.py::AssertionRewriter.visit_Call_legacy"
+    ]
+  },
+  "predictions": [
+    "src/_pytest/assertion/rewrite.py::AssertionRewriter.visit_Assert",
+    "src/_pytest/assertion/util.py::_compare_eq_iterable",
+    "testing/test_assertrewrite.py::test_rewrite_infinite_recursion",
+    "testing/test_assertion.py::TestAssert_reprcompare.test_iterable_full_diff",
+    "src/_pytest/assertion/rewrite.py::_call_reprcompare",
+    "testing/test_assertrewrite.py::TestAssertionRewriteHookDetails.test_write_pyc",
+    "src/_pytest/assertion/rewrite.py::AssertionRewriter.run",
+    "src/_pytest/assertion/util.py::isiterable",
+    "testing/test_assertrewrite.py::TestEarlyRewriteBailout.test_basic",
+    "src/_pytest/assertion/__init__.py::pytest_runtest_setup"
+  ],
+  "metadata": {
+    "repo": "pytest-dev/pytest",
+    "commit": "10ca84ffc56c2dd2d9dc4bd71b7b898e083500cd",
+    "total_functions_indexed": 3478,
+    "retrieval_time_seconds": 0.12522101402282715
+  },
+  "raw_output": "[{\"doc_id\": \"src/_pytest/assertion/rewrite.py::AssertionRewriter.visit_Assert\", \"score\": 0.7280672192573547}, {\"doc_id\": \"src/_pytest/assertion/util.py::_compare_eq_iterable\", \"score\": 0.7181750535964966}, {\"doc_id\": \"testing/test_assertrewrite.py::test_rewrite_infinite_recursion\", \"score\": 0.7171220779418945}, {\"doc_id\": \"testing/test_assertion.py::TestAssert_reprcompare.test_iterable_full_diff\", \"score\": 0.6981631517410278}, {\"doc_id\": \"src/_pytest/assertion/rewrite.py::_call_reprcompare\", \"score\": 0.696175754070282}, {\"doc_id\": \"testing/test_assertrewrite.py::TestAssertionRewriteHookDetails.test_write_pyc\", \"score\": 0.6921801567077637}, {\"doc_id\": \"src/_pytest/assertion/rewrite.py::AssertionRewriter.run\", \"score\": 0.6835556030273438}, {\"doc_id\": \"src/_pytest/assertion/util.py::isiterable\", \"score\": 0.6768460869789124}, {\"doc_id\": \"testing/test_assertrewrite.py::TestEarlyRewriteBailout.test_basic\", \"score\": 0.6755622625350952}, {\"doc_id\": \"src/_pytest/assertion/__init__.py::pytest_runtest_setup\", \"score\": 0.6751818060874939}]"
+}

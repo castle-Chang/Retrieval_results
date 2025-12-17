@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12184",
+  "query": "Optional URL params crash some view functions.\nDescription\n\t\nMy use case, running fine with Django until 2.2:\nURLConf:\nurlpatterns += [\n\t...\n\tre_path(r'^module/(?P<format>(html|json|xml))?/?$', views.modules, name='modules'),\n]\nView:\ndef modules(request, format='html'):\n\t...\n\treturn render(...)\nWith Django 3.0, this is now producing an error:\nTraceback (most recent call last):\n File \"/l10n/venv/lib/python3.6/site-packages/django/core/handlers/exception.py\", line 34, in inner\n\tresponse = get_response(request)\n File \"/l10n/venv/lib/python3.6/site-packages/django/core/handlers/base.py\", line 115, in _get_response\n\tresponse = self.process_exception_by_middleware(e, request)\n File \"/l10n/venv/lib/python3.6/site-packages/django/core/handlers/base.py\", line 113, in _get_response\n\tresponse = wrapped_callback(request, *callback_args, **callback_kwargs)\nException Type: TypeError at /module/\nException Value: modules() takes from 1 to 2 positional arguments but 3 were given\n",
+  "ground_truth": {
+    "files": [
+      "django/urls/resolvers.py"
+    ],
+    "locations": [
+      "django/urls/resolvers.py::RegexPattern",
+      "django/urls/resolvers.py::RegexPattern.match"
+    ]
+  },
+  "predictions": [
+    "django/urls/conf.py::_path",
+    "django/urls/resolvers.py::URLResolver._check_custom_error_handlers",
+    "django/contrib/admindocs/views.py::extract_views_from_urlpatterns",
+    "tests/middleware_exceptions/views.py::server_error",
+    "django/urls/resolvers.py::URLPattern.__init__",
+    "tests/middleware_exceptions/tests.py::RootUrlconfTests.test_missing_root_urlconf",
+    "django/contrib/admindocs/views.py::ViewDetailView._get_view_func",
+    "tests/urlpatterns_reverse/views.py::erroneous_view",
+    "django/urls/resolvers.py::URLResolver.resolve_error_handler",
+    "tests/urlpatterns_reverse/tests.py::ViewLoadingTests.test_parent_module_does_not_exist"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "5d674eac871a306405b0fbbaeb17bbeba9c68bf3",
+    "total_functions_indexed": 23071,
+    "retrieval_time_seconds": 0.007487297058105469
+  },
+  "raw_output": "[{\"doc_id\": \"django/urls/conf.py::_path\", \"score\": 0.7055854797363281}, {\"doc_id\": \"django/urls/resolvers.py::URLResolver._check_custom_error_handlers\", \"score\": 0.6918596029281616}, {\"doc_id\": \"django/contrib/admindocs/views.py::extract_views_from_urlpatterns\", \"score\": 0.6888078451156616}, {\"doc_id\": \"tests/middleware_exceptions/views.py::server_error\", \"score\": 0.6882549524307251}, {\"doc_id\": \"django/urls/resolvers.py::URLPattern.__init__\", \"score\": 0.6856764554977417}, {\"doc_id\": \"tests/middleware_exceptions/tests.py::RootUrlconfTests.test_missing_root_urlconf\", \"score\": 0.6836841702461243}, {\"doc_id\": \"django/contrib/admindocs/views.py::ViewDetailView._get_view_func\", \"score\": 0.6823527812957764}, {\"doc_id\": \"tests/urlpatterns_reverse/views.py::erroneous_view\", \"score\": 0.6820688843727112}, {\"doc_id\": \"django/urls/resolvers.py::URLResolver.resolve_error_handler\", \"score\": 0.6804457306861877}, {\"doc_id\": \"tests/urlpatterns_reverse/tests.py::ViewLoadingTests.test_parent_module_does_not_exist\", \"score\": 0.6789988279342651}]"
+}

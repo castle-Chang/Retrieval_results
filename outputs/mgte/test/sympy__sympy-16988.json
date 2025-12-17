@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-16988",
+  "query": "Intersection should remove duplicates\n```python\r\n>>> Intersection({1},{1},{x})\r\nEmptySet()\r\n>>> Intersection({1},{x})\r\n{1}\r\n```\r\nThe answer should be `Piecewise(({1}, Eq(x, 1)), (S.EmptySet, True))` or remain unevaluated.\r\n\r\nThe routine should give the same answer if duplicates are present; my initial guess is that duplicates should just be removed at the outset of instantiation. Ordering them will produce canonical processing.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/sets/sets.py"
+    ],
+    "locations": [
+      "sympy/sets/sets.py::Intersection",
+      "sympy/sets/sets.py::Intersection.__new__"
+    ]
+  },
+  "predictions": [
+    "sympy/sets/handlers/intersection.py::intersection_sets",
+    "sympy/sets/handlers/intersection.py::intersection_sets",
+    "sympy/sets/handlers/intersection.py::intersection_sets",
+    "sympy/sets/sets.py::Intersection.__new__",
+    "sympy/sets/handlers/intersection.py::intersection_sets",
+    "sympy/logic/boolalg.py::And._eval_as_set",
+    "sympy/sets/handlers/intersection.py::intersection_sets",
+    "sympy/sets/handlers/intersection.py::intersection_sets",
+    "sympy/sets/sets.py::simplify_intersection",
+    "sympy/functions/elementary/tests/test_piecewise.py::test_piecewise_duplicate"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "e727339af6dc22321b00f52d971cda39e4ce89fb",
+    "total_functions_indexed": 25216,
+    "retrieval_time_seconds": 0.0075070858001708984
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/sets/handlers/intersection.py::intersection_sets\", \"score\": 0.7191834449768066}, {\"doc_id\": \"sympy/sets/handlers/intersection.py::intersection_sets\", \"score\": 0.7145476341247559}, {\"doc_id\": \"sympy/sets/handlers/intersection.py::intersection_sets\", \"score\": 0.70756596326828}, {\"doc_id\": \"sympy/sets/sets.py::Intersection.__new__\", \"score\": 0.7047609090805054}, {\"doc_id\": \"sympy/sets/handlers/intersection.py::intersection_sets\", \"score\": 0.7024538516998291}, {\"doc_id\": \"sympy/logic/boolalg.py::And._eval_as_set\", \"score\": 0.7013082504272461}, {\"doc_id\": \"sympy/sets/handlers/intersection.py::intersection_sets\", \"score\": 0.694410502910614}, {\"doc_id\": \"sympy/sets/handlers/intersection.py::intersection_sets\", \"score\": 0.6922814846038818}, {\"doc_id\": \"sympy/sets/sets.py::simplify_intersection\", \"score\": 0.6877728700637817}, {\"doc_id\": \"sympy/functions/elementary/tests/test_piecewise.py::test_piecewise_duplicate\", \"score\": 0.6858069896697998}]"
+}

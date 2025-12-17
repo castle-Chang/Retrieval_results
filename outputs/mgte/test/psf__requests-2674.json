@@ -1,0 +1,32 @@
+{
+  "instance_id": "psf__requests-2674",
+  "query": "urllib3 exceptions passing through requests API\nI don't know if it's a design goal of requests to hide urllib3's exceptions and wrap them around requests.exceptions types.\n\n(If it's not IMHO it should be, but that's another discussion)\n\nIf it is, I have at least two of them passing through that I have to catch in addition to requests' exceptions. They are requests.packages.urllib3.exceptions.DecodeError and requests.packages.urllib3.exceptions.TimeoutError (this one I get when a proxy timeouts)\n\nThanks!\n\n",
+  "ground_truth": {
+    "files": [
+      "requests/adapters.py"
+    ],
+    "locations": [
+      "requests/adapters.py::HTTPAdapter",
+      "requests/adapters.py::HTTPAdapter.send"
+    ]
+  },
+  "predictions": [
+    "requests/packages/urllib3/exceptions.py::RequestError.__reduce__",
+    "requests/packages/urllib3/connectionpool.py::HTTPConnectionPool._raise_timeout",
+    "requests/packages/urllib3/exceptions.py::HostChangedError.__init__",
+    "requests/packages/urllib3/exceptions.py::RequestError.__init__",
+    "requests/packages/urllib3/exceptions.py::MaxRetryError.__init__",
+    "requests/packages/urllib3/exceptions.py::PoolError.__reduce__",
+    "requests/packages/urllib3/exceptions.py::PoolError.__init__",
+    "requests/packages/urllib3/util/timeout.py::Timeout._validate_timeout",
+    "requests/packages/urllib3/util/retry.py::Retry._is_connection_error",
+    "test_requests.py::TestTimeout.test_encoded_methods"
+  ],
+  "metadata": {
+    "repo": "psf/requests",
+    "commit": "0be38a0c37c59c4b66ce908731da15b401655113",
+    "total_functions_indexed": 700,
+    "retrieval_time_seconds": 0.00039577484130859375
+  },
+  "raw_output": "[{\"doc_id\": \"requests/packages/urllib3/exceptions.py::RequestError.__reduce__\", \"score\": 0.7284594178199768}, {\"doc_id\": \"requests/packages/urllib3/connectionpool.py::HTTPConnectionPool._raise_timeout\", \"score\": 0.6810712814331055}, {\"doc_id\": \"requests/packages/urllib3/exceptions.py::HostChangedError.__init__\", \"score\": 0.6642120480537415}, {\"doc_id\": \"requests/packages/urllib3/exceptions.py::RequestError.__init__\", \"score\": 0.6642107963562012}, {\"doc_id\": \"requests/packages/urllib3/exceptions.py::MaxRetryError.__init__\", \"score\": 0.6638411283493042}, {\"doc_id\": \"requests/packages/urllib3/exceptions.py::PoolError.__reduce__\", \"score\": 0.6626684665679932}, {\"doc_id\": \"requests/packages/urllib3/exceptions.py::PoolError.__init__\", \"score\": 0.651413083076477}, {\"doc_id\": \"requests/packages/urllib3/util/timeout.py::Timeout._validate_timeout\", \"score\": 0.6458899974822998}, {\"doc_id\": \"requests/packages/urllib3/util/retry.py::Retry._is_connection_error\", \"score\": 0.6417151093482971}, {\"doc_id\": \"test_requests.py::TestTimeout.test_encoded_methods\", \"score\": 0.6409074068069458}]"
+}

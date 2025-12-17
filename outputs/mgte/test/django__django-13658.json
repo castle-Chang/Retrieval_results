@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-13658",
+  "query": "ManagementUtility instantiates CommandParser without passing already-computed prog argument\nDescription\n\t\nManagementUtility ​goes to the trouble to parse the program name from the argv it's passed rather than from sys.argv: \n\tdef __init__(self, argv=None):\n\t\tself.argv = argv or sys.argv[:]\n\t\tself.prog_name = os.path.basename(self.argv[0])\n\t\tif self.prog_name == '__main__.py':\n\t\t\tself.prog_name = 'python -m django'\nBut then when it needs to parse --pythonpath and --settings, it ​uses the program name from sys.argv: \n\t\tparser = CommandParser(usage='%(prog)s subcommand [options] [args]', add_help=False, allow_abbrev=False)\nAbove \"%(prog)s\" ​refers to sys.argv[0]. Instead, it should refer to self.prog_name. This can fixed as follows:\n\t\tparser = CommandParser(\n\t\t\tprog=self.prog_name,\n\t\t\tusage='%(prog)s subcommand [options] [args]',\n\t\t\tadd_help=False,\n\t\t\tallow_abbrev=False)\nI'm aware that execute_from_command_line is a private API, but it'd be really convenient for me if it worked properly in my weird embedded environment where sys.argv[0] is ​incorrectly None. If passing my own argv to execute_from_command_line avoided all the ensuing exceptions, I wouldn't have to modify sys.argv[0] globally as I'm doing in the meantime.\n",
+  "ground_truth": {
+    "files": [
+      "django/core/management/__init__.py"
+    ],
+    "locations": [
+      "django/core/management/__init__.py::ManagementUtility",
+      "django/core/management/__init__.py::ManagementUtility.execute"
+    ]
+  },
+  "predictions": [
+    "django/core/management/base.py::BaseCommand.create_parser",
+    "django/core/management/__init__.py::ManagementUtility.execute",
+    "django/core/management/base.py::CommandParser.__init__",
+    "django/core/management/__init__.py::ManagementUtility.__init__",
+    "django/core/management/__init__.py::execute_from_command_line",
+    "django/core/management/base.py::BaseCommand.run_from_argv",
+    "django/core/management/base.py::CommandParser.parse_args",
+    "django/core/management/utils.py::get_command_line_option",
+    "django/core/management/__init__.py::call_command",
+    "django/core/management/commands/test.py::Command.run_from_argv"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "0773837e15bb632afffb6848a58c59a791008fa1",
+    "total_functions_indexed": 24119,
+    "retrieval_time_seconds": 0.005448341369628906
+  },
+  "raw_output": "[{\"doc_id\": \"django/core/management/base.py::BaseCommand.create_parser\", \"score\": 0.7744545936584473}, {\"doc_id\": \"django/core/management/__init__.py::ManagementUtility.execute\", \"score\": 0.7494158744812012}, {\"doc_id\": \"django/core/management/base.py::CommandParser.__init__\", \"score\": 0.7482953071594238}, {\"doc_id\": \"django/core/management/__init__.py::ManagementUtility.__init__\", \"score\": 0.7389321327209473}, {\"doc_id\": \"django/core/management/__init__.py::execute_from_command_line\", \"score\": 0.7228013277053833}, {\"doc_id\": \"django/core/management/base.py::BaseCommand.run_from_argv\", \"score\": 0.7227423191070557}, {\"doc_id\": \"django/core/management/base.py::CommandParser.parse_args\", \"score\": 0.7041263580322266}, {\"doc_id\": \"django/core/management/utils.py::get_command_line_option\", \"score\": 0.6869632005691528}, {\"doc_id\": \"django/core/management/__init__.py::call_command\", \"score\": 0.6846649646759033}, {\"doc_id\": \"django/core/management/commands/test.py::Command.run_from_argv\", \"score\": 0.6833091974258423}]"
+}

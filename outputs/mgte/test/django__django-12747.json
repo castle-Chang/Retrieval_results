@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12747",
+  "query": "QuerySet.Delete - inconsistent result when zero objects deleted\nDescription\n\t\nThe result format of the QuerySet.Delete method is a tuple: (X, Y) \nX - is the total amount of deleted objects (including foreign key deleted objects)\nY - is a dictionary specifying counters of deleted objects for each specific model (the key is the _meta.label of the model and the value is counter of deleted objects of this model).\nExample: <class 'tuple'>: (2, {'my_app.FileAccess': 1, 'my_app.File': 1})\nWhen there are zero objects to delete in total - the result is inconsistent:\nFor models with foreign keys - the result will be: <class 'tuple'>: (0, {})\nFor \"simple\" models without foreign key - the result will be: <class 'tuple'>: (0, {'my_app.BlockLibrary': 0})\nI would expect there will be no difference between the two cases: Either both will have the empty dictionary OR both will have dictionary with model-label keys and zero value.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/deletion.py"
+    ],
+    "locations": [
+      "django/db/models/deletion.py::Collector",
+      "django/db/models/deletion.py::Collector.delete"
+    ]
+  },
+  "predictions": [
+    "django/db/models/query.py::QuerySet._raw_delete",
+    "django/db/models/query.py::QuerySet.delete",
+    "tests/delete/tests.py::DeletionTests.test_queryset_delete_returns_num_rows",
+    "django/db/models/deletion.py::Collector.delete",
+    "django/db/models/sql/subqueries.py::DeleteQuery.delete_batch",
+    "tests/delete/tests.py::OnDeleteTests.test_do_nothing_qscount",
+    "django/db/models/sql/subqueries.py::DeleteQuery.do_query",
+    "django/db/models/deletion.py::Collector.clear_restricted_objects_from_queryset",
+    "django/db/models/query.py::QuerySet.difference",
+    "tests/delete/tests.py::DeletionTests.test_model_delete_returns_num_rows"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "c86201b6ed4f8256b0a0520c08aa674f623d4127",
+    "total_functions_indexed": 23411,
+    "retrieval_time_seconds": 0.09324455261230469
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/query.py::QuerySet._raw_delete\", \"score\": 0.7860823273658752}, {\"doc_id\": \"django/db/models/query.py::QuerySet.delete\", \"score\": 0.7802778482437134}, {\"doc_id\": \"tests/delete/tests.py::DeletionTests.test_queryset_delete_returns_num_rows\", \"score\": 0.7647983431816101}, {\"doc_id\": \"django/db/models/deletion.py::Collector.delete\", \"score\": 0.7455347776412964}, {\"doc_id\": \"django/db/models/sql/subqueries.py::DeleteQuery.delete_batch\", \"score\": 0.7442485094070435}, {\"doc_id\": \"tests/delete/tests.py::OnDeleteTests.test_do_nothing_qscount\", \"score\": 0.7421926259994507}, {\"doc_id\": \"django/db/models/sql/subqueries.py::DeleteQuery.do_query\", \"score\": 0.7277220487594604}, {\"doc_id\": \"django/db/models/deletion.py::Collector.clear_restricted_objects_from_queryset\", \"score\": 0.7240839004516602}, {\"doc_id\": \"django/db/models/query.py::QuerySet.difference\", \"score\": 0.7190477252006531}, {\"doc_id\": \"tests/delete/tests.py::DeletionTests.test_model_delete_returns_num_rows\", \"score\": 0.7158815264701843}]"
+}

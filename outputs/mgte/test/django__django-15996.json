@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-15996",
+  "query": "Support for serialization of combination of Enum flags.\nDescription\n\t \n\t\t(last modified by Willem Van Onsem)\n\t \nIf we work with a field:\nregex_flags = models.IntegerField(default=re.UNICODE | re.IGNORECASE)\nThis is turned into a migration with:\ndefault=re.RegexFlag[None]\nThis is due to the fact that the EnumSerializer aims to work with the .name of the item, but if there is no single item for the given value, then there is no such name.\nIn that case, we can use enum._decompose to obtain a list of names, and create an expression to create the enum value by \"ORing\" the items together.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/serializer.py"
+    ],
+    "locations": [
+      "django/db/migrations/serializer.py::BaseSerializer",
+      "django/db/migrations/serializer.py::EnumSerializer",
+      "django/db/migrations/serializer.py::EnumSerializer.serialize"
+    ]
+  },
+  "predictions": [
+    "tests/migrations/test_writer.py::WriterTests.test_serialize_enum_flags",
+    "django/db/migrations/serializer.py::EnumSerializer.serialize",
+    "django/db/migrations/serializer.py::RegexSerializer.serialize",
+    "tests/migrations/test_writer.py::WriterTests.test_serialize_enums",
+    "django/db/migrations/serializer.py::serializer_factory",
+    "django/db/migrations/serializer.py::OperationSerializer.serialize",
+    "django/db/migrations/serializer.py::IterableSerializer.serialize",
+    "tests/postgres_tests/fields.py::EnumField.get_prep_value",
+    "tests/model_fields/test_integerfield.py::ValidationTests.test_enum_choices_cleans_valid_string",
+    "django/db/migrations/serializer.py::BaseSequenceSerializer.serialize"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "b30c0081d4d8a31ab7dc7f72a4c7099af606ef29",
+    "total_functions_indexed": 26129,
+    "retrieval_time_seconds": 0.09500360488891602
+  },
+  "raw_output": "[{\"doc_id\": \"tests/migrations/test_writer.py::WriterTests.test_serialize_enum_flags\", \"score\": 0.7674459218978882}, {\"doc_id\": \"django/db/migrations/serializer.py::EnumSerializer.serialize\", \"score\": 0.7213817834854126}, {\"doc_id\": \"django/db/migrations/serializer.py::RegexSerializer.serialize\", \"score\": 0.7020297646522522}, {\"doc_id\": \"tests/migrations/test_writer.py::WriterTests.test_serialize_enums\", \"score\": 0.6893709301948547}, {\"doc_id\": \"django/db/migrations/serializer.py::serializer_factory\", \"score\": 0.6834664344787598}, {\"doc_id\": \"django/db/migrations/serializer.py::OperationSerializer.serialize\", \"score\": 0.6703842282295227}, {\"doc_id\": \"django/db/migrations/serializer.py::IterableSerializer.serialize\", \"score\": 0.655755877494812}, {\"doc_id\": \"tests/postgres_tests/fields.py::EnumField.get_prep_value\", \"score\": 0.655353307723999}, {\"doc_id\": \"tests/model_fields/test_integerfield.py::ValidationTests.test_enum_choices_cleans_valid_string\", \"score\": 0.6532258987426758}, {\"doc_id\": \"django/db/migrations/serializer.py::BaseSequenceSerializer.serialize\", \"score\": 0.6520835757255554}]"
+}

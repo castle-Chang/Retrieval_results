@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-16046",
+  "query": "Fix numberformat.py \"string index out of range\" when null\nDescription\n\t\nWhen:\nif str_number[0] == \"-\"\nencounters a number field that's null when formatting for the admin list_display this causes an \nIndexError: string index out of range\nI can attach the proposed fix here, or open a pull request on GitHub if you like?\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/numberformat.py"
+    ],
+    "locations": [
+      "django/utils/numberformat.py::format"
+    ]
+  },
+  "predictions": [
+    "django/utils/formats.py::number_format",
+    "tests/admin_utils/tests.py::UtilsTests.test_number_formats_display_for_field",
+    "django/utils/numberformat.py::format",
+    "tests/admin_utils/tests.py::UtilsTests.test_number_formats_with_thousand_separator_display_for_field",
+    "django/template/defaultfilters.py::linenumbers",
+    "tests/template_tests/syntax_tests/test_list_index.py::ListIndexTests.test_list_index03",
+    "tests/template_tests/syntax_tests/test_list_index.py::ListIndexTests.test_list_index02",
+    "tests/postgres_tests/test_ranges.py::TestFormField.test_integer_invalid_lower",
+    "django/template/defaultfilters.py::get_digit",
+    "django/template/defaultfilters.py::floatformat"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "ec13e801b820614ff374cb0046092caab8d67249",
+    "total_functions_indexed": 26158,
+    "retrieval_time_seconds": 0.015043497085571289
+  },
+  "raw_output": "[{\"doc_id\": \"django/utils/formats.py::number_format\", \"score\": 0.700031042098999}, {\"doc_id\": \"tests/admin_utils/tests.py::UtilsTests.test_number_formats_display_for_field\", \"score\": 0.695478618144989}, {\"doc_id\": \"django/utils/numberformat.py::format\", \"score\": 0.6833264827728271}, {\"doc_id\": \"tests/admin_utils/tests.py::UtilsTests.test_number_formats_with_thousand_separator_display_for_field\", \"score\": 0.6768079996109009}, {\"doc_id\": \"django/template/defaultfilters.py::linenumbers\", \"score\": 0.675999641418457}, {\"doc_id\": \"tests/template_tests/syntax_tests/test_list_index.py::ListIndexTests.test_list_index03\", \"score\": 0.6701172590255737}, {\"doc_id\": \"tests/template_tests/syntax_tests/test_list_index.py::ListIndexTests.test_list_index02\", \"score\": 0.6695421934127808}, {\"doc_id\": \"tests/postgres_tests/test_ranges.py::TestFormField.test_integer_invalid_lower\", \"score\": 0.6666553616523743}, {\"doc_id\": \"django/template/defaultfilters.py::get_digit\", \"score\": 0.6663922071456909}, {\"doc_id\": \"django/template/defaultfilters.py::floatformat\", \"score\": 0.6663239002227783}]"
+}

@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-15789",
+  "query": "Add an encoder parameter to django.utils.html.json_script().\nDescription\n\t\nI have a use case where I want to customize the JSON encoding of some values to output to the template layer. It looks like django.utils.html.json_script is a good utility for that, however the JSON encoder is hardcoded to DjangoJSONEncoder. I think it would be nice to be able to pass a custom encoder class.\nBy the way, django.utils.html.json_script is not documented (only its template filter counterpart is), would it be a good thing to add to the docs?\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/html.py"
+    ],
+    "locations": [
+      "django/utils/html.py::json_script"
+    ]
+  },
+  "predictions": [
+    "django/template/defaultfilters.py::json_script",
+    "django/utils/html.py::json_script",
+    "django/conf/__init__.py::LazySettings._add_script_prefix",
+    "tests/utils_tests/test_html.py::TestUtilsHtml.test_json_script_without_id",
+    "tests/utils_tests/test_html.py::TestUtilsHtml.test_json_script",
+    "django/core/serializers/json.py::Serializer._init_options",
+    "django/db/models/fields/json.py::JSONField.__init__",
+    "tests/serializers/test_json.py::JsonSerializerTestCase.test_custom_encoder",
+    "tests/serializers/test_jsonl.py::JsonlSerializerTestCase.test_custom_encoder",
+    "tests/template_tests/filter_tests/test_json_script.py::JsonScriptTests.test_basic"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "d4d5427571b4bf3a21c902276c2a00215c2a37cc",
+    "total_functions_indexed": 26051,
+    "retrieval_time_seconds": 0.10744094848632812
+  },
+  "raw_output": "[{\"doc_id\": \"django/template/defaultfilters.py::json_script\", \"score\": 0.7324326038360596}, {\"doc_id\": \"django/utils/html.py::json_script\", \"score\": 0.7203670740127563}, {\"doc_id\": \"django/conf/__init__.py::LazySettings._add_script_prefix\", \"score\": 0.670153796672821}, {\"doc_id\": \"tests/utils_tests/test_html.py::TestUtilsHtml.test_json_script_without_id\", \"score\": 0.6634480953216553}, {\"doc_id\": \"tests/utils_tests/test_html.py::TestUtilsHtml.test_json_script\", \"score\": 0.6547176837921143}, {\"doc_id\": \"django/core/serializers/json.py::Serializer._init_options\", \"score\": 0.6537383794784546}, {\"doc_id\": \"django/db/models/fields/json.py::JSONField.__init__\", \"score\": 0.6508227586746216}, {\"doc_id\": \"tests/serializers/test_json.py::JsonSerializerTestCase.test_custom_encoder\", \"score\": 0.648291826248169}, {\"doc_id\": \"tests/serializers/test_jsonl.py::JsonlSerializerTestCase.test_custom_encoder\", \"score\": 0.6432815790176392}, {\"doc_id\": \"tests/template_tests/filter_tests/test_json_script.py::JsonScriptTests.test_basic\", \"score\": 0.6426131129264832}]"
+}

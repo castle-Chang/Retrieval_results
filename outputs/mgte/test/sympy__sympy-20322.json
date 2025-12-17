@@ -1,0 +1,34 @@
+{
+  "instance_id": "sympy__sympy-20322",
+  "query": "Inconsistent behavior for sympify/simplify with ceiling\nIn sympy v1.5.1:\r\n```python\r\nIn [16]: sympy.sympify('4*ceiling(x/4 - 3/4)', evaluate=False).simplify()\r\nOut[16]: 4*ceiling(x/4 - 3/4)\r\n\r\nIn [17]: sympy.sympify('4*ceiling(x/4 - 3/4)', evaluate=True).simplify()\r\nOut[17]: 4*ceiling(x/4 - 3/4)\r\n```\r\n\r\nIn sympy v.1.6.2:\r\n```python\r\nIn [16]: sympy.sympify('4*ceiling(x/4 - 3/4)', evaluate=False).simplify()\r\nOut[16]: 4*ceiling(x/4) - 3\r\n\r\nIn [17]: sympy.sympify('4*ceiling(x/4 - 3/4)', evaluate=True).simplify()\r\nOut [17]: 4*ceiling(x/4 - 3/4)\r\n```\r\n\r\nIs there a way to ensure that the behavior is consistent, even though evaluate is equal to `False` when parsing?\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/mul.py"
+    ],
+    "locations": [
+      "sympy/core/mul.py::Mul",
+      "sympy/core/mul.py::Mul._eval_is_zero",
+      "sympy/core/mul.py::Mul._eval_is_integer",
+      "sympy/core/mul.py::Mul._eval_is_polar"
+    ]
+  },
+  "predictions": [
+    "sympy/core/sympify.py::_sympify",
+    "sympy/logic/boolalg.py::And._eval_simplify",
+    "sympy/simplify/tests/test_simplify.py::test_issue_13474",
+    "sympy/simplify/simplify.py::nc_simplify",
+    "sympy/core/tests/test_sympify.py::test_sympify1",
+    "sympy/core/evalf.py::evalf_ceiling",
+    "sympy/simplify/tests/test_simplify.py::test_issue_4194",
+    "sympy/core/tests/test_sympify.py::test_evaluate_false",
+    "sympy/simplify/tests/test_simplify.py::test_simplify_expr",
+    "sympy/parsing/latex/_parse_latex_antlr.py::convert_ceil"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "ab864967e71c950a15771bb6c3723636026ba876",
+    "total_functions_indexed": 35363,
+    "retrieval_time_seconds": 0.008298635482788086
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/sympify.py::_sympify\", \"score\": 0.7232534289360046}, {\"doc_id\": \"sympy/logic/boolalg.py::And._eval_simplify\", \"score\": 0.7128878831863403}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_issue_13474\", \"score\": 0.7086079716682434}, {\"doc_id\": \"sympy/simplify/simplify.py::nc_simplify\", \"score\": 0.7079051733016968}, {\"doc_id\": \"sympy/core/tests/test_sympify.py::test_sympify1\", \"score\": 0.7072936296463013}, {\"doc_id\": \"sympy/core/evalf.py::evalf_ceiling\", \"score\": 0.706017255783081}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_issue_4194\", \"score\": 0.7057468891143799}, {\"doc_id\": \"sympy/core/tests/test_sympify.py::test_evaluate_false\", \"score\": 0.7035641074180603}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_simplify_expr\", \"score\": 0.7012946605682373}, {\"doc_id\": \"sympy/parsing/latex/_parse_latex_antlr.py::convert_ceil\", \"score\": 0.7009000778198242}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-10924",
+  "query": "Allow FilePathField path to accept a callable.\nDescription\n\t\nI have a special case where I want to create a model containing the path to some local files on the server/dev machine. Seeing as the place where these files are stored is different on different machines I have the following:\nimport os\nfrom django.conf import settings\nfrom django.db import models\nclass LocalFiles(models.Model):\n\tname = models.CharField(max_length=255)\n\tfile = models.FilePathField(path=os.path.join(settings.LOCAL_FILE_DIR, 'example_dir'))\nNow when running manage.py makemigrations it will resolve the path based on the machine it is being run on. Eg: /home/<username>/server_files/example_dir\nI had to manually change the migration to include the os.path.join() part to not break this when running the migration on production/other machine.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/__init__.py"
+    ],
+    "locations": [
+      "django/db/models/fields/__init__.py::FilePathField",
+      "django/db/models/fields/__init__.py::FilePathField.formfield"
+    ]
+  },
+  "predictions": [
+    "django/db/models/fields/__init__.py::FilePathField.formfield",
+    "tests/invalid_models_tests/test_ordinary_fields.py::FileFieldTests.test_upload_to_callable_not_checked",
+    "django/db/models/fields/__init__.py::FilePathField.check",
+    "django/db/models/fields/__init__.py::FilePathField.__init__",
+    "django/core/files/storage.py::Storage.path",
+    "django/db/models/fields/__init__.py::FilePathField.deconstruct",
+    "django/db/models/options.py::Options.local_concrete_fields",
+    "tests/invalid_models_tests/test_ordinary_fields.py::FileFieldTests.test_upload_to_starts_with_slash",
+    "django/db/models/base.py::Model._check_local_fields",
+    "django/db/models/fields/files.py::FileField.formfield"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "bceadd2788dc2dad53eba0caae172bd8522fd483",
+    "total_functions_indexed": 22462,
+    "retrieval_time_seconds": 0.00688624382019043
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/fields/__init__.py::FilePathField.formfield\", \"score\": 0.6986173391342163}, {\"doc_id\": \"tests/invalid_models_tests/test_ordinary_fields.py::FileFieldTests.test_upload_to_callable_not_checked\", \"score\": 0.691174328327179}, {\"doc_id\": \"django/db/models/fields/__init__.py::FilePathField.check\", \"score\": 0.688949465751648}, {\"doc_id\": \"django/db/models/fields/__init__.py::FilePathField.__init__\", \"score\": 0.6878342032432556}, {\"doc_id\": \"django/core/files/storage.py::Storage.path\", \"score\": 0.6856688261032104}, {\"doc_id\": \"django/db/models/fields/__init__.py::FilePathField.deconstruct\", \"score\": 0.6844848394393921}, {\"doc_id\": \"django/db/models/options.py::Options.local_concrete_fields\", \"score\": 0.6746526956558228}, {\"doc_id\": \"tests/invalid_models_tests/test_ordinary_fields.py::FileFieldTests.test_upload_to_starts_with_slash\", \"score\": 0.6687332391738892}, {\"doc_id\": \"django/db/models/base.py::Model._check_local_fields\", \"score\": 0.6678892374038696}, {\"doc_id\": \"django/db/models/fields/files.py::FileField.formfield\", \"score\": 0.667498767375946}]"
+}

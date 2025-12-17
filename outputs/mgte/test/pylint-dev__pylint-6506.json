@@ -1,0 +1,31 @@
+{
+  "instance_id": "pylint-dev__pylint-6506",
+  "query": "Traceback printed for unrecognized option\n### Bug description\n\nA traceback is printed when an unrecognized option is passed to pylint.\n\n### Configuration\n\n_No response_\n\n### Command used\n\n```shell\npylint -Q\n```\n\n\n### Pylint output\n\n```shell\n************* Module Command line\r\nCommand line:1:0: E0015: Unrecognized option found: Q (unrecognized-option)\r\nTraceback (most recent call last):\r\n  File \"/Users/markbyrne/venv310/bin/pylint\", line 33, in <module>\r\n    sys.exit(load_entry_point('pylint', 'console_scripts', 'pylint')())\r\n  File \"/Users/markbyrne/programming/pylint/pylint/__init__.py\", line 24, in run_pylint\r\n    PylintRun(argv or sys.argv[1:])\r\n  File \"/Users/markbyrne/programming/pylint/pylint/lint/run.py\", line 135, in __init__\r\n    args = _config_initialization(\r\n  File \"/Users/markbyrne/programming/pylint/pylint/config/config_initialization.py\", line 85, in _config_initialization\r\n    raise _UnrecognizedOptionError(options=unrecognized_options)\r\npylint.config.exceptions._UnrecognizedOptionError\n```\n\n\n### Expected behavior\n\nThe top part of the current output is handy:\r\n`Command line:1:0: E0015: Unrecognized option found: Q (unrecognized-option)`\r\n\r\nThe traceback I don't think is expected & not user-friendly.\r\nA usage tip, for example:\r\n```python\r\nmypy -Q\r\nusage: mypy [-h] [-v] [-V] [more options; see below]\r\n            [-m MODULE] [-p PACKAGE] [-c PROGRAM_TEXT] [files ...]\r\nmypy: error: unrecognized arguments: -Q\r\n```\n\n### Pylint version\n\n```shell\npylint 2.14.0-dev0\r\nastroid 2.11.3\r\nPython 3.10.0b2 (v3.10.0b2:317314165a, May 31 2021, 10:02:22) [Clang 12.0.5 (clang-1205.0.22.9)]\n```\n\n\n### OS / Environment\n\n_No response_\n\n### Additional dependencies\n\n_No response_\n",
+  "ground_truth": {
+    "files": [
+      "pylint/config/config_initialization.py"
+    ],
+    "locations": [
+      "pylint/config/config_initialization.py::_config_initialization"
+    ]
+  },
+  "predictions": [
+    "pylint/epylint.py::lint",
+    "pylint/epylint.py::py_run",
+    "pylint/config/exceptions.py::_UnrecognizedOptionError.__init__",
+    "pylint/__init__.py::run_pylint",
+    "pylint/utils/utils.py::_ini_format",
+    "pylint/config/help_formatter.py::_HelpFormatter.get_long_description",
+    "tests/config/test_config.py::test_unknown_option_name",
+    "tests/config/test_config.py::test_unknown_short_option_name",
+    "tests/test_pragma_parser.py::test_unknown_keyword_without_messages",
+    "tests/unittest_reporting.py::test_template_option_non_existing"
+  ],
+  "metadata": {
+    "repo": "pylint-dev/pylint",
+    "commit": "0a4204fd7555cfedd43f43017c94d24ef48244a5",
+    "total_functions_indexed": 5559,
+    "retrieval_time_seconds": 0.07620072364807129
+  },
+  "raw_output": "[{\"doc_id\": \"pylint/epylint.py::lint\", \"score\": 0.7195432186126709}, {\"doc_id\": \"pylint/epylint.py::py_run\", \"score\": 0.7098830938339233}, {\"doc_id\": \"pylint/config/exceptions.py::_UnrecognizedOptionError.__init__\", \"score\": 0.7029427289962769}, {\"doc_id\": \"pylint/__init__.py::run_pylint\", \"score\": 0.6892807483673096}, {\"doc_id\": \"pylint/utils/utils.py::_ini_format\", \"score\": 0.6854650974273682}, {\"doc_id\": \"pylint/config/help_formatter.py::_HelpFormatter.get_long_description\", \"score\": 0.6838980913162231}, {\"doc_id\": \"tests/config/test_config.py::test_unknown_option_name\", \"score\": 0.6784555912017822}, {\"doc_id\": \"tests/config/test_config.py::test_unknown_short_option_name\", \"score\": 0.6775220632553101}, {\"doc_id\": \"tests/test_pragma_parser.py::test_unknown_keyword_without_messages\", \"score\": 0.6709670424461365}, {\"doc_id\": \"tests/unittest_reporting.py::test_template_option_non_existing\", \"score\": 0.6704989671707153}]"
+}

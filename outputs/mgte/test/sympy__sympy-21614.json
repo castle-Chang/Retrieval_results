@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-21614",
+  "query": "Wrong Derivative kind attribute\nI'm playing around with the `kind` attribute.\r\n\r\nThe following is correct:\r\n\r\n```\r\nfrom sympy import Integral, Derivative\r\nfrom sympy import MatrixSymbol\r\nfrom sympy.abc import x\r\nA = MatrixSymbol('A', 2, 2)\r\ni = Integral(A, x)\r\ni.kind\r\n# MatrixKind(NumberKind)\r\n```\r\n\r\nThis one is wrong:\r\n```\r\nd = Derivative(A, x)\r\nd.kind\r\n# UndefinedKind\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/function.py"
+    ],
+    "locations": [
+      "sympy/core/function.py::Derivative",
+      "sympy/core/function.py::Derivative.free_symbols",
+      "sympy/core/function.py::Derivative._eval_subs"
+    ]
+  },
+  "predictions": [
+    "sympy/matrices/matrices.py::MatrixBase.kind",
+    "sympy/core/symbol.py::Symbol.kind",
+    "sympy/core/tests/test_kind.py::test_Integral_kind",
+    "sympy/core/function.py::Derivative.__new__",
+    "sympy/matrices/matrices.py::MatrixCalculus.diff",
+    "sympy/core/kind.py::_UndefinedKind.__new__",
+    "sympy/core/kind.py::_NumberKind.__new__",
+    "sympy/core/kind.py::_UndefinedKind.__repr__",
+    "sympy/tensor/array/ndim_array.py::NDimArray.kind",
+    "sympy/core/tests/test_kind.py::test_Matrix_kind"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "b4777fdcef467b7132c055f8ac2c9a5059e6a145",
+    "total_functions_indexed": 36564,
+    "retrieval_time_seconds": 0.09940123558044434
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/matrices/matrices.py::MatrixBase.kind\", \"score\": 0.752528190612793}, {\"doc_id\": \"sympy/core/symbol.py::Symbol.kind\", \"score\": 0.7493255734443665}, {\"doc_id\": \"sympy/core/tests/test_kind.py::test_Integral_kind\", \"score\": 0.7312580347061157}, {\"doc_id\": \"sympy/core/function.py::Derivative.__new__\", \"score\": 0.730886697769165}, {\"doc_id\": \"sympy/matrices/matrices.py::MatrixCalculus.diff\", \"score\": 0.7294912338256836}, {\"doc_id\": \"sympy/core/kind.py::_UndefinedKind.__new__\", \"score\": 0.7217885255813599}, {\"doc_id\": \"sympy/core/kind.py::_NumberKind.__new__\", \"score\": 0.7179786562919617}, {\"doc_id\": \"sympy/core/kind.py::_UndefinedKind.__repr__\", \"score\": 0.7171809673309326}, {\"doc_id\": \"sympy/tensor/array/ndim_array.py::NDimArray.kind\", \"score\": 0.7162905335426331}, {\"doc_id\": \"sympy/core/tests/test_kind.py::test_Matrix_kind\", \"score\": 0.7064683437347412}]"
+}

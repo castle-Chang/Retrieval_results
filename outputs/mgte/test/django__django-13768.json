@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-13768",
+  "query": "Log exceptions handled in Signal.send_robust()\nDescription\n\t\nAs pointed out by ​Haki Benita on Twitter, by default Signal.send_robust() doesn't have any log messages for exceptions raised in receivers. Since Django logs exceptions in other similar situations, such as missing template variables, I think it would be worth adding a logger.exception() call in the except clause of send_robust() . Users would then see such exceptions in their error handling tools, e.g. Sentry, and be able to figure out what action to take from there. Ultimately any *expected* exception should be caught with a try in the receiver function.\n",
+  "ground_truth": {
+    "files": [
+      "django/dispatch/dispatcher.py"
+    ],
+    "locations": [
+      "django/dispatch/dispatcher.py::_make_id",
+      "django/dispatch/dispatcher.py::Signal",
+      "django/dispatch/dispatcher.py::Signal.send_robust"
+    ]
+  },
+  "predictions": [
+    "django/dispatch/dispatcher.py::Signal.send_robust",
+    "django/core/handlers/exception.py::response_for_exception",
+    "tests/view_tests/views.py::send_log",
+    "tests/dispatch/tests.py::DispatcherTests.test_send_robust_fail",
+    "django/core/handlers/exception.py::handle_uncaught_exception",
+    "tests/dispatch/tests.py::DispatcherTests.test_send_robust_no_receivers",
+    "django/utils/log.py::log_response",
+    "django/test/client.py::ClientMixin.check_exception",
+    "django/utils/log.py::AdminEmailHandler.emit",
+    "django/db/utils.py::DatabaseErrorWrapper.__exit__"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "965d2d95c630939b53eb60d9c169f5dfc77ee0c6",
+    "total_functions_indexed": 24204,
+    "retrieval_time_seconds": 0.09440898895263672
+  },
+  "raw_output": "[{\"doc_id\": \"django/dispatch/dispatcher.py::Signal.send_robust\", \"score\": 0.7510337829589844}, {\"doc_id\": \"django/core/handlers/exception.py::response_for_exception\", \"score\": 0.7157350778579712}, {\"doc_id\": \"tests/view_tests/views.py::send_log\", \"score\": 0.7041985988616943}, {\"doc_id\": \"tests/dispatch/tests.py::DispatcherTests.test_send_robust_fail\", \"score\": 0.7009058594703674}, {\"doc_id\": \"django/core/handlers/exception.py::handle_uncaught_exception\", \"score\": 0.6922740936279297}, {\"doc_id\": \"tests/dispatch/tests.py::DispatcherTests.test_send_robust_no_receivers\", \"score\": 0.6856753826141357}, {\"doc_id\": \"django/utils/log.py::log_response\", \"score\": 0.6844339966773987}, {\"doc_id\": \"django/test/client.py::ClientMixin.check_exception\", \"score\": 0.681036114692688}, {\"doc_id\": \"django/utils/log.py::AdminEmailHandler.emit\", \"score\": 0.6763895750045776}, {\"doc_id\": \"django/db/utils.py::DatabaseErrorWrapper.__exit__\", \"score\": 0.6758143305778503}]"
+}

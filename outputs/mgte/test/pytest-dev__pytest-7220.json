@@ -1,0 +1,32 @@
+{
+  "instance_id": "pytest-dev__pytest-7220",
+  "query": "Wrong path to test file when directory changed in fixture\nFiles are shown as relative to new directory when working directory is changed in a fixture. This makes it impossible to jump to the error as the editor is unaware of the directory change. The displayed directory should stay relative to the original directory.\r\n\r\ntest_path_error.py:\r\n```python\r\nimport os\r\nimport errno\r\nimport shutil\r\n\r\nimport pytest\r\n\r\n\r\n@pytest.fixture\r\ndef private_dir():  # or (monkeypatch)\r\n    out_dir = 'ddd'\r\n\r\n    try:\r\n        shutil.rmtree(out_dir)\r\n    except OSError as ex:\r\n        if ex.errno != errno.ENOENT:\r\n            raise\r\n    os.mkdir(out_dir)\r\n\r\n    old_dir = os.getcwd()\r\n    os.chdir(out_dir)\r\n    yield out_dir\r\n    os.chdir(old_dir)\r\n\r\n    # Same issue if using:\r\n    # monkeypatch.chdir(out_dir)\r\n\r\n\r\ndef test_show_wrong_path(private_dir):\r\n    assert False\r\n```\r\n\r\n```diff\r\n+ Expected: test_path_error.py:29: AssertionError\r\n- Displayed: ../test_path_error.py:29: AssertionError\r\n```\r\n\r\nThe full output is:\r\n```\r\n-*- mode: compilation; default-directory: \"~/src/pytest_path_error/\" -*-\r\nCompilation started at Fri Jan 10 00:05:52\r\n\r\nnox\r\nnox > Running session test\r\nnox > Creating virtual environment (virtualenv) using python3.7 in .nox/test\r\nnox > pip install pytest>=5.3\r\nnox > pip freeze\r\nattrs==19.3.0\r\nimportlib-metadata==1.3.0\r\nmore-itertools==8.0.2\r\npackaging==20.0\r\npluggy==0.13.1\r\npy==1.8.1\r\npyparsing==2.4.6\r\npytest==5.3.2\r\nsix==1.13.0\r\nwcwidth==0.1.8\r\nzipp==0.6.0\r\nnox > pytest \r\n================================= test session starts =================================\r\nplatform linux -- Python 3.7.5, pytest-5.3.2, py-1.8.1, pluggy-0.13.1\r\nrootdir: /home/lhn/src/pytest_path_error\r\ncollected 1 item                                                                      \r\n\r\ntest_path_error.py F                                                            [100%]\r\n\r\n====================================== FAILURES =======================================\r\n________________________________ test_show_wrong_path _________________________________\r\n\r\nprivate_dir = 'ddd'\r\n\r\n    def test_show_wrong_path(private_dir):\r\n>       assert False\r\nE       assert False\r\n\r\n../test_path_error.py:29: AssertionError\r\n================================== 1 failed in 0.03s ==================================\r\nnox > Command pytest  failed with exit code 1\r\nnox > Session test failed.\r\n\r\nCompilation exited abnormally with code 1 at Fri Jan 10 00:06:01\r\n```\r\n\r\nnoxfile.py:\r\n```python\r\nimport nox\r\n\r\n@nox.session(python='3.7')\r\ndef test(session):\r\n    session.install('pytest>=5.3')\r\n    session.run('pip', 'freeze')\r\n    session.run('pytest')\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "src/_pytest/nodes.py"
+    ],
+    "locations": [
+      "src/_pytest/nodes.py::Node",
+      "src/_pytest/nodes.py::Node._repr_failure_py"
+    ]
+  },
+  "predictions": [
+    "testing/test_stepwise.py::error_testdir",
+    "testing/python/fixtures.py::TestFillFixtures.test_funcarg_lookup_error",
+    "testing/test_assertrewrite.py::TestEarlyRewriteBailout.test_cwd_changed",
+    "src/_pytest/pytester.py::testdir",
+    "testing/test_pytester.py::test_testdir_outcomes_with_multiple_errors",
+    "testing/python/fixtures.py::TestParameterizedSubRequest.test_non_relative_path",
+    "testing/python/fixtures.py::TestFillFixtures.test_autouse_fixture_plugin",
+    "src/_pytest/python.py::_show_fixtures_per_test",
+    "testing/test_session.py::test_rootdir_wrong_option_arg",
+    "testing/python/fixtures.py::test_call_fixture_function_error"
+  ],
+  "metadata": {
+    "repo": "pytest-dev/pytest",
+    "commit": "56bf819c2f4eaf8b36bd8c42c06bb59d5a3bfc0f",
+    "total_functions_indexed": 3818,
+    "retrieval_time_seconds": 0.18838739395141602
+  },
+  "raw_output": "[{\"doc_id\": \"testing/test_stepwise.py::error_testdir\", \"score\": 0.8085049390792847}, {\"doc_id\": \"testing/python/fixtures.py::TestFillFixtures.test_funcarg_lookup_error\", \"score\": 0.8011085987091064}, {\"doc_id\": \"testing/test_assertrewrite.py::TestEarlyRewriteBailout.test_cwd_changed\", \"score\": 0.7959883213043213}, {\"doc_id\": \"src/_pytest/pytester.py::testdir\", \"score\": 0.7930597066879272}, {\"doc_id\": \"testing/test_pytester.py::test_testdir_outcomes_with_multiple_errors\", \"score\": 0.7885653376579285}, {\"doc_id\": \"testing/python/fixtures.py::TestParameterizedSubRequest.test_non_relative_path\", \"score\": 0.785599946975708}, {\"doc_id\": \"testing/python/fixtures.py::TestFillFixtures.test_autouse_fixture_plugin\", \"score\": 0.783862829208374}, {\"doc_id\": \"src/_pytest/python.py::_show_fixtures_per_test\", \"score\": 0.7823607921600342}, {\"doc_id\": \"testing/test_session.py::test_rootdir_wrong_option_arg\", \"score\": 0.7817305326461792}, {\"doc_id\": \"testing/python/fixtures.py::test_call_fixture_function_error\", \"score\": 0.781708836555481}]"
+}

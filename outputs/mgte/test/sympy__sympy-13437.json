@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-13437",
+  "query": "bell(n).limit(n, oo) should be oo rather than bell(oo)\n`bell(n).limit(n,oo)` should take the value infinity, but the current output is `bell(oo)`. As the Bell numbers represent the number of partitions of a set, it seems natural that `bell(oo)` should be able to be evaluated rather than be returned unevaluated. This issue is also in line with the recent fixes to the corresponding limit for the Fibonacci numbers and Lucas numbers.\n\n```\nfrom sympy import *\nn = symbols('n')\nbell(n).limit(n,oo)\n\nOutput:\nbell(oo)\n```\n\nI'm new to Sympy, so I'd appreciate the opportunity to fix this bug myself if that's alright.\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/functions/combinatorial/numbers.py"
+    ],
+    "locations": [
+      "sympy/functions/combinatorial/numbers.py::bell",
+      "sympy/functions/combinatorial/numbers.py::bell._bell_incomplete_poly"
+    ]
+  },
+  "predictions": [
+    "sympy/functions/combinatorial/numbers.py::bell._bell",
+    "sympy/series/tests/test_limits.py::test_issue_7088",
+    "sympy/series/tests/test_limits.py::test_issue_5172",
+    "sympy/series/limits.py::limit",
+    "sympy/functions/combinatorial/tests/test_comb_numbers.py::test_bell",
+    "sympy/series/tests/test_limits.py::test_issue_6366",
+    "sympy/functions/combinatorial/tests/test_comb_numbers.py::test_harmonic_limit_fail",
+    "sympy/series/tests/test_limits.py::test_issue_4547",
+    "sympy/series/tests/test_limits.py::test_issue_5184",
+    "sympy/series/tests/test_limits.py::test_issue_5436"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "674afc619d7f5c519b6a5393a8b0532a131e57e0",
+    "total_functions_indexed": 22202,
+    "retrieval_time_seconds": 0.010116338729858398
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/functions/combinatorial/numbers.py::bell._bell\", \"score\": 0.7563257813453674}, {\"doc_id\": \"sympy/series/tests/test_limits.py::test_issue_7088\", \"score\": 0.7360986471176147}, {\"doc_id\": \"sympy/series/tests/test_limits.py::test_issue_5172\", \"score\": 0.7353543639183044}, {\"doc_id\": \"sympy/series/limits.py::limit\", \"score\": 0.7352358102798462}, {\"doc_id\": \"sympy/functions/combinatorial/tests/test_comb_numbers.py::test_bell\", \"score\": 0.7306956052780151}, {\"doc_id\": \"sympy/series/tests/test_limits.py::test_issue_6366\", \"score\": 0.7305631637573242}, {\"doc_id\": \"sympy/functions/combinatorial/tests/test_comb_numbers.py::test_harmonic_limit_fail\", \"score\": 0.7304553985595703}, {\"doc_id\": \"sympy/series/tests/test_limits.py::test_issue_4547\", \"score\": 0.7304128408432007}, {\"doc_id\": \"sympy/series/tests/test_limits.py::test_issue_5184\", \"score\": 0.730234682559967}, {\"doc_id\": \"sympy/series/tests/test_limits.py::test_issue_5436\", \"score\": 0.7262231111526489}]"
+}

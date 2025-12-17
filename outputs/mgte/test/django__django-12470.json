@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12470",
+  "query": "Inherited model doesn't correctly order by \"-pk\" when specified on Parent.Meta.ordering\nDescription\n\t\nGiven the following model definition:\nfrom django.db import models\nclass Parent(models.Model):\n\tclass Meta:\n\t\tordering = [\"-pk\"]\nclass Child(Parent):\n\tpass\nQuerying the Child class results in the following:\n>>> print(Child.objects.all().query)\nSELECT \"myapp_parent\".\"id\", \"myapp_child\".\"parent_ptr_id\" FROM \"myapp_child\" INNER JOIN \"myapp_parent\" ON (\"myapp_child\".\"parent_ptr_id\" = \"myapp_parent\".\"id\") ORDER BY \"myapp_parent\".\"id\" ASC\nThe query is ordered ASC but I expect the order to be DESC.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/sql/compiler.py"
+    ],
+    "locations": [
+      "django/db/models/sql/compiler.py::SQLCompiler",
+      "django/db/models/sql/compiler.py::SQLCompiler.find_ordering_name"
+    ]
+  },
+  "predictions": [
+    "django/db/models/query.py::QuerySet.order_by",
+    "django/db/models/base.py::method_get_order",
+    "django/db/models/query.py::QuerySet.ordered",
+    "django/db/models/expressions.py::OrderBy.asc",
+    "django/db/models/expressions.py::OrderBy.as_sql",
+    "django/db/models/sql/compiler.py::SQLCompiler.find_ordering_name",
+    "tests/queries/models.py::Order.__str__",
+    "django/contrib/postgres/aggregates/mixins.py::OrderableAggMixin.as_sql",
+    "django/db/models/expressions.py::BaseExpression.desc",
+    "django/db/models/expressions.py::F.desc"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "142ab6846ac09d6d401e26fc8b6b988a583ac0f5",
+    "total_functions_indexed": 23378,
+    "retrieval_time_seconds": 0.0068361759185791016
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/query.py::QuerySet.order_by\", \"score\": 0.7146155834197998}, {\"doc_id\": \"django/db/models/base.py::method_get_order\", \"score\": 0.7131667137145996}, {\"doc_id\": \"django/db/models/query.py::QuerySet.ordered\", \"score\": 0.7130032181739807}, {\"doc_id\": \"django/db/models/expressions.py::OrderBy.asc\", \"score\": 0.711584210395813}, {\"doc_id\": \"django/db/models/expressions.py::OrderBy.as_sql\", \"score\": 0.7111145257949829}, {\"doc_id\": \"django/db/models/sql/compiler.py::SQLCompiler.find_ordering_name\", \"score\": 0.7107064723968506}, {\"doc_id\": \"tests/queries/models.py::Order.__str__\", \"score\": 0.7075921297073364}, {\"doc_id\": \"django/contrib/postgres/aggregates/mixins.py::OrderableAggMixin.as_sql\", \"score\": 0.7059754133224487}, {\"doc_id\": \"django/db/models/expressions.py::BaseExpression.desc\", \"score\": 0.7055591344833374}, {\"doc_id\": \"django/db/models/expressions.py::F.desc\", \"score\": 0.7054551839828491}]"
+}

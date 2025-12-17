@@ -1,0 +1,36 @@
+{
+  "instance_id": "sympy__sympy-11870",
+  "query": "simplifying exponential -> trig identities\n```\r\nf = 1 / 2 * (-I*exp(I*k) + I*exp(-I*k))\r\ntrigsimp(f)\r\n```\r\n\r\nIdeally, this would yield `sin(k)`. Is there a way to do this?\r\n\r\nAs a corollary, it would be awesome if \r\n\r\n```\r\nf = 1 / 2 / k* (-I*exp(I*k) + I*exp(-I*k))\r\ntrigsimp(f)\r\n```\r\n\r\ncould yield `sinc(k)`. Thank you for your consideration!\n",
+  "ground_truth": {
+    "files": [
+      "sympy/functions/elementary/trigonometric.py"
+    ],
+    "locations": [
+      "sympy/functions/elementary/trigonometric.py::sin",
+      "sympy/functions/elementary/trigonometric.py::sin._eval_rewrite_as_pow",
+      "sympy/functions/elementary/trigonometric.py::sin._eval_rewrite_as_sqrt",
+      "sympy/functions/elementary/trigonometric.py::sin._eval_rewrite_as_csc",
+      "sympy/functions/elementary/trigonometric.py::sinc",
+      "sympy/functions/elementary/trigonometric.py::sinc.eval"
+    ]
+  },
+  "predictions": [
+    "sympy/simplify/trigsimp.py::exptrigsimp",
+    "sympy/simplify/trigsimp.py::__trigsimp",
+    "sympy/core/expr.py::Expr.trigsimp",
+    "sympy/simplify/tests/test_simplify.py::test_issue_6920",
+    "sympy/simplify/tests/test_trigsimp.py::test_trigsimp1a",
+    "sympy/simplify/tests/test_trigsimp.py::test_trigsimp1",
+    "sympy/simplify/trigsimp.py::_eapply",
+    "sympy/simplify/trigsimp.py::_trigsimp",
+    "sympy/simplify/tests/test_simplify.py::test_simplify_expr",
+    "sympy/simplify/tests/test_trigsimp.py::test_hyperbolic_simp"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "5c2e1f96a7ff562d4a778f4ca9ffc9c81557197e",
+    "total_functions_indexed": 22195,
+    "retrieval_time_seconds": 0.09557747840881348
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/simplify/trigsimp.py::exptrigsimp\", \"score\": 0.7470477223396301}, {\"doc_id\": \"sympy/simplify/trigsimp.py::__trigsimp\", \"score\": 0.7450028657913208}, {\"doc_id\": \"sympy/core/expr.py::Expr.trigsimp\", \"score\": 0.7169250845909119}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_issue_6920\", \"score\": 0.7070950865745544}, {\"doc_id\": \"sympy/simplify/tests/test_trigsimp.py::test_trigsimp1a\", \"score\": 0.7065622806549072}, {\"doc_id\": \"sympy/simplify/tests/test_trigsimp.py::test_trigsimp1\", \"score\": 0.7040038108825684}, {\"doc_id\": \"sympy/simplify/trigsimp.py::_eapply\", \"score\": 0.6985742449760437}, {\"doc_id\": \"sympy/simplify/trigsimp.py::_trigsimp\", \"score\": 0.6969008445739746}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_simplify_expr\", \"score\": 0.6962616443634033}, {\"doc_id\": \"sympy/simplify/tests/test_trigsimp.py::test_hyperbolic_simp\", \"score\": 0.6959431171417236}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-13315",
+  "query": "limit_choices_to on a ForeignKey can render duplicate options in formfield\nDescription\n\t\nIf you pass a Q object as limit_choices_to on a ForeignKey field involving a join, you may end up with duplicate options in your form.\nSee regressiontest in patch for a clear view on the problem.\n",
+  "ground_truth": {
+    "files": [
+      "django/forms/models.py"
+    ],
+    "locations": [
+      "django/forms/models.py::apply_limit_choices_to_to_formfield",
+      "django/forms/models.py::fields_for_model"
+    ]
+  },
+  "predictions": [
+    "django/forms/models.py::apply_limit_choices_to_to_formfield",
+    "django/forms/models.py::ModelChoiceField.get_limit_choices_to",
+    "tests/model_forms/tests.py::LimitChoicesToTests.test_limit_choices_to_callable_for_fk_rel",
+    "django/db/models/fields/related.py::RelatedField.get_limit_choices_to",
+    "tests/model_forms/tests.py::LimitChoicesToTests.test_limit_choices_to_callable_for_m2m_rel",
+    "tests/model_fields/tests.py::GetChoicesLimitChoicesToTests.test_get_choices",
+    "django/db/models/fields/__init__.py::Field.get_choices",
+    "tests/model_fields/tests.py::GetChoicesLimitChoicesToTests.test_get_choices_reverse_related_field",
+    "tests/model_forms/tests.py::LimitChoicesToTests.test_fields_for_model_applies_limit_choices_to",
+    "django/db/models/fields/reverse_related.py::ForeignObjectRel.get_choices"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "36bc47069ce071e80c8129500de3b8664d2058a7",
+    "total_functions_indexed": 24033,
+    "retrieval_time_seconds": 0.006978034973144531
+  },
+  "raw_output": "[{\"doc_id\": \"django/forms/models.py::apply_limit_choices_to_to_formfield\", \"score\": 0.7761213779449463}, {\"doc_id\": \"django/forms/models.py::ModelChoiceField.get_limit_choices_to\", \"score\": 0.7720562219619751}, {\"doc_id\": \"tests/model_forms/tests.py::LimitChoicesToTests.test_limit_choices_to_callable_for_fk_rel\", \"score\": 0.7573469281196594}, {\"doc_id\": \"django/db/models/fields/related.py::RelatedField.get_limit_choices_to\", \"score\": 0.74857097864151}, {\"doc_id\": \"tests/model_forms/tests.py::LimitChoicesToTests.test_limit_choices_to_callable_for_m2m_rel\", \"score\": 0.736943244934082}, {\"doc_id\": \"tests/model_fields/tests.py::GetChoicesLimitChoicesToTests.test_get_choices\", \"score\": 0.7360942959785461}, {\"doc_id\": \"django/db/models/fields/__init__.py::Field.get_choices\", \"score\": 0.7293110489845276}, {\"doc_id\": \"tests/model_fields/tests.py::GetChoicesLimitChoicesToTests.test_get_choices_reverse_related_field\", \"score\": 0.7254605889320374}, {\"doc_id\": \"tests/model_forms/tests.py::LimitChoicesToTests.test_fields_for_model_applies_limit_choices_to\", \"score\": 0.7240609526634216}, {\"doc_id\": \"django/db/models/fields/reverse_related.py::ForeignObjectRel.get_choices\", \"score\": 0.7237674593925476}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "pytest-dev__pytest-5221",
+  "query": "Display fixture scope with `pytest --fixtures`\nIt would be useful to show fixture scopes with `pytest --fixtures`; currently the only way to learn the scope of a fixture is look at the docs (when that is documented) or at the source code.\n",
+  "ground_truth": {
+    "files": [
+      "src/_pytest/python.py"
+    ],
+    "locations": [
+      "src/_pytest/python.py::_showfixtures_main",
+      "src/_pytest/python.py::write_docstring"
+    ]
+  },
+  "predictions": [
+    "src/_pytest/setuponly.py::_show_fixture_action",
+    "src/_pytest/python.py::_showfixtures_main",
+    "src/_pytest/python.py::showfixtures",
+    "src/_pytest/fixtures.py::FixtureRequest.node",
+    "src/_pytest/python.py::_show_fixtures_per_test",
+    "src/_pytest/python.py::show_fixtures_per_test",
+    "src/_pytest/fixtures.py::FixtureDef.__repr__",
+    "testing/python/setup_only.py::test_show_different_scopes",
+    "src/_pytest/setuponly.py::pytest_fixture_setup",
+    "testing/python/fixtures.py::TestScopeOrdering.test_func_closure_all_scopes_complex"
+  ],
+  "metadata": {
+    "repo": "pytest-dev/pytest",
+    "commit": "4a2fdce62b73944030cff9b3e52862868ca9584d",
+    "total_functions_indexed": 3466,
+    "retrieval_time_seconds": 0.09174609184265137
+  },
+  "raw_output": "[{\"doc_id\": \"src/_pytest/setuponly.py::_show_fixture_action\", \"score\": 0.7859758138656616}, {\"doc_id\": \"src/_pytest/python.py::_showfixtures_main\", \"score\": 0.785016655921936}, {\"doc_id\": \"src/_pytest/python.py::showfixtures\", \"score\": 0.7839845418930054}, {\"doc_id\": \"src/_pytest/fixtures.py::FixtureRequest.node\", \"score\": 0.7795822620391846}, {\"doc_id\": \"src/_pytest/python.py::_show_fixtures_per_test\", \"score\": 0.7785800099372864}, {\"doc_id\": \"src/_pytest/python.py::show_fixtures_per_test\", \"score\": 0.7762892246246338}, {\"doc_id\": \"src/_pytest/fixtures.py::FixtureDef.__repr__\", \"score\": 0.7755878567695618}, {\"doc_id\": \"testing/python/setup_only.py::test_show_different_scopes\", \"score\": 0.7665767669677734}, {\"doc_id\": \"src/_pytest/setuponly.py::pytest_fixture_setup\", \"score\": 0.7641149759292603}, {\"doc_id\": \"testing/python/fixtures.py::TestScopeOrdering.test_func_closure_all_scopes_complex\", \"score\": 0.7626845836639404}]"
+}

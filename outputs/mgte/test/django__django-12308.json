@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-12308",
+  "query": "JSONField are not properly displayed in admin when they are readonly.\nDescription\n\t\nJSONField values are displayed as dict when readonly in the admin.\nFor example, {\"foo\": \"bar\"} would be displayed as {'foo': 'bar'}, which is not valid JSON.\nI believe the fix would be to add a special case in django.contrib.admin.utils.display_for_field to call the prepare_value of the JSONField (not calling json.dumps directly to take care of the InvalidJSONInput case).\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admin/utils.py"
+    ],
+    "locations": [
+      "django/contrib/admin/utils.py::display_for_field"
+    ]
+  },
+  "predictions": [
+    "django/contrib/admin/helpers.py::AdminReadonlyField.contents",
+    "tests/forms_tests/field_tests/test_jsonfield.py::JSONFieldTest.test_redisplay_wrong_input",
+    "tests/forms_tests/field_tests/test_jsonfield.py::JSONFieldTest.test_formfield_disabled",
+    "django/forms/fields.py::JSONField.prepare_value",
+    "django/contrib/admin/utils.py::display_for_field",
+    "django/contrib/admin/utils.py::display_for_value",
+    "django/db/models/fields/json.py::JSONField.select_format",
+    "django/forms/fields.py::JSONField.bound_data",
+    "django/contrib/auth/admin.py::GroupAdmin.formfield_for_manytomany",
+    "django/db/models/fields/json.py::JSONField.get_prep_value"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "2e0f04507b17362239ba49830d26fec504d46978",
+    "total_functions_indexed": 23387,
+    "retrieval_time_seconds": 0.007134675979614258
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/admin/helpers.py::AdminReadonlyField.contents\", \"score\": 0.7395057678222656}, {\"doc_id\": \"tests/forms_tests/field_tests/test_jsonfield.py::JSONFieldTest.test_redisplay_wrong_input\", \"score\": 0.7370864748954773}, {\"doc_id\": \"tests/forms_tests/field_tests/test_jsonfield.py::JSONFieldTest.test_formfield_disabled\", \"score\": 0.7205119729042053}, {\"doc_id\": \"django/forms/fields.py::JSONField.prepare_value\", \"score\": 0.7126535177230835}, {\"doc_id\": \"django/contrib/admin/utils.py::display_for_field\", \"score\": 0.7125005125999451}, {\"doc_id\": \"django/contrib/admin/utils.py::display_for_value\", \"score\": 0.7103197574615479}, {\"doc_id\": \"django/db/models/fields/json.py::JSONField.select_format\", \"score\": 0.6969470977783203}, {\"doc_id\": \"django/forms/fields.py::JSONField.bound_data\", \"score\": 0.6922788619995117}, {\"doc_id\": \"django/contrib/auth/admin.py::GroupAdmin.formfield_for_manytomany\", \"score\": 0.6915059089660645}, {\"doc_id\": \"django/db/models/fields/json.py::JSONField.get_prep_value\", \"score\": 0.6915016770362854}]"
+}

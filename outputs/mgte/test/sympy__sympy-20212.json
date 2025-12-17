@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-20212",
+  "query": "0**-oo produces 0, the documentation says it should produce zoo\nUsing SymPy 1.5.1, evaluate `0**-oo` produces `0`.\r\n\r\nThe documentation for the Pow class states that it should return `ComplexInfinity`, aka `zoo`\r\n\r\n| expr | value | reason |\r\n| :-- | :-- | :--|\r\n| `0**-oo` | `zoo` | This is not strictly true, as 0**oo may be oscillating between positive and negative values or rotating in the complex plane. It is convenient, however, when the base is positive.|\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/power.py"
+    ],
+    "locations": [
+      "sympy/core/power.py::Pow",
+      "sympy/core/power.py::Pow.__new__"
+    ]
+  },
+  "predictions": [
+    "sympy/core/power.py::Pow.__new__",
+    "sympy/core/numbers.py::Infinity._eval_power",
+    "sympy/core/power.py::Pow._eval_is_zero",
+    "sympy/core/power.py::Pow._eval_is_rational",
+    "sympy/assumptions/handlers/order.py::AskNonZeroHandler.Pow",
+    "sympy/core/power.py::Pow._eval_is_finite",
+    "sympy/printing/pycode.py::NumPyPrinter._print_Pow",
+    "sympy/core/power.py::Pow._eval_is_rational_function",
+    "sympy/core/numbers.py::NegativeInfinity._eval_power",
+    "sympy/series/order.py::Order.contains"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "a106f4782a9dbe7f8fd16030f15401d977e03ae9",
+    "total_functions_indexed": 35357,
+    "retrieval_time_seconds": 0.013721227645874023
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/power.py::Pow.__new__\", \"score\": 0.7598921060562134}, {\"doc_id\": \"sympy/core/numbers.py::Infinity._eval_power\", \"score\": 0.7449509501457214}, {\"doc_id\": \"sympy/core/power.py::Pow._eval_is_zero\", \"score\": 0.738412618637085}, {\"doc_id\": \"sympy/core/power.py::Pow._eval_is_rational\", \"score\": 0.7313535809516907}, {\"doc_id\": \"sympy/assumptions/handlers/order.py::AskNonZeroHandler.Pow\", \"score\": 0.7302320003509521}, {\"doc_id\": \"sympy/core/power.py::Pow._eval_is_finite\", \"score\": 0.72954261302948}, {\"doc_id\": \"sympy/printing/pycode.py::NumPyPrinter._print_Pow\", \"score\": 0.7288787364959717}, {\"doc_id\": \"sympy/core/power.py::Pow._eval_is_rational_function\", \"score\": 0.7247142195701599}, {\"doc_id\": \"sympy/core/numbers.py::NegativeInfinity._eval_power\", \"score\": 0.7235416769981384}, {\"doc_id\": \"sympy/series/order.py::Order.contains\", \"score\": 0.723080039024353}]"
+}

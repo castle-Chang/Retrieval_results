@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-21627",
+  "query": "Bug: maximum recusion depth error when checking is_zero of cosh expression\nThe following code causes a `RecursionError: maximum recursion depth exceeded while calling a Python object` error when checked if it is zero:\r\n```\r\nexpr =sympify(\"cosh(acos(-i + acosh(-g + i)))\")\r\nexpr.is_zero\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/functions/elementary/complexes.py"
+    ],
+    "locations": [
+      "sympy/functions/elementary/complexes.py::Abs",
+      "sympy/functions/elementary/complexes.py::Abs.eval"
+    ]
+  },
+  "predictions": [
+    "sympy/integrals/rubi/tests/test_utility_function.py::test_ArcCosh",
+    "sympy/integrals/rubi/utility_function.py::ArcCosh",
+    "sympy/simplify/tests/test_simplify.py::test_issue_17141",
+    "sympy/core/tests/test_args.py::test_sympy__functions__elementary__hyperbolic__acosh",
+    "sympy/functions/elementary/tests/test_complexes.py::test_issue_14238",
+    "sympy/functions/elementary/hyperbolic.py::acosh.inverse",
+    "sympy/integrals/rubi/utility_function.py::CoshQ",
+    "sympy/functions/elementary/tests/test_hyperbolic.py::test_cosh_positive",
+    "sympy/integrals/rubi/utility_function.py::Cosh",
+    "sympy/strategies/tests/test_traverse.py::zero_symbols"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "126f80578140e752ad5135aac77b8ff887eede3e",
+    "total_functions_indexed": 36569,
+    "retrieval_time_seconds": 0.019291162490844727
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/integrals/rubi/tests/test_utility_function.py::test_ArcCosh\", \"score\": 0.7072139978408813}, {\"doc_id\": \"sympy/integrals/rubi/utility_function.py::ArcCosh\", \"score\": 0.7020002603530884}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_issue_17141\", \"score\": 0.7014086246490479}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__functions__elementary__hyperbolic__acosh\", \"score\": 0.6980468034744263}, {\"doc_id\": \"sympy/functions/elementary/tests/test_complexes.py::test_issue_14238\", \"score\": 0.6966977119445801}, {\"doc_id\": \"sympy/functions/elementary/hyperbolic.py::acosh.inverse\", \"score\": 0.6945689916610718}, {\"doc_id\": \"sympy/integrals/rubi/utility_function.py::CoshQ\", \"score\": 0.6933582425117493}, {\"doc_id\": \"sympy/functions/elementary/tests/test_hyperbolic.py::test_cosh_positive\", \"score\": 0.6931689977645874}, {\"doc_id\": \"sympy/integrals/rubi/utility_function.py::Cosh\", \"score\": 0.69315505027771}, {\"doc_id\": \"sympy/strategies/tests/test_traverse.py::zero_symbols\", \"score\": 0.6912000179290771}]"
+}

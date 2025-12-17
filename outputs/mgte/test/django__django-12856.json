@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12856",
+  "query": "Add check for fields of UniqueConstraints.\nDescription\n\t \n\t\t(last modified by Marnanel Thurman)\n\t \nWhen a model gains a UniqueConstraint, makemigrations doesn't check that the fields named therein actually exist.\nThis is in contrast to the older unique_together syntax, which raises models.E012 if the fields don't exist.\nIn the attached demonstration, you'll need to uncomment \"with_unique_together\" in settings.py in order to show that unique_together raises E012.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/base.py"
+    ],
+    "locations": [
+      "django/db/models/base.py::Model",
+      "django/db/models/base.py::Model._check_constraints"
+    ]
+  },
+  "predictions": [
+    "django/db/migrations/operations/models.py::AlterUniqueTogether.__init__",
+    "django/db/models/base.py::Model._check_unique_together",
+    "tests/schema/tests.py::SchemaTests.test_unique_together",
+    "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor.alter_unique_together",
+    "tests/schema/tests.py::SchemaTests.test_remove_unique_together_does_not_remove_meta_constraints",
+    "tests/schema/tests.py::SchemaTests.test_unique_together_with_fk",
+    "tests/schema/tests.py::SchemaTests.test_unique_together_with_fk_with_existing_index",
+    "tests/migrations/test_autodetector.py::AutodetectorTests.test_add_field_and_foo_together",
+    "django/db/migrations/autodetector.py::MigrationAutodetector.generate_altered_unique_together",
+    "tests/migrations/test_autodetector.py::AutodetectorTests.test_create_model_and_unique_together"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "8328811f048fed0dd22573224def8c65410c9f2e",
+    "total_functions_indexed": 23434,
+    "retrieval_time_seconds": 0.007005929946899414
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/migrations/operations/models.py::AlterUniqueTogether.__init__\", \"score\": 0.7655951976776123}, {\"doc_id\": \"django/db/models/base.py::Model._check_unique_together\", \"score\": 0.761898934841156}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_unique_together\", \"score\": 0.751004695892334}, {\"doc_id\": \"django/db/backends/base/schema.py::BaseDatabaseSchemaEditor.alter_unique_together\", \"score\": 0.7486329078674316}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_remove_unique_together_does_not_remove_meta_constraints\", \"score\": 0.7402766942977905}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_unique_together_with_fk\", \"score\": 0.7396312355995178}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_unique_together_with_fk_with_existing_index\", \"score\": 0.7378241419792175}, {\"doc_id\": \"tests/migrations/test_autodetector.py::AutodetectorTests.test_add_field_and_foo_together\", \"score\": 0.7347187995910645}, {\"doc_id\": \"django/db/migrations/autodetector.py::MigrationAutodetector.generate_altered_unique_together\", \"score\": 0.734560489654541}, {\"doc_id\": \"tests/migrations/test_autodetector.py::AutodetectorTests.test_create_model_and_unique_together\", \"score\": 0.734533429145813}]"
+}

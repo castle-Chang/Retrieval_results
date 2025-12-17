@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-13043",
+  "query": "decompose() function in intpoly returns a list of arbitrary order\nThe decompose() function, with separate=True, returns `list(poly_dict.values())`, which is ordered arbitrarily.  \r\n\r\nWhat is this used for? It should be sorted somehow, or returning a set (in which case, why not just use the returned dictionary and have the caller take the values). This is causing test failures for me after some changes to the core. \r\n\r\nCC @ArifAhmed1995 @certik \n",
+  "ground_truth": {
+    "files": [
+      "sympy/integrals/intpoly.py"
+    ],
+    "locations": [
+      "sympy/integrals/intpoly.py::decompose"
+    ]
+  },
+  "predictions": [
+    "sympy/integrals/tests/test_intpoly.py::test_decompose",
+    "sympy/integrals/intpoly.py::decompose",
+    "sympy/polys/polytools.py::Poly.decompose",
+    "sympy/solvers/tests/test_decompogen.py::test_decompogen_poly",
+    "sympy/polys/polytools.py::decompose",
+    "sympy/polys/compatibility.py::IPolys.dup_decompose",
+    "sympy/polys/polyclasses.py::DMP.decompose",
+    "sympy/polys/polyoptions.py::Sort.default",
+    "sympy/polys/tests/test_polytools.py::test_Poly_deflate",
+    "sympy/polys/polytools.py::_sorted_factors"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "a3389a25ec84d36f5cf04a4f2562d820f131db64",
+    "total_functions_indexed": 20976,
+    "retrieval_time_seconds": 0.0060939788818359375
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/integrals/tests/test_intpoly.py::test_decompose\", \"score\": 0.7866337299346924}, {\"doc_id\": \"sympy/integrals/intpoly.py::decompose\", \"score\": 0.7678152918815613}, {\"doc_id\": \"sympy/polys/polytools.py::Poly.decompose\", \"score\": 0.7568225860595703}, {\"doc_id\": \"sympy/solvers/tests/test_decompogen.py::test_decompogen_poly\", \"score\": 0.7514362931251526}, {\"doc_id\": \"sympy/polys/polytools.py::decompose\", \"score\": 0.7291259765625}, {\"doc_id\": \"sympy/polys/compatibility.py::IPolys.dup_decompose\", \"score\": 0.7204209566116333}, {\"doc_id\": \"sympy/polys/polyclasses.py::DMP.decompose\", \"score\": 0.7159347534179688}, {\"doc_id\": \"sympy/polys/polyoptions.py::Sort.default\", \"score\": 0.7145239114761353}, {\"doc_id\": \"sympy/polys/tests/test_polytools.py::test_Poly_deflate\", \"score\": 0.714122474193573}, {\"doc_id\": \"sympy/polys/polytools.py::_sorted_factors\", \"score\": 0.7079676985740662}]"
+}

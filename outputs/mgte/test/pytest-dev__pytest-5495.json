@@ -1,0 +1,31 @@
+{
+  "instance_id": "pytest-dev__pytest-5495",
+  "query": "Confusing assertion rewriting message with byte strings\nThe comparison with assertion rewriting for byte strings is confusing: \r\n```\r\n    def test_b():\r\n>       assert b\"\" == b\"42\"\r\nE       AssertionError: assert b'' == b'42'\r\nE         Right contains more items, first extra item: 52\r\nE         Full diff:\r\nE         - b''\r\nE         + b'42'\r\nE         ?   ++\r\n```\r\n\r\n52 is the ASCII ordinal of \"4\" here.\r\n\r\nIt became clear to me when using another example:\r\n\r\n```\r\n    def test_b():\r\n>       assert b\"\" == b\"1\"\r\nE       AssertionError: assert b'' == b'1'\r\nE         Right contains more items, first extra item: 49\r\nE         Full diff:\r\nE         - b''\r\nE         + b'1'\r\nE         ?   +\r\n```\r\n\r\nNot sure what should/could be done here.\n",
+  "ground_truth": {
+    "files": [
+      "src/_pytest/assertion/util.py"
+    ],
+    "locations": [
+      "src/_pytest/assertion/util.py::_compare_eq_sequence"
+    ]
+  },
+  "predictions": [
+    "testing/test_assertrewrite.py::TestAssertionRewrite.test_binary_op",
+    "testing/test_assertrewrite.py::TestAssertionRewrite.test_assertion_messages_bytes",
+    "testing/test_assertrewrite.py::TestAssertionRewrite.test_custom_reprcompare",
+    "testing/test_assertrewrite.py::TestAssertionRewrite.test_dont_rewrite",
+    "testing/test_assertrewrite.py::TestAssertionRewrite.test_comparisons",
+    "testing/test_assertrewrite.py::TestAssertionRewrite.test_assert_raising_nonzero_in_comparison",
+    "testing/test_assertrewrite.py::TestAssertionRewrite.test_call",
+    "src/_pytest/assertion/rewrite.py::AssertionRewriter.visit_Assert",
+    "testing/test_assertrewrite.py::TestAssertionRewrite.test_assertion_message_expr",
+    "src/_pytest/assertion/rewrite.py::AssertionRewriter.visit_Compare"
+  ],
+  "metadata": {
+    "repo": "pytest-dev/pytest",
+    "commit": "1aefb24b37c30fba8fd79a744829ca16e252f340",
+    "total_functions_indexed": 3489,
+    "retrieval_time_seconds": 0.13258624076843262
+  },
+  "raw_output": "[{\"doc_id\": \"testing/test_assertrewrite.py::TestAssertionRewrite.test_binary_op\", \"score\": 0.7710884213447571}, {\"doc_id\": \"testing/test_assertrewrite.py::TestAssertionRewrite.test_assertion_messages_bytes\", \"score\": 0.7656674385070801}, {\"doc_id\": \"testing/test_assertrewrite.py::TestAssertionRewrite.test_custom_reprcompare\", \"score\": 0.7647098302841187}, {\"doc_id\": \"testing/test_assertrewrite.py::TestAssertionRewrite.test_dont_rewrite\", \"score\": 0.7488253712654114}, {\"doc_id\": \"testing/test_assertrewrite.py::TestAssertionRewrite.test_comparisons\", \"score\": 0.7468699216842651}, {\"doc_id\": \"testing/test_assertrewrite.py::TestAssertionRewrite.test_assert_raising_nonzero_in_comparison\", \"score\": 0.7464266419410706}, {\"doc_id\": \"testing/test_assertrewrite.py::TestAssertionRewrite.test_call\", \"score\": 0.7460380792617798}, {\"doc_id\": \"src/_pytest/assertion/rewrite.py::AssertionRewriter.visit_Assert\", \"score\": 0.7422797679901123}, {\"doc_id\": \"testing/test_assertrewrite.py::TestAssertionRewrite.test_assertion_message_expr\", \"score\": 0.7368639707565308}, {\"doc_id\": \"src/_pytest/assertion/rewrite.py::AssertionRewriter.visit_Compare\", \"score\": 0.7362226247787476}]"
+}

@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-11630",
+  "query": "Django throws error when different apps with different models have the same name table name.\nDescription\n\t\nError message:\ntable_name: (models.E028) db_table 'table_name' is used by multiple models: base.ModelName, app2.ModelName.\nWe have a Base app that points to a central database and that has its own tables. We then have multiple Apps that talk to their own databases. Some share the same table names.\nWe have used this setup for a while, but after upgrading to Django 2.2 we're getting an error saying we're not allowed 2 apps, with 2 different models to have the same table names. \nIs this correct behavior? We've had to roll back to Django 2.0 for now.\n",
+  "ground_truth": {
+    "files": [
+      "django/core/checks/model_checks.py"
+    ],
+    "locations": [
+      "django/core/checks/model_checks.py::check_all_models"
+    ]
+  },
+  "predictions": [
+    "django/db/backends/base/introspection.py::BaseDatabaseIntrospection.django_table_names",
+    "tests/check_framework/test_model_checks.py::DuplicateDBTableTests.test_collision_in_same_app",
+    "tests/check_framework/test_model_checks.py::DuplicateDBTableTests.test_collision_across_apps",
+    "tests/invalid_models_tests/test_models.py::OtherModelTests.test_m2m_table_name_clash",
+    "django/core/checks/model_checks.py::check_all_models",
+    "django/db/backends/base/introspection.py::BaseDatabaseIntrospection.installed_models",
+    "django/db/models/base.py::Model._check_model_name_db_lookup_clashes",
+    "django/contrib/contenttypes/checks.py::check_model_name_lengths",
+    "django/db/models/base.py::Model._check_long_column_names",
+    "django/db/backends/sqlite3/base.py::DatabaseWrapper.check_constraints"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "65e86948b80262574058a94ccaae3a9b59c3faea",
+    "total_functions_indexed": 22707,
+    "retrieval_time_seconds": 0.00710749626159668
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/backends/base/introspection.py::BaseDatabaseIntrospection.django_table_names\", \"score\": 0.7507640719413757}, {\"doc_id\": \"tests/check_framework/test_model_checks.py::DuplicateDBTableTests.test_collision_in_same_app\", \"score\": 0.7424343228340149}, {\"doc_id\": \"tests/check_framework/test_model_checks.py::DuplicateDBTableTests.test_collision_across_apps\", \"score\": 0.7412771582603455}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::OtherModelTests.test_m2m_table_name_clash\", \"score\": 0.7266911864280701}, {\"doc_id\": \"django/core/checks/model_checks.py::check_all_models\", \"score\": 0.7186648845672607}, {\"doc_id\": \"django/db/backends/base/introspection.py::BaseDatabaseIntrospection.installed_models\", \"score\": 0.7159080505371094}, {\"doc_id\": \"django/db/models/base.py::Model._check_model_name_db_lookup_clashes\", \"score\": 0.7119706869125366}, {\"doc_id\": \"django/contrib/contenttypes/checks.py::check_model_name_lengths\", \"score\": 0.7091372609138489}, {\"doc_id\": \"django/db/models/base.py::Model._check_long_column_names\", \"score\": 0.7069563865661621}, {\"doc_id\": \"django/db/backends/sqlite3/base.py::DatabaseWrapper.check_constraints\", \"score\": 0.7061887383460999}]"
+}

@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-15609",
+  "query": "Indexed matrix-expression LaTeX printer is not compilable\n```python\r\ni, j, k = symbols(\"i j k\")\r\nM = MatrixSymbol(\"M\", k, k)\r\nN = MatrixSymbol(\"N\", k, k)\r\nlatex((M*N)[i, j])\r\n```\r\n\r\nThe LaTeX string produced by the last command is:\r\n```\r\n\\sum_{i_{1}=0}^{k - 1} M_{i, _i_1} N_{_i_1, j}\r\n```\r\nLaTeX complains about a double subscript `_`. This expression won't render in MathJax either.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/latex.py"
+    ],
+    "locations": [
+      "sympy/printing/latex.py::LatexPrinter",
+      "sympy/printing/latex.py::LatexPrinter._print_MatrixElement",
+      "sympy/printing/latex.py::LatexPrinter._print_MatrixSlice"
+    ]
+  },
+  "predictions": [
+    "sympy/matrices/matrices.py::MatrixBase._repr_latex_",
+    "sympy/printing/latex.py::LatexPrinter._print_MatrixElement",
+    "sympy/printing/latex.py::latex",
+    "sympy/printing/latex.py::LatexPrinter._print_MatPow",
+    "sympy/printing/latex.py::LatexPrinter._print_Adjoint",
+    "sympy/printing/latex.py::LatexPrinter._print_MatrixSlice",
+    "sympy/printing/tests/test_latex.py::test_MatrixSymbol_printing",
+    "sympy/printing/latex.py::LatexPrinter._print_MatrixBase",
+    "sympy/printing/tests/test_latex.py::test_issue_12886",
+    "sympy/printing/tests/test_latex.py::test_MatrixElement_printing"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "15f56f3b0006d2ed2c29bde3c43e91618012c849",
+    "total_functions_indexed": 24316,
+    "retrieval_time_seconds": 0.007409572601318359
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/matrices/matrices.py::MatrixBase._repr_latex_\", \"score\": 0.7905006408691406}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_MatrixElement\", \"score\": 0.7712715864181519}, {\"doc_id\": \"sympy/printing/latex.py::latex\", \"score\": 0.7706145644187927}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_MatPow\", \"score\": 0.7640266418457031}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_Adjoint\", \"score\": 0.7627522945404053}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_MatrixSlice\", \"score\": 0.7611056566238403}, {\"doc_id\": \"sympy/printing/tests/test_latex.py::test_MatrixSymbol_printing\", \"score\": 0.7589552998542786}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_MatrixBase\", \"score\": 0.7565435767173767}, {\"doc_id\": \"sympy/printing/tests/test_latex.py::test_issue_12886\", \"score\": 0.7532825469970703}, {\"doc_id\": \"sympy/printing/tests/test_latex.py::test_MatrixElement_printing\", \"score\": 0.7527767419815063}]"
+}

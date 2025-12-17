@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-16281",
+  "query": "Product pretty print could be improved\nThis is what the pretty printing for `Product` looks like:\r\n\r\n```\r\n>>> pprint(Product(1, (n, 1, oo)))\r\n  ∞\r\n┬───┬\r\n│   │ 1\r\n│   │\r\nn = 1\r\n>>> pprint(Product(1/n, (n, 1, oo)))\r\n   ∞\r\n┬──────┬\r\n│      │ 1\r\n│      │ ─\r\n│      │ n\r\n│      │\r\n n = 1\r\n>>> pprint(Product(1/n**2, (n, 1, oo)))\r\n    ∞\r\n┬────────┬\r\n│        │ 1\r\n│        │ ──\r\n│        │  2\r\n│        │ n\r\n│        │\r\n  n = 1\r\n>>> pprint(Product(1, (n, 1, oo)), use_unicode=False)\r\n  oo\r\n_____\r\n|   | 1\r\n|   |\r\nn = 1\r\n>>> pprint(Product(1/n, (n, 1, oo)), use_unicode=False)\r\n   oo\r\n________\r\n|      | 1\r\n|      | -\r\n|      | n\r\n|      |\r\n n = 1\r\n>>> pprint(Product(1/n**2, (n, 1, oo)), use_unicode=False)\r\n    oo\r\n__________\r\n|        | 1\r\n|        | --\r\n|        |  2\r\n|        | n\r\n|        |\r\n  n = 1\r\n```\r\n\r\n(if those don't look good in your browser copy paste them into the terminal)\r\n\r\nThis could be improved:\r\n\r\n- Why is there always an empty line at the bottom of the ∏? Keeping everything below the horizontal line is good, but the bottom looks asymmetric, and it makes the ∏ bigger than it needs to be.\r\n\r\n- The ∏ is too fat IMO. \r\n\r\n- It might look better if we extended the top bar. I'm unsure about this. \r\n\r\nCompare this\r\n\r\n```\r\n    ∞\r\n─┬─────┬─\r\n │     │  1\r\n │     │  ──\r\n │     │   2\r\n │     │  n\r\n  n = 1\r\n```\r\n\r\nThat's still almost twice as wide as the equivalent Sum, but if you make it much skinnier it starts to look bad.\r\n\r\n```\r\n  ∞\r\n ____\r\n ╲\r\n  ╲   1\r\n   ╲  ──\r\n   ╱   2\r\n  ╱   n\r\n ╱\r\n ‾‾‾‾\r\nn = 1\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/pretty/pretty.py"
+    ],
+    "locations": [
+      "sympy/printing/pretty/pretty.py::PrettyPrinter",
+      "sympy/printing/pretty/pretty.py::PrettyPrinter._print_Product"
+    ]
+  },
+  "predictions": [
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_Mul",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_Product",
+    "sympy/printing/pretty/tests/test_pretty.py::test_pretty_product",
+    "sympy/printing/fcode.py::FCodePrinter._print_product_",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_DotProduct",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_Sum",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_TensorProduct",
+    "sympy/concrete/products.py::Product.doit",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_HadamardProduct",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_WedgeProduct"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "41490b75f3621408e0468b0e7b6dc409601fc6ff",
+    "total_functions_indexed": 24719,
+    "retrieval_time_seconds": 0.008029699325561523
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_Mul\", \"score\": 0.7701923251152039}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_Product\", \"score\": 0.7553337812423706}, {\"doc_id\": \"sympy/printing/pretty/tests/test_pretty.py::test_pretty_product\", \"score\": 0.746143639087677}, {\"doc_id\": \"sympy/printing/fcode.py::FCodePrinter._print_product_\", \"score\": 0.7418689727783203}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_DotProduct\", \"score\": 0.7388356924057007}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_Sum\", \"score\": 0.7380782961845398}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_TensorProduct\", \"score\": 0.7260340452194214}, {\"doc_id\": \"sympy/concrete/products.py::Product.doit\", \"score\": 0.7248821258544922}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_HadamardProduct\", \"score\": 0.7215378880500793}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_WedgeProduct\", \"score\": 0.7210415601730347}]"
+}

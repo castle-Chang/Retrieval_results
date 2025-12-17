@@ -1,0 +1,31 @@
+{
+  "instance_id": "psf__requests-3362",
+  "query": "Uncertain about content/text vs iter_content(decode_unicode=True/False)\nWhen requesting an application/json document, I'm seeing `next(r.iter_content(16*1024, decode_unicode=True))` returning bytes, whereas `r.text` returns unicode. My understanding was that both should return a unicode object. In essence, I thought \"iter_content\" was equivalent to \"iter_text\" when decode_unicode was True. Have I misunderstood something? I can provide an example if needed.\n\nFor reference, I'm using python 3.5.1 and requests 2.10.0.\n\nThanks!\n\n",
+  "ground_truth": {
+    "files": [
+      "requests/utils.py"
+    ],
+    "locations": [
+      "requests/utils.py::stream_decode_response_unicode"
+    ]
+  },
+  "predictions": [
+    "tests/test_requests.py::TestRequests.test_response_decode_unicode",
+    "requests/utils.py::stream_decode_response_unicode",
+    "requests/models.py::Response.iter_content",
+    "requests/utils.py::get_unicode_from_response",
+    "requests/models.py::Response.text",
+    "requests/models.py::Response.__iter__",
+    "requests/models.py::Response.iter_lines",
+    "requests/packages/urllib3/response.py::HTTPResponse.stream",
+    "requests/packages/urllib3/response.py::HTTPResponse.read_chunked",
+    "requests/packages/urllib3/response.py::HTTPResponse.read"
+  ],
+  "metadata": {
+    "repo": "psf/requests",
+    "commit": "36453b95b13079296776d11b09cab2567ea3e703",
+    "total_functions_indexed": 808,
+    "retrieval_time_seconds": 0.17990541458129883
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_requests.py::TestRequests.test_response_decode_unicode\", \"score\": 0.7234684824943542}, {\"doc_id\": \"requests/utils.py::stream_decode_response_unicode\", \"score\": 0.6968773603439331}, {\"doc_id\": \"requests/models.py::Response.iter_content\", \"score\": 0.6847054958343506}, {\"doc_id\": \"requests/utils.py::get_unicode_from_response\", \"score\": 0.6838622093200684}, {\"doc_id\": \"requests/models.py::Response.text\", \"score\": 0.6813168525695801}, {\"doc_id\": \"requests/models.py::Response.__iter__\", \"score\": 0.6667401194572449}, {\"doc_id\": \"requests/models.py::Response.iter_lines\", \"score\": 0.6593172550201416}, {\"doc_id\": \"requests/packages/urllib3/response.py::HTTPResponse.stream\", \"score\": 0.658059298992157}, {\"doc_id\": \"requests/packages/urllib3/response.py::HTTPResponse.read_chunked\", \"score\": 0.6572771072387695}, {\"doc_id\": \"requests/packages/urllib3/response.py::HTTPResponse.read\", \"score\": 0.652472972869873}]"
+}

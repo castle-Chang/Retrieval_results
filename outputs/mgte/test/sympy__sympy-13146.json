@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-13146",
+  "query": "Exponent doesn't fully simplify\nSay I have code like this:\n\n```\nimport sympy\nfrom sympy import *\nx=Symbol('x')\nexpr1 = S(1)/2*x**2.5\nexpr2 = S(1)*x**(S(5)/2)/2\nres = expr1-expr2\nres= simplify(res.evalf(5))\nprint res\n```\n\nThe output is\n`-0.5*x**2.5 + 0.5*x**2.5`\nHow do I simplify it to 0?\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/operations.py"
+    ],
+    "locations": [
+      "sympy/core/operations.py::AssocOp",
+      "sympy/core/operations.py::AssocOp._eval_evalf",
+      "sympy/core/operations.py::AssocOp.make_args"
+    ]
+  },
+  "predictions": [
+    "sympy/core/expr.py::Expr.powsimp",
+    "sympy/core/expr.py::Expr.simplify",
+    "sympy/core/expr.py::Expr.nsimplify",
+    "sympy/core/tests/test_evalf.py::test_evalf_complex_powers",
+    "sympy/simplify/tests/test_simplify.py::test_simplify_expr",
+    "sympy/functions/elementary/exponential.py::log._eval_simplify",
+    "sympy/simplify/tests/test_simplify.py::test_nsimplify",
+    "sympy/simplify/simplify.py::clear_coefficients",
+    "sympy/concrete/products.py::Product._eval_simplify",
+    "sympy/solvers/tests/test_diophantine.py::diop_simplify"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "b678d8103e48fdb1af335dbf0080b3d5366f2d17",
+    "total_functions_indexed": 21188,
+    "retrieval_time_seconds": 0.0939486026763916
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/expr.py::Expr.powsimp\", \"score\": 0.7435824275016785}, {\"doc_id\": \"sympy/core/expr.py::Expr.simplify\", \"score\": 0.7389013767242432}, {\"doc_id\": \"sympy/core/expr.py::Expr.nsimplify\", \"score\": 0.7357816100120544}, {\"doc_id\": \"sympy/core/tests/test_evalf.py::test_evalf_complex_powers\", \"score\": 0.7214854955673218}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_simplify_expr\", \"score\": 0.7202803492546082}, {\"doc_id\": \"sympy/functions/elementary/exponential.py::log._eval_simplify\", \"score\": 0.7185854315757751}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_nsimplify\", \"score\": 0.712588906288147}, {\"doc_id\": \"sympy/simplify/simplify.py::clear_coefficients\", \"score\": 0.7089426517486572}, {\"doc_id\": \"sympy/concrete/products.py::Product._eval_simplify\", \"score\": 0.7063939571380615}, {\"doc_id\": \"sympy/solvers/tests/test_diophantine.py::diop_simplify\", \"score\": 0.70596843957901}]"
+}

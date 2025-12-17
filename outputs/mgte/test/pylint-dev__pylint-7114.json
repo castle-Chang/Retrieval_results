@@ -1,0 +1,31 @@
+{
+  "instance_id": "pylint-dev__pylint-7114",
+  "query": "Linting fails if module contains module of the same name\n### Steps to reproduce\r\n\r\nGiven multiple files:\r\n```\r\n.\r\n`-- a/\r\n    |-- a.py\r\n    `-- b.py\r\n```\r\nWhich are all empty, running `pylint a` fails:\r\n\r\n```\r\n$ pylint a\r\n************* Module a\r\na/__init__.py:1:0: F0010: error while code parsing: Unable to load file a/__init__.py:\r\n[Errno 2] No such file or directory: 'a/__init__.py' (parse-error)\r\n$\r\n```\r\n\r\nHowever, if I rename `a.py`, `pylint a` succeeds:\r\n\r\n```\r\n$ mv a/a.py a/c.py\r\n$ pylint a\r\n$\r\n```\r\nAlternatively, I can also `touch a/__init__.py`, but that shouldn't be necessary anymore.\r\n\r\n### Current behavior\r\n\r\nRunning `pylint a` if `a/a.py` is present fails while searching for an `__init__.py` file.\r\n\r\n### Expected behavior\r\n\r\nRunning `pylint a` if `a/a.py` is present should succeed.\r\n\r\n### pylint --version output\r\n\r\nResult of `pylint --version` output:\r\n\r\n```\r\npylint 3.0.0a3\r\nastroid 2.5.6\r\nPython 3.8.5 (default, Jan 27 2021, 15:41:15) \r\n[GCC 9.3.0]\r\n```\r\n\r\n### Additional info\r\n\r\nThis also has some side-effects in module resolution. For example, if I create another file `r.py`:\r\n\r\n```\r\n.\r\n|-- a\r\n|   |-- a.py\r\n|   `-- b.py\r\n`-- r.py\r\n```\r\n\r\nWith the content:\r\n\r\n```\r\nfrom a import b\r\n```\r\n\r\nRunning `pylint -E r` will run fine, but `pylint -E r a` will fail. Not just for module a, but for module r as well.\r\n\r\n```\r\n************* Module r\r\nr.py:1:0: E0611: No name 'b' in module 'a' (no-name-in-module)\r\n************* Module a\r\na/__init__.py:1:0: F0010: error while code parsing: Unable to load file a/__init__.py:\r\n[Errno 2] No such file or directory: 'a/__init__.py' (parse-error)\r\n```\r\n\r\nAgain, if I rename `a.py` to `c.py`, `pylint -E r a` will work perfectly.\n",
+  "ground_truth": {
+    "files": [
+      "pylint/lint/expand_modules.py"
+    ],
+    "locations": [
+      "pylint/lint/expand_modules.py::expand_modules"
+    ]
+  },
+  "predictions": [
+    "pylint/lint/pylinter.py::PyLinter.load_plugin_modules",
+    "pylint/lint/pylinter.py::PyLinter.should_analyze_file",
+    "pylint/utils/linterstats.py::LinterStats.init_single_module",
+    "pylint/utils/utils.py::register_plugins",
+    "pylint/epylint.py::lint",
+    "tests/lint/unittest_lint.py::test_pylint_home_from_environ",
+    "pylint/testutils/lint_module_test.py::LintModuleTest.runTest",
+    "pylint/lint/expand_modules.py::expand_modules",
+    "pylint/testutils/lint_module_test.py::LintModuleTest.__init__",
+    "pylint/lint/expand_modules.py::get_python_path"
+  ],
+  "metadata": {
+    "repo": "pylint-dev/pylint",
+    "commit": "397c1703e8ae6349d33f7b99f45b2ccaf581e666",
+    "total_functions_indexed": 5971,
+    "retrieval_time_seconds": 0.1677086353302002
+  },
+  "raw_output": "[{\"doc_id\": \"pylint/lint/pylinter.py::PyLinter.load_plugin_modules\", \"score\": 0.7667980194091797}, {\"doc_id\": \"pylint/lint/pylinter.py::PyLinter.should_analyze_file\", \"score\": 0.7343885898590088}, {\"doc_id\": \"pylint/utils/linterstats.py::LinterStats.init_single_module\", \"score\": 0.7282330989837646}, {\"doc_id\": \"pylint/utils/utils.py::register_plugins\", \"score\": 0.7278813123703003}, {\"doc_id\": \"pylint/epylint.py::lint\", \"score\": 0.724265456199646}, {\"doc_id\": \"tests/lint/unittest_lint.py::test_pylint_home_from_environ\", \"score\": 0.7230101823806763}, {\"doc_id\": \"pylint/testutils/lint_module_test.py::LintModuleTest.runTest\", \"score\": 0.7212910652160645}, {\"doc_id\": \"pylint/lint/expand_modules.py::expand_modules\", \"score\": 0.720046877861023}, {\"doc_id\": \"pylint/testutils/lint_module_test.py::LintModuleTest.__init__\", \"score\": 0.7190306186676025}, {\"doc_id\": \"pylint/lint/expand_modules.py::get_python_path\", \"score\": 0.7161047458648682}]"
+}

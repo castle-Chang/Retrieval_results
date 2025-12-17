@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-21055",
+  "query": "`refine()` does not understand how to simplify complex arguments\nJust learned about the refine-function, which would come in handy frequently for me.  But\r\n`refine()` does not recognize that argument functions simplify for real numbers.\r\n\r\n```\r\n>>> from sympy import *                                                     \r\n>>> var('a,x')                                                              \r\n>>> J = Integral(sin(x)*exp(-a*x),(x,0,oo))                                     \r\n>>> J.doit()\r\n\tPiecewise((1/(a**2 + 1), 2*Abs(arg(a)) < pi), (Integral(exp(-a*x)*sin(x), (x, 0, oo)), True))\r\n>>> refine(J.doit(),Q.positive(a))                                                 \r\n        Piecewise((1/(a**2 + 1), 2*Abs(arg(a)) < pi), (Integral(exp(-a*x)*sin(x), (x, 0, oo)), True))\r\n>>> refine(abs(a),Q.positive(a))                                            \r\n\ta\r\n>>> refine(arg(a),Q.positive(a))                                            \r\n\targ(a)\r\n```\r\nI cann't find any open issues identifying this.  Easy to fix, though.\r\n\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/assumptions/refine.py"
+    ],
+    "locations": [
+      "sympy/assumptions/refine.py::refine_im",
+      "sympy/assumptions/refine.py::_refine_reim"
+    ]
+  },
+  "predictions": [
+    "sympy/assumptions/refine.py::refine_re",
+    "sympy/assumptions/refine.py::refine_im",
+    "sympy/assumptions/refine.py::refine",
+    "sympy/assumptions/refine.py::_refine_reim",
+    "sympy/core/basic.py::Basic.refine",
+    "sympy/matrices/common.py::MatrixOperations.refine",
+    "sympy/assumptions/refine.py::refine_abs",
+    "sympy/polys/polytools.py::Poly.refine_root",
+    "sympy/assumptions/refine.py::refine_matrixelement",
+    "sympy/polys/polytools.py::refine_root"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "748ce73479ee2cd5c861431091001cc18943c735",
+    "total_functions_indexed": 36120,
+    "retrieval_time_seconds": 2.7176034450531006
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/assumptions/refine.py::refine_re\", \"score\": 0.7997615933418274}, {\"doc_id\": \"sympy/assumptions/refine.py::refine_im\", \"score\": 0.7961241006851196}, {\"doc_id\": \"sympy/assumptions/refine.py::refine\", \"score\": 0.7890224456787109}, {\"doc_id\": \"sympy/assumptions/refine.py::_refine_reim\", \"score\": 0.7772969007492065}, {\"doc_id\": \"sympy/core/basic.py::Basic.refine\", \"score\": 0.7719312310218811}, {\"doc_id\": \"sympy/matrices/common.py::MatrixOperations.refine\", \"score\": 0.7496356964111328}, {\"doc_id\": \"sympy/assumptions/refine.py::refine_abs\", \"score\": 0.7423257827758789}, {\"doc_id\": \"sympy/polys/polytools.py::Poly.refine_root\", \"score\": 0.7358320951461792}, {\"doc_id\": \"sympy/assumptions/refine.py::refine_matrixelement\", \"score\": 0.7347571849822998}, {\"doc_id\": \"sympy/polys/polytools.py::refine_root\", \"score\": 0.7346756458282471}]"
+}

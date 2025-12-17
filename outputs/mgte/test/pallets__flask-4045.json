@@ -1,0 +1,34 @@
+{
+  "instance_id": "pallets__flask-4045",
+  "query": "Raise error when blueprint name contains a dot\nThis is required since every dot is now significant since blueprints can be nested. An error was already added for endpoint names in 1.0, but should have been added for this as well.\n",
+  "ground_truth": {
+    "files": [
+      "src/flask/blueprints.py"
+    ],
+    "locations": [
+      "src/flask/blueprints.py::Blueprint",
+      "src/flask/blueprints.py::Blueprint.__init__",
+      "src/flask/blueprints.py::Blueprint.add_url_rule",
+      "src/flask/blueprints.py::Blueprint.app_template_filter"
+    ]
+  },
+  "predictions": [
+    "tests/test_blueprints.py::test_dotted_names",
+    "tests/test_blueprints.py::test_route_decorator_custom_endpoint_with_dots",
+    "tests/test_blueprints.py::test_dotted_names_from_app",
+    "src/flask/wrappers.py::Request.blueprint",
+    "src/flask/blueprints.py::Blueprint.add_url_rule",
+    "tests/test_blueprints.py::test_endpoint_decorator",
+    "src/flask/blueprints.py::BlueprintSetupState.add_url_rule",
+    "tests/test_blueprints.py::test_blueprint_specific_user_error_handling",
+    "tests/test_blueprints.py::test_blueprint_prefix_slash",
+    "src/flask/blueprints.py::Blueprint.__init__"
+  ],
+  "metadata": {
+    "repo": "pallets/flask",
+    "commit": "d8c37f43724cd9fb0870f77877b7c4c7e38a19e0",
+    "total_functions_indexed": 769,
+    "retrieval_time_seconds": 0.23473882675170898
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_blueprints.py::test_dotted_names\", \"score\": 0.6476715207099915}, {\"doc_id\": \"tests/test_blueprints.py::test_route_decorator_custom_endpoint_with_dots\", \"score\": 0.647155225276947}, {\"doc_id\": \"tests/test_blueprints.py::test_dotted_names_from_app\", \"score\": 0.6403689980506897}, {\"doc_id\": \"src/flask/wrappers.py::Request.blueprint\", \"score\": 0.6213477849960327}, {\"doc_id\": \"src/flask/blueprints.py::Blueprint.add_url_rule\", \"score\": 0.6157938241958618}, {\"doc_id\": \"tests/test_blueprints.py::test_endpoint_decorator\", \"score\": 0.6151411533355713}, {\"doc_id\": \"src/flask/blueprints.py::BlueprintSetupState.add_url_rule\", \"score\": 0.6061859130859375}, {\"doc_id\": \"tests/test_blueprints.py::test_blueprint_specific_user_error_handling\", \"score\": 0.6013643145561218}, {\"doc_id\": \"tests/test_blueprints.py::test_blueprint_prefix_slash\", \"score\": 0.593474268913269}, {\"doc_id\": \"src/flask/blueprints.py::Blueprint.__init__\", \"score\": 0.5856806635856628}]"
+}

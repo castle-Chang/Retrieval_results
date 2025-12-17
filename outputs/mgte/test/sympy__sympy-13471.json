@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-13471",
+  "query": "Python 2->3 pickle fails with float-containing expressions\nDumping a pickled sympy expression containing a float in Python 2, then loading it in Python 3 generates an error.\r\n\r\nHere is a minimum working example, verified with sympy git commit 3546ac7 (master at time of writing), Python 2.7 and Python 3.6:\r\n\r\n```python\r\npython2 -c 'import pickle; import sympy; x = sympy.symbols(\"x\"); print pickle.dumps(x + 1.0, 2)' | python3 -c 'import pickle; import sys; print(pickle.loads(sys.stdin.buffer.read()))'\r\n```\r\n\r\nand the result:\r\n\r\n```\r\nTraceback (most recent call last):\r\n  File \"<string>\", line 1, in <module>\r\n  File \"/Users/alex/git/VU/sympy/sympy/core/numbers.py\", line 1045, in __new__\r\n    num[1] = long(num[1], 16)\r\nValueError: invalid literal for int() with base 16: '1L'\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/numbers.py"
+    ],
+    "locations": [
+      "sympy/core/numbers.py::Float",
+      "sympy/core/numbers.py::Float.__new__"
+    ]
+  },
+  "predictions": [
+    "sympy/core/tests/test_numbers.py::test_issue_10063",
+    "sympy/core/tests/test_sympify.py::test_int_float",
+    "sympy/core/tests/test_numbers.py::test_Float",
+    "sympy/core/tests/test_sympify.py::test_issue_3982",
+    "sympy/codegen/ast.py::FloatType.decimal_dig",
+    "sympy/codegen/ast.py::FloatType.dig",
+    "sympy/core/tests/test_args.py::test_sympy__core__numbers__Float",
+    "sympy/core/expr.py::Expr.__float__",
+    "sympy/core/compatibility.py::as_int",
+    "sympy/core/numbers.py::Float.__new__"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "3546ac7ed78e1780c1a76929864bb33330055740",
+    "total_functions_indexed": 22243,
+    "retrieval_time_seconds": 0.017249107360839844
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/tests/test_numbers.py::test_issue_10063\", \"score\": 0.7289859652519226}, {\"doc_id\": \"sympy/core/tests/test_sympify.py::test_int_float\", \"score\": 0.7259173393249512}, {\"doc_id\": \"sympy/core/tests/test_numbers.py::test_Float\", \"score\": 0.7233450412750244}, {\"doc_id\": \"sympy/core/tests/test_sympify.py::test_issue_3982\", \"score\": 0.7221767902374268}, {\"doc_id\": \"sympy/codegen/ast.py::FloatType.decimal_dig\", \"score\": 0.7212390899658203}, {\"doc_id\": \"sympy/codegen/ast.py::FloatType.dig\", \"score\": 0.7208723425865173}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__core__numbers__Float\", \"score\": 0.7184913754463196}, {\"doc_id\": \"sympy/core/expr.py::Expr.__float__\", \"score\": 0.7156650424003601}, {\"doc_id\": \"sympy/core/compatibility.py::as_int\", \"score\": 0.7119353413581848}, {\"doc_id\": \"sympy/core/numbers.py::Float.__new__\", \"score\": 0.7104605436325073}]"
+}

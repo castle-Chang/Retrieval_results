@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12908",
+  "query": "Union queryset should raise on distinct().\nDescription\n\t \n\t\t(last modified by Sielc Technologies)\n\t \nAfter using\n.annotate() on 2 different querysets\nand then .union()\n.distinct() will not affect the queryset\n\tdef setUp(self) -> None:\n\t\tuser = self.get_or_create_admin_user()\n\t\tSample.h.create(user, name=\"Sam1\")\n\t\tSample.h.create(user, name=\"Sam2 acid\")\n\t\tSample.h.create(user, name=\"Sam3\")\n\t\tSample.h.create(user, name=\"Sam4 acid\")\n\t\tSample.h.create(user, name=\"Dub\")\n\t\tSample.h.create(user, name=\"Dub\")\n\t\tSample.h.create(user, name=\"Dub\")\n\t\tself.user = user\n\tdef test_union_annotated_diff_distinct(self):\n\t\tqs = Sample.objects.filter(user=self.user)\n\t\tqs1 = qs.filter(name='Dub').annotate(rank=Value(0, IntegerField()))\n\t\tqs2 = qs.filter(name='Sam1').annotate(rank=Value(1, IntegerField()))\n\t\tqs = qs1.union(qs2)\n\t\tqs = qs.order_by('name').distinct('name') # THIS DISTINCT DOESN'T WORK\n\t\tself.assertEqual(qs.count(), 2)\nexpected to get wrapped union\n\tSELECT DISTINCT ON (siebox_sample.name) * FROM (SELECT ... UNION SELECT ...) AS siebox_sample\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/query.py"
+    ],
+    "locations": [
+      "django/db/models/query.py::QuerySet",
+      "django/db/models/query.py::QuerySet.distinct"
+    ]
+  },
+  "predictions": [
+    "tests/queries/test_qs_combinators.py::QuerySetSetOperationTests.test_union_distinct",
+    "tests/filtered_relation/tests.py::FilteredRelationTests.test_union",
+    "tests/distinct_on_fields/tests.py::DistinctOnTests.test_basic_distinct_on",
+    "tests/queries/test_qs_combinators.py::QuerySetSetOperationTests.test_union_with_two_annotated_values_list",
+    "tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_distinct_on_with_annotation",
+    "tests/queries/tests.py::UnionTests.check_union",
+    "tests/queries/test_qs_combinators.py::QuerySetSetOperationTests.test_union_with_values_list_on_annotated_and_unannotated",
+    "tests/queries/test_qs_combinators.py::QuerySetSetOperationTests.test_union_with_values",
+    "tests/queries/tests.py::UnionTests.test_A_AB2",
+    "tests/distinct_on_fields/tests.py::DistinctOnTests.test_distinct_on_in_ordered_subquery"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "49ae7ce50a874f8a04cd910882fb9571ff3a0d7a",
+    "total_functions_indexed": 23404,
+    "retrieval_time_seconds": 0.007870912551879883
+  },
+  "raw_output": "[{\"doc_id\": \"tests/queries/test_qs_combinators.py::QuerySetSetOperationTests.test_union_distinct\", \"score\": 0.7305068373680115}, {\"doc_id\": \"tests/filtered_relation/tests.py::FilteredRelationTests.test_union\", \"score\": 0.722356915473938}, {\"doc_id\": \"tests/distinct_on_fields/tests.py::DistinctOnTests.test_basic_distinct_on\", \"score\": 0.7138395309448242}, {\"doc_id\": \"tests/queries/test_qs_combinators.py::QuerySetSetOperationTests.test_union_with_two_annotated_values_list\", \"score\": 0.7111743688583374}, {\"doc_id\": \"tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_distinct_on_with_annotation\", \"score\": 0.7089067101478577}, {\"doc_id\": \"tests/queries/tests.py::UnionTests.check_union\", \"score\": 0.7044012546539307}, {\"doc_id\": \"tests/queries/test_qs_combinators.py::QuerySetSetOperationTests.test_union_with_values_list_on_annotated_and_unannotated\", \"score\": 0.7023321986198425}, {\"doc_id\": \"tests/queries/test_qs_combinators.py::QuerySetSetOperationTests.test_union_with_values\", \"score\": 0.6994585990905762}, {\"doc_id\": \"tests/queries/tests.py::UnionTests.test_A_AB2\", \"score\": 0.6973320245742798}, {\"doc_id\": \"tests/distinct_on_fields/tests.py::DistinctOnTests.test_distinct_on_in_ordered_subquery\", \"score\": 0.690596342086792}]"
+}

@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-16379",
+  "query": "FileBasedCache has_key is susceptible to race conditions\nDescription\n\t \n\t\t(last modified by Marti Raudsepp)\n\t \nI received the exception from Django's cache framework:\nFileNotFoundError: [Errno 2] No such file or directory: '/app/var/cache/d729e4cf4ba88cba5a0f48e0396ec48a.djcache'\n[...]\n File \"django/core/cache/backends/base.py\", line 229, in get_or_set\n\tself.add(key, default, timeout=timeout, version=version)\n File \"django/core/cache/backends/filebased.py\", line 26, in add\n\tif self.has_key(key, version):\n File \"django/core/cache/backends/filebased.py\", line 94, in has_key\n\twith open(fname, \"rb\") as f:\nThe code is:\n\tdef has_key(self, key, version=None):\n\t\tfname = self._key_to_file(key, version)\n\t\tif os.path.exists(fname):\n\t\t\twith open(fname, \"rb\") as f:\n\t\t\t\treturn not self._is_expired(f)\n\t\treturn False\nBetween the exists() check and open(), it's possible for the file to be deleted. In fact, the _is_expired() method itself deletes the file if it finds it to be expired. So if many threads race to read an expired cache at once, it's not that unlikely to hit this window.\n",
+  "ground_truth": {
+    "files": [
+      "django/core/cache/backends/filebased.py"
+    ],
+    "locations": [
+      "django/core/cache/backends/filebased.py::FileBasedCache",
+      "django/core/cache/backends/filebased.py::FileBasedCache.has_key",
+      "django/core/cache/backends/filebased.py::FileBasedCache._cull"
+    ]
+  },
+  "predictions": [
+    "django/core/cache/backends/filebased.py::FileBasedCache.has_key",
+    "django/core/cache/backends/base.py::BaseCache.ahas_key",
+    "django/core/cache/backends/base.py::BaseCache.__contains__",
+    "django/core/cache/backends/base.py::BaseCache.has_key",
+    "django/core/cache/backends/filebased.py::FileBasedCache.touch",
+    "django/core/cache/backends/filebased.py::FileBasedCache.add",
+    "django/core/cache/backends/locmem.py::LocMemCache.has_key",
+    "django/core/cache/backends/db.py::DatabaseCache.has_key",
+    "django/core/cache/backends/filebased.py::FileBasedCache._is_expired",
+    "django/core/cache/backends/redis.py::RedisCache.has_key"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "1d0fa848e084cad62d0bb6bde3b51e4862558e57",
+    "total_functions_indexed": 26338,
+    "retrieval_time_seconds": 0.018604040145874023
+  },
+  "raw_output": "[{\"doc_id\": \"django/core/cache/backends/filebased.py::FileBasedCache.has_key\", \"score\": 0.8640486598014832}, {\"doc_id\": \"django/core/cache/backends/base.py::BaseCache.ahas_key\", \"score\": 0.8325379490852356}, {\"doc_id\": \"django/core/cache/backends/base.py::BaseCache.__contains__\", \"score\": 0.8291908502578735}, {\"doc_id\": \"django/core/cache/backends/base.py::BaseCache.has_key\", \"score\": 0.8253560066223145}, {\"doc_id\": \"django/core/cache/backends/filebased.py::FileBasedCache.touch\", \"score\": 0.8112900257110596}, {\"doc_id\": \"django/core/cache/backends/filebased.py::FileBasedCache.add\", \"score\": 0.81065434217453}, {\"doc_id\": \"django/core/cache/backends/locmem.py::LocMemCache.has_key\", \"score\": 0.8082622289657593}, {\"doc_id\": \"django/core/cache/backends/db.py::DatabaseCache.has_key\", \"score\": 0.803223729133606}, {\"doc_id\": \"django/core/cache/backends/filebased.py::FileBasedCache._is_expired\", \"score\": 0.8016232252120972}, {\"doc_id\": \"django/core/cache/backends/redis.py::RedisCache.has_key\", \"score\": 0.797862708568573}]"
+}

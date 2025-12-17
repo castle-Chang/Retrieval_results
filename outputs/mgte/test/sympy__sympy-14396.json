@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-14396",
+  "query": "Poly(domain='RR[y,z]') doesn't work\n``` py\nIn [14]: Poly(1.2*x*y*z, x)\nOut[14]: Poly(1.2*y*z*x, x, domain='RR[y,z]')\n\nIn [15]: Poly(1.2*x*y*z, x, domain='RR[y,z]')\n---------------------------------------------------------------------------\nOptionError                               Traceback (most recent call last)\n<ipython-input-15-d83389519ae1> in <module>()\n----> 1 Poly(1.2*x*y*z, x, domain='RR[y,z]')\n\n/Users/aaronmeurer/Documents/Python/sympy/sympy-scratch/sympy/polys/polytools.py in __new__(cls, rep, *gens, **args)\n     69     def __new__(cls, rep, *gens, **args):\n     70         \"\"\"Create a new polynomial instance out of something useful. \"\"\"\n---> 71         opt = options.build_options(gens, args)\n     72\n     73         if 'order' in opt:\n\n/Users/aaronmeurer/Documents/Python/sympy/sympy-scratch/sympy/polys/polyoptions.py in build_options(gens, args)\n    718\n    719     if len(args) != 1 or 'opt' not in args or gens:\n--> 720         return Options(gens, args)\n    721     else:\n    722         return args['opt']\n\n/Users/aaronmeurer/Documents/Python/sympy/sympy-scratch/sympy/polys/polyoptions.py in __init__(self, gens, args, flags, strict)\n    151                     self[option] = cls.preprocess(value)\n    152\n--> 153         preprocess_options(args)\n    154\n    155         for key, value in dict(defaults).items():\n\n/Users/aaronmeurer/Documents/Python/sympy/sympy-scratch/sympy/polys/polyoptions.py in preprocess_options(args)\n    149\n    150                 if value is not None:\n--> 151                     self[option] = cls.preprocess(value)\n    152\n    153         preprocess_options(args)\n\n/Users/aaronmeurer/Documents/Python/sympy/sympy-scratch/sympy/polys/polyoptions.py in preprocess(cls, domain)\n    480                 return sympy.polys.domains.QQ.algebraic_field(*gens)\n    481\n--> 482         raise OptionError('expected a valid domain specification, got %s' % domain)\n    483\n    484     @classmethod\n\nOptionError: expected a valid domain specification, got RR[y,z]\n```\n\nAlso, the wording of error message could be improved\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/polys/polyoptions.py"
+    ],
+    "locations": [
+      "sympy/polys/polyoptions.py::Domain",
+      "sympy/polys/polyoptions.py::Domain.preprocess"
+    ]
+  },
+  "predictions": [
+    "sympy/polys/polyoptions.py::Domain.preprocess",
+    "sympy/polys/polytools.py::Poly.__new__",
+    "sympy/polys/polytools.py::Poly._from_poly",
+    "sympy/polys/polytools.py::_poly_from_expr",
+    "sympy/polys/tests/test_polytools.py::test_Poly__new__",
+    "sympy/polys/polytools.py::Poly._from_dict",
+    "sympy/polys/constructor.py::_construct_composite",
+    "sympy/polys/polyoptions.py::Extension.postprocess",
+    "sympy/polys/polytools.py::Poly.from_poly",
+    "sympy/polys/domains/old_polynomialring.py::PolynomialRingBase.poly_ring"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "f35ad6411f86a15dd78db39c29d1e5291f66f9b5",
+    "total_functions_indexed": 22972,
+    "retrieval_time_seconds": 0.007077932357788086
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/polys/polyoptions.py::Domain.preprocess\", \"score\": 0.8248164653778076}, {\"doc_id\": \"sympy/polys/polytools.py::Poly.__new__\", \"score\": 0.7977030873298645}, {\"doc_id\": \"sympy/polys/polytools.py::Poly._from_poly\", \"score\": 0.7912563681602478}, {\"doc_id\": \"sympy/polys/polytools.py::_poly_from_expr\", \"score\": 0.7840614318847656}, {\"doc_id\": \"sympy/polys/tests/test_polytools.py::test_Poly__new__\", \"score\": 0.7764596939086914}, {\"doc_id\": \"sympy/polys/polytools.py::Poly._from_dict\", \"score\": 0.7727087736129761}, {\"doc_id\": \"sympy/polys/constructor.py::_construct_composite\", \"score\": 0.7726002931594849}, {\"doc_id\": \"sympy/polys/polyoptions.py::Extension.postprocess\", \"score\": 0.7718359231948853}, {\"doc_id\": \"sympy/polys/polytools.py::Poly.from_poly\", \"score\": 0.7693578004837036}, {\"doc_id\": \"sympy/polys/domains/old_polynomialring.py::PolynomialRingBase.poly_ring\", \"score\": 0.7675685882568359}]"
+}
