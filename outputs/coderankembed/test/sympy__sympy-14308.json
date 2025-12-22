@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-14308",
+  "query": "vectors break pretty printing\n```py\r\nIn [1]: from sympy.vector import *\r\n\r\nIn [2]: e = CoordSysCartesian('e')\r\n\r\nIn [3]: (x/y)**t*e.j\r\nOut[3]:\r\n⎛   t⎞ e_j\r\n⎜⎛x⎞ e_j ⎟\r\n⎜⎜─⎟ ⎟\r\n⎝⎝y⎠ ⎠\r\n```\r\n\r\nAlso, when it does print correctly, the baseline is wrong (it should be centered). \n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/pretty/pretty.py"
+    ],
+    "locations": [
+      "sympy/printing/pretty/pretty.py::PrettyPrinter",
+      "sympy/printing/pretty/pretty.py::PrettyPrinter._print_BasisDependent"
+    ]
+  },
+  "predictions": [
+    "sympy/printing/pretty/tests/test_pretty.py::test_vector_expr_pretty_printing",
+    "sympy/printing/pretty/tests/test_pretty.py::test_issue_5524",
+    "sympy/physics/vector/vector.py::Vector._pretty",
+    "sympy/physics/vector/tests/test_printing.py::test_vector_pretty_print",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_Divergence",
+    "sympy/printing/pretty/tests/test_pretty.py::test_issue_7180",
+    "sympy/physics/vector/printing.py::VectorPrettyPrinter._print_Function",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_Cross",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_Subs",
+    "sympy/printing/pretty/tests/test_pretty.py::test_pretty_geometry"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "fb536869fb7aa28b2695ad7a3b70949926b291c4",
+    "total_functions_indexed": 22941,
+    "retrieval_time_seconds": 0.009839534759521484
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/printing/pretty/tests/test_pretty.py::test_vector_expr_pretty_printing\", \"score\": 0.5899531841278076}, {\"doc_id\": \"sympy/printing/pretty/tests/test_pretty.py::test_issue_5524\", \"score\": 0.5533796548843384}, {\"doc_id\": \"sympy/physics/vector/vector.py::Vector._pretty\", \"score\": 0.5340464115142822}, {\"doc_id\": \"sympy/physics/vector/tests/test_printing.py::test_vector_pretty_print\", \"score\": 0.5281355977058411}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_Divergence\", \"score\": 0.5259397029876709}, {\"doc_id\": \"sympy/printing/pretty/tests/test_pretty.py::test_issue_7180\", \"score\": 0.5171685218811035}, {\"doc_id\": \"sympy/physics/vector/printing.py::VectorPrettyPrinter._print_Function\", \"score\": 0.5132113695144653}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_Cross\", \"score\": 0.5100019574165344}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_Subs\", \"score\": 0.5089719295501709}, {\"doc_id\": \"sympy/printing/pretty/tests/test_pretty.py::test_pretty_geometry\", \"score\": 0.5063636302947998}]"
+}

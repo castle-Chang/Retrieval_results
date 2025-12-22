@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-15345",
+  "query": "mathematica_code gives wrong output with Max\nIf I run the code\r\n\r\n```\r\nx = symbols('x')\r\nmathematica_code(Max(x,2))\r\n```\r\n\r\nthen I would expect the output `'Max[x,2]'` which is valid Mathematica code but instead I get `'Max(2, x)'` which is not valid Mathematica code.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/mathematica.py"
+    ],
+    "locations": [
+      "sympy/printing/mathematica.py::MCodePrinter",
+      "sympy/printing/mathematica.py::MCodePrinter._print_Function",
+      "sympy/printing/mathematica.py::MCodePrinter._print_Integral"
+    ]
+  },
+  "predictions": [
+    "sympy/printing/tests/test_rcode.py::test_rcode_Max",
+    "sympy/printing/tests/test_ccode.py::test_ccode_Max",
+    "sympy/printing/ccode.py::C89CodePrinter._print_Max",
+    "sympy/printing/mathematica.py::mathematica_code",
+    "sympy/printing/ccode.py::C99CodePrinter._print_Max",
+    "sympy/printing/pycode.py::NumPyPrinter._print_Max",
+    "sympy/functions/elementary/tests/test_miscellaneous.py::test_Max",
+    "sympy/printing/cxxcode.py::_CXXCodePrinterBase._print_Max",
+    "sympy/printing/lambdarepr.py::TensorflowPrinter._print_Max",
+    "sympy/core/tests/test_args.py::test_sympy__functions__elementary__miscellaneous__Max"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "9ef28fba5b4d6d0168237c9c005a550e6dc27d81",
+    "total_functions_indexed": 24081,
+    "retrieval_time_seconds": 0.009615898132324219
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/printing/tests/test_rcode.py::test_rcode_Max\", \"score\": 0.582715630531311}, {\"doc_id\": \"sympy/printing/tests/test_ccode.py::test_ccode_Max\", \"score\": 0.5711135864257812}, {\"doc_id\": \"sympy/printing/ccode.py::C89CodePrinter._print_Max\", \"score\": 0.5166263580322266}, {\"doc_id\": \"sympy/printing/mathematica.py::mathematica_code\", \"score\": 0.5150177478790283}, {\"doc_id\": \"sympy/printing/ccode.py::C99CodePrinter._print_Max\", \"score\": 0.5110839009284973}, {\"doc_id\": \"sympy/printing/pycode.py::NumPyPrinter._print_Max\", \"score\": 0.5054309368133545}, {\"doc_id\": \"sympy/functions/elementary/tests/test_miscellaneous.py::test_Max\", \"score\": 0.5050880312919617}, {\"doc_id\": \"sympy/printing/cxxcode.py::_CXXCodePrinterBase._print_Max\", \"score\": 0.5025787949562073}, {\"doc_id\": \"sympy/printing/lambdarepr.py::TensorflowPrinter._print_Max\", \"score\": 0.4947527050971985}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__functions__elementary__miscellaneous__Max\", \"score\": 0.46866559982299805}]"
+}
