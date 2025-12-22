@@ -1,0 +1,32 @@
+{
+  "instance_id": "pylint-dev__pylint-7228",
+  "query": "rxg include '\\p{Han}' will throw error\n### Bug description\r\n\r\nconfig rxg in pylintrc with \\p{Han} will throw err\r\n\r\n### Configuration\r\n.pylintrc:\r\n\r\n```ini\r\nfunction-rgx=[\\p{Han}a-z_][\\p{Han}a-z0-9_]{2,30}$\r\n```\r\n\r\n### Command used\r\n\r\n```shell\r\npylint\r\n```\r\n\r\n\r\n### Pylint output\r\n\r\n```shell\r\n(venvtest) tsung-hande-MacBook-Pro:robot_is_comming tsung-han$ pylint\r\nTraceback (most recent call last):\r\n  File \"/Users/tsung-han/PycharmProjects/robot_is_comming/venvtest/bin/pylint\", line 8, in <module>\r\n    sys.exit(run_pylint())\r\n  File \"/Users/tsung-han/PycharmProjects/robot_is_comming/venvtest/lib/python3.9/site-packages/pylint/__init__.py\", line 25, in run_pylint\r\n    PylintRun(argv or sys.argv[1:])\r\n  File \"/Users/tsung-han/PycharmProjects/robot_is_comming/venvtest/lib/python3.9/site-packages/pylint/lint/run.py\", line 161, in __init__\r\n    args = _config_initialization(\r\n  File \"/Users/tsung-han/PycharmProjects/robot_is_comming/venvtest/lib/python3.9/site-packages/pylint/config/config_initialization.py\", line 57, in _config_initialization\r\n    linter._parse_configuration_file(config_args)\r\n  File \"/Users/tsung-han/PycharmProjects/robot_is_comming/venvtest/lib/python3.9/site-packages/pylint/config/arguments_manager.py\", line 244, in _parse_configuration_file\r\n    self.config, parsed_args = self._arg_parser.parse_known_args(\r\n  File \"/usr/local/Cellar/python@3.9/3.9.13_1/Frameworks/Python.framework/Versions/3.9/lib/python3.9/argparse.py\", line 1858, in parse_known_args\r\n    namespace, args = self._parse_known_args(args, namespace)\r\n  File \"/usr/local/Cellar/python@3.9/3.9.13_1/Frameworks/Python.framework/Versions/3.9/lib/python3.9/argparse.py\", line 2067, in _parse_known_args\r\n    start_index = consume_optional(start_index)\r\n  File \"/usr/local/Cellar/python@3.9/3.9.13_1/Frameworks/Python.framework/Versions/3.9/lib/python3.9/argparse.py\", line 2007, in consume_optional\r\n    take_action(action, args, option_string)\r\n  File \"/usr/local/Cellar/python@3.9/3.9.13_1/Frameworks/Python.framework/Versions/3.9/lib/python3.9/argparse.py\", line 1919, in take_action\r\n    argument_values = self._get_values(action, argument_strings)\r\n  File \"/usr/local/Cellar/python@3.9/3.9.13_1/Frameworks/Python.framework/Versions/3.9/lib/python3.9/argparse.py\", line 2450, in _get_values\r\n    value = self._get_value(action, arg_string)\r\n  File \"/usr/local/Cellar/python@3.9/3.9.13_1/Frameworks/Python.framework/Versions/3.9/lib/python3.9/argparse.py\", line 2483, in _get_value\r\n    result = type_func(arg_string)\r\n  File \"/usr/local/Cellar/python@3.9/3.9.13_1/Frameworks/Python.framework/Versions/3.9/lib/python3.9/re.py\", line 252, in compile\r\n    return _compile(pattern, flags)\r\n  File \"/usr/local/Cellar/python@3.9/3.9.13_1/Frameworks/Python.framework/Versions/3.9/lib/python3.9/re.py\", line 304, in _compile\r\n    p = sre_compile.compile(pattern, flags)\r\n  File \"/usr/local/Cellar/python@3.9/3.9.13_1/Frameworks/Python.framework/Versions/3.9/lib/python3.9/sre_compile.py\", line 788, in compile\r\n    p = sre_parse.parse(p, flags)\r\n  File \"/usr/local/Cellar/python@3.9/3.9.13_1/Frameworks/Python.framework/Versions/3.9/lib/python3.9/sre_parse.py\", line 955, in parse\r\n    p = _parse_sub(source, state, flags & SRE_FLAG_VERBOSE, 0)\r\n  File \"/usr/local/Cellar/python@3.9/3.9.13_1/Frameworks/Python.framework/Versions/3.9/lib/python3.9/sre_parse.py\", line 444, in _parse_sub\r\n    itemsappend(_parse(source, state, verbose, nested + 1,\r\n  File \"/usr/local/Cellar/python@3.9/3.9.13_1/Frameworks/Python.framework/Versions/3.9/lib/python3.9/sre_parse.py\", line 555, in _parse\r\n    code1 = _class_escape(source, this)\r\n  File \"/usr/local/Cellar/python@3.9/3.9.13_1/Frameworks/Python.framework/Versions/3.9/lib/python3.9/sre_parse.py\", line 350, in _class_escape\r\n    raise source.error('bad escape %s' % escape, len(escape))\r\nre.error: bad escape \\p at position 1\r\n```\r\n\r\n### Expected behavior\r\n\r\nnot throw error\r\n\r\n### Pylint version\r\n\r\n```shell\r\npylint 2.14.4\r\nastroid 2.11.7\r\nPython 3.9.13 (main, May 24 2022, 21:28:44) \r\n[Clang 13.0.0 (clang-1300.0.29.30)]\r\n```\r\n\r\n\r\n### OS / Environment\r\n\r\nmacOS 11.6.7\r\n\n",
+  "ground_truth": {
+    "files": [
+      "pylint/config/argument.py"
+    ],
+    "locations": [
+      "pylint/config/argument.py::_py_version_transformer",
+      "pylint/config/argument.py::_regexp_csv_transfomer"
+    ]
+  },
+  "predictions": [
+    "tests/config/pylint_config/test_run_pylint_config.py::test_invocation_of_pylint_config",
+    "tests/lint/unittest_lint.py::test_pylintrc",
+    "pylint/__init__.py::_run_pylint_config",
+    "pylint/lint/run.py::Run.__init__",
+    "tests/test_self.py::TestRunTC.test_pylintrc_comments_in_values",
+    "pylint/testutils/_run.py::_Run.__init__",
+    "tests/test_self.py::TestRunTC._run_pylint",
+    "tests/test_self.py::TestCallbackOptions.test_help_msg",
+    "tests/test_self.py::TestRunTC.test_version",
+    "tests/test_regr.py::test_pylint_config_attr"
+  ],
+  "metadata": {
+    "repo": "pylint-dev/pylint",
+    "commit": "d597f252915ddcaaa15ccdfcb35670152cb83587",
+    "total_functions_indexed": 5960,
+    "retrieval_time_seconds": 0.001592874526977539
+  },
+  "raw_output": "[{\"doc_id\": \"tests/config/pylint_config/test_run_pylint_config.py::test_invocation_of_pylint_config\", \"score\": 0.5197194814682007}, {\"doc_id\": \"tests/lint/unittest_lint.py::test_pylintrc\", \"score\": 0.5178473591804504}, {\"doc_id\": \"pylint/__init__.py::_run_pylint_config\", \"score\": 0.508522093296051}, {\"doc_id\": \"pylint/lint/run.py::Run.__init__\", \"score\": 0.5058913230895996}, {\"doc_id\": \"tests/test_self.py::TestRunTC.test_pylintrc_comments_in_values\", \"score\": 0.5023894906044006}, {\"doc_id\": \"pylint/testutils/_run.py::_Run.__init__\", \"score\": 0.48960500955581665}, {\"doc_id\": \"tests/test_self.py::TestRunTC._run_pylint\", \"score\": 0.4895387589931488}, {\"doc_id\": \"tests/test_self.py::TestCallbackOptions.test_help_msg\", \"score\": 0.47460126876831055}, {\"doc_id\": \"tests/test_self.py::TestRunTC.test_version\", \"score\": 0.47196799516677856}, {\"doc_id\": \"tests/test_regr.py::test_pylint_config_attr\", \"score\": 0.4693794846534729}]"
+}

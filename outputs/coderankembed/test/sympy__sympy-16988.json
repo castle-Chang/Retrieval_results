@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-16988",
+  "query": "Intersection should remove duplicates\n```python\r\n>>> Intersection({1},{1},{x})\r\nEmptySet()\r\n>>> Intersection({1},{x})\r\n{1}\r\n```\r\nThe answer should be `Piecewise(({1}, Eq(x, 1)), (S.EmptySet, True))` or remain unevaluated.\r\n\r\nThe routine should give the same answer if duplicates are present; my initial guess is that duplicates should just be removed at the outset of instantiation. Ordering them will produce canonical processing.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/sets/sets.py"
+    ],
+    "locations": [
+      "sympy/sets/sets.py::Intersection",
+      "sympy/sets/sets.py::Intersection.__new__"
+    ]
+  },
+  "predictions": [
+    "sympy/sets/tests/test_sets.py::test_intersection",
+    "sympy/sets/sets.py::Intersection.zero",
+    "sympy/sets/handlers/intersection.py::intersection_sets",
+    "sympy/sets/tests/test_sets.py::test_EmptySet",
+    "sympy/sets/handlers/intersection.py::intersection_sets",
+    "sympy/sets/tests/test_sets.py::test_issue_9623",
+    "sympy/core/tests/test_args.py::test_sympy__sets__sets__EmptySet",
+    "sympy/sets/sets.py::simplify_intersection",
+    "sympy/sets/handlers/intersection.py::intersection_sets",
+    "sympy/sets/sets.py::Set.intersect"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "e727339af6dc22321b00f52d971cda39e4ce89fb",
+    "total_functions_indexed": 25216,
+    "retrieval_time_seconds": 0.08681368827819824
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/sets/tests/test_sets.py::test_intersection\", \"score\": 0.5290448665618896}, {\"doc_id\": \"sympy/sets/sets.py::Intersection.zero\", \"score\": 0.49934566020965576}, {\"doc_id\": \"sympy/sets/handlers/intersection.py::intersection_sets\", \"score\": 0.4898238778114319}, {\"doc_id\": \"sympy/sets/tests/test_sets.py::test_EmptySet\", \"score\": 0.487249493598938}, {\"doc_id\": \"sympy/sets/handlers/intersection.py::intersection_sets\", \"score\": 0.4868386387825012}, {\"doc_id\": \"sympy/sets/tests/test_sets.py::test_issue_9623\", \"score\": 0.4794067442417145}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__sets__sets__EmptySet\", \"score\": 0.468214213848114}, {\"doc_id\": \"sympy/sets/sets.py::simplify_intersection\", \"score\": 0.4652121067047119}, {\"doc_id\": \"sympy/sets/handlers/intersection.py::intersection_sets\", \"score\": 0.4513929486274719}, {\"doc_id\": \"sympy/sets/sets.py::Set.intersect\", \"score\": 0.4509339928627014}]"
+}

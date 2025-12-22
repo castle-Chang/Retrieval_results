@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-16041",
+  "query": "Rendering empty_form crashes when empty_permitted is passed to form_kwargs\nDescription\n\t\nIssue\nWhen explicitly setting form_kwargs = {'empty_permitted':True} or form_kwargs = {'empty_permitted':False} , a KeyError occurs when rendering a template that uses a formset's empty_form.\nExpected Behavior\nempty_permitted is ignored for formset.empty_form since empty_permitted is irrelevant for empty_form, as empty_form is not meant to be used to pass data and therefore does not need to be validated.\nSteps to Reproduce\n# views.py\nfrom django.shortcuts import render\nfrom .models import MyModel\ndef test_view(request):\n\tcontext = {}\n\tff = modelformset_factory(MyModel, fields = ['a_field'])\n\tcontext['formset'] = ff(\n\t\tqueryset = MyModel.objects.none(),\n\t\tform_kwargs = {'empty_permitted':True} # or form_kwargs = {'empty_permitted':False}\n\t)\n\treturn render(request, 'my_app/my_model_formset.html', context)\n# urls.py\nfrom django.urls import path, include\nfrom .views import test_view\nurlpatterns = [\n\tpath('test', test_view)\n]\n# my_model_formset.html\n{% extends \"my_app/base.html\" %}\n{% block content %}\n<form id=\"my-form\" method=\"post\">\n {% csrf_token %}\n {{ formset }}\n <input type=\"submit\" value=\"Save\">\n</form>\n{{ formset.empty_form }}\n{% endblock %}\n",
+  "ground_truth": {
+    "files": [
+      "django/forms/formsets.py"
+    ],
+    "locations": [
+      "django/forms/formsets.py::BaseFormSet",
+      "django/forms/formsets.py::BaseFormSet.empty_form"
+    ]
+  },
+  "predictions": [
+    "tests/forms_tests/tests/test_forms.py::FormsTestCase.test_empty_permitted",
+    "tests/forms_tests/tests/test_formsets.py::FormsFormsetTestCase.test_form_kwargs_empty_form",
+    "django/forms/formsets.py::BaseFormSet.empty_form",
+    "tests/forms_tests/tests/test_formsets.py::TestEmptyFormSet.test_empty_formset_is_valid",
+    "tests/forms_tests/tests/test_forms.py::FormsTestCase.test_empty_permitted_and_use_required_attribute",
+    "tests/test_utils/tests.py::AssertFormsetErrorTests.test_empty_errors_invalid_formset",
+    "tests/test_utils/tests.py::AssertFormsetErrorTests.test_empty_errors_valid_formset",
+    "tests/forms_tests/tests/test_formsets.py::TestEmptyFormSet.test_empty_formset_is_multipart",
+    "tests/model_formsets_regress/tests.py::InlineFormsetTests.test_empty_fields_on_modelformset",
+    "tests/forms_tests/tests/tests.py::TestTicket14567.test_empty_queryset_return"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "6df9398cce063874ae4d59db126d4adacb0fa8d3",
+    "total_functions_indexed": 26156,
+    "retrieval_time_seconds": 0.0934302806854248
+  },
+  "raw_output": "[{\"doc_id\": \"tests/forms_tests/tests/test_forms.py::FormsTestCase.test_empty_permitted\", \"score\": 0.6404314637184143}, {\"doc_id\": \"tests/forms_tests/tests/test_formsets.py::FormsFormsetTestCase.test_form_kwargs_empty_form\", \"score\": 0.5998853445053101}, {\"doc_id\": \"django/forms/formsets.py::BaseFormSet.empty_form\", \"score\": 0.5491697192192078}, {\"doc_id\": \"tests/forms_tests/tests/test_formsets.py::TestEmptyFormSet.test_empty_formset_is_valid\", \"score\": 0.5241432189941406}, {\"doc_id\": \"tests/forms_tests/tests/test_forms.py::FormsTestCase.test_empty_permitted_and_use_required_attribute\", \"score\": 0.5130540132522583}, {\"doc_id\": \"tests/test_utils/tests.py::AssertFormsetErrorTests.test_empty_errors_invalid_formset\", \"score\": 0.4964499771595001}, {\"doc_id\": \"tests/test_utils/tests.py::AssertFormsetErrorTests.test_empty_errors_valid_formset\", \"score\": 0.4896078109741211}, {\"doc_id\": \"tests/forms_tests/tests/test_formsets.py::TestEmptyFormSet.test_empty_formset_is_multipart\", \"score\": 0.48323699831962585}, {\"doc_id\": \"tests/model_formsets_regress/tests.py::InlineFormsetTests.test_empty_fields_on_modelformset\", \"score\": 0.4770822525024414}, {\"doc_id\": \"tests/forms_tests/tests/tests.py::TestTicket14567.test_empty_queryset_return\", \"score\": 0.47001349925994873}]"
+}

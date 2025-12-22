@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-13568",
+  "query": "Skip auth.E003 system check for USERNAME_FIELD with total UniqueConstraints.\nDescription\n\t\nDefining a user model like this:\nclass User(AbstractBaseUser):\n\tusername = models.CharField(max_length=30)\n\tUSERNAME_FIELD = \"username\"\n\tclass Meta:\n\t\tconstraints = [UniqueConstraint(fields=[\"username\"], name=\"user_username_unq\")]\nWill trigger auth.E003:\nauth.User: (auth.E003) 'User.username' must be unique because it is named as the 'USERNAME_FIELD'.\nSometimes it’s not preferable to set the field as unique with unique=True as it will create an extra implicit *_like index for CharField and TextField on PostgresSQL. The system check should be extended to check for the presence of USERNAME_FIELD in Model._meta.constraints. Not really sure if this classifies as a bug.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/auth/checks.py"
+    ],
+    "locations": [
+      "django/contrib/auth/checks.py::check_user_model"
+    ]
+  },
+  "predictions": [
+    "tests/auth_tests/test_checks.py::UserModelChecksTests.test_username_not_in_required_fields",
+    "django/contrib/auth/checks.py::check_user_model",
+    "tests/auth_tests/test_checks.py::UserModelChecksTests.test_username_non_unique",
+    "tests/auth_tests/test_checks.py::UserModelChecksTests.test_is_anonymous_authenticated_methods",
+    "django/contrib/auth/management/__init__.py::get_default_username",
+    "tests/auth_tests/test_checks.py::UserModelChecksTests.test_required_fields_is_list",
+    "django/contrib/auth/base_user.py::AbstractBaseUser.get_username",
+    "django/contrib/auth/forms.py::AuthenticationForm.__init__",
+    "django/contrib/auth/backends.py::RemoteUserBackend.authenticate",
+    "tests/auth_tests/test_forms.py::AuthenticationFormTest.test_username_field_label_not_set"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "ede9fac75807fe5810df66280a60e7068cc97e4a",
+    "total_functions_indexed": 23995,
+    "retrieval_time_seconds": 1.7036221027374268
+  },
+  "raw_output": "[{\"doc_id\": \"tests/auth_tests/test_checks.py::UserModelChecksTests.test_username_not_in_required_fields\", \"score\": 191.0180607546147}, {\"doc_id\": \"django/contrib/auth/checks.py::check_user_model\", \"score\": 178.66893018813545}, {\"doc_id\": \"tests/auth_tests/test_checks.py::UserModelChecksTests.test_username_non_unique\", \"score\": 168.99008149277003}, {\"doc_id\": \"tests/auth_tests/test_checks.py::UserModelChecksTests.test_is_anonymous_authenticated_methods\", \"score\": 145.80006486981046}, {\"doc_id\": \"django/contrib/auth/management/__init__.py::get_default_username\", \"score\": 140.9004286988406}, {\"doc_id\": \"tests/auth_tests/test_checks.py::UserModelChecksTests.test_required_fields_is_list\", \"score\": 129.42804573559258}, {\"doc_id\": \"django/contrib/auth/base_user.py::AbstractBaseUser.get_username\", \"score\": 129.36604232903207}, {\"doc_id\": \"django/contrib/auth/forms.py::AuthenticationForm.__init__\", \"score\": 124.00892483738161}, {\"doc_id\": \"django/contrib/auth/backends.py::RemoteUserBackend.authenticate\", \"score\": 122.52225324218598}, {\"doc_id\": \"tests/auth_tests/test_forms.py::AuthenticationFormTest.test_username_field_label_not_set\", \"score\": 120.99602108716235}]"
+}

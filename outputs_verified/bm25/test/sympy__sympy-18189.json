@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-18189",
+  "query": "diophantine: incomplete results depending on syms order with permute=True\n```\r\nIn [10]: diophantine(n**4 + m**4 - 2**4 - 3**4, syms=(m,n), permute=True)\r\nOut[10]: {(-3, -2), (-3, 2), (-2, -3), (-2, 3), (2, -3), (2, 3), (3, -2), (3, 2)}\r\n\r\nIn [11]: diophantine(n**4 + m**4 - 2**4 - 3**4, syms=(n,m), permute=True)\r\nOut[11]: {(3, 2)}\r\n```\r\n\ndiophantine: incomplete results depending on syms order with permute=True\n```\r\nIn [10]: diophantine(n**4 + m**4 - 2**4 - 3**4, syms=(m,n), permute=True)\r\nOut[10]: {(-3, -2), (-3, 2), (-2, -3), (-2, 3), (2, -3), (2, 3), (3, -2), (3, 2)}\r\n\r\nIn [11]: diophantine(n**4 + m**4 - 2**4 - 3**4, syms=(n,m), permute=True)\r\nOut[11]: {(3, 2)}\r\n```\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/solvers/diophantine.py"
+    ],
+    "locations": [
+      "sympy/solvers/diophantine.py::diophantine"
+    ]
+  },
+  "predictions": [
+    "sympy/solvers/tests/test_diophantine.py::test_diophantine_permute_sign",
+    "sympy/matrices/tests/test_commonmatrix.py::test_permute",
+    "sympy/solvers/tests/test_diophantine.py::test_diop_general_sum_of_squares_quick",
+    "sympy/solvers/diophantine.py::diophantine",
+    "sympy/solvers/tests/test_diophantine.py::test_assumptions",
+    "sympy/matrices/tests/test_matrices.py::test_issue_9457_9467_9876",
+    "sympy/solvers/tests/test_diophantine.py::test_not_implemented",
+    "sympy/solvers/tests/test_diophantine.py::test_diophantine",
+    "sympy/ntheory/tests/test_factor_.py::test_reduced_totient",
+    "sympy/ntheory/tests/test_factor_.py::test_totient"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "1923822ddf8265199dbd9ef9ce09641d3fd042b9",
+    "total_functions_indexed": 33741,
+    "retrieval_time_seconds": 3.6920599937438965
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/solvers/tests/test_diophantine.py::test_diophantine_permute_sign\", \"score\": 329.71253330490987}, {\"doc_id\": \"sympy/matrices/tests/test_commonmatrix.py::test_permute\", \"score\": 305.37441269589857}, {\"doc_id\": \"sympy/solvers/tests/test_diophantine.py::test_diop_general_sum_of_squares_quick\", \"score\": 295.75537740769823}, {\"doc_id\": \"sympy/solvers/diophantine.py::diophantine\", \"score\": 291.88699204338894}, {\"doc_id\": \"sympy/solvers/tests/test_diophantine.py::test_assumptions\", \"score\": 288.6797309870998}, {\"doc_id\": \"sympy/matrices/tests/test_matrices.py::test_issue_9457_9467_9876\", \"score\": 269.6707616155327}, {\"doc_id\": \"sympy/solvers/tests/test_diophantine.py::test_not_implemented\", \"score\": 264.0678602820294}, {\"doc_id\": \"sympy/solvers/tests/test_diophantine.py::test_diophantine\", \"score\": 260.7480112741007}, {\"doc_id\": \"sympy/ntheory/tests/test_factor_.py::test_reduced_totient\", \"score\": 255.54957800593544}, {\"doc_id\": \"sympy/ntheory/tests/test_factor_.py::test_totient\", \"score\": 249.1271693177812}]"
+}

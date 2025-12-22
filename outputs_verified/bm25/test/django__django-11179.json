@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11179",
+  "query": "delete() on instances of models without any dependencies doesn't clear PKs.\nDescription\n\t\nDeleting any model with no dependencies not updates the PK on the model. It should be set to None after .delete() call.\nSee Django.db.models.deletion:276-281. Should update the model line 280.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/deletion.py"
+    ],
+    "locations": [
+      "django/db/models/deletion.py::Collector",
+      "django/db/models/deletion.py::Collector.delete"
+    ]
+  },
+  "predictions": [
+    "django/db/models/deletion.py::Collector.add",
+    "django/db/models/deletion.py::Collector.__init__",
+    "django/core/serializers/__init__.py::sort_dependencies",
+    "tests/fixtures_regress/tests.py::M2MNaturalKeyFixtureTests.test_dependency_sorting_m2m_complex",
+    "tests/delete/tests.py::DeletionTests.test_proxied_model_duplicate_queries",
+    "tests/delete/tests.py::FastDeleteTests.test_fast_delete_empty_no_update_can_self_select",
+    "django/db/models/deletion.py::Collector.sort",
+    "django/contrib/admin/options.py::BaseModelAdmin.has_delete_permission",
+    "django/db/migrations/autodetector.py::MigrationAutodetector.generate_deleted_models",
+    "django/db/migrations/autodetector.py::MigrationAutodetector.generate_created_proxies"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "19fc6376ce67d01ca37a91ef2f55ef769f50513a",
+    "total_functions_indexed": 22420,
+    "retrieval_time_seconds": 0.8737154006958008
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/deletion.py::Collector.add\", \"score\": 68.4860284089775}, {\"doc_id\": \"django/db/models/deletion.py::Collector.__init__\", \"score\": 64.6926785864115}, {\"doc_id\": \"django/core/serializers/__init__.py::sort_dependencies\", \"score\": 61.12300955329412}, {\"doc_id\": \"tests/fixtures_regress/tests.py::M2MNaturalKeyFixtureTests.test_dependency_sorting_m2m_complex\", \"score\": 58.17138477584701}, {\"doc_id\": \"tests/delete/tests.py::DeletionTests.test_proxied_model_duplicate_queries\", \"score\": 57.951993041288404}, {\"doc_id\": \"tests/delete/tests.py::FastDeleteTests.test_fast_delete_empty_no_update_can_self_select\", \"score\": 53.99448338994178}, {\"doc_id\": \"django/db/models/deletion.py::Collector.sort\", \"score\": 53.223693693822696}, {\"doc_id\": \"django/contrib/admin/options.py::BaseModelAdmin.has_delete_permission\", \"score\": 53.1193049315884}, {\"doc_id\": \"django/db/migrations/autodetector.py::MigrationAutodetector.generate_deleted_models\", \"score\": 53.03468567779529}, {\"doc_id\": \"django/db/migrations/autodetector.py::MigrationAutodetector.generate_created_proxies\", \"score\": 51.20502042468756}]"
+}

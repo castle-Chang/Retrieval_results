@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-15202",
+  "query": "URLField throws ValueError instead of ValidationError on clean\nDescription\n\t\nforms.URLField( ).clean('////]@N.AN')\nresults in:\n\tValueError: Invalid IPv6 URL\n\tTraceback (most recent call last):\n\t File \"basic_fuzzer.py\", line 22, in TestOneInput\n\t File \"fuzzers.py\", line 350, in test_forms_URLField\n\t File \"django/forms/fields.py\", line 151, in clean\n\t File \"django/forms/fields.py\", line 136, in run_validators\n\t File \"django/core/validators.py\", line 130, in __call__\n\t File \"urllib/parse.py\", line 440, in urlsplit\n",
+  "ground_truth": {
+    "files": [
+      "django/core/validators.py"
+    ],
+    "locations": [
+      "django/core/validators.py::URLValidator",
+      "django/core/validators.py::URLValidator.__call__"
+    ]
+  },
+  "predictions": [
+    "tests/forms_tests/field_tests/test_urlfield.py::URLFieldTest.test_urlfield_clean_invalid",
+    "tests/forms_tests/field_tests/test_urlfield.py::URLFieldTest.test_urlfield_clean",
+    "tests/forms_tests/field_tests/test_urlfield.py::URLFieldTest.test_urlfield_clean_required",
+    "tests/forms_tests/tests/test_error_messages.py::FormsErrorMessagesTestCase.test_urlfield",
+    "django/db/models/fields/__init__.py::URLField.formfield",
+    "tests/forms_tests/field_tests/test_urlfield.py::URLFieldTest.test_urlfield_clean_not_required",
+    "django/forms/fields.py::URLField.to_python",
+    "django/forms/fields.py::URLField.__init__",
+    "tests/admin_widgets/tests.py::AdminFormfieldForDBFieldTests.test_URLField",
+    "django/contrib/flatpages/forms.py::FlatpageForm.clean_url"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "4fd3044ca0135da903a70dfb66992293f529ecf1",
+    "total_functions_indexed": 25399,
+    "retrieval_time_seconds": 0.006577253341674805
+  },
+  "raw_output": "[{\"doc_id\": \"tests/forms_tests/field_tests/test_urlfield.py::URLFieldTest.test_urlfield_clean_invalid\", \"score\": 0.7039581537246704}, {\"doc_id\": \"tests/forms_tests/field_tests/test_urlfield.py::URLFieldTest.test_urlfield_clean\", \"score\": 0.649702250957489}, {\"doc_id\": \"tests/forms_tests/field_tests/test_urlfield.py::URLFieldTest.test_urlfield_clean_required\", \"score\": 0.6187882423400879}, {\"doc_id\": \"tests/forms_tests/tests/test_error_messages.py::FormsErrorMessagesTestCase.test_urlfield\", \"score\": 0.6157059669494629}, {\"doc_id\": \"django/db/models/fields/__init__.py::URLField.formfield\", \"score\": 0.5981629490852356}, {\"doc_id\": \"tests/forms_tests/field_tests/test_urlfield.py::URLFieldTest.test_urlfield_clean_not_required\", \"score\": 0.5768140554428101}, {\"doc_id\": \"django/forms/fields.py::URLField.to_python\", \"score\": 0.5629281997680664}, {\"doc_id\": \"django/forms/fields.py::URLField.__init__\", \"score\": 0.5405138731002808}, {\"doc_id\": \"tests/admin_widgets/tests.py::AdminFormfieldForDBFieldTests.test_URLField\", \"score\": 0.524154543876648}, {\"doc_id\": \"django/contrib/flatpages/forms.py::FlatpageForm.clean_url\", \"score\": 0.5128480195999146}]"
+}

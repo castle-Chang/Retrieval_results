@@ -1,0 +1,34 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-11040",
+  "query": "Missing parameter validation in Neighbors estimator for float n_neighbors\n```python\r\nfrom sklearn.neighbors import NearestNeighbors\r\nfrom sklearn.datasets import make_blobs\r\nX, y = make_blobs()\r\nneighbors = NearestNeighbors(n_neighbors=3.)\r\nneighbors.fit(X)\r\nneighbors.kneighbors(X)\r\n```\r\n```\r\n~/checkout/scikit-learn/sklearn/neighbors/binary_tree.pxi in sklearn.neighbors.kd_tree.NeighborsHeap.__init__()\r\n\r\nTypeError: 'float' object cannot be interpreted as an integer\r\n```\r\nThis should be caught earlier and a more helpful error message should be raised (or we could be lenient and cast to integer, but I think a better error might be better).\r\n\r\nWe need to make sure that \r\n```python\r\nneighbors.kneighbors(X, n_neighbors=3.)\r\n```\r\nalso works.\n",
+  "ground_truth": {
+    "files": [
+      "sklearn/neighbors/base.py"
+    ],
+    "locations": [
+      "sklearn/neighbors/base.py::NeighborsBase",
+      "sklearn/neighbors/base.py::NeighborsBase._fit",
+      "sklearn/neighbors/base.py::KNeighborsMixin",
+      "sklearn/neighbors/base.py::KNeighborsMixin.kneighbors"
+    ]
+  },
+  "predictions": [
+    "sklearn/neighbors/tests/test_neighbors.py::test_non_euclidean_kneighbors",
+    "sklearn/neighbors/tests/test_neighbors.py::test_neighbors_badargs",
+    "sklearn/neighbors/tests/test_approximate.py::test_kneighbors",
+    "sklearn/neighbors/tests/test_neighbors.py::test_neighbors_metrics",
+    "sklearn/neighbors/tests/test_lof.py::test_n_neighbors_attribute",
+    "sklearn/neighbors/tests/test_neighbors.py::test_kneighbors_classifier_float_labels",
+    "sklearn/neighbors/tests/test_neighbors.py::test_k_and_radius_neighbors_X_None",
+    "sklearn/neighbors/tests/test_neighbors.py::test_unsupervised_inputs",
+    "sklearn/neighbors/tests/test_neighbors.py::test_metric_params_interface",
+    "sklearn/neighbors/classification.py::KNeighborsClassifier.__init__"
+  ],
+  "metadata": {
+    "repo": "scikit-learn/scikit-learn",
+    "commit": "96a02f3934952d486589dddd3f00b40d5a5ab5f2",
+    "total_functions_indexed": 6244,
+    "retrieval_time_seconds": 0.0017955303192138672
+  },
+  "raw_output": "[{\"doc_id\": \"sklearn/neighbors/tests/test_neighbors.py::test_non_euclidean_kneighbors\", \"score\": 0.6260875463485718}, {\"doc_id\": \"sklearn/neighbors/tests/test_neighbors.py::test_neighbors_badargs\", \"score\": 0.6226277947425842}, {\"doc_id\": \"sklearn/neighbors/tests/test_approximate.py::test_kneighbors\", \"score\": 0.5650202035903931}, {\"doc_id\": \"sklearn/neighbors/tests/test_neighbors.py::test_neighbors_metrics\", \"score\": 0.5499697923660278}, {\"doc_id\": \"sklearn/neighbors/tests/test_lof.py::test_n_neighbors_attribute\", \"score\": 0.5439169406890869}, {\"doc_id\": \"sklearn/neighbors/tests/test_neighbors.py::test_kneighbors_classifier_float_labels\", \"score\": 0.5343989729881287}, {\"doc_id\": \"sklearn/neighbors/tests/test_neighbors.py::test_k_and_radius_neighbors_X_None\", \"score\": 0.534173309803009}, {\"doc_id\": \"sklearn/neighbors/tests/test_neighbors.py::test_unsupervised_inputs\", \"score\": 0.5334821939468384}, {\"doc_id\": \"sklearn/neighbors/tests/test_neighbors.py::test_metric_params_interface\", \"score\": 0.5274962186813354}, {\"doc_id\": \"sklearn/neighbors/classification.py::KNeighborsClassifier.__init__\", \"score\": 0.5221858620643616}]"
+}

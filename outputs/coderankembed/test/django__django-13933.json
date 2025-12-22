@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-13933",
+  "query": "ModelChoiceField does not provide value of invalid choice when raising ValidationError\nDescription\n\t \n\t\t(last modified by Aaron Wiegel)\n\t \nCompared with ChoiceField and others, ModelChoiceField does not show the value of the invalid choice when raising a validation error. Passing in parameters with the invalid value and modifying the default error message for the code invalid_choice should fix this.\nFrom source code:\nclass ModelMultipleChoiceField(ModelChoiceField):\n\t\"\"\"A MultipleChoiceField whose choices are a model QuerySet.\"\"\"\n\twidget = SelectMultiple\n\thidden_widget = MultipleHiddenInput\n\tdefault_error_messages = {\n\t\t'invalid_list': _('Enter a list of values.'),\n\t\t'invalid_choice': _('Select a valid choice. %(value)s is not one of the'\n\t\t\t\t\t\t\t' available choices.'),\n\t\t'invalid_pk_value': _('“%(pk)s” is not a valid value.')\n\t}\n\t...\nclass ModelChoiceField(ChoiceField):\n\t\"\"\"A ChoiceField whose choices are a model QuerySet.\"\"\"\n\t# This class is a subclass of ChoiceField for purity, but it doesn't\n\t# actually use any of ChoiceField's implementation.\n\tdefault_error_messages = {\n\t\t'invalid_choice': _('Select a valid choice. That choice is not one of'\n\t\t\t\t\t\t\t' the available choices.'),\n\t}\n\t...\n",
+  "ground_truth": {
+    "files": [
+      "django/forms/models.py"
+    ],
+    "locations": [
+      "django/forms/models.py::ModelChoiceField",
+      "django/forms/models.py::ModelChoiceField.to_python",
+      "django/forms/models.py::ModelChoiceField.validate"
+    ]
+  },
+  "predictions": [
+    "tests/model_fields/tests.py::ChoicesTests.test_invalid_choice",
+    "django/forms/fields.py::ChoiceField.validate",
+    "tests/forms_tests/tests/test_error_messages.py::ModelChoiceFieldErrorMessagesTestCase.test_modelchoicefield",
+    "tests/model_fields/test_charfield.py::ValidationTests.test_charfield_with_choices_raises_error_on_invalid_choice",
+    "tests/forms_tests/field_tests/test_multivaluefield.py::MultiValueFieldTest.test_bad_choice",
+    "tests/model_forms/test_modelchoicefield.py::ModelChoiceFieldTests.test_clean_model_instance",
+    "tests/model_forms/test_modelchoicefield.py::ModelChoiceFieldTests.test_disabled_modelchoicefield",
+    "django/forms/models.py::ModelChoiceField.validate",
+    "tests/model_forms/tests.py::ModelMultipleChoiceFieldTests.test_model_multiple_choice_required_false",
+    "tests/forms_tests/tests/test_error_messages.py::FormsErrorMessagesTestCase.test_choicefield"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "42e8cf47c7ee2db238bf91197ea398126c546741",
+    "total_functions_indexed": 24245,
+    "retrieval_time_seconds": 0.09635448455810547
+  },
+  "raw_output": "[{\"doc_id\": \"tests/model_fields/tests.py::ChoicesTests.test_invalid_choice\", \"score\": 0.6657078266143799}, {\"doc_id\": \"django/forms/fields.py::ChoiceField.validate\", \"score\": 0.5930714011192322}, {\"doc_id\": \"tests/forms_tests/tests/test_error_messages.py::ModelChoiceFieldErrorMessagesTestCase.test_modelchoicefield\", \"score\": 0.5896407961845398}, {\"doc_id\": \"tests/model_fields/test_charfield.py::ValidationTests.test_charfield_with_choices_raises_error_on_invalid_choice\", \"score\": 0.5792707800865173}, {\"doc_id\": \"tests/forms_tests/field_tests/test_multivaluefield.py::MultiValueFieldTest.test_bad_choice\", \"score\": 0.5781998634338379}, {\"doc_id\": \"tests/model_forms/test_modelchoicefield.py::ModelChoiceFieldTests.test_clean_model_instance\", \"score\": 0.5638006925582886}, {\"doc_id\": \"tests/model_forms/test_modelchoicefield.py::ModelChoiceFieldTests.test_disabled_modelchoicefield\", \"score\": 0.544434130191803}, {\"doc_id\": \"django/forms/models.py::ModelChoiceField.validate\", \"score\": 0.5359769463539124}, {\"doc_id\": \"tests/model_forms/tests.py::ModelMultipleChoiceFieldTests.test_model_multiple_choice_required_false\", \"score\": 0.5191929340362549}, {\"doc_id\": \"tests/forms_tests/tests/test_error_messages.py::FormsErrorMessagesTestCase.test_choicefield\", \"score\": 0.513776957988739}]"
+}

@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-15345",
+  "query": "mathematica_code gives wrong output with Max\nIf I run the code\r\n\r\n```\r\nx = symbols('x')\r\nmathematica_code(Max(x,2))\r\n```\r\n\r\nthen I would expect the output `'Max[x,2]'` which is valid Mathematica code but instead I get `'Max(2, x)'` which is not valid Mathematica code.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/mathematica.py"
+    ],
+    "locations": [
+      "sympy/printing/mathematica.py::MCodePrinter",
+      "sympy/printing/mathematica.py::MCodePrinter._print_Function",
+      "sympy/printing/mathematica.py::MCodePrinter._print_Integral"
+    ]
+  },
+  "predictions": [
+    "sympy/printing/mathematica.py::mathematica_code",
+    "sympy/printing/theanocode.py::theano_function",
+    "sympy/physics/quantum/qubit.py::_get_possible_outcomes",
+    "sympy/utilities/iterables.py::sift",
+    "sympy/solvers/solveset.py::nonlinsolve",
+    "sympy/printing/rust.py::rust_code",
+    "sympy/functions/elementary/trigonometric.py::sin.eval",
+    "sympy/functions/elementary/tests/test_miscellaneous.py::test_Max",
+    "sympy/printing/julia.py::julia_code",
+    "sympy/simplify/fu.py::_TR56"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "9ef28fba5b4d6d0168237c9c005a550e6dc27d81",
+    "total_functions_indexed": 24081,
+    "retrieval_time_seconds": 1.3871221542358398
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/printing/mathematica.py::mathematica_code\", \"score\": 97.72264751015994}, {\"doc_id\": \"sympy/printing/theanocode.py::theano_function\", \"score\": 76.61379483140642}, {\"doc_id\": \"sympy/physics/quantum/qubit.py::_get_possible_outcomes\", \"score\": 74.42654336308244}, {\"doc_id\": \"sympy/utilities/iterables.py::sift\", \"score\": 71.73857584706386}, {\"doc_id\": \"sympy/solvers/solveset.py::nonlinsolve\", \"score\": 71.05364926833147}, {\"doc_id\": \"sympy/printing/rust.py::rust_code\", \"score\": 70.75677994853048}, {\"doc_id\": \"sympy/functions/elementary/trigonometric.py::sin.eval\", \"score\": 67.95894373637421}, {\"doc_id\": \"sympy/functions/elementary/tests/test_miscellaneous.py::test_Max\", \"score\": 67.62269840614935}, {\"doc_id\": \"sympy/printing/julia.py::julia_code\", \"score\": 67.60758149465687}, {\"doc_id\": \"sympy/simplify/fu.py::_TR56\", \"score\": 67.28279838290965}]"
+}

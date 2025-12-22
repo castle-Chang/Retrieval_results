@@ -1,0 +1,47 @@
+{
+  "instance_id": "sympy__sympy-14248",
+  "query": "The difference of MatrixSymbols prints as a sum with (-1) coefficient\nInternally, differences like a-b are represented as the sum of a with `(-1)*b`, but they are supposed to print like a-b. This does not happen with MatrixSymbols. I tried three printers: str, pretty, and latex: \r\n```\r\nfrom sympy import *\r\nA = MatrixSymbol('A', 2, 2)\r\nB = MatrixSymbol('B', 2, 2)\r\nprint(A - A*B - B)\r\npprint(A - A*B - B)\r\nlatex(A - A*B - B)\r\n```\r\nOutput:\r\n```\r\n(-1)*B + (-1)*A*B + A\r\n-B + -A⋅B + A\r\n'-1 B + -1 A B + A'\r\n```\r\n\r\nBased on a [Stack Overflow post](https://stackoverflow.com/q/48826611)\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/latex.py",
+      "sympy/printing/str.py",
+      "sympy/printing/pretty/pretty.py"
+    ],
+    "locations": [
+      "sympy/printing/latex.py::LatexPrinter",
+      "sympy/printing/latex.py::LatexPrinter._print_Adjoint",
+      "sympy/printing/latex.py::LatexPrinter._print_MatAdd",
+      "sympy/printing/latex.py::LatexPrinter._print_MatMul",
+      "sympy/printing/latex.py::LatexPrinter._print_Mod",
+      "sympy/printing/pretty/pretty.py::PrettyPrinter",
+      "sympy/printing/pretty/pretty.py::PrettyPrinter._print_BlockMatrix",
+      "sympy/printing/pretty/pretty.py::PrettyPrinter._print_MatAdd",
+      "sympy/printing/pretty/pretty.py::PrettyPrinter._print_MatMul",
+      "sympy/printing/str.py::StrPrinter",
+      "sympy/printing/str.py::StrPrinter._print_Mul",
+      "sympy/printing/str.py::StrPrinter._print_MatMul",
+      "sympy/printing/str.py::StrPrinter._print_HadamardProduct",
+      "sympy/printing/str.py::StrPrinter._print_MatAdd",
+      "sympy/printing/str.py::StrPrinter._print_NaN"
+    ]
+  },
+  "predictions": [
+    "sympy/core/numbers.py::igcd_lehmer",
+    "sympy/integrals/prde.py::param_poly_rischDE",
+    "sympy/concrete/summations.py::Sum.euler_maclaurin",
+    "sympy/physics/vector/tests/test_printing.py::test_vector_pretty_print",
+    "sympy/parsing/latex/__init__.py::parse_latex",
+    "sympy/concrete/summations.py::telescopic_direct",
+    "sympy/crypto/crypto.py::encipher_affine",
+    "sympy/ntheory/factor_.py::pollard_pm1",
+    "sympy/matrices/expressions/tests/test_indexing.py::test_matrix_expression_from_index_summation",
+    "sympy/functions/elementary/piecewise.py::_clip"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "9986b38181cdd556a3f3411e553864f11912244e",
+    "total_functions_indexed": 22890,
+    "retrieval_time_seconds": 1.4482436180114746
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/numbers.py::igcd_lehmer\", \"score\": 196.86504369716664}, {\"doc_id\": \"sympy/integrals/prde.py::param_poly_rischDE\", \"score\": 190.0090283545181}, {\"doc_id\": \"sympy/concrete/summations.py::Sum.euler_maclaurin\", \"score\": 186.70526162809816}, {\"doc_id\": \"sympy/physics/vector/tests/test_printing.py::test_vector_pretty_print\", \"score\": 186.56359814574307}, {\"doc_id\": \"sympy/parsing/latex/__init__.py::parse_latex\", \"score\": 186.33582888791562}, {\"doc_id\": \"sympy/concrete/summations.py::telescopic_direct\", \"score\": 185.4150560225782}, {\"doc_id\": \"sympy/crypto/crypto.py::encipher_affine\", \"score\": 183.83287803665658}, {\"doc_id\": \"sympy/ntheory/factor_.py::pollard_pm1\", \"score\": 183.44222385411052}, {\"doc_id\": \"sympy/matrices/expressions/tests/test_indexing.py::test_matrix_expression_from_index_summation\", \"score\": 182.91467712747195}, {\"doc_id\": \"sympy/functions/elementary/piecewise.py::_clip\", \"score\": 182.72491927101566}]"
+}

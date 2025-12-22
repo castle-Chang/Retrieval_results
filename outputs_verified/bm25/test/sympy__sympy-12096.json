@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-12096",
+  "query": "evalf does not call _imp_ recursively\nExample from https://stackoverflow.com/questions/41818842/why-cant-i-evaluate-a-composition-of-implemented-functions-in-sympy-at-a-point:\r\n\r\n```\r\n>>> from sympy.utilities.lambdify import implemented_function\r\n>>> f = implemented_function('f', lambda x: x ** 2)\r\n>>> g = implemented_function('g', lambda x: 2 * x)\r\n>>> print(f(  2 ).evalf())\r\n4.00000000000000\r\n>>> print(  g(2) .evalf())\r\n4.00000000000000\r\n>>> print(f(g(2)).evalf())\r\nf(g(2))\r\n```\r\n\r\nThe code for this is in `Function._eval_evalf`. It isn't calling evalf recursively on the return of `_imp_`. \n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/function.py"
+    ],
+    "locations": [
+      "sympy/core/function.py::Function",
+      "sympy/core/function.py::Function._eval_evalf"
+    ]
+  },
+  "predictions": [
+    "sympy/core/tests/test_evalf.py::test_implemented_function_evalf",
+    "sympy/utilities/tests/test_lambdify.py::test_imps",
+    "examples/advanced/gibbs_phenomenon.py::main",
+    "sympy/utilities/lambdify.py::implemented_function",
+    "sympy/utilities/autowrap.py::binary_function",
+    "sympy/utilities/lambdify.py::_imp_namespace",
+    "sympy/strategies/tree.py::greedy",
+    "sympy/utilities/lambdify.py::lambdify",
+    "sympy/concrete/summations.py::Sum.euler_maclaurin",
+    "sympy/printing/tests/test_rcode.py::test_rcode_inline_function"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "d7c3045115693e887bcd03599b7ca4650ac5f2cb",
+    "total_functions_indexed": 20337,
+    "retrieval_time_seconds": 1.0104572772979736
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/tests/test_evalf.py::test_implemented_function_evalf\", \"score\": 159.39790876049898}, {\"doc_id\": \"sympy/utilities/tests/test_lambdify.py::test_imps\", \"score\": 148.81723576028998}, {\"doc_id\": \"examples/advanced/gibbs_phenomenon.py::main\", \"score\": 132.83486171464153}, {\"doc_id\": \"sympy/utilities/lambdify.py::implemented_function\", \"score\": 118.53260455435645}, {\"doc_id\": \"sympy/utilities/autowrap.py::binary_function\", \"score\": 118.35196161583845}, {\"doc_id\": \"sympy/utilities/lambdify.py::_imp_namespace\", \"score\": 114.9356831494007}, {\"doc_id\": \"sympy/strategies/tree.py::greedy\", \"score\": 111.50031319264026}, {\"doc_id\": \"sympy/utilities/lambdify.py::lambdify\", \"score\": 107.45502225459535}, {\"doc_id\": \"sympy/concrete/summations.py::Sum.euler_maclaurin\", \"score\": 105.93592534108498}, {\"doc_id\": \"sympy/printing/tests/test_rcode.py::test_rcode_inline_function\", \"score\": 102.90603109588079}]"
+}

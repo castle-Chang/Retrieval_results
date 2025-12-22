@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-15609",
+  "query": "Indexed matrix-expression LaTeX printer is not compilable\n```python\r\ni, j, k = symbols(\"i j k\")\r\nM = MatrixSymbol(\"M\", k, k)\r\nN = MatrixSymbol(\"N\", k, k)\r\nlatex((M*N)[i, j])\r\n```\r\n\r\nThe LaTeX string produced by the last command is:\r\n```\r\n\\sum_{i_{1}=0}^{k - 1} M_{i, _i_1} N_{_i_1, j}\r\n```\r\nLaTeX complains about a double subscript `_`. This expression won't render in MathJax either.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/latex.py"
+    ],
+    "locations": [
+      "sympy/printing/latex.py::LatexPrinter",
+      "sympy/printing/latex.py::LatexPrinter._print_MatrixElement",
+      "sympy/printing/latex.py::LatexPrinter._print_MatrixSlice"
+    ]
+  },
+  "predictions": [
+    "sympy/printing/latex.py::LatexPrinter._print_Indexed",
+    "sympy/matrices/expressions/matexpr.py::MatrixExpr.__getitem__",
+    "sympy/printing/latex.py::LatexPrinter._print_MatrixElement",
+    "sympy/printing/latex.py::LatexPrinter._print_TensorIndex",
+    "sympy/matrices/matrices.py::MatrixBase._repr_latex_",
+    "sympy/matrices/expressions/tests/test_matexpr.py::test_indexing",
+    "sympy/printing/tests/test_latex.py::test_latex_MatrixSlice",
+    "sympy/printing/tests/test_latex.py::test_latex_indexed",
+    "sympy/printing/jscode.py::JavascriptCodePrinter._print_Indexed",
+    "sympy/printing/latex.py::LatexPrinter._print_IndexedBase"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "15f56f3b0006d2ed2c29bde3c43e91618012c849",
+    "total_functions_indexed": 24316,
+    "retrieval_time_seconds": 0.0053784847259521484
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_Indexed\", \"score\": 0.6180943846702576}, {\"doc_id\": \"sympy/matrices/expressions/matexpr.py::MatrixExpr.__getitem__\", \"score\": 0.5973230004310608}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_MatrixElement\", \"score\": 0.596985936164856}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_TensorIndex\", \"score\": 0.5928773880004883}, {\"doc_id\": \"sympy/matrices/matrices.py::MatrixBase._repr_latex_\", \"score\": 0.5685684680938721}, {\"doc_id\": \"sympy/matrices/expressions/tests/test_matexpr.py::test_indexing\", \"score\": 0.5567411780357361}, {\"doc_id\": \"sympy/printing/tests/test_latex.py::test_latex_MatrixSlice\", \"score\": 0.5549397468566895}, {\"doc_id\": \"sympy/printing/tests/test_latex.py::test_latex_indexed\", \"score\": 0.5536845326423645}, {\"doc_id\": \"sympy/printing/jscode.py::JavascriptCodePrinter._print_Indexed\", \"score\": 0.5522201061248779}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_IndexedBase\", \"score\": 0.54998379945755}]"
+}

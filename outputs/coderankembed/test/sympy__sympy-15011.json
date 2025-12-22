@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-15011",
+  "query": "lambdify does not work with certain MatrixSymbol names even with dummify=True\n`lambdify` is happy with curly braces in a symbol name and with `MatrixSymbol`s, but not with both at the same time, even if `dummify` is `True`.\r\n\r\nHere is some basic code that gives the error.\r\n```\r\nimport sympy as sy\r\ncurlyx = sy.symbols(\"{x}\")\r\nv = sy.MatrixSymbol(\"v\", 2, 1)\r\ncurlyv = sy.MatrixSymbol(\"{v}\", 2, 1)\r\n```\r\n\r\nThe following two lines of code work:\r\n```\r\ncurlyScalarId = sy.lambdify(curlyx, curlyx)\r\nvectorId = sy.lambdify(v,v)\r\n```\r\n\r\nThe following two lines of code give a `SyntaxError`:\r\n```\r\ncurlyVectorId = sy.lambdify(curlyv, curlyv)\r\ncurlyVectorIdDummified = sy.lambdify(curlyv, curlyv, dummify=True)\r\n```\r\n\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/utilities/lambdify.py"
+    ],
+    "locations": [
+      "sympy/utilities/lambdify.py::_EvaluatorPrinter",
+      "sympy/utilities/lambdify.py::_EvaluatorPrinter._preprocess"
+    ]
+  },
+  "predictions": [
+    "sympy/utilities/tests/test_lambdify.py::test_dummification",
+    "sympy/utilities/tests/test_lambdify.py::test_lambdify_mixed_symbol_dummy_args",
+    "sympy/utilities/tests/test_lambdify.py::test_issue_2790",
+    "sympy/utilities/tests/test_lambdify.py::test_issue_9334",
+    "sympy/utilities/tests/test_lambdify.py::test_lambdify_dummy_arg",
+    "sympy/utilities/tests/test_lambdify.py::test_bad_args",
+    "sympy/utilities/tests/test_lambdify.py::test_python_keywords",
+    "sympy/plotting/tests/test_plot.py::test_experimental_lambify",
+    "sympy/utilities/tests/test_lambdify.py::test_issue_14941",
+    "sympy/utilities/lambdify.py::lambdify"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "b7c5ba2bf3ffd5cf453b25af7c8ddd9a639800cb",
+    "total_functions_indexed": 23949,
+    "retrieval_time_seconds": 0.0058441162109375
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/utilities/tests/test_lambdify.py::test_dummification\", \"score\": 0.6693887710571289}, {\"doc_id\": \"sympy/utilities/tests/test_lambdify.py::test_lambdify_mixed_symbol_dummy_args\", \"score\": 0.584334135055542}, {\"doc_id\": \"sympy/utilities/tests/test_lambdify.py::test_issue_2790\", \"score\": 0.5681643486022949}, {\"doc_id\": \"sympy/utilities/tests/test_lambdify.py::test_issue_9334\", \"score\": 0.563715934753418}, {\"doc_id\": \"sympy/utilities/tests/test_lambdify.py::test_lambdify_dummy_arg\", \"score\": 0.5621891021728516}, {\"doc_id\": \"sympy/utilities/tests/test_lambdify.py::test_bad_args\", \"score\": 0.5588192343711853}, {\"doc_id\": \"sympy/utilities/tests/test_lambdify.py::test_python_keywords\", \"score\": 0.5492556095123291}, {\"doc_id\": \"sympy/plotting/tests/test_plot.py::test_experimental_lambify\", \"score\": 0.5484157204627991}, {\"doc_id\": \"sympy/utilities/tests/test_lambdify.py::test_issue_14941\", \"score\": 0.5478662252426147}, {\"doc_id\": \"sympy/utilities/lambdify.py::lambdify\", \"score\": 0.5223103165626526}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-7530",
+  "query": "makemigrations router.allow_migrate() calls for consistency checks use incorrect (app_label, model) pairs\nDescription\n\t\nAs reported in ticket:27200#comment:14, I makemigrations incorrectly calls allow_migrate() for each app with all the models in the project rather than for each app with the app's models. It broke the router I use because it was passing invalid combinations for shards since not all shards have the same models.\n[​​https://github.com/django/django/pull/7530 PR]\n",
+  "ground_truth": {
+    "files": [
+      "django/core/management/commands/makemigrations.py"
+    ],
+    "locations": [
+      "django/core/management/commands/makemigrations.py::Command",
+      "django/core/management/commands/makemigrations.py::Command.handle"
+    ]
+  },
+  "predictions": [
+    "django/db/migrations/state.py::StateApps.__init__",
+    "django/db/utils.py::ConnectionRouter.allow_migrate",
+    "django/db/migrations/operations/special.py::RunPython.database_forwards",
+    "django/db/migrations/state.py::StateApps.render_multiple",
+    "django/db/migrations/executor.py::MigrationExecutor.detect_soft_applied",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_disabled_migrations_for_app",
+    "django/contrib/admin/sites.py::AdminSite.get_app_list",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_consistency_checks_respect_routers",
+    "django/db/models/fields/related.py::lazy_related_operation",
+    "django/db/migrations/graph.py::MigrationGraph.leaf_nodes"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "f8fab6f90233c7114d642dfe01a4e6d4cb14ee7d",
+    "total_functions_indexed": 20054,
+    "retrieval_time_seconds": 0.8781039714813232
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/migrations/state.py::StateApps.__init__\", \"score\": 71.30181977501604}, {\"doc_id\": \"django/db/utils.py::ConnectionRouter.allow_migrate\", \"score\": 70.21767252273257}, {\"doc_id\": \"django/db/migrations/operations/special.py::RunPython.database_forwards\", \"score\": 68.75111789266047}, {\"doc_id\": \"django/db/migrations/state.py::StateApps.render_multiple\", \"score\": 67.06578964801241}, {\"doc_id\": \"django/db/migrations/executor.py::MigrationExecutor.detect_soft_applied\", \"score\": 65.78004159640106}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_disabled_migrations_for_app\", \"score\": 65.2965203067106}, {\"doc_id\": \"django/contrib/admin/sites.py::AdminSite.get_app_list\", \"score\": 65.24740688357173}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_consistency_checks_respect_routers\", \"score\": 65.21658598520432}, {\"doc_id\": \"django/db/models/fields/related.py::lazy_related_operation\", \"score\": 62.21296333030625}, {\"doc_id\": \"django/db/migrations/graph.py::MigrationGraph.leaf_nodes\", \"score\": 61.09403650008148}]"
+}

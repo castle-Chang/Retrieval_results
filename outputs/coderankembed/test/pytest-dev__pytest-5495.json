@@ -1,0 +1,31 @@
+{
+  "instance_id": "pytest-dev__pytest-5495",
+  "query": "Confusing assertion rewriting message with byte strings\nThe comparison with assertion rewriting for byte strings is confusing: \r\n```\r\n    def test_b():\r\n>       assert b\"\" == b\"42\"\r\nE       AssertionError: assert b'' == b'42'\r\nE         Right contains more items, first extra item: 52\r\nE         Full diff:\r\nE         - b''\r\nE         + b'42'\r\nE         ?   ++\r\n```\r\n\r\n52 is the ASCII ordinal of \"4\" here.\r\n\r\nIt became clear to me when using another example:\r\n\r\n```\r\n    def test_b():\r\n>       assert b\"\" == b\"1\"\r\nE       AssertionError: assert b'' == b'1'\r\nE         Right contains more items, first extra item: 49\r\nE         Full diff:\r\nE         - b''\r\nE         + b'1'\r\nE         ?   +\r\n```\r\n\r\nNot sure what should/could be done here.\n",
+  "ground_truth": {
+    "files": [
+      "src/_pytest/assertion/util.py"
+    ],
+    "locations": [
+      "src/_pytest/assertion/util.py::_compare_eq_sequence"
+    ]
+  },
+  "predictions": [
+    "testing/test_assertrewrite.py::TestAssertionRewrite.test_assertion_messages_bytes",
+    "testing/test_assertrewrite.py::TestAssertionRewrite.test_binary_op",
+    "testing/test_assertrewrite.py::TestAssertionRewrite.test_assertion_message",
+    "testing/test_assertrewrite.py::TestAssertionRewrite.test_assertion_message_escape",
+    "testing/test_assertrewrite.py::TestAssertionRewrite.test_assertion_message_expr",
+    "testing/test_assertrewrite.py::TestAssertionRewrite.test_assert_already_has_message",
+    "testing/test_assertrewrite.py::TestAssertionRewrite.test_assertion_message_tuple",
+    "testing/test_assertrewrite.py::TestAssertionRewrite.test_unary_op",
+    "testing/test_assertrewrite.py::TestAssertionRewrite.test_comparisons",
+    "testing/test_assertrewrite.py::TestAssertionRewrite.test_formatchar"
+  ],
+  "metadata": {
+    "repo": "pytest-dev/pytest",
+    "commit": "1aefb24b37c30fba8fd79a744829ca16e252f340",
+    "total_functions_indexed": 3489,
+    "retrieval_time_seconds": 0.001241922378540039
+  },
+  "raw_output": "[{\"doc_id\": \"testing/test_assertrewrite.py::TestAssertionRewrite.test_assertion_messages_bytes\", \"score\": 0.6441360712051392}, {\"doc_id\": \"testing/test_assertrewrite.py::TestAssertionRewrite.test_binary_op\", \"score\": 0.5555073022842407}, {\"doc_id\": \"testing/test_assertrewrite.py::TestAssertionRewrite.test_assertion_message\", \"score\": 0.5331286191940308}, {\"doc_id\": \"testing/test_assertrewrite.py::TestAssertionRewrite.test_assertion_message_escape\", \"score\": 0.532543420791626}, {\"doc_id\": \"testing/test_assertrewrite.py::TestAssertionRewrite.test_assertion_message_expr\", \"score\": 0.5170848965644836}, {\"doc_id\": \"testing/test_assertrewrite.py::TestAssertionRewrite.test_assert_already_has_message\", \"score\": 0.5099306702613831}, {\"doc_id\": \"testing/test_assertrewrite.py::TestAssertionRewrite.test_assertion_message_tuple\", \"score\": 0.4951724410057068}, {\"doc_id\": \"testing/test_assertrewrite.py::TestAssertionRewrite.test_unary_op\", \"score\": 0.4901784062385559}, {\"doc_id\": \"testing/test_assertrewrite.py::TestAssertionRewrite.test_comparisons\", \"score\": 0.4792649745941162}, {\"doc_id\": \"testing/test_assertrewrite.py::TestAssertionRewrite.test_formatchar\", \"score\": 0.4760212004184723}]"
+}

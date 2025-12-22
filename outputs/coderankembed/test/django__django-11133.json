@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11133",
+  "query": "HttpResponse doesn't handle memoryview objects\nDescription\n\t\nI am trying to write a BinaryField retrieved from the database into a HttpResponse. When the database is Sqlite this works correctly, but Postgresql returns the contents of the field as a memoryview object and it seems like current Django doesn't like this combination:\nfrom django.http import HttpResponse\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t \n# String content\nresponse = HttpResponse(\"My Content\")\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nresponse.content\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t \n# Out: b'My Content'\n# This is correct\n# Bytes content\nresponse = HttpResponse(b\"My Content\")\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t \nresponse.content\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t \n# Out: b'My Content'\n# This is also correct\n# memoryview content\nresponse = HttpResponse(memoryview(b\"My Content\"))\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t \nresponse.content\n# Out: b'<memory at 0x7fcc47ab2648>'\n# This is not correct, I am expecting b'My Content'\n",
+  "ground_truth": {
+    "files": [
+      "django/http/response.py"
+    ],
+    "locations": [
+      "django/http/response.py::HttpResponseBase",
+      "django/http/response.py::HttpResponseBase.make_bytes"
+    ]
+  },
+  "predictions": [
+    "django/db/models/fields/__init__.py::BinaryField.to_python",
+    "tests/model_fields/test_binaryfield.py::BinaryFieldTests.test_filter_memoryview",
+    "tests/utils_tests/test_encoding.py::TestEncodingUtils.test_force_bytes_memory_view",
+    "tests/model_fields/test_binaryfield.py::BinaryFieldTests.test_set_and_retrieve",
+    "django/http/response.py::HttpResponse.__init__",
+    "django/db/backends/oracle/operations.py::DatabaseOperations.convert_binaryfield_value",
+    "django/http/response.py::HttpResponse.write",
+    "tests/test_client_regress/views.py::return_undecodable_binary",
+    "django/db/models/fields/__init__.py::BinaryField.value_to_string",
+    "django/http/response.py::HttpResponse.serialize"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "879cc3da6249e920b8d54518a0ae06de835d7373",
+    "total_functions_indexed": 22403,
+    "retrieval_time_seconds": 0.00592350959777832
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/fields/__init__.py::BinaryField.to_python\", \"score\": 0.5382212400436401}, {\"doc_id\": \"tests/model_fields/test_binaryfield.py::BinaryFieldTests.test_filter_memoryview\", \"score\": 0.4783427119255066}, {\"doc_id\": \"tests/utils_tests/test_encoding.py::TestEncodingUtils.test_force_bytes_memory_view\", \"score\": 0.47333163022994995}, {\"doc_id\": \"tests/model_fields/test_binaryfield.py::BinaryFieldTests.test_set_and_retrieve\", \"score\": 0.41982513666152954}, {\"doc_id\": \"django/http/response.py::HttpResponse.__init__\", \"score\": 0.41178634762763977}, {\"doc_id\": \"django/db/backends/oracle/operations.py::DatabaseOperations.convert_binaryfield_value\", \"score\": 0.40535080432891846}, {\"doc_id\": \"django/http/response.py::HttpResponse.write\", \"score\": 0.4027734398841858}, {\"doc_id\": \"tests/test_client_regress/views.py::return_undecodable_binary\", \"score\": 0.40250587463378906}, {\"doc_id\": \"django/db/models/fields/__init__.py::BinaryField.value_to_string\", \"score\": 0.3912521302700043}, {\"doc_id\": \"django/http/response.py::HttpResponse.serialize\", \"score\": 0.38907620310783386}]"
+}

@@ -1,0 +1,31 @@
+{
+  "instance_id": "pydata__xarray-3364",
+  "query": "Ignore missing variables when concatenating datasets?\nSeveral users (@raj-kesavan, @richardotis, now myself) have wondered about how to concatenate xray Datasets with different variables.\n\nWith the current `xray.concat`, you need to awkwardly create dummy variables filled with `NaN` in datasets that don't have them (or drop mismatched variables entirely). Neither of these are great options -- `concat` should have an option (the default?) to take care of this for the user.\n\nThis would also be more consistent with `pd.concat`, which takes a more relaxed approach to matching dataframes with different variables (it does an outer join).\n\n",
+  "ground_truth": {
+    "files": [
+      "xarray/core/concat.py"
+    ],
+    "locations": [
+      "xarray/core/concat.py::_dataset_concat"
+    ]
+  },
+  "predictions": [
+    "xarray/core/concat.py::_dataset_concat",
+    "xarray/core/combine.py::_auto_concat",
+    "xarray/tests/test_concat.py::TestConcatDataset.test_concat_data_vars",
+    "xarray/core/concat.py::concat",
+    "xarray/core/combine.py::_requires_concat_and_merge",
+    "xarray/core/concat.py::_calc_concat_over",
+    "xarray/tests/test_concat.py::test_concat_compat",
+    "xarray/tests/test_concat.py::TestConcatDataset.test_concat_dim_is_variable",
+    "xarray/tests/test_sparse.py::TestSparseDataArrayAndDataset.test_concat",
+    "xarray/tests/test_concat.py::TestConcatDataset.test_concat_fill_value"
+  ],
+  "metadata": {
+    "repo": "pydata/xarray",
+    "commit": "863e49066ca4d61c9adfe62aca3bf21b90e1af8c",
+    "total_functions_indexed": 3755,
+    "retrieval_time_seconds": 0.0010254383087158203
+  },
+  "raw_output": "[{\"doc_id\": \"xarray/core/concat.py::_dataset_concat\", \"score\": 0.5750477910041809}, {\"doc_id\": \"xarray/core/combine.py::_auto_concat\", \"score\": 0.5553415417671204}, {\"doc_id\": \"xarray/tests/test_concat.py::TestConcatDataset.test_concat_data_vars\", \"score\": 0.5525546669960022}, {\"doc_id\": \"xarray/core/concat.py::concat\", \"score\": 0.5439319610595703}, {\"doc_id\": \"xarray/core/combine.py::_requires_concat_and_merge\", \"score\": 0.5436570644378662}, {\"doc_id\": \"xarray/core/concat.py::_calc_concat_over\", \"score\": 0.5350902080535889}, {\"doc_id\": \"xarray/tests/test_concat.py::test_concat_compat\", \"score\": 0.5300827622413635}, {\"doc_id\": \"xarray/tests/test_concat.py::TestConcatDataset.test_concat_dim_is_variable\", \"score\": 0.5100069642066956}, {\"doc_id\": \"xarray/tests/test_sparse.py::TestSparseDataArrayAndDataset.test_concat\", \"score\": 0.508123517036438}, {\"doc_id\": \"xarray/tests/test_concat.py::TestConcatDataset.test_concat_fill_value\", \"score\": 0.5080654621124268}]"
+}

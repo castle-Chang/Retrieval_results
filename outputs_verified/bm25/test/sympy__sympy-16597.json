@@ -1,0 +1,44 @@
+{
+  "instance_id": "sympy__sympy-16597",
+  "query": "a.is_even does not imply a.is_finite\nI'm not sure what the right answer is here:\r\n```julia\r\nIn [1]: m = Symbol('m', even=True)                                                                                                             \r\n\r\nIn [2]: m.is_finite                                                                                                                            \r\n\r\nIn [3]: print(m.is_finite)                                                                                                                     \r\nNone\r\n```\r\nI would expect that a number should be finite before it can be even.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/assumptions/ask_generated.py",
+      "sympy/core/assumptions.py",
+      "sympy/printing/tree.py",
+      "sympy/core/power.py",
+      "sympy/assumptions/ask.py",
+      "sympy/tensor/indexed.py"
+    ],
+    "locations": [
+      "sympy/assumptions/ask.py::get_known_facts",
+      "sympy/assumptions/ask_generated.py::get_known_facts_cnf",
+      "sympy/assumptions/ask_generated.py::get_known_facts_dict",
+      "sympy/core/power.py::Pow",
+      "sympy/core/power.py::Pow._eval_is_polynomial",
+      "sympy/core/power.py::Pow._eval_is_rational",
+      "sympy/printing/tree.py::print_tree",
+      "sympy/tensor/indexed.py::Idx",
+      "sympy/tensor/indexed.py::Idx.__new__"
+    ]
+  },
+  "predictions": [
+    "sympy/matrices/common.py::MatrixProperties.is_anti_symmetric",
+    "sympy/ntheory/factor_.py::pollard_pm1",
+    "sympy/ntheory/modular.py::solve_congruence",
+    "sympy/assumptions/sathandlers.py::_old_assump_replacer",
+    "sympy/utilities/tests/test_codegen_julia.py::test_jl_loops",
+    "sympy/utilities/iterables.py::multiset_partitions",
+    "sympy/solvers/solveset.py::_solveset",
+    "sympy/utilities/iterables.py::ordered_partitions",
+    "sympy/core/function.py::Function._eval_evalf",
+    "sympy/core/expr.py::Expr.coeff"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "6fd65310fa3167b9626c38a5487e171ca407d988",
+    "total_functions_indexed": 24908,
+    "retrieval_time_seconds": 1.0887794494628906
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/matrices/common.py::MatrixProperties.is_anti_symmetric\", \"score\": 93.77869283014567}, {\"doc_id\": \"sympy/ntheory/factor_.py::pollard_pm1\", \"score\": 86.77692121674043}, {\"doc_id\": \"sympy/ntheory/modular.py::solve_congruence\", \"score\": 86.05536410074866}, {\"doc_id\": \"sympy/assumptions/sathandlers.py::_old_assump_replacer\", \"score\": 84.59220210270423}, {\"doc_id\": \"sympy/utilities/tests/test_codegen_julia.py::test_jl_loops\", \"score\": 82.06265266992555}, {\"doc_id\": \"sympy/utilities/iterables.py::multiset_partitions\", \"score\": 81.11265075807455}, {\"doc_id\": \"sympy/solvers/solveset.py::_solveset\", \"score\": 80.57996606911536}, {\"doc_id\": \"sympy/utilities/iterables.py::ordered_partitions\", \"score\": 79.4021196843091}, {\"doc_id\": \"sympy/core/function.py::Function._eval_evalf\", \"score\": 79.28217452142569}, {\"doc_id\": \"sympy/core/expr.py::Expr.coeff\", \"score\": 78.11955606186426}]"
+}

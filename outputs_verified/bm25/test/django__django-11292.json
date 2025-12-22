@@ -1,0 +1,35 @@
+{
+  "instance_id": "django__django-11292",
+  "query": "Add --skip-checks option to management commands.\nDescription\n\t\nManagement commands already have skip_checks stealth option. I propose exposing this option on the command line. This would allow users to skip checks when running a command from the command line. Sometimes in a development environment, it is nice to move ahead with a task at hand rather than getting side tracked fixing a system check.\n",
+  "ground_truth": {
+    "files": [
+      "django/core/management/base.py"
+    ],
+    "locations": [
+      "django/core/management/base.py::DjangoHelpFormatter",
+      "django/core/management/base.py::DjangoHelpFormatter._reordered_actions",
+      "django/core/management/base.py::BaseCommand",
+      "django/core/management/base.py::BaseCommand.create_parser",
+      "django/core/management/base.py::BaseCommand.execute"
+    ]
+  },
+  "predictions": [
+    "django/core/management/commands/test.py::Command.run_from_argv",
+    "django/core/management/__init__.py::call_command",
+    "django/core/management/__init__.py::get_commands",
+    "django/core/management/__init__.py::load_command_class",
+    "django/core/management/__init__.py::ManagementUtility.fetch_command",
+    "tests/admin_scripts/tests.py::CommandTypes.test_run_from_argv_closes_connections",
+    "tests/fixtures_regress/tests.py::TestFixtures.test_loaddata_no_fixture_specified",
+    "django/core/management/utils.py::get_command_line_option",
+    "django/core/management/base.py::AppCommand.handle_app_config",
+    "django/core/management/commands/runserver.py::Command.execute"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "eb16c7260e573ec513d84cb586d96bdf508f3173",
+    "total_functions_indexed": 22445,
+    "retrieval_time_seconds": 1.2377619743347168
+  },
+  "raw_output": "[{\"doc_id\": \"django/core/management/commands/test.py::Command.run_from_argv\", \"score\": 95.30728653226981}, {\"doc_id\": \"django/core/management/__init__.py::call_command\", \"score\": 73.40373440564115}, {\"doc_id\": \"django/core/management/__init__.py::get_commands\", \"score\": 66.29415243762156}, {\"doc_id\": \"django/core/management/__init__.py::load_command_class\", \"score\": 65.23747100379883}, {\"doc_id\": \"django/core/management/__init__.py::ManagementUtility.fetch_command\", \"score\": 63.87868730244036}, {\"doc_id\": \"tests/admin_scripts/tests.py::CommandTypes.test_run_from_argv_closes_connections\", \"score\": 61.849245129849805}, {\"doc_id\": \"tests/fixtures_regress/tests.py::TestFixtures.test_loaddata_no_fixture_specified\", \"score\": 61.72699019146372}, {\"doc_id\": \"django/core/management/utils.py::get_command_line_option\", \"score\": 60.90026492260733}, {\"doc_id\": \"django/core/management/base.py::AppCommand.handle_app_config\", \"score\": 59.173656914951685}, {\"doc_id\": \"django/core/management/commands/runserver.py::Command.execute\", \"score\": 58.59601531345169}]"
+}

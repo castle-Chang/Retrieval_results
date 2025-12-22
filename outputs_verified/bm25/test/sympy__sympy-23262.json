@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-23262",
+  "query": "Python code printer not respecting tuple with one element\nHi,\r\n\r\nThanks for the recent updates in SymPy! I'm trying to update my code to use SymPy 1.10 but ran into an issue with the Python code printer. MWE:\r\n\r\n\r\n```python\r\nimport inspect\r\nfrom sympy import lambdify\r\n\r\ninspect.getsource(lambdify([], tuple([1])))\r\n```\r\nSymPy 1.9 and under outputs:\r\n```\r\n'def _lambdifygenerated():\\n    return (1,)\\n'\r\n```\r\n\r\nBut SymPy 1.10 gives\r\n\r\n```\r\n'def _lambdifygenerated():\\n    return (1)\\n'\r\n```\r\nNote the missing comma after `1` that causes an integer to be returned instead of a tuple. \r\n\r\nFor tuples with two or more elements, the generated code is correct:\r\n```python\r\ninspect.getsource(lambdify([], tuple([1, 2])))\r\n```\r\nIn SymPy  1.10 and under, outputs:\r\n\r\n```\r\n'def _lambdifygenerated():\\n    return (1, 2)\\n'\r\n```\r\nThis result is expected.\r\n\r\nNot sure if this is a regression. As this breaks my program which assumes the return type to always be a tuple, could you suggest a workaround from the code generation side? Thank you. \n",
+  "ground_truth": {
+    "files": [
+      "sympy/utilities/lambdify.py"
+    ],
+    "locations": [
+      "sympy/utilities/lambdify.py::_recursive_to_string"
+    ]
+  },
+  "predictions": [
+    "sympy/utilities/lambdify.py::lambdify",
+    "sympy/utilities/tests/test_enumerative.py::multiset_partitions_baseline",
+    "sympy/core/evalf.py::fastlog",
+    "sympy/utilities/iterables.py::iterable",
+    "sympy/utilities/iterables.py::_set_partitions",
+    "sympy/printing/julia.py::julia_code",
+    "sympy/utilities/codegen.py::codegen",
+    "sympy/printing/octave.py::octave_code",
+    "sympy/testing/pytest.py::warns",
+    "sympy/utilities/autowrap.py::autowrap"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "fdc707f73a65a429935c01532cd3970d3355eab6",
+    "total_functions_indexed": 37742,
+    "retrieval_time_seconds": 3.5044281482696533
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/utilities/lambdify.py::lambdify\", \"score\": 241.79144622434134}, {\"doc_id\": \"sympy/utilities/tests/test_enumerative.py::multiset_partitions_baseline\", \"score\": 196.82692046194464}, {\"doc_id\": \"sympy/core/evalf.py::fastlog\", \"score\": 195.51977851556435}, {\"doc_id\": \"sympy/utilities/iterables.py::iterable\", \"score\": 191.13487851397292}, {\"doc_id\": \"sympy/utilities/iterables.py::_set_partitions\", \"score\": 189.70755079616657}, {\"doc_id\": \"sympy/printing/julia.py::julia_code\", \"score\": 185.54204572228983}, {\"doc_id\": \"sympy/utilities/codegen.py::codegen\", \"score\": 184.59375969115942}, {\"doc_id\": \"sympy/printing/octave.py::octave_code\", \"score\": 184.471947686499}, {\"doc_id\": \"sympy/testing/pytest.py::warns\", \"score\": 184.2553577477746}, {\"doc_id\": \"sympy/utilities/autowrap.py::autowrap\", \"score\": 180.4031599495587}]"
+}

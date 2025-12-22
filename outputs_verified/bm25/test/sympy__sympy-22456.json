@@ -1,0 +1,38 @@
+{
+  "instance_id": "sympy__sympy-22456",
+  "query": "Argument invariance of codegen.ast String\nCurrently, the `codegen.ast` `String` class does not support argument invariance like:\r\n`expr.func(*expr.args) == expr`, but instead uses the invariance `expr.func(**expr.kwargs()) == expr`.\r\nThe former should hold for any `Basic` subclass, which `String` is.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/codegen/ast.py"
+    ],
+    "locations": [
+      "sympy/codegen/ast.py::Token",
+      "sympy/codegen/ast.py::Token.kwargs",
+      "sympy/codegen/ast.py::BreakToken",
+      "sympy/codegen/ast.py::For",
+      "sympy/codegen/ast.py::For._construct_iterable",
+      "sympy/codegen/ast.py::String",
+      "sympy/codegen/ast.py::String._sympystr",
+      "sympy/codegen/ast.py::QuotedString"
+    ]
+  },
+  "predictions": [
+    "sympy/utilities/autowrap.py::autowrap",
+    "sympy/codegen/algorithms.py::newtons_method_function",
+    "sympy/polys/orderings.py::monomial_key",
+    "sympy/codegen/ast.py::aug_assign",
+    "sympy/printing/maple.py::maple_code",
+    "sympy/printing/codeprinter.py::ccode",
+    "sympy/simplify/epathtools.py::epath",
+    "sympy/utilities/autowrap.py::ufuncify",
+    "sympy/codegen/ast.py::String._construct_text",
+    "sympy/utilities/codegen.py::Result.__init__"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "a3475b3f9ac662cd425157dd3bdb93ad7111c090",
+    "total_functions_indexed": 37239,
+    "retrieval_time_seconds": 1.253537893295288
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/utilities/autowrap.py::autowrap\", \"score\": 87.28958539150028}, {\"doc_id\": \"sympy/codegen/algorithms.py::newtons_method_function\", \"score\": 83.51146964552768}, {\"doc_id\": \"sympy/polys/orderings.py::monomial_key\", \"score\": 82.41412490150483}, {\"doc_id\": \"sympy/codegen/ast.py::aug_assign\", \"score\": 80.59857941308269}, {\"doc_id\": \"sympy/printing/maple.py::maple_code\", \"score\": 80.04800521641286}, {\"doc_id\": \"sympy/printing/codeprinter.py::ccode\", \"score\": 79.10940678124916}, {\"doc_id\": \"sympy/simplify/epathtools.py::epath\", \"score\": 79.03598878880904}, {\"doc_id\": \"sympy/utilities/autowrap.py::ufuncify\", \"score\": 76.09423042192272}, {\"doc_id\": \"sympy/codegen/ast.py::String._construct_text\", \"score\": 75.92886504093161}, {\"doc_id\": \"sympy/utilities/codegen.py::Result.__init__\", \"score\": 75.68656552172192}]"
+}

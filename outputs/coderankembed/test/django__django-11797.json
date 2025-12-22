@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11797",
+  "query": "Filtering on query result overrides GROUP BY of internal query\nDescription\n\t\nfrom django.contrib.auth import models\na = models.User.objects.filter(email__isnull=True).values('email').annotate(m=Max('id')).values('m')\nprint(a.query) # good\n# SELECT MAX(\"auth_user\".\"id\") AS \"m\" FROM \"auth_user\" WHERE \"auth_user\".\"email\" IS NULL GROUP BY \"auth_user\".\"email\"\nprint(a[:1].query) # good\n# SELECT MAX(\"auth_user\".\"id\") AS \"m\" FROM \"auth_user\" WHERE \"auth_user\".\"email\" IS NULL GROUP BY \"auth_user\".\"email\" LIMIT 1\nb = models.User.objects.filter(id=a[:1])\nprint(b.query) # GROUP BY U0.\"id\" should be GROUP BY U0.\"email\"\n# SELECT ... FROM \"auth_user\" WHERE \"auth_user\".\"id\" = (SELECT U0.\"id\" FROM \"auth_user\" U0 WHERE U0.\"email\" IS NULL GROUP BY U0.\"id\" LIMIT 1)\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/lookups.py"
+    ],
+    "locations": [
+      "django/db/models/lookups.py::Exact",
+      "django/db/models/lookups.py::Exact.process_rhs"
+    ]
+  },
+  "predictions": [
+    "django/db/models/sql/query.py::Query.set_group_by",
+    "tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_rawsql_group_by_collapse",
+    "django/db/models/sql/compiler.py::SQLCompiler.get_group_by",
+    "tests/aggregation/tests.py::AggregateTestCase.test_group_by_subquery_annotation",
+    "tests/aggregation_regress/tests.py::AggregationTests.test_having_group_by",
+    "tests/aggregation_regress/tests.py::AggregationTests.test_fobj_group_by",
+    "tests/expressions/test_queryset_values.py::ValuesExpressionsTests.test_values_expression_group_by",
+    "tests/postgres_tests/test_json.py::TestQuerying.test_ordering_grouping_by_key_transform",
+    "tests/aggregation/tests.py::AggregateTestCase.test_grouped_annotation_in_group_by",
+    "tests/aggregation/tests.py::AggregateTestCase.test_filtering"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "3346b78a8a872286a245d1e77ef4718fc5e6be1a",
+    "total_functions_indexed": 22833,
+    "retrieval_time_seconds": 0.008834123611450195
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/sql/query.py::Query.set_group_by\", \"score\": 0.4837982654571533}, {\"doc_id\": \"tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_rawsql_group_by_collapse\", \"score\": 0.4588353931903839}, {\"doc_id\": \"django/db/models/sql/compiler.py::SQLCompiler.get_group_by\", \"score\": 0.4414710998535156}, {\"doc_id\": \"tests/aggregation/tests.py::AggregateTestCase.test_group_by_subquery_annotation\", \"score\": 0.44066548347473145}, {\"doc_id\": \"tests/aggregation_regress/tests.py::AggregationTests.test_having_group_by\", \"score\": 0.43880364298820496}, {\"doc_id\": \"tests/aggregation_regress/tests.py::AggregationTests.test_fobj_group_by\", \"score\": 0.4386717975139618}, {\"doc_id\": \"tests/expressions/test_queryset_values.py::ValuesExpressionsTests.test_values_expression_group_by\", \"score\": 0.4336996078491211}, {\"doc_id\": \"tests/postgres_tests/test_json.py::TestQuerying.test_ordering_grouping_by_key_transform\", \"score\": 0.428067684173584}, {\"doc_id\": \"tests/aggregation/tests.py::AggregateTestCase.test_grouped_annotation_in_group_by\", \"score\": 0.4248005747795105}, {\"doc_id\": \"tests/aggregation/tests.py::AggregateTestCase.test_filtering\", \"score\": 0.4245346188545227}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11790",
+  "query": "AuthenticationForm's username field doesn't set maxlength HTML attribute.\nDescription\n\t\nAuthenticationForm's username field doesn't render with maxlength HTML attribute anymore.\nRegression introduced in #27515 and 5ceaf14686ce626404afb6a5fbd3d8286410bf13.\n​https://groups.google.com/forum/?utm_source=digest&utm_medium=email#!topic/django-developers/qnfSqro0DlA\n​https://forum.djangoproject.com/t/possible-authenticationform-max-length-regression-in-django-2-1/241\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/auth/forms.py"
+    ],
+    "locations": [
+      "django/contrib/auth/forms.py::AuthenticationForm",
+      "django/contrib/auth/forms.py::AuthenticationForm.__init__"
+    ]
+  },
+  "predictions": [
+    "tests/forms_tests/tests/test_forms.py::FormsTestCase.test_form_html_attributes",
+    "tests/auth_tests/test_forms.py::AuthenticationFormTest.test_inactive_user_incorrect_password",
+    "django/contrib/auth/forms.py::AuthenticationForm.__init__",
+    "tests/auth_tests/test_forms.py::AuthenticationFormTest.test_username_field_max_length_matches_user_model",
+    "tests/mail/tests.py::MailTests.test_dont_mangle_from_in_body",
+    "tests/template_tests/filter_tests/test_urlize.py::FunctionTests.test_https",
+    "tests/syndication_tests/tests.py::SyndicationFeedTest.test_add_domain",
+    "tests/forms_tests/tests/test_forms.py::FormsTestCase.test_templates_with_forms",
+    "tests/template_tests/filter_tests/test_urlize.py::FunctionTests.test_malformed",
+    "tests/forms_tests/widget_tests/test_fileinput.py::FileInputTest.test_render"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "b1d6b35e146aea83b171c1b921178bbaae2795ed",
+    "total_functions_indexed": 22829,
+    "retrieval_time_seconds": 0.8689029216766357
+  },
+  "raw_output": "[{\"doc_id\": \"tests/forms_tests/tests/test_forms.py::FormsTestCase.test_form_html_attributes\", \"score\": 55.44353042591612}, {\"doc_id\": \"tests/auth_tests/test_forms.py::AuthenticationFormTest.test_inactive_user_incorrect_password\", \"score\": 50.8356333147542}, {\"doc_id\": \"django/contrib/auth/forms.py::AuthenticationForm.__init__\", \"score\": 49.818862307132584}, {\"doc_id\": \"tests/auth_tests/test_forms.py::AuthenticationFormTest.test_username_field_max_length_matches_user_model\", \"score\": 48.3532696074459}, {\"doc_id\": \"tests/mail/tests.py::MailTests.test_dont_mangle_from_in_body\", \"score\": 47.27763951118233}, {\"doc_id\": \"tests/template_tests/filter_tests/test_urlize.py::FunctionTests.test_https\", \"score\": 46.83378887355517}, {\"doc_id\": \"tests/syndication_tests/tests.py::SyndicationFeedTest.test_add_domain\", \"score\": 46.42709274825321}, {\"doc_id\": \"tests/forms_tests/tests/test_forms.py::FormsTestCase.test_templates_with_forms\", \"score\": 46.085161694899746}, {\"doc_id\": \"tests/template_tests/filter_tests/test_urlize.py::FunctionTests.test_malformed\", \"score\": 44.479762534411954}, {\"doc_id\": \"tests/forms_tests/widget_tests/test_fileinput.py::FileInputTest.test_render\", \"score\": 43.71344121283742}]"
+}

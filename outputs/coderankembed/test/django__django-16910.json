@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-16910",
+  "query": "QuerySet.only() doesn't work with select_related() on a reverse OneToOneField relation.\nDescription\n\t\nOn Django 4.2 calling only() with select_related() on a query using the reverse lookup for a OneToOne relation does not generate the correct query.\nAll the fields from the related model are still included in the generated SQL.\nSample models:\nclass Main(models.Model):\n\tmain_field_1 = models.CharField(blank=True, max_length=45)\n\tmain_field_2 = models.CharField(blank=True, max_length=45)\n\tmain_field_3 = models.CharField(blank=True, max_length=45)\nclass Secondary(models.Model):\n\tmain = models.OneToOneField(Main, primary_key=True, related_name='secondary', on_delete=models.CASCADE)\n\tsecondary_field_1 = models.CharField(blank=True, max_length=45)\n\tsecondary_field_2 = models.CharField(blank=True, max_length=45)\n\tsecondary_field_3 = models.CharField(blank=True, max_length=45)\nSample code:\nMain.objects.select_related('secondary').only('main_field_1', 'secondary__secondary_field_1')\nGenerated query on Django 4.2.1:\nSELECT \"bugtest_main\".\"id\", \"bugtest_main\".\"main_field_1\", \"bugtest_secondary\".\"main_id\", \"bugtest_secondary\".\"secondary_field_1\", \"bugtest_secondary\".\"secondary_field_2\", \"bugtest_secondary\".\"secondary_field_3\" FROM \"bugtest_main\" LEFT OUTER JOIN \"bugtest_secondary\" ON (\"bugtest_main\".\"id\" = \"bugtest_secondary\".\"main_id\")\nGenerated query on Django 4.1.9:\nSELECT \"bugtest_main\".\"id\", \"bugtest_main\".\"main_field_1\", \"bugtest_secondary\".\"main_id\", \"bugtest_secondary\".\"secondary_field_1\" FROM \"bugtest_main\" LEFT OUTER JOIN \"bugtest_secondary\" ON (\"bugtest_main\".\"id\" = \"bugtest_secondary\".\"main_id\")\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/sql/query.py"
+    ],
+    "locations": [
+      "django/db/models/sql/query.py::Query",
+      "django/db/models/sql/query.py::Query._get_only_select_mask"
+    ]
+  },
+  "predictions": [
+    "tests/select_related_onetoone/tests.py::ReverseSelectRelatedTestCase.test_parent_only",
+    "tests/defer/tests.py::DeferTests.test_only_with_select_related",
+    "tests/defer_regress/tests.py::DeferRegressionTest.test_only_with_select_related",
+    "tests/update_only_fields/tests.py::UpdateOnlyFieldsTests.test_select_related_only_interaction",
+    "tests/defer/tests.py::InvalidDeferTests.test_only_select_related_raises_invalid_query",
+    "django/db/models/query.py::QuerySet.select_related",
+    "django/db/models/query.py::QuerySet.only",
+    "django/db/models/fields/reverse_related.py::OneToOneRel.__init__",
+    "django/contrib/admin/utils.py::NestedObjects.related_objects",
+    "tests/proxy_models/tests.py::ProxyModelTests.test_select_related_only"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "4142739af1cda53581af4169dbe16d6cd5e26948",
+    "total_functions_indexed": 26678,
+    "retrieval_time_seconds": 0.03594541549682617
+  },
+  "raw_output": "[{\"doc_id\": \"tests/select_related_onetoone/tests.py::ReverseSelectRelatedTestCase.test_parent_only\", \"score\": 0.5711069107055664}, {\"doc_id\": \"tests/defer/tests.py::DeferTests.test_only_with_select_related\", \"score\": 0.5657321214675903}, {\"doc_id\": \"tests/defer_regress/tests.py::DeferRegressionTest.test_only_with_select_related\", \"score\": 0.5584169030189514}, {\"doc_id\": \"tests/update_only_fields/tests.py::UpdateOnlyFieldsTests.test_select_related_only_interaction\", \"score\": 0.557220458984375}, {\"doc_id\": \"tests/defer/tests.py::InvalidDeferTests.test_only_select_related_raises_invalid_query\", \"score\": 0.5413520336151123}, {\"doc_id\": \"django/db/models/query.py::QuerySet.select_related\", \"score\": 0.5389395952224731}, {\"doc_id\": \"django/db/models/query.py::QuerySet.only\", \"score\": 0.5274569988250732}, {\"doc_id\": \"django/db/models/fields/reverse_related.py::OneToOneRel.__init__\", \"score\": 0.5249135494232178}, {\"doc_id\": \"django/contrib/admin/utils.py::NestedObjects.related_objects\", \"score\": 0.5180462598800659}, {\"doc_id\": \"tests/proxy_models/tests.py::ProxyModelTests.test_select_related_only\", \"score\": 0.5175950527191162}]"
+}

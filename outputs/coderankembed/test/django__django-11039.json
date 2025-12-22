@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11039",
+  "query": "sqlmigrate wraps it's outpout in BEGIN/COMMIT even if the database doesn't support transactional DDL\nDescription\n\t \n\t\t(last modified by Simon Charette)\n\t \nThe migration executor only adds the outer BEGIN/COMMIT ​if the migration is atomic and ​the schema editor can rollback DDL but the current sqlmigrate logic only takes migration.atomic into consideration.\nThe issue can be addressed by\nChanging sqlmigrate ​assignment of self.output_transaction to consider connection.features.can_rollback_ddl as well.\nAdding a test in tests/migrations/test_commands.py based on ​an existing test for non-atomic migrations that mocks connection.features.can_rollback_ddl to False instead of overdidding MIGRATION_MODULES to point to a non-atomic migration.\nI marked the ticket as easy picking because I included the above guidelines but feel free to uncheck it if you deem it inappropriate.\n",
+  "ground_truth": {
+    "files": [
+      "django/core/management/commands/sqlmigrate.py"
+    ],
+    "locations": [
+      "django/core/management/commands/sqlmigrate.py::Command",
+      "django/core/management/commands/sqlmigrate.py::Command.handle"
+    ]
+  },
+  "predictions": [
+    "tests/migrations/test_commands.py::MigrateTests.test_sqlmigrate_for_non_atomic_migration",
+    "django/core/management/commands/sqlmigrate.py::Command.execute",
+    "tests/migrations/test_commands.py::MigrateTests.test_sqlmigrate_backwards",
+    "tests/migrations/test_commands.py::MigrateTests.test_sqlmigrate_forwards",
+    "tests/migrations/test_executor.py::ExecutorTests.test_atomic_operation_in_non_atomic_migration",
+    "django/core/management/commands/sqlmigrate.py::Command.handle",
+    "tests/schema/tests.py::SchemaTests.test_unsupported_transactional_ddl_disallowed",
+    "tests/migrations/test_migrations_atomic_operation/0001_initial.py::raise_error",
+    "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor.__init__",
+    "tests/transactions/tests.py::AtomicTests.test_alternate_decorator_syntax_rollback"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "d5276398046ce4a102776a1e67dcac2884d80dfe",
+    "total_functions_indexed": 22327,
+    "retrieval_time_seconds": 0.005990743637084961
+  },
+  "raw_output": "[{\"doc_id\": \"tests/migrations/test_commands.py::MigrateTests.test_sqlmigrate_for_non_atomic_migration\", \"score\": 0.5890020132064819}, {\"doc_id\": \"django/core/management/commands/sqlmigrate.py::Command.execute\", \"score\": 0.5527632236480713}, {\"doc_id\": \"tests/migrations/test_commands.py::MigrateTests.test_sqlmigrate_backwards\", \"score\": 0.5260669589042664}, {\"doc_id\": \"tests/migrations/test_commands.py::MigrateTests.test_sqlmigrate_forwards\", \"score\": 0.497426837682724}, {\"doc_id\": \"tests/migrations/test_executor.py::ExecutorTests.test_atomic_operation_in_non_atomic_migration\", \"score\": 0.49604085087776184}, {\"doc_id\": \"django/core/management/commands/sqlmigrate.py::Command.handle\", \"score\": 0.4855031371116638}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_unsupported_transactional_ddl_disallowed\", \"score\": 0.47965192794799805}, {\"doc_id\": \"tests/migrations/test_migrations_atomic_operation/0001_initial.py::raise_error\", \"score\": 0.4399912357330322}, {\"doc_id\": \"django/db/backends/base/schema.py::BaseDatabaseSchemaEditor.__init__\", \"score\": 0.42020750045776367}, {\"doc_id\": \"tests/transactions/tests.py::AtomicTests.test_alternate_decorator_syntax_rollback\", \"score\": 0.4153860807418823}]"
+}

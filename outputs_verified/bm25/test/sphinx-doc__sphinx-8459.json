@@ -1,0 +1,31 @@
+{
+  "instance_id": "sphinx-doc__sphinx-8459",
+  "query": "autodoc_type_aliases doesn't work when autodoc_typehints is set to \"description\"\n**Describe the bug**\r\nautodoc_type_aliases doesn't work when autodoc_typehints is set to \"description\".\r\n\r\n**To Reproduce**\r\n\r\ntypes.py\r\n```python\r\nfrom __future__ import annotations\r\n\r\nfrom typing import Any, Dict\r\n\r\nJSONObject = Dict[str, Any]\r\n\r\n\r\ndef sphinx_doc(data: JSONObject) -> JSONObject:\r\n    \"\"\"Does it work.\r\n\r\n    Args:\r\n        data: Does it args.\r\n\r\n    Returns:\r\n        Does it work in return.\r\n    \"\"\"\r\n    return {}\r\n\r\n```\r\n\r\nconf.py\r\n```python\r\nautodoc_typehints = 'description'\r\nautodoc_type_aliases = {\r\n    'JSONObject': 'types.JSONObject',\r\n}\r\n```\r\n\r\nI get,\r\n```\r\ntypes.sphinx_doc(data)\r\nDoes it work.\r\n\r\nParameters\r\ndata (Dict[str, Any]) – Does it args.\r\n\r\nReturns\r\nDoes it work in return.\r\n\r\nReturn type\r\nDict[str, Any]\r\n```\r\n\r\nThen if I remove `autodoc_typehints = 'description'`\r\nI get,\r\n```\r\ntypes.sphinx_doc(data: types.JSONObject) → types.JSONObject\r\nDoes it work.\r\n\r\nParameters\r\ndata – Does it args.\r\n\r\nReturns\r\nDoes it work in return.\r\n```\r\n\r\n**Expected behavior**\r\n\r\n`types.JSONObject` instead of `Dict[str, Any]` in both cases.\r\n\r\n\r\n**Environment info**\r\n- OS: Mac Catalina 10.15.7\r\n- Python version: 3.7.9\r\n- Sphinx version: 3.3.1\r\n- Sphinx extensions:      sphinx.ext.autodoc, sphinx.ext.napoleon, sphinxarg.ext\r\n\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/ext/autodoc/typehints.py"
+    ],
+    "locations": [
+      "sphinx/ext/autodoc/typehints.py::record_typehints"
+    ]
+  },
+  "predictions": [
+    "sphinx/util/console.py::colorize",
+    "tests/test_ext_napoleon_docstring.py::NumpyDocstringTest.test_parameter_types",
+    "tests/test_ext_napoleon_docstring.py::GoogleDocstringTest.test_parameters_with_class_reference",
+    "sphinx/application.py::Sphinx.is_parallel_allowed",
+    "sphinx/ext/autodoc/__init__.py::FunctionDocumenter.format_args",
+    "tests/test_util_inspect.py::test_dict_customtype",
+    "sphinx/application.py::Sphinx.add_config_value",
+    "doc/usage/extensions/example_google.py::function_with_types_in_docstring",
+    "sphinx/util/typing.py::get_type_hints",
+    "sphinx/ext/autodoc/__init__.py::MethodDocumenter.format_args"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "68aa4fb29e7dfe521749e1e14f750d7afabb3481",
+    "total_functions_indexed": 5547,
+    "retrieval_time_seconds": 0.4591357707977295
+  },
+  "raw_output": "[{\"doc_id\": \"sphinx/util/console.py::colorize\", \"score\": 129.90848947543606}, {\"doc_id\": \"tests/test_ext_napoleon_docstring.py::NumpyDocstringTest.test_parameter_types\", \"score\": 129.09202768916575}, {\"doc_id\": \"tests/test_ext_napoleon_docstring.py::GoogleDocstringTest.test_parameters_with_class_reference\", \"score\": 122.19306861772374}, {\"doc_id\": \"sphinx/application.py::Sphinx.is_parallel_allowed\", \"score\": 118.61192695756364}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::FunctionDocumenter.format_args\", \"score\": 115.42752359262266}, {\"doc_id\": \"tests/test_util_inspect.py::test_dict_customtype\", \"score\": 113.54982501873315}, {\"doc_id\": \"sphinx/application.py::Sphinx.add_config_value\", \"score\": 113.32005758072582}, {\"doc_id\": \"doc/usage/extensions/example_google.py::function_with_types_in_docstring\", \"score\": 112.62326663939682}, {\"doc_id\": \"sphinx/util/typing.py::get_type_hints\", \"score\": 112.26468601480616}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::MethodDocumenter.format_args\", \"score\": 111.89117880810402}]"
+}

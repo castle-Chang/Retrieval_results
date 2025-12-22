@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12908",
+  "query": "Union queryset should raise on distinct().\nDescription\n\t \n\t\t(last modified by Sielc Technologies)\n\t \nAfter using\n.annotate() on 2 different querysets\nand then .union()\n.distinct() will not affect the queryset\n\tdef setUp(self) -> None:\n\t\tuser = self.get_or_create_admin_user()\n\t\tSample.h.create(user, name=\"Sam1\")\n\t\tSample.h.create(user, name=\"Sam2 acid\")\n\t\tSample.h.create(user, name=\"Sam3\")\n\t\tSample.h.create(user, name=\"Sam4 acid\")\n\t\tSample.h.create(user, name=\"Dub\")\n\t\tSample.h.create(user, name=\"Dub\")\n\t\tSample.h.create(user, name=\"Dub\")\n\t\tself.user = user\n\tdef test_union_annotated_diff_distinct(self):\n\t\tqs = Sample.objects.filter(user=self.user)\n\t\tqs1 = qs.filter(name='Dub').annotate(rank=Value(0, IntegerField()))\n\t\tqs2 = qs.filter(name='Sam1').annotate(rank=Value(1, IntegerField()))\n\t\tqs = qs1.union(qs2)\n\t\tqs = qs.order_by('name').distinct('name') # THIS DISTINCT DOESN'T WORK\n\t\tself.assertEqual(qs.count(), 2)\nexpected to get wrapped union\n\tSELECT DISTINCT ON (siebox_sample.name) * FROM (SELECT ... UNION SELECT ...) AS siebox_sample\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/query.py"
+    ],
+    "locations": [
+      "django/db/models/query.py::QuerySet",
+      "django/db/models/query.py::QuerySet.distinct"
+    ]
+  },
+  "predictions": [
+    "tests/queries/test_qs_combinators.py::QuerySetSetOperationTests.test_union_distinct",
+    "tests/queries/test_qs_combinators.py::QuerySetSetOperationTests.test_union_with_two_annotated_values_list",
+    "tests/queries/test_qs_combinators.py::QuerySetSetOperationTests.test_union_with_values_list_on_annotated_and_unannotated",
+    "tests/gis_tests/geoapp/test_functions.py::GISFunctionsTests.test_diff_intersection_union",
+    "tests/distinct_on_fields/tests.py::DistinctOnTests.test_basic_distinct_on",
+    "tests/queries/test_qs_combinators.py::QuerySetSetOperationTests.test_union_with_values",
+    "tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_distinct_on_with_annotation",
+    "tests/filtered_relation/tests.py::FilteredRelationTests.test_union",
+    "tests/queries/test_qs_combinators.py::QuerySetSetOperationTests.test_union_with_extra_and_values_list",
+    "tests/distinct_on_fields/tests.py::DistinctOnTests.test_distinct_not_implemented_checks"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "49ae7ce50a874f8a04cd910882fb9571ff3a0d7a",
+    "total_functions_indexed": 23404,
+    "retrieval_time_seconds": 0.007157802581787109
+  },
+  "raw_output": "[{\"doc_id\": \"tests/queries/test_qs_combinators.py::QuerySetSetOperationTests.test_union_distinct\", \"score\": 0.6041316390037537}, {\"doc_id\": \"tests/queries/test_qs_combinators.py::QuerySetSetOperationTests.test_union_with_two_annotated_values_list\", \"score\": 0.5275803804397583}, {\"doc_id\": \"tests/queries/test_qs_combinators.py::QuerySetSetOperationTests.test_union_with_values_list_on_annotated_and_unannotated\", \"score\": 0.5077123641967773}, {\"doc_id\": \"tests/gis_tests/geoapp/test_functions.py::GISFunctionsTests.test_diff_intersection_union\", \"score\": 0.49231046438217163}, {\"doc_id\": \"tests/distinct_on_fields/tests.py::DistinctOnTests.test_basic_distinct_on\", \"score\": 0.491355299949646}, {\"doc_id\": \"tests/queries/test_qs_combinators.py::QuerySetSetOperationTests.test_union_with_values\", \"score\": 0.4882238805294037}, {\"doc_id\": \"tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_distinct_on_with_annotation\", \"score\": 0.4866828918457031}, {\"doc_id\": \"tests/filtered_relation/tests.py::FilteredRelationTests.test_union\", \"score\": 0.4866650104522705}, {\"doc_id\": \"tests/queries/test_qs_combinators.py::QuerySetSetOperationTests.test_union_with_extra_and_values_list\", \"score\": 0.48250555992126465}, {\"doc_id\": \"tests/distinct_on_fields/tests.py::DistinctOnTests.test_distinct_not_implemented_checks\", \"score\": 0.4652891755104065}]"
+}

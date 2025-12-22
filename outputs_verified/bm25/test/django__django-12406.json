@@ -1,0 +1,36 @@
+{
+  "instance_id": "django__django-12406",
+  "query": "ModelForm RadioSelect widget for foreign keys should not present a blank option if blank=False on the model\nDescription\n\t\nUnlike the select widget, where a blank option is idiomatic even for required fields, radioselect has an inherent unfilled state that makes the \"-------\" option look suspiciously like a valid choice.\nclass TestRun(models.Model):\n\tdata_file = models.ForeignKey(BatchData, on_delete=models.SET_NULL, null=True, blank=False)\nclass TestRunForm(ModelForm):\n\tclass Meta:\n\t\tmodel = TestRun\n\t\tfields = ['data_file']\n\t\twidgets = {'data_file': RadioSelect()}\nrenders {{test_run_form.data_file}} as\n<ul id=\"id_data_file\">\n <li><label for=\"id_data_file_0\">\n\t<input checked=\"checked\" id=\"id_data_file_0\" name=\"data_file\" type=\"radio\" value=\"\"> ---------\n </label></li>\n <li><label for=\"id_data_file_1\">\n\t<input id=\"id_data_file_1\" name=\"data_file\" type=\"radio\" value=\"1\"> First Data File\n </label></li>\n</ul>\nInstead, there should be no checked option for RadioSelect's <input> tags when rendering a new form from a model if blank is not a valid selection.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/related.py",
+      "django/forms/models.py"
+    ],
+    "locations": [
+      "django/db/models/fields/related.py::ForeignKey",
+      "django/db/models/fields/related.py::ForeignKey.formfield",
+      "django/db/models/fields/related.py::ForeignKey.db_check",
+      "django/forms/models.py::ModelChoiceField",
+      "django/forms/models.py::ModelChoiceField.__init__"
+    ]
+  },
+  "predictions": [
+    "tests/forms_tests/tests/test_forms.py::FormsTestCase.test_forms_with_radio",
+    "tests/forms_tests/widget_tests/test_radioselect.py::RadioSelectTest.test_constructor_attrs",
+    "tests/forms_tests/tests/test_forms.py::FormsTestCase.test_error_html_required_html_classes",
+    "tests/forms_tests/widget_tests/test_radioselect.py::RadioSelectTest.test_render_as_subwidget",
+    "tests/forms_tests/tests/test_i18n.py::FormsI18nTests.test_non_ascii_choices",
+    "tests/forms_tests/widget_tests/test_radioselect.py::RadioSelectTest.test_nested_choices",
+    "tests/forms_tests/widget_tests/test_checkboxselectmultiple.py::CheckboxSelectMultipleTest.test_separate_ids_constructor",
+    "tests/forms_tests/widget_tests/test_radioselect.py::RadioSelectTest.test_class_attrs",
+    "tests/forms_tests/widget_tests/test_radioselect.py::RadioSelectTest.test_render_attrs",
+    "tests/forms_tests/widget_tests/test_checkboxselectmultiple.py::CheckboxSelectMultipleTest.test_separate_ids"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "335c9c94acf263901fb023404408880245b0c4b4",
+    "total_functions_indexed": 23220,
+    "retrieval_time_seconds": 2.0020456314086914
+  },
+  "raw_output": "[{\"doc_id\": \"tests/forms_tests/tests/test_forms.py::FormsTestCase.test_forms_with_radio\", \"score\": 231.7667981588153}, {\"doc_id\": \"tests/forms_tests/widget_tests/test_radioselect.py::RadioSelectTest.test_constructor_attrs\", \"score\": 215.8932444794773}, {\"doc_id\": \"tests/forms_tests/tests/test_forms.py::FormsTestCase.test_error_html_required_html_classes\", \"score\": 213.83491331848367}, {\"doc_id\": \"tests/forms_tests/widget_tests/test_radioselect.py::RadioSelectTest.test_render_as_subwidget\", \"score\": 212.51948717950702}, {\"doc_id\": \"tests/forms_tests/tests/test_i18n.py::FormsI18nTests.test_non_ascii_choices\", \"score\": 197.67590806844012}, {\"doc_id\": \"tests/forms_tests/widget_tests/test_radioselect.py::RadioSelectTest.test_nested_choices\", \"score\": 196.35779490605714}, {\"doc_id\": \"tests/forms_tests/widget_tests/test_checkboxselectmultiple.py::CheckboxSelectMultipleTest.test_separate_ids_constructor\", \"score\": 195.1885586892519}, {\"doc_id\": \"tests/forms_tests/widget_tests/test_radioselect.py::RadioSelectTest.test_class_attrs\", \"score\": 193.3720475002722}, {\"doc_id\": \"tests/forms_tests/widget_tests/test_radioselect.py::RadioSelectTest.test_render_attrs\", \"score\": 192.40008737020963}, {\"doc_id\": \"tests/forms_tests/widget_tests/test_checkboxselectmultiple.py::CheckboxSelectMultipleTest.test_separate_ids\", \"score\": 186.61523783766302}]"
+}

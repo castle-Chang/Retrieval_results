@@ -1,0 +1,31 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-15100",
+  "query": "strip_accents_unicode fails to strip accents from strings that are already in NFKD form\n<!--\r\nIf your issue is a usage question, submit it here instead:\r\n- StackOverflow with the scikit-learn tag: https://stackoverflow.com/questions/tagged/scikit-learn\r\n- Mailing List: https://mail.python.org/mailman/listinfo/scikit-learn\r\nFor more information, see User Questions: http://scikit-learn.org/stable/support.html#user-questions\r\n-->\r\n\r\n<!-- Instructions For Filing a Bug: https://github.com/scikit-learn/scikit-learn/blob/master/CONTRIBUTING.md#filing-bugs -->\r\n\r\n#### Description\r\n<!-- Example: Joblib Error thrown when calling fit on LatentDirichletAllocation with evaluate_every > 0-->\r\n\r\nThe `strip_accents=\"unicode\"` feature of `CountVectorizer` and related does not work as expected when it processes strings that contain accents, if those strings are already in NFKD form.\r\n\r\n#### Steps/Code to Reproduce\r\n\r\n```python\r\nfrom sklearn.feature_extraction.text import strip_accents_unicode\r\n\r\n# This string contains one code point, \"LATIN SMALL LETTER N WITH TILDE\"\r\ns1 = chr(241)\r\n\r\n# This string contains two code points, \"LATIN SMALL LETTER N\" followed by \"COMBINING TILDE\"\r\ns2 = chr(110) + chr(771)\r\n\r\n# They are visually identical, as expected\r\nprint(s1) # => ñ\r\nprint(s2) # => ñ\r\n\r\n# The tilde is removed from s1, as expected\r\nprint(strip_accents_unicode(s1)) # => n\r\n\r\n# But strip_accents_unicode returns s2 unchanged\r\nprint(strip_accents_unicode(s2) == s2) # => True\r\n```\r\n\r\n#### Expected Results\r\n\r\n`s1` and `s2` should both be normalized to the same string, `\"n\"`.\r\n\r\n#### Actual Results\r\n`s2` is not changed, because `strip_accent_unicode` does nothing if the string is already in NFKD form.\r\n\r\n#### Versions\r\n```\r\nSystem:\r\n    python: 3.7.4 (default, Jul  9 2019, 15:11:16)  [GCC 7.4.0]\r\nexecutable: /home/dgrady/.local/share/virtualenvs/profiling-data-exploration--DO1bU6C/bin/python3.7\r\n   machine: Linux-4.4.0-17763-Microsoft-x86_64-with-Ubuntu-18.04-bionic\r\n\r\nPython deps:\r\n       pip: 19.2.2\r\nsetuptools: 41.2.0\r\n   sklearn: 0.21.3\r\n     numpy: 1.17.2\r\n     scipy: 1.3.1\r\n    Cython: None\r\n    pandas: 0.25.1\r\n```\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sklearn/feature_extraction/text.py"
+    ],
+    "locations": [
+      "sklearn/feature_extraction/text.py::strip_accents_unicode"
+    ]
+  },
+  "predictions": [
+    "setup.py::setup_package",
+    "sklearn/utils/tests/test_validation.py::test_check_dataframe_fit_attribute",
+    "sklearn/datasets/tests/test_base.py::test_bunch_pickle_generated_with_0_16_and_read_with_0_17",
+    "sklearn/datasets/base.py::_pkl_filepath",
+    "sklearn/_build_utils/openmp_helpers.py::check_openmp_support",
+    "sklearn/linear_model/tests/test_logistic.py::test_liblinear_decision_function_zero",
+    "sklearn/metrics/tests/test_pairwise.py::test_pairwise_distances",
+    "sklearn/__check_build/__init__.py::raise_build_error",
+    "sklearn/feature_extraction/text.py::strip_accents_unicode",
+    "sklearn/preprocessing/tests/test_data.py::test_handle_zeros_in_scale"
+  ],
+  "metadata": {
+    "repo": "scikit-learn/scikit-learn",
+    "commit": "af8a6e592a1a15d92d77011856d5aa0ec4db4c6c",
+    "total_functions_indexed": 7017,
+    "retrieval_time_seconds": 1.072089433670044
+  },
+  "raw_output": "[{\"doc_id\": \"setup.py::setup_package\", \"score\": 275.92075617416805}, {\"doc_id\": \"sklearn/utils/tests/test_validation.py::test_check_dataframe_fit_attribute\", \"score\": 203.04524377245647}, {\"doc_id\": \"sklearn/datasets/tests/test_base.py::test_bunch_pickle_generated_with_0_16_and_read_with_0_17\", \"score\": 202.47987534485}, {\"doc_id\": \"sklearn/datasets/base.py::_pkl_filepath\", \"score\": 199.1781509260208}, {\"doc_id\": \"sklearn/_build_utils/openmp_helpers.py::check_openmp_support\", \"score\": 197.2016833936116}, {\"doc_id\": \"sklearn/linear_model/tests/test_logistic.py::test_liblinear_decision_function_zero\", \"score\": 193.15330387215062}, {\"doc_id\": \"sklearn/metrics/tests/test_pairwise.py::test_pairwise_distances\", \"score\": 192.02670494731404}, {\"doc_id\": \"sklearn/__check_build/__init__.py::raise_build_error\", \"score\": 190.77089915393285}, {\"doc_id\": \"sklearn/feature_extraction/text.py::strip_accents_unicode\", \"score\": 189.02510136330295}, {\"doc_id\": \"sklearn/preprocessing/tests/test_data.py::test_handle_zeros_in_scale\", \"score\": 188.41657571007647}]"
+}

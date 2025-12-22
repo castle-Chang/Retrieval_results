@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-17022",
+  "query": "Lambdify misinterprets some matrix expressions\nUsing lambdify on an expression containing an identity matrix gives us an unexpected result:\r\n\r\n```python\r\n>>> import numpy as np\r\n>>> n = symbols('n', integer=True)\r\n>>> A = MatrixSymbol(\"A\", n, n)\r\n>>> a = np.array([[1, 2], [3, 4]])\r\n>>> f = lambdify(A, A + Identity(n))\r\n>>> f(a)\r\narray([[1.+1.j, 2.+1.j],\r\n       [3.+1.j, 4.+1.j]])\r\n```\r\n\r\nInstead, the output should be  `array([[2, 2], [3, 5]])`, since we're adding an identity matrix to the array. Inspecting the globals and source code of `f` shows us why we get the result:\r\n\r\n```python\r\n>>> import inspect\r\n>>> print(inspect.getsource(f))\r\ndef _lambdifygenerated(A):\r\n    return (I + A)\r\n>>> f.__globals__['I']\r\n1j\r\n```\r\n\r\nThe code printer prints `I`, which is currently being interpreted as a Python built-in complex number. The printer should support printing identity matrices, and signal an error for unsupported expressions that might be misinterpreted.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/pycode.py"
+    ],
+    "locations": [
+      "sympy/printing/pycode.py::NumPyPrinter",
+      "sympy/printing/pycode.py::NumPyPrinter._print_MatrixBase",
+      "sympy/printing/pycode.py::NumPyPrinter._print_BlockMatrix"
+    ]
+  },
+  "predictions": [
+    "sympy/utilities/tests/test_lambdify.py::test_MatrixSymbol_issue_15578",
+    "sympy/utilities/tests/test_lambdify.py::test_issue_15827",
+    "sympy/utilities/tests/test_lambdify.py::test_numpy_matrix",
+    "sympy/external/tests/test_numpy.py::test_lambdify_matrix",
+    "sympy/utilities/tests/test_lambdify.py::test_curly_matrix_symbol",
+    "sympy/utilities/tests/test_lambdify.py::test_dummification",
+    "sympy/plotting/tests/test_plot.py::test_experimental_lambify",
+    "sympy/printing/tests/test_numpy.py::test_issue_15601",
+    "sympy/utilities/tests/test_lambdify.py::test_matrix",
+    "sympy/utilities/tests/test_lambdify.py::test_numexpr_printer"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "f91de695585c1fbc7d4f49ee061f64fcb1c2c4d8",
+    "total_functions_indexed": 25253,
+    "retrieval_time_seconds": 0.09358763694763184
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/utilities/tests/test_lambdify.py::test_MatrixSymbol_issue_15578\", \"score\": 0.6090669631958008}, {\"doc_id\": \"sympy/utilities/tests/test_lambdify.py::test_issue_15827\", \"score\": 0.6056185364723206}, {\"doc_id\": \"sympy/utilities/tests/test_lambdify.py::test_numpy_matrix\", \"score\": 0.6049671173095703}, {\"doc_id\": \"sympy/external/tests/test_numpy.py::test_lambdify_matrix\", \"score\": 0.5727183818817139}, {\"doc_id\": \"sympy/utilities/tests/test_lambdify.py::test_curly_matrix_symbol\", \"score\": 0.5710524320602417}, {\"doc_id\": \"sympy/utilities/tests/test_lambdify.py::test_dummification\", \"score\": 0.5703155994415283}, {\"doc_id\": \"sympy/plotting/tests/test_plot.py::test_experimental_lambify\", \"score\": 0.5663794279098511}, {\"doc_id\": \"sympy/printing/tests/test_numpy.py::test_issue_15601\", \"score\": 0.5601516962051392}, {\"doc_id\": \"sympy/utilities/tests/test_lambdify.py::test_matrix\", \"score\": 0.5566747784614563}, {\"doc_id\": \"sympy/utilities/tests/test_lambdify.py::test_numexpr_printer\", \"score\": 0.5507336854934692}]"
+}

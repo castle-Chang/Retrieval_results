@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12713",
+  "query": "Allow overridding widget in formfield_for_manytomany().\nDescription\n\t \n\t\t(last modified by Mariusz Felisiak)\n\t \nIt does not work when I set widget param to function formfield_for_manytomany().\nThis is different from the formfield_for_foreignkey() function.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admin/options.py"
+    ],
+    "locations": [
+      "django/contrib/admin/options.py::BaseModelAdmin",
+      "django/contrib/admin/options.py::BaseModelAdmin.formfield_for_manytomany"
+    ]
+  },
+  "predictions": [
+    "django/views/decorators/http.py::condition",
+    "django/forms/fields.py::Field.__init__",
+    "tests/sitemaps_tests/test_http.py::HTTPSitemapTests.test_sitemaps_lastmod_ascending",
+    "tests/sitemaps_tests/test_http.py::HTTPSitemapTests.test_sitemaps_lastmod_descending",
+    "tests/admin_ordering/tests.py::TestRelatedFieldsAdminOrdering.check_ordering_of_field_choices",
+    "tests/admin_views/admin.py::external_mail",
+    "tests/forms_tests/widget_tests/test_multiwidget.py::DeepCopyWidget._set_choices",
+    "tests/admin_ordering/tests.py::TestRelatedFieldsAdminOrdering.test_custom_queryset_still_wins",
+    "django/apps/registry.py::Apps.do_pending_operations",
+    "tests/sitemaps_tests/test_http.py::HTTPSitemapTests.test_sitemaps_lastmod_mixed_ascending_last_modified_missing"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "5b884d45ac5b76234eca614d90c83b347294c332",
+    "total_functions_indexed": 23429,
+    "retrieval_time_seconds": 0.8704590797424316
+  },
+  "raw_output": "[{\"doc_id\": \"django/views/decorators/http.py::condition\", \"score\": 31.82803829062565}, {\"doc_id\": \"django/forms/fields.py::Field.__init__\", \"score\": 31.254978885767997}, {\"doc_id\": \"tests/sitemaps_tests/test_http.py::HTTPSitemapTests.test_sitemaps_lastmod_ascending\", \"score\": 28.64921024817707}, {\"doc_id\": \"tests/sitemaps_tests/test_http.py::HTTPSitemapTests.test_sitemaps_lastmod_descending\", \"score\": 28.64921024817707}, {\"doc_id\": \"tests/admin_ordering/tests.py::TestRelatedFieldsAdminOrdering.check_ordering_of_field_choices\", \"score\": 28.23300849197247}, {\"doc_id\": \"tests/admin_views/admin.py::external_mail\", \"score\": 28.158931233467165}, {\"doc_id\": \"tests/forms_tests/widget_tests/test_multiwidget.py::DeepCopyWidget._set_choices\", \"score\": 27.910704650403805}, {\"doc_id\": \"tests/admin_ordering/tests.py::TestRelatedFieldsAdminOrdering.test_custom_queryset_still_wins\", \"score\": 27.903337476356818}, {\"doc_id\": \"django/apps/registry.py::Apps.do_pending_operations\", \"score\": 27.79224378710171}, {\"doc_id\": \"tests/sitemaps_tests/test_http.py::HTTPSitemapTests.test_sitemaps_lastmod_mixed_ascending_last_modified_missing\", \"score\": 27.695359779481702}]"
+}

@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-18698",
+  "query": "sqf and sqf_list output is not consistant\nThe example below is wrong in the sense that we should have (x*_2 - 5_x + 6, 3) and not 2 factors of multiplicity 3.\n\n```\n>  sqf_list(  (x**2 + 1)  * (x - 1)**2 * (x - 2)**3 * (x - 3)**3  )\n\n>  (1, [(x**2 + 1, 1), (x - 1, 2), (x - 3, 3), (x - 2, 3)])\n```\n\nwhereas below is correct --- one factor of multiplicity 2\n\n```\n>  sqf_list( x**5 - 2*x**4 - 2*x**3 + 4*x**2 + x - 2 )\n\n>  (1, [(x - 2, 1), (x**2 - 1, 2)])\n```\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/polys/polytools.py"
+    ],
+    "locations": [
+      "sympy/polys/polytools.py::_symbolic_factor_list"
+    ]
+  },
+  "predictions": [
+    "sympy/polys/tests/test_rings.py::test_PolyElement_sqf_list",
+    "sympy/polys/polytools.py::sqf_list",
+    "sympy/polys/tests/test_polytools.py::test_sqf",
+    "sympy/integrals/rubi/tests/test_utility_function.py::test_FactorSquareFreeList",
+    "sympy/polys/polytools.py::Poly.sqf_list",
+    "sympy/polys/compatibility.py::IPolys.gf_sqf_list",
+    "sympy/polys/polytools.py::Poly.sqf_list_include",
+    "sympy/polys/tests/test_polytools.py::test_factor_terms",
+    "sympy/polys/galoistools.py::gf_sqf_list",
+    "sympy/polys/tests/test_galoistools.py::test_gf_squarefree"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "3dff1b98a78f28c953ae2140b69356b8391e399c",
+    "total_functions_indexed": 34130,
+    "retrieval_time_seconds": 0.09812617301940918
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/polys/tests/test_rings.py::test_PolyElement_sqf_list\", \"score\": 0.5927664041519165}, {\"doc_id\": \"sympy/polys/polytools.py::sqf_list\", \"score\": 0.5803149938583374}, {\"doc_id\": \"sympy/polys/tests/test_polytools.py::test_sqf\", \"score\": 0.5559682846069336}, {\"doc_id\": \"sympy/integrals/rubi/tests/test_utility_function.py::test_FactorSquareFreeList\", \"score\": 0.5424832701683044}, {\"doc_id\": \"sympy/polys/polytools.py::Poly.sqf_list\", \"score\": 0.5195453763008118}, {\"doc_id\": \"sympy/polys/compatibility.py::IPolys.gf_sqf_list\", \"score\": 0.5131581425666809}, {\"doc_id\": \"sympy/polys/polytools.py::Poly.sqf_list_include\", \"score\": 0.5050455331802368}, {\"doc_id\": \"sympy/polys/tests/test_polytools.py::test_factor_terms\", \"score\": 0.5038052797317505}, {\"doc_id\": \"sympy/polys/galoistools.py::gf_sqf_list\", \"score\": 0.49775758385658264}, {\"doc_id\": \"sympy/polys/tests/test_galoistools.py::test_gf_squarefree\", \"score\": 0.4973585605621338}]"
+}

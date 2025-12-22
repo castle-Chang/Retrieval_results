@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-12262",
+  "query": "Custom template tags raise TemplateSyntaxError when keyword-only arguments with defaults are provided.\nDescription\n\t \n\t\t(last modified by P-Seebauer)\n\t \nWhen creating simple tags without variable keyword args, but an keyword argument with a default value. It's not possible to supply any other variable.\n@register.simple_tag\ndef hello(*, greeting='hello'):\n\treturn f'{greeting} world'\n{% hello greeting='hi' %}\nRaises “'hello' received unexpected keyword argument 'greeting'”\nAlso supplying a keyword argument a second time raises the wrong error message:\n#tag\n@register.simple_tag\ndef hi(*, greeting):\n\treturn f'{greeting} world'\n{% hi greeting='hi' greeting='hello' %}\nRaises “'hi' received unexpected keyword argument 'greeting'”\ninstead of \"'hi' received multiple values for keyword argument 'greeting'\"\nSame goes for inclusion tags (is the same code) I already have a fix ready, will push it after creating the ticket (that I have a ticket# for the commit).\nIs actually for all versions since the offending line is from 2.0…\n",
+  "ground_truth": {
+    "files": [
+      "django/template/library.py"
+    ],
+    "locations": [
+      "django/template/library.py::parse_bits"
+    ]
+  },
+  "predictions": [
+    "tests/forms_tests/widget_tests/test_checkboxinput.py::CheckboxInputTest.test_render_check_test",
+    "django/template/library.py::parse_bits",
+    "tests/template_tests/test_custom.py::InclusionTagTests.test_inclusion_tag_errors",
+    "tests/template_tests/test_custom.py::SimpleTagTests.test_simple_tag_errors",
+    "tests/generic_views/test_base.py::ViewTest.test_invalid_keyword_argument",
+    "django/templatetags/i18n.py::do_translate",
+    "tests/forms_tests/widget_tests/test_checkboxinput.py::CheckboxInputTest.test_render_check_exception",
+    "tests/i18n/tests.py::TranslationTests.test_ngettext_lazy_format_style",
+    "tests/i18n/tests.py::TranslationTests.test_ngettext_lazy",
+    "tests/gis_tests/layermap/tests.py::LayerMapTest.test_test_fid_range_step"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "69331bb851c34f05bc77e9fc24020fe6908b9cd5",
+    "total_functions_indexed": 23129,
+    "retrieval_time_seconds": 2.272012710571289
+  },
+  "raw_output": "[{\"doc_id\": \"tests/forms_tests/widget_tests/test_checkboxinput.py::CheckboxInputTest.test_render_check_test\", \"score\": 225.94461463356322}, {\"doc_id\": \"django/template/library.py::parse_bits\", \"score\": 195.0020516189826}, {\"doc_id\": \"tests/template_tests/test_custom.py::InclusionTagTests.test_inclusion_tag_errors\", \"score\": 182.72803802329256}, {\"doc_id\": \"tests/template_tests/test_custom.py::SimpleTagTests.test_simple_tag_errors\", \"score\": 173.81388048704616}, {\"doc_id\": \"tests/generic_views/test_base.py::ViewTest.test_invalid_keyword_argument\", \"score\": 138.76840895100204}, {\"doc_id\": \"django/templatetags/i18n.py::do_translate\", \"score\": 137.01690790692405}, {\"doc_id\": \"tests/forms_tests/widget_tests/test_checkboxinput.py::CheckboxInputTest.test_render_check_exception\", \"score\": 136.8127974294156}, {\"doc_id\": \"tests/i18n/tests.py::TranslationTests.test_ngettext_lazy_format_style\", \"score\": 126.279490616373}, {\"doc_id\": \"tests/i18n/tests.py::TranslationTests.test_ngettext_lazy\", \"score\": 122.17222171644949}, {\"doc_id\": \"tests/gis_tests/layermap/tests.py::LayerMapTest.test_test_fid_range_step\", \"score\": 121.12219330972104}]"
+}

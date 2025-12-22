@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-16819",
+  "query": "Reduce Add/RemoveIndex migration operations.\nDescription\n\t\nWe should reduce AddIndex/RemoveIndex operations when optimizing migration operations.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/operations/models.py"
+    ],
+    "locations": [
+      "django/db/migrations/operations/models.py::AddIndex",
+      "django/db/migrations/operations/models.py::AddIndex.migration_name_fragment",
+      "django/db/migrations/operations/models.py::RemoveIndex"
+    ]
+  },
+  "predictions": [
+    "django/db/migrations/operations/models.py::ModelOperation.reduce",
+    "tests/gis_tests/gis_migrations/test_operations.py::OperationTestCase.apply_operations",
+    "tests/migrations/test_base.py::OperationTestBase.apply_operations",
+    "tests/migrations/test_base.py::OperationTestBase.unapply_operations",
+    "django/db/migrations/optimizer.py::MigrationOptimizer.optimize_inner",
+    "django/db/migrations/operations/fields.py::FieldOperation.reduce",
+    "django/db/migrations/operations/models.py::RenameModel.reduce",
+    "tests/migrations/test_autodetector.py::MigrationSuggestNameTests.test_single_operation",
+    "django/db/migrations/operations/models.py::RemoveIndex.__init__",
+    "tests/migrations/test_operations.py::SwappableOperationTests.test_indexes_ignore_swapped"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "0b0998dc151feb77068e2387c34cc50ef6b356ae",
+    "total_functions_indexed": 26570,
+    "retrieval_time_seconds": 0.7675869464874268
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/migrations/operations/models.py::ModelOperation.reduce\", \"score\": 38.83029847410331}, {\"doc_id\": \"tests/gis_tests/gis_migrations/test_operations.py::OperationTestCase.apply_operations\", \"score\": 38.67283041661839}, {\"doc_id\": \"tests/migrations/test_base.py::OperationTestBase.apply_operations\", \"score\": 38.13874824966145}, {\"doc_id\": \"tests/migrations/test_base.py::OperationTestBase.unapply_operations\", \"score\": 38.13874824966145}, {\"doc_id\": \"django/db/migrations/optimizer.py::MigrationOptimizer.optimize_inner\", \"score\": 37.66739069537409}, {\"doc_id\": \"django/db/migrations/operations/fields.py::FieldOperation.reduce\", \"score\": 37.52026122358148}, {\"doc_id\": \"django/db/migrations/operations/models.py::RenameModel.reduce\", \"score\": 37.447960162642715}, {\"doc_id\": \"tests/migrations/test_autodetector.py::MigrationSuggestNameTests.test_single_operation\", \"score\": 36.90012955914518}, {\"doc_id\": \"django/db/migrations/operations/models.py::RemoveIndex.__init__\", \"score\": 36.59418766570336}, {\"doc_id\": \"tests/migrations/test_operations.py::SwappableOperationTests.test_indexes_ignore_swapped\", \"score\": 36.44197767533343}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-21055",
+  "query": "`refine()` does not understand how to simplify complex arguments\nJust learned about the refine-function, which would come in handy frequently for me.  But\r\n`refine()` does not recognize that argument functions simplify for real numbers.\r\n\r\n```\r\n>>> from sympy import *                                                     \r\n>>> var('a,x')                                                              \r\n>>> J = Integral(sin(x)*exp(-a*x),(x,0,oo))                                     \r\n>>> J.doit()\r\n\tPiecewise((1/(a**2 + 1), 2*Abs(arg(a)) < pi), (Integral(exp(-a*x)*sin(x), (x, 0, oo)), True))\r\n>>> refine(J.doit(),Q.positive(a))                                                 \r\n        Piecewise((1/(a**2 + 1), 2*Abs(arg(a)) < pi), (Integral(exp(-a*x)*sin(x), (x, 0, oo)), True))\r\n>>> refine(abs(a),Q.positive(a))                                            \r\n\ta\r\n>>> refine(arg(a),Q.positive(a))                                            \r\n\targ(a)\r\n```\r\nI cann't find any open issues identifying this.  Easy to fix, though.\r\n\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/assumptions/refine.py"
+    ],
+    "locations": [
+      "sympy/assumptions/refine.py::refine_im",
+      "sympy/assumptions/refine.py::_refine_reim"
+    ]
+  },
+  "predictions": [
+    "sympy/assumptions/refine.py::refine",
+    "sympy/assumptions/tests/test_refine.py::test_refine_issue_12724",
+    "sympy/assumptions/tests/test_refine.py::test_complex",
+    "sympy/assumptions/refine.py::refine_abs",
+    "sympy/assumptions/refine.py::refine_re",
+    "sympy/assumptions/refine.py::refine_sign",
+    "sympy/assumptions/tests/test_refine.py::test_Abs",
+    "sympy/assumptions/tests/test_refine.py::test_Piecewise",
+    "sympy/assumptions/tests/test_refine.py::test_im",
+    "sympy/matrices/tests/test_commonmatrix.py::test_refine"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "748ce73479ee2cd5c861431091001cc18943c735",
+    "total_functions_indexed": 36120,
+    "retrieval_time_seconds": 0.009631633758544922
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/assumptions/refine.py::refine\", \"score\": 0.5817299485206604}, {\"doc_id\": \"sympy/assumptions/tests/test_refine.py::test_refine_issue_12724\", \"score\": 0.5803312659263611}, {\"doc_id\": \"sympy/assumptions/tests/test_refine.py::test_complex\", \"score\": 0.5791246891021729}, {\"doc_id\": \"sympy/assumptions/refine.py::refine_abs\", \"score\": 0.5750569105148315}, {\"doc_id\": \"sympy/assumptions/refine.py::refine_re\", \"score\": 0.570481538772583}, {\"doc_id\": \"sympy/assumptions/refine.py::refine_sign\", \"score\": 0.5703588128089905}, {\"doc_id\": \"sympy/assumptions/tests/test_refine.py::test_Abs\", \"score\": 0.5669469237327576}, {\"doc_id\": \"sympy/assumptions/tests/test_refine.py::test_Piecewise\", \"score\": 0.5513631105422974}, {\"doc_id\": \"sympy/assumptions/tests/test_refine.py::test_im\", \"score\": 0.5471740961074829}, {\"doc_id\": \"sympy/matrices/tests/test_commonmatrix.py::test_refine\", \"score\": 0.5456886291503906}]"
+}

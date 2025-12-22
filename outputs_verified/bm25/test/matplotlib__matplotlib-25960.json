@@ -1,0 +1,32 @@
+{
+  "instance_id": "matplotlib__matplotlib-25960",
+  "query": "[Bug]: wspace and hspace in subfigures not working\n### Bug summary\n\n`wspace` and `hspace` in `Figure.subfigures` do nothing.\n\n### Code for reproduction\n\n```python\nimport matplotlib.pyplot as plt\r\n\r\nfigs = plt.figure().subfigures(2, 2, wspace=0, hspace=0)\r\nfor fig in figs.flat:\r\n    fig.subplots().plot([1, 2])\r\nplt.show()\n```\n\n\n### Actual outcome\n\nSame figure independently of the values of hspace and wspace.\n\n### Expected outcome\n\nhttps://github.com/matplotlib/matplotlib/blob/b3bd929cf07ea35479fded8f739126ccc39edd6d/lib/matplotlib/figure.py#L1550-L1554\n\n### Additional information\n\n_No response_\n\n### Operating system\n\nOS/X\n\n### Matplotlib Version\n\n3.7.1\n\n### Matplotlib Backend\n\nMacOSX\n\n### Python version\n\nPython 3.10.9\n\n### Jupyter version\n\n_No response_\n\n### Installation\n\nconda\n",
+  "ground_truth": {
+    "files": [
+      "lib/matplotlib/figure.py"
+    ],
+    "locations": [
+      "lib/matplotlib/figure.py::FigureBase",
+      "lib/matplotlib/figure.py::FigureBase.subfigures"
+    ]
+  },
+  "predictions": [
+    "lib/matplotlib/_constrained_layout.py::do_constrained_layout",
+    "lib/matplotlib/layout_engine.py::ConstrainedLayoutEngine.__init__",
+    "lib/matplotlib/figure.py::FigureBase.subfigures",
+    "lib/matplotlib/gridspec.py::GridSpecBase.get_grid_positions",
+    "lib/matplotlib/figure.py::Figure.get_constrained_layout_pads",
+    "lib/matplotlib/layout_engine.py::ConstrainedLayoutEngine.set",
+    "lib/matplotlib/gridspec.py::GridSpecFromSubplotSpec.get_subplot_params",
+    "lib/matplotlib/figure.py::Figure.set_constrained_layout_pads",
+    "lib/matplotlib/figure.py::SubplotParams.__init__",
+    "lib/matplotlib/gridspec.py::GridSpecFromSubplotSpec.__init__"
+  ],
+  "metadata": {
+    "repo": "matplotlib/matplotlib",
+    "commit": "1d0d255b79e84dfc9f2123c5eb85a842d342f72b",
+    "total_functions_indexed": 9227,
+    "retrieval_time_seconds": 0.5097055435180664
+  },
+  "raw_output": "[{\"doc_id\": \"lib/matplotlib/_constrained_layout.py::do_constrained_layout\", \"score\": 116.58454499399978}, {\"doc_id\": \"lib/matplotlib/layout_engine.py::ConstrainedLayoutEngine.__init__\", \"score\": 114.19391153988143}, {\"doc_id\": \"lib/matplotlib/figure.py::FigureBase.subfigures\", \"score\": 113.51276721897199}, {\"doc_id\": \"lib/matplotlib/gridspec.py::GridSpecBase.get_grid_positions\", \"score\": 110.84328880453339}, {\"doc_id\": \"lib/matplotlib/figure.py::Figure.get_constrained_layout_pads\", \"score\": 107.99102107734149}, {\"doc_id\": \"lib/matplotlib/layout_engine.py::ConstrainedLayoutEngine.set\", \"score\": 107.09100895375263}, {\"doc_id\": \"lib/matplotlib/gridspec.py::GridSpecFromSubplotSpec.get_subplot_params\", \"score\": 105.04053581599713}, {\"doc_id\": \"lib/matplotlib/figure.py::Figure.set_constrained_layout_pads\", \"score\": 102.60223104968274}, {\"doc_id\": \"lib/matplotlib/figure.py::SubplotParams.__init__\", \"score\": 100.24500048386916}, {\"doc_id\": \"lib/matplotlib/gridspec.py::GridSpecFromSubplotSpec.__init__\", \"score\": 97.29376510941648}]"
+}

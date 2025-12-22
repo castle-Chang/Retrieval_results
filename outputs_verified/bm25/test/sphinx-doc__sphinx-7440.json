@@ -1,0 +1,32 @@
+{
+  "instance_id": "sphinx-doc__sphinx-7440",
+  "query": "glossary duplicate term with a different case\n**Describe the bug**\r\n```\r\nWarning, treated as error:\r\ndoc/glossary.rst:243:duplicate term description of mysql, other instance in glossary\r\n```\r\n\r\n**To Reproduce**\r\nSteps to reproduce the behavior:\r\n[.travis.yml#L168](https://github.com/phpmyadmin/phpmyadmin/blob/f7cc383674b7099190771b1db510c62bfbbf89a7/.travis.yml#L168)\r\n```\r\n$ git clone --depth 1 https://github.com/phpmyadmin/phpmyadmin.git\r\n$ cd doc\r\n$ pip install 'Sphinx'\r\n$ make html\r\n```\r\n\r\n**Expected behavior**\r\nMySQL != mysql term right ?\r\n\r\n**Your project**\r\nhttps://github.com/phpmyadmin/phpmyadmin/blame/master/doc/glossary.rst#L234\r\n\r\n\r\n**Environment info**\r\n- OS: Unix\r\n- Python version: 3.6\r\n- Sphinx version: 3.0.0\r\n\r\n**Additional context**\r\nDid occur some hours ago, maybe you just released the version\r\n\r\n- https://travis-ci.org/github/williamdes/phpmyadmintest/jobs/671352365#L328\r\n\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/domains/std.py"
+    ],
+    "locations": [
+      "sphinx/domains/std.py::make_glossary_term",
+      "sphinx/domains/std.py::StandardDomain"
+    ]
+  },
+  "predictions": [
+    "tests/test_domain_std.py::test_glossary_warning",
+    "tests/test_intl.py::test_text_glossary_term",
+    "tests/test_build_latex.py::test_latex_show_urls_is_inline",
+    "tests/test_build_latex.py::test_latex_show_urls_is_no",
+    "tests/test_intl.py::test_xml_keep_external_links",
+    "tests/test_build_html.py::test_html_inventory",
+    "tests/test_build_latex.py::test_latex_show_urls_is_footnote",
+    "tests/test_intl.py::test_text_glossary_term_inconsistencies",
+    "sphinx/locale/__init__.py::setlocale",
+    "tests/test_build_linkcheck.py::test_defaults_json"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "9bb204dcabe6ba0fc422bf4a45ad0c79c680d90b",
+    "total_functions_indexed": 5187,
+    "retrieval_time_seconds": 0.2712428569793701
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_domain_std.py::test_glossary_warning\", \"score\": 104.25441068782848}, {\"doc_id\": \"tests/test_intl.py::test_text_glossary_term\", \"score\": 92.73612156668818}, {\"doc_id\": \"tests/test_build_latex.py::test_latex_show_urls_is_inline\", \"score\": 91.16486984711104}, {\"doc_id\": \"tests/test_build_latex.py::test_latex_show_urls_is_no\", \"score\": 89.02356507373305}, {\"doc_id\": \"tests/test_intl.py::test_xml_keep_external_links\", \"score\": 85.63228210960298}, {\"doc_id\": \"tests/test_build_html.py::test_html_inventory\", \"score\": 84.6440569260522}, {\"doc_id\": \"tests/test_build_latex.py::test_latex_show_urls_is_footnote\", \"score\": 82.43661002436318}, {\"doc_id\": \"tests/test_intl.py::test_text_glossary_term_inconsistencies\", \"score\": 81.00031274487488}, {\"doc_id\": \"sphinx/locale/__init__.py::setlocale\", \"score\": 80.07556823853072}, {\"doc_id\": \"tests/test_build_linkcheck.py::test_defaults_json\", \"score\": 76.9620187594074}]"
+}

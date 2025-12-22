@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-14787",
+  "query": "method_decorator() should preserve wrapper assignments\nDescription\n\t\nthe function that is passed to the decorator is a partial object and does not have any of the attributes expected from a function i.e. __name__, __module__ etc...\nconsider the following case\ndef logger(func):\n\t@wraps(func)\n\tdef inner(*args, **kwargs):\n\t\ttry:\n\t\t\tresult = func(*args, **kwargs)\n\t\texcept Exception as e:\n\t\t\tresult = str(e)\n\t\tfinally:\n\t\t\tlogger.debug(f\"{func.__name__} called with args: {args} and kwargs: {kwargs} resulting: {result}\")\n\treturn inner\nclass Test:\n\t@method_decorator(logger)\n\tdef hello_world(self):\n\t\treturn \"hello\"\nTest().test_method()\nThis results in the following exception\nAttributeError: 'functools.partial' object has no attribute '__name__'\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/decorators.py"
+    ],
+    "locations": [
+      "django/utils/decorators.py::_multi_decorate"
+    ]
+  },
+  "predictions": [
+    "django/test/utils.py::TestContextDecorator.decorate_callable",
+    "django/utils/functional.py::keep_lazy",
+    "django/db/backends/sqlite3/base.py::none_guard",
+    "django/template/defaultfilters.py::stringfilter",
+    "tests/decorators/tests.py::MethodDecoratorTests.test_tuple_of_decorators",
+    "django/utils/asyncio.py::async_unsafe",
+    "tests/gis_tests/utils.py::FuncTestMixin.setUp",
+    "tests/template_tests/syntax_tests/i18n/test_translate.py::setup",
+    "tests/template_tests/syntax_tests/i18n/test_blocktranslate.py::setup",
+    "django/views/decorators/vary.py::vary_on_headers"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "004b4620f6f4ad87261e149898940f2dcd5757ef",
+    "total_functions_indexed": 25202,
+    "retrieval_time_seconds": 1.5093331336975098
+  },
+  "raw_output": "[{\"doc_id\": \"django/test/utils.py::TestContextDecorator.decorate_callable\", \"score\": 138.443149725896}, {\"doc_id\": \"django/utils/functional.py::keep_lazy\", \"score\": 136.16479156839736}, {\"doc_id\": \"django/db/backends/sqlite3/base.py::none_guard\", \"score\": 131.1164061194457}, {\"doc_id\": \"django/template/defaultfilters.py::stringfilter\", \"score\": 130.81394227601973}, {\"doc_id\": \"tests/decorators/tests.py::MethodDecoratorTests.test_tuple_of_decorators\", \"score\": 127.45538864348116}, {\"doc_id\": \"django/utils/asyncio.py::async_unsafe\", \"score\": 125.45574007936335}, {\"doc_id\": \"tests/gis_tests/utils.py::FuncTestMixin.setUp\", \"score\": 111.17135583711924}, {\"doc_id\": \"tests/template_tests/syntax_tests/i18n/test_translate.py::setup\", \"score\": 110.65324252457891}, {\"doc_id\": \"tests/template_tests/syntax_tests/i18n/test_blocktranslate.py::setup\", \"score\": 109.11971992187745}, {\"doc_id\": \"django/views/decorators/vary.py::vary_on_headers\", \"score\": 108.60822321540942}]"
+}

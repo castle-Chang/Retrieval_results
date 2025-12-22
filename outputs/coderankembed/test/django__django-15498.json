@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-15498",
+  "query": "Fix handling empty string for If-Modified-Since header\nDescription\n\t\nEmpty string used to be ignored for If-Modified-Since header, but now raises exception since d6aff369ad3.\nFix handling empty string for If-Modified-Since header\nDescription\n\t\nEmpty string used to be ignored for If-Modified-Since header, but now raises exception since d6aff369ad3.\n",
+  "ground_truth": {
+    "files": [
+      "django/views/static.py"
+    ],
+    "locations": [
+      "django/views/static.py::was_modified_since"
+    ]
+  },
+  "predictions": [
+    "tests/view_tests/tests/test_static.py::StaticTests.test_invalid_if_modified_since",
+    "tests/view_tests/tests/test_static.py::StaticTests.test_invalid_if_modified_since2",
+    "tests/middleware/tests.py::ConditionalGetMiddlewareTest.test_if_modified_since_and_client_error",
+    "tests/middleware/tests.py::ConditionalGetMiddlewareTest.test_if_modified_since_and_same_last_modified",
+    "tests/middleware/tests.py::ConditionalGetMiddlewareTest.test_if_modified_since_and_last_modified_in_the_past",
+    "tests/middleware/tests.py::ConditionalGetMiddlewareTest.test_no_if_modified_since_and_last_modified",
+    "tests/middleware/tests.py::ConditionalGetMiddlewareTest.test_if_modified_since_and_no_last_modified",
+    "django/views/static.py::was_modified_since",
+    "django/utils/cache.py::_if_modified_since_passes",
+    "tests/middleware/tests.py::ConditionalGetMiddlewareTest.test_not_modified_headers"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "d90e34c61b27fba2527834806639eebbcfab9631",
+    "total_functions_indexed": 25711,
+    "retrieval_time_seconds": 0.010872840881347656
+  },
+  "raw_output": "[{\"doc_id\": \"tests/view_tests/tests/test_static.py::StaticTests.test_invalid_if_modified_since\", \"score\": 0.4197816848754883}, {\"doc_id\": \"tests/view_tests/tests/test_static.py::StaticTests.test_invalid_if_modified_since2\", \"score\": 0.41026684641838074}, {\"doc_id\": \"tests/middleware/tests.py::ConditionalGetMiddlewareTest.test_if_modified_since_and_client_error\", \"score\": 0.40542104840278625}, {\"doc_id\": \"tests/middleware/tests.py::ConditionalGetMiddlewareTest.test_if_modified_since_and_same_last_modified\", \"score\": 0.38879942893981934}, {\"doc_id\": \"tests/middleware/tests.py::ConditionalGetMiddlewareTest.test_if_modified_since_and_last_modified_in_the_past\", \"score\": 0.3772234618663788}, {\"doc_id\": \"tests/middleware/tests.py::ConditionalGetMiddlewareTest.test_no_if_modified_since_and_last_modified\", \"score\": 0.377127468585968}, {\"doc_id\": \"tests/middleware/tests.py::ConditionalGetMiddlewareTest.test_if_modified_since_and_no_last_modified\", \"score\": 0.37522292137145996}, {\"doc_id\": \"django/views/static.py::was_modified_since\", \"score\": 0.3551897704601288}, {\"doc_id\": \"django/utils/cache.py::_if_modified_since_passes\", \"score\": 0.3390483558177948}, {\"doc_id\": \"tests/middleware/tests.py::ConditionalGetMiddlewareTest.test_not_modified_headers\", \"score\": 0.3375404179096222}]"
+}

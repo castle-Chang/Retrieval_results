@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-11049",
+  "query": "Correct expected format in invalid DurationField error message\nDescription\n\t\nIf you enter a duration \"14:00\" into a duration field, it translates to \"00:14:00\" which is 14 minutes.\nThe current error message for invalid DurationField says that this should be the format of durations: \"[DD] [HH:[MM:]]ss[.uuuuuu]\". But according to the actual behaviour, it should be: \"[DD] [[HH:]MM:]ss[.uuuuuu]\", because seconds are mandatory, minutes are optional, and hours are optional if minutes are provided.\nThis seems to be a mistake in all Django versions that support the DurationField.\nAlso the duration fields could have a default help_text with the requested format, because the syntax is not self-explanatory.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/__init__.py"
+    ],
+    "locations": [
+      "django/db/models/fields/__init__.py::DurationField"
+    ]
+  },
+  "predictions": [
+    "tests/model_fields/test_durationfield.py::TestValidation.test_invalid_string",
+    "tests/validation/test_error_messages.py::ValidationMessagesTest.test_time_field_raises_error_message",
+    "tests/forms_tests/field_tests/test_durationfield.py::DurationFieldTest.test_durationfield_clean",
+    "django/forms/fields.py::DurationField.to_python",
+    "django/db/models/fields/__init__.py::DurationField.to_python",
+    "tests/forms_tests/field_tests/test_durationfield.py::DurationFieldTest.test_overflow",
+    "tests/validation/test_error_messages.py::ValidationMessagesTest.test_datetime_field_raises_error_message",
+    "django/forms/fields.py::DurationField.prepare_value",
+    "tests/forms_tests/field_tests/test_durationfield.py::DurationFieldTest.test_durationfield_render",
+    "tests/forms_tests/field_tests/test_durationfield.py::DurationFieldTest.test_overflow_translation"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "17455e924e243e7a55e8a38f45966d8cbb27c273",
+    "total_functions_indexed": 22323,
+    "retrieval_time_seconds": 0.005563974380493164
+  },
+  "raw_output": "[{\"doc_id\": \"tests/model_fields/test_durationfield.py::TestValidation.test_invalid_string\", \"score\": 0.5688444972038269}, {\"doc_id\": \"tests/validation/test_error_messages.py::ValidationMessagesTest.test_time_field_raises_error_message\", \"score\": 0.5179027318954468}, {\"doc_id\": \"tests/forms_tests/field_tests/test_durationfield.py::DurationFieldTest.test_durationfield_clean\", \"score\": 0.48867517709732056}, {\"doc_id\": \"django/forms/fields.py::DurationField.to_python\", \"score\": 0.4691065847873688}, {\"doc_id\": \"django/db/models/fields/__init__.py::DurationField.to_python\", \"score\": 0.46807822585105896}, {\"doc_id\": \"tests/forms_tests/field_tests/test_durationfield.py::DurationFieldTest.test_overflow\", \"score\": 0.4603478014469147}, {\"doc_id\": \"tests/validation/test_error_messages.py::ValidationMessagesTest.test_datetime_field_raises_error_message\", \"score\": 0.4533984065055847}, {\"doc_id\": \"django/forms/fields.py::DurationField.prepare_value\", \"score\": 0.4528948664665222}, {\"doc_id\": \"tests/forms_tests/field_tests/test_durationfield.py::DurationFieldTest.test_durationfield_render\", \"score\": 0.44822970032691956}, {\"doc_id\": \"tests/forms_tests/field_tests/test_durationfield.py::DurationFieldTest.test_overflow_translation\", \"score\": 0.4468432068824768}]"
+}

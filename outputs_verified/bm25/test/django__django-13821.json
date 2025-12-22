@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-13821",
+  "query": "Drop support for SQLite < 3.9.0\nDescription\n\t \n\t\t(last modified by Tim Graham)\n\t \nIndexes on expressions (see #26167) and the SQLITE_ENABLE_JSON1 compile-time option are supported on ​SQLite 3.9.0+.\nUbuntu Xenial ships with SQLite 3.11.0 (which will still by supported by Django) and will EOL in April 2021. Debian Jessie ships with 3.8.7 and was EOL June 30, 2020.\nSQLite 3.9.0 was released in October 2015. SQLite version support seems like a similar situation as GEOS libraries which we generally support about 5 years after released.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/backends/sqlite3/base.py"
+    ],
+    "locations": [
+      "django/db/backends/sqlite3/base.py::check_sqlite_version"
+    ]
+  },
+  "predictions": [
+    "django/db/backends/sqlite3/features.py::DatabaseFeatures.supports_atomic_references_rename",
+    "tests/backends/sqlite/tests.py::Tests.test_check_sqlite_version",
+    "tests/admin_changelist/tests.py::ChangeListTests.test_pagination_page_range",
+    "tests/backends/sqlite/tests.py::SchemaTests.test_table_rename_inside_atomic_block",
+    "django/db/backends/sqlite3/features.py::DatabaseFeatures.django_test_skips",
+    "tests/validation/test_unique.py::PerformUniqueChecksTest.test_unique_for_date",
+    "tests/pagination/tests.py::PaginationTests.test_page_indexes",
+    "django/db/backends/sqlite3/operations.py::DatabaseOperations.adapt_timefield_value",
+    "django/db/backends/sqlite3/base.py::check_sqlite_version",
+    "django/db/backends/sqlite3/introspection.py::DatabaseIntrospection.get_constraints"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "e64c1d8055a3e476122633da141f16b50f0c4a2d",
+    "total_functions_indexed": 24240,
+    "retrieval_time_seconds": 1.9013535976409912
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/backends/sqlite3/features.py::DatabaseFeatures.supports_atomic_references_rename\", \"score\": 94.77489453286987}, {\"doc_id\": \"tests/backends/sqlite/tests.py::Tests.test_check_sqlite_version\", \"score\": 82.08714362757553}, {\"doc_id\": \"tests/admin_changelist/tests.py::ChangeListTests.test_pagination_page_range\", \"score\": 76.88233594985775}, {\"doc_id\": \"tests/backends/sqlite/tests.py::SchemaTests.test_table_rename_inside_atomic_block\", \"score\": 76.0191003000008}, {\"doc_id\": \"django/db/backends/sqlite3/features.py::DatabaseFeatures.django_test_skips\", \"score\": 74.79587354819802}, {\"doc_id\": \"tests/validation/test_unique.py::PerformUniqueChecksTest.test_unique_for_date\", \"score\": 74.73213763891711}, {\"doc_id\": \"tests/pagination/tests.py::PaginationTests.test_page_indexes\", \"score\": 74.25964599362705}, {\"doc_id\": \"django/db/backends/sqlite3/operations.py::DatabaseOperations.adapt_timefield_value\", \"score\": 74.03421557747052}, {\"doc_id\": \"django/db/backends/sqlite3/base.py::check_sqlite_version\", \"score\": 73.13226663900537}, {\"doc_id\": \"django/db/backends/sqlite3/introspection.py::DatabaseIntrospection.get_constraints\", \"score\": 72.72977328024604}]"
+}

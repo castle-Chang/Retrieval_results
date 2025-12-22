@@ -1,0 +1,34 @@
+{
+  "instance_id": "pallets__flask-4045",
+  "query": "Raise error when blueprint name contains a dot\nThis is required since every dot is now significant since blueprints can be nested. An error was already added for endpoint names in 1.0, but should have been added for this as well.\n",
+  "ground_truth": {
+    "files": [
+      "src/flask/blueprints.py"
+    ],
+    "locations": [
+      "src/flask/blueprints.py::Blueprint",
+      "src/flask/blueprints.py::Blueprint.__init__",
+      "src/flask/blueprints.py::Blueprint.add_url_rule",
+      "src/flask/blueprints.py::Blueprint.app_template_filter"
+    ]
+  },
+  "predictions": [
+    "tests/test_blueprints.py::test_route_decorator_custom_endpoint_with_dots",
+    "tests/test_blueprints.py::test_dotted_names_from_app",
+    "tests/test_blueprints.py::test_dotted_names",
+    "src/flask/wrappers.py::Request.blueprint",
+    "tests/test_blueprints.py::test_endpoint_decorator",
+    "tests/test_blueprints.py::test_nested_blueprint",
+    "tests/test_blueprints.py::test_blueprint_app_error_handling",
+    "tests/test_user_error_handler.py::test_error_handler_blueprint",
+    "src/flask/blueprints.py::Blueprint.add_url_rule",
+    "tests/test_blueprints.py::test_blueprint_specific_user_error_handling"
+  ],
+  "metadata": {
+    "repo": "pallets/flask",
+    "commit": "d8c37f43724cd9fb0870f77877b7c4c7e38a19e0",
+    "total_functions_indexed": 769,
+    "retrieval_time_seconds": 0.0004162788391113281
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_blueprints.py::test_route_decorator_custom_endpoint_with_dots\", \"score\": 0.5099698305130005}, {\"doc_id\": \"tests/test_blueprints.py::test_dotted_names_from_app\", \"score\": 0.48061761260032654}, {\"doc_id\": \"tests/test_blueprints.py::test_dotted_names\", \"score\": 0.45006299018859863}, {\"doc_id\": \"src/flask/wrappers.py::Request.blueprint\", \"score\": 0.35966789722442627}, {\"doc_id\": \"tests/test_blueprints.py::test_endpoint_decorator\", \"score\": 0.3518255650997162}, {\"doc_id\": \"tests/test_blueprints.py::test_nested_blueprint\", \"score\": 0.34291863441467285}, {\"doc_id\": \"tests/test_blueprints.py::test_blueprint_app_error_handling\", \"score\": 0.34171101450920105}, {\"doc_id\": \"tests/test_user_error_handler.py::test_error_handler_blueprint\", \"score\": 0.3410398066043854}, {\"doc_id\": \"src/flask/blueprints.py::Blueprint.add_url_rule\", \"score\": 0.3285523056983948}, {\"doc_id\": \"tests/test_blueprints.py::test_blueprint_specific_user_error_handling\", \"score\": 0.3186987340450287}]"
+}

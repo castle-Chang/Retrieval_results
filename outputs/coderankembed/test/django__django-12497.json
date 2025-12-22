@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12497",
+  "query": "Wrong hint about recursive relationship.\nDescription\n\t \n\t\t(last modified by Matheus Cunha Motta)\n\t \nWhen there's more than 2 ForeignKeys in an intermediary model of a m2m field and no through_fields have been set, Django will show an error with the following hint:\nhint=(\n\t'If you want to create a recursive relationship, '\n\t'use ForeignKey(\"%s\", symmetrical=False, through=\"%s\").'\nBut 'symmetrical' and 'through' are m2m keyword arguments, not ForeignKey.\nThis was probably a small mistake where the developer thought ManyToManyField but typed ForeignKey instead. And the symmetrical=False is an outdated requirement to recursive relationships with intermediary model to self, not required since 3.0. I'll provide a PR with a proposed correction shortly after.\nEdit: fixed description.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/related.py"
+    ],
+    "locations": [
+      "django/db/models/fields/related.py::ManyToManyField",
+      "django/db/models/fields/related.py::ManyToManyField._check_relationship_model"
+    ]
+  },
+  "predictions": [
+    "tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_too_many_foreign_keys_in_self_referential_model",
+    "tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_ambiguous_relationship_model",
+    "django/db/models/base.py::Model._check_m2m_through_same_relationship",
+    "tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_relationship_model_with_foreign_key_to_wrong_model",
+    "tests/m2m_through/tests.py::M2mThroughReferentialTests.test_self_referential_symmetrical",
+    "tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_relationship_model_missing_foreign_key",
+    "tests/admin_checks/tests.py::SystemChecksTestCase.test_graceful_m2m_fail",
+    "tests/m2m_through/tests.py::M2mThroughReferentialTests.test_self_referential_non_symmetrical_second_side",
+    "tests/invalid_models_tests/test_models.py::OtherModelTests.test_two_m2m_through_same_relationship",
+    "django/db/models/fields/related.py::ManyToManyField._check_relationship_model"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "a4881f5e5d7ee38b7e83301331a0b4962845ef8a",
+    "total_functions_indexed": 23263,
+    "retrieval_time_seconds": 0.006301403045654297
+  },
+  "raw_output": "[{\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_too_many_foreign_keys_in_self_referential_model\", \"score\": 0.5457628965377808}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_ambiguous_relationship_model\", \"score\": 0.5323396921157837}, {\"doc_id\": \"django/db/models/base.py::Model._check_m2m_through_same_relationship\", \"score\": 0.46703141927719116}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_relationship_model_with_foreign_key_to_wrong_model\", \"score\": 0.461044043302536}, {\"doc_id\": \"tests/m2m_through/tests.py::M2mThroughReferentialTests.test_self_referential_symmetrical\", \"score\": 0.4440995454788208}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_relationship_model_missing_foreign_key\", \"score\": 0.43413907289505005}, {\"doc_id\": \"tests/admin_checks/tests.py::SystemChecksTestCase.test_graceful_m2m_fail\", \"score\": 0.4293486475944519}, {\"doc_id\": \"tests/m2m_through/tests.py::M2mThroughReferentialTests.test_self_referential_non_symmetrical_second_side\", \"score\": 0.42771780490875244}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::OtherModelTests.test_two_m2m_through_same_relationship\", \"score\": 0.4255795180797577}, {\"doc_id\": \"django/db/models/fields/related.py::ManyToManyField._check_relationship_model\", \"score\": 0.42453455924987793}]"
+}

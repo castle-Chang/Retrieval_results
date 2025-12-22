@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12470",
+  "query": "Inherited model doesn't correctly order by \"-pk\" when specified on Parent.Meta.ordering\nDescription\n\t\nGiven the following model definition:\nfrom django.db import models\nclass Parent(models.Model):\n\tclass Meta:\n\t\tordering = [\"-pk\"]\nclass Child(Parent):\n\tpass\nQuerying the Child class results in the following:\n>>> print(Child.objects.all().query)\nSELECT \"myapp_parent\".\"id\", \"myapp_child\".\"parent_ptr_id\" FROM \"myapp_child\" INNER JOIN \"myapp_parent\" ON (\"myapp_child\".\"parent_ptr_id\" = \"myapp_parent\".\"id\") ORDER BY \"myapp_parent\".\"id\" ASC\nThe query is ordered ASC but I expect the order to be DESC.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/sql/compiler.py"
+    ],
+    "locations": [
+      "django/db/models/sql/compiler.py::SQLCompiler",
+      "django/db/models/sql/compiler.py::SQLCompiler.find_ordering_name"
+    ]
+  },
+  "predictions": [
+    "tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_related_model_pk",
+    "tests/ordering/tests.py::OrderingTests.test_order_by_pk",
+    "tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_foreignkey_field",
+    "tests/defer/tests.py::TestDefer2.test_defer_inheritance_pk_chaining",
+    "tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_non_related_field",
+    "tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_missing_related_model_field",
+    "tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_two_related_model_field",
+    "tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_multiple_times_to_model_fields",
+    "tests/order_with_respect_to/base_tests.py::BaseOrderWithRespectToTests.test_recursive_ordering",
+    "tests/queryset_pickle/tests.py::PickleabilityTestCase.test_order_by_model_with_abstract_inheritance_and_meta_ordering"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "142ab6846ac09d6d401e26fc8b6b988a583ac0f5",
+    "total_functions_indexed": 23378,
+    "retrieval_time_seconds": 0.008601665496826172
+  },
+  "raw_output": "[{\"doc_id\": \"tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_related_model_pk\", \"score\": 0.6600662469863892}, {\"doc_id\": \"tests/ordering/tests.py::OrderingTests.test_order_by_pk\", \"score\": 0.5772736072540283}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_foreignkey_field\", \"score\": 0.5721645355224609}, {\"doc_id\": \"tests/defer/tests.py::TestDefer2.test_defer_inheritance_pk_chaining\", \"score\": 0.5250046253204346}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_non_related_field\", \"score\": 0.5213232636451721}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_missing_related_model_field\", \"score\": 0.5106769800186157}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_two_related_model_field\", \"score\": 0.5096848011016846}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_multiple_times_to_model_fields\", \"score\": 0.5092136263847351}, {\"doc_id\": \"tests/order_with_respect_to/base_tests.py::BaseOrderWithRespectToTests.test_recursive_ordering\", \"score\": 0.4988566040992737}, {\"doc_id\": \"tests/queryset_pickle/tests.py::PickleabilityTestCase.test_order_by_model_with_abstract_inheritance_and_meta_ordering\", \"score\": 0.4922306537628174}]"
+}

@@ -1,0 +1,33 @@
+{
+  "instance_id": "astropy__astropy-6938",
+  "query": "Possible bug in io.fits related to D exponents\nI came across the following code in ``fitsrec.py``:\r\n\r\n```python\r\n        # Replace exponent separator in floating point numbers\r\n        if 'D' in format:\r\n            output_field.replace(encode_ascii('E'), encode_ascii('D'))\r\n```\r\n\r\nI think this may be incorrect because as far as I can tell ``replace`` is not an in-place operation for ``chararray`` (it returns a copy). Commenting out this code doesn't cause any tests to fail so I think this code isn't being tested anyway.\n",
+  "ground_truth": {
+    "files": [
+      "astropy/io/fits/fitsrec.py"
+    ],
+    "locations": [
+      "astropy/io/fits/fitsrec.py::FITS_rec",
+      "astropy/io/fits/fitsrec.py::FITS_rec._scale_back_ascii",
+      "astropy/io/fits/fitsrec.py::_get_recarray_field"
+    ]
+  },
+  "predictions": [
+    "astropy/io/fits/tests/test_header.py::TestHeaderFunctions.test_invalid_float_cards2",
+    "astropy/io/fits/card.py::_format_float",
+    "astropy/io/fits/fitsrec.py::_ascii_encode",
+    "astropy/io/ascii/tests/test_c_reader.py::test_fortran_invalid_exp",
+    "astropy/io/ascii/tests/test_ecsv.py::test_regression_5604",
+    "astropy/units/tests/test_format.py::test_cds_non_ascii_unit",
+    "astropy/io/fits/util.py::decode_ascii",
+    "astropy/units/tests/test_units.py::test_endian_independence",
+    "astropy/io/fits/tests/test_connect.py::test_unicode_column",
+    "astropy/table/tests/test_pprint.py::test_decode_replace"
+  ],
+  "metadata": {
+    "repo": "astropy/astropy",
+    "commit": "c76af9ed6bb89bfba45b9f5bc1e635188278e2fa",
+    "total_functions_indexed": 9848,
+    "retrieval_time_seconds": 0.0033118724822998047
+  },
+  "raw_output": "[{\"doc_id\": \"astropy/io/fits/tests/test_header.py::TestHeaderFunctions.test_invalid_float_cards2\", \"score\": 0.37920457124710083}, {\"doc_id\": \"astropy/io/fits/card.py::_format_float\", \"score\": 0.3791865110397339}, {\"doc_id\": \"astropy/io/fits/fitsrec.py::_ascii_encode\", \"score\": 0.3779597282409668}, {\"doc_id\": \"astropy/io/ascii/tests/test_c_reader.py::test_fortran_invalid_exp\", \"score\": 0.3757305145263672}, {\"doc_id\": \"astropy/io/ascii/tests/test_ecsv.py::test_regression_5604\", \"score\": 0.3718087077140808}, {\"doc_id\": \"astropy/units/tests/test_format.py::test_cds_non_ascii_unit\", \"score\": 0.3697197735309601}, {\"doc_id\": \"astropy/io/fits/util.py::decode_ascii\", \"score\": 0.36693722009658813}, {\"doc_id\": \"astropy/units/tests/test_units.py::test_endian_independence\", \"score\": 0.36456650495529175}, {\"doc_id\": \"astropy/io/fits/tests/test_connect.py::test_unicode_column\", \"score\": 0.36369264125823975}, {\"doc_id\": \"astropy/table/tests/test_pprint.py::test_decode_replace\", \"score\": 0.3628036379814148}]"
+}

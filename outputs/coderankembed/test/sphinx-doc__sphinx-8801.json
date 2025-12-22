@@ -1,0 +1,31 @@
+{
+  "instance_id": "sphinx-doc__sphinx-8801",
+  "query": "autodoc: The annotation only member in superclass is treated as \"undocumented\"\n**Describe the bug**\r\nautodoc: The annotation only member in superclass is treated as \"undocumented\".\r\n\r\n**To Reproduce**\r\n\r\n```\r\n# example.py\r\nclass Foo:\r\n    \"\"\"docstring\"\"\"\r\n    attr1: int  #: docstring\r\n\r\n\r\nclass Bar(Foo):\r\n    \"\"\"docstring\"\"\"\r\n    attr2: str  #: docstring\r\n```\r\n```\r\n# index.rst\r\n.. autoclass:: example.Bar\r\n   :members:\r\n   :inherited-members:\r\n```\r\n\r\n`Bar.attr1` is not documented. It will be shown if I give `:undoc-members:` option to the autoclass directive call. It seems the attribute is treated as undocumented.\r\n\r\n**Expected behavior**\r\nIt should be shown.\r\n\r\n**Your project**\r\nNo\r\n\r\n**Screenshots**\r\nNo\r\n\r\n**Environment info**\r\n- OS: Mac\r\n- Python version: 3.9.1\r\n- Sphinx version: HEAD of 3.x\r\n- Sphinx extensions: sphinx.ext.autodoc\r\n- Extra tools: No\r\n\r\n**Additional context**\r\nNo\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/ext/autodoc/importer.py"
+    ],
+    "locations": [
+      "sphinx/ext/autodoc/importer.py::get_class_members"
+    ]
+  },
+  "predictions": [
+    "tests/test_ext_autodoc.py::test_autodoc_undoc_members",
+    "tests/test_ext_autodoc.py::test_autodoc_inherited_members",
+    "tests/test_ext_autodoc.py::test_autodoc_members",
+    "tests/test_ext_autodoc_autoclass.py::test_inherited_instance_variable",
+    "tests/test_ext_autodoc.py::test_autodoc_descriptor",
+    "tests/test_ext_autodoc.py::test_autodoc_inherited_members_Base",
+    "tests/test_ext_autodoc.py::test_class_attributes",
+    "tests/test_ext_autodoc.py::test_autodoc_special_members",
+    "tests/test_ext_autodoc.py::test_autodoc_Annotated",
+    "tests/test_ext_autodoc.py::test_autodoc_subclass_of_builtin_class"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "7ca279e33aebb60168d35e6be4ed059f4a68f2c1",
+    "total_functions_indexed": 5672,
+    "retrieval_time_seconds": 0.09110593795776367
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_undoc_members\", \"score\": 0.688852071762085}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_inherited_members\", \"score\": 0.6514471769332886}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_members\", \"score\": 0.6256649494171143}, {\"doc_id\": \"tests/test_ext_autodoc_autoclass.py::test_inherited_instance_variable\", \"score\": 0.6085010766983032}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_descriptor\", \"score\": 0.6027033925056458}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_inherited_members_Base\", \"score\": 0.6026038527488708}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_class_attributes\", \"score\": 0.5975503921508789}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_special_members\", \"score\": 0.5960109233856201}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_Annotated\", \"score\": 0.5888997316360474}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_subclass_of_builtin_class\", \"score\": 0.5863635540008545}]"
+}

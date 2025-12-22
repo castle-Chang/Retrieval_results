@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-10880",
+  "query": "Query syntax error with condition and distinct combination\nDescription\n\t\nA Count annotation containing both a Case condition and a distinct=True param produces a query error on Django 2.2 (whatever the db backend). A space is missing at least (... COUNT(DISTINCTCASE WHEN ...).\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/aggregates.py"
+    ],
+    "locations": [
+      "django/db/models/aggregates.py::Aggregate",
+      "django/db/models/aggregates.py::Aggregate.get_group_by_cols",
+      "django/db/models/aggregates.py::Aggregate.as_sql"
+    ]
+  },
+  "predictions": [
+    "tests/expressions/tests.py::ReprTests.test_distinct_aggregates",
+    "django/db/models/sql/query.py::Query.add_distinct_fields",
+    "tests/aggregation/tests.py::AggregateTestCase.test_sum_distinct_aggregate",
+    "tests/expressions/tests.py::ReprTests.test_filtered_aggregates",
+    "tests/filtered_relation/tests.py::FilteredRelationAggregationTests.test_aggregate",
+    "django/db/models/sql/query.py::Query.combine",
+    "django/db/models/query.py::QuerySet.distinct",
+    "tests/queries/tests.py::DisjunctionPromotionTests.test_disjunction_promotion5_demote",
+    "django/db/models/constraints.py::UniqueConstraint.__init__",
+    "tests/queries/tests.py::DisjunctionPromotionTests.test_disjunction_promotion6"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "838e432e3e5519c5383d12018e6c78f8ec7833c1",
+    "total_functions_indexed": 22312,
+    "retrieval_time_seconds": 0.6532213687896729
+  },
+  "raw_output": "[{\"doc_id\": \"tests/expressions/tests.py::ReprTests.test_distinct_aggregates\", \"score\": 50.86119712774432}, {\"doc_id\": \"django/db/models/sql/query.py::Query.add_distinct_fields\", \"score\": 47.11833842314465}, {\"doc_id\": \"tests/aggregation/tests.py::AggregateTestCase.test_sum_distinct_aggregate\", \"score\": 46.165463085151316}, {\"doc_id\": \"tests/expressions/tests.py::ReprTests.test_filtered_aggregates\", \"score\": 44.921153115783014}, {\"doc_id\": \"tests/filtered_relation/tests.py::FilteredRelationAggregationTests.test_aggregate\", \"score\": 44.30128842482195}, {\"doc_id\": \"django/db/models/sql/query.py::Query.combine\", \"score\": 44.11396691785332}, {\"doc_id\": \"django/db/models/query.py::QuerySet.distinct\", \"score\": 43.63839642228261}, {\"doc_id\": \"tests/queries/tests.py::DisjunctionPromotionTests.test_disjunction_promotion5_demote\", \"score\": 43.15785059147099}, {\"doc_id\": \"django/db/models/constraints.py::UniqueConstraint.__init__\", \"score\": 42.67578318915891}, {\"doc_id\": \"tests/queries/tests.py::DisjunctionPromotionTests.test_disjunction_promotion6\", \"score\": 42.195293967331764}]"
+}

@@ -1,0 +1,58 @@
+{
+  "instance_id": "django__django-13121",
+  "query": "durations-only expressions doesn't work on SQLite and MySQL\nDescription\n\t\nclass Experiment(models.Model):\n\testimated_time = models.DurationField()\nlist(Experiment.objects.annotate(duration=F('estimated_time') + datime.timedelta(1)))\nTraceback (most recent call last):\n File \"/home/sergey/dev/django/tests/expressions/tests.py\", line 1218, in test_duration_expressions\n\tlist(Experiment.objects.annotate(duration=F('estimated_time') + delta))\n File \"/home/sergey/dev/django/django/db/models/query.py\", line 269, in __iter__\n\tself._fetch_all()\n File \"/home/sergey/dev/django/django/db/models/query.py\", line 1172, in _fetch_all\n\tself._result_cache = list(self._iterable_class(self))\n File \"/home/sergey/dev/django/django/db/models/query.py\", line 63, in __iter__\n\tfor row in compiler.results_iter(results):\n File \"/home/sergey/dev/django/django/db/models/sql/compiler.py\", line 998, in apply_converters\n\tvalue = converter(value, expression, connection)\n File \"/home/sergey/dev/django/django/db/backends/base/operations.py\", line 571, in convert_durationfield_value\n\tvalue = str(decimal.Decimal(value) / decimal.Decimal(1000000))\ndecimal.InvalidOperation: [<class 'decimal.ConversionSyntax'>]\n",
+  "ground_truth": {
+    "files": [
+      "django/db/backends/mysql/operations.py",
+      "django/db/backends/sqlite3/operations.py",
+      "django/db/models/expressions.py",
+      "django/db/backends/base/operations.py"
+    ],
+    "locations": [
+      "django/db/backends/base/operations.py::BaseDatabaseOperations",
+      "django/db/backends/base/operations.py::BaseDatabaseOperations.date_extract_sql",
+      "django/db/backends/base/operations.py::BaseDatabaseOperations.date_interval_sql",
+      "django/db/backends/base/operations.py::BaseDatabaseOperations.date_trunc_sql",
+      "django/db/backends/mysql/operations.py::DatabaseOperations",
+      "django/db/backends/mysql/operations.py::DatabaseOperations.time_trunc_sql",
+      "django/db/backends/mysql/operations.py::DatabaseOperations.date_interval_sql",
+      "django/db/backends/mysql/operations.py::DatabaseOperations.fetch_returned_insert_rows",
+      "django/db/backends/sqlite3/operations.py::DatabaseOperations",
+      "django/db/backends/sqlite3/operations.py::DatabaseOperations.date_extract_sql",
+      "django/db/backends/sqlite3/operations.py::DatabaseOperations.date_interval_sql",
+      "django/db/backends/sqlite3/operations.py::DatabaseOperations.format_for_duration_arithmetic",
+      "django/db/models/expressions.py::Combinable",
+      "django/db/models/expressions.py::Combinable._combine",
+      "django/db/models/expressions.py::CombinedExpression",
+      "django/db/models/expressions.py::CombinedExpression.as_sql",
+      "django/db/models/expressions.py::DurationExpression",
+      "django/db/models/expressions.py::DurationExpression.compile",
+      "django/db/models/expressions.py::DurationExpression.as_sql",
+      "django/db/models/expressions.py::Value",
+      "django/db/models/expressions.py::Value.get_group_by_cols",
+      "django/db/models/expressions.py::DurationValue",
+      "django/db/models/expressions.py::DurationValue.as_sql",
+      "django/db/models/expressions.py::RawSQL",
+      "django/db/models/expressions.py::RawSQL.__init__"
+    ]
+  },
+  "predictions": [
+    "django/db/models/sql/compiler.py::SQLCompiler.apply_converters",
+    "tests/expressions/tests.py::FTimeDeltaTests.test_durationfield_add",
+    "django/db/backends/oracle/base.py::FormatStylePlaceholderCursor._output_number_converter",
+    "django/contrib/gis/db/models/functions.py::SQLiteDecimalToFloatMixin.as_sqlite",
+    "django/db/models/query.py::FlatValuesListIterable.__iter__",
+    "django/db/backends/sqlite3/operations.py::DatabaseOperations.get_decimalfield_converter",
+    "django/db/models/fields/__init__.py::DecimalField.to_python",
+    "django/core/files/base.py::File.__iter__",
+    "django/db/models/query.py::RawQuerySet.__iter__",
+    "django/db/models/query.py::ValuesIterable.__iter__"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "ec5aa2161d8015a3fe57dcbbfe14200cd18f0a16",
+    "total_functions_indexed": 23654,
+    "retrieval_time_seconds": 3.201807737350464
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/sql/compiler.py::SQLCompiler.apply_converters\", \"score\": 138.5440459366002}, {\"doc_id\": \"tests/expressions/tests.py::FTimeDeltaTests.test_durationfield_add\", \"score\": 135.62757786775666}, {\"doc_id\": \"django/db/backends/oracle/base.py::FormatStylePlaceholderCursor._output_number_converter\", \"score\": 124.01721090303121}, {\"doc_id\": \"django/contrib/gis/db/models/functions.py::SQLiteDecimalToFloatMixin.as_sqlite\", \"score\": 123.69461715427839}, {\"doc_id\": \"django/db/models/query.py::FlatValuesListIterable.__iter__\", \"score\": 123.18333906190692}, {\"doc_id\": \"django/db/backends/sqlite3/operations.py::DatabaseOperations.get_decimalfield_converter\", \"score\": 116.02032209157557}, {\"doc_id\": \"django/db/models/fields/__init__.py::DecimalField.to_python\", \"score\": 115.60183744146151}, {\"doc_id\": \"django/core/files/base.py::File.__iter__\", \"score\": 115.54832993119167}, {\"doc_id\": \"django/db/models/query.py::RawQuerySet.__iter__\", \"score\": 113.5364451970179}, {\"doc_id\": \"django/db/models/query.py::ValuesIterable.__iter__\", \"score\": 110.99607051535604}]"
+}

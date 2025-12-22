@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-20916",
+  "query": "pprint unicode does not format subscripts on Greek letters\nGood:\r\n\r\n[ -t₀⋅w₀   -t₁⋅w₀   -t₂⋅w₀]\r\n\r\n\r\nBad:\r\n\r\n[ -t₀⋅ω0   -t₁⋅ω0   -t₂⋅ω0]\r\n\r\n\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/conventions.py"
+    ],
+    "locations": [
+      "sympy/printing/conventions.py::split_super_sub"
+    ]
+  },
+  "predictions": [
+    "sympy/utilities/tests/test_wester.py::test_P33",
+    "sympy/integrals/tests/test_transforms.py::test_cosine_transform",
+    "sympy/calculus/tests/test_euler.py::test_euler_high_order",
+    "sympy/integrals/tests/test_transforms.py::test_sine_transform",
+    "sympy/solvers/ode/ode.py::_nonlinear_3eq_order1_type4",
+    "sympy/solvers/ode/ode.py::_nonlinear_3eq_order1_type1",
+    "examples/beginner/differentiation.py::main",
+    "sympy/solvers/ode/ode.py::_nonlinear_3eq_order1_type5",
+    "sympy/integrals/rubi/utility_function.py::ExpandTrigReduce",
+    "sympy/solvers/ode/ode.py::_nonlinear_3eq_order1_type3"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "82298df6a51491bfaad0c6d1980e7e3ca808ae93",
+    "total_functions_indexed": 35871,
+    "retrieval_time_seconds": 0.7327468395233154
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/utilities/tests/test_wester.py::test_P33\", \"score\": 72.87269015841119}, {\"doc_id\": \"sympy/integrals/tests/test_transforms.py::test_cosine_transform\", \"score\": 69.64088881951905}, {\"doc_id\": \"sympy/calculus/tests/test_euler.py::test_euler_high_order\", \"score\": 68.0618767245732}, {\"doc_id\": \"sympy/integrals/tests/test_transforms.py::test_sine_transform\", \"score\": 64.39826709004123}, {\"doc_id\": \"sympy/solvers/ode/ode.py::_nonlinear_3eq_order1_type4\", \"score\": 63.00719576178884}, {\"doc_id\": \"sympy/solvers/ode/ode.py::_nonlinear_3eq_order1_type1\", \"score\": 61.99035187342738}, {\"doc_id\": \"examples/beginner/differentiation.py::main\", \"score\": 61.51850081335936}, {\"doc_id\": \"sympy/solvers/ode/ode.py::_nonlinear_3eq_order1_type5\", \"score\": 61.441094236623414}, {\"doc_id\": \"sympy/integrals/rubi/utility_function.py::ExpandTrigReduce\", \"score\": 61.41989373800435}, {\"doc_id\": \"sympy/solvers/ode/ode.py::_nonlinear_3eq_order1_type3\", \"score\": 61.18657341110996}]"
+}

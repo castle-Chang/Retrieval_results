@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11742",
+  "query": "Add check to ensure max_length fits longest choice.\nDescription\n\t\nThere is currently no check to ensure that Field.max_length is large enough to fit the longest value in Field.choices.\nThis would be very helpful as often this mistake is not noticed until an attempt is made to save a record with those values that are too long.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/__init__.py"
+    ],
+    "locations": [
+      "django/db/models/fields/__init__.py::Field",
+      "django/db/models/fields/__init__.py::Field._check_choices"
+    ]
+  },
+  "predictions": [
+    "django/db/models/fields/__init__.py::IntegerField._check_max_length_warning",
+    "django/db/models/fields/__init__.py::CharField._check_max_length_attribute",
+    "tests/invalid_models_tests/test_ordinary_fields.py::CharFieldTests.test_bad_max_length_value",
+    "tests/max_lengths/tests.py::MaxLengthArgumentsTests.verify_max_length",
+    "tests/invalid_models_tests/test_ordinary_fields.py::CharFieldTests.test_str_max_length_value",
+    "django/forms/fields.py::ChoiceField.validate",
+    "tests/invalid_models_tests/test_ordinary_fields.py::CharFieldTests.test_missing_max_length",
+    "tests/invalid_models_tests/test_ordinary_fields.py::AutoFieldTests.test_max_length_warning",
+    "django/db/models/fields/__init__.py::TextField.formfield",
+    "tests/invalid_models_tests/test_ordinary_fields.py::CharFieldTests.test_str_max_length_type"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "fee75d2aed4e58ada6567c464cfd22e89dc65f4a",
+    "total_functions_indexed": 22837,
+    "retrieval_time_seconds": 0.09399080276489258
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/fields/__init__.py::IntegerField._check_max_length_warning\", \"score\": 0.5376508831977844}, {\"doc_id\": \"django/db/models/fields/__init__.py::CharField._check_max_length_attribute\", \"score\": 0.5186570882797241}, {\"doc_id\": \"tests/invalid_models_tests/test_ordinary_fields.py::CharFieldTests.test_bad_max_length_value\", \"score\": 0.4805799424648285}, {\"doc_id\": \"tests/max_lengths/tests.py::MaxLengthArgumentsTests.verify_max_length\", \"score\": 0.4734412729740143}, {\"doc_id\": \"tests/invalid_models_tests/test_ordinary_fields.py::CharFieldTests.test_str_max_length_value\", \"score\": 0.471936970949173}, {\"doc_id\": \"django/forms/fields.py::ChoiceField.validate\", \"score\": 0.46600133180618286}, {\"doc_id\": \"tests/invalid_models_tests/test_ordinary_fields.py::CharFieldTests.test_missing_max_length\", \"score\": 0.44478487968444824}, {\"doc_id\": \"tests/invalid_models_tests/test_ordinary_fields.py::AutoFieldTests.test_max_length_warning\", \"score\": 0.4442311227321625}, {\"doc_id\": \"django/db/models/fields/__init__.py::TextField.formfield\", \"score\": 0.44358351826667786}, {\"doc_id\": \"tests/invalid_models_tests/test_ordinary_fields.py::CharFieldTests.test_str_max_length_type\", \"score\": 0.440933495759964}]"
+}

@@ -1,0 +1,34 @@
+{
+  "instance_id": "django__django-14373",
+  "query": "DateFormat.Y() is not zero-padded.\nDescription\n\t\nThe Y specifier for django.utils.dateformat.DateFormat is supposed to always return a four-digit year padded with zeros. This doesn't seem to be the case for year < 1000.\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/dateformat.py"
+    ],
+    "locations": [
+      "django/utils/dateformat.py::DateFormat",
+      "django/utils/dateformat.py::DateFormat.y",
+      "django/utils/dateformat.py::DateFormat.Y",
+      "django/utils/dateformat.py::DateFormat.z"
+    ]
+  },
+  "predictions": [
+    "django/utils/dateformat.py::DateFormat.y",
+    "django/utils/dateformat.py::DateFormat.Y",
+    "django/utils/dateformat.py::DateFormat.L",
+    "django/utils/dateformat.py::DateFormat.z",
+    "django/utils/dateformat.py::DateFormat.t",
+    "django/utils/dateformat.py::DateFormat.d",
+    "django/utils/dateformat.py::DateFormat.j",
+    "django/utils/dateformat.py::DateFormat.o",
+    "tests/utils_tests/test_dateformat.py::DateFormatTests.test_year_before_1000",
+    "django/utils/dateformat.py::DateFormat.n"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "b1a4b1f0bdf05adbd3dc4dde14228e68da54c1a3",
+    "total_functions_indexed": 24558,
+    "retrieval_time_seconds": 0.6613016128540039
+  },
+  "raw_output": "[{\"doc_id\": \"django/utils/dateformat.py::DateFormat.y\", \"score\": 80.20404012788265}, {\"doc_id\": \"django/utils/dateformat.py::DateFormat.Y\", \"score\": 71.18408287206756}, {\"doc_id\": \"django/utils/dateformat.py::DateFormat.L\", \"score\": 64.76533161655797}, {\"doc_id\": \"django/utils/dateformat.py::DateFormat.z\", \"score\": 61.221098142279935}, {\"doc_id\": \"django/utils/dateformat.py::DateFormat.t\", \"score\": 59.58338691464681}, {\"doc_id\": \"django/utils/dateformat.py::DateFormat.d\", \"score\": 57.49006785544756}, {\"doc_id\": \"django/utils/dateformat.py::DateFormat.j\", \"score\": 57.133718552613274}, {\"doc_id\": \"django/utils/dateformat.py::DateFormat.o\", \"score\": 55.80909445126045}, {\"doc_id\": \"tests/utils_tests/test_dateformat.py::DateFormatTests.test_year_before_1000\", \"score\": 55.68104517123862}, {\"doc_id\": \"django/utils/dateformat.py::DateFormat.n\", \"score\": 55.157416871852526}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-16408",
+  "query": "Multi-level FilteredRelation with select_related() may set wrong related object.\nDescription\n\t\ntest case:\n# add to known_related_objects.tests.ExistingRelatedInstancesTests\n\tdef test_wrong_select_related(self):\n\t\twith self.assertNumQueries(3):\n\t\t\tp = list(PoolStyle.objects.annotate(\n\t\t\t\ttournament_pool=FilteredRelation('pool__tournament__pool'),\n\t\t\t\t).select_related('tournament_pool'))\n\t\t\tself.assertEqual(p[0].pool.tournament, p[0].tournament_pool.tournament)\nresult:\n======================================================================\nFAIL: test_wrong_select_related (known_related_objects.tests.ExistingRelatedInstancesTests.test_wrong_select_related)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n File \"D:\\Work\\django\\tests\\known_related_objects\\tests.py\", line 171, in test_wrong_select_related\n\tself.assertEqual(p[0].pool.tournament, p[0].tournament_pool.tournament)\nAssertionError: <Tournament: Tournament object (1)> != <PoolStyle: PoolStyle object (1)>\n----------------------------------------------------------------------\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/sql/compiler.py"
+    ],
+    "locations": [
+      "django/db/models/sql/compiler.py::SQLCompiler",
+      "django/db/models/sql/compiler.py::SQLCompiler.get_related_selections"
+    ]
+  },
+  "predictions": [
+    "tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_reverse_fk_select_related_multiple",
+    "tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_reverse_one_to_one_multi_select_related",
+    "tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_one_to_one_multi_select_related",
+    "tests/filtered_relation/tests.py::FilteredRelationTests.test_select_related_multiple",
+    "tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_reverse_one_to_one_select_related",
+    "tests/select_related_onetoone/tests.py::ReverseSelectRelatedValidationTests.test_reverse_related_validation_with_filtered_relation",
+    "tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_one_to_one_select_related",
+    "tests/filtered_relation/tests.py::FilteredRelationTests.test_select_related",
+    "tests/filtered_relation/tests.py::FilteredRelationTests.test_select_related_foreign_key",
+    "tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_queryset_or"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "ef85b6bf0bc5a8b194f0724cf5bbedbcee402b96",
+    "total_functions_indexed": 26331,
+    "retrieval_time_seconds": 0.03393387794494629
+  },
+  "raw_output": "[{\"doc_id\": \"tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_reverse_fk_select_related_multiple\", \"score\": 0.6985412836074829}, {\"doc_id\": \"tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_reverse_one_to_one_multi_select_related\", \"score\": 0.6508552432060242}, {\"doc_id\": \"tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_one_to_one_multi_select_related\", \"score\": 0.6464755535125732}, {\"doc_id\": \"tests/filtered_relation/tests.py::FilteredRelationTests.test_select_related_multiple\", \"score\": 0.6286031603813171}, {\"doc_id\": \"tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_reverse_one_to_one_select_related\", \"score\": 0.6178550124168396}, {\"doc_id\": \"tests/select_related_onetoone/tests.py::ReverseSelectRelatedValidationTests.test_reverse_related_validation_with_filtered_relation\", \"score\": 0.6048420667648315}, {\"doc_id\": \"tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_one_to_one_select_related\", \"score\": 0.6015633344650269}, {\"doc_id\": \"tests/filtered_relation/tests.py::FilteredRelationTests.test_select_related\", \"score\": 0.6013307571411133}, {\"doc_id\": \"tests/filtered_relation/tests.py::FilteredRelationTests.test_select_related_foreign_key\", \"score\": 0.5576830506324768}, {\"doc_id\": \"tests/known_related_objects/tests.py::ExistingRelatedInstancesTests.test_queryset_or\", \"score\": 0.5504655838012695}]"
+}

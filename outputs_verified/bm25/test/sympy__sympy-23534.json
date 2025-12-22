@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-23534",
+  "query": "Using symbols to create functions doesn't work if there is an extra layer of parentheses\nSympy version == 1.10.1\r\n\r\nUsing `symbols` to create symbol-like objects like instances of `Function` as shown in the [documentation](https://docs.sympy.org/latest/modules/core.html?highlight=symbols#symbols) creates objects of class `Symbol` instead of `Function` if there is an extra layer of parentheses.\r\n\r\nThe extra layer of parentheses are necessary to deconstruct the output as separate tuples.\r\n\r\nRunning the code:\r\n```\r\nq, u = smp.symbols(('q:2', 'u:2'), cls=smp.Function)\r\nprint(type(q[0]))\r\n```\r\n#### Expected result:\r\n<class 'sympy.core.function.UndefinedFunction'>\r\n\r\n#### Actual result: \r\n<class 'sympy.core.symbol.Symbol'>\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/symbol.py"
+    ],
+    "locations": [
+      "sympy/core/symbol.py::symbols"
+    ]
+  },
+  "predictions": [
+    "sympy/core/symbol.py::symbols",
+    "sympy/solvers/solveset.py::_transolve",
+    "sympy/calculus/util.py::_periodicity",
+    "sympy/core/basic.py::Basic.atoms",
+    "sympy/polys/numberfields/subfield.py::to_number_field",
+    "sympy/physics/vector/functions.py::dynamicsymbols",
+    "sympy/calculus/util.py::is_convex",
+    "sympy/utilities/iterables.py::numbered_symbols",
+    "sympy/utilities/lambdify.py::lambdify",
+    "sympy/integrals/integrals.py::Integral.__new__"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "832c24fec1046eaa544a4cab4c69e3af3e651759",
+    "total_functions_indexed": 37820,
+    "retrieval_time_seconds": 2.42991304397583
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/symbol.py::symbols\", \"score\": 186.6788354446454}, {\"doc_id\": \"sympy/solvers/solveset.py::_transolve\", \"score\": 150.22576322500512}, {\"doc_id\": \"sympy/calculus/util.py::_periodicity\", \"score\": 148.1696904071734}, {\"doc_id\": \"sympy/core/basic.py::Basic.atoms\", \"score\": 144.94746350537588}, {\"doc_id\": \"sympy/polys/numberfields/subfield.py::to_number_field\", \"score\": 143.76020174731536}, {\"doc_id\": \"sympy/physics/vector/functions.py::dynamicsymbols\", \"score\": 141.55985626912346}, {\"doc_id\": \"sympy/calculus/util.py::is_convex\", \"score\": 140.20509361022746}, {\"doc_id\": \"sympy/utilities/iterables.py::numbered_symbols\", \"score\": 140.14334900818378}, {\"doc_id\": \"sympy/utilities/lambdify.py::lambdify\", \"score\": 137.72445369547813}, {\"doc_id\": \"sympy/integrals/integrals.py::Integral.__new__\", \"score\": 136.9730613832246}]"
+}

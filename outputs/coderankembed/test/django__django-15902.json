@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-15902",
+  "query": "\"default.html\" deprecation warning raised for ManagementForm's\nDescription\n\t\nI have a project where I never render forms with the {{ form }} expression. However, I'm still getting the new template deprecation warning because of the formset management form production, during which the template used is insignificant (only hidden inputs are produced).\nIs it worth special-casing this and avoid producing the warning for the management forms?\n",
+  "ground_truth": {
+    "files": [
+      "django/forms/formsets.py"
+    ],
+    "locations": [
+      "django/forms/formsets.py::ManagementForm"
+    ]
+  },
+  "predictions": [
+    "tests/forms_tests/tests/test_forms.py::DeprecationTests.test_warning",
+    "tests/forms_tests/tests/test_formsets.py::DeprecationTests.test_warning",
+    "tests/forms_tests/tests/test_deprecation_forms.py::DeprecationTests.test_deprecation_warning_html_output",
+    "django/forms/utils.py::RenderableMixin.render",
+    "tests/test_utils/tests.py::AssertFormErrorDeprecationTests.test_assert_form_error_errors_none_warning",
+    "django/forms/formsets.py::BaseFormSet.__bool__",
+    "tests/check_framework/test_model_field_deprecation.py::TestDeprecatedField.test_default_details",
+    "tests/test_utils/tests.py::AssertFormErrorDeprecationTests.test_assert_formset_error_errors_none_warning",
+    "tests/forms_tests/tests/test_deprecation_forms.py::DeprecationTests.test_deprecation_warning_error_list",
+    "django/forms/formsets.py::BaseFormSet.get_default_prefix"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "44c24bf02835323d5418512ebe8e76166739ebf8",
+    "total_functions_indexed": 26079,
+    "retrieval_time_seconds": 0.008536100387573242
+  },
+  "raw_output": "[{\"doc_id\": \"tests/forms_tests/tests/test_forms.py::DeprecationTests.test_warning\", \"score\": 0.5381606817245483}, {\"doc_id\": \"tests/forms_tests/tests/test_formsets.py::DeprecationTests.test_warning\", \"score\": 0.518366813659668}, {\"doc_id\": \"tests/forms_tests/tests/test_deprecation_forms.py::DeprecationTests.test_deprecation_warning_html_output\", \"score\": 0.5017582178115845}, {\"doc_id\": \"django/forms/utils.py::RenderableMixin.render\", \"score\": 0.4532298743724823}, {\"doc_id\": \"tests/test_utils/tests.py::AssertFormErrorDeprecationTests.test_assert_form_error_errors_none_warning\", \"score\": 0.40954452753067017}, {\"doc_id\": \"django/forms/formsets.py::BaseFormSet.__bool__\", \"score\": 0.40689677000045776}, {\"doc_id\": \"tests/check_framework/test_model_field_deprecation.py::TestDeprecatedField.test_default_details\", \"score\": 0.40681424736976624}, {\"doc_id\": \"tests/test_utils/tests.py::AssertFormErrorDeprecationTests.test_assert_formset_error_errors_none_warning\", \"score\": 0.40562012791633606}, {\"doc_id\": \"tests/forms_tests/tests/test_deprecation_forms.py::DeprecationTests.test_deprecation_warning_error_list\", \"score\": 0.40378373861312866}, {\"doc_id\": \"django/forms/formsets.py::BaseFormSet.get_default_prefix\", \"score\": 0.38739874958992004}]"
+}

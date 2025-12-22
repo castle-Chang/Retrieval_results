@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-15467",
+  "query": "ModelAdmin with defined radio_fields override empty_label\nDescription\n\t\nModelAdmin drops my \"empty_label\" and set \"default_empty_label\". For example:\nclass MyModelAdmin(ModelAdmin):\n\tradio_fields = 'myfield',\n\tdef formfield_for_foreignkey(self, db_field, *args, **kwargs):\n\t\tif db_field.name == 'myfield':\n\t\t\tkwargs['empty_label'] = \"I WANT TO SET MY OWN EMPTY LABEL\"\n\t\treturn super().formfield_for_foreignkey(db_field, *args, **kwargs)\nYou get never the \"I WANT TO SET MY OWN EMPTY LABEL\"\nHow to fix it:\nIn django\\contrib\\admin\\options.py, row 234:\nkwargs['empty_label'] = _('None') if db_field.blank else None\nShould be changed on:\nkwargs['empty_label'] = (kwargs.get('empty_label') or _('None')) if db_field.blank else None\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admin/options.py"
+    ],
+    "locations": [
+      "django/contrib/admin/options.py::BaseModelAdmin",
+      "django/contrib/admin/options.py::BaseModelAdmin.formfield_for_foreignkey"
+    ]
+  },
+  "predictions": [
+    "django/contrib/admin/options.py::BaseModelAdmin.formfield_for_foreignkey",
+    "django/contrib/admin/options.py::BaseModelAdmin.formfield_for_choice_field",
+    "tests/admin_ordering/tests.py::TestRelatedFieldsAdminOrdering.test_custom_queryset_still_wins",
+    "django/forms/models.py::ModelChoiceField.__init__",
+    "tests/admin_widgets/widgetadmin.py::CarTireAdmin.formfield_for_foreignkey",
+    "django/contrib/gis/admin/options.py::GeoModelAdmin.formfield_for_dbfield",
+    "django/contrib/admin/options.py::BaseModelAdmin.formfield_for_manytomany",
+    "django/contrib/admin/options.py::BaseModelAdmin.formfield_for_dbfield",
+    "django/contrib/gis/admin/options.py::GeoModelAdminMixin.formfield_for_dbfield",
+    "django/contrib/auth/admin.py::GroupAdmin.formfield_for_manytomany"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "e0442a628eb480eac6a7888aed5a86f83499e299",
+    "total_functions_indexed": 25674,
+    "retrieval_time_seconds": 1.5810444355010986
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/admin/options.py::BaseModelAdmin.formfield_for_foreignkey\", \"score\": 222.8547843568349}, {\"doc_id\": \"django/contrib/admin/options.py::BaseModelAdmin.formfield_for_choice_field\", \"score\": 171.82358425764886}, {\"doc_id\": \"tests/admin_ordering/tests.py::TestRelatedFieldsAdminOrdering.test_custom_queryset_still_wins\", \"score\": 156.62168645643703}, {\"doc_id\": \"django/forms/models.py::ModelChoiceField.__init__\", \"score\": 149.3399056057526}, {\"doc_id\": \"tests/admin_widgets/widgetadmin.py::CarTireAdmin.formfield_for_foreignkey\", \"score\": 148.74699165281123}, {\"doc_id\": \"django/contrib/gis/admin/options.py::GeoModelAdmin.formfield_for_dbfield\", \"score\": 146.0882264187359}, {\"doc_id\": \"django/contrib/admin/options.py::BaseModelAdmin.formfield_for_manytomany\", \"score\": 143.84986806329502}, {\"doc_id\": \"django/contrib/admin/options.py::BaseModelAdmin.formfield_for_dbfield\", \"score\": 143.74731512601213}, {\"doc_id\": \"django/contrib/gis/admin/options.py::GeoModelAdminMixin.formfield_for_dbfield\", \"score\": 139.26913041692373}, {\"doc_id\": \"django/contrib/auth/admin.py::GroupAdmin.formfield_for_manytomany\", \"score\": 130.36940846241257}]"
+}

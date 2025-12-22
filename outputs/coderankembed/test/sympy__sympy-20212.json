@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-20212",
+  "query": "0**-oo produces 0, the documentation says it should produce zoo\nUsing SymPy 1.5.1, evaluate `0**-oo` produces `0`.\r\n\r\nThe documentation for the Pow class states that it should return `ComplexInfinity`, aka `zoo`\r\n\r\n| expr | value | reason |\r\n| :-- | :-- | :--|\r\n| `0**-oo` | `zoo` | This is not strictly true, as 0**oo may be oscillating between positive and negative values or rotating in the complex plane. It is convenient, however, when the base is positive.|\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/power.py"
+    ],
+    "locations": [
+      "sympy/core/power.py::Pow",
+      "sympy/core/power.py::Pow.__new__"
+    ]
+  },
+  "predictions": [
+    "sympy/core/tests/test_power.py::test_zero",
+    "sympy/core/tests/test_arit.py::test_Pow_is_zero",
+    "sympy/core/tests/test_numbers.py::test_issue_10020",
+    "sympy/core/numbers.py::Infinity._eval_power",
+    "sympy/core/power.py::Pow._eval_is_zero",
+    "sympy/core/numbers.py::NegativeInfinity._eval_power",
+    "sympy/core/numbers.py::ComplexInfinity._eval_power",
+    "sympy/core/tests/test_numbers.py::test_Infinity_floor_ceiling_power",
+    "sympy/core/numbers.py::Zero._eval_power",
+    "sympy/matrices/expressions/tests/test_matexpr.py::test_Zero_power"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "a106f4782a9dbe7f8fd16030f15401d977e03ae9",
+    "total_functions_indexed": 35357,
+    "retrieval_time_seconds": 0.09794306755065918
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/tests/test_power.py::test_zero\", \"score\": 0.5617843270301819}, {\"doc_id\": \"sympy/core/tests/test_arit.py::test_Pow_is_zero\", \"score\": 0.556076169013977}, {\"doc_id\": \"sympy/core/tests/test_numbers.py::test_issue_10020\", \"score\": 0.5470722317695618}, {\"doc_id\": \"sympy/core/numbers.py::Infinity._eval_power\", \"score\": 0.5248271226882935}, {\"doc_id\": \"sympy/core/power.py::Pow._eval_is_zero\", \"score\": 0.5200971364974976}, {\"doc_id\": \"sympy/core/numbers.py::NegativeInfinity._eval_power\", \"score\": 0.5193163156509399}, {\"doc_id\": \"sympy/core/numbers.py::ComplexInfinity._eval_power\", \"score\": 0.5166347026824951}, {\"doc_id\": \"sympy/core/tests/test_numbers.py::test_Infinity_floor_ceiling_power\", \"score\": 0.5115443468093872}, {\"doc_id\": \"sympy/core/numbers.py::Zero._eval_power\", \"score\": 0.5063180327415466}, {\"doc_id\": \"sympy/matrices/expressions/tests/test_matexpr.py::test_Zero_power\", \"score\": 0.4995422065258026}]"
+}

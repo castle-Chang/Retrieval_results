@@ -1,0 +1,34 @@
+{
+  "instance_id": "django__django-15561",
+  "query": "AlterField operation should be noop when adding/changing choices on SQLite.\nDescription\n\t\nwhile writing a test case for #33470 i found that for sqlite, even a seemingly db-transparent change like adding choices still generates sql (new table + insert + drop + rename) even though this shouldn't be needed. on e.g. postgres the same migration generates no sql\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/__init__.py",
+      "django/db/backends/base/schema.py"
+    ],
+    "locations": [
+      "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor",
+      "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._field_should_be_altered",
+      "django/db/models/fields/__init__.py::Field"
+    ]
+  },
+  "predictions": [
+    "tests/backends/sqlite/tests.py::SchemaTests.test_table_rename_inside_atomic_block",
+    "tests/backends/sqlite/tests.py::SchemaTests.test_field_rename_inside_atomic_block",
+    "django/db/models/sql/query.py::Query.can_filter",
+    "django/db/migrations/executor.py::MigrationExecutor.check_replacements",
+    "django/http/multipartparser.py::MultiPartParser.sanitize_file_name",
+    "tests/migrations/test_commands.py::MigrateTests.test_sqlmigrate_backwards",
+    "tests/postgres_tests/test_search.py::SearchVectorIndexTests.test_search_vector_index",
+    "tests/migrations/test_operations.py::OperationTests.test_run_sql",
+    "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._alter_column_default_sql",
+    "django/db/models/lookups.py::Lookup.process_rhs"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "6991880109e35c879b71b7d9d9c154baeec12b89",
+    "total_functions_indexed": 25775,
+    "retrieval_time_seconds": 1.4048073291778564
+  },
+  "raw_output": "[{\"doc_id\": \"tests/backends/sqlite/tests.py::SchemaTests.test_table_rename_inside_atomic_block\", \"score\": 56.388897208925606}, {\"doc_id\": \"tests/backends/sqlite/tests.py::SchemaTests.test_field_rename_inside_atomic_block\", \"score\": 46.91704722085123}, {\"doc_id\": \"django/db/models/sql/query.py::Query.can_filter\", \"score\": 44.90356737682605}, {\"doc_id\": \"django/db/migrations/executor.py::MigrationExecutor.check_replacements\", \"score\": 44.46927829389651}, {\"doc_id\": \"django/http/multipartparser.py::MultiPartParser.sanitize_file_name\", \"score\": 44.294414323849615}, {\"doc_id\": \"tests/migrations/test_commands.py::MigrateTests.test_sqlmigrate_backwards\", \"score\": 43.68573339083226}, {\"doc_id\": \"tests/postgres_tests/test_search.py::SearchVectorIndexTests.test_search_vector_index\", \"score\": 42.546634056627525}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_run_sql\", \"score\": 42.26108347621207}, {\"doc_id\": \"django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._alter_column_default_sql\", \"score\": 42.136443047542244}, {\"doc_id\": \"django/db/models/lookups.py::Lookup.process_rhs\", \"score\": 42.128990134765225}]"
+}

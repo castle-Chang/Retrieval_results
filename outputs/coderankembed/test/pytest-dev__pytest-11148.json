@@ -1,0 +1,31 @@
+{
+  "instance_id": "pytest-dev__pytest-11148",
+  "query": "Module imported twice under import-mode=importlib\nIn pmxbot/pmxbot@7f189ad, I'm attempting to switch pmxbot off of pkg_resources style namespace packaging to PEP 420 namespace packages. To do so, I've needed to switch to `importlib` for the `import-mode` and re-organize the tests to avoid import errors on the tests.\r\n\r\nYet even after working around these issues, the tests are failing when the effect of `core.initialize()` doesn't seem to have had any effect.\r\n\r\nInvestigating deeper, I see that initializer is executed and performs its actions (setting a class variable `pmxbot.logging.Logger.store`), but when that happens, there are two different versions of `pmxbot.logging` present, one in `sys.modules` and another found in `tests.unit.test_commands.logging`:\r\n\r\n```\r\n=========================================================================== test session starts ===========================================================================\r\nplatform darwin -- Python 3.11.1, pytest-7.2.0, pluggy-1.0.0\r\ncachedir: .tox/python/.pytest_cache\r\nrootdir: /Users/jaraco/code/pmxbot/pmxbot, configfile: pytest.ini\r\nplugins: black-0.3.12, mypy-0.10.3, jaraco.test-5.3.0, checkdocs-2.9.0, flake8-1.1.1, enabler-2.0.0, jaraco.mongodb-11.2.1, pmxbot-1122.14.3.dev13+g7f189ad\r\ncollected 421 items / 180 deselected / 241 selected                                                                                                                       \r\nrun-last-failure: rerun previous 240 failures (skipped 14 files)\r\n\r\ntests/unit/test_commands.py E\r\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> traceback >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\r\n\r\ncls = <class 'tests.unit.test_commands.TestCommands'>\r\n\r\n    @classmethod\r\n    def setup_class(cls):\r\n        path = os.path.dirname(os.path.abspath(__file__))\r\n        configfile = os.path.join(path, 'testconf.yaml')\r\n        config = pmxbot.dictlib.ConfigDict.from_yaml(configfile)\r\n        cls.bot = core.initialize(config)\r\n>       logging.Logger.store.message(\"logged\", \"testrunner\", \"some text\")\r\nE       AttributeError: type object 'Logger' has no attribute 'store'\r\n\r\ntests/unit/test_commands.py:37: AttributeError\r\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> entering PDB >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\r\n\r\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> PDB post_mortem (IO-capturing turned off) >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\r\n> /Users/jaraco/code/pmxbot/pmxbot/tests/unit/test_commands.py(37)setup_class()\r\n-> logging.Logger.store.message(\"logged\", \"testrunner\", \"some text\")\r\n(Pdb) logging.Logger\r\n<class 'pmxbot.logging.Logger'>\r\n(Pdb) logging\r\n<module 'pmxbot.logging' from '/Users/jaraco/code/pmxbot/pmxbot/pmxbot/logging.py'>\r\n(Pdb) import sys\r\n(Pdb) sys.modules['pmxbot.logging']\r\n<module 'pmxbot.logging' from '/Users/jaraco/code/pmxbot/pmxbot/pmxbot/logging.py'>\r\n(Pdb) sys.modules['pmxbot.logging'] is logging\r\nFalse\r\n```\r\n\r\nI haven't yet made a minimal reproducer, but I wanted to first capture this condition.\r\n\n",
+  "ground_truth": {
+    "files": [
+      "src/_pytest/pathlib.py"
+    ],
+    "locations": [
+      "src/_pytest/pathlib.py::import_path"
+    ]
+  },
+  "predictions": [
+    "testing/test_collection.py::TestImportModeImportlib.test_modules_importable_as_side_effect",
+    "testing/logging/test_reporting.py::test_log_cli_default_level_multiple_tests",
+    "testing/test_capture.py::TestLoggingInteraction.test_conftestlogging_and_test_logging",
+    "testing/test_collection.py::TestImportModeImportlib.setup_conftest_and_foo",
+    "testing/logging/test_reporting.py::test_log_in_hooks",
+    "testing/test_collection.py::TestImportModeImportlib.test_conftest",
+    "testing/test_pathlib.py::TestImportPath.test_importmode_twice_is_different_module",
+    "src/_pytest/logging.py::LoggingPlugin.pytest_sessionstart",
+    "testing/test_pathlib.py::TestImportLibMode.test_importmode_importlib_with_pickle_separate_modules",
+    "testing/python/collect.py::TestModule.test_import_duplicate"
+  ],
+  "metadata": {
+    "repo": "pytest-dev/pytest",
+    "commit": "2f7415cfbc4b6ca62f9013f1abd27136f46b9653",
+    "total_functions_indexed": 4712,
+    "retrieval_time_seconds": 0.0014185905456542969
+  },
+  "raw_output": "[{\"doc_id\": \"testing/test_collection.py::TestImportModeImportlib.test_modules_importable_as_side_effect\", \"score\": 0.4714227616786957}, {\"doc_id\": \"testing/logging/test_reporting.py::test_log_cli_default_level_multiple_tests\", \"score\": 0.44526106119155884}, {\"doc_id\": \"testing/test_capture.py::TestLoggingInteraction.test_conftestlogging_and_test_logging\", \"score\": 0.4319349229335785}, {\"doc_id\": \"testing/test_collection.py::TestImportModeImportlib.setup_conftest_and_foo\", \"score\": 0.4305855929851532}, {\"doc_id\": \"testing/logging/test_reporting.py::test_log_in_hooks\", \"score\": 0.4252373278141022}, {\"doc_id\": \"testing/test_collection.py::TestImportModeImportlib.test_conftest\", \"score\": 0.42500314116477966}, {\"doc_id\": \"testing/test_pathlib.py::TestImportPath.test_importmode_twice_is_different_module\", \"score\": 0.4232110381126404}, {\"doc_id\": \"src/_pytest/logging.py::LoggingPlugin.pytest_sessionstart\", \"score\": 0.4230746626853943}, {\"doc_id\": \"testing/test_pathlib.py::TestImportLibMode.test_importmode_importlib_with_pickle_separate_modules\", \"score\": 0.4154072403907776}, {\"doc_id\": \"testing/python/collect.py::TestModule.test_import_duplicate\", \"score\": 0.41536206007003784}]"
+}

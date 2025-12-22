@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-12050",
+  "query": "Query.resolve_lookup_value coerces value of type list to tuple\nDescription\n\t\nChanges introduced in #30687 cause an input value list to be coerced to tuple breaking exact value queries. This affects ORM field types that are dependent on matching input types such as PickledField.\nThe expected iterable return type should match input iterable type.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/sql/query.py"
+    ],
+    "locations": [
+      "django/db/models/sql/query.py::Query",
+      "django/db/models/sql/query.py::Query.resolve_lookup_value",
+      "django/db/models/sql/query.py::Query.solve_lookup_type"
+    ]
+  },
+  "predictions": [
+    "tests/forms_tests/widget_tests/test_checkboxinput.py::CheckboxInputTest.test_render_check_test",
+    "django/db/models/sql/query.py::Query.resolve_lookup_value",
+    "django/db/models/fields/__init__.py::Field.to_python",
+    "tests/forms_tests/tests/test_formsets.py::FormsFormsetTestCase.test_formset_initial_data",
+    "django/db/models/expressions.py::Value.__init__",
+    "tests/forms_tests/widget_tests/test_input.py::InputTests.test_attrs_with_type",
+    "django/utils/hashable.py::make_hashable",
+    "tests/forms_tests/widget_tests/test_checkboxselectmultiple.py::CheckboxSelectMultipleTest.test_render_none",
+    "tests/forms_tests/tests/test_formsets.py::FormsFormsetTestCase.test_basic_formset",
+    "tests/forms_tests/tests/test_forms.py::FormsTestCase.test_hidden_widget"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "b93a0e34d9b9b99d41103782b7e7aeabf47517e3",
+    "total_functions_indexed": 22994,
+    "retrieval_time_seconds": 0.7980079650878906
+  },
+  "raw_output": "[{\"doc_id\": \"tests/forms_tests/widget_tests/test_checkboxinput.py::CheckboxInputTest.test_render_check_test\", \"score\": 57.92501970153018}, {\"doc_id\": \"django/db/models/sql/query.py::Query.resolve_lookup_value\", \"score\": 57.3863909201469}, {\"doc_id\": \"django/db/models/fields/__init__.py::Field.to_python\", \"score\": 55.77178941901698}, {\"doc_id\": \"tests/forms_tests/tests/test_formsets.py::FormsFormsetTestCase.test_formset_initial_data\", \"score\": 55.32894742647916}, {\"doc_id\": \"django/db/models/expressions.py::Value.__init__\", \"score\": 55.24579991587313}, {\"doc_id\": \"tests/forms_tests/widget_tests/test_input.py::InputTests.test_attrs_with_type\", \"score\": 55.137462697585605}, {\"doc_id\": \"django/utils/hashable.py::make_hashable\", \"score\": 54.869076130871235}, {\"doc_id\": \"tests/forms_tests/widget_tests/test_checkboxselectmultiple.py::CheckboxSelectMultipleTest.test_render_none\", \"score\": 54.24332666243687}, {\"doc_id\": \"tests/forms_tests/tests/test_formsets.py::FormsFormsetTestCase.test_basic_formset\", \"score\": 53.310631234470925}, {\"doc_id\": \"tests/forms_tests/tests/test_forms.py::FormsTestCase.test_hidden_widget\", \"score\": 53.01314208917259}]"
+}

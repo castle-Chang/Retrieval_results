@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-13471",
+  "query": "Python 2->3 pickle fails with float-containing expressions\nDumping a pickled sympy expression containing a float in Python 2, then loading it in Python 3 generates an error.\r\n\r\nHere is a minimum working example, verified with sympy git commit 3546ac7 (master at time of writing), Python 2.7 and Python 3.6:\r\n\r\n```python\r\npython2 -c 'import pickle; import sympy; x = sympy.symbols(\"x\"); print pickle.dumps(x + 1.0, 2)' | python3 -c 'import pickle; import sys; print(pickle.loads(sys.stdin.buffer.read()))'\r\n```\r\n\r\nand the result:\r\n\r\n```\r\nTraceback (most recent call last):\r\n  File \"<string>\", line 1, in <module>\r\n  File \"/Users/alex/git/VU/sympy/sympy/core/numbers.py\", line 1045, in __new__\r\n    num[1] = long(num[1], 16)\r\nValueError: invalid literal for int() with base 16: '1L'\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/numbers.py"
+    ],
+    "locations": [
+      "sympy/core/numbers.py::Float",
+      "sympy/core/numbers.py::Float.__new__"
+    ]
+  },
+  "predictions": [
+    "sympy/utilities/tests/test_pickling.py::test_pickling_polys_errors",
+    "sympy/utilities/tests/test_pickling.py::test_core_numbers",
+    "sympy/utilities/tests/test_pickling.py::test_core_undefinedfunctions_fail",
+    "sympy/core/tests/test_numbers.py::test_Float",
+    "sympy/utilities/tests/test_pickling.py::test_pickling_polys_monomials",
+    "sympy/core/tests/test_sympify.py::test_int_float",
+    "sympy/utilities/tests/test_pickling.py::test_pickling_polys_options",
+    "sympy/core/tests/test_sympify.py::test_issue_3982",
+    "sympy/core/tests/test_args.py::test_sympy__core__numbers__Float",
+    "sympy/utilities/tests/test_pickling.py::test_core_power"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "3546ac7ed78e1780c1a76929864bb33330055740",
+    "total_functions_indexed": 22243,
+    "retrieval_time_seconds": 0.0938720703125
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/utilities/tests/test_pickling.py::test_pickling_polys_errors\", \"score\": 0.5442233681678772}, {\"doc_id\": \"sympy/utilities/tests/test_pickling.py::test_core_numbers\", \"score\": 0.5045753717422485}, {\"doc_id\": \"sympy/utilities/tests/test_pickling.py::test_core_undefinedfunctions_fail\", \"score\": 0.49752286076545715}, {\"doc_id\": \"sympy/core/tests/test_numbers.py::test_Float\", \"score\": 0.49470284581184387}, {\"doc_id\": \"sympy/utilities/tests/test_pickling.py::test_pickling_polys_monomials\", \"score\": 0.49228405952453613}, {\"doc_id\": \"sympy/core/tests/test_sympify.py::test_int_float\", \"score\": 0.4905620813369751}, {\"doc_id\": \"sympy/utilities/tests/test_pickling.py::test_pickling_polys_options\", \"score\": 0.4900107979774475}, {\"doc_id\": \"sympy/core/tests/test_sympify.py::test_issue_3982\", \"score\": 0.4875109791755676}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__core__numbers__Float\", \"score\": 0.48747044801712036}, {\"doc_id\": \"sympy/utilities/tests/test_pickling.py::test_core_power\", \"score\": 0.48502302169799805}]"
+}

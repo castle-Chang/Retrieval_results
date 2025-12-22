@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-16100",
+  "query": "Add transaction handling to Changelist list_editable processing.\nDescription\n\t\nIt seems that changelist_view in Django admin is missing a transaction. Since the view may change data in database, it should be wrapped in a transaction to prevent unexpected states in case of errors.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admin/options.py"
+    ],
+    "locations": [
+      "django/contrib/admin/options.py::ModelAdmin",
+      "django/contrib/admin/options.py::ModelAdmin.changelist_view"
+    ]
+  },
+  "predictions": [
+    "django/db/transaction.py::mark_for_rollback_on_error",
+    "tests/transactions/tests.py::AtomicMiscTests.test_mark_for_rollback_on_error_in_transaction",
+    "tests/transactions/tests.py::AtomicMiscTests.test_mark_for_rollback_on_error_in_autocommit",
+    "tests/select_for_update/tests.py::SelectForUpdateTests.test_block",
+    "django/contrib/admin/options.py::BaseModelAdmin.has_module_permission",
+    "tests/transactions/tests.py::AtomicMiscTests.test_atomic_does_not_leak_savepoints_on_failure",
+    "tests/select_for_update/tests.py::SelectForUpdateTests.run_select_for_update",
+    "tests/serializers/tests.py::SerializersTransactionTestBase.test_forward_refs",
+    "django/core/management/commands/loaddata.py::Command.handle",
+    "django/db/backends/sqlite3/schema.py::DatabaseSchemaEditor.__enter__"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "c6350d594c359151ee17b0c4f354bb44f28ff69e",
+    "total_functions_indexed": 26192,
+    "retrieval_time_seconds": 0.7127692699432373
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/transaction.py::mark_for_rollback_on_error\", \"score\": 51.20040282652044}, {\"doc_id\": \"tests/transactions/tests.py::AtomicMiscTests.test_mark_for_rollback_on_error_in_transaction\", \"score\": 50.33145326544183}, {\"doc_id\": \"tests/transactions/tests.py::AtomicMiscTests.test_mark_for_rollback_on_error_in_autocommit\", \"score\": 50.215566373912786}, {\"doc_id\": \"tests/select_for_update/tests.py::SelectForUpdateTests.test_block\", \"score\": 47.760478077859204}, {\"doc_id\": \"django/contrib/admin/options.py::BaseModelAdmin.has_module_permission\", \"score\": 47.699094152768204}, {\"doc_id\": \"tests/transactions/tests.py::AtomicMiscTests.test_atomic_does_not_leak_savepoints_on_failure\", \"score\": 46.87480091344429}, {\"doc_id\": \"tests/select_for_update/tests.py::SelectForUpdateTests.run_select_for_update\", \"score\": 46.33601367290559}, {\"doc_id\": \"tests/serializers/tests.py::SerializersTransactionTestBase.test_forward_refs\", \"score\": 44.81537739304152}, {\"doc_id\": \"django/core/management/commands/loaddata.py::Command.handle\", \"score\": 43.488821877998596}, {\"doc_id\": \"django/db/backends/sqlite3/schema.py::DatabaseSchemaEditor.__enter__\", \"score\": 42.908080471063926}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-15781",
+  "query": "Customizable management command formatters.\nDescription\n\t\nWith code like:\nclass Command(BaseCommand):\n\thelp = '''\n\tImport a contract from tzkt.\n\tExample usage:\n\t\t./manage.py tzkt_import 'Tezos Mainnet' KT1HTDtMBRCKoNHjfWEEvXneGQpCfPAt6BRe\n\t'''\nHelp output is:\n$ ./manage.py help tzkt_import\nusage: manage.py tzkt_import [-h] [--api API] [--version] [-v {0,1,2,3}] [--settings SETTINGS]\n\t\t\t\t\t\t\t [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color]\n\t\t\t\t\t\t\t [--skip-checks]\n\t\t\t\t\t\t\t blockchain target\nImport a contract from tzkt Example usage: ./manage.py tzkt_import 'Tezos Mainnet'\nKT1HTDtMBRCKoNHjfWEEvXneGQpCfPAt6BRe\npositional arguments:\n blockchain\t\t\tName of the blockchain to import into\n target\t\t\t\tId of the contract to import\nWhen that was expected:\n$ ./manage.py help tzkt_import\nusage: manage.py tzkt_import [-h] [--api API] [--version] [-v {0,1,2,3}] [--settings SETTINGS]\n\t\t\t\t\t\t\t [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color]\n\t\t\t\t\t\t\t [--skip-checks]\n\t\t\t\t\t\t\t blockchain target\nImport a contract from tzkt \nExample usage: \n\t./manage.py tzkt_import 'Tezos Mainnet' KT1HTDtMBRCKoNHjfWEEvXneGQpCfPAt6BRe\npositional arguments:\n blockchain\t\t\tName of the blockchain to import into\n target\t\t\t\tId of the contract to import\n",
+  "ground_truth": {
+    "files": [
+      "django/core/management/base.py"
+    ],
+    "locations": [
+      "django/core/management/base.py::BaseCommand",
+      "django/core/management/base.py::BaseCommand.create_parser"
+    ]
+  },
+  "predictions": [
+    "django/core/management/base.py::BaseCommand.add_arguments",
+    "django/core/management/__init__.py::load_command_class",
+    "django/core/management/base.py::DjangoHelpFormatter.add_arguments",
+    "django/core/management/base.py::BaseCommand.create_parser",
+    "django/core/management/__init__.py::ManagementUtility.fetch_command",
+    "django/core/management/base.py::CommandParser.__init__",
+    "django/core/management/__init__.py::call_command",
+    "tests/admin_scripts/management/commands/base_command.py::Command.handle",
+    "django/core/management/base.py::BaseCommand.handle",
+    "django/core/management/base.py::BaseCommand.print_help"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "8d160f154f0240a423e83ffe0690e472f837373c",
+    "total_functions_indexed": 26045,
+    "retrieval_time_seconds": 0.010057210922241211
+  },
+  "raw_output": "[{\"doc_id\": \"django/core/management/base.py::BaseCommand.add_arguments\", \"score\": 0.46632570028305054}, {\"doc_id\": \"django/core/management/__init__.py::load_command_class\", \"score\": 0.437499463558197}, {\"doc_id\": \"django/core/management/base.py::DjangoHelpFormatter.add_arguments\", \"score\": 0.43217143416404724}, {\"doc_id\": \"django/core/management/base.py::BaseCommand.create_parser\", \"score\": 0.4312570095062256}, {\"doc_id\": \"django/core/management/__init__.py::ManagementUtility.fetch_command\", \"score\": 0.42567676305770874}, {\"doc_id\": \"django/core/management/base.py::CommandParser.__init__\", \"score\": 0.42445385456085205}, {\"doc_id\": \"django/core/management/__init__.py::call_command\", \"score\": 0.42228490114212036}, {\"doc_id\": \"tests/admin_scripts/management/commands/base_command.py::Command.handle\", \"score\": 0.4135080873966217}, {\"doc_id\": \"django/core/management/base.py::BaseCommand.handle\", \"score\": 0.4118523597717285}, {\"doc_id\": \"django/core/management/base.py::BaseCommand.print_help\", \"score\": 0.40759578347206116}]"
+}

@@ -1,0 +1,34 @@
+{
+  "instance_id": "django__django-13158",
+  "query": "QuerySet.none() on combined queries returns all results.\nDescription\n\t\nI came across this issue on Stack Overflow. I'm not 100% sure it's a bug, but it does seem strange. With this code (excuse the bizarre example filtering):\nclass Publication(models.Model):\n\tpass\nclass Article(models.Model):\n\tpublications = models.ManyToManyField(to=Publication, blank=True, null=True)\nclass ArticleForm(forms.ModelForm):\n\tpublications = forms.ModelMultipleChoiceField(\n\t\tPublication.objects.filter(id__lt=2) | Publication.objects.filter(id__gt=5),\n\t\trequired=False,\n\t)\n\tclass Meta:\n\t\tmodel = Article\n\t\tfields = [\"publications\"]\nclass ArticleAdmin(admin.ModelAdmin):\n\tform = ArticleForm\nThis works well. However, changing the ModelMultipleChoiceField queryset to use union() breaks things.\npublications = forms.ModelMultipleChoiceField(\n\tPublication.objects.filter(id__lt=2).union(\n\t\tPublication.objects.filter(id__gt=5)\n\t),\n\trequired=False,\n)\nThe form correctly shows only the matching objects. However, if you submit this form while empty (i.e. you didn't select any publications), ALL objects matching the queryset will be added. Using the OR query, NO objects are added, as I'd expect.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/sql/query.py"
+    ],
+    "locations": [
+      "django/db/models/sql/query.py::Query",
+      "django/db/models/sql/query.py::Query.clone",
+      "django/db/models/sql/query.py::Query.set_empty",
+      "django/db/models/sql/query.py::Query.is_empty"
+    ]
+  },
+  "predictions": [
+    "tests/many_to_many/tests.py::ManyToManyTests.test_bulk_delete",
+    "tests/many_to_many/tests.py::ManyToManyTests.test_add",
+    "tests/many_to_many/tests.py::ManyToManyTests.test_inherited_models_selects",
+    "tests/many_to_many/tests.py::ManyToManyTests.test_related_sets",
+    "tests/many_to_many/tests.py::ManyToManyTests.test_delete",
+    "tests/many_to_many/tests.py::ManyToManyTests.test_add_remove_set_by_pk",
+    "tests/many_to_many/tests.py::ManyToManyTests.setUpTestData",
+    "tests/model_forms/tests.py::ModelOneToOneFieldTests.test_assignment_of_none_null_false",
+    "tests/many_to_many/tests.py::ManyToManyTests.test_reverse_selects",
+    "tests/model_forms/tests.py::ModelOneToOneFieldTests.test_assignment_of_none"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "7af8f4127397279d19ef7c7899e93018274e2f9b",
+    "total_functions_indexed": 23665,
+    "retrieval_time_seconds": 3.198556900024414
+  },
+  "raw_output": "[{\"doc_id\": \"tests/many_to_many/tests.py::ManyToManyTests.test_bulk_delete\", \"score\": 193.23632034437222}, {\"doc_id\": \"tests/many_to_many/tests.py::ManyToManyTests.test_add\", \"score\": 186.1120563599787}, {\"doc_id\": \"tests/many_to_many/tests.py::ManyToManyTests.test_inherited_models_selects\", \"score\": 183.5546351227861}, {\"doc_id\": \"tests/many_to_many/tests.py::ManyToManyTests.test_related_sets\", \"score\": 176.1959840644286}, {\"doc_id\": \"tests/many_to_many/tests.py::ManyToManyTests.test_delete\", \"score\": 170.48455934982078}, {\"doc_id\": \"tests/many_to_many/tests.py::ManyToManyTests.test_add_remove_set_by_pk\", \"score\": 162.78021012867657}, {\"doc_id\": \"tests/many_to_many/tests.py::ManyToManyTests.setUpTestData\", \"score\": 160.54134744303087}, {\"doc_id\": \"tests/model_forms/tests.py::ModelOneToOneFieldTests.test_assignment_of_none_null_false\", \"score\": 158.90236672760128}, {\"doc_id\": \"tests/many_to_many/tests.py::ManyToManyTests.test_reverse_selects\", \"score\": 158.60044558326115}, {\"doc_id\": \"tests/model_forms/tests.py::ModelOneToOneFieldTests.test_assignment_of_none\", \"score\": 157.92851215291208}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "mwaskom__seaborn-3190",
+  "query": "Color mapping fails with boolean data\n```python\r\nso.Plot([\"a\", \"b\"], [1, 2], color=[True, False]).add(so.Bar())\r\n```\r\n```python-traceback\r\n---------------------------------------------------------------------------\r\nTypeError                                 Traceback (most recent call last)\r\n...\r\nFile ~/code/seaborn/seaborn/_core/plot.py:841, in Plot._plot(self, pyplot)\r\n    838 plotter._compute_stats(self, layers)\r\n    840 # Process scale spec for semantic variables and coordinates computed by stat\r\n--> 841 plotter._setup_scales(self, common, layers)\r\n    843 # TODO Remove these after updating other methods\r\n    844 # ---- Maybe have debug= param that attaches these when True?\r\n    845 plotter._data = common\r\n\r\nFile ~/code/seaborn/seaborn/_core/plot.py:1252, in Plotter._setup_scales(self, p, common, layers, variables)\r\n   1250     self._scales[var] = Scale._identity()\r\n   1251 else:\r\n-> 1252     self._scales[var] = scale._setup(var_df[var], prop)\r\n   1254 # Everything below here applies only to coordinate variables\r\n   1255 # We additionally skip it when we're working with a value\r\n   1256 # that is derived from a coordinate we've already processed.\r\n   1257 # e.g., the Stat consumed y and added ymin/ymax. In that case,\r\n   1258 # we've already setup the y scale and ymin/max are in scale space.\r\n   1259 if axis is None or (var != coord and coord in p._variables):\r\n\r\nFile ~/code/seaborn/seaborn/_core/scales.py:351, in ContinuousBase._setup(self, data, prop, axis)\r\n    349 vmin, vmax = axis.convert_units((vmin, vmax))\r\n    350 a = forward(vmin)\r\n--> 351 b = forward(vmax) - forward(vmin)\r\n    353 def normalize(x):\r\n    354     return (x - a) / b\r\n\r\nTypeError: numpy boolean subtract, the `-` operator, is not supported, use the bitwise_xor, the `^` operator, or the logical_xor function instead.\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "seaborn/_core/scales.py"
+    ],
+    "locations": [
+      "seaborn/_core/scales.py::ContinuousBase",
+      "seaborn/_core/scales.py::ContinuousBase._setup"
+    ]
+  },
+  "predictions": [
+    "tests/_core/test_plot.py::TestExceptions.test_semantic_scaling",
+    "seaborn/_marks/base.py::resolve_color",
+    "tests/_core/test_plot.py::TestExceptions.test_scale_setup",
+    "tests/_core/test_plot.py::TestScaling.test_identity_mapping_color_tuples",
+    "seaborn/_oldcore.py::HueMapping.__init__",
+    "tests/_marks/test_bar.py::TestBar.test_mapped_properties",
+    "tests/_core/test_plot.py::TestExceptions.test_coordinate_scaling",
+    "seaborn/_core/properties.py::Color.get_mapping",
+    "tests/_core/test_plot.py::TestScaling.test_identity_mapping_color_strings",
+    "seaborn/_core/properties.py::Color._get_categorical_mapping"
+  ],
+  "metadata": {
+    "repo": "mwaskom/seaborn",
+    "commit": "4a9e54962a29c12a8b103d75f838e0e795a6974d",
+    "total_functions_indexed": 2308,
+    "retrieval_time_seconds": 0.002471923828125
+  },
+  "raw_output": "[{\"doc_id\": \"tests/_core/test_plot.py::TestExceptions.test_semantic_scaling\", \"score\": 0.4832006096839905}, {\"doc_id\": \"seaborn/_marks/base.py::resolve_color\", \"score\": 0.4589715600013733}, {\"doc_id\": \"tests/_core/test_plot.py::TestExceptions.test_scale_setup\", \"score\": 0.45784851908683777}, {\"doc_id\": \"tests/_core/test_plot.py::TestScaling.test_identity_mapping_color_tuples\", \"score\": 0.449465274810791}, {\"doc_id\": \"seaborn/_oldcore.py::HueMapping.__init__\", \"score\": 0.443172812461853}, {\"doc_id\": \"tests/_marks/test_bar.py::TestBar.test_mapped_properties\", \"score\": 0.4407303035259247}, {\"doc_id\": \"tests/_core/test_plot.py::TestExceptions.test_coordinate_scaling\", \"score\": 0.4387102425098419}, {\"doc_id\": \"seaborn/_core/properties.py::Color.get_mapping\", \"score\": 0.43834662437438965}, {\"doc_id\": \"tests/_core/test_plot.py::TestScaling.test_identity_mapping_color_strings\", \"score\": 0.4371161460876465}, {\"doc_id\": \"seaborn/_core/properties.py::Color._get_categorical_mapping\", \"score\": 0.4256901741027832}]"
+}

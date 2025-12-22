@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-11001",
+  "query": "Incorrect removal of order_by clause created as multiline RawSQL\nDescription\n\t\nHi.\nThe SQLCompiler is ripping off one of my \"order by\" clause, because he \"thinks\" the clause was already \"seen\" (in SQLCompiler.get_order_by()). I'm using expressions written as multiline RawSQLs, which are similar but not the same. \nThe bug is located in SQLCompiler.get_order_by(), somewhere around line computing part of SQL query without ordering:\nwithout_ordering = self.ordering_parts.search(sql).group(1)\nThe sql variable contains multiline sql. As a result, the self.ordering_parts regular expression is returning just a line containing ASC or DESC words. This line is added to seen set, and because my raw queries have identical last lines, only the first clasue is returing from SQLCompiler.get_order_by().\nAs a quick/temporal fix I can suggest making sql variable clean of newline characters, like this:\nsql_oneline = ' '.join(sql.split('\\n'))\nwithout_ordering = self.ordering_parts.search(sql_oneline).group(1)\nNote: beware of unicode (Py2.x u'') and EOL dragons (\\r).\nExample of my query:\n\treturn MyModel.objects.all().order_by(\n\t\tRawSQL('''\n\t\t\tcase when status in ('accepted', 'verification')\n\t\t\t\t then 2 else 1 end''', []).desc(),\n\t\tRawSQL('''\n\t\t\tcase when status in ('accepted', 'verification')\n\t\t\t\t then (accepted_datetime, preferred_datetime)\n\t\t\t\t else null end''', []).asc(),\n\t\tRawSQL('''\n\t\t\tcase when status not in ('accepted', 'verification')\n\t\t\t\t then (accepted_datetime, preferred_datetime, created_at)\n\t\t\t\t else null end''', []).desc())\nThe ordering_parts.search is returing accordingly:\n'\t\t\t\t then 2 else 1 end)'\n'\t\t\t\t else null end'\n'\t\t\t\t else null end'\nSecond RawSQL with a\t\t\t\t else null end part is removed from query.\nThe fun thing is that the issue can be solved by workaround by adding a space or any other char to the last line. \nSo in case of RawSQL I can just say, that current implementation of avoiding duplicates in order by clause works only for special/rare cases (or does not work in all cases). \nThe bug filed here is about wrong identification of duplicates (because it compares only last line of SQL passed to order by clause).\nHope my notes will help you fixing the issue. Sorry for my english.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/sql/compiler.py"
+    ],
+    "locations": [
+      "django/db/models/sql/compiler.py::SQLCompiler",
+      "django/db/models/sql/compiler.py::SQLCompiler.__init__",
+      "django/db/models/sql/compiler.py::SQLCompiler.setup_query"
+    ]
+  },
+  "predictions": [
+    "tests/queries/tests.py::Queries4Tests.test_order_by_resetting",
+    "tests/queries/tests.py::Queries1Tests.test_get_clears_ordering",
+    "django/db/models/sql/compiler.py::SQLCompiler.get_order_by",
+    "tests/ordering/tests.py::OrderingTests.test_order_by_f_expression_duplicates",
+    "django/db/backends/mysql/operations.py::DatabaseOperations.force_no_ordering",
+    "django/db/models/expressions.py::OrderBy.reverse_ordering",
+    "tests/ordering/tests.py::OrderingTests.test_extra_ordering_quoting",
+    "tests/queries/tests.py::Queries1Tests.test_order_by_join_unref",
+    "tests/queries/tests.py::NullableRelOrderingTests.test_join_already_in_query",
+    "django/contrib/postgres/aggregates/mixins.py::OrderableAggMixin.as_sql"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "ef082ebb84f00e38af4e8880d04e8365c2766d34",
+    "total_functions_indexed": 22464,
+    "retrieval_time_seconds": 0.006370067596435547
+  },
+  "raw_output": "[{\"doc_id\": \"tests/queries/tests.py::Queries4Tests.test_order_by_resetting\", \"score\": 0.4296819567680359}, {\"doc_id\": \"tests/queries/tests.py::Queries1Tests.test_get_clears_ordering\", \"score\": 0.4187067747116089}, {\"doc_id\": \"django/db/models/sql/compiler.py::SQLCompiler.get_order_by\", \"score\": 0.418657511472702}, {\"doc_id\": \"tests/ordering/tests.py::OrderingTests.test_order_by_f_expression_duplicates\", \"score\": 0.39909684658050537}, {\"doc_id\": \"django/db/backends/mysql/operations.py::DatabaseOperations.force_no_ordering\", \"score\": 0.3928709030151367}, {\"doc_id\": \"django/db/models/expressions.py::OrderBy.reverse_ordering\", \"score\": 0.3818948268890381}, {\"doc_id\": \"tests/ordering/tests.py::OrderingTests.test_extra_ordering_quoting\", \"score\": 0.3759465217590332}, {\"doc_id\": \"tests/queries/tests.py::Queries1Tests.test_order_by_join_unref\", \"score\": 0.3745129108428955}, {\"doc_id\": \"tests/queries/tests.py::NullableRelOrderingTests.test_join_already_in_query\", \"score\": 0.3706062138080597}, {\"doc_id\": \"django/contrib/postgres/aggregates/mixins.py::OrderableAggMixin.as_sql\", \"score\": 0.3705483675003052}]"
+}

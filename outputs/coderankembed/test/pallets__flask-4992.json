@@ -1,0 +1,32 @@
+{
+  "instance_id": "pallets__flask-4992",
+  "query": "Add a file mode parameter to flask.Config.from_file()\nPython 3.11 introduced native TOML support with the `tomllib` package. This could work nicely with the `flask.Config.from_file()` method as an easy way to load TOML config files:\r\n\r\n```python\r\napp.config.from_file(\"config.toml\", tomllib.load)\r\n```\r\n\r\nHowever, `tomllib.load()` takes an object readable in binary mode, while `flask.Config.from_file()` opens a file in text mode, resulting in this error:\r\n\r\n```\r\nTypeError: File must be opened in binary mode, e.g. use `open('foo.toml', 'rb')`\r\n```\r\n\r\nWe can get around this with a more verbose expression, like loading from a file opened with the built-in `open()` function and passing the `dict` to `app.Config.from_mapping()`:\r\n\r\n```python\r\n# We have to repeat the path joining that from_file() does\r\nwith open(os.path.join(app.config.root_path, \"config.toml\"), \"rb\") as file:\r\n    app.config.from_mapping(tomllib.load(file))\r\n```\r\n\r\nBut adding a file mode parameter to `flask.Config.from_file()` would enable the use of a simpler expression. E.g.:\r\n\r\n```python\r\napp.config.from_file(\"config.toml\", tomllib.load, mode=\"b\")\r\n```\r\n\n",
+  "ground_truth": {
+    "files": [
+      "src/flask/config.py"
+    ],
+    "locations": [
+      "src/flask/config.py::Config",
+      "src/flask/config.py::Config.from_file"
+    ]
+  },
+  "predictions": [
+    "src/flask/config.py::Config.from_file",
+    "tests/test_config.py::test_config_missing_file",
+    "tests/test_config.py::test_config_from_mapping",
+    "src/flask/config.py::Config.from_pyfile",
+    "src/flask/json/__init__.py::load",
+    "tests/test_config.py::test_config_from_file",
+    "tests/test_config.py::test_config_from_pyfile",
+    "tests/test_config.py::test_from_pyfile_weird_encoding",
+    "tests/test_config.py::test_config_missing",
+    "tests/test_config.py::test_config_from_envvar_missing"
+  ],
+  "metadata": {
+    "repo": "pallets/flask",
+    "commit": "4c288bc97ea371817199908d0d9b12de9dae327e",
+    "total_functions_indexed": 822,
+    "retrieval_time_seconds": 0.001817464828491211
+  },
+  "raw_output": "[{\"doc_id\": \"src/flask/config.py::Config.from_file\", \"score\": 0.5961065292358398}, {\"doc_id\": \"tests/test_config.py::test_config_missing_file\", \"score\": 0.46111512184143066}, {\"doc_id\": \"tests/test_config.py::test_config_from_mapping\", \"score\": 0.4589959383010864}, {\"doc_id\": \"src/flask/config.py::Config.from_pyfile\", \"score\": 0.4572286605834961}, {\"doc_id\": \"src/flask/json/__init__.py::load\", \"score\": 0.45026469230651855}, {\"doc_id\": \"tests/test_config.py::test_config_from_file\", \"score\": 0.45014095306396484}, {\"doc_id\": \"tests/test_config.py::test_config_from_pyfile\", \"score\": 0.4407116174697876}, {\"doc_id\": \"tests/test_config.py::test_from_pyfile_weird_encoding\", \"score\": 0.4282456934452057}, {\"doc_id\": \"tests/test_config.py::test_config_missing\", \"score\": 0.4129844009876251}, {\"doc_id\": \"tests/test_config.py::test_config_from_envvar_missing\", \"score\": 0.40607935190200806}]"
+}

@@ -1,0 +1,34 @@
+{
+  "instance_id": "sympy__sympy-22080",
+  "query": "Mod function lambdify bug\nDescription:\r\nWhen lambdifying any function of structure like `expr * Mod(a, b)` sympy moves the multiplier into the first argument of Mod, like `Mod(expr * a, b)`, WHEN we specify `modules=[]`\r\n\r\nThis is an example from Sympy online shell\r\n```\r\n>>> from sympy import Mod, lambdify, symbols\r\n>>> x, y = symbols('x y')\r\n>>> expr = -Mod(x, y)\r\n>>> f = lambdify([x, y], expr)\r\n>>> f(3, 7)\r\n-3\r\n>>> inspect.getsource(f)\r\ndef _lambdifygenerated(x, y):\r\n    return (-mod(x, y))\r\n\r\n\r\n>>> g = lambdify([x, y], expr, modules=[])\r\n>>> g(3, 7)\r\n4\r\n>>> inspect.getsource(g)\r\ndef _lambdifygenerated(x, y):\r\n    return (-x % y)\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/precedence.py",
+      "sympy/printing/codeprinter.py"
+    ],
+    "locations": [
+      "sympy/printing/codeprinter.py::requires",
+      "sympy/printing/codeprinter.py::CodePrinter",
+      "sympy/printing/codeprinter.py::CodePrinter._print_Mul"
+    ]
+  },
+  "predictions": [
+    "sympy/solvers/solveset.py::_is_modular",
+    "sympy/external/tests/test_autowrap.py::test_issue_15230",
+    "sympy/utilities/lambdify.py::lambdify",
+    "sympy/core/tests/test_arit.py::test_Mod",
+    "sympy/utilities/tests/test_lambdify.py::test_issue9474",
+    "sympy/printing/fortran.py::FCodePrinter._print_Mod",
+    "sympy/solvers/solveset.py::_solve_modular",
+    "sympy/solvers/tests/test_solveset.py::test_is_modular",
+    "sympy/utilities/tests/test_lambdify.py::test_namespace_order",
+    "sympy/solvers/solveset.py::_invert_modular"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "3f8c8c2377cb8e0daaf8073e8d03ac7d87580813",
+    "total_functions_indexed": 37051,
+    "retrieval_time_seconds": 2.1943631172180176
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/solvers/solveset.py::_is_modular\", \"score\": 196.04201962769937}, {\"doc_id\": \"sympy/external/tests/test_autowrap.py::test_issue_15230\", \"score\": 182.34312171251125}, {\"doc_id\": \"sympy/utilities/lambdify.py::lambdify\", \"score\": 175.26302597897794}, {\"doc_id\": \"sympy/core/tests/test_arit.py::test_Mod\", \"score\": 159.12821933632176}, {\"doc_id\": \"sympy/utilities/tests/test_lambdify.py::test_issue9474\", \"score\": 148.69587734251556}, {\"doc_id\": \"sympy/printing/fortran.py::FCodePrinter._print_Mod\", \"score\": 141.5704539460009}, {\"doc_id\": \"sympy/solvers/solveset.py::_solve_modular\", \"score\": 140.99664892145202}, {\"doc_id\": \"sympy/solvers/tests/test_solveset.py::test_is_modular\", \"score\": 139.61886751530693}, {\"doc_id\": \"sympy/utilities/tests/test_lambdify.py::test_namespace_order\", \"score\": 137.4493231785047}, {\"doc_id\": \"sympy/solvers/solveset.py::_invert_modular\", \"score\": 137.1052615795877}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "pytest-dev__pytest-5221",
+  "query": "Display fixture scope with `pytest --fixtures`\nIt would be useful to show fixture scopes with `pytest --fixtures`; currently the only way to learn the scope of a fixture is look at the docs (when that is documented) or at the source code.\n",
+  "ground_truth": {
+    "files": [
+      "src/_pytest/python.py"
+    ],
+    "locations": [
+      "src/_pytest/python.py::_showfixtures_main",
+      "src/_pytest/python.py::write_docstring"
+    ]
+  },
+  "predictions": [
+    "testing/test_doctest.py::TestDoctestAutoUseFixtures.test_fixture_scopes",
+    "testing/python/fixtures.py::TestFixtureUsages.test_invalid_scope",
+    "testing/python/integration.py::test_pytestconfig_is_session_scoped",
+    "src/_pytest/python.py::showfixtures",
+    "testing/test_doctest.py::TestDoctestAutoUseFixtures.test_fixture_module_doctest_scopes",
+    "src/_pytest/python.py::show_fixtures_per_test",
+    "src/_pytest/setuponly.py::_show_fixture_action",
+    "testing/python/fixtures.py::TestShowFixtures.test_show_fixtures",
+    "testing/python/setup_only.py::test_show_different_scopes",
+    "testing/python/fixtures.py::TestShowFixtures.test_show_fixtures_verbose"
+  ],
+  "metadata": {
+    "repo": "pytest-dev/pytest",
+    "commit": "4a2fdce62b73944030cff9b3e52862868ca9584d",
+    "total_functions_indexed": 3466,
+    "retrieval_time_seconds": 0.003598928451538086
+  },
+  "raw_output": "[{\"doc_id\": \"testing/test_doctest.py::TestDoctestAutoUseFixtures.test_fixture_scopes\", \"score\": 0.5573127269744873}, {\"doc_id\": \"testing/python/fixtures.py::TestFixtureUsages.test_invalid_scope\", \"score\": 0.5565710067749023}, {\"doc_id\": \"testing/python/integration.py::test_pytestconfig_is_session_scoped\", \"score\": 0.5391312837600708}, {\"doc_id\": \"src/_pytest/python.py::showfixtures\", \"score\": 0.5213996171951294}, {\"doc_id\": \"testing/test_doctest.py::TestDoctestAutoUseFixtures.test_fixture_module_doctest_scopes\", \"score\": 0.5207451581954956}, {\"doc_id\": \"src/_pytest/python.py::show_fixtures_per_test\", \"score\": 0.5193874835968018}, {\"doc_id\": \"src/_pytest/setuponly.py::_show_fixture_action\", \"score\": 0.5115811824798584}, {\"doc_id\": \"testing/python/fixtures.py::TestShowFixtures.test_show_fixtures\", \"score\": 0.5090029835700989}, {\"doc_id\": \"testing/python/setup_only.py::test_show_different_scopes\", \"score\": 0.5066304206848145}, {\"doc_id\": \"testing/python/fixtures.py::TestShowFixtures.test_show_fixtures_verbose\", \"score\": 0.5010097622871399}]"
+}

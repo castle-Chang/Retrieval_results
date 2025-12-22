@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11276",
+  "query": "Use Python stdlib html.escape() to in django.utils.html.escape()\nDescription\n\t\nThe function django.utils.html.escape() partially duplicates the Python stdlib function html.escape(). We can replace this duplication with wider community developed version.\nhtml.escape() has been available since Python 3.2:\n​https://docs.python.org/3/library/html.html#html.escape\nThis function is also faster than Django's. As Python bug ​https://bugs.python.org/issue18020 concludes, using .replace() can be faster than .translate(). This function gets called numerous times when rendering templates. After making the change locally, I saw the following improvement:\nmaster:\n$ python -m timeit -s 'from django.utils.html import escape' 'escape(copyright)'\n50000 loops, best of 5: 4.03 usec per loop\nbranch:\n$ python -m timeit -s 'from django.utils.html import escape' 'escape(copyright)'\n100000 loops, best of 5: 2.45 usec per loop\nOne small concern, html.escape() converts ' to &#x27 rather than &#39. These values are functionally equivalent HTML, but I'll mention it as a backwards incompatible change as the literal text has changed\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/html.py"
+    ],
+    "locations": [
+      "django/utils/html.py::escape",
+      "django/utils/html.py::urlize"
+    ]
+  },
+  "predictions": [
+    "django/utils/html.py::escape",
+    "django/template/defaultfilters.py::force_escape",
+    "django/utils/html.py::conditional_escape",
+    "tests/forms_tests/tests/test_forms.py::FormsTestCase.test_escaping",
+    "django/utils/html.py::json_script",
+    "django/utils/timezone.py::is_naive",
+    "django/utils/timezone.py::is_aware",
+    "tests/utils_tests/test_safestring.py::SafeStringTest.test_add_lazy_safe_text_and_safe_text",
+    "django/template/defaultfilters.py::stringformat",
+    "tests/forms_tests/widget_tests/test_clearablefileinput.py::ClearableFileInputTest.test_url_as_property"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "28d5262fa3315690395f04e3619ed554dbaf725b",
+    "total_functions_indexed": 22442,
+    "retrieval_time_seconds": 2.4249556064605713
+  },
+  "raw_output": "[{\"doc_id\": \"django/utils/html.py::escape\", \"score\": 233.94748429570342}, {\"doc_id\": \"django/template/defaultfilters.py::force_escape\", \"score\": 204.54822692403667}, {\"doc_id\": \"django/utils/html.py::conditional_escape\", \"score\": 197.37178112515863}, {\"doc_id\": \"tests/forms_tests/tests/test_forms.py::FormsTestCase.test_escaping\", \"score\": 171.49657286709785}, {\"doc_id\": \"django/utils/html.py::json_script\", \"score\": 169.61697702150656}, {\"doc_id\": \"django/utils/timezone.py::is_naive\", \"score\": 165.8934688555683}, {\"doc_id\": \"django/utils/timezone.py::is_aware\", \"score\": 164.70955895036082}, {\"doc_id\": \"tests/utils_tests/test_safestring.py::SafeStringTest.test_add_lazy_safe_text_and_safe_text\", \"score\": 155.32334760241577}, {\"doc_id\": \"django/template/defaultfilters.py::stringformat\", \"score\": 153.6306333604084}, {\"doc_id\": \"tests/forms_tests/widget_tests/test_clearablefileinput.py::ClearableFileInputTest.test_url_as_property\", \"score\": 150.61029114600123}]"
+}

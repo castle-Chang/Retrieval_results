@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-15022",
+  "query": "Unnecessary joins in admin changelist query\nDescription\n\t\nDjango 1.2.5\nModels:\nclass Client(models.Model):\n\tname = models.CharField(_('name'), max_length=256)\n\tname2 = models.CharField(_('unofficial or obsolete name'), max_length=256, blank=True, null=True)\n\tcontact_person = models.CharField(_('contact person'), max_length=256, blank=True, null=True)\n\t...\nclass ClientOffice(models.Model):\n\tname = models.CharField(_('name'), max_length=256)\n\tname2 = models.CharField(_('unofficial or obsolete name'), max_length=256, blank=True, null=True)\n\t...\n\tclient = models.ForeignKey(Client, verbose_name=_('client'))\n\t...\nand admin options like these:\nclass ClientAdmin(admin.ModelAdmin):\n\tsearch_fields = ('name', 'name2', 'contact_person', 'clientoffice__name', 'clientoffice__name2')\n\t...\nNumbers:\n>>> Client.objects.count()\n10907\n>>> ClientOffice.objects.count()\n16952\nNow, if we try searching for clients in admin by a search query containig several words (>3), got django/admin stalled.\nThe problem is going to be that each word in the search query leads to additional JOIN in final SQL query beacause of qs = qs.filter(...) pattern. The attached patch is for Django 1.2.5, but adopting for the current SVN trunk is trivial.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admin/options.py"
+    ],
+    "locations": [
+      "django/contrib/admin/options.py::ModelAdmin",
+      "django/contrib/admin/options.py::ModelAdmin.get_search_results"
+    ]
+  },
+  "predictions": [
+    "tests/migrations/test_writer.py::WriterTests.test_serialize_fields",
+    "tests/field_deconstruction/tests.py::FieldDeconstructionTests.test_char_field",
+    "tests/migrations/test_state.py::ModelStateTests.test_create_swappable_from_abstract",
+    "tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_single_parent",
+    "tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_override_one2one_relation_auto_field_clashes",
+    "tests/lookup/tests.py::LookupTests.test_in_bulk_non_unique_meta_constaint",
+    "tests/inspectdb/tests.py::InspectDBTestCase.test_field_types",
+    "tests/invalid_models_tests/test_ordinary_fields.py::CharFieldTests.test_choices_containing_lazy",
+    "tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_multi_inheritance_field_clashes",
+    "tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_multiple_inheritance_allows_inherited_field"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "e1d673c373a7d032060872b690a92fc95496612e",
+    "total_functions_indexed": 25392,
+    "retrieval_time_seconds": 2.2068440914154053
+  },
+  "raw_output": "[{\"doc_id\": \"tests/migrations/test_writer.py::WriterTests.test_serialize_fields\", \"score\": 180.82614777882168}, {\"doc_id\": \"tests/field_deconstruction/tests.py::FieldDeconstructionTests.test_char_field\", \"score\": 180.06116741336746}, {\"doc_id\": \"tests/migrations/test_state.py::ModelStateTests.test_create_swappable_from_abstract\", \"score\": 160.41079407064416}, {\"doc_id\": \"tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_single_parent\", \"score\": 159.54910931218103}, {\"doc_id\": \"tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_override_one2one_relation_auto_field_clashes\", \"score\": 159.32232997996118}, {\"doc_id\": \"tests/lookup/tests.py::LookupTests.test_in_bulk_non_unique_meta_constaint\", \"score\": 157.2478450854229}, {\"doc_id\": \"tests/inspectdb/tests.py::InspectDBTestCase.test_field_types\", \"score\": 155.3991426060576}, {\"doc_id\": \"tests/invalid_models_tests/test_ordinary_fields.py::CharFieldTests.test_choices_containing_lazy\", \"score\": 153.90960487733244}, {\"doc_id\": \"tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_multi_inheritance_field_clashes\", \"score\": 152.1063278426039}, {\"doc_id\": \"tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_multiple_inheritance_allows_inherited_field\", \"score\": 150.71512952754205}]"
+}

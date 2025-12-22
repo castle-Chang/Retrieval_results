@@ -1,0 +1,34 @@
+{
+  "instance_id": "psf__requests-1142",
+  "query": "requests.get is ALWAYS sending content length\nHi,\n\nIt seems like that request.get always adds 'content-length' header to the request.\nI think that the right behavior is not to add this header automatically in GET requests or add the possibility to not send it.\n\nFor example http://amazon.com returns 503 for every get request that contains 'content-length' header.\n\nThanks,\n\nOren\n\n",
+  "ground_truth": {
+    "files": [
+      "requests/models.py"
+    ],
+    "locations": [
+      "requests/models.py::PreparedRequest",
+      "requests/models.py::PreparedRequest.prepare_body",
+      "requests/models.py::PreparedRequest.prepare_content_length",
+      "requests/models.py::PreparedRequest.prepare_auth"
+    ]
+  },
+  "predictions": [
+    "requests/models.py::Response.__init__",
+    "requests/packages/urllib3/request.py::RequestMethods.request_encode_body",
+    "requests/adapters.py::HTTPAdapter.send",
+    "requests/api.py::request",
+    "requests/packages/urllib3/response.py::HTTPResponse.read",
+    "requests/models.py::Response.links",
+    "requests/models.py::PreparedRequest.prepare_body",
+    "test_requests.py::RequestsTestCase.test_params_are_added_before_fragment",
+    "requests/packages/urllib3/connectionpool.py::connection_from_url",
+    "requests/cookies.py::get_cookie_header"
+  ],
+  "metadata": {
+    "repo": "psf/requests",
+    "commit": "22623bd8c265b78b161542663ee980738441c307",
+    "total_functions_indexed": 404,
+    "retrieval_time_seconds": 0.019980192184448242
+  },
+  "raw_output": "[{\"doc_id\": \"requests/models.py::Response.__init__\", \"score\": 47.680450944501075}, {\"doc_id\": \"requests/packages/urllib3/request.py::RequestMethods.request_encode_body\", \"score\": 47.64941643214167}, {\"doc_id\": \"requests/adapters.py::HTTPAdapter.send\", \"score\": 46.947680571119}, {\"doc_id\": \"requests/api.py::request\", \"score\": 46.35853475112513}, {\"doc_id\": \"requests/packages/urllib3/response.py::HTTPResponse.read\", \"score\": 44.07900775778418}, {\"doc_id\": \"requests/models.py::Response.links\", \"score\": 43.313175531223976}, {\"doc_id\": \"requests/models.py::PreparedRequest.prepare_body\", \"score\": 42.60730487780119}, {\"doc_id\": \"test_requests.py::RequestsTestCase.test_params_are_added_before_fragment\", \"score\": 41.694388164324025}, {\"doc_id\": \"requests/packages/urllib3/connectionpool.py::connection_from_url\", \"score\": 41.532267420778425}, {\"doc_id\": \"requests/cookies.py::get_cookie_header\", \"score\": 41.382280853116}]"
+}

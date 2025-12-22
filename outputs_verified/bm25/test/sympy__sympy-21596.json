@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-21596",
+  "query": "bug in is_subset(Reals)\nSolving issue #19513 has given rise to another bug.\r\nNow:\r\n```\r\nIn [8]: S1 = imageset(Lambda(n, n + (n - 1)*(n + 1)*I), S.Integers)\r\n\r\nIn [9]: S1\r\nOut[9]: {n + ⅈ⋅(n - 1)⋅(n + 1) │ n ∊ ℤ}\r\n\r\nIn [10]: 2 in S1\r\nOut[10]: False\r\n\r\nIn [11]: 2 in S1.intersect(Reals)\r\nOut[11]: True\r\n```\r\nThis output is incorrect.\r\n\r\nCorrect output is:\r\n```\r\nIn [4]: S1\r\nOut[4]: {n + ⅈ⋅(n - 1)⋅(n + 1) │ n ∊ ℤ}\r\n\r\nIn [5]: 2 in S1\r\nOut[5]: False\r\n\r\nIn [6]: 2 in S1.intersect(Reals)\r\nOut[6]: False\r\n\r\nIn [7]: S2 = Reals\r\n\r\nIn [8]: S1.intersect(S2)\r\nOut[8]: {-1, 1}\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/sets/handlers/intersection.py"
+    ],
+    "locations": [
+      "sympy/sets/handlers/intersection.py::intersection_sets"
+    ]
+  },
+  "predictions": [
+    "sympy/sets/tests/test_sets.py::test_ProductSet",
+    "sympy/printing/tests/test_rcode.py::test_rcode_loops_multiple_terms",
+    "sympy/sets/tests/test_fancysets.py::test_ImageSet",
+    "sympy/polys/ring_series.py::rs_series_from_list",
+    "sympy/solvers/tests/test_solveset.py::test_solve_decomposition",
+    "sympy/series/tests/test_sequences.py::test_SeqMul",
+    "sympy/stats/tests/test_matrix_distributions.py::test_sample_seed",
+    "sympy/concrete/tests/test_sums_products.py::test_arithmetic_sums",
+    "sympy/diffgeom/diffgeom.py::CoordSystem.__new__",
+    "sympy/sets/tests/test_fancysets.py::test_naturals"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "110997fe18b9f7d5ba7d22f624d156a29bf40759",
+    "total_functions_indexed": 36549,
+    "retrieval_time_seconds": 2.2936363220214844
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/sets/tests/test_sets.py::test_ProductSet\", \"score\": 216.75285593199425}, {\"doc_id\": \"sympy/printing/tests/test_rcode.py::test_rcode_loops_multiple_terms\", \"score\": 206.8201704600264}, {\"doc_id\": \"sympy/sets/tests/test_fancysets.py::test_ImageSet\", \"score\": 204.02651488246175}, {\"doc_id\": \"sympy/polys/ring_series.py::rs_series_from_list\", \"score\": 199.99263913306902}, {\"doc_id\": \"sympy/solvers/tests/test_solveset.py::test_solve_decomposition\", \"score\": 198.37483163871812}, {\"doc_id\": \"sympy/series/tests/test_sequences.py::test_SeqMul\", \"score\": 197.23095709894937}, {\"doc_id\": \"sympy/stats/tests/test_matrix_distributions.py::test_sample_seed\", \"score\": 185.3319849938825}, {\"doc_id\": \"sympy/concrete/tests/test_sums_products.py::test_arithmetic_sums\", \"score\": 182.7883912555102}, {\"doc_id\": \"sympy/diffgeom/diffgeom.py::CoordSystem.__new__\", \"score\": 181.04589712678344}, {\"doc_id\": \"sympy/sets/tests/test_fancysets.py::test_naturals\", \"score\": 180.70681537631916}]"
+}

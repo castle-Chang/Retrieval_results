@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-14667",
+  "query": "QuerySet.defer() doesn't clear deferred field when chaining with only().\nDescription\n\t\nConsidering a simple Company model with four fields: id, name, trade_number and country. If we evaluate a queryset containing a .defer() following a .only(), the generated sql query selects unexpected fields. For example: \nCompany.objects.only(\"name\").defer(\"name\")\nloads all the fields with the following query:\nSELECT \"company\".\"id\", \"company\".\"name\", \"company\".\"trade_number\", \"company\".\"country\" FROM \"company\"\nand \nCompany.objects.only(\"name\").defer(\"name\").defer(\"country\")\nalso loads all the fields with the same query:\nSELECT \"company\".\"id\", \"company\".\"name\", \"company\".\"trade_number\", \"company\".\"country\" FROM \"company\"\nIn those two cases, i would expect the sql query to be:\nSELECT \"company\".\"id\" FROM \"company\"\nIn the following example, we get the expected behavior:\nCompany.objects.only(\"name\", \"country\").defer(\"name\")\nonly loads \"id\" and \"country\" fields with the following query:\nSELECT \"company\".\"id\", \"company\".\"country\" FROM \"company\"\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/sql/query.py"
+    ],
+    "locations": [
+      "django/db/models/sql/query.py::Query",
+      "django/db/models/sql/query.py::Query.add_deferred_loading",
+      "django/db/models/sql/query.py::Query.add_immediate_loading"
+    ]
+  },
+  "predictions": [
+    "tests/defer/tests.py::DeferTests.test_defer_only_chaining",
+    "tests/defer/tests.py::DeferTests.test_only",
+    "tests/defer_regress/tests.py::DeferRegressionTest.test_only_and_defer_usage_on_proxy_models",
+    "django/db/models/query.py::QuerySet.defer",
+    "tests/defer/tests.py::DeferTests.test_only_values_does_not_defer",
+    "django/db/models/query.py::QuerySet.only",
+    "tests/gis_tests/relatedapp/tests.py::RelatedGeoModelTest.test08_defer_only",
+    "tests/defer/tests.py::DeferTests.test_defer_on_an_already_deferred_field",
+    "tests/defer/tests.py::BigChildDeferTests.test_only_subclass",
+    "tests/update_only_fields/tests.py::UpdateOnlyFieldsTests.test_update_fields_deferred"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "6a970a8b4600eb91be25f38caed0a52269d6303d",
+    "total_functions_indexed": 24858,
+    "retrieval_time_seconds": 0.09591794013977051
+  },
+  "raw_output": "[{\"doc_id\": \"tests/defer/tests.py::DeferTests.test_defer_only_chaining\", \"score\": 0.624047577381134}, {\"doc_id\": \"tests/defer/tests.py::DeferTests.test_only\", \"score\": 0.5722079277038574}, {\"doc_id\": \"tests/defer_regress/tests.py::DeferRegressionTest.test_only_and_defer_usage_on_proxy_models\", \"score\": 0.5319123268127441}, {\"doc_id\": \"django/db/models/query.py::QuerySet.defer\", \"score\": 0.49954649806022644}, {\"doc_id\": \"tests/defer/tests.py::DeferTests.test_only_values_does_not_defer\", \"score\": 0.49925291538238525}, {\"doc_id\": \"django/db/models/query.py::QuerySet.only\", \"score\": 0.4896456003189087}, {\"doc_id\": \"tests/gis_tests/relatedapp/tests.py::RelatedGeoModelTest.test08_defer_only\", \"score\": 0.4887424409389496}, {\"doc_id\": \"tests/defer/tests.py::DeferTests.test_defer_on_an_already_deferred_field\", \"score\": 0.48568713665008545}, {\"doc_id\": \"tests/defer/tests.py::BigChildDeferTests.test_only_subclass\", \"score\": 0.4783727824687958}, {\"doc_id\": \"tests/update_only_fields/tests.py::UpdateOnlyFieldsTests.test_update_fields_deferred\", \"score\": 0.4770013391971588}]"
+}

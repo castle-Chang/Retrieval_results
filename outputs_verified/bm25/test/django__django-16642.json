@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-16642",
+  "query": "Improper guessing of Mime Type for \"br\" and \"Z\" file types\nDescription\n\t\nBelow FileResponse will set the content type as text/html, even if the last file extension is \"Z' or \"br\".\nFileResponse(open('test.html.Z', 'rb'))\nFileResponse(open('test.html.br', 'rb'))\n",
+  "ground_truth": {
+    "files": [
+      "django/http/response.py"
+    ],
+    "locations": [
+      "django/http/response.py::FileResponse",
+      "django/http/response.py::FileResponse.set_headers"
+    ]
+  },
+  "predictions": [
+    "tests/middleware/tests.py::GZipMiddlewareTest.test_compress_file_response",
+    "tests/responses/test_fileresponse.py::FileResponseTests.test_content_type_file",
+    "tests/responses/test_fileresponse.py::FileResponseTests.test_content_length_nonzero_starting_position_file",
+    "tests/responses/test_fileresponse.py::FileResponseTests.test_content_type_buffer_explicit_default",
+    "tests/responses/test_fileresponse.py::FileResponseTests.test_content_length_file",
+    "django/core/mail/message.py::EmailMessage.attach_file",
+    "tests/responses/test_fileresponse.py::FileResponseTests.test_compressed_response",
+    "tests/forms_tests/widget_tests/test_fileinput.py::FileInputTest.test_render",
+    "tests/file_storage/test_inmemory_storage.py::MemoryStorageIOTests.test_file_saving",
+    "tests/asgi/tests.py::ASGITest.test_file_response"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "fbe850106b2e4b85f838219cb9e1df95fba6c164",
+    "total_functions_indexed": 26464,
+    "retrieval_time_seconds": 0.8459873199462891
+  },
+  "raw_output": "[{\"doc_id\": \"tests/middleware/tests.py::GZipMiddlewareTest.test_compress_file_response\", \"score\": 82.46713962943464}, {\"doc_id\": \"tests/responses/test_fileresponse.py::FileResponseTests.test_content_type_file\", \"score\": 72.80063399654425}, {\"doc_id\": \"tests/responses/test_fileresponse.py::FileResponseTests.test_content_length_nonzero_starting_position_file\", \"score\": 69.04445851151115}, {\"doc_id\": \"tests/responses/test_fileresponse.py::FileResponseTests.test_content_type_buffer_explicit_default\", \"score\": 60.96624954676658}, {\"doc_id\": \"tests/responses/test_fileresponse.py::FileResponseTests.test_content_length_file\", \"score\": 58.47652808694685}, {\"doc_id\": \"django/core/mail/message.py::EmailMessage.attach_file\", \"score\": 58.347091256963026}, {\"doc_id\": \"tests/responses/test_fileresponse.py::FileResponseTests.test_compressed_response\", \"score\": 55.73955597130118}, {\"doc_id\": \"tests/forms_tests/widget_tests/test_fileinput.py::FileInputTest.test_render\", \"score\": 51.49357245682945}, {\"doc_id\": \"tests/file_storage/test_inmemory_storage.py::MemoryStorageIOTests.test_file_saving\", \"score\": 51.35488422987038}, {\"doc_id\": \"tests/asgi/tests.py::ASGITest.test_file_response\", \"score\": 50.96974454488273}]"
+}

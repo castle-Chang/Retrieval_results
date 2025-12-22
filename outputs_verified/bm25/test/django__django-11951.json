@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11951",
+  "query": "bulk_create batch_size param overrides the compatible batch size calculation\nDescription\n\t \n\t\t(last modified by Ahmet Kucuk)\n\t \nAt this line: ​https://github.com/django/django/blob/stable/2.2.x/django/db/models/query.py#L1197\nbatch_size param overrides compatible batch size calculation. This looks like a bug as bulk_update properly picks the minimum of two:\n​https://github.com/django/django/blob/stable/2.2.x/django/db/models/query.py#L504\nI suggest using similar\n batch_size = min(batch_size, max_batch_size) if batch_size else max_batch_size\nlogic in bulk_create as well. I am happy to open a PR for it.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/query.py"
+    ],
+    "locations": [
+      "django/db/models/query.py::QuerySet",
+      "django/db/models/query.py::QuerySet._batched_insert"
+    ]
+  },
+  "predictions": [
+    "django/db/models/query.py::QuerySet._batched_insert",
+    "django/db/models/query.py::QuerySet.bulk_update",
+    "tests/bulk_create/tests.py::BulkCreateTests.test_explicit_batch_size",
+    "django/db/models/query.py::QuerySet.in_bulk",
+    "tests/queries/test_bulk_update.py::BulkUpdateTests.test_invalid_batch_size",
+    "tests/delete/tests.py::DeletionTests.test_large_delete",
+    "django/db/backends/sqlite3/operations.py::DatabaseOperations._quote_params_for_last_executed_query",
+    "tests/queries/test_iterator.py::QuerySetIteratorTests.test_iterator_chunk_size",
+    "django/db/models/query.py::QuerySet.bulk_create",
+    "tests/test_utils/tests.py::AssertURLEqualTests.test_not_equal"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "312049091288dbba2299de8d07ea3e3311ed7238",
+    "total_functions_indexed": 22905,
+    "retrieval_time_seconds": 1.5237479209899902
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/query.py::QuerySet._batched_insert\", \"score\": 122.64231823952944}, {\"doc_id\": \"django/db/models/query.py::QuerySet.bulk_update\", \"score\": 121.59550579168037}, {\"doc_id\": \"tests/bulk_create/tests.py::BulkCreateTests.test_explicit_batch_size\", \"score\": 103.2648207803796}, {\"doc_id\": \"django/db/models/query.py::QuerySet.in_bulk\", \"score\": 100.22052464316484}, {\"doc_id\": \"tests/queries/test_bulk_update.py::BulkUpdateTests.test_invalid_batch_size\", \"score\": 93.77228549821204}, {\"doc_id\": \"tests/delete/tests.py::DeletionTests.test_large_delete\", \"score\": 87.2940763013919}, {\"doc_id\": \"django/db/backends/sqlite3/operations.py::DatabaseOperations._quote_params_for_last_executed_query\", \"score\": 86.79991149868056}, {\"doc_id\": \"tests/queries/test_iterator.py::QuerySetIteratorTests.test_iterator_chunk_size\", \"score\": 85.79358347750126}, {\"doc_id\": \"django/db/models/query.py::QuerySet.bulk_create\", \"score\": 73.64365834604176}, {\"doc_id\": \"tests/test_utils/tests.py::AssertURLEqualTests.test_not_equal\", \"score\": 73.61175041211565}]"
+}

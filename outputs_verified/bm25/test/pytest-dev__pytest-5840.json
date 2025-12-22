@@ -1,0 +1,38 @@
+{
+  "instance_id": "pytest-dev__pytest-5840",
+  "query": "5.1.2 ImportError while loading conftest (windows import folder casing issues)\n5.1.1 works fine. after upgrade to 5.1.2, the path was converted to lower case\r\n```\r\nInstalling collected packages: pytest\r\n  Found existing installation: pytest 5.1.1\r\n    Uninstalling pytest-5.1.1:\r\n      Successfully uninstalled pytest-5.1.1\r\nSuccessfully installed pytest-5.1.2\r\nPS C:\\Azure\\KMS\\ComponentTest\\Python> pytest --collect-only .\\PIsys -m smoke\r\nImportError while loading conftest 'c:\\azure\\kms\\componenttest\\python\\pisys\\conftest.py'.\r\nModuleNotFoundError: No module named 'python'\r\nPS C:\\Azure\\KMS\\ComponentTest\\Python>\r\n```\r\n\r\n\n",
+  "ground_truth": {
+    "files": [
+      "src/_pytest/pathlib.py",
+      "src/_pytest/config/__init__.py"
+    ],
+    "locations": [
+      "src/_pytest/config/__init__.py::PytestPluginManager",
+      "src/_pytest/config/__init__.py::PytestPluginManager._set_initial_conftests",
+      "src/_pytest/config/__init__.py::PytestPluginManager._getconftestmodules",
+      "src/_pytest/config/__init__.py::PytestPluginManager._rget_with_confmod",
+      "src/_pytest/config/__init__.py::PytestPluginManager._importconftest",
+      "src/_pytest/pathlib.py::parts",
+      "src/_pytest/pathlib.py::unique_path"
+    ]
+  },
+  "predictions": [
+    "testing/python/metafunc.py::TestMetafunc.test_idmaker_with_ids_unique_names",
+    "testing/python/metafunc.py::TestMetafunc.test_parametrize_error",
+    "testing/python/metafunc.py::TestMetafunc.test_idmaker_non_printable_characters",
+    "testing/test_doctest.py::TestLiterals.test_number_re",
+    "testing/python/metafunc.py::TestMetafuncFunctional.test_parametrize_functional2",
+    "testing/python/fixtures.py::TestFixtureMarker.test_multiple_parametrization_issue_736",
+    "testing/test_assertion.py::TestAssert_reprcompare.test_sequence_different_items",
+    "testing/test_cacheprovider.py::TestLastFailed.test_lastfailed_skip_collection",
+    "testing/test_conftest.py::TestConftestValueAccessGlobal.test_value_access_by_path",
+    "testing/code/test_source.py::TestSourceParsingAndCompiling.test_getstatementrange_bug2"
+  ],
+  "metadata": {
+    "repo": "pytest-dev/pytest",
+    "commit": "73c5b7f4b11a81e971f7d1bb18072e06a87060f4",
+    "total_functions_indexed": 3552,
+    "retrieval_time_seconds": 0.15703606605529785
+  },
+  "raw_output": "[{\"doc_id\": \"testing/python/metafunc.py::TestMetafunc.test_idmaker_with_ids_unique_names\", \"score\": 89.7993280899555}, {\"doc_id\": \"testing/python/metafunc.py::TestMetafunc.test_parametrize_error\", \"score\": 87.17132300584056}, {\"doc_id\": \"testing/python/metafunc.py::TestMetafunc.test_idmaker_non_printable_characters\", \"score\": 84.74953930578609}, {\"doc_id\": \"testing/test_doctest.py::TestLiterals.test_number_re\", \"score\": 84.63836793939213}, {\"doc_id\": \"testing/python/metafunc.py::TestMetafuncFunctional.test_parametrize_functional2\", \"score\": 80.95694506580043}, {\"doc_id\": \"testing/python/fixtures.py::TestFixtureMarker.test_multiple_parametrization_issue_736\", \"score\": 80.74507368055622}, {\"doc_id\": \"testing/test_assertion.py::TestAssert_reprcompare.test_sequence_different_items\", \"score\": 78.04316028513473}, {\"doc_id\": \"testing/test_cacheprovider.py::TestLastFailed.test_lastfailed_skip_collection\", \"score\": 72.65960939147156}, {\"doc_id\": \"testing/test_conftest.py::TestConftestValueAccessGlobal.test_value_access_by_path\", \"score\": 72.54331892075949}, {\"doc_id\": \"testing/code/test_source.py::TestSourceParsingAndCompiling.test_getstatementrange_bug2\", \"score\": 69.97868600630885}]"
+}

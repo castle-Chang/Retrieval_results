@@ -1,0 +1,34 @@
+{
+  "instance_id": "django__django-13158",
+  "query": "QuerySet.none() on combined queries returns all results.\nDescription\n\t\nI came across this issue on Stack Overflow. I'm not 100% sure it's a bug, but it does seem strange. With this code (excuse the bizarre example filtering):\nclass Publication(models.Model):\n\tpass\nclass Article(models.Model):\n\tpublications = models.ManyToManyField(to=Publication, blank=True, null=True)\nclass ArticleForm(forms.ModelForm):\n\tpublications = forms.ModelMultipleChoiceField(\n\t\tPublication.objects.filter(id__lt=2) | Publication.objects.filter(id__gt=5),\n\t\trequired=False,\n\t)\n\tclass Meta:\n\t\tmodel = Article\n\t\tfields = [\"publications\"]\nclass ArticleAdmin(admin.ModelAdmin):\n\tform = ArticleForm\nThis works well. However, changing the ModelMultipleChoiceField queryset to use union() breaks things.\npublications = forms.ModelMultipleChoiceField(\n\tPublication.objects.filter(id__lt=2).union(\n\t\tPublication.objects.filter(id__gt=5)\n\t),\n\trequired=False,\n)\nThe form correctly shows only the matching objects. However, if you submit this form while empty (i.e. you didn't select any publications), ALL objects matching the queryset will be added. Using the OR query, NO objects are added, as I'd expect.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/sql/query.py"
+    ],
+    "locations": [
+      "django/db/models/sql/query.py::Query",
+      "django/db/models/sql/query.py::Query.clone",
+      "django/db/models/sql/query.py::Query.set_empty",
+      "django/db/models/sql/query.py::Query.is_empty"
+    ]
+  },
+  "predictions": [
+    "tests/many_to_many/tests.py::ManyToManyTests.test_selects",
+    "tests/many_to_many/tests.py::ManyToManyTests.test_reverse_selects",
+    "tests/lookup/tests.py::LookupTests.test_none",
+    "tests/queries/tests.py::Queries1Tests.test_ticket6074",
+    "tests/basic/tests.py::ModelTest.test_emptyqs_distinct",
+    "tests/queries/test_qs_combinators.py::QuerySetSetOperationTests.test_combining_multiple_models",
+    "tests/many_to_one/tests.py::ManyToOneTests.test_selects",
+    "tests/queries/tests.py::Queries1Tests.test_heterogeneous_qs_combination",
+    "django/db/models/query.py::QuerySet.union",
+    "django/db/models/query.py::QuerySet.__or__"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "7af8f4127397279d19ef7c7899e93018274e2f9b",
+    "total_functions_indexed": 23665,
+    "retrieval_time_seconds": 0.16063213348388672
+  },
+  "raw_output": "[{\"doc_id\": \"tests/many_to_many/tests.py::ManyToManyTests.test_selects\", \"score\": 0.5357825756072998}, {\"doc_id\": \"tests/many_to_many/tests.py::ManyToManyTests.test_reverse_selects\", \"score\": 0.5115686058998108}, {\"doc_id\": \"tests/lookup/tests.py::LookupTests.test_none\", \"score\": 0.4896049499511719}, {\"doc_id\": \"tests/queries/tests.py::Queries1Tests.test_ticket6074\", \"score\": 0.4874993562698364}, {\"doc_id\": \"tests/basic/tests.py::ModelTest.test_emptyqs_distinct\", \"score\": 0.4647594690322876}, {\"doc_id\": \"tests/queries/test_qs_combinators.py::QuerySetSetOperationTests.test_combining_multiple_models\", \"score\": 0.4631487727165222}, {\"doc_id\": \"tests/many_to_one/tests.py::ManyToOneTests.test_selects\", \"score\": 0.4598650634288788}, {\"doc_id\": \"tests/queries/tests.py::Queries1Tests.test_heterogeneous_qs_combination\", \"score\": 0.4593774676322937}, {\"doc_id\": \"django/db/models/query.py::QuerySet.union\", \"score\": 0.4580747187137604}, {\"doc_id\": \"django/db/models/query.py::QuerySet.__or__\", \"score\": 0.45703813433647156}]"
+}

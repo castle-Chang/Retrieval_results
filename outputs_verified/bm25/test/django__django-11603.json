@@ -1,0 +1,34 @@
+{
+  "instance_id": "django__django-11603",
+  "query": "Add DISTINCT support for Avg and Sum aggregates.\nDescription\n\t\nAs an extension of #28658, aggregates should be supported for other general aggregates such as Avg and Sum. Before 2.2, these aggregations just ignored the parameter, but now throw an exception.\nThis change would just involve setting these classes as allowing DISTINCT, and could also be applied to Min and Max (although pointless).\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/aggregates.py"
+    ],
+    "locations": [
+      "django/db/models/aggregates.py::Avg",
+      "django/db/models/aggregates.py::Count",
+      "django/db/models/aggregates.py::Sum",
+      "django/db/models/aggregates.py::Variance"
+    ]
+  },
+  "predictions": [
+    "django/db/backends/sqlite3/operations.py::DatabaseOperations.check_expression_support",
+    "tests/expressions/tests.py::ReprTests.test_filtered_aggregates",
+    "django/contrib/postgres/aggregates/mixins.py::OrderableAggMixin.get_source_fields",
+    "tests/aggregation_regress/tests.py::AggregationTests.test_aggregate_annotation",
+    "tests/expressions_window/tests.py::WindowFunctionTests.test_distinct_window_function",
+    "tests/aggregation_regress/tests.py::AggregationTests.test_aggregates_in_where_clause_pre_eval",
+    "django/db/models/sql/query.py::JoinPromoter.update_join_types",
+    "tests/aggregation/tests.py::AggregateTestCase.test_complex_aggregations_require_kwarg",
+    "django/contrib/admin/utils.py::_get_non_gfk_field",
+    "django/db/models/sql/query.py::Query.is_nullable"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "f618e033acd37d59b536d6e6126e6c5be18037f6",
+    "total_functions_indexed": 22686,
+    "retrieval_time_seconds": 1.10921311378479
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/backends/sqlite3/operations.py::DatabaseOperations.check_expression_support\", \"score\": 90.77277499823616}, {\"doc_id\": \"tests/expressions/tests.py::ReprTests.test_filtered_aggregates\", \"score\": 57.34367675179555}, {\"doc_id\": \"django/contrib/postgres/aggregates/mixins.py::OrderableAggMixin.get_source_fields\", \"score\": 56.531573916102886}, {\"doc_id\": \"tests/aggregation_regress/tests.py::AggregationTests.test_aggregate_annotation\", \"score\": 56.20358054117258}, {\"doc_id\": \"tests/expressions_window/tests.py::WindowFunctionTests.test_distinct_window_function\", \"score\": 55.67746891481893}, {\"doc_id\": \"tests/aggregation_regress/tests.py::AggregationTests.test_aggregates_in_where_clause_pre_eval\", \"score\": 52.4503544632266}, {\"doc_id\": \"django/db/models/sql/query.py::JoinPromoter.update_join_types\", \"score\": 51.71315285114063}, {\"doc_id\": \"tests/aggregation/tests.py::AggregateTestCase.test_complex_aggregations_require_kwarg\", \"score\": 51.493919302790204}, {\"doc_id\": \"django/contrib/admin/utils.py::_get_non_gfk_field\", \"score\": 51.16138779160426}, {\"doc_id\": \"django/db/models/sql/query.py::Query.is_nullable\", \"score\": 50.36071208433983}]"
+}

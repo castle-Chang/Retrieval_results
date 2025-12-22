@@ -1,0 +1,33 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-13439",
+  "query": "Pipeline should implement __len__\n#### Description\r\n\r\nWith the new indexing support `pipe[:len(pipe)]` raises an error.\r\n\r\n#### Steps/Code to Reproduce\r\n\r\n```python\r\nfrom sklearn import svm\r\nfrom sklearn.datasets import samples_generator\r\nfrom sklearn.feature_selection import SelectKBest\r\nfrom sklearn.feature_selection import f_regression\r\nfrom sklearn.pipeline import Pipeline\r\n\r\n# generate some data to play with\r\nX, y = samples_generator.make_classification(\r\n    n_informative=5, n_redundant=0, random_state=42)\r\n\r\nanova_filter = SelectKBest(f_regression, k=5)\r\nclf = svm.SVC(kernel='linear')\r\npipe = Pipeline([('anova', anova_filter), ('svc', clf)])\r\n\r\nlen(pipe)\r\n```\r\n\r\n#### Versions\r\n\r\n```\r\nSystem:\r\n    python: 3.6.7 | packaged by conda-forge | (default, Feb 19 2019, 18:37:23)  [GCC 4.2.1 Compatible Clang 4.0.1 (tags/RELEASE_401/final)]\r\nexecutable: /Users/krisz/.conda/envs/arrow36/bin/python\r\n   machine: Darwin-18.2.0-x86_64-i386-64bit\r\n\r\nBLAS:\r\n    macros: HAVE_CBLAS=None\r\n  lib_dirs: /Users/krisz/.conda/envs/arrow36/lib\r\ncblas_libs: openblas, openblas\r\n\r\nPython deps:\r\n       pip: 19.0.3\r\nsetuptools: 40.8.0\r\n   sklearn: 0.21.dev0\r\n     numpy: 1.16.2\r\n     scipy: 1.2.1\r\n    Cython: 0.29.6\r\n    pandas: 0.24.1\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sklearn/pipeline.py"
+    ],
+    "locations": [
+      "sklearn/pipeline.py::Pipeline",
+      "sklearn/pipeline.py::Pipeline._iter",
+      "sklearn/pipeline.py::Pipeline.__getitem__"
+    ]
+  },
+  "predictions": [
+    "sklearn/tests/test_pipeline.py::test_pipeline_init",
+    "sklearn/utils/tests/test_pprint.py::test_n_max_elements_to_show",
+    "sklearn/linear_model/tests/test_coordinate_descent.py::test_lasso_cv_with_some_model_selection",
+    "sklearn/tests/test_pipeline.py::test_pipeline_methods_anova",
+    "setup.py::setup_package",
+    "sklearn/tests/test_pipeline.py::test_pipeline_methods_pca_svm",
+    "sklearn/tests/test_pipeline.py::test_pipeline_methods_preprocessing_svm",
+    "sklearn/tests/test_pipeline.py::test_pipeline_sample_weight_supported",
+    "sklearn/tests/test_pipeline.py::test_pipeline_slice",
+    "sklearn/tests/test_pipeline.py::test_make_pipeline"
+  ],
+  "metadata": {
+    "repo": "scikit-learn/scikit-learn",
+    "commit": "a62775e99f2a5ea3d51db7160fad783f6cd8a4c5",
+    "total_functions_indexed": 6927,
+    "retrieval_time_seconds": 1.028268814086914
+  },
+  "raw_output": "[{\"doc_id\": \"sklearn/tests/test_pipeline.py::test_pipeline_init\", \"score\": 146.3852934934213}, {\"doc_id\": \"sklearn/utils/tests/test_pprint.py::test_n_max_elements_to_show\", \"score\": 132.33344086898026}, {\"doc_id\": \"sklearn/linear_model/tests/test_coordinate_descent.py::test_lasso_cv_with_some_model_selection\", \"score\": 130.52608676684548}, {\"doc_id\": \"sklearn/tests/test_pipeline.py::test_pipeline_methods_anova\", \"score\": 128.07982091715667}, {\"doc_id\": \"setup.py::setup_package\", \"score\": 122.19667967033077}, {\"doc_id\": \"sklearn/tests/test_pipeline.py::test_pipeline_methods_pca_svm\", \"score\": 121.46059164850821}, {\"doc_id\": \"sklearn/tests/test_pipeline.py::test_pipeline_methods_preprocessing_svm\", \"score\": 114.34957201062738}, {\"doc_id\": \"sklearn/tests/test_pipeline.py::test_pipeline_sample_weight_supported\", \"score\": 111.65676477235307}, {\"doc_id\": \"sklearn/tests/test_pipeline.py::test_pipeline_slice\", \"score\": 110.31334636541764}, {\"doc_id\": \"sklearn/tests/test_pipeline.py::test_make_pipeline\", \"score\": 108.83568659744539}]"
+}

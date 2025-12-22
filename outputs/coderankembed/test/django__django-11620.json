@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-11620",
+  "query": "When DEBUG is True, raising Http404 in a path converter's to_python method does not result in a technical response\nDescription\n\t\nThis is the response I get (plain text): \nA server error occurred. Please contact the administrator.\nI understand a ValueError should be raised which tells the URL resolver \"this path does not match, try next one\" but Http404 is what came to my mind intuitively and the error message was not very helpful.\nOne could also make a point that raising a Http404 should be valid way to tell the resolver \"this is indeed the right path but the current parameter value does not match anything so stop what you are doing and let the handler return the 404 page (including a helpful error message when DEBUG is True instead of the default 'Django tried these URL patterns')\".\nThis would prove useful for example to implement a path converter that uses get_object_or_404.\n",
+  "ground_truth": {
+    "files": [
+      "django/views/debug.py"
+    ],
+    "locations": [
+      "django/views/debug.py::technical_404_response"
+    ]
+  },
+  "predictions": [
+    "django/views/debug.py::technical_404_response",
+    "tests/urlpatterns/tests.py::ConversionExceptionTests.test_resolve_value_error_means_no_match",
+    "tests/view_tests/views.py::raises404",
+    "tests/logging_tests/views.py::does_not_exist_raised",
+    "tests/view_tests/tests/test_debug.py::DebugViewTests.test_404",
+    "tests/view_tests/views.py::technical404",
+    "tests/view_tests/tests/test_debug.py::NonDjangoTemplatesDebugViewTests.test_404",
+    "tests/view_tests/tests/test_debug.py::DebugViewTests.test_classbased_technical_404",
+    "tests/view_tests/tests/test_debug.py::DebugViewTests.test_404_empty_path_not_in_urls",
+    "tests/view_tests/tests/test_debug.py::DebugViewTests.test_technical_404"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "514efa3129792ec2abb2444f3e7aeb3f21a38386",
+    "total_functions_indexed": 22708,
+    "retrieval_time_seconds": 0.0061604976654052734
+  },
+  "raw_output": "[{\"doc_id\": \"django/views/debug.py::technical_404_response\", \"score\": 0.5286257266998291}, {\"doc_id\": \"tests/urlpatterns/tests.py::ConversionExceptionTests.test_resolve_value_error_means_no_match\", \"score\": 0.4945130944252014}, {\"doc_id\": \"tests/view_tests/views.py::raises404\", \"score\": 0.4924461841583252}, {\"doc_id\": \"tests/logging_tests/views.py::does_not_exist_raised\", \"score\": 0.4915841221809387}, {\"doc_id\": \"tests/view_tests/tests/test_debug.py::DebugViewTests.test_404\", \"score\": 0.4906190037727356}, {\"doc_id\": \"tests/view_tests/views.py::technical404\", \"score\": 0.48789989948272705}, {\"doc_id\": \"tests/view_tests/tests/test_debug.py::NonDjangoTemplatesDebugViewTests.test_404\", \"score\": 0.475780725479126}, {\"doc_id\": \"tests/view_tests/tests/test_debug.py::DebugViewTests.test_classbased_technical_404\", \"score\": 0.4713468551635742}, {\"doc_id\": \"tests/view_tests/tests/test_debug.py::DebugViewTests.test_404_empty_path_not_in_urls\", \"score\": 0.466739296913147}, {\"doc_id\": \"tests/view_tests/tests/test_debug.py::DebugViewTests.test_technical_404\", \"score\": 0.46243155002593994}]"
+}

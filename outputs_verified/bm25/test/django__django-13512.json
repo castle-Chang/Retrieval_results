@@ -1,0 +1,35 @@
+{
+  "instance_id": "django__django-13512",
+  "query": "Admin doesn't display properly unicode chars in JSONFields.\nDescription\n\t \n\t\t(last modified by ZhaoQi99)\n\t \n>>> import json\n>>> print json.dumps('中国')\n\"\\u4e2d\\u56fd\"\njson.dumps use ASCII encoding by default when serializing Chinese.\nSo when we edit a JsonField which contains Chinese character in Django admin,it will appear in ASCII characters.\nI have try to fix this this problem in ​https://github.com/adamchainz/django-mysql/pull/714.And it works prefectly.\n",
+  "ground_truth": {
+    "files": [
+      "django/forms/fields.py",
+      "django/contrib/admin/utils.py"
+    ],
+    "locations": [
+      "django/contrib/admin/utils.py::display_for_field",
+      "django/forms/fields.py::JSONField",
+      "django/forms/fields.py::JSONField.prepare_value",
+      "django/forms/fields.py::JSONField.has_changed"
+    ]
+  },
+  "predictions": [
+    "django/utils/html.py::json_script",
+    "django/utils/module_loading.py::autodiscover_modules",
+    "tests/string_lookup/tests.py::StringLookupTests.test_unicode_chars_in_queries",
+    "django/forms/fields.py::JSONField.has_changed",
+    "django/db/backends/postgresql/base.py::DatabaseWrapper.get_new_connection",
+    "tests/mail/tests.py::MailTests.test_sanitize_address",
+    "django/utils/encoding.py::get_system_encoding",
+    "django/urls/resolvers.py::URLResolver.url_patterns",
+    "django/template/defaulttags.py::regroup",
+    "django/db/models/fields/json.py::JSONField.get_prep_value"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "b79088306513d5ed76d31ac40ab3c15f858946ea",
+    "total_functions_indexed": 23962,
+    "retrieval_time_seconds": 1.6266865730285645
+  },
+  "raw_output": "[{\"doc_id\": \"django/utils/html.py::json_script\", \"score\": 60.77817116285028}, {\"doc_id\": \"django/utils/module_loading.py::autodiscover_modules\", \"score\": 55.7891756340692}, {\"doc_id\": \"tests/string_lookup/tests.py::StringLookupTests.test_unicode_chars_in_queries\", \"score\": 50.231898565931154}, {\"doc_id\": \"django/forms/fields.py::JSONField.has_changed\", \"score\": 49.374749182746136}, {\"doc_id\": \"django/db/backends/postgresql/base.py::DatabaseWrapper.get_new_connection\", \"score\": 48.862250862888}, {\"doc_id\": \"tests/mail/tests.py::MailTests.test_sanitize_address\", \"score\": 48.47788114738868}, {\"doc_id\": \"django/utils/encoding.py::get_system_encoding\", \"score\": 48.22159114725264}, {\"doc_id\": \"django/urls/resolvers.py::URLResolver.url_patterns\", \"score\": 47.749590156734214}, {\"doc_id\": \"django/template/defaulttags.py::regroup\", \"score\": 47.561668446370696}, {\"doc_id\": \"django/db/models/fields/json.py::JSONField.get_prep_value\", \"score\": 47.3012058341657}]"
+}

@@ -1,0 +1,34 @@
+{
+  "instance_id": "sympy__sympy-20639",
+  "query": "inaccurate rendering of pi**(1/E)\nThis claims to be version 1.5.dev; I just merged from the project master, so I hope this is current.  I didn't notice this bug among others in printing.pretty.\r\n\r\n```\r\nIn [52]: pi**(1/E)                                                               \r\nOut[52]: \r\n-1___\r\n╲╱ π \r\n\r\n```\r\nLaTeX and str not fooled:\r\n```\r\nIn [53]: print(latex(pi**(1/E)))                                                 \r\n\\pi^{e^{-1}}\r\n\r\nIn [54]: str(pi**(1/E))                                                          \r\nOut[54]: 'pi**exp(-1)'\r\n```\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/pretty/pretty.py"
+    ],
+    "locations": [
+      "sympy/printing/pretty/pretty.py::PrettyPrinter",
+      "sympy/printing/pretty/pretty.py::PrettyPrinter._print_Mul",
+      "sympy/printing/pretty/pretty.py::PrettyPrinter._print_nth_root",
+      "sympy/printing/pretty/pretty.py::PrettyPrinter._print_Pow"
+    ]
+  },
+  "predictions": [
+    "sympy/printing/pretty/tests/test_pretty.py::test_issue_6285",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_elliptic_pi",
+    "sympy/printing/latex.py::LatexPrinter._print_elliptic_pi",
+    "sympy/printing/mathematica.py::MCodePrinter._print_Pi",
+    "sympy/printing/str.py::StrPrinter._print_Pi",
+    "sympy/printing/jscode.py::JavascriptCodePrinter._print_Pi",
+    "sympy/printing/rust.py::RustCodePrinter._print_Pi",
+    "sympy/printing/rcode.py::RCodePrinter._print_Pi",
+    "sympy/printing/octave.py::OctaveCodePrinter._print_Pi",
+    "sympy/printing/tests/test_latex.py::test_issue_6853"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "eb926a1d0c1158bf43f01eaf673dc84416b5ebb1",
+    "total_functions_indexed": 35521,
+    "retrieval_time_seconds": 0.013131380081176758
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/printing/pretty/tests/test_pretty.py::test_issue_6285\", \"score\": 0.5991396903991699}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_elliptic_pi\", \"score\": 0.5350697040557861}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_elliptic_pi\", \"score\": 0.5319680571556091}, {\"doc_id\": \"sympy/printing/mathematica.py::MCodePrinter._print_Pi\", \"score\": 0.5284837484359741}, {\"doc_id\": \"sympy/printing/str.py::StrPrinter._print_Pi\", \"score\": 0.5169002413749695}, {\"doc_id\": \"sympy/printing/jscode.py::JavascriptCodePrinter._print_Pi\", \"score\": 0.502951443195343}, {\"doc_id\": \"sympy/printing/rust.py::RustCodePrinter._print_Pi\", \"score\": 0.5020333528518677}, {\"doc_id\": \"sympy/printing/rcode.py::RCodePrinter._print_Pi\", \"score\": 0.5008925199508667}, {\"doc_id\": \"sympy/printing/octave.py::OctaveCodePrinter._print_Pi\", \"score\": 0.49656859040260315}, {\"doc_id\": \"sympy/printing/tests/test_latex.py::test_issue_6853\", \"score\": 0.4942286014556885}]"
+}

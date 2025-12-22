@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11099",
+  "query": "UsernameValidator allows trailing newline in usernames\nDescription\n\t\nASCIIUsernameValidator and UnicodeUsernameValidator use the regex \nr'^[\\w.@+-]+$'\nThe intent is to only allow alphanumeric characters as well as ., @, +, and -. However, a little known quirk of Python regexes is that $ will also match a trailing newline. Therefore, the user name validators will accept usernames which end with a newline. You can avoid this behavior by instead using \\A and \\Z to terminate regexes. For example, the validator regex could be changed to\nr'\\A[\\w.@+-]+\\Z'\nin order to reject usernames that end with a newline.\nI am not sure how to officially post a patch, but the required change is trivial - using the regex above in the two validators in contrib.auth.validators.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/auth/validators.py"
+    ],
+    "locations": [
+      "django/contrib/auth/validators.py::ASCIIUsernameValidator",
+      "django/contrib/auth/validators.py::UnicodeUsernameValidator"
+    ]
+  },
+  "predictions": [
+    "django/core/files/base.py::File.__iter__",
+    "django/forms/fields.py::Field.__init__",
+    "django/db/models/sql/query.py::JoinPromoter.update_join_types",
+    "django/middleware/common.py::CommonMiddleware.get_full_path_with_slash",
+    "django/utils/text.py::get_valid_filename",
+    "django/db/models/sql/compiler.py::SQLCompiler.get_default_columns",
+    "tests/migrations/test_writer.py::WriterTests.test_serialize_class_based_validators",
+    "django/template/defaulttags.py::regroup",
+    "django/contrib/auth/forms.py::AuthenticationForm.confirm_login_allowed",
+    "django/shortcuts.py::resolve_url"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "d26b2424437dabeeca94d7900b37d2df4410da0c",
+    "total_functions_indexed": 22382,
+    "retrieval_time_seconds": 2.048464298248291
+  },
+  "raw_output": "[{\"doc_id\": \"django/core/files/base.py::File.__iter__\", \"score\": 105.4869474335472}, {\"doc_id\": \"django/forms/fields.py::Field.__init__\", \"score\": 101.92378348639703}, {\"doc_id\": \"django/db/models/sql/query.py::JoinPromoter.update_join_types\", \"score\": 100.6747114757839}, {\"doc_id\": \"django/middleware/common.py::CommonMiddleware.get_full_path_with_slash\", \"score\": 100.33047466038332}, {\"doc_id\": \"django/utils/text.py::get_valid_filename\", \"score\": 98.68211602921282}, {\"doc_id\": \"django/db/models/sql/compiler.py::SQLCompiler.get_default_columns\", \"score\": 98.40839592572873}, {\"doc_id\": \"tests/migrations/test_writer.py::WriterTests.test_serialize_class_based_validators\", \"score\": 97.96214650270312}, {\"doc_id\": \"django/template/defaulttags.py::regroup\", \"score\": 96.99192289076593}, {\"doc_id\": \"django/contrib/auth/forms.py::AuthenticationForm.confirm_login_allowed\", \"score\": 96.01650030773126}, {\"doc_id\": \"django/shortcuts.py::resolve_url\", \"score\": 95.28700756852139}]"
+}

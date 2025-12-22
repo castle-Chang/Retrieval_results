@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-14434",
+  "query": "Statement created by _create_unique_sql makes references_column always false\nDescription\n\t\nThis is due to an instance of Table is passed as an argument to Columns when a string is expected.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/backends/base/schema.py"
+    ],
+    "locations": [
+      "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor",
+      "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._create_unique_sql"
+    ]
+  },
+  "predictions": [
+    "django/db/backends/oracle/operations.py::DatabaseOperations.adapt_datetimefield_value",
+    "tests/model_fields/test_imagefield.py::ImageFieldTwoDimensionsTests.test_image_after_constructor",
+    "django/db/backends/oracle/creation.py::DatabaseCreation._execute_allow_fail_statements",
+    "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._alter_column_type_sql",
+    "django/utils/encoding.py::is_protected_type",
+    "django/forms/utils.py::flatatt",
+    "django/db/backends/base/operations.py::BaseDatabaseOperations.adapt_datefield_value",
+    "django/db/backends/base/operations.py::BaseDatabaseOperations.adapt_datetimefield_value",
+    "django/db/backends/oracle/operations.py::DatabaseOperations.adapt_datefield_value",
+    "django/db/backends/base/operations.py::BaseDatabaseOperations.autoinc_sql"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "5e04e84d67da8163f365e9f5fcd169e2630e2873",
+    "total_functions_indexed": 24599,
+    "retrieval_time_seconds": 0.5522384643554688
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/backends/oracle/operations.py::DatabaseOperations.adapt_datetimefield_value\", \"score\": 37.84496015354338}, {\"doc_id\": \"tests/model_fields/test_imagefield.py::ImageFieldTwoDimensionsTests.test_image_after_constructor\", \"score\": 35.65872811674601}, {\"doc_id\": \"django/db/backends/oracle/creation.py::DatabaseCreation._execute_allow_fail_statements\", \"score\": 34.763194908378445}, {\"doc_id\": \"django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._alter_column_type_sql\", \"score\": 34.75661644814037}, {\"doc_id\": \"django/utils/encoding.py::is_protected_type\", \"score\": 34.12527960106381}, {\"doc_id\": \"django/forms/utils.py::flatatt\", \"score\": 33.30569013238116}, {\"doc_id\": \"django/db/backends/base/operations.py::BaseDatabaseOperations.adapt_datefield_value\", \"score\": 33.23628703077299}, {\"doc_id\": \"django/db/backends/base/operations.py::BaseDatabaseOperations.adapt_datetimefield_value\", \"score\": 33.23628703077299}, {\"doc_id\": \"django/db/backends/oracle/operations.py::DatabaseOperations.adapt_datefield_value\", \"score\": 32.61567001603081}, {\"doc_id\": \"django/db/backends/base/operations.py::BaseDatabaseOperations.autoinc_sql\", \"score\": 32.37460243179868}]"
+}

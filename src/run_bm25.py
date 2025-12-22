@@ -37,16 +37,26 @@ def clone_repo(base_url, repo, commit, dest):
         return True
     env = os.environ.copy()
     env["GIT_TERMINAL_PROMPT"] = "0"
+    Path(dest).mkdir(parents=True, exist_ok=True)
     try:
-        subprocess.run(["git", "clone", "--no-checkout", f"{base_url}/{repo}.git", dest], check=True, env=env)
-        subprocess.run(["git", "-C", dest, "checkout", "--detach", "--force", commit], check=True, env=env, input=("y\n" * 200), text=True)
+        subprocess.run(["git", "-C", dest, "init"], check=True, env=env)
+        subprocess.run(["git", "-C", dest, "remote", "add", "origin", f"git@github.com:{repo}.git"], check=True, env=env)
+        subprocess.run(["git", "-C", dest, "fetch", "--depth", "1", "--no-tags", "origin", commit], check=True, env=env)
+        subprocess.run(["git", "-C", dest, "checkout", "--detach", "--force", "FETCH_HEAD"], check=True, env=env, input=("y\n" * 200), text=True)
         return True
     except Exception:
         try:
-            subprocess.run(["git", "-C", dest, "reset", "--hard", commit], check=True, env=env, input=("y\n" * 200), text=True)
+            subprocess.run(["git", "-C", dest, "fetch", "--no-tags", "origin", commit], check=True, env=env)
+            subprocess.run(["git", "-C", dest, "checkout", "--detach", "--force", "FETCH_HEAD"], check=True, env=env, input=("y\n" * 200), text=True)
             return True
         except Exception:
-            return False
+            try:
+                subprocess.run(["git", "clone", "--no-checkout", f"git@github.com:{repo}.git", dest], check=True, env=env)
+                subprocess.run(["git", "-C", dest, "fetch", "--depth", "1", "--no-tags", "origin", commit], check=True, env=env)
+                subprocess.run(["git", "-C", dest, "checkout", "--detach", "--force", "FETCH_HEAD"], check=True, env=env, input=("y\n" * 200), text=True)
+                return True
+            except Exception:
+                return False
 
 
 def load_instances(parquet_path):
@@ -157,10 +167,7 @@ def main():
             ok = True
             if not rdir.exists():
                 base_prefix = repo.replace("/", "__") + "_"
-                try:
-                    candidates = [d for d in repos_dir.iterdir() if d.is_dir() and d.name.startswith(base_prefix)]
-                except Exception:
-                    candidates = []
+                candidates = []
                 if candidates:
                     try:
                         src_dir = random.choice(candidates)

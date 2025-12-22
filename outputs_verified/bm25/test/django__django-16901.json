@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-16901",
+  "query": "On databases lacking XOR, Q(…) ^ Q(…) ^ Q(…) wrongly interpreted as exactly-one rather than parity\nDescription\n\t\nOn databases that don’t natively support XOR, such as PostgreSQL, Django generates incorrect fallback SQL for Q(…) ^ Q(…) ^ Q(…) with more than 2 arguments. The ​correct interpretation, and the interpretation of databases natively supporting XOR (e.g. ​MySQL), is that a ^ b ^ c is true when an odd number of the arguments are true. But Django’s fallback interpretation is that a ^ b ^ c is true when exactly one argument is true:\n>>> from django.db.models import Q\n>>> from my_app.models import Client\n>>> Client.objects.filter(Q(id=37)).count()\n1\n>>> Client.objects.filter(Q(id=37) ^ Q(id=37)).count()\n0\n>>> Client.objects.filter(Q(id=37) ^ Q(id=37) ^ Q(id=37)).count()\n0\n>>> Client.objects.filter(Q(id=37) ^ Q(id=37) ^ Q(id=37) ^ Q(id=37)).count()\n0\n>>> Client.objects.filter(Q(id=37) ^ Q(id=37) ^ Q(id=37) ^ Q(id=37) ^ Q(id=37)).count()\n0\n(Expected: 1, 0, 1, 0, 1.)\nThis was introduced in #29865.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/sql/where.py"
+    ],
+    "locations": [
+      "django/db/models/sql/where.py::WhereNode",
+      "django/db/models/sql/where.py::WhereNode.as_sql"
+    ]
+  },
+  "predictions": [
+    "tests/queries/tests.py::NullJoinPromotionOrTest.test_ticket_21748_complex_filter",
+    "tests/queries/tests.py::Queries1Tests.test_ticket6154",
+    "tests/queries/tests.py::NullJoinPromotionOrTest.test_ticket_21748_double_negated_or",
+    "tests/m2m_and_m2o/tests.py::RelatedObjectTests.test_m2m_and_m2o",
+    "tests/queries/tests.py::DisjunctionPromotionTests.test_disjunction_promotion7",
+    "tests/queries/tests.py::Queries1Tests.test_ticket2306",
+    "tests/queries/tests.py::DisjunctionPromotionTests.test_disjunction_promotion5_demote",
+    "tests/queries/tests.py::Queries1Tests.test_ticket_10790_7",
+    "tests/queries/tests.py::DisjunctionPromotionTests.test_disjunction_promotion6",
+    "tests/or_lookups/tests.py::OrLookupsTests.test_other_arg_queries"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "ee36e101e8f8c0acde4bb148b738ab7034e902a0",
+    "total_functions_indexed": 26692,
+    "retrieval_time_seconds": 3.2058610916137695
+  },
+  "raw_output": "[{\"doc_id\": \"tests/queries/tests.py::NullJoinPromotionOrTest.test_ticket_21748_complex_filter\", \"score\": 280.0863599222501}, {\"doc_id\": \"tests/queries/tests.py::Queries1Tests.test_ticket6154\", \"score\": 273.24277088333014}, {\"doc_id\": \"tests/queries/tests.py::NullJoinPromotionOrTest.test_ticket_21748_double_negated_or\", \"score\": 269.6597576719861}, {\"doc_id\": \"tests/m2m_and_m2o/tests.py::RelatedObjectTests.test_m2m_and_m2o\", \"score\": 268.78367879098334}, {\"doc_id\": \"tests/queries/tests.py::DisjunctionPromotionTests.test_disjunction_promotion7\", \"score\": 262.1577232217052}, {\"doc_id\": \"tests/queries/tests.py::Queries1Tests.test_ticket2306\", \"score\": 261.2657296840785}, {\"doc_id\": \"tests/queries/tests.py::DisjunctionPromotionTests.test_disjunction_promotion5_demote\", \"score\": 260.78958470006194}, {\"doc_id\": \"tests/queries/tests.py::Queries1Tests.test_ticket_10790_7\", \"score\": 258.5662350455492}, {\"doc_id\": \"tests/queries/tests.py::DisjunctionPromotionTests.test_disjunction_promotion6\", \"score\": 255.94883794755265}, {\"doc_id\": \"tests/or_lookups/tests.py::OrLookupsTests.test_other_arg_queries\", \"score\": 254.2866476296926}]"
+}

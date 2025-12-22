@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-13177",
+  "query": "Mod(x**2, x) is not (always) 0\nWhen the base is not an integer, `x**2 % x` is not 0. The base is not tested to be an integer in Mod's eval logic:\r\n\r\n```\r\nif (p == q or p == -q or\r\n        p.is_Pow and p.exp.is_Integer and p.base == q or\r\n        p.is_integer and q == 1):\r\n    return S.Zero\r\n```\r\n\r\nso\r\n\r\n```\r\n>>> Mod(x**2, x)\r\n0\r\n```\r\nbut\r\n```\r\n>>> x = S(1.5)\r\n>>> Mod(x**2, x)\r\n0.75\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/mod.py"
+    ],
+    "locations": [
+      "sympy/core/mod.py::Mod",
+      "sympy/core/mod.py::Mod.eval"
+    ]
+  },
+  "predictions": [
+    "sympy/core/numbers.py::Integer.__mod__",
+    "sympy/simplify/hyperexpand.py::_mod1",
+    "sympy/core/tests/test_arit.py::test_pow2",
+    "sympy/core/numbers.py::Integer.__rmod__",
+    "sympy/core/numbers.py::Rational.__mod__",
+    "sympy/core/tests/test_arit.py::test_Mod_is_integer",
+    "sympy/core/tests/test_args.py::test_sympy__core__mod__Mod",
+    "sympy/polys/domains/modularinteger.py::ModularInteger.__rmod__",
+    "sympy/core/numbers.py::Float.__mod__",
+    "sympy/polys/domains/modularinteger.py::ModularInteger.__mod__"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "662cfb818e865f580e18b59efbb3540c34232beb",
+    "total_functions_indexed": 21211,
+    "retrieval_time_seconds": 0.09526228904724121
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/numbers.py::Integer.__mod__\", \"score\": 0.4466116428375244}, {\"doc_id\": \"sympy/simplify/hyperexpand.py::_mod1\", \"score\": 0.44317346811294556}, {\"doc_id\": \"sympy/core/tests/test_arit.py::test_pow2\", \"score\": 0.44094371795654297}, {\"doc_id\": \"sympy/core/numbers.py::Integer.__rmod__\", \"score\": 0.4372451603412628}, {\"doc_id\": \"sympy/core/numbers.py::Rational.__mod__\", \"score\": 0.4351353943347931}, {\"doc_id\": \"sympy/core/tests/test_arit.py::test_Mod_is_integer\", \"score\": 0.43454888463020325}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__core__mod__Mod\", \"score\": 0.4327363073825836}, {\"doc_id\": \"sympy/polys/domains/modularinteger.py::ModularInteger.__rmod__\", \"score\": 0.4227166771888733}, {\"doc_id\": \"sympy/core/numbers.py::Float.__mod__\", \"score\": 0.4206641912460327}, {\"doc_id\": \"sympy/polys/domains/modularinteger.py::ModularInteger.__mod__\", \"score\": 0.4064250588417053}]"
+}

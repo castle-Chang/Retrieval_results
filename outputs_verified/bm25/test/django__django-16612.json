@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-16612",
+  "query": "AdminSite.catch_all_view() drops query string in redirects\nDescription\n\t\n#31747 introduced AdminSite.catch_all_view(). However, in the process it broke the ability to redirect with settings.APPEND_SLASH = True when there are query strings.\nProvided URL: ​http://127.0.0.1:8000/admin/auth/foo?id=123\nExpected redirect: ​http://127.0.0.1:8000/admin/auth/foo/?id=123\nActual redirect: ​http://127.0.0.1:8000/admin/auth/foo/\nThis seems to be because the redirect in question does not include the query strings (such as via request.META['QUERY_STRING']):\nreturn HttpResponsePermanentRedirect(\"%s/\" % request.path)\n​https://github.com/django/django/blob/c57ff9ba5e251cd4c2761105a6046662c08f951e/django/contrib/admin/sites.py#L456\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admin/sites.py"
+    ],
+    "locations": [
+      "django/contrib/admin/sites.py::AdminSite",
+      "django/contrib/admin/sites.py::AdminSite.catch_all_view",
+      "django/contrib/admin/sites.py::AdminSite._build_app_dict"
+    ]
+  },
+  "predictions": [
+    "django/contrib/admin/sites.py::AdminSite.catch_all_view",
+    "tests/admin_scripts/tests.py::ManageRunserver.test_runserver_addrport",
+    "tests/urlpatterns_reverse/tests.py::ReverseShortcutTests.test_redirect_to_url",
+    "django/test/testcases.py::SimpleTestCase.assertRedirects",
+    "tests/admin_checks/tests.py::SystemChecksTestCase.test_context_processor_dependencies",
+    "django/contrib/admin/checks.py::check_dependencies",
+    "django/contrib/admin/sites.py::AdminSite.login",
+    "tests/generic_inline_admin/tests.py::GenericAdminViewTest.test_basic_edit_POST",
+    "django/views/generic/base.py::RedirectView.get_redirect_url",
+    "django/middleware/locale.py::LocaleMiddleware.process_response"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "55bcbd8d172b689811fae17cde2f09218dd74e9c",
+    "total_functions_indexed": 26417,
+    "retrieval_time_seconds": 1.6937079429626465
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/admin/sites.py::AdminSite.catch_all_view\", \"score\": 102.51160907744287}, {\"doc_id\": \"tests/admin_scripts/tests.py::ManageRunserver.test_runserver_addrport\", \"score\": 102.29938753459851}, {\"doc_id\": \"tests/urlpatterns_reverse/tests.py::ReverseShortcutTests.test_redirect_to_url\", \"score\": 98.17496700466025}, {\"doc_id\": \"django/test/testcases.py::SimpleTestCase.assertRedirects\", \"score\": 94.06050554122737}, {\"doc_id\": \"tests/admin_checks/tests.py::SystemChecksTestCase.test_context_processor_dependencies\", \"score\": 93.5189262795224}, {\"doc_id\": \"django/contrib/admin/checks.py::check_dependencies\", \"score\": 89.49851651876685}, {\"doc_id\": \"django/contrib/admin/sites.py::AdminSite.login\", \"score\": 86.51306861979623}, {\"doc_id\": \"tests/generic_inline_admin/tests.py::GenericAdminViewTest.test_basic_edit_POST\", \"score\": 85.68334025331443}, {\"doc_id\": \"django/views/generic/base.py::RedirectView.get_redirect_url\", \"score\": 83.25820214014085}, {\"doc_id\": \"django/middleware/locale.py::LocaleMiddleware.process_response\", \"score\": 82.29382754960055}]"
+}

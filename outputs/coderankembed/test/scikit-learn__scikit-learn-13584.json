@@ -1,0 +1,31 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-13584",
+  "query": "bug in print_changed_only in new repr: vector values\n```python\r\nimport sklearn\r\nimport numpy as np\r\nfrom sklearn.linear_model import LogisticRegressionCV\r\nsklearn.set_config(print_changed_only=True)\r\nprint(LogisticRegressionCV(Cs=np.array([0.1, 1])))\r\n```\r\n> ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()\r\n\r\nping @NicolasHug \r\n\n",
+  "ground_truth": {
+    "files": [
+      "sklearn/utils/_pprint.py"
+    ],
+    "locations": [
+      "sklearn/utils/_pprint.py::_changed_params"
+    ]
+  },
+  "predictions": [
+    "sklearn/utils/tests/test_pprint.py::test_changed_only",
+    "sklearn/linear_model/tests/test_logistic.py::test_LogisticRegressionCV_no_refit",
+    "sklearn/utils/tests/test_pprint.py::test_basic",
+    "sklearn/linear_model/logistic.py::LogisticRegressionCV.__init__",
+    "sklearn/utils/tests/test_pprint.py::LogisticRegression.__init__",
+    "sklearn/linear_model/tests/test_logistic.py::test_logistic_regression_cv_refit",
+    "sklearn/linear_model/tests/test_logistic.py::test_logistic_cv_sparse",
+    "sklearn/linear_model/tests/test_logistic.py::test_logistic_cv",
+    "sklearn/linear_model/tests/test_logistic.py::test_logistic_cv_score_does_not_warn_by_default",
+    "sklearn/linear_model/tests/test_logistic.py::test_liblinear_logregcv_sparse"
+  ],
+  "metadata": {
+    "repo": "scikit-learn/scikit-learn",
+    "commit": "0e3c1879b06d839171b7d0a607d71bbb19a966a9",
+    "total_functions_indexed": 6972,
+    "retrieval_time_seconds": 0.002004861831665039
+  },
+  "raw_output": "[{\"doc_id\": \"sklearn/utils/tests/test_pprint.py::test_changed_only\", \"score\": 0.6274771094322205}, {\"doc_id\": \"sklearn/linear_model/tests/test_logistic.py::test_LogisticRegressionCV_no_refit\", \"score\": 0.42900052666664124}, {\"doc_id\": \"sklearn/utils/tests/test_pprint.py::test_basic\", \"score\": 0.4188501238822937}, {\"doc_id\": \"sklearn/linear_model/logistic.py::LogisticRegressionCV.__init__\", \"score\": 0.4186597466468811}, {\"doc_id\": \"sklearn/utils/tests/test_pprint.py::LogisticRegression.__init__\", \"score\": 0.408744752407074}, {\"doc_id\": \"sklearn/linear_model/tests/test_logistic.py::test_logistic_regression_cv_refit\", \"score\": 0.4073372483253479}, {\"doc_id\": \"sklearn/linear_model/tests/test_logistic.py::test_logistic_cv_sparse\", \"score\": 0.3921267092227936}, {\"doc_id\": \"sklearn/linear_model/tests/test_logistic.py::test_logistic_cv\", \"score\": 0.3884660005569458}, {\"doc_id\": \"sklearn/linear_model/tests/test_logistic.py::test_logistic_cv_score_does_not_warn_by_default\", \"score\": 0.37574121356010437}, {\"doc_id\": \"sklearn/linear_model/tests/test_logistic.py::test_liblinear_logregcv_sparse\", \"score\": 0.3715129494667053}]"
+}

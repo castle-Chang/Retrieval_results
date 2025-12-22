@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-19254",
+  "query": "sympy.polys.factortools.dmp_zz_mignotte_bound improvement\nThe method `dup_zz_mignotte_bound(f, K)` can be significantly improved by using the **Knuth-Cohen bound** instead. After our research with Prof. Ag.Akritas we have implemented the Knuth-Cohen bound among others, and compare them among dozens of polynomials with different degree, density and coefficients range. Considering the results and the feedback from Mr.Kalevi Suominen, our proposal is that the mignotte_bound should be replaced by the knuth-cohen bound.\r\nAlso, `dmp_zz_mignotte_bound(f, u, K)` for mutli-variants polynomials should be replaced appropriately.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/polys/factortools.py"
+    ],
+    "locations": [
+      "sympy/polys/factortools.py::dup_zz_mignotte_bound",
+      "sympy/polys/factortools.py::dmp_zz_mignotte_bound"
+    ]
+  },
+  "predictions": [
+    "sympy/polys/factortools.py::dup_zz_mignotte_bound",
+    "sympy/polys/factortools.py::dmp_zz_mignotte_bound",
+    "sympy/polys/compatibility.py::IPolys.dup_zz_mignotte_bound",
+    "sympy/polys/compatibility.py::IPolys.dmp_zz_mignotte_bound",
+    "sympy/polys/tests/test_factortools.py::test_dup_zz_mignotte_bound",
+    "sympy/polys/factortools.py::dup_zz_zassenhaus",
+    "sympy/polys/factortools.py::dup_zz_factor",
+    "sympy/polys/factortools.py::dup_zz_factor_sqf",
+    "sympy/polys/rootisolation.py::dup_root_upper_bound",
+    "sympy/polys/factortools.py::dmp_zz_wang"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "e0ef1da13e2ab2a77866c05246f73c871ca9388c",
+    "total_functions_indexed": 34455,
+    "retrieval_time_seconds": 0.09482741355895996
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/polys/factortools.py::dup_zz_mignotte_bound\", \"score\": 0.7511518001556396}, {\"doc_id\": \"sympy/polys/factortools.py::dmp_zz_mignotte_bound\", \"score\": 0.7069860696792603}, {\"doc_id\": \"sympy/polys/compatibility.py::IPolys.dup_zz_mignotte_bound\", \"score\": 0.6493859887123108}, {\"doc_id\": \"sympy/polys/compatibility.py::IPolys.dmp_zz_mignotte_bound\", \"score\": 0.5970709323883057}, {\"doc_id\": \"sympy/polys/tests/test_factortools.py::test_dup_zz_mignotte_bound\", \"score\": 0.5508599281311035}, {\"doc_id\": \"sympy/polys/factortools.py::dup_zz_zassenhaus\", \"score\": 0.550520658493042}, {\"doc_id\": \"sympy/polys/factortools.py::dup_zz_factor\", \"score\": 0.5224472284317017}, {\"doc_id\": \"sympy/polys/factortools.py::dup_zz_factor_sqf\", \"score\": 0.506974458694458}, {\"doc_id\": \"sympy/polys/rootisolation.py::dup_root_upper_bound\", \"score\": 0.5058221817016602}, {\"doc_id\": \"sympy/polys/factortools.py::dmp_zz_wang\", \"score\": 0.5013723373413086}]"
+}

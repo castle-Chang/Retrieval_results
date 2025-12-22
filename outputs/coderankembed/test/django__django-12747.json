@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12747",
+  "query": "QuerySet.Delete - inconsistent result when zero objects deleted\nDescription\n\t\nThe result format of the QuerySet.Delete method is a tuple: (X, Y) \nX - is the total amount of deleted objects (including foreign key deleted objects)\nY - is a dictionary specifying counters of deleted objects for each specific model (the key is the _meta.label of the model and the value is counter of deleted objects of this model).\nExample: <class 'tuple'>: (2, {'my_app.FileAccess': 1, 'my_app.File': 1})\nWhen there are zero objects to delete in total - the result is inconsistent:\nFor models with foreign keys - the result will be: <class 'tuple'>: (0, {})\nFor \"simple\" models without foreign key - the result will be: <class 'tuple'>: (0, {'my_app.BlockLibrary': 0})\nI would expect there will be no difference between the two cases: Either both will have the empty dictionary OR both will have dictionary with model-label keys and zero value.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/deletion.py"
+    ],
+    "locations": [
+      "django/db/models/deletion.py::Collector",
+      "django/db/models/deletion.py::Collector.delete"
+    ]
+  },
+  "predictions": [
+    "tests/delete/tests.py::DeletionTests.test_queryset_delete_returns_num_rows",
+    "tests/delete/tests.py::DeletionTests.test_model_delete_returns_num_rows",
+    "django/db/models/query.py::QuerySet.delete",
+    "django/db/models/query.py::QuerySet._raw_delete",
+    "django/db/models/deletion.py::Collector.delete",
+    "tests/delete/tests.py::OnDeleteTests.test_do_nothing_qscount",
+    "tests/delete/tests.py::FastDeleteTests.test_fast_delete_qs",
+    "tests/delete/tests.py::FastDeleteTests.test_fast_delete_inheritance",
+    "tests/multiple_database/tests.py::QueryTestCase.test_foreign_key_deletion",
+    "tests/basic/tests.py::ModelTest.test_queryset_delete_removes_all_items_in_that_queryset"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "c86201b6ed4f8256b0a0520c08aa674f623d4127",
+    "total_functions_indexed": 23411,
+    "retrieval_time_seconds": 0.006508350372314453
+  },
+  "raw_output": "[{\"doc_id\": \"tests/delete/tests.py::DeletionTests.test_queryset_delete_returns_num_rows\", \"score\": 0.6022682785987854}, {\"doc_id\": \"tests/delete/tests.py::DeletionTests.test_model_delete_returns_num_rows\", \"score\": 0.5705960988998413}, {\"doc_id\": \"django/db/models/query.py::QuerySet.delete\", \"score\": 0.5199645161628723}, {\"doc_id\": \"django/db/models/query.py::QuerySet._raw_delete\", \"score\": 0.48896458745002747}, {\"doc_id\": \"django/db/models/deletion.py::Collector.delete\", \"score\": 0.4789777100086212}, {\"doc_id\": \"tests/delete/tests.py::OnDeleteTests.test_do_nothing_qscount\", \"score\": 0.4517899453639984}, {\"doc_id\": \"tests/delete/tests.py::FastDeleteTests.test_fast_delete_qs\", \"score\": 0.4489099383354187}, {\"doc_id\": \"tests/delete/tests.py::FastDeleteTests.test_fast_delete_inheritance\", \"score\": 0.4423711895942688}, {\"doc_id\": \"tests/multiple_database/tests.py::QueryTestCase.test_foreign_key_deletion\", \"score\": 0.426390677690506}, {\"doc_id\": \"tests/basic/tests.py::ModelTest.test_queryset_delete_removes_all_items_in_that_queryset\", \"score\": 0.42593079805374146}]"
+}

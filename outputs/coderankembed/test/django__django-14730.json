@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-14730",
+  "query": "Prevent developers from defining a related_name on symmetrical ManyToManyFields\nDescription\n\t\nIn ManyToManyField, if the symmetrical argument is passed, or if it's a self-referential ManyToMany relationship, the related field on the target model is not created. However, if a developer passes in the related_name not understanding this fact, they may be confused until they find the information about symmetrical relationship. Thus, it is proposed to raise an error when the user defines a ManyToManyField in this condition.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/related.py"
+    ],
+    "locations": [
+      "django/db/models/fields/related.py::ManyToManyField",
+      "django/db/models/fields/related.py::ManyToManyField._check_ignored_options",
+      "django/db/models/fields/related.py::ManyToManyField._check_relationship_model"
+    ]
+  },
+  "predictions": [
+    "django/db/models/fields/related.py::ManyToManyField.__init__",
+    "django/db/models/fields/related.py::ManyToManyField.contribute_to_class",
+    "tests/field_deconstruction/tests.py::FieldDeconstructionTests.test_many_to_many_field_related_name",
+    "tests/invalid_models_tests/test_relative_fields.py::SelfReferentialM2MClashTests.test_clash_under_explicit_related_name",
+    "tests/m2m_regress/tests.py::M2MRegressionTests.test_internal_related_name_not_in_error_msg",
+    "tests/schema/fields.py::CustomManyToManyField.contribute_to_class",
+    "django/db/models/fields/related.py::ManyToManyField.contribute_to_related_class",
+    "tests/invalid_models_tests/test_relative_fields.py::SelfReferentialM2MClashTests.test_accessor_clash",
+    "tests/invalid_models_tests/test_relative_fields.py::SelfReferentialM2MClashTests.test_reverse_query_name_clash",
+    "tests/invalid_models_tests/test_relative_fields.py::M2mThroughFieldsTests.test_m2m_field_argument_validation"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "4fe3774c729f3fd5105b3001fe69a70bdca95ac3",
+    "total_functions_indexed": 24925,
+    "retrieval_time_seconds": 0.06904959678649902
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/fields/related.py::ManyToManyField.__init__\", \"score\": 0.5080462694168091}, {\"doc_id\": \"django/db/models/fields/related.py::ManyToManyField.contribute_to_class\", \"score\": 0.5017518401145935}, {\"doc_id\": \"tests/field_deconstruction/tests.py::FieldDeconstructionTests.test_many_to_many_field_related_name\", \"score\": 0.49305033683776855}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::SelfReferentialM2MClashTests.test_clash_under_explicit_related_name\", \"score\": 0.4899901747703552}, {\"doc_id\": \"tests/m2m_regress/tests.py::M2MRegressionTests.test_internal_related_name_not_in_error_msg\", \"score\": 0.48400431871414185}, {\"doc_id\": \"tests/schema/fields.py::CustomManyToManyField.contribute_to_class\", \"score\": 0.4834345579147339}, {\"doc_id\": \"django/db/models/fields/related.py::ManyToManyField.contribute_to_related_class\", \"score\": 0.4800994396209717}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::SelfReferentialM2MClashTests.test_accessor_clash\", \"score\": 0.4786181151866913}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::SelfReferentialM2MClashTests.test_reverse_query_name_clash\", \"score\": 0.4779588282108307}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::M2mThroughFieldsTests.test_m2m_field_argument_validation\", \"score\": 0.4754696786403656}]"
+}

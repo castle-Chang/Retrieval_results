@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-14411",
+  "query": "Label for ReadOnlyPasswordHashWidget points to non-labelable element.\nDescription\n\t \n\t\t(last modified by David Sanders)\n\t \nIn the admin, the label element for the ReadOnlyPasswordHashWidget widget has a 'for' attribute which points to a non-labelable element, since the widget just renders text, not an input. There's no labelable element for the widget, so the label shouldn't have a 'for' attribute.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/auth/forms.py"
+    ],
+    "locations": [
+      "django/contrib/auth/forms.py::ReadOnlyPasswordHashWidget",
+      "django/contrib/auth/forms.py::ReadOnlyPasswordHashWidget.get_context",
+      "django/contrib/auth/forms.py::ReadOnlyPasswordHashField"
+    ]
+  },
+  "predictions": [
+    "django/forms/widgets.py::Widget.id_for_label",
+    "tests/auth_tests/test_forms.py::ReadOnlyPasswordHashTest.test_bug_19349_render_with_none_value",
+    "tests/forms_tests/tests/test_i18n.py::FormsI18nTests.test_non_ascii_label",
+    "django/contrib/admin/widgets.py::RelatedFieldWidgetWrapper.id_for_label",
+    "django/contrib/admin/helpers.py::AdminReadonlyField.label_tag",
+    "tests/admin_widgets/tests.py::AdminForeignKeyRawIdWidget.test_label_and_url_for_value_invalid_uuid",
+    "django/forms/boundfield.py::BoundField.id_for_label",
+    "tests/forms_tests/widget_tests/test_widget.py::WidgetTests.test_attr_false_not_rendered",
+    "tests/auth_tests/test_forms.py::ReadOnlyPasswordHashTest.test_render",
+    "tests/forms_tests/tests/test_forms.py::FormsTestCase.test_boundfield_label_tag_custom_widget_id_for_label"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "fa4e963ee7e6876581b5432363603571839ba00c",
+    "total_functions_indexed": 24590,
+    "retrieval_time_seconds": 0.03897571563720703
+  },
+  "raw_output": "[{\"doc_id\": \"django/forms/widgets.py::Widget.id_for_label\", \"score\": 0.4507131278514862}, {\"doc_id\": \"tests/auth_tests/test_forms.py::ReadOnlyPasswordHashTest.test_bug_19349_render_with_none_value\", \"score\": 0.44263017177581787}, {\"doc_id\": \"tests/forms_tests/tests/test_i18n.py::FormsI18nTests.test_non_ascii_label\", \"score\": 0.4098552465438843}, {\"doc_id\": \"django/contrib/admin/widgets.py::RelatedFieldWidgetWrapper.id_for_label\", \"score\": 0.3967205286026001}, {\"doc_id\": \"django/contrib/admin/helpers.py::AdminReadonlyField.label_tag\", \"score\": 0.39332568645477295}, {\"doc_id\": \"tests/admin_widgets/tests.py::AdminForeignKeyRawIdWidget.test_label_and_url_for_value_invalid_uuid\", \"score\": 0.3913584351539612}, {\"doc_id\": \"django/forms/boundfield.py::BoundField.id_for_label\", \"score\": 0.3763267397880554}, {\"doc_id\": \"tests/forms_tests/widget_tests/test_widget.py::WidgetTests.test_attr_false_not_rendered\", \"score\": 0.3745683431625366}, {\"doc_id\": \"tests/auth_tests/test_forms.py::ReadOnlyPasswordHashTest.test_render\", \"score\": 0.3718269467353821}, {\"doc_id\": \"tests/forms_tests/tests/test_forms.py::FormsTestCase.test_boundfield_label_tag_custom_widget_id_for_label\", \"score\": 0.36876070499420166}]"
+}

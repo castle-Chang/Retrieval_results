@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-11206",
+  "query": "utils.numberformat.format renders small decimals in exponential notation.\nDescription\n\t\nWhen using utils.number_format with decimal_pos, extremely small numbers get displayed using exponential notation.\n>>> from django.utils.numberformat import format as nformat\n>>> nformat(Decimal('1e-199'), '.', decimal_pos=2)\n'0.00'\n>>> nformat(Decimal('1e-200'), '.', decimal_pos=2)\n'1.00e-200'\nThis is caused by a hardcoded cut-off point in the internal logic, but I would argue that when a decimal_pos argument is supplied and the number to be formatted is smaller in absolute size than what can be encoded using the provided number of decimal positions, the returned string should be 0.0000...000 instead.\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/numberformat.py"
+    ],
+    "locations": [
+      "django/utils/numberformat.py::format"
+    ]
+  },
+  "predictions": [
+    "tests/utils_tests/test_numberformat.py::TestNumberFormat.test_decimal_numbers",
+    "django/utils/numberformat.py::format",
+    "tests/i18n/tests.py::FormattingTests.test_locale_independent",
+    "django/utils/formats.py::number_format",
+    "tests/utils_tests/test_numberformat.py::TestNumberFormat.test_format_string",
+    "tests/utils_tests/test_numberformat.py::TestNumberFormat.test_format_number",
+    "django/template/defaultfilters.py::floatformat",
+    "django/forms/fields.py::DecimalField.widget_attrs",
+    "django/utils/formats.py::localize",
+    "django/db/backends/utils.py::format_number"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "571ab44e8a8936014c22e7eebe4948d9611fd7ce",
+    "total_functions_indexed": 22422,
+    "retrieval_time_seconds": 1.7627050876617432
+  },
+  "raw_output": "[{\"doc_id\": \"tests/utils_tests/test_numberformat.py::TestNumberFormat.test_decimal_numbers\", \"score\": 191.15372539164795}, {\"doc_id\": \"django/utils/numberformat.py::format\", \"score\": 150.9052170658531}, {\"doc_id\": \"tests/i18n/tests.py::FormattingTests.test_locale_independent\", \"score\": 147.53801417823286}, {\"doc_id\": \"django/utils/formats.py::number_format\", \"score\": 119.3118746075261}, {\"doc_id\": \"tests/utils_tests/test_numberformat.py::TestNumberFormat.test_format_string\", \"score\": 106.07784216075504}, {\"doc_id\": \"tests/utils_tests/test_numberformat.py::TestNumberFormat.test_format_number\", \"score\": 103.94556853564315}, {\"doc_id\": \"django/template/defaultfilters.py::floatformat\", \"score\": 84.65405248298823}, {\"doc_id\": \"django/forms/fields.py::DecimalField.widget_attrs\", \"score\": 83.53468104198336}, {\"doc_id\": \"django/utils/formats.py::localize\", \"score\": 81.9647752740769}, {\"doc_id\": \"django/db/backends/utils.py::format_number\", \"score\": 81.66662530377496}]"
+}

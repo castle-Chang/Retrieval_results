@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-14404",
+  "query": "catch_all_view() does not support FORCE_SCRIPT_NAME.\nDescription\n\t \n\t\t(last modified by SlavaSkvortsov)\n\t \ncatch_all_view returns redirect to '%s/' % request.path_info (script name cut off there) instead of '%s/' % request.path (with the script name)\nPatch - ​https://github.com/django/django/pull/14404\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admin/sites.py"
+    ],
+    "locations": [
+      "django/contrib/admin/sites.py::AdminSite",
+      "django/contrib/admin/sites.py::AdminSite.catch_all_view",
+      "django/contrib/admin/sites.py::AdminSite._build_app_dict"
+    ]
+  },
+  "predictions": [
+    "django/contrib/admin/sites.py::AdminSite.catch_all_view",
+    "django/core/handlers/wsgi.py::get_script_name",
+    "tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_media_inheritance",
+    "tests/staticfiles_tests/test_forms.py::StaticFilesFormsMediaTestCase.test_absolute_url",
+    "tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_media_dsl",
+    "tests/requests/tests.py::RequestsTests.test_wsgirequest_path_with_force_script_name_trailing_slash",
+    "tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_construction",
+    "tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_media_inheritance_extends",
+    "tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_form_media",
+    "tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_media_property_parent_references"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "de32fe83a2e4a20887972c69a0693b94eb25a88b",
+    "total_functions_indexed": 24582,
+    "retrieval_time_seconds": 0.634768009185791
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/admin/sites.py::AdminSite.catch_all_view\", \"score\": 49.27728943879795}, {\"doc_id\": \"django/core/handlers/wsgi.py::get_script_name\", \"score\": 49.25515654968191}, {\"doc_id\": \"tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_media_inheritance\", \"score\": 47.24067338150648}, {\"doc_id\": \"tests/staticfiles_tests/test_forms.py::StaticFilesFormsMediaTestCase.test_absolute_url\", \"score\": 46.65430098609675}, {\"doc_id\": \"tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_media_dsl\", \"score\": 45.593805925217545}, {\"doc_id\": \"tests/requests/tests.py::RequestsTests.test_wsgirequest_path_with_force_script_name_trailing_slash\", \"score\": 45.56627085796341}, {\"doc_id\": \"tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_construction\", \"score\": 44.28200776091786}, {\"doc_id\": \"tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_media_inheritance_extends\", \"score\": 42.64320103081547}, {\"doc_id\": \"tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_form_media\", \"score\": 42.61894449460051}, {\"doc_id\": \"tests/forms_tests/tests/test_media.py::FormsMediaTestCase.test_media_property_parent_references\", \"score\": 42.229766103099394}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "astropy__astropy-7166",
+  "query": "InheritDocstrings metaclass doesn't work for properties\nInside the InheritDocstrings metaclass it uses `inspect.isfunction` which returns `False` for properties.\n",
+  "ground_truth": {
+    "files": [
+      "astropy/utils/misc.py"
+    ],
+    "locations": [
+      "astropy/utils/misc.py::InheritDocstrings",
+      "astropy/utils/misc.py::InheritDocstrings.__init__"
+    ]
+  },
+  "predictions": [
+    "astropy/utils/tests/test_misc.py::test_inherit_docstrings",
+    "astropy/utils/decorators.py::classproperty.setter",
+    "astropy/utils/decorators.py::classproperty.deleter",
+    "astropy/utils/misc.py::InheritDocstrings.__init__",
+    "astropy/extern/bundled/six.py::with_metaclass",
+    "astropy/utils/introspection.py::isinstancemethod",
+    "astropy/extern/bundled/six.py::add_metaclass",
+    "astropy/utils/tests/test_decorators.py::test_deprecated_class_with_custom_metaclass",
+    "astropy/coordinates/baseframe.py::BaseCoordinateFrame.__getattr__",
+    "astropy/visualization/wcsaxes/coordinate_helpers.py::CoordinateHelper.set_ticklabel"
+  ],
+  "metadata": {
+    "repo": "astropy/astropy",
+    "commit": "26d147868f8a891a6009a25cd6a8576d2e1bd747",
+    "total_functions_indexed": 9979,
+    "retrieval_time_seconds": 0.295468807220459
+  },
+  "raw_output": "[{\"doc_id\": \"astropy/utils/tests/test_misc.py::test_inherit_docstrings\", \"score\": 36.985676042032445}, {\"doc_id\": \"astropy/utils/decorators.py::classproperty.setter\", \"score\": 36.30432254814845}, {\"doc_id\": \"astropy/utils/decorators.py::classproperty.deleter\", \"score\": 36.30432254814845}, {\"doc_id\": \"astropy/utils/misc.py::InheritDocstrings.__init__\", \"score\": 34.65032341278578}, {\"doc_id\": \"astropy/extern/bundled/six.py::with_metaclass\", \"score\": 30.8560806613901}, {\"doc_id\": \"astropy/utils/introspection.py::isinstancemethod\", \"score\": 29.615935087517503}, {\"doc_id\": \"astropy/extern/bundled/six.py::add_metaclass\", \"score\": 27.258483049740533}, {\"doc_id\": \"astropy/utils/tests/test_decorators.py::test_deprecated_class_with_custom_metaclass\", \"score\": 26.30112095538339}, {\"doc_id\": \"astropy/coordinates/baseframe.py::BaseCoordinateFrame.__getattr__\", \"score\": 25.054877454428556}, {\"doc_id\": \"astropy/visualization/wcsaxes/coordinate_helpers.py::CoordinateHelper.set_ticklabel\", \"score\": 24.171262749909744}]"
+}

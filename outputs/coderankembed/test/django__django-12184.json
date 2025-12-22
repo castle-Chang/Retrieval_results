@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12184",
+  "query": "Optional URL params crash some view functions.\nDescription\n\t\nMy use case, running fine with Django until 2.2:\nURLConf:\nurlpatterns += [\n\t...\n\tre_path(r'^module/(?P<format>(html|json|xml))?/?$', views.modules, name='modules'),\n]\nView:\ndef modules(request, format='html'):\n\t...\n\treturn render(...)\nWith Django 3.0, this is now producing an error:\nTraceback (most recent call last):\n File \"/l10n/venv/lib/python3.6/site-packages/django/core/handlers/exception.py\", line 34, in inner\n\tresponse = get_response(request)\n File \"/l10n/venv/lib/python3.6/site-packages/django/core/handlers/base.py\", line 115, in _get_response\n\tresponse = self.process_exception_by_middleware(e, request)\n File \"/l10n/venv/lib/python3.6/site-packages/django/core/handlers/base.py\", line 113, in _get_response\n\tresponse = wrapped_callback(request, *callback_args, **callback_kwargs)\nException Type: TypeError at /module/\nException Value: modules() takes from 1 to 2 positional arguments but 3 were given\n",
+  "ground_truth": {
+    "files": [
+      "django/urls/resolvers.py"
+    ],
+    "locations": [
+      "django/urls/resolvers.py::RegexPattern",
+      "django/urls/resolvers.py::RegexPattern.match"
+    ]
+  },
+  "predictions": [
+    "tests/middleware_exceptions/views.py::exception_in_render",
+    "tests/middleware_exceptions/views.py::server_error",
+    "tests/urlpatterns_reverse/views.py::erroneous_view",
+    "tests/middleware_exceptions/views.py::normal_view",
+    "tests/middleware_exceptions/middleware.py::ProcessViewMiddleware.process_view",
+    "tests/view_tests/views.py::raises",
+    "tests/test_client/views.py::broken_view",
+    "tests/middleware_exceptions/views.py::permission_denied",
+    "tests/handlers/views.py::malformed_post",
+    "django/core/handlers/exception.py::response_for_exception"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "5d674eac871a306405b0fbbaeb17bbeba9c68bf3",
+    "total_functions_indexed": 23071,
+    "retrieval_time_seconds": 0.007256746292114258
+  },
+  "raw_output": "[{\"doc_id\": \"tests/middleware_exceptions/views.py::exception_in_render\", \"score\": 0.5101234316825867}, {\"doc_id\": \"tests/middleware_exceptions/views.py::server_error\", \"score\": 0.5024024248123169}, {\"doc_id\": \"tests/urlpatterns_reverse/views.py::erroneous_view\", \"score\": 0.494937926530838}, {\"doc_id\": \"tests/middleware_exceptions/views.py::normal_view\", \"score\": 0.49078497290611267}, {\"doc_id\": \"tests/middleware_exceptions/middleware.py::ProcessViewMiddleware.process_view\", \"score\": 0.47937479615211487}, {\"doc_id\": \"tests/view_tests/views.py::raises\", \"score\": 0.46758246421813965}, {\"doc_id\": \"tests/test_client/views.py::broken_view\", \"score\": 0.46757590770721436}, {\"doc_id\": \"tests/middleware_exceptions/views.py::permission_denied\", \"score\": 0.4592340588569641}, {\"doc_id\": \"tests/handlers/views.py::malformed_post\", \"score\": 0.4451588988304138}, {\"doc_id\": \"django/core/handlers/exception.py::response_for_exception\", \"score\": 0.4444066882133484}]"
+}

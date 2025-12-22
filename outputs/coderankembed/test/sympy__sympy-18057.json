@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-18057",
+  "query": "Sympy incorrectly attempts to eval reprs in its __eq__ method\nPassing strings produced by unknown objects into eval is **very bad**. It is especially surprising for an equality check to trigger that kind of behavior. This should be fixed ASAP.\r\n\r\nRepro code:\r\n\r\n```\r\nimport sympy\r\nclass C:\r\n    def __repr__(self):\r\n        return 'x.y'\r\n_ = sympy.Symbol('x') == C()\r\n```\r\n\r\nResults in:\r\n\r\n```\r\nE   AttributeError: 'Symbol' object has no attribute 'y'\r\n```\r\n\r\nOn the line:\r\n\r\n```\r\n    expr = eval(\r\n        code, global_dict, local_dict)  # take local objects in preference\r\n```\r\n\r\nWhere code is:\r\n\r\n```\r\nSymbol ('x' ).y\r\n```\r\n\r\nFull trace:\r\n\r\n```\r\nFAILED                   [100%]\r\n        class C:\r\n            def __repr__(self):\r\n                return 'x.y'\r\n    \r\n>       _ = sympy.Symbol('x') == C()\r\n\r\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \r\nsympy/core/expr.py:124: in __eq__\r\n    other = sympify(other)\r\nsympy/core/sympify.py:385: in sympify\r\n    expr = parse_expr(a, local_dict=locals, transformations=transformations, evaluate=evaluate)\r\nsympy/parsing/sympy_parser.py:1011: in parse_expr\r\n    return eval_expr(code, local_dict, global_dict)\r\nsympy/parsing/sympy_parser.py:906: in eval_expr\r\n    code, global_dict, local_dict)  # take local objects in preference\r\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \r\n\r\n>   ???\r\nE   AttributeError: 'Symbol' object has no attribute 'y'\r\n\r\n<string>:1: AttributeError\r\n```\r\n\r\nRelated issue: an unknown object whose repr is `x` will incorrectly compare as equal to a sympy symbol x:\r\n\r\n```\r\n    class C:\r\n        def __repr__(self):\r\n            return 'x'\r\n\r\n    assert sympy.Symbol('x') != C()  # fails\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/expr.py"
+    ],
+    "locations": [
+      "sympy/core/expr.py::Expr",
+      "sympy/core/expr.py::Expr.__eq__"
+    ]
+  },
+  "predictions": [
+    "sympy/parsing/sympy_parser.py::eval_expr",
+    "sympy/core/tests/test_sympify.py::test_issue_4988_builtins",
+    "sympy/core/tests/test_sympify.py::test_issue_3595",
+    "sympy/core/tests/test_subs.py::test_issue_8886",
+    "sympy/core/tests/test_sympify.py::test_issue_3538",
+    "sympy/plotting/tests/test_plot.py::test_issue_15265",
+    "sympy/core/tests/test_equal.py::test_cmp_bug1",
+    "sympy/core/tests/test_relational.py::test_Eq",
+    "sympy/core/tests/test_relational.py::test_issue_10927",
+    "sympy/printing/tests/test_repr.py::test_Symbol_two_assumptions"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "62000f37b8821573ba00280524ffb4ac4a380875",
+    "total_functions_indexed": 33599,
+    "retrieval_time_seconds": 0.09942317008972168
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/parsing/sympy_parser.py::eval_expr\", \"score\": 0.5578885674476624}, {\"doc_id\": \"sympy/core/tests/test_sympify.py::test_issue_4988_builtins\", \"score\": 0.5381073951721191}, {\"doc_id\": \"sympy/core/tests/test_sympify.py::test_issue_3595\", \"score\": 0.5154430866241455}, {\"doc_id\": \"sympy/core/tests/test_subs.py::test_issue_8886\", \"score\": 0.510616660118103}, {\"doc_id\": \"sympy/core/tests/test_sympify.py::test_issue_3538\", \"score\": 0.5052953958511353}, {\"doc_id\": \"sympy/plotting/tests/test_plot.py::test_issue_15265\", \"score\": 0.49901413917541504}, {\"doc_id\": \"sympy/core/tests/test_equal.py::test_cmp_bug1\", \"score\": 0.49202072620391846}, {\"doc_id\": \"sympy/core/tests/test_relational.py::test_Eq\", \"score\": 0.4903523325920105}, {\"doc_id\": \"sympy/core/tests/test_relational.py::test_issue_10927\", \"score\": 0.48299500346183777}, {\"doc_id\": \"sympy/printing/tests/test_repr.py::test_Symbol_two_assumptions\", \"score\": 0.4826883375644684}]"
+}

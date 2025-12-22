@@ -1,0 +1,34 @@
+{
+  "instance_id": "django__django-13279",
+  "query": "Session data cannot be decoded during the transition to Django 3.1.\nDescription\n\t\nIn d4fff711d4c97356bd6ba1273d2a5e349326eb5f (#31274) we've changed format for session data, that's why setting DEFAULT_HASHING_ALGORITHM to 'sha1' is not enough to support running multiple instances of the same project during the transition to Django 3.1.\nWe could use the legacy encode() when DEFAULT_HASHING_ALGORITHM == 'sha1' (it's a bit hacky).\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/sessions/backends/base.py"
+    ],
+    "locations": [
+      "django/contrib/sessions/backends/base.py::SessionBase",
+      "django/contrib/sessions/backends/base.py::SessionBase.encode",
+      "django/contrib/sessions/backends/base.py::SessionBase.decode",
+      "django/contrib/sessions/backends/base.py::SessionBase._legacy_decode"
+    ]
+  },
+  "predictions": [
+    "django/contrib/messages/storage/cookie.py::CookieStorage._legacy_hash",
+    "django/contrib/sessions/backends/db.py::SessionStore.create_model_instance",
+    "django/utils/tree.py::Node.add",
+    "tests/model_forms/tests.py::UniqueTest.test_multiple_field_unique_together",
+    "tests/sessions_tests/tests.py::DatabaseSessionTests.test_session_get_decoded",
+    "django/contrib/auth/__init__.py::_get_user_session_key",
+    "django/db/models/query.py::prefetch_related_objects",
+    "django/contrib/auth/tokens.py::PasswordResetTokenGenerator._make_token_with_timestamp",
+    "tests/fixtures_regress/tests.py::TestFixtures.test_close_connection_after_loaddata",
+    "django/contrib/auth/__init__.py::login"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "6e9c5ee88fc948e05b4a7d9f82a8861ed2b0343d",
+    "total_functions_indexed": 23788,
+    "retrieval_time_seconds": 1.6730263233184814
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/messages/storage/cookie.py::CookieStorage._legacy_hash\", \"score\": 62.941133644186614}, {\"doc_id\": \"django/contrib/sessions/backends/db.py::SessionStore.create_model_instance\", \"score\": 60.20990468240345}, {\"doc_id\": \"django/utils/tree.py::Node.add\", \"score\": 59.04327051195012}, {\"doc_id\": \"tests/model_forms/tests.py::UniqueTest.test_multiple_field_unique_together\", \"score\": 57.299782623098466}, {\"doc_id\": \"tests/sessions_tests/tests.py::DatabaseSessionTests.test_session_get_decoded\", \"score\": 56.21839316145194}, {\"doc_id\": \"django/contrib/auth/__init__.py::_get_user_session_key\", \"score\": 55.27537797103412}, {\"doc_id\": \"django/db/models/query.py::prefetch_related_objects\", \"score\": 55.26828924710947}, {\"doc_id\": \"django/contrib/auth/tokens.py::PasswordResetTokenGenerator._make_token_with_timestamp\", \"score\": 55.1226397481106}, {\"doc_id\": \"tests/fixtures_regress/tests.py::TestFixtures.test_close_connection_after_loaddata\", \"score\": 55.12071389528286}, {\"doc_id\": \"django/contrib/auth/__init__.py::login\", \"score\": 54.01874317065288}]"
+}

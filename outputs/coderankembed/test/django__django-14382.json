@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-14382",
+  "query": "django-admin startapp with trailing slash in directory name results in error\nDescription\n\t\nBash tab-completion appends trailing slashes to directory names. django-admin startapp name directory/ results in the error:\nCommandError: '' is not a valid app directory. Please make sure the directory is a valid identifier.\nThe error is caused by ​line 77 of django/core/management/templates.py by calling basename() on the path with no consideration for a trailing slash:\nself.validate_name(os.path.basename(target), 'directory')\nRemoving potential trailing slashes would solve the problem:\nself.validate_name(os.path.basename(target.rstrip(os.sep)), 'directory')\n",
+  "ground_truth": {
+    "files": [
+      "django/core/management/templates.py"
+    ],
+    "locations": [
+      "django/core/management/templates.py::TemplateCommand",
+      "django/core/management/templates.py::TemplateCommand.handle"
+    ]
+  },
+  "predictions": [
+    "tests/admin_scripts/tests.py::StartApp.test_invalid_target_name",
+    "tests/admin_scripts/tests.py::StartApp.test_importable_target_name",
+    "tests/admin_scripts/tests.py::StartApp.test_invalid_name",
+    "django/core/management/commands/startapp.py::Command.handle",
+    "tests/admin_scripts/tests.py::StartApp.test_importable_name",
+    "tests/admin_scripts/tests.py::StartProject.test_template_dir_with_trailing_slash",
+    "tests/admin_scripts/tests.py::StartApp.test_overlaying_app",
+    "django/core/management/templates.py::TemplateCommand.validate_name",
+    "tests/admin_scripts/tests.py::DjangoAdminSettingsDirectory.test_startapp_unicode_name",
+    "tests/flatpages_tests/test_forms.py::FlatpageAdminFormTests.test_flatpage_requires_trailing_slash_with_append_slash"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "29345aecf6e8d53ccb3577a3762bb0c263f7558d",
+    "total_functions_indexed": 24573,
+    "retrieval_time_seconds": 0.08704519271850586
+  },
+  "raw_output": "[{\"doc_id\": \"tests/admin_scripts/tests.py::StartApp.test_invalid_target_name\", \"score\": 0.6299500465393066}, {\"doc_id\": \"tests/admin_scripts/tests.py::StartApp.test_importable_target_name\", \"score\": 0.5754317045211792}, {\"doc_id\": \"tests/admin_scripts/tests.py::StartApp.test_invalid_name\", \"score\": 0.5735775232315063}, {\"doc_id\": \"django/core/management/commands/startapp.py::Command.handle\", \"score\": 0.5648338198661804}, {\"doc_id\": \"tests/admin_scripts/tests.py::StartApp.test_importable_name\", \"score\": 0.5373698472976685}, {\"doc_id\": \"tests/admin_scripts/tests.py::StartProject.test_template_dir_with_trailing_slash\", \"score\": 0.5152748823165894}, {\"doc_id\": \"tests/admin_scripts/tests.py::StartApp.test_overlaying_app\", \"score\": 0.4913884699344635}, {\"doc_id\": \"django/core/management/templates.py::TemplateCommand.validate_name\", \"score\": 0.4635125398635864}, {\"doc_id\": \"tests/admin_scripts/tests.py::DjangoAdminSettingsDirectory.test_startapp_unicode_name\", \"score\": 0.4606483578681946}, {\"doc_id\": \"tests/flatpages_tests/test_forms.py::FlatpageAdminFormTests.test_flatpage_requires_trailing_slash_with_append_slash\", \"score\": 0.4429595470428467}]"
+}

@@ -1,0 +1,31 @@
+{
+  "instance_id": "psf__requests-1921",
+  "query": "Removing a default header of a session\n[The docs](http://docs.python-requests.org/en/latest/user/advanced/#session-objects) say that you can prevent sending a session header by setting the headers value to None in the method's arguments. You would expect (as [discussed on IRC](https://botbot.me/freenode/python-requests/msg/10788170/)) that this would work for session's default headers, too:\n\n``` python\nsession = requests.Session()\n# Do not send Accept-Encoding\nsession.headers['Accept-Encoding'] = None\n```\n\nWhat happens is that \"None\"  gets sent as the value of header.\n\n```\nAccept-Encoding: None\n```\n\nFor the reference, here is a way that works:\n\n``` python\ndel session.headers['Accept-Encoding']\n```\n\n",
+  "ground_truth": {
+    "files": [
+      "requests/sessions.py"
+    ],
+    "locations": [
+      "requests/sessions.py::merge_setting"
+    ]
+  },
+  "predictions": [
+    "test_requests.py::RequestsTestCase.test_fixes_1329",
+    "requests/models.py::Response.__init__",
+    "requests/packages/urllib3/util.py::make_headers",
+    "requests/sessions.py::Session.__init__",
+    "requests/models.py::Response.text",
+    "requests/packages/urllib3/response.py::HTTPResponse.read",
+    "requests/sessions.py::merge_setting",
+    "requests/packages/urllib3/request.py::RequestMethods.request",
+    "requests/utils.py::parse_dict_header",
+    "requests/api.py::request"
+  ],
+  "metadata": {
+    "repo": "psf/requests",
+    "commit": "3c88e520da24ae6f736929a750876e7654accc3d",
+    "total_functions_indexed": 585,
+    "retrieval_time_seconds": 0.05617690086364746
+  },
+  "raw_output": "[{\"doc_id\": \"test_requests.py::RequestsTestCase.test_fixes_1329\", \"score\": 93.49561716062034}, {\"doc_id\": \"requests/models.py::Response.__init__\", \"score\": 87.24685296331342}, {\"doc_id\": \"requests/packages/urllib3/util.py::make_headers\", \"score\": 83.06586696947376}, {\"doc_id\": \"requests/sessions.py::Session.__init__\", \"score\": 80.48721416219657}, {\"doc_id\": \"requests/models.py::Response.text\", \"score\": 75.80301969321212}, {\"doc_id\": \"requests/packages/urllib3/response.py::HTTPResponse.read\", \"score\": 70.87247972365977}, {\"doc_id\": \"requests/sessions.py::merge_setting\", \"score\": 70.02400166650773}, {\"doc_id\": \"requests/packages/urllib3/request.py::RequestMethods.request\", \"score\": 69.74553402369962}, {\"doc_id\": \"requests/utils.py::parse_dict_header\", \"score\": 69.04985789685456}, {\"doc_id\": \"requests/api.py::request\", \"score\": 68.1172360100434}]"
+}

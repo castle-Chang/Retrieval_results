@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-15987",
+  "query": "Fixture dirs duplicates undetected if dir is Path instance\nDescription\n\t\nWhen FIXTURE_DIRS contains Path instances, the duplicate check in loaddata does not detect duplicates.\n",
+  "ground_truth": {
+    "files": [
+      "django/core/management/commands/loaddata.py"
+    ],
+    "locations": [
+      "django/core/management/commands/loaddata.py::Command",
+      "django/core/management/commands/loaddata.py::Command.fixture_dirs"
+    ]
+  },
+  "predictions": [
+    "django/core/management/commands/loaddata.py::Command.fixture_dirs",
+    "tests/fixtures_regress/tests.py::TestFixtures.test_fixture_dirs_with_duplicates",
+    "tests/apps/tests.py::AppConfigTests.test_duplicate_dunder_path_no_dunder_file",
+    "django/core/management/commands/loaddata.py::Command.get_fixture_name_and_dirs",
+    "tests/fixtures_regress/tests.py::TestFixtures.test_fixture_dirs_with_default_fixture_path",
+    "django/core/management/commands/loaddata.py::Command.find_fixtures",
+    "tests/fixtures_regress/tests.py::TestFixtures.test_loaddata_no_fixture_specified",
+    "django/contrib/admin/utils.py::lookup_spawns_duplicates",
+    "django/template/utils.py::EngineHandler.templates",
+    "scripts/manage_translations.py::_get_locale_dirs"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "7e6b537f5b92be152779fc492bb908d27fe7c52a",
+    "total_functions_indexed": 26126,
+    "retrieval_time_seconds": 0.5517966747283936
+  },
+  "raw_output": "[{\"doc_id\": \"django/core/management/commands/loaddata.py::Command.fixture_dirs\", \"score\": 66.44776022082809}, {\"doc_id\": \"tests/fixtures_regress/tests.py::TestFixtures.test_fixture_dirs_with_duplicates\", \"score\": 57.76656425320162}, {\"doc_id\": \"tests/apps/tests.py::AppConfigTests.test_duplicate_dunder_path_no_dunder_file\", \"score\": 41.04753564397445}, {\"doc_id\": \"django/core/management/commands/loaddata.py::Command.get_fixture_name_and_dirs\", \"score\": 39.362923419626085}, {\"doc_id\": \"tests/fixtures_regress/tests.py::TestFixtures.test_fixture_dirs_with_default_fixture_path\", \"score\": 36.03574290226782}, {\"doc_id\": \"django/core/management/commands/loaddata.py::Command.find_fixtures\", \"score\": 34.532099408931394}, {\"doc_id\": \"tests/fixtures_regress/tests.py::TestFixtures.test_loaddata_no_fixture_specified\", \"score\": 31.752200686233277}, {\"doc_id\": \"django/contrib/admin/utils.py::lookup_spawns_duplicates\", \"score\": 31.537590582151964}, {\"doc_id\": \"django/template/utils.py::EngineHandler.templates\", \"score\": 31.423720189231712}, {\"doc_id\": \"scripts/manage_translations.py::_get_locale_dirs\", \"score\": 30.947825239928427}]"
+}

@@ -1,0 +1,37 @@
+{
+  "instance_id": "sphinx-doc__sphinx-8548",
+  "query": "autodoc inherited-members won't work for inherited attributes (data members).\nautodoc searches for a cached docstring using (namespace, attrname) as search-key, but doesn't check for baseclass-namespace.\n\n---\n- Bitbucket: https://bitbucket.org/birkenfeld/sphinx/issue/741\n- Originally reported by: Anonymous\n- Originally created at: 2011-08-02T17:05:58.754\n\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/ext/autodoc/__init__.py",
+      "sphinx/ext/autodoc/importer.py"
+    ],
+    "locations": [
+      "sphinx/ext/autodoc/__init__.py::ClassDocumenter",
+      "sphinx/ext/autodoc/__init__.py::ClassDocumenter.add_directive_header",
+      "sphinx/ext/autodoc/__init__.py::ClassDocumenter.get_object_members",
+      "sphinx/ext/autodoc/importer.py::ClassAttribute",
+      "sphinx/ext/autodoc/importer.py::ClassAttribute.__init__",
+      "sphinx/ext/autodoc/importer.py::get_class_members"
+    ]
+  },
+  "predictions": [
+    "sphinx/ext/autodoc/importer.py::get_class_members",
+    "sphinx/ext/autodoc/importer.py::get_object_members",
+    "sphinx/ext/autodoc/__init__.py::Documenter.document_members",
+    "tests/test_ext_autodoc.py::test_autodoc_inherited_members_None",
+    "sphinx/ext/autodoc/__init__.py::merge_members_option",
+    "tests/test_ext_autodoc.py::test_autodoc_inherited_members_Base",
+    "sphinx/ext/autodoc/__init__.py::Documenter.format_name",
+    "tests/test_domain_cpp.py::test_templates",
+    "sphinx/ext/autodoc/__init__.py::ClassDocumenter.get_object_members",
+    "sphinx/ext/autodoc/__init__.py::Documenter.filter_members"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "dd1615c59dc6fff633e27dbb3861f2d27e1fb976",
+    "total_functions_indexed": 5602,
+    "retrieval_time_seconds": 0.26784491539001465
+  },
+  "raw_output": "[{\"doc_id\": \"sphinx/ext/autodoc/importer.py::get_class_members\", \"score\": 39.89045256445469}, {\"doc_id\": \"sphinx/ext/autodoc/importer.py::get_object_members\", \"score\": 37.06464842032733}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::Documenter.document_members\", \"score\": 36.42345671927158}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_inherited_members_None\", \"score\": 35.33294485771833}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::merge_members_option\", \"score\": 35.105152670111536}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_inherited_members_Base\", \"score\": 35.08180675587671}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::Documenter.format_name\", \"score\": 33.228293169848826}, {\"doc_id\": \"tests/test_domain_cpp.py::test_templates\", \"score\": 32.82379550076602}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::ClassDocumenter.get_object_members\", \"score\": 32.18681807988431}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::Documenter.filter_members\", \"score\": 31.06247945380698}]"
+}

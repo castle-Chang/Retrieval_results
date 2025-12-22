@@ -1,0 +1,32 @@
+{
+  "instance_id": "psf__requests-1766",
+  "query": "quote qop options in Digest Auth\nBased on RFC2617 (http://tools.ietf.org/html/rfc2617), the value of\n'qop-options' directive should be quoted with double quotes:\n\n```\nqop-options\n     This directive is optional, but is made so only for backward\n     compatibility with RFC 2069 [6]; it SHOULD be used by all\n     implementations compliant with this version of the Digest\n     scheme. If present, it is a quoted string of one or more\n     tokens indicating the \"quality of protection\" values supported by\n     the server.  The value \"auth\" indicates authentication; the\n     value \"auth-int\" indicates authentication with\n     integrity protection; see the\n```\n\ncurl comamnd-line tool also appends these quotes. You can see this\nby `curl -v --digest --user user:passwd http://example.com/digest-auth`.\nUnfortunately, some minor server-side implementations seem to be sensitive\non this difference.\n\n",
+  "ground_truth": {
+    "files": [
+      "requests/auth.py"
+    ],
+    "locations": [
+      "requests/auth.py::HTTPDigestAuth",
+      "requests/auth.py::HTTPDigestAuth.build_digest_header"
+    ]
+  },
+  "predictions": [
+    "requests/utils.py::unquote_header_value",
+    "requests/utils.py::parse_list_header",
+    "requests/api.py::request",
+    "requests/sessions.py::Session.__init__",
+    "requests/sessions.py::Session.request",
+    "requests/packages/urllib3/util.py::parse_url",
+    "requests/adapters.py::HTTPAdapter.proxy_headers",
+    "requests/packages/urllib3/request.py::RequestMethods.request_encode_body",
+    "requests/adapters.py::HTTPAdapter.add_headers",
+    "requests/packages/urllib3/util.py::Timeout._validate_timeout"
+  ],
+  "metadata": {
+    "repo": "psf/requests",
+    "commit": "847735553aeda6e6633f2b32e14ba14ba86887a4",
+    "total_functions_indexed": 542,
+    "retrieval_time_seconds": 0.05926179885864258
+  },
+  "raw_output": "[{\"doc_id\": \"requests/utils.py::unquote_header_value\", \"score\": 91.29091196104967}, {\"doc_id\": \"requests/utils.py::parse_list_header\", \"score\": 85.36757321061376}, {\"doc_id\": \"requests/api.py::request\", \"score\": 79.2798516871596}, {\"doc_id\": \"requests/sessions.py::Session.__init__\", \"score\": 78.73543093335563}, {\"doc_id\": \"requests/sessions.py::Session.request\", \"score\": 76.84214119845339}, {\"doc_id\": \"requests/packages/urllib3/util.py::parse_url\", \"score\": 75.12286272930743}, {\"doc_id\": \"requests/adapters.py::HTTPAdapter.proxy_headers\", \"score\": 75.0226660886747}, {\"doc_id\": \"requests/packages/urllib3/request.py::RequestMethods.request_encode_body\", \"score\": 72.61912153324369}, {\"doc_id\": \"requests/adapters.py::HTTPAdapter.add_headers\", \"score\": 71.92224148384899}, {\"doc_id\": \"requests/packages/urllib3/util.py::Timeout._validate_timeout\", \"score\": 71.84612487268608}]"
+}

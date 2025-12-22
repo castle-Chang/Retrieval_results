@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-16485",
+  "query": "floatformat() crashes on \"0.00\".\nDescription\n\t\nfrom decimal import Decimal\nfrom django.template.defaultfilters import floatformat\nfloatformat('0.00', 0)\nfloatformat(Decimal('0.00'), 0)\nBoth throw ValueError: valid range for prec is [1, MAX_PREC]\n",
+  "ground_truth": {
+    "files": [
+      "django/template/defaultfilters.py"
+    ],
+    "locations": [
+      "django/template/defaultfilters.py::floatformat"
+    ]
+  },
+  "predictions": [
+    "tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_inputs",
+    "tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_low_decimal_precision",
+    "django/template/defaultfilters.py::floatformat",
+    "tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_zero_values",
+    "tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_negative_zero_values",
+    "tests/model_fields/test_decimalfield.py::DecimalFieldTests.test_default",
+    "tests/aggregation/tests.py::AggregateTestCase.test_aggregation_default_using_decimal_from_python",
+    "tests/utils_tests/test_numberformat.py::TestNumberFormat.test_decimal_numbers",
+    "tests/forms_tests/field_tests/test_decimalfield.py::DecimalFieldTest.test_decimalfield_3",
+    "tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_force_grouping"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "39f83765e12b0e5d260b7939fc3fe281d879b279",
+    "total_functions_indexed": 26327,
+    "retrieval_time_seconds": 0.629298210144043
+  },
+  "raw_output": "[{\"doc_id\": \"tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_inputs\", \"score\": 108.69498104543513}, {\"doc_id\": \"tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_low_decimal_precision\", \"score\": 89.7762637733909}, {\"doc_id\": \"django/template/defaultfilters.py::floatformat\", \"score\": 85.89436916913284}, {\"doc_id\": \"tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_zero_values\", \"score\": 80.64493523938107}, {\"doc_id\": \"tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_negative_zero_values\", \"score\": 74.25663287296075}, {\"doc_id\": \"tests/model_fields/test_decimalfield.py::DecimalFieldTests.test_default\", \"score\": 68.35841601615286}, {\"doc_id\": \"tests/aggregation/tests.py::AggregateTestCase.test_aggregation_default_using_decimal_from_python\", \"score\": 66.56128407279827}, {\"doc_id\": \"tests/utils_tests/test_numberformat.py::TestNumberFormat.test_decimal_numbers\", \"score\": 60.94521461740095}, {\"doc_id\": \"tests/forms_tests/field_tests/test_decimalfield.py::DecimalFieldTest.test_decimalfield_3\", \"score\": 60.47316547513651}, {\"doc_id\": \"tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_force_grouping\", \"score\": 59.87172464216255}]"
+}

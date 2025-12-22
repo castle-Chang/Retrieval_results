@@ -1,0 +1,32 @@
+{
+  "instance_id": "pallets__flask-5014",
+  "query": "Require a non-empty name for Blueprints\nThings do not work correctly if a Blueprint is given an empty name (e.g. #4944).\r\nIt would be helpful if a `ValueError` was raised when trying to do that.\n",
+  "ground_truth": {
+    "files": [
+      "src/flask/blueprints.py"
+    ],
+    "locations": [
+      "src/flask/blueprints.py::Blueprint",
+      "src/flask/blueprints.py::Blueprint.__init__"
+    ]
+  },
+  "predictions": [
+    "tests/test_cli.py::test_cli_empty",
+    "src/flask/app.py::Flask.url_for",
+    "src/flask/wrappers.py::Request.blueprints",
+    "src/flask/scaffold.py::Scaffold.before_request",
+    "src/flask/blueprints.py::BlueprintSetupState.__init__",
+    "src/flask/app.py::Flask._find_error_handler",
+    "src/flask/helpers.py::url_for",
+    "src/flask/cli.py::find_app_by_string",
+    "src/flask/app.py::Flask.__init__",
+    "src/flask/app.py::Flask.trap_http_exception"
+  ],
+  "metadata": {
+    "repo": "pallets/flask",
+    "commit": "7ee9ceb71e868944a46e1ff00b506772a53a4f1d",
+    "total_functions_indexed": 823,
+    "retrieval_time_seconds": 0.02125692367553711
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_cli.py::test_cli_empty\", \"score\": 37.71724473051477}, {\"doc_id\": \"src/flask/app.py::Flask.url_for\", \"score\": 36.78335129515573}, {\"doc_id\": \"src/flask/wrappers.py::Request.blueprints\", \"score\": 36.24053073925019}, {\"doc_id\": \"src/flask/scaffold.py::Scaffold.before_request\", \"score\": 34.12559195167136}, {\"doc_id\": \"src/flask/blueprints.py::BlueprintSetupState.__init__\", \"score\": 33.63505137533094}, {\"doc_id\": \"src/flask/app.py::Flask._find_error_handler\", \"score\": 32.65975742554999}, {\"doc_id\": \"src/flask/helpers.py::url_for\", \"score\": 32.41683375015796}, {\"doc_id\": \"src/flask/cli.py::find_app_by_string\", \"score\": 32.306212294095594}, {\"doc_id\": \"src/flask/app.py::Flask.__init__\", \"score\": 32.10666702131139}, {\"doc_id\": \"src/flask/app.py::Flask.trap_http_exception\", \"score\": 31.906498779522742}]"
+}

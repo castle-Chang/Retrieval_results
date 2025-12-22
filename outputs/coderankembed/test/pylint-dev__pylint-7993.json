@@ -1,0 +1,32 @@
+{
+  "instance_id": "pylint-dev__pylint-7993",
+  "query": "Using custom braces in message template does not work\n### Bug description\n\nHave any list of errors:\r\n\r\nOn pylint 1.7 w/ python3.6 - I am able to use this as my message template\r\n```\r\n$ pylint test.py --msg-template='{{ \"Category\": \"{category}\" }}'\r\nNo config file found, using default configuration\r\n************* Module [redacted].test\r\n{ \"Category\": \"convention\" }\r\n{ \"Category\": \"error\" }\r\n{ \"Category\": \"error\" }\r\n{ \"Category\": \"convention\" }\r\n{ \"Category\": \"convention\" }\r\n{ \"Category\": \"convention\" }\r\n{ \"Category\": \"error\" }\r\n```\r\n\r\nHowever, on Python3.9 with Pylint 2.12.2, I get the following:\r\n```\r\n$ pylint test.py --msg-template='{{ \"Category\": \"{category}\" }}'\r\n[redacted]/site-packages/pylint/reporters/text.py:206: UserWarning: Don't recognize the argument '{ \"Category\"' in the --msg-template. Are you sure it is supported on the current version of pylint?\r\n  warnings.warn(\r\n************* Module [redacted].test\r\n\" }\r\n\" }\r\n\" }\r\n\" }\r\n\" }\r\n\" }\r\n```\r\n\r\nIs this intentional or a bug?\n\n### Configuration\n\n_No response_\n\n### Command used\n\n```shell\npylint test.py --msg-template='{{ \"Category\": \"{category}\" }}'\n```\n\n\n### Pylint output\n\n```shell\n[redacted]/site-packages/pylint/reporters/text.py:206: UserWarning: Don't recognize the argument '{ \"Category\"' in the --msg-template. Are you sure it is supported on the current version of pylint?\r\n  warnings.warn(\r\n************* Module [redacted].test\r\n\" }\r\n\" }\r\n\" }\r\n\" }\r\n\" }\r\n\" }\n```\n\n\n### Expected behavior\n\nExpect the dictionary to print out with `\"Category\"` as the key.\n\n### Pylint version\n\n```shell\nAffected Version:\r\npylint 2.12.2\r\nastroid 2.9.2\r\nPython 3.9.9+ (heads/3.9-dirty:a2295a4, Dec 21 2021, 22:32:52) \r\n[GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]\r\n\r\n\r\nPreviously working version:\r\nNo config file found, using default configuration\r\npylint 1.7.4, \r\nastroid 1.6.6\r\nPython 3.6.8 (default, Nov 16 2020, 16:55:22) \r\n[GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]\n```\n\n\n### OS / Environment\n\n_No response_\n\n### Additional dependencies\n\n_No response_\n",
+  "ground_truth": {
+    "files": [
+      "pylint/reporters/text.py"
+    ],
+    "locations": [
+      "pylint/reporters/text.py::TextReporter",
+      "pylint/reporters/text.py::TextReporter.on_set_current_module"
+    ]
+  },
+  "predictions": [
+    "tests/reporters/unittest_reporting.py::test_template_option",
+    "tests/config/pylint_config/test_pylint_config_help.py::test_pylint_config_main_messages",
+    "tests/reporters/unittest_reporting.py::test_template_option_non_existing",
+    "tests/functional/r/raising/raising_format_tuple.py::bad_braces",
+    "tests/config/pylint_config/test_run_pylint_config.py::test_invocation_of_pylint_config",
+    "tests/reporters/unittest_reporting.py::test_template_option_default",
+    "tests/test_epylint.py::test_epylint_strange_command",
+    "tests/functional/r/raising/raising_format_tuple.py::good_braces",
+    "pylint/message/message.py::Message.format",
+    "pylint/reporters/text.py::TextReporter.on_set_current_module"
+  ],
+  "metadata": {
+    "repo": "pylint-dev/pylint",
+    "commit": "e90702074e68e20dc8e5df5013ee3ecf22139c3e",
+    "total_functions_indexed": 6078,
+    "retrieval_time_seconds": 0.0028808116912841797
+  },
+  "raw_output": "[{\"doc_id\": \"tests/reporters/unittest_reporting.py::test_template_option\", \"score\": 0.432911217212677}, {\"doc_id\": \"tests/config/pylint_config/test_pylint_config_help.py::test_pylint_config_main_messages\", \"score\": 0.4273515045642853}, {\"doc_id\": \"tests/reporters/unittest_reporting.py::test_template_option_non_existing\", \"score\": 0.4222765564918518}, {\"doc_id\": \"tests/functional/r/raising/raising_format_tuple.py::bad_braces\", \"score\": 0.3934815227985382}, {\"doc_id\": \"tests/config/pylint_config/test_run_pylint_config.py::test_invocation_of_pylint_config\", \"score\": 0.3862106502056122}, {\"doc_id\": \"tests/reporters/unittest_reporting.py::test_template_option_default\", \"score\": 0.38578054308891296}, {\"doc_id\": \"tests/test_epylint.py::test_epylint_strange_command\", \"score\": 0.36757344007492065}, {\"doc_id\": \"tests/functional/r/raising/raising_format_tuple.py::good_braces\", \"score\": 0.3624166250228882}, {\"doc_id\": \"pylint/message/message.py::Message.format\", \"score\": 0.3562801480293274}, {\"doc_id\": \"pylint/reporters/text.py::TextReporter.on_set_current_module\", \"score\": 0.35128727555274963}]"
+}

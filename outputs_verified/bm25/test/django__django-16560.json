@@ -1,0 +1,54 @@
+{
+  "instance_id": "django__django-16560",
+  "query": "Allow to customize the code attribute of ValidationError raised by BaseConstraint.validate\nDescription\n\t\nIt is currently possible to customize the violation_error_message of a ValidationError raised by a constraint but not the code.\nI'd like to add a new violation_error_message parameter to BaseConstraint to allow to easily add one.\nCurrently, to achieve the same result, you have to subclass the constraint to tweak validate to catch and reraise the ValidationError.\nSince the documentation recommends to Provide a descriptive error code to the constructor: when raising a ValidationError in ​https://docs.djangoproject.com/en/4.1/ref/forms/validation/#raising-validationerror , I think it would make sense to provide this possibility for errors raised by constraints.\nIf you think it would be a good idea, I'd be happy to work on a PR.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/postgres/constraints.py",
+      "django/db/models/constraints.py"
+    ],
+    "locations": [
+      "django/contrib/postgres/constraints.py::ExclusionConstraint",
+      "django/contrib/postgres/constraints.py::ExclusionConstraint.__init__",
+      "django/contrib/postgres/constraints.py::ExclusionConstraint._get_expressions",
+      "django/contrib/postgres/constraints.py::ExclusionConstraint.__eq__",
+      "django/contrib/postgres/constraints.py::ExclusionConstraint.__repr__",
+      "django/contrib/postgres/constraints.py::ExclusionConstraint.validate",
+      "django/db/models/constraints.py::BaseConstraint",
+      "django/db/models/constraints.py::BaseConstraint.__init__",
+      "django/db/models/constraints.py::BaseConstraint.deconstruct",
+      "django/db/models/constraints.py::BaseConstraint.clone",
+      "django/db/models/constraints.py::CheckConstraint",
+      "django/db/models/constraints.py::CheckConstraint.__init__",
+      "django/db/models/constraints.py::CheckConstraint._get_check_sql",
+      "django/db/models/constraints.py::CheckConstraint.validate",
+      "django/db/models/constraints.py::CheckConstraint.__repr__",
+      "django/db/models/constraints.py::CheckConstraint.__eq__",
+      "django/db/models/constraints.py::UniqueConstraint",
+      "django/db/models/constraints.py::UniqueConstraint.__init__",
+      "django/db/models/constraints.py::UniqueConstraint.contains_expressions",
+      "django/db/models/constraints.py::UniqueConstraint.remove_sql",
+      "django/db/models/constraints.py::UniqueConstraint.__repr__",
+      "django/db/models/constraints.py::UniqueConstraint.__eq__",
+      "django/db/models/constraints.py::UniqueConstraint.validate"
+    ]
+  },
+  "predictions": [
+    "django/template/defaulttags.py::regroup",
+    "django/forms/forms.py::BaseForm.add_error",
+    "django/db/models/expressions.py::BaseExpression._resolve_output_field",
+    "django/contrib/auth/forms.py::AuthenticationForm.confirm_login_allowed",
+    "django/contrib/postgres/utils.py::prefix_validation_error",
+    "django/core/mail/backends/base.py::BaseEmailBackend.open",
+    "django/forms/fields.py::MultiValueField.clean",
+    "django/middleware/csrf.py::get_token",
+    "django/contrib/messages/storage/base.py::BaseStorage._get",
+    "django/forms/formsets.py::BaseFormSet.ordered_forms"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "51c9bb7cd16081133af4f0ab6d06572660309730",
+    "total_functions_indexed": 26404,
+    "retrieval_time_seconds": 2.6310911178588867
+  },
+  "raw_output": "[{\"doc_id\": \"django/template/defaulttags.py::regroup\", \"score\": 136.21372407596334}, {\"doc_id\": \"django/forms/forms.py::BaseForm.add_error\", \"score\": 134.38712544509127}, {\"doc_id\": \"django/db/models/expressions.py::BaseExpression._resolve_output_field\", \"score\": 125.36933744012731}, {\"doc_id\": \"django/contrib/auth/forms.py::AuthenticationForm.confirm_login_allowed\", \"score\": 124.94908324420066}, {\"doc_id\": \"django/contrib/postgres/utils.py::prefix_validation_error\", \"score\": 124.25639746639946}, {\"doc_id\": \"django/core/mail/backends/base.py::BaseEmailBackend.open\", \"score\": 124.22754894416498}, {\"doc_id\": \"django/forms/fields.py::MultiValueField.clean\", \"score\": 122.98127802195351}, {\"doc_id\": \"django/middleware/csrf.py::get_token\", \"score\": 122.97020752728312}, {\"doc_id\": \"django/contrib/messages/storage/base.py::BaseStorage._get\", \"score\": 120.27951883148282}, {\"doc_id\": \"django/forms/formsets.py::BaseFormSet.ordered_forms\", \"score\": 119.23594915223894}]"
+}

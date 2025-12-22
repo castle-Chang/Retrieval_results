@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-13043",
+  "query": "decompose() function in intpoly returns a list of arbitrary order\nThe decompose() function, with separate=True, returns `list(poly_dict.values())`, which is ordered arbitrarily.  \r\n\r\nWhat is this used for? It should be sorted somehow, or returning a set (in which case, why not just use the returned dictionary and have the caller take the values). This is causing test failures for me after some changes to the core. \r\n\r\nCC @ArifAhmed1995 @certik \n",
+  "ground_truth": {
+    "files": [
+      "sympy/integrals/intpoly.py"
+    ],
+    "locations": [
+      "sympy/integrals/intpoly.py::decompose"
+    ]
+  },
+  "predictions": [
+    "sympy/integrals/intpoly.py::decompose",
+    "sympy/integrals/tests/test_intpoly.py::test_decompose",
+    "sympy/polys/polytools.py::Poly.decompose",
+    "sympy/polys/polyclasses.py::DMP.decompose",
+    "sympy/polys/polytools.py::decompose",
+    "sympy/solvers/tests/test_decompogen.py::test_decompogen_poly",
+    "sympy/polys/compatibility.py::IPolys.dup_decompose",
+    "sympy/polys/tests/test_rings.py::test_PolyElement_decompose",
+    "sympy/polys/tests/test_polytools.py::test_compose",
+    "sympy/polys/rings.py::PolyElement.decompose"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "a3389a25ec84d36f5cf04a4f2562d820f131db64",
+    "total_functions_indexed": 20976,
+    "retrieval_time_seconds": 0.013941287994384766
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/integrals/intpoly.py::decompose\", \"score\": 0.6173911094665527}, {\"doc_id\": \"sympy/integrals/tests/test_intpoly.py::test_decompose\", \"score\": 0.5657583475112915}, {\"doc_id\": \"sympy/polys/polytools.py::Poly.decompose\", \"score\": 0.49647146463394165}, {\"doc_id\": \"sympy/polys/polyclasses.py::DMP.decompose\", \"score\": 0.46704408526420593}, {\"doc_id\": \"sympy/polys/polytools.py::decompose\", \"score\": 0.42285072803497314}, {\"doc_id\": \"sympy/solvers/tests/test_decompogen.py::test_decompogen_poly\", \"score\": 0.4222513735294342}, {\"doc_id\": \"sympy/polys/compatibility.py::IPolys.dup_decompose\", \"score\": 0.4113224744796753}, {\"doc_id\": \"sympy/polys/tests/test_rings.py::test_PolyElement_decompose\", \"score\": 0.41074490547180176}, {\"doc_id\": \"sympy/polys/tests/test_polytools.py::test_compose\", \"score\": 0.4006255567073822}, {\"doc_id\": \"sympy/polys/rings.py::PolyElement.decompose\", \"score\": 0.40039899945259094}]"
+}

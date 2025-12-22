@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-18532",
+  "query": "expr.atoms() should return objects with no args instead of subclasses of Atom\n`expr.atoms()` with no arguments returns subclasses of `Atom` in `expr`. But the correct definition of a leaf node should be that it has no `.args`. \n\nThis should be easy to fix, but one needs to check that this doesn't affect the performance. \n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/basic.py"
+    ],
+    "locations": [
+      "sympy/core/basic.py::Basic",
+      "sympy/core/basic.py::Basic.atoms"
+    ]
+  },
+  "predictions": [
+    "sympy/core/tests/test_expr.py::test_atoms",
+    "sympy/core/basic.py::Atom._sorted_args",
+    "sympy/codegen/tests/test_ast.py::test_none",
+    "sympy/core/tests/test_basic.py::test_atoms",
+    "sympy/core/tests/test_args.py::test_sympy__core__basic__Atom",
+    "sympy/matrices/tests/test_matrices.py::test_atoms",
+    "sympy/core/tests/test_args.py::test_sympy__core__expr__AtomicExpr",
+    "sympy/core/expr.py::Expr.expr_free_symbols",
+    "sympy/core/basic.py::Basic.atoms",
+    "sympy/matrices/tests/test_commonmatrix.py::test_atoms"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "74227f900b05009d4eed62e34a166228788a32ca",
+    "total_functions_indexed": 33971,
+    "retrieval_time_seconds": 0.09411048889160156
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/tests/test_expr.py::test_atoms\", \"score\": 0.5120929479598999}, {\"doc_id\": \"sympy/core/basic.py::Atom._sorted_args\", \"score\": 0.4764403700828552}, {\"doc_id\": \"sympy/codegen/tests/test_ast.py::test_none\", \"score\": 0.4479737877845764}, {\"doc_id\": \"sympy/core/tests/test_basic.py::test_atoms\", \"score\": 0.4426022469997406}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__core__basic__Atom\", \"score\": 0.44107457995414734}, {\"doc_id\": \"sympy/matrices/tests/test_matrices.py::test_atoms\", \"score\": 0.43985456228256226}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__core__expr__AtomicExpr\", \"score\": 0.4283486306667328}, {\"doc_id\": \"sympy/core/expr.py::Expr.expr_free_symbols\", \"score\": 0.4255177974700928}, {\"doc_id\": \"sympy/core/basic.py::Basic.atoms\", \"score\": 0.4235162138938904}, {\"doc_id\": \"sympy/matrices/tests/test_commonmatrix.py::test_atoms\", \"score\": 0.42278212308883667}]"
+}

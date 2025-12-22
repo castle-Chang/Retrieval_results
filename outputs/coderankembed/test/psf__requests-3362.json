@@ -1,0 +1,31 @@
+{
+  "instance_id": "psf__requests-3362",
+  "query": "Uncertain about content/text vs iter_content(decode_unicode=True/False)\nWhen requesting an application/json document, I'm seeing `next(r.iter_content(16*1024, decode_unicode=True))` returning bytes, whereas `r.text` returns unicode. My understanding was that both should return a unicode object. In essence, I thought \"iter_content\" was equivalent to \"iter_text\" when decode_unicode was True. Have I misunderstood something? I can provide an example if needed.\n\nFor reference, I'm using python 3.5.1 and requests 2.10.0.\n\nThanks!\n\n",
+  "ground_truth": {
+    "files": [
+      "requests/utils.py"
+    ],
+    "locations": [
+      "requests/utils.py::stream_decode_response_unicode"
+    ]
+  },
+  "predictions": [
+    "tests/test_requests.py::TestRequests.test_response_decode_unicode",
+    "requests/models.py::Response.iter_content",
+    "requests/utils.py::stream_decode_response_unicode",
+    "requests/models.py::Response.text",
+    "tests/test_requests.py::TestRequests.test_response_is_iterable",
+    "requests/utils.py::get_unicode_from_response",
+    "requests/models.py::Response.__iter__",
+    "requests/models.py::Response.iter_lines",
+    "requests/models.py::Response.content",
+    "tests/test_requests.py::TestRequests.test_response_chunk_size_int"
+  ],
+  "metadata": {
+    "repo": "psf/requests",
+    "commit": "36453b95b13079296776d11b09cab2567ea3e703",
+    "total_functions_indexed": 808,
+    "retrieval_time_seconds": 0.0004401206970214844
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_requests.py::TestRequests.test_response_decode_unicode\", \"score\": 0.6160838603973389}, {\"doc_id\": \"requests/models.py::Response.iter_content\", \"score\": 0.5382898449897766}, {\"doc_id\": \"requests/utils.py::stream_decode_response_unicode\", \"score\": 0.5296915769577026}, {\"doc_id\": \"requests/models.py::Response.text\", \"score\": 0.4644184708595276}, {\"doc_id\": \"tests/test_requests.py::TestRequests.test_response_is_iterable\", \"score\": 0.44985532760620117}, {\"doc_id\": \"requests/utils.py::get_unicode_from_response\", \"score\": 0.4368553161621094}, {\"doc_id\": \"requests/models.py::Response.__iter__\", \"score\": 0.42038407921791077}, {\"doc_id\": \"requests/models.py::Response.iter_lines\", \"score\": 0.38243088126182556}, {\"doc_id\": \"requests/models.py::Response.content\", \"score\": 0.381311297416687}, {\"doc_id\": \"tests/test_requests.py::TestRequests.test_response_chunk_size_int\", \"score\": 0.375667929649353}]"
+}

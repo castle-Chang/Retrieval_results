@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-13023",
+  "query": "DecimalField.to_python() raises TypeError on dict values.\nDescription\n\t\nA call to DecimalField.to_python() with a dictionary as the value parameter produces TypeError instead of ValidationError. This is a problem, for example, when you try to save a model object, and a decimal field got set to a dictionary by mistake. The TypeError exception that comes back makes it hard to track the problem to the field if the object has a lot of fields.\nI am proposing a patch to fix it:\n​https://github.com/django/django/pull/13023\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/__init__.py"
+    ],
+    "locations": [
+      "django/db/models/fields/__init__.py::DecimalField",
+      "django/db/models/fields/__init__.py::DecimalField.to_python"
+    ]
+  },
+  "predictions": [
+    "django/forms/forms.py::BaseForm.add_error",
+    "django/contrib/gis/utils/ogrinspect.py::ogrinspect",
+    "django/db/models/fields/__init__.py::Field.db_type",
+    "django/db/models/query.py::QuerySet._next_is_sticky",
+    "django/db/models/base.py::Model.serializable_value",
+    "django/forms/models.py::modelform_factory",
+    "tests/model_fields/test_floatfield.py::TestFloatField.test_float_validates_object",
+    "django/db/models/options.py::Options._get_fields",
+    "django/db/models/query.py::prefetch_one_level",
+    "django/contrib/gis/utils/ogrinspect.py::mapping"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "f83b44075dafa429d59e8755aa47e15577cc49f9",
+    "total_functions_indexed": 23532,
+    "retrieval_time_seconds": 2.0539801120758057
+  },
+  "raw_output": "[{\"doc_id\": \"django/forms/forms.py::BaseForm.add_error\", \"score\": 97.19928609266995}, {\"doc_id\": \"django/contrib/gis/utils/ogrinspect.py::ogrinspect\", \"score\": 89.67954899461638}, {\"doc_id\": \"django/db/models/fields/__init__.py::Field.db_type\", \"score\": 88.31808047061662}, {\"doc_id\": \"django/db/models/query.py::QuerySet._next_is_sticky\", \"score\": 86.0698158622484}, {\"doc_id\": \"django/db/models/base.py::Model.serializable_value\", \"score\": 86.00882668731272}, {\"doc_id\": \"django/forms/models.py::modelform_factory\", \"score\": 85.51715636151438}, {\"doc_id\": \"tests/model_fields/test_floatfield.py::TestFloatField.test_float_validates_object\", \"score\": 85.0830905394989}, {\"doc_id\": \"django/db/models/options.py::Options._get_fields\", \"score\": 82.29105951110594}, {\"doc_id\": \"django/db/models/query.py::prefetch_one_level\", \"score\": 82.28108567168694}, {\"doc_id\": \"django/contrib/gis/utils/ogrinspect.py::mapping\", \"score\": 81.83517276403832}]"
+}

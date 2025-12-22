@@ -1,0 +1,35 @@
+{
+  "instance_id": "django__django-11095",
+  "query": "add ModelAdmin.get_inlines() hook to allow set inlines based on the request or model instance.\nDescription\n\t\nadd ModelAdmin.get_inlines() hook to allow set inlines based on the request or model instance.\nCurrently, We can override the method get_inline_instances to do such a thing, but a for loop should be copied to my code. So I wished add a hook get_inlines(request, obj=None)\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admin/options.py"
+    ],
+    "locations": [
+      "django/contrib/admin/options.py::BaseModelAdmin",
+      "django/contrib/admin/options.py::BaseModelAdmin.get_fieldsets",
+      "django/contrib/admin/options.py::BaseModelAdmin.get_ordering",
+      "django/contrib/admin/options.py::ModelAdmin",
+      "django/contrib/admin/options.py::ModelAdmin.get_inline_instances"
+    ]
+  },
+  "predictions": [
+    "django/views/debug.py::SafeExceptionReporterFilter.is_active",
+    "django/middleware/clickjacking.py::XFrameOptionsMiddleware.get_xframe_options_value",
+    "django/db/models/base.py::Model.save",
+    "django/contrib/admin/options.py::BaseModelAdmin.has_module_permission",
+    "django/contrib/admin/options.py::ModelAdmin._changeform_view",
+    "django/contrib/auth/admin.py::UserAdmin.response_add",
+    "django/db/models/base.py::Model.__getstate__",
+    "django/contrib/admin/options.py::ModelAdmin.get_inline_instances",
+    "tests/model_forms/tests.py::ModelFormBaseTest.test_save_blank_false_with_required_false",
+    "django/contrib/admin/options.py::ModelAdmin.get_formsets_with_inlines"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "7d49ad76562e8c0597a0eb66046ab423b12888d8",
+    "total_functions_indexed": 22424,
+    "retrieval_time_seconds": 0.9998478889465332
+  },
+  "raw_output": "[{\"doc_id\": \"django/views/debug.py::SafeExceptionReporterFilter.is_active\", \"score\": 73.49086175979235}, {\"doc_id\": \"django/middleware/clickjacking.py::XFrameOptionsMiddleware.get_xframe_options_value\", \"score\": 72.08366136837758}, {\"doc_id\": \"django/db/models/base.py::Model.save\", \"score\": 68.03772561157609}, {\"doc_id\": \"django/contrib/admin/options.py::BaseModelAdmin.has_module_permission\", \"score\": 67.40729623277889}, {\"doc_id\": \"django/contrib/admin/options.py::ModelAdmin._changeform_view\", \"score\": 66.86283485474222}, {\"doc_id\": \"django/contrib/auth/admin.py::UserAdmin.response_add\", \"score\": 66.53630364960192}, {\"doc_id\": \"django/db/models/base.py::Model.__getstate__\", \"score\": 65.9641749271504}, {\"doc_id\": \"django/contrib/admin/options.py::ModelAdmin.get_inline_instances\", \"score\": 64.67496250089138}, {\"doc_id\": \"tests/model_forms/tests.py::ModelFormBaseTest.test_save_blank_false_with_required_false\", \"score\": 64.15781795961462}, {\"doc_id\": \"django/contrib/admin/options.py::ModelAdmin.get_formsets_with_inlines\", \"score\": 64.09848559724146}]"
+}

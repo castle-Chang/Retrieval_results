@@ -1,0 +1,34 @@
+{
+  "instance_id": "sympy__sympy-20322",
+  "query": "Inconsistent behavior for sympify/simplify with ceiling\nIn sympy v1.5.1:\r\n```python\r\nIn [16]: sympy.sympify('4*ceiling(x/4 - 3/4)', evaluate=False).simplify()\r\nOut[16]: 4*ceiling(x/4 - 3/4)\r\n\r\nIn [17]: sympy.sympify('4*ceiling(x/4 - 3/4)', evaluate=True).simplify()\r\nOut[17]: 4*ceiling(x/4 - 3/4)\r\n```\r\n\r\nIn sympy v.1.6.2:\r\n```python\r\nIn [16]: sympy.sympify('4*ceiling(x/4 - 3/4)', evaluate=False).simplify()\r\nOut[16]: 4*ceiling(x/4) - 3\r\n\r\nIn [17]: sympy.sympify('4*ceiling(x/4 - 3/4)', evaluate=True).simplify()\r\nOut [17]: 4*ceiling(x/4 - 3/4)\r\n```\r\n\r\nIs there a way to ensure that the behavior is consistent, even though evaluate is equal to `False` when parsing?\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/mul.py"
+    ],
+    "locations": [
+      "sympy/core/mul.py::Mul",
+      "sympy/core/mul.py::Mul._eval_is_zero",
+      "sympy/core/mul.py::Mul._eval_is_integer",
+      "sympy/core/mul.py::Mul._eval_is_polar"
+    ]
+  },
+  "predictions": [
+    "sympy/series/tests/test_limits.py::test_ceiling_requires_robust_assumptions",
+    "sympy/series/tests/test_limits.py::test_ceiling",
+    "sympy/functions/elementary/tests/test_integers.py::test_ceiling",
+    "sympy/core/tests/test_sympify.py::test_evaluate_false",
+    "sympy/printing/pretty/tests/test_pretty.py::test_issue_8292",
+    "sympy/simplify/tests/test_simplify.py::test_issue_7001",
+    "sympy/core/tests/test_relational.py::test_issue_8444_workingtests",
+    "sympy/functions/elementary/tests/test_integers.py::test_nested_floor_ceiling",
+    "sympy/simplify/tests/test_simplify.py::test_issue_4194",
+    "sympy/printing/pretty/tests/test_pretty.py::test_issue_8344"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "ab864967e71c950a15771bb6c3723636026ba876",
+    "total_functions_indexed": 35363,
+    "retrieval_time_seconds": 0.013060569763183594
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/series/tests/test_limits.py::test_ceiling_requires_robust_assumptions\", \"score\": 0.5391331911087036}, {\"doc_id\": \"sympy/series/tests/test_limits.py::test_ceiling\", \"score\": 0.5138767957687378}, {\"doc_id\": \"sympy/functions/elementary/tests/test_integers.py::test_ceiling\", \"score\": 0.5012217164039612}, {\"doc_id\": \"sympy/core/tests/test_sympify.py::test_evaluate_false\", \"score\": 0.4973418116569519}, {\"doc_id\": \"sympy/printing/pretty/tests/test_pretty.py::test_issue_8292\", \"score\": 0.49304836988449097}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_issue_7001\", \"score\": 0.4875733256340027}, {\"doc_id\": \"sympy/core/tests/test_relational.py::test_issue_8444_workingtests\", \"score\": 0.4848909080028534}, {\"doc_id\": \"sympy/functions/elementary/tests/test_integers.py::test_nested_floor_ceiling\", \"score\": 0.48144328594207764}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_issue_4194\", \"score\": 0.4780334234237671}, {\"doc_id\": \"sympy/printing/pretty/tests/test_pretty.py::test_issue_8344\", \"score\": 0.4753934144973755}]"
+}

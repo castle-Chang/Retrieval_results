@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-14155",
+  "query": "ResolverMatch.__repr__() doesn't handle functools.partial() nicely.\nDescription\n\t \n\t\t(last modified by Nick Pope)\n\t \nWhen a partial function is passed as the view, the __repr__ shows the func argument as functools.partial which isn't very helpful, especially as it doesn't reveal the underlying function or arguments provided.\nBecause a partial function also has arguments provided up front, we need to handle those specially so that they are accessible in __repr__.\nISTM that we can simply unwrap functools.partial objects in ResolverMatch.__init__().\n",
+  "ground_truth": {
+    "files": [
+      "django/urls/resolvers.py"
+    ],
+    "locations": [
+      "django/urls/resolvers.py::ResolverMatch",
+      "django/urls/resolvers.py::ResolverMatch.__getitem__",
+      "django/urls/resolvers.py::ResolverMatch.__repr__"
+    ]
+  },
+  "predictions": [
+    "django/urls/resolvers.py::ResolverMatch.__repr__",
+    "tests/urlpatterns_reverse/tests.py::ResolverMatchTests.test_repr",
+    "django/urls/resolvers.py::URLPattern.__repr__",
+    "django/urls/resolvers.py::ResolverMatch.__init__",
+    "django/urls/resolvers.py::ResolverMatch.__getitem__",
+    "django/urls/resolvers.py::URLResolver.__repr__",
+    "tests/urlpatterns_reverse/views.py::pass_resolver_match_view",
+    "django/core/handlers/base.py::BaseHandler.resolve_request",
+    "tests/migrations/test_autodetector.py::AutodetectorTests.test_supports_functools_partial",
+    "django/urls/resolvers.py::URLPattern.lookup_str"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "2f13c476abe4ba787b6cb71131818341911f43cc",
+    "total_functions_indexed": 24458,
+    "retrieval_time_seconds": 0.06451797485351562
+  },
+  "raw_output": "[{\"doc_id\": \"django/urls/resolvers.py::ResolverMatch.__repr__\", \"score\": 0.5163388252258301}, {\"doc_id\": \"tests/urlpatterns_reverse/tests.py::ResolverMatchTests.test_repr\", \"score\": 0.48087215423583984}, {\"doc_id\": \"django/urls/resolvers.py::URLPattern.__repr__\", \"score\": 0.38510939478874207}, {\"doc_id\": \"django/urls/resolvers.py::ResolverMatch.__init__\", \"score\": 0.3791577219963074}, {\"doc_id\": \"django/urls/resolvers.py::ResolverMatch.__getitem__\", \"score\": 0.3769659996032715}, {\"doc_id\": \"django/urls/resolvers.py::URLResolver.__repr__\", \"score\": 0.36288344860076904}, {\"doc_id\": \"tests/urlpatterns_reverse/views.py::pass_resolver_match_view\", \"score\": 0.35895755887031555}, {\"doc_id\": \"django/core/handlers/base.py::BaseHandler.resolve_request\", \"score\": 0.35833215713500977}, {\"doc_id\": \"tests/migrations/test_autodetector.py::AutodetectorTests.test_supports_functools_partial\", \"score\": 0.3574380576610565}, {\"doc_id\": \"django/urls/resolvers.py::URLPattern.lookup_str\", \"score\": 0.3513038158416748}]"
+}

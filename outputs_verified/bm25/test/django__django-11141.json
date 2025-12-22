@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11141",
+  "query": "Allow migrations directories without __init__.py files\nDescription\n\t \n\t\t(last modified by Tim Graham)\n\t \nBackground: In python 3 a package with no __init__.py is implicitly a namespace package, so it has no __file__ attribute. \nThe migrate command currently checks for existence of a __file__ attribute on the migrations package. This check was introduced in #21015, because the __file__ attribute was used in migration file discovery. \nHowever, in #23406 migration file discovery was changed to use pkgutil.iter_modules (), instead of direct filesystem access. pkgutil. iter_modules() uses the package's __path__ list, which exists on implicit namespace packages.\nAs a result, the __file__ check is no longer needed, and in fact prevents migrate from working on namespace packages (implicit or otherwise). \nRelated work: #29091\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/loader.py"
+    ],
+    "locations": [
+      "django/db/migrations/loader.py::MigrationLoader",
+      "django/db/migrations/loader.py::MigrationLoader.load_disk"
+    ]
+  },
+  "predictions": [
+    "django/db/migrations/questioner.py::MigrationQuestioner.ask_initial",
+    "django/db/migrations/loader.py::MigrationLoader.load_disk",
+    "django/utils/module_loading.py::module_has_submodule",
+    "tests/admin_scripts/tests.py::AdminScriptTestCase._ext_backend_paths",
+    "tests/migrations/test_commands.py::MigrateTests.test_regression_22823_unmigrated_fk_to_migrated_model",
+    "django/core/management/__init__.py::get_commands",
+    "django/urls/conf.py::include",
+    "django/utils/module_loading.py::module_dir",
+    "django/apps/config.py::AppConfig._path_from_module",
+    "tests/forms_tests/field_tests/test_filefield.py::FileFieldTest.test_filefield_changed"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "5d9cf79baf07fc4aed7ad1b06990532a65378155",
+    "total_functions_indexed": 22871,
+    "retrieval_time_seconds": 1.81728196144104
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/migrations/questioner.py::MigrationQuestioner.ask_initial\", \"score\": 120.24787071511442}, {\"doc_id\": \"django/db/migrations/loader.py::MigrationLoader.load_disk\", \"score\": 114.66155674466916}, {\"doc_id\": \"django/utils/module_loading.py::module_has_submodule\", \"score\": 102.78520377460427}, {\"doc_id\": \"tests/admin_scripts/tests.py::AdminScriptTestCase._ext_backend_paths\", \"score\": 102.58071967854444}, {\"doc_id\": \"tests/migrations/test_commands.py::MigrateTests.test_regression_22823_unmigrated_fk_to_migrated_model\", \"score\": 101.75793771992261}, {\"doc_id\": \"django/core/management/__init__.py::get_commands\", \"score\": 101.71421339966362}, {\"doc_id\": \"django/urls/conf.py::include\", \"score\": 97.43908647467349}, {\"doc_id\": \"django/utils/module_loading.py::module_dir\", \"score\": 92.35741583694035}, {\"doc_id\": \"django/apps/config.py::AppConfig._path_from_module\", \"score\": 90.87632988824171}, {\"doc_id\": \"tests/forms_tests/field_tests/test_filefield.py::FileFieldTest.test_filefield_changed\", \"score\": 86.85785849360174}]"
+}

@@ -1,0 +1,33 @@
+{
+  "instance_id": "matplotlib__matplotlib-25332",
+  "query": "[Bug]: Unable to pickle figure with aligned labels\n### Bug summary\r\n\r\n Unable to pickle figure after calling `align_labels()`\r\n\r\n### Code for reproduction\r\n\r\n```python\r\nimport matplotlib.pyplot as plt\r\nimport pickle\r\n\r\nfig = plt.figure()\r\nax1 = fig.add_subplot(211)\r\nax2 = fig.add_subplot(212)\r\ntime=[0,1,2,3,4]\r\nspeed=[40000,4300,4500,4700,4800]\r\nacc=[10,11,12,13,14]\r\nax1.plot(time,speed)\r\nax1.set_ylabel('speed')\r\nax2.plot(time,acc)\r\nax2.set_ylabel('acc')\r\n\r\nfig.align_labels() ##pickling works after removing this line \r\n\r\npickle.dumps(fig)\r\nplt.show()\r\n```\r\n\r\n\r\n### Actual outcome\r\n```\r\nalign.py\", line 16\r\npickle.dumps(fig)\r\nTypeError: cannot pickle 'weakref.ReferenceType' object\r\n```\r\n### Expected outcome\r\n\r\nPickling successful\r\n\r\n### Additional information\r\n\r\n_No response_\r\n\r\n### Operating system\r\n\r\nWindows\r\n\r\n### Matplotlib Version\r\n\r\n3.7.0\r\n\r\n### Matplotlib Backend\r\n\r\n_No response_\r\n\r\n### Python version\r\n\r\n_No response_\r\n\r\n### Jupyter version\r\n\r\n_No response_\r\n\r\n### Installation\r\n\r\nNone\n",
+  "ground_truth": {
+    "files": [
+      "lib/matplotlib/cbook.py"
+    ],
+    "locations": [
+      "lib/matplotlib/cbook.py::Grouper",
+      "lib/matplotlib/cbook.py::Grouper.__init__",
+      "lib/matplotlib/cbook.py::Grouper.__contains__"
+    ]
+  },
+  "predictions": [
+    "lib/matplotlib/tests/test_figure.py::test_align_labels",
+    "lib/matplotlib/tests/test_figure.py::test_align_labels_stray_axes",
+    "lib/matplotlib/tests/test_constrainedlayout.py::test_align_labels",
+    "lib/matplotlib/tests/test_pickle.py::test_simple",
+    "lib/matplotlib/tests/test_pickle.py::test_complete",
+    "lib/matplotlib/tests/test_pickle.py::test_no_pyplot",
+    "lib/matplotlib/tests/test_pickle.py::test_image",
+    "lib/matplotlib/tests/test_pickle.py::test_gcf",
+    "galleries/examples/text_labels_and_annotations/align_ylabels.py::make_plot",
+    "lib/matplotlib/tests/test_axes.py::test_bar_tick_label_multiple_old_alignment"
+  ],
+  "metadata": {
+    "repo": "matplotlib/matplotlib",
+    "commit": "66ba515e671638971bd11a34cff12c107a437e0b",
+    "total_functions_indexed": 9189,
+    "retrieval_time_seconds": 0.003770112991333008
+  },
+  "raw_output": "[{\"doc_id\": \"lib/matplotlib/tests/test_figure.py::test_align_labels\", \"score\": 0.5672580003738403}, {\"doc_id\": \"lib/matplotlib/tests/test_figure.py::test_align_labels_stray_axes\", \"score\": 0.5417358875274658}, {\"doc_id\": \"lib/matplotlib/tests/test_constrainedlayout.py::test_align_labels\", \"score\": 0.5405756235122681}, {\"doc_id\": \"lib/matplotlib/tests/test_pickle.py::test_simple\", \"score\": 0.534511923789978}, {\"doc_id\": \"lib/matplotlib/tests/test_pickle.py::test_complete\", \"score\": 0.5142610669136047}, {\"doc_id\": \"lib/matplotlib/tests/test_pickle.py::test_no_pyplot\", \"score\": 0.5105202198028564}, {\"doc_id\": \"lib/matplotlib/tests/test_pickle.py::test_image\", \"score\": 0.5088300704956055}, {\"doc_id\": \"lib/matplotlib/tests/test_pickle.py::test_gcf\", \"score\": 0.4880185127258301}, {\"doc_id\": \"galleries/examples/text_labels_and_annotations/align_ylabels.py::make_plot\", \"score\": 0.4877933859825134}, {\"doc_id\": \"lib/matplotlib/tests/test_axes.py::test_bar_tick_label_multiple_old_alignment\", \"score\": 0.4847230315208435}]"
+}

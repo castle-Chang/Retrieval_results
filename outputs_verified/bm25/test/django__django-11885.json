@@ -1,0 +1,46 @@
+{
+  "instance_id": "django__django-11885",
+  "query": "Combine fast delete queries\nDescription\n\t\nWhen emulating ON DELETE CASCADE via on_delete=models.CASCADE the deletion.Collector will try to perform fast queries which are DELETE FROM table WHERE table.pk IN .... There's a few conditions required for this fast path to be taken but when this happens the collection logic should combine such queries by table to reduce the number of roundtrips to the database.\nFor example, given the following models\nclass Person(models.Model):\n\tfriends = models.ManyToManyField('self')\nclass User(models.Model):\n\tpass\nclass Entry(models.Model):\n\tcreated_by = models.ForeignKey(User)\n\tupdated_by = models.ForeignKey(User)\nIssuing a person.delete() or user.delete() will result in 3 queries of the form\nDELETE FROM person_friends WHERE from_id = :id\nDELETE FROM person_friends WHERE to_id = :id\nDELETE FROM person WHERE id = :id\nDELETE FROM entry WHERE created_by_id = :id\nDELETE FROM entry WHERE updated_by = :id\nDELETRE FROM user WHERE id = :id\nBut both queries (or N queries depending on the number of foreign relationships) can be combined into a single one by using OR\nDELETE FROM person_friends WHERE from_id = :id OR to_id = :id\nDELETE FROM person WHERE id = :id\nDELETE FROM entry WHERE created_by_id = :id OR updated_by = :id\nDELETE FROM user WHERE id = :id\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/deletion.py",
+      "django/contrib/admin/utils.py"
+    ],
+    "locations": [
+      "django/contrib/admin/utils.py::NestedObjects",
+      "django/contrib/admin/utils.py::NestedObjects.collect",
+      "django/contrib/admin/utils.py::NestedObjects.related_objects",
+      "django/contrib/admin/utils.py::NestedObjects._nested",
+      "django/db/models/deletion.py::ProtectedError",
+      "django/db/models/deletion.py::Collector",
+      "django/db/models/deletion.py::Collector.__init__",
+      "django/db/models/deletion.py::Collector.add",
+      "django/db/models/deletion.py::Collector.add_field_update",
+      "django/db/models/deletion.py::Collector._has_signal_listeners",
+      "django/db/models/deletion.py::Collector.can_fast_delete",
+      "django/db/models/deletion.py::Collector.get_del_batches",
+      "django/db/models/deletion.py::Collector.collect",
+      "django/db/models/deletion.py::Collector.related_objects",
+      "django/db/models/deletion.py::Collector.instances_with_model"
+    ]
+  },
+  "predictions": [
+    "django/db/models/sql/compiler.py::SQLDeleteCompiler.as_sql",
+    "tests/migrations/test_operations.py::OperationTests.test_run_sql_params",
+    "tests/delete_regress/tests.py::DeleteLockingTest.test_concurrent_delete",
+    "tests/migrations/test_operations.py::OperationTests.test_run_sql",
+    "django/db/models/deletion.py::Collector.can_fast_delete",
+    "tests/delete/tests.py::DeletionTests.test_proxied_model_duplicate_queries",
+    "tests/queries/tests.py::SubqueryTests.test_sliced_delete",
+    "tests/custom_methods/models.py::Article.articles_from_same_day_2",
+    "tests/delete/tests.py::FastDeleteTests.test_fast_delete_large_batch",
+    "django/db/models/sql/subqueries.py::DeleteQuery.delete_qs"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "04ac9b45a34440fa447feb6ae934687aacbfc5f4",
+    "total_functions_indexed": 22870,
+    "retrieval_time_seconds": 3.136436700820923
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/sql/compiler.py::SQLDeleteCompiler.as_sql\", \"score\": 254.10817378333013}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_run_sql_params\", \"score\": 238.53587537502094}, {\"doc_id\": \"tests/delete_regress/tests.py::DeleteLockingTest.test_concurrent_delete\", \"score\": 231.84076494809185}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_run_sql\", \"score\": 219.5801696698168}, {\"doc_id\": \"django/db/models/deletion.py::Collector.can_fast_delete\", \"score\": 216.0047732508746}, {\"doc_id\": \"tests/delete/tests.py::DeletionTests.test_proxied_model_duplicate_queries\", \"score\": 209.58198235848351}, {\"doc_id\": \"tests/queries/tests.py::SubqueryTests.test_sliced_delete\", \"score\": 206.88234518540133}, {\"doc_id\": \"tests/custom_methods/models.py::Article.articles_from_same_day_2\", \"score\": 206.02743639202876}, {\"doc_id\": \"tests/delete/tests.py::FastDeleteTests.test_fast_delete_large_batch\", \"score\": 204.96326175333638}, {\"doc_id\": \"django/db/models/sql/subqueries.py::DeleteQuery.delete_qs\", \"score\": 200.53528557542788}]"
+}

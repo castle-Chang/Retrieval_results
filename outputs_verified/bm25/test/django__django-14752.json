@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-14752",
+  "query": "Refactor AutocompleteJsonView to support extra fields in autocomplete response\nDescription\n\t \n\t\t(last modified by mrts)\n\t \nAdding data attributes to items in ordinary non-autocomplete foreign key fields that use forms.widgets.Select-based widgets is relatively easy. This enables powerful and dynamic admin site customizations where fields from related models are updated immediately when users change the selected item.\nHowever, adding new attributes to autocomplete field results currently requires extending contrib.admin.views.autocomplete.AutocompleteJsonView and fully overriding the AutocompleteJsonView.get() method. Here's an example:\nclass MyModelAdmin(admin.ModelAdmin):\n\tdef get_urls(self):\n\t\treturn [\n\t\t\tpath('autocomplete/', CustomAutocompleteJsonView.as_view(admin_site=self.admin_site))\n\t\t\tif url.pattern.match('autocomplete/')\n\t\t\telse url for url in super().get_urls()\n\t\t]\nclass CustomAutocompleteJsonView(AutocompleteJsonView):\n\tdef get(self, request, *args, **kwargs):\n\t\tself.term, self.model_admin, self.source_field, to_field_name = self.process_request(request)\n\t\tif not self.has_perm(request):\n\t\t\traise PermissionDenied\n\t\tself.object_list = self.get_queryset()\n\t\tcontext = self.get_context_data()\n\t\treturn JsonResponse({\n\t\t\t'results': [\n\t\t\t\t{'id': str(getattr(obj, to_field_name)), 'text': str(obj), 'notes': obj.notes} # <-- customization here\n\t\t\t\tfor obj in context['object_list']\n\t\t\t],\n\t\t\t'pagination': {'more': context['page_obj'].has_next()},\n\t\t})\nThe problem with this is that as AutocompleteJsonView.get() keeps evolving, there's quite a lot of maintenance overhead required to catch up.\nThe solutions is simple, side-effect- and risk-free: adding a result customization extension point to get() by moving the lines that construct the results inside JsonResponse constructor to a separate method. So instead of\n\t\treturn JsonResponse({\n\t\t\t'results': [\n\t\t\t\t{'id': str(getattr(obj, to_field_name)), 'text': str(obj)}\n\t\t\t\tfor obj in context['object_list']\n\t\t\t],\n\t\t\t'pagination': {'more': context['page_obj'].has_next()},\n\t\t})\nthere would be\n\t\treturn JsonResponse({\n\t\t\t'results': [\n\t\t\t\tself.serialize_result(obj, to_field_name) for obj in context['object_list']\n\t\t\t],\n\t\t\t'pagination': {'more': context['page_obj'].has_next()},\n\t\t})\nwhere serialize_result() contains the original object to dictionary conversion code that would be now easy to override:\ndef serialize_result(self, obj, to_field_name):\n\treturn {'id': str(getattr(obj, to_field_name)), 'text': str(obj)}\nThe example CustomAutocompleteJsonView from above would now become succinct and maintainable:\nclass CustomAutocompleteJsonView(AutocompleteJsonView):\n\tdef serialize_result(self, obj, to_field_name):\n\t\treturn super.serialize_result(obj, to_field_name) | {'notes': obj.notes}\nWhat do you think, is this acceptable? I'm more than happy to provide the patch.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admin/views/autocomplete.py"
+    ],
+    "locations": [
+      "django/contrib/admin/views/autocomplete.py::AutocompleteJsonView",
+      "django/contrib/admin/views/autocomplete.py::AutocompleteJsonView.get",
+      "django/contrib/admin/views/autocomplete.py::AutocompleteJsonView.get_paginator"
+    ]
+  },
+  "predictions": [
+    "django/contrib/admin/views/autocomplete.py::AutocompleteJsonView.get",
+    "django/contrib/admin/views/autocomplete.py::AutocompleteJsonView.has_perm",
+    "django/contrib/admin/views/autocomplete.py::AutocompleteJsonView.process_request",
+    "django/contrib/admin/widgets.py::AutocompleteMixin.optgroups",
+    "tests/admin_views/test_autocomplete_view.py::AutocompleteJsonViewTests.test_get_paginator",
+    "django/contrib/admin/checks.py::BaseModelAdminChecks._check_autocomplete_fields_item",
+    "django/db/models/fields/related.py::RelatedField.get_forward_related_filter",
+    "django/contrib/admin/checks.py::ModelAdminChecks._check_list_editable_item",
+    "django/contrib/admin/options.py::ModelAdmin._delete_view",
+    "django/contrib/contenttypes/admin.py::GenericInlineModelAdminChecks._check_relation"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "b64db05b9cedd96905d637a2d824cbbf428e40e7",
+    "total_functions_indexed": 24938,
+    "retrieval_time_seconds": 4.527483224868774
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/admin/views/autocomplete.py::AutocompleteJsonView.get\", \"score\": 635.1501679355483}, {\"doc_id\": \"django/contrib/admin/views/autocomplete.py::AutocompleteJsonView.has_perm\", \"score\": 293.8520228335746}, {\"doc_id\": \"django/contrib/admin/views/autocomplete.py::AutocompleteJsonView.process_request\", \"score\": 273.65601526472926}, {\"doc_id\": \"django/contrib/admin/widgets.py::AutocompleteMixin.optgroups\", \"score\": 260.0146359182973}, {\"doc_id\": \"tests/admin_views/test_autocomplete_view.py::AutocompleteJsonViewTests.test_get_paginator\", \"score\": 242.96217559149144}, {\"doc_id\": \"django/contrib/admin/checks.py::BaseModelAdminChecks._check_autocomplete_fields_item\", \"score\": 242.4815494370932}, {\"doc_id\": \"django/db/models/fields/related.py::RelatedField.get_forward_related_filter\", \"score\": 240.51883451055406}, {\"doc_id\": \"django/contrib/admin/checks.py::ModelAdminChecks._check_list_editable_item\", \"score\": 234.0869272429988}, {\"doc_id\": \"django/contrib/admin/options.py::ModelAdmin._delete_view\", \"score\": 232.9367108346962}, {\"doc_id\": \"django/contrib/contenttypes/admin.py::GenericInlineModelAdminChecks._check_relation\", \"score\": 231.08007000245135}]"
+}

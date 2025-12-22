@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-13768",
+  "query": "Log exceptions handled in Signal.send_robust()\nDescription\n\t\nAs pointed out by ​Haki Benita on Twitter, by default Signal.send_robust() doesn't have any log messages for exceptions raised in receivers. Since Django logs exceptions in other similar situations, such as missing template variables, I think it would be worth adding a logger.exception() call in the except clause of send_robust() . Users would then see such exceptions in their error handling tools, e.g. Sentry, and be able to figure out what action to take from there. Ultimately any *expected* exception should be caught with a try in the receiver function.\n",
+  "ground_truth": {
+    "files": [
+      "django/dispatch/dispatcher.py"
+    ],
+    "locations": [
+      "django/dispatch/dispatcher.py::_make_id",
+      "django/dispatch/dispatcher.py::Signal",
+      "django/dispatch/dispatcher.py::Signal.send_robust"
+    ]
+  },
+  "predictions": [
+    "tests/dispatch/tests.py::DispatcherTests.test_send_robust_fail",
+    "django/dispatch/dispatcher.py::Signal.send_robust",
+    "tests/dispatch/tests.py::DispatcherTests.test_send_robust_no_receivers",
+    "tests/view_tests/views.py::send_log",
+    "tests/dispatch/tests.py::DispatcherTests.test_send_robust_ignored_sender",
+    "tests/dispatch/tests.py::DispatcherTests.test_send_robust_success",
+    "tests/logging_tests/tests.py::HandlerLoggingTests.test_uncaught_exception",
+    "tests/logging_tests/views.py::uncaught_exception",
+    "tests/middleware_exceptions/middleware.py::ProcessExceptionLogMiddleware.process_exception",
+    "tests/view_tests/tests/test_debug.py::DebugViewTests.test_template_exceptions"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "965d2d95c630939b53eb60d9c169f5dfc77ee0c6",
+    "total_functions_indexed": 24204,
+    "retrieval_time_seconds": 0.052654266357421875
+  },
+  "raw_output": "[{\"doc_id\": \"tests/dispatch/tests.py::DispatcherTests.test_send_robust_fail\", \"score\": 0.4510331153869629}, {\"doc_id\": \"django/dispatch/dispatcher.py::Signal.send_robust\", \"score\": 0.4449055790901184}, {\"doc_id\": \"tests/dispatch/tests.py::DispatcherTests.test_send_robust_no_receivers\", \"score\": 0.42935997247695923}, {\"doc_id\": \"tests/view_tests/views.py::send_log\", \"score\": 0.4273299276828766}, {\"doc_id\": \"tests/dispatch/tests.py::DispatcherTests.test_send_robust_ignored_sender\", \"score\": 0.4129418730735779}, {\"doc_id\": \"tests/dispatch/tests.py::DispatcherTests.test_send_robust_success\", \"score\": 0.3862624168395996}, {\"doc_id\": \"tests/logging_tests/tests.py::HandlerLoggingTests.test_uncaught_exception\", \"score\": 0.377142995595932}, {\"doc_id\": \"tests/logging_tests/views.py::uncaught_exception\", \"score\": 0.3734477758407593}, {\"doc_id\": \"tests/middleware_exceptions/middleware.py::ProcessExceptionLogMiddleware.process_exception\", \"score\": 0.3694331645965576}, {\"doc_id\": \"tests/view_tests/tests/test_debug.py::DebugViewTests.test_template_exceptions\", \"score\": 0.35624271631240845}]"
+}

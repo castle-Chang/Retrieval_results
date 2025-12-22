@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-14915",
+  "query": "ModelChoiceIteratorValue is not hashable.\nDescription\n\t\nRecently I migrated from Django 3.0 to Django 3.1. In my code, I add custom data-* attributes to the select widget options. After the upgrade some of those options broke. Error is {TypeError}unhashable type: 'ModelChoiceIteratorValue'.\nExample (this one breaks):\n\tdef create_option(self, name, value, label, selected, index, subindex=None, attrs=None):\n\t\tcontext = super().create_option(name, value, label, selected, index, subindex, attrs)\n\t\tif not value:\n\t\t\treturn context\n\t\tif value in self.show_fields: # This is a dict {1: ['first_name', 'last_name']}\n\t\t\tcontext['attrs']['data-fields'] = json.dumps(self.show_fields[value])\nHowever, working with arrays is not an issue:\n\tdef create_option(self, name, value, label, selected, index, subindex=None, attrs=None):\n\t\tcontext = super().create_option(name, value, label, selected, index, subindex, attrs)\n\t\tif not value:\n\t\t\treturn context\n\t\tif value in allowed_values: # This is an array [1, 2]\n\t\t\t...\n",
+  "ground_truth": {
+    "files": [
+      "django/forms/models.py"
+    ],
+    "locations": [
+      "django/forms/models.py::ModelChoiceIteratorValue",
+      "django/forms/models.py::ModelChoiceIteratorValue.__str__",
+      "django/forms/models.py::ModelChoiceIteratorValue.__eq__"
+    ]
+  },
+  "predictions": [
+    "django/forms/widgets.py::ChoiceWidget.create_option",
+    "django/forms/widgets.py::ChoiceWidget.optgroups",
+    "tests/model_forms/test_modelchoicefield.py::ModelChoiceFieldTests.test_choice_iterator_passes_model_to_widget",
+    "tests/model_forms/test_modelchoicefield.py::ModelChoiceFieldTests.test_custom_choice_iterator_passes_model_to_widget",
+    "tests/forms_tests/widget_tests/test_select.py::SelectTest.test_optgroups",
+    "django/contrib/postgres/forms/array.py::SplitArrayWidget.get_context",
+    "django/forms/widgets.py::MultiWidget.get_context",
+    "django/forms/widgets.py::SelectDateWidget.get_context",
+    "django/contrib/admin/widgets.py::FilteredSelectMultiple.get_context",
+    "django/forms/widgets.py::MultipleHiddenInput.get_context"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "903aaa35e5ceaa33bfc9b19b7f6da65ce5a91dd4",
+    "total_functions_indexed": 25127,
+    "retrieval_time_seconds": 1.9308385848999023
+  },
+  "raw_output": "[{\"doc_id\": \"django/forms/widgets.py::ChoiceWidget.create_option\", \"score\": 289.2820992297989}, {\"doc_id\": \"django/forms/widgets.py::ChoiceWidget.optgroups\", \"score\": 262.0676714187802}, {\"doc_id\": \"tests/model_forms/test_modelchoicefield.py::ModelChoiceFieldTests.test_choice_iterator_passes_model_to_widget\", \"score\": 243.44799904556473}, {\"doc_id\": \"tests/model_forms/test_modelchoicefield.py::ModelChoiceFieldTests.test_custom_choice_iterator_passes_model_to_widget\", \"score\": 228.7086807445567}, {\"doc_id\": \"tests/forms_tests/widget_tests/test_select.py::SelectTest.test_optgroups\", \"score\": 194.01106926504588}, {\"doc_id\": \"django/contrib/postgres/forms/array.py::SplitArrayWidget.get_context\", \"score\": 178.6873396173831}, {\"doc_id\": \"django/forms/widgets.py::MultiWidget.get_context\", \"score\": 170.83032392386988}, {\"doc_id\": \"django/forms/widgets.py::SelectDateWidget.get_context\", \"score\": 169.66539336989374}, {\"doc_id\": \"django/contrib/admin/widgets.py::FilteredSelectMultiple.get_context\", \"score\": 167.03380177649825}, {\"doc_id\": \"django/forms/widgets.py::MultipleHiddenInput.get_context\", \"score\": 164.13408683619315}]"
+}

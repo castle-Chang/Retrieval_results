@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-15127",
+  "query": "LEVEL_TAGS not updated when using @override_settings\nDescription\n\t\nWhen reading messages inside tests, new message tags created using @override_settings is not updated.\nThat causes the django.contrib.messages.storage.base.Message.level_tag property results to be an empty string and not know the new tags.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/messages/apps.py"
+    ],
+    "locations": [
+      "django/contrib/messages/apps.py::MessagesConfig"
+    ]
+  },
+  "predictions": [
+    "django/contrib/messages/storage/base.py::Message.level_tag",
+    "django/contrib/messages/storage/base.py::Message.tags",
+    "django/contrib/messages/api.py::add_message",
+    "django/contrib/messages/storage/base.py::BaseStorage.add",
+    "django/contrib/messages/storage/base.py::Message._prepare",
+    "django/contrib/messages/storage/cookie.py::CookieStorage._get",
+    "django/contrib/messages/storage/base.py::Message.__eq__",
+    "django/contrib/admin/options.py::ModelAdmin.message_user",
+    "tests/messages_tests/base.py::override_settings_tags.enable",
+    "django/contrib/messages/storage/base.py::BaseStorage._prepare_messages"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "9a6e2df3a8f01ea761529bec48e5a8dc0ea9575b",
+    "total_functions_indexed": 25306,
+    "retrieval_time_seconds": 0.7278923988342285
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/messages/storage/base.py::Message.level_tag\", \"score\": 68.11555229525717}, {\"doc_id\": \"django/contrib/messages/storage/base.py::Message.tags\", \"score\": 64.01863693533888}, {\"doc_id\": \"django/contrib/messages/api.py::add_message\", \"score\": 59.131514327888304}, {\"doc_id\": \"django/contrib/messages/storage/base.py::BaseStorage.add\", \"score\": 56.130291009607966}, {\"doc_id\": \"django/contrib/messages/storage/base.py::Message._prepare\", \"score\": 53.109740170028296}, {\"doc_id\": \"django/contrib/messages/storage/cookie.py::CookieStorage._get\", \"score\": 53.01978292440185}, {\"doc_id\": \"django/contrib/messages/storage/base.py::Message.__eq__\", \"score\": 51.78364922656504}, {\"doc_id\": \"django/contrib/admin/options.py::ModelAdmin.message_user\", \"score\": 50.64702188522212}, {\"doc_id\": \"tests/messages_tests/base.py::override_settings_tags.enable\", \"score\": 49.329700572028116}, {\"doc_id\": \"django/contrib/messages/storage/base.py::BaseStorage._prepare_messages\", \"score\": 49.293179243125216}]"
+}

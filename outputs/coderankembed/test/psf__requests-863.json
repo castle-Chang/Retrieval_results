@@ -1,0 +1,33 @@
+{
+  "instance_id": "psf__requests-863",
+  "query": "Allow lists in the dict values of the hooks argument\nCurrently the Request class has a .register_hook() method but it parses the dictionary it expects from it's hooks argument weirdly: the argument can only specify one hook function per hook.  If you pass in a list of hook functions per hook the code in Request.**init**() will wrap the list in a list which then fails when the hooks are consumed (since a list is not callable).  This is especially annoying since you can not use multiple hooks from a session.  The only way to get multiple hooks now is to create the request object without sending it, then call .register_hook() multiple times and then finally call .send().\n\nThis would all be much easier if Request.**init**() parsed the hooks parameter in a way that it accepts lists as it's values.\n\n",
+  "ground_truth": {
+    "files": [
+      "requests/models.py"
+    ],
+    "locations": [
+      "requests/models.py::Request",
+      "requests/models.py::Request.register_hook",
+      "requests/models.py::Request.deregister_hook"
+    ]
+  },
+  "predictions": [
+    "tests/test_requests.py::RequestsTestSuite.test_multiple_hooks",
+    "requests/hooks.py::dispatch_hook",
+    "requests/models.py::Request.register_hook",
+    "tests/test_requests.py::RequestsTestSuite.test_params_accepts_kv_list",
+    "requests/models.py::Request._encode_params",
+    "requests/cookies.py::RequestsCookieJar.items",
+    "tests/test_requests.py::RequestsTestSuite.test_post_fields_with_multiple_values_and_files",
+    "requests/cookies.py::RequestsCookieJar.keys",
+    "requests/cookies.py::RequestsCookieJar.values",
+    "requests/models.py::Request._encode_files"
+  ],
+  "metadata": {
+    "repo": "psf/requests",
+    "commit": "a0df2cbb10419037d11d04352b3175405ab52941",
+    "total_functions_indexed": 627,
+    "retrieval_time_seconds": 0.0008363723754882812
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_requests.py::RequestsTestSuite.test_multiple_hooks\", \"score\": 0.4204760193824768}, {\"doc_id\": \"requests/hooks.py::dispatch_hook\", \"score\": 0.4200138449668884}, {\"doc_id\": \"requests/models.py::Request.register_hook\", \"score\": 0.412044495344162}, {\"doc_id\": \"tests/test_requests.py::RequestsTestSuite.test_params_accepts_kv_list\", \"score\": 0.331310898065567}, {\"doc_id\": \"requests/models.py::Request._encode_params\", \"score\": 0.3175734877586365}, {\"doc_id\": \"requests/cookies.py::RequestsCookieJar.items\", \"score\": 0.29770490527153015}, {\"doc_id\": \"tests/test_requests.py::RequestsTestSuite.test_post_fields_with_multiple_values_and_files\", \"score\": 0.29430854320526123}, {\"doc_id\": \"requests/cookies.py::RequestsCookieJar.keys\", \"score\": 0.2935900092124939}, {\"doc_id\": \"requests/cookies.py::RequestsCookieJar.values\", \"score\": 0.2862672209739685}, {\"doc_id\": \"requests/models.py::Request._encode_files\", \"score\": 0.2798158526420593}]"
+}

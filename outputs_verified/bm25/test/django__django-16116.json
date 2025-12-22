@@ -1,0 +1,34 @@
+{
+  "instance_id": "django__django-16116",
+  "query": "makemigrations --check generating migrations is inconsistent with other uses of --check\nDescription\n\t\nTo script a check for missing migrations but without actually intending to create the migrations, it is necessary to use both --check and --dry-run, which is inconsistent with migrate --check and optimizemigration --check, which just exit (after possibly logging a bit).\nI'm suggesting that makemigrations --check should just exit without making migrations.\nThe choice to write the migrations anyway was not discussed AFAICT on ticket:25604 or ​https://groups.google.com/g/django-developers/c/zczdY6c9KSg/m/ZXCXQsGDDAAJ.\nNoticed when reading ​PR to adjust the documentation of migrate --check. I think the current documentation is silent on this question.\n",
+  "ground_truth": {
+    "files": [
+      "django/core/management/commands/makemigrations.py"
+    ],
+    "locations": [
+      "django/core/management/commands/makemigrations.py::Command",
+      "django/core/management/commands/makemigrations.py::Command.add_arguments",
+      "django/core/management/commands/makemigrations.py::Command.handle",
+      "django/core/management/commands/makemigrations.py::Command.write_to_last_migration_files"
+    ]
+  },
+  "predictions": [
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_check",
+    "django/core/management/commands/migrate.py::Command.add_arguments",
+    "tests/migrations/test_executor.py::ExecutorTests.test_apply_all_replaced_marks_replacement_as_applied",
+    "tests/migrations/test_commands.py::MigrateTests.test_regression_22823_unmigrated_fk_to_migrated_model",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_interactive_not_null_alteration",
+    "django/db/migrations/executor.py::MigrationExecutor.check_replacements",
+    "django/core/management/commands/makemigrations.py::Command.add_arguments",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_auto_now_add_interactive",
+    "tests/migrations/test_executor.py::ExecutorTests.test_run_with_squashed",
+    "django/db/migrations/executor.py::MigrationExecutor.migrate"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "5d36a8266c7d5d1994d7a7eeb4016f80d9cb0401",
+    "total_functions_indexed": 26194,
+    "retrieval_time_seconds": 2.829237461090088
+  },
+  "raw_output": "[{\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_check\", \"score\": 128.4027471891843}, {\"doc_id\": \"django/core/management/commands/migrate.py::Command.add_arguments\", \"score\": 104.18560004890045}, {\"doc_id\": \"tests/migrations/test_executor.py::ExecutorTests.test_apply_all_replaced_marks_replacement_as_applied\", \"score\": 100.5503402582921}, {\"doc_id\": \"tests/migrations/test_commands.py::MigrateTests.test_regression_22823_unmigrated_fk_to_migrated_model\", \"score\": 100.42515898351206}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_interactive_not_null_alteration\", \"score\": 98.23043863594714}, {\"doc_id\": \"django/db/migrations/executor.py::MigrationExecutor.check_replacements\", \"score\": 97.9817312675817}, {\"doc_id\": \"django/core/management/commands/makemigrations.py::Command.add_arguments\", \"score\": 97.2312706118789}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_auto_now_add_interactive\", \"score\": 95.48093868052673}, {\"doc_id\": \"tests/migrations/test_executor.py::ExecutorTests.test_run_with_squashed\", \"score\": 94.99244498645213}, {\"doc_id\": \"django/db/migrations/executor.py::MigrationExecutor.migrate\", \"score\": 94.45306638303728}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "sphinx-doc__sphinx-8475",
+  "query": "Extend linkchecker GET fallback logic to handle Too Many Redirects\nSubject: linkcheck - fallback to GET requests when HEAD requests returns Too Many Redirects\r\n\r\n### Feature or Bugfix\r\n\r\n- Bugfix\r\n\r\n### Purpose\r\n\r\nSome websites will enter infinite redirect loops with HEAD requests. In this case, the GET fallback is ignored as the exception is of type `TooManyRedirects` and the link is reported as broken.\r\nThis extends the except clause to retry with a GET request for such scenarios.\r\n\r\n### Detail\r\n\r\nClassifying this as a bug fix as URLs like https://idr.openmicroscopy.org/webclient/?show=well-119093 used to pass the linkchecking prior to Sphinx 3.2.0 but are now failing as HEAD requests have been enforced (#7936).\r\n\r\n/cc @mtbc @jburel @manics @joshmoore\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/builders/linkcheck.py"
+    ],
+    "locations": [
+      "sphinx/builders/linkcheck.py::CheckExternalLinksBuilder",
+      "sphinx/builders/linkcheck.py::CheckExternalLinksBuilder.check_thread"
+    ]
+  },
+  "predictions": [
+    "sphinx/util/requests.py::head",
+    "sphinx/util/requests.py::get",
+    "sphinx/builders/linkcheck.py::CheckExternalLinksBuilder.check_thread",
+    "sphinx/ext/intersphinx.py::_read_from_url",
+    "sphinx/application.py::Sphinx.add_config_value",
+    "sphinx/builders/linkcheck.py::check_anchor",
+    "sphinx/domains/__init__.py::Index.generate",
+    "sphinx/application.py::Sphinx.add_object_type",
+    "sphinx/util/stemmer/porter.py::PorterStemmer.__init__",
+    "sphinx/ext/autodoc/__init__.py::Documenter.generate"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "3ea1ec84cc610f7a9f4f6b354e264565254923ff",
+    "total_functions_indexed": 5557,
+    "retrieval_time_seconds": 0.3123962879180908
+  },
+  "raw_output": "[{\"doc_id\": \"sphinx/util/requests.py::head\", \"score\": 104.47939951067875}, {\"doc_id\": \"sphinx/util/requests.py::get\", \"score\": 90.63165100879762}, {\"doc_id\": \"sphinx/builders/linkcheck.py::CheckExternalLinksBuilder.check_thread\", \"score\": 89.95858653070069}, {\"doc_id\": \"sphinx/ext/intersphinx.py::_read_from_url\", \"score\": 82.19086729135275}, {\"doc_id\": \"sphinx/application.py::Sphinx.add_config_value\", \"score\": 81.64462987451677}, {\"doc_id\": \"sphinx/builders/linkcheck.py::check_anchor\", \"score\": 80.64082676419949}, {\"doc_id\": \"sphinx/domains/__init__.py::Index.generate\", \"score\": 80.45866862547506}, {\"doc_id\": \"sphinx/application.py::Sphinx.add_object_type\", \"score\": 78.85161728563939}, {\"doc_id\": \"sphinx/util/stemmer/porter.py::PorterStemmer.__init__\", \"score\": 77.82590590828342}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::Documenter.generate\", \"score\": 76.71895492111133}]"
+}

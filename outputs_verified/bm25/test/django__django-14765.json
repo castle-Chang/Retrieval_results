@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-14765",
+  "query": "ProjectState.__init__() can assume its real_apps argument is a set\nDescription\n\t\n​PR #14760 made all calls to ProjectState.__init__() pass real_apps as a set. In ​ProjectState.__init__() now, then, instead of checking that real_apps is a set and converting it to a set if not, it can just assert that it's a set when non-None. (Presumably the construction of new ProjectState objects is part of Django's internal API.) I had made this comment on the PR, but it wasn't important enough to hold up the PR because another PR was depending on it getting merged.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/state.py"
+    ],
+    "locations": [
+      "django/db/migrations/state.py::ProjectState",
+      "django/db/migrations/state.py::ProjectState.__init__"
+    ]
+  },
+  "predictions": [
+    "django/db/migrations/state.py::ProjectState.__init__",
+    "django/db/migrations/graph.py::MigrationGraph.make_state",
+    "django/utils/autoreload.py::WatchmanReloader._watch_root",
+    "tests/cache/tests.py::BaseMemcachedTests.test_memcached_deletes_key_on_failed_set",
+    "django/template/response.py::SimpleTemplateResponse.__init__",
+    "django/utils/tree.py::Node._new_instance",
+    "django/db/models/query.py::QuerySet._next_is_sticky",
+    "django/utils/decorators.py::_multi_decorate",
+    "django/db/models/sql/compiler.py::SQLCompiler.get_group_by",
+    "django/db/models/fields/__init__.py::Field.db_type"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "4e8121e8e42a24acc3565851c9ef50ca8322b15c",
+    "total_functions_indexed": 24954,
+    "retrieval_time_seconds": 1.4030704498291016
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/migrations/state.py::ProjectState.__init__\", \"score\": 115.44580124520469}, {\"doc_id\": \"django/db/migrations/graph.py::MigrationGraph.make_state\", \"score\": 102.48422657635263}, {\"doc_id\": \"django/utils/autoreload.py::WatchmanReloader._watch_root\", \"score\": 93.8296997972361}, {\"doc_id\": \"tests/cache/tests.py::BaseMemcachedTests.test_memcached_deletes_key_on_failed_set\", \"score\": 92.88360834075911}, {\"doc_id\": \"django/template/response.py::SimpleTemplateResponse.__init__\", \"score\": 92.66452348172255}, {\"doc_id\": \"django/utils/tree.py::Node._new_instance\", \"score\": 89.9411444553742}, {\"doc_id\": \"django/db/models/query.py::QuerySet._next_is_sticky\", \"score\": 89.82093308813637}, {\"doc_id\": \"django/utils/decorators.py::_multi_decorate\", \"score\": 89.41292491351386}, {\"doc_id\": \"django/db/models/sql/compiler.py::SQLCompiler.get_group_by\", \"score\": 89.24245107246209}, {\"doc_id\": \"django/db/models/fields/__init__.py::Field.db_type\", \"score\": 88.67368859582724}]"
+}

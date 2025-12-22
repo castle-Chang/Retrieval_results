@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-21627",
+  "query": "Bug: maximum recusion depth error when checking is_zero of cosh expression\nThe following code causes a `RecursionError: maximum recursion depth exceeded while calling a Python object` error when checked if it is zero:\r\n```\r\nexpr =sympify(\"cosh(acos(-i + acosh(-g + i)))\")\r\nexpr.is_zero\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/functions/elementary/complexes.py"
+    ],
+    "locations": [
+      "sympy/functions/elementary/complexes.py::Abs",
+      "sympy/functions/elementary/complexes.py::Abs.eval"
+    ]
+  },
+  "predictions": [
+    "sympy/functions/elementary/hyperbolic.py::cosh._eval_is_real",
+    "sympy/functions/elementary/hyperbolic.py::tanh._eval_is_zero",
+    "sympy/functions/elementary/hyperbolic.py::asinh._eval_is_zero",
+    "sympy/functions/elementary/hyperbolic.py::cosh._eval_is_positive",
+    "sympy/functions/elementary/hyperbolic.py::sinh._eval_is_zero",
+    "sympy/functions/elementary/tests/test_hyperbolic.py::test_acosh",
+    "sympy/functions/elementary/hyperbolic.py::atanh._eval_is_zero",
+    "sympy/core/tests/test_evalf.py::test_issue_17421",
+    "sympy/functions/elementary/complexes.py::sign._eval_is_zero",
+    "sympy/integrals/tests/test_integrals.py::test_is_zero"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "126f80578140e752ad5135aac77b8ff887eede3e",
+    "total_functions_indexed": 36569,
+    "retrieval_time_seconds": 0.025536060333251953
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/functions/elementary/hyperbolic.py::cosh._eval_is_real\", \"score\": 0.4711657166481018}, {\"doc_id\": \"sympy/functions/elementary/hyperbolic.py::tanh._eval_is_zero\", \"score\": 0.46845030784606934}, {\"doc_id\": \"sympy/functions/elementary/hyperbolic.py::asinh._eval_is_zero\", \"score\": 0.45921629667282104}, {\"doc_id\": \"sympy/functions/elementary/hyperbolic.py::cosh._eval_is_positive\", \"score\": 0.4574606716632843}, {\"doc_id\": \"sympy/functions/elementary/hyperbolic.py::sinh._eval_is_zero\", \"score\": 0.4538502097129822}, {\"doc_id\": \"sympy/functions/elementary/tests/test_hyperbolic.py::test_acosh\", \"score\": 0.44683295488357544}, {\"doc_id\": \"sympy/functions/elementary/hyperbolic.py::atanh._eval_is_zero\", \"score\": 0.43971455097198486}, {\"doc_id\": \"sympy/core/tests/test_evalf.py::test_issue_17421\", \"score\": 0.43262946605682373}, {\"doc_id\": \"sympy/functions/elementary/complexes.py::sign._eval_is_zero\", \"score\": 0.4296565651893616}, {\"doc_id\": \"sympy/integrals/tests/test_integrals.py::test_is_zero\", \"score\": 0.42924201488494873}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11133",
+  "query": "HttpResponse doesn't handle memoryview objects\nDescription\n\t\nI am trying to write a BinaryField retrieved from the database into a HttpResponse. When the database is Sqlite this works correctly, but Postgresql returns the contents of the field as a memoryview object and it seems like current Django doesn't like this combination:\nfrom django.http import HttpResponse\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t \n# String content\nresponse = HttpResponse(\"My Content\")\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\nresponse.content\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t \n# Out: b'My Content'\n# This is correct\n# Bytes content\nresponse = HttpResponse(b\"My Content\")\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t \nresponse.content\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t \n# Out: b'My Content'\n# This is also correct\n# memoryview content\nresponse = HttpResponse(memoryview(b\"My Content\"))\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t \nresponse.content\n# Out: b'<memory at 0x7fcc47ab2648>'\n# This is not correct, I am expecting b'My Content'\n",
+  "ground_truth": {
+    "files": [
+      "django/http/response.py"
+    ],
+    "locations": [
+      "django/http/response.py::HttpResponseBase",
+      "django/http/response.py::HttpResponseBase.make_bytes"
+    ]
+  },
+  "predictions": [
+    "tests/responses/tests.py::HttpResponseTests.test_generator_cache",
+    "django/http/response.py::HttpResponse.__init__",
+    "tests/httpwrappers/tests.py::HttpResponseTests.test_iter_content",
+    "tests/template_tests/test_response.py::SimpleTemplateResponseTest.test_render",
+    "django/http/response.py::HttpResponse.content",
+    "tests/httpwrappers/tests.py::StreamingHttpResponseTests.test_streaming_response",
+    "tests/admin_views/test_actions.py::AdminActionsTest.test_custom_function_action_streaming_response",
+    "django/template/response.py::SimpleTemplateResponse.content",
+    "django/http/response.py::HttpResponse.write",
+    "tests/httpwrappers/tests.py::HttpResponseTests.test_file_interface"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "879cc3da6249e920b8d54518a0ae06de835d7373",
+    "total_functions_indexed": 22403,
+    "retrieval_time_seconds": 1.6441640853881836
+  },
+  "raw_output": "[{\"doc_id\": \"tests/responses/tests.py::HttpResponseTests.test_generator_cache\", \"score\": 225.65488877246335}, {\"doc_id\": \"django/http/response.py::HttpResponse.__init__\", \"score\": 195.5129779628575}, {\"doc_id\": \"tests/httpwrappers/tests.py::HttpResponseTests.test_iter_content\", \"score\": 190.79677225914256}, {\"doc_id\": \"tests/template_tests/test_response.py::SimpleTemplateResponseTest.test_render\", \"score\": 175.9212129959691}, {\"doc_id\": \"django/http/response.py::HttpResponse.content\", \"score\": 167.31196064963277}, {\"doc_id\": \"tests/httpwrappers/tests.py::StreamingHttpResponseTests.test_streaming_response\", \"score\": 159.61894139417709}, {\"doc_id\": \"tests/admin_views/test_actions.py::AdminActionsTest.test_custom_function_action_streaming_response\", \"score\": 159.4584983771528}, {\"doc_id\": \"django/template/response.py::SimpleTemplateResponse.content\", \"score\": 158.92746422019886}, {\"doc_id\": \"django/http/response.py::HttpResponse.write\", \"score\": 158.78667157701852}, {\"doc_id\": \"tests/httpwrappers/tests.py::HttpResponseTests.test_file_interface\", \"score\": 158.39257969417181}]"
+}

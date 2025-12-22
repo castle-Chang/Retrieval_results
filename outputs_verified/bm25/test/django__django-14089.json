@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-14089",
+  "query": "Allow calling reversed() on an OrderedSet\nDescription\n\t\nCurrently, ​OrderedSet isn't reversible (i.e. allowed to be passed as an argument to Python's ​reversed()). This would be natural to support given that OrderedSet is ordered. This should be straightforward to add by adding a __reversed__() method to OrderedSet.\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/datastructures.py"
+    ],
+    "locations": [
+      "django/utils/datastructures.py::OrderedSet",
+      "django/utils/datastructures.py::OrderedSet.__iter__",
+      "django/utils/datastructures.py::OrderedSet.__contains__"
+    ]
+  },
+  "predictions": [
+    "django/db/models/options.py::Options.get_parent_list",
+    "tests/postgres_tests/test_array.py::TestQuerying.test_in_including_F_object",
+    "django/db/models/sql/compiler.py::SQLInsertCompiler.prepare_value",
+    "django/db/models/query.py::QuerySet._next_is_sticky",
+    "django/utils/datastructures.py::OrderedSet.add",
+    "tests/utils_tests/test_datastructures.py::OrderedSetTests.test_bool",
+    "tests/model_forms/models.py::MarkupField.formfield",
+    "django/shortcuts.py::resolve_url",
+    "tests/utils_tests/test_datastructures.py::OrderedSetTests.test_contains",
+    "django/utils/autoreload.py::WatchmanReloader._watch_root"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "d01709aae21de9cd2565b9c52f32732ea28a2d98",
+    "total_functions_indexed": 24361,
+    "retrieval_time_seconds": 0.781355619430542
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/options.py::Options.get_parent_list\", \"score\": 56.09667696798748}, {\"doc_id\": \"tests/postgres_tests/test_array.py::TestQuerying.test_in_including_F_object\", \"score\": 50.36741888321058}, {\"doc_id\": \"django/db/models/sql/compiler.py::SQLInsertCompiler.prepare_value\", \"score\": 49.93607840970233}, {\"doc_id\": \"django/db/models/query.py::QuerySet._next_is_sticky\", \"score\": 48.54170196803628}, {\"doc_id\": \"django/utils/datastructures.py::OrderedSet.add\", \"score\": 47.99203606555048}, {\"doc_id\": \"tests/utils_tests/test_datastructures.py::OrderedSetTests.test_bool\", \"score\": 47.77396811891171}, {\"doc_id\": \"tests/model_forms/models.py::MarkupField.formfield\", \"score\": 47.73768875518858}, {\"doc_id\": \"django/shortcuts.py::resolve_url\", \"score\": 47.42475620782727}, {\"doc_id\": \"tests/utils_tests/test_datastructures.py::OrderedSetTests.test_contains\", \"score\": 47.26716838217682}, {\"doc_id\": \"django/utils/autoreload.py::WatchmanReloader._watch_root\", \"score\": 47.20877510695013}]"
+}

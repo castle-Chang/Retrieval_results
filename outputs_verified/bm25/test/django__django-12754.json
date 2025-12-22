@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12754",
+  "query": "FieldError when migrating field to new model subclass.\nDescription\n\t\nAnalogous to #21890. If creating a model subclass and moving a field onto it in the same step, makemigrations works but migrate dies with django.core.exceptions.FieldError: Local field 'title' in class 'Book' clashes with field of the same name from base class 'Readable'.\nFor example, take this model:\nfrom django.db import models\nclass Readable(models.Model):\n\ttitle = models.CharField(max_length=200)\nAnd change to this:\nfrom django.db import models\nclass Readable(models.Model):\n\tpass\nclass Book(Readable):\n\ttitle = models.CharField(max_length=200)\nThe migration generates with CreateModel for Book, then RemoveField for Readable.title. But running it produces the error.\nReversing the order of the migration operations makes it pass. The auto-detector should be able to use this order.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/autodetector.py"
+    ],
+    "locations": [
+      "django/db/migrations/autodetector.py::MigrationAutodetector",
+      "django/db/migrations/autodetector.py::MigrationAutodetector.generate_created_models"
+    ]
+  },
+  "predictions": [
+    "tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_override_one2one_relation_auto_field_clashes",
+    "tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_cannot_override_indirect_abstract_field",
+    "tests/invalid_models_tests/test_ordinary_fields.py::CharFieldTests.test_choices_containing_non_pairs",
+    "tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_multi_inheritance_field_clashes",
+    "tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_multiple_inheritance_cannot_shadow_concrete_inherited_field",
+    "tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_multiple_inheritance_cannot_shadow_inherited_field",
+    "tests/invalid_models_tests/test_models.py::ShadowingFieldsTests.test_field_name_clash_with_child_accessor",
+    "tests/migrations/test_state.py::StateTests.test_render_model_inheritance",
+    "tests/invalid_models_tests/test_ordinary_fields.py::CharFieldTests.test_choices_named_group_non_pairs",
+    "tests/invalid_models_tests/test_ordinary_fields.py::CharFieldTests.test_non_iterable_choices_two_letters"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "18759b2209ff556aed7f20d83cbf23e3d234e41c",
+    "total_functions_indexed": 23454,
+    "retrieval_time_seconds": 1.7598371505737305
+  },
+  "raw_output": "[{\"doc_id\": \"tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_override_one2one_relation_auto_field_clashes\", \"score\": 165.0266156792292}, {\"doc_id\": \"tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_cannot_override_indirect_abstract_field\", \"score\": 163.11603730445225}, {\"doc_id\": \"tests/invalid_models_tests/test_ordinary_fields.py::CharFieldTests.test_choices_containing_non_pairs\", \"score\": 143.5529888082966}, {\"doc_id\": \"tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_multi_inheritance_field_clashes\", \"score\": 139.92360823589016}, {\"doc_id\": \"tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_multiple_inheritance_cannot_shadow_concrete_inherited_field\", \"score\": 139.44025332327297}, {\"doc_id\": \"tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_multiple_inheritance_cannot_shadow_inherited_field\", \"score\": 138.13451829678198}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::ShadowingFieldsTests.test_field_name_clash_with_child_accessor\", \"score\": 135.60371924540433}, {\"doc_id\": \"tests/migrations/test_state.py::StateTests.test_render_model_inheritance\", \"score\": 133.92552950878098}, {\"doc_id\": \"tests/invalid_models_tests/test_ordinary_fields.py::CharFieldTests.test_choices_named_group_non_pairs\", \"score\": 132.40000037740595}, {\"doc_id\": \"tests/invalid_models_tests/test_ordinary_fields.py::CharFieldTests.test_non_iterable_choices_two_letters\", \"score\": 131.57435415049048}]"
+}

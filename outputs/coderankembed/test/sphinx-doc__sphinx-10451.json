@@ -1,0 +1,32 @@
+{
+  "instance_id": "sphinx-doc__sphinx-10451",
+  "query": "Fix duplicated *args and **kwargs with autodoc_typehints\nFix duplicated *args and **kwargs with autodoc_typehints\r\n\r\n### Bugfix\r\n- Bugfix\r\n\r\n### Detail\r\nConsider this\r\n```python\r\nclass _ClassWithDocumentedInitAndStarArgs:\r\n    \"\"\"Class docstring.\"\"\"\r\n\r\n    def __init__(self, x: int, *args: int, **kwargs: int) -> None:\r\n        \"\"\"Init docstring.\r\n\r\n        :param x: Some integer\r\n        :param *args: Some integer\r\n        :param **kwargs: Some integer\r\n        \"\"\"\r\n```\r\nwhen using the autodoc extension and the setting `autodoc_typehints = \"description\"`.\r\n\r\nWIth sphinx 4.2.0, the current output is\r\n```\r\nClass docstring.\r\n\r\n   Parameters:\r\n      * **x** (*int*) --\r\n\r\n      * **args** (*int*) --\r\n\r\n      * **kwargs** (*int*) --\r\n\r\n   Return type:\r\n      None\r\n\r\n   __init__(x, *args, **kwargs)\r\n\r\n      Init docstring.\r\n\r\n      Parameters:\r\n         * **x** (*int*) -- Some integer\r\n\r\n         * ***args** --\r\n\r\n           Some integer\r\n\r\n         * ****kwargs** --\r\n\r\n           Some integer\r\n\r\n         * **args** (*int*) --\r\n\r\n         * **kwargs** (*int*) --\r\n\r\n      Return type:\r\n         None\r\n```\r\nwhere the *args and **kwargs are duplicated and incomplete.\r\n\r\nThe expected output is\r\n```\r\n  Class docstring.\r\n\r\n   Parameters:\r\n      * **x** (*int*) --\r\n\r\n      * ***args** (*int*) --\r\n\r\n      * ****kwargs** (*int*) --\r\n\r\n   Return type:\r\n      None\r\n\r\n   __init__(x, *args, **kwargs)\r\n\r\n      Init docstring.\r\n\r\n      Parameters:\r\n         * **x** (*int*) -- Some integer\r\n\r\n         * ***args** (*int*) --\r\n\r\n           Some integer\r\n\r\n         * ****kwargs** (*int*) --\r\n\r\n           Some integer\r\n\r\n      Return type:\r\n         None\r\n\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/ext/autodoc/typehints.py"
+    ],
+    "locations": [
+      "sphinx/ext/autodoc/typehints.py::modify_field_list",
+      "sphinx/ext/autodoc/typehints.py::augment_descriptions_with_types"
+    ]
+  },
+  "predictions": [
+    "tests/test_ext_autodoc_configs.py::test_autodoc_typehints_description_with_documented_init_no_undoc_doc_rtype",
+    "tests/test_ext_autodoc_configs.py::test_autodoc_typehints_description_with_documented_init",
+    "tests/test_ext_autodoc_configs.py::test_autodoc_typehints_description_with_documented_init_no_undoc",
+    "tests/roots/test-ext-autodoc/target/typehints.py::_ClassWithDocumentedInit.__init__",
+    "tests/test_ext_autodoc_configs.py::test_autodoc_typehints_description_no_undoc",
+    "tests/test_ext_autodoc_configs.py::test_autodoc_typehints_description_no_undoc_doc_rtype",
+    "tests/test_ext_autodoc_configs.py::test_autodoc_typehints_both",
+    "tests/test_ext_autodoc_configs.py::test_autodoc_typehints_description",
+    "sphinx/ext/autodoc/__init__.py::ClassDocumenter.format_args",
+    "tests/test_ext_autodoc_autoclass.py::test_undocumented_uninitialized_attributes"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "195e911f1dab04b8ddeacbe04b7d214aaf81bb0b",
+    "total_functions_indexed": 5839,
+    "retrieval_time_seconds": 0.08570504188537598
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_ext_autodoc_configs.py::test_autodoc_typehints_description_with_documented_init_no_undoc_doc_rtype\", \"score\": 0.5620283484458923}, {\"doc_id\": \"tests/test_ext_autodoc_configs.py::test_autodoc_typehints_description_with_documented_init\", \"score\": 0.5404927730560303}, {\"doc_id\": \"tests/test_ext_autodoc_configs.py::test_autodoc_typehints_description_with_documented_init_no_undoc\", \"score\": 0.5398571491241455}, {\"doc_id\": \"tests/roots/test-ext-autodoc/target/typehints.py::_ClassWithDocumentedInit.__init__\", \"score\": 0.5372114777565002}, {\"doc_id\": \"tests/test_ext_autodoc_configs.py::test_autodoc_typehints_description_no_undoc\", \"score\": 0.4985865354537964}, {\"doc_id\": \"tests/test_ext_autodoc_configs.py::test_autodoc_typehints_description_no_undoc_doc_rtype\", \"score\": 0.4747401475906372}, {\"doc_id\": \"tests/test_ext_autodoc_configs.py::test_autodoc_typehints_both\", \"score\": 0.4528738260269165}, {\"doc_id\": \"tests/test_ext_autodoc_configs.py::test_autodoc_typehints_description\", \"score\": 0.45133376121520996}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::ClassDocumenter.format_args\", \"score\": 0.43673503398895264}, {\"doc_id\": \"tests/test_ext_autodoc_autoclass.py::test_undocumented_uninitialized_attributes\", \"score\": 0.4331471920013428}]"
+}

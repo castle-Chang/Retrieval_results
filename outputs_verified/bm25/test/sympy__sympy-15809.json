@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-15809",
+  "query": "Zero-argument Min() and Max()\nRight now `Min()` and `Max()` with no arguments raise `ValueError: The Max/Min functions must have arguments.`. It might be mathematically more convenient to have them return `oo` and `-oo`, respectively. See https://en.wikipedia.org/wiki/Empty_set#Extended_real_numbers for why these are valid answers mathematically. \n",
+  "ground_truth": {
+    "files": [
+      "sympy/functions/elementary/miscellaneous.py"
+    ],
+    "locations": [
+      "sympy/functions/elementary/miscellaneous.py::MinMaxBase",
+      "sympy/functions/elementary/miscellaneous.py::MinMaxBase.__new__"
+    ]
+  },
+  "predictions": [
+    "sympy/calculus/util.py::AccumulationBounds.__new__",
+    "sympy/functions/elementary/miscellaneous.py::MinMaxBase.__new__",
+    "sympy/calculus/util.py::AccumulationBounds.__div__",
+    "sympy/simplify/simplify.py::walk",
+    "sympy/calculus/util.py::AccumulationBounds.__pow__",
+    "sympy/calculus/util.py::AccumulationBounds.union",
+    "sympy/sets/handlers/power.py::_set_pow",
+    "sympy/functions/elementary/miscellaneous.py::MinMaxBase._collapse_arguments",
+    "sympy/ntheory/generate.py::prime",
+    "sympy/core/function.py::Function.__new__"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "28d913d3cead6c5646307ffa6540b21d65059dfd",
+    "total_functions_indexed": 24401,
+    "retrieval_time_seconds": 0.885765790939331
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/calculus/util.py::AccumulationBounds.__new__\", \"score\": 91.73848384934658}, {\"doc_id\": \"sympy/functions/elementary/miscellaneous.py::MinMaxBase.__new__\", \"score\": 89.87860893258444}, {\"doc_id\": \"sympy/calculus/util.py::AccumulationBounds.__div__\", \"score\": 88.45056636451754}, {\"doc_id\": \"sympy/simplify/simplify.py::walk\", \"score\": 84.64416151172784}, {\"doc_id\": \"sympy/calculus/util.py::AccumulationBounds.__pow__\", \"score\": 82.88244936639322}, {\"doc_id\": \"sympy/calculus/util.py::AccumulationBounds.union\", \"score\": 81.43486580388955}, {\"doc_id\": \"sympy/sets/handlers/power.py::_set_pow\", \"score\": 78.83063671730302}, {\"doc_id\": \"sympy/functions/elementary/miscellaneous.py::MinMaxBase._collapse_arguments\", \"score\": 78.49379318174853}, {\"doc_id\": \"sympy/ntheory/generate.py::prime\", \"score\": 77.3841401274448}, {\"doc_id\": \"sympy/core/function.py::Function.__new__\", \"score\": 75.93743841278692}]"
+}

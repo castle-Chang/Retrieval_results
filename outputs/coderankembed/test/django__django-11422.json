@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-11422",
+  "query": "Autoreloader with StatReloader doesn't track changes in manage.py.\nDescription\n\t \n\t\t(last modified by Mariusz Felisiak)\n\t \nThis is a bit convoluted, but here we go.\nEnvironment (OSX 10.11):\n$ python -V\nPython 3.6.2\n$ pip -V\npip 19.1.1\n$ pip install Django==2.2.1\nSteps to reproduce:\nRun a server python manage.py runserver\nEdit the manage.py file, e.g. add print(): \ndef main():\n\tprint('sth')\n\tos.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ticket_30479.settings')\n\t...\nUnder 2.1.8 (and prior), this will trigger the auto-reloading mechanism. Under 2.2.1, it won't. As far as I can tell from the django.utils.autoreload log lines, it never sees the manage.py itself.\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/autoreload.py"
+    ],
+    "locations": [
+      "django/utils/autoreload.py::iter_modules_and_files"
+    ]
+  },
+  "predictions": [
+    "django/utils/autoreload.py::get_reloader",
+    "django/utils/autoreload.py::run_with_reloader",
+    "django/utils/autoreload.py::start_django",
+    "tests/utils_tests/test_autoreload.py::RestartWithReloaderTests.test_manage_py",
+    "tests/utils_tests/test_autoreload.py::RestartWithReloaderTests.test_python_m_django",
+    "django/utils/autoreload.py::restart_with_reloader",
+    "django/utils/autoreload.py::trigger_reload",
+    "tests/utils_tests/test_autoreload.py::StatReloaderTests.setUp",
+    "django/utils/autoreload.py::StatReloader.check_availability",
+    "django/utils/autoreload.py::BaseReloader.run"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "df46b329e0900e9e4dc1d60816c1dce6dfc1094e",
+    "total_functions_indexed": 22501,
+    "retrieval_time_seconds": 0.006697177886962891
+  },
+  "raw_output": "[{\"doc_id\": \"django/utils/autoreload.py::get_reloader\", \"score\": 0.5642024874687195}, {\"doc_id\": \"django/utils/autoreload.py::run_with_reloader\", \"score\": 0.5462698936462402}, {\"doc_id\": \"django/utils/autoreload.py::start_django\", \"score\": 0.5418082475662231}, {\"doc_id\": \"tests/utils_tests/test_autoreload.py::RestartWithReloaderTests.test_manage_py\", \"score\": 0.5320770740509033}, {\"doc_id\": \"tests/utils_tests/test_autoreload.py::RestartWithReloaderTests.test_python_m_django\", \"score\": 0.5107287168502808}, {\"doc_id\": \"django/utils/autoreload.py::restart_with_reloader\", \"score\": 0.503282904624939}, {\"doc_id\": \"django/utils/autoreload.py::trigger_reload\", \"score\": 0.5015875101089478}, {\"doc_id\": \"tests/utils_tests/test_autoreload.py::StatReloaderTests.setUp\", \"score\": 0.47983866930007935}, {\"doc_id\": \"django/utils/autoreload.py::StatReloader.check_availability\", \"score\": 0.46354448795318604}, {\"doc_id\": \"django/utils/autoreload.py::BaseReloader.run\", \"score\": 0.46136045455932617}]"
+}

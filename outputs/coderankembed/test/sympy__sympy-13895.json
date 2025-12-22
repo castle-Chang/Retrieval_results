@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-13895",
+  "query": "(-x/4 - S(1)/12)**x - 1 simplifies to an inequivalent expression\n    >>> from sympy import *\r\n    >>> x = Symbol('x')\r\n    >>> e = (-x/4 - S(1)/12)**x - 1\r\n    >>> e\r\n    (-x/4 - 1/12)**x - 1\r\n    >>> f = simplify(e)\r\n    >>> f\r\n    12**(-x)*(-12**x + (-3*x - 1)**x)\r\n    >>> a = S(9)/5\r\n    >>> simplify(e.subs(x,a))\r\n    -1 - 32*15**(1/5)*2**(2/5)/225\r\n    >>> simplify(f.subs(x,a))\r\n    -1 - 32*(-1)**(4/5)*60**(1/5)/225\r\n    >>> N(e.subs(x,a))\r\n    -1.32255049319339\r\n    >>> N(f.subs(x,a))\r\n    -0.739051169462523 - 0.189590423018741*I\r\n\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/numbers.py"
+    ],
+    "locations": [
+      "sympy/core/numbers.py::Integer",
+      "sympy/core/numbers.py::Integer._eval_power",
+      "sympy/core/numbers.py::Integer._eval_is_prime"
+    ]
+  },
+  "predictions": [
+    "sympy/simplify/tests/test_simplify.py::test_issue_9448",
+    "sympy/core/tests/test_subs.py::test_issue_6559",
+    "sympy/simplify/simplify.py::posify",
+    "sympy/simplify/tests/test_simplify.py::test_simplify_expr",
+    "sympy/simplify/tests/test_simplify.py::test_issue_9398",
+    "sympy/utilities/tests/test_wester.py::test_V13",
+    "sympy/simplify/tests/test_simplify.py::test_nsimplify",
+    "sympy/simplify/simplify.py::signsimp",
+    "sympy/simplify/tests/test_simplify.py::test_issue_4194",
+    "sympy/simplify/tests/test_trigsimp.py::test_issue_4661"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "4da0b64558e9551a11a99bccc63557ba34f50c58",
+    "total_functions_indexed": 22459,
+    "retrieval_time_seconds": 0.005799055099487305
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_issue_9448\", \"score\": 0.5320398807525635}, {\"doc_id\": \"sympy/core/tests/test_subs.py::test_issue_6559\", \"score\": 0.5101461410522461}, {\"doc_id\": \"sympy/simplify/simplify.py::posify\", \"score\": 0.4916868209838867}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_simplify_expr\", \"score\": 0.4826112389564514}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_issue_9398\", \"score\": 0.48008298873901367}, {\"doc_id\": \"sympy/utilities/tests/test_wester.py::test_V13\", \"score\": 0.4796088933944702}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_nsimplify\", \"score\": 0.4745860695838928}, {\"doc_id\": \"sympy/simplify/simplify.py::signsimp\", \"score\": 0.4735279679298401}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_issue_4194\", \"score\": 0.46953272819519043}, {\"doc_id\": \"sympy/simplify/tests/test_trigsimp.py::test_issue_4661\", \"score\": 0.4639222323894501}]"
+}

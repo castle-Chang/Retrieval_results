@@ -1,0 +1,31 @@
+{
+  "instance_id": "sphinx-doc__sphinx-11445",
+  "query": "Using rst_prolog removes top level headings containing a domain directive\n### Describe the bug\r\n\r\nIf `rst_prolog` is set, then any documents that contain a domain directive as the first heading (eg `:mod:`) do not render the heading correctly or include the heading in the toctree.\r\n\r\nIn the example below, if the heading of `docs/mypackage.rst` were `mypackage2` instead of `:mod:mypackage2` then the heading displays correctly.\r\nSimilarly, if you do not set `rst_prolog` then the heading will display correctly.\r\n\r\nThis appears to have been broken for some time because I can reproduce it in v4.0.0 of Sphinx\r\n\r\n### How to Reproduce\r\n\r\n```bash\r\n$ sphinx-quickstart --no-sep --project mypackage --author me -v 0.1.0 --release 0.1.0 --language en docs\r\n$ echo -e 'Welcome\\n=======\\n\\n.. toctree::\\n\\n   mypackage\\n' > docs/index.rst\r\n$ echo -e ':mod:`mypackage2`\\n=================\\n\\nContent\\n\\nSubheading\\n----------\\n' > docs/mypackage.rst\r\n$ echo -e 'rst_prolog = \"\"\"\\n.. |psf| replace:: Python Software Foundation\\n\"\"\"\\n' >> docs/conf.py\r\n$ sphinx-build -b html . _build\r\n$ grep 'mypackage2' docs/_build/index.html\r\n```\r\n\r\n`docs/index.rst`:\r\n\r\n```rst\r\nWelcome\r\n=======\r\n\r\n.. toctree::\r\n\r\n   mypackage\r\n```\r\n\r\n`docs/mypackage.rst`:\r\n\r\n```rst\r\n:mod:`mypackage2`\r\n=================\r\n\r\nContent\r\n\r\nSubheading\r\n----------\r\n```\r\n\r\n### Environment Information\r\n\r\n```text\r\nPlatform:              linux; (Linux-6.3.2-arch1-1-x86_64-with-glibc2.37)\r\nPython version:        3.11.3 (main, Apr  5 2023, 15:52:25) [GCC 12.2.1 20230201])\r\nPython implementation: CPython\r\nSphinx version:        7.1.0+/d3c91f951\r\nDocutils version:      0.20.1\r\nJinja2 version:        3.1.2\r\nPygments version:      2.15.1\r\n```\r\n\r\n\r\n### Sphinx extensions\r\n\r\n```python\r\n[]\r\n```\r\n\r\n\r\n### Additional context\r\n\r\n_No response_\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/util/rst.py"
+    ],
+    "locations": [
+      "sphinx/util/rst.py::prepend_prolog"
+    ]
+  },
+  "predictions": [
+    "sphinx/cmd/quickstart.py::ask_user",
+    "doc/usage/extensions/example_numpy.py::example_generator",
+    "doc/usage/extensions/example_google.py::example_generator",
+    "tests/test_util_rst.py::test_heading",
+    "sphinx/util/rst.py::heading",
+    "tests/test_pycode.py::test_ModuleAnalyzer_find_attr_docs",
+    "tests/test_util_rst.py::test_prepend_prolog",
+    "tests/test_ext_intersphinx.py::test_missing_reference_cppdomain",
+    "tests/test_environment_indexentries.py::test_create_pair_index",
+    "sphinx/application.py::Sphinx.add_latex_package"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "71db08c05197545944949d5aa76cd340e7143627",
+    "total_functions_indexed": 5752,
+    "retrieval_time_seconds": 0.6989743709564209
+  },
+  "raw_output": "[{\"doc_id\": \"sphinx/cmd/quickstart.py::ask_user\", \"score\": 209.1540658443025}, {\"doc_id\": \"doc/usage/extensions/example_numpy.py::example_generator\", \"score\": 200.1110997029563}, {\"doc_id\": \"doc/usage/extensions/example_google.py::example_generator\", \"score\": 200.1110997029563}, {\"doc_id\": \"tests/test_util_rst.py::test_heading\", \"score\": 190.3826587755062}, {\"doc_id\": \"sphinx/util/rst.py::heading\", \"score\": 187.70706297943158}, {\"doc_id\": \"tests/test_pycode.py::test_ModuleAnalyzer_find_attr_docs\", \"score\": 184.36148447038826}, {\"doc_id\": \"tests/test_util_rst.py::test_prepend_prolog\", \"score\": 182.62660176440295}, {\"doc_id\": \"tests/test_ext_intersphinx.py::test_missing_reference_cppdomain\", \"score\": 182.2364330054482}, {\"doc_id\": \"tests/test_environment_indexentries.py::test_create_pair_index\", \"score\": 181.24402400481935}, {\"doc_id\": \"sphinx/application.py::Sphinx.add_latex_package\", \"score\": 181.10380675545457}]"
+}

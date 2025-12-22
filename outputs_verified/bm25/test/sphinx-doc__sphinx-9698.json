@@ -1,0 +1,32 @@
+{
+  "instance_id": "sphinx-doc__sphinx-9698",
+  "query": "An index entry with parens was registered for `py:method` directive with `:property:` option\n### Describe the bug\n\nAn index entry with parens was registered for `py:method` directive with `:property:` option. It should not have parens.\r\n\n\n### How to Reproduce\n\n```\r\n# index.rst\r\n\r\n.. py:method:: Foo.bar\r\n   :property:\r\n\r\n.. py:property:: Foo.baz\r\n```\n\n### Expected behavior\n\nAn index entry for the property should not have parens.\n\n### Your project\n\nN/A\n\n### Screenshots\n\n<img width=\"528\" alt=\"スクリーンショット 2021-10-03 13 00 53\" src=\"https://user-images.githubusercontent.com/748828/135739148-7f404a37-159b-4032-ac68-efb0aaacb726.png\">\r\n\n\n### OS\n\nMac\n\n### Python version\n\n3.9.6\n\n### Sphinx version\n\nHEAD of 4.x\n\n### Sphinx extensions\n\n_No response_\n\n### Extra tools\n\n_No response_\n\n### Additional context\n\n_No response_\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/domains/python.py"
+    ],
+    "locations": [
+      "sphinx/domains/python.py::PyMethod",
+      "sphinx/domains/python.py::PyMethod.get_index_text"
+    ]
+  },
+  "predictions": [
+    "sphinx/environment/__init__.py::BuildEnvironment.set_versioning_method",
+    "sphinx/domains/__init__.py::Index.generate",
+    "tests/test_domain_cpp.py::test_domain_cpp_build_with_add_function_parentheses_is_False",
+    "tests/test_domain_cpp.py::test_domain_cpp_build_with_add_function_parentheses_is_True",
+    "sphinx/application.py::Sphinx.add_object_type",
+    "sphinx/domains/python.py::PythonDomain.resolve_xref",
+    "tests/test_domain_rst.py::test_rst_directive_and_directive_option",
+    "tests/test_domain_rst.py::test_rst_directive_option_with_argument",
+    "tests/test_domain_py.py::test_pymethod_options",
+    "tests/test_environment_indexentries.py::test_create_single_index"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "f050a7775dfc9000f55d023d36d925a8d02ccfa8",
+    "total_functions_indexed": 5778,
+    "retrieval_time_seconds": 0.31524085998535156
+  },
+  "raw_output": "[{\"doc_id\": \"sphinx/environment/__init__.py::BuildEnvironment.set_versioning_method\", \"score\": 84.15377775078957}, {\"doc_id\": \"sphinx/domains/__init__.py::Index.generate\", \"score\": 82.52687350309046}, {\"doc_id\": \"tests/test_domain_cpp.py::test_domain_cpp_build_with_add_function_parentheses_is_False\", \"score\": 75.77238838387433}, {\"doc_id\": \"tests/test_domain_cpp.py::test_domain_cpp_build_with_add_function_parentheses_is_True\", \"score\": 75.42981606634015}, {\"doc_id\": \"sphinx/application.py::Sphinx.add_object_type\", \"score\": 72.90933583227321}, {\"doc_id\": \"sphinx/domains/python.py::PythonDomain.resolve_xref\", \"score\": 72.43691096101806}, {\"doc_id\": \"tests/test_domain_rst.py::test_rst_directive_and_directive_option\", \"score\": 70.76745643977824}, {\"doc_id\": \"tests/test_domain_rst.py::test_rst_directive_option_with_argument\", \"score\": 70.21801219029099}, {\"doc_id\": \"tests/test_domain_py.py::test_pymethod_options\", \"score\": 69.57541369698748}, {\"doc_id\": \"tests/test_environment_indexentries.py::test_create_single_index\", \"score\": 68.94882908500317}]"
+}

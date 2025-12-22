@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-18199",
+  "query": "nthroot_mod function misses one root of x = 0 mod p.\nWhen in the equation x**n = a mod p , when a % p == 0. Then x = 0 mod p is also a root of this equation. But right now `nthroot_mod` does not check for this condition. `nthroot_mod(17*17, 5 , 17)` has a root `0 mod 17`. But it does not return it.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/ntheory/residue_ntheory.py"
+    ],
+    "locations": [
+      "sympy/ntheory/residue_ntheory.py::_nthroot_mod1",
+      "sympy/ntheory/residue_ntheory.py::nthroot_mod"
+    ]
+  },
+  "predictions": [
+    "sympy/ntheory/residue_ntheory.py::nthroot_mod",
+    "sympy/solvers/solveset.py::_invert_modular",
+    "sympy/ntheory/residue_ntheory.py::sqrt_mod",
+    "sympy/solvers/solveset.py::_is_modular",
+    "sympy/solvers/solveset.py::_solve_modular",
+    "sympy/ntheory/residue_ntheory.py::_sqrt_mod_prime_power",
+    "sympy/crypto/crypto.py::lfsr_sequence",
+    "sympy/solvers/ode.py::ode_nth_linear_constant_coeff_homogeneous",
+    "sympy/solvers/ode.py::ode_nth_linear_euler_eq_homogeneous",
+    "sympy/core/numbers.py::mod_inverse"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "ba80d1e493f21431b4bf729b3e0452cd47eb9566",
+    "total_functions_indexed": 33778,
+    "retrieval_time_seconds": 1.389737606048584
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/ntheory/residue_ntheory.py::nthroot_mod\", \"score\": 132.87498055082207}, {\"doc_id\": \"sympy/solvers/solveset.py::_invert_modular\", \"score\": 126.65054656068592}, {\"doc_id\": \"sympy/ntheory/residue_ntheory.py::sqrt_mod\", \"score\": 118.3899341836892}, {\"doc_id\": \"sympy/solvers/solveset.py::_is_modular\", \"score\": 116.52171068620072}, {\"doc_id\": \"sympy/solvers/solveset.py::_solve_modular\", \"score\": 101.91806939979269}, {\"doc_id\": \"sympy/ntheory/residue_ntheory.py::_sqrt_mod_prime_power\", \"score\": 101.35179226600997}, {\"doc_id\": \"sympy/crypto/crypto.py::lfsr_sequence\", \"score\": 99.66378338563158}, {\"doc_id\": \"sympy/solvers/ode.py::ode_nth_linear_constant_coeff_homogeneous\", \"score\": 98.77993538762166}, {\"doc_id\": \"sympy/solvers/ode.py::ode_nth_linear_euler_eq_homogeneous\", \"score\": 93.66150386987972}, {\"doc_id\": \"sympy/core/numbers.py::mod_inverse\", \"score\": 93.2545566286881}]"
+}

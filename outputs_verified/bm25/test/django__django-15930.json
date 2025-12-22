@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-15930",
+  "query": "Case() crashes with ~Q(pk__in=[]).\nDescription\n\t\nThe following code generates a syntax error. \nUser.objects.annotate(\n\t_a=Case(\n\t\tWhen(~Q(pk__in=[]), then=Value(True)),\n\t\tdefault=Value(False),\n\t\toutput_field=BooleanField(),\n\t)\n).order_by(\"-a\").values(\"pk\")\nThe error is: \nProgrammingError: syntax error at or near \"THEN\"\nLINE 1: ..._user\".\"id\" FROM \"users_user\" ORDER BY CASE WHEN THEN true ...\nThe generated SQL is: \nSELECT \"users_user\".\"id\" FROM \"users_user\" ORDER BY CASE WHEN THEN True ELSE False END ASC\nI expected behavior to annotate all rows with the value True since they all match.\nRelevant because ~Q(pkin=[]) is a sentinel value that is sometimes returned by application code.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/expressions.py"
+    ],
+    "locations": [
+      "django/db/models/expressions.py::When",
+      "django/db/models/expressions.py::When.as_sql"
+    ]
+  },
+  "predictions": [
+    "tests/expressions_case/tests.py::CaseExpressionTests.test_condition_with_lookups",
+    "tests/expressions_window/tests.py::NonQueryWindowTests.test_conditional_annotation",
+    "tests/expressions_case/tests.py::CaseExpressionTests.test_join_promotion_multiple_annotations",
+    "tests/lookup/tests.py::LookupTests.test_exact_booleanfield_annotation",
+    "tests/expressions_case/tests.py::CaseExpressionTests.test_join_promotion",
+    "tests/filtered_relation/tests.py::FilteredRelationAggregationTests.test_aggregate",
+    "tests/expressions_case/tests.py::CaseExpressionTests.test_annotate_values_not_in_order_by",
+    "tests/expressions_case/tests.py::CaseExpressionTests.test_combined_q_object",
+    "tests/filtered_relation/tests.py::FilteredRelationTests.test_with_condition_as_expression_error",
+    "tests/expressions_case/tests.py::CaseExpressionTests.test_annotate_filter_decimal"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "63884829acd207404f2a5c3cc1d6b4cd0a822b70",
+    "total_functions_indexed": 26095,
+    "retrieval_time_seconds": 2.428635597229004
+  },
+  "raw_output": "[{\"doc_id\": \"tests/expressions_case/tests.py::CaseExpressionTests.test_condition_with_lookups\", \"score\": 136.11577665197848}, {\"doc_id\": \"tests/expressions_window/tests.py::NonQueryWindowTests.test_conditional_annotation\", \"score\": 119.00602729831117}, {\"doc_id\": \"tests/expressions_case/tests.py::CaseExpressionTests.test_join_promotion_multiple_annotations\", \"score\": 117.04366931234162}, {\"doc_id\": \"tests/lookup/tests.py::LookupTests.test_exact_booleanfield_annotation\", \"score\": 111.63454536685536}, {\"doc_id\": \"tests/expressions_case/tests.py::CaseExpressionTests.test_join_promotion\", \"score\": 107.1672353177699}, {\"doc_id\": \"tests/filtered_relation/tests.py::FilteredRelationAggregationTests.test_aggregate\", \"score\": 106.54413952012405}, {\"doc_id\": \"tests/expressions_case/tests.py::CaseExpressionTests.test_annotate_values_not_in_order_by\", \"score\": 104.46295008691497}, {\"doc_id\": \"tests/expressions_case/tests.py::CaseExpressionTests.test_combined_q_object\", \"score\": 103.79682396778692}, {\"doc_id\": \"tests/filtered_relation/tests.py::FilteredRelationTests.test_with_condition_as_expression_error\", \"score\": 100.89680873120827}, {\"doc_id\": \"tests/expressions_case/tests.py::CaseExpressionTests.test_annotate_filter_decimal\", \"score\": 99.18627246882082}]"
+}

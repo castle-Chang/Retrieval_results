@@ -1,0 +1,45 @@
+{
+  "instance_id": "django__django-15161",
+  "query": "Use simplified paths for deconstruct of expressions\nDescription\n\t\nPreviously F() deconstructed to: django.db.models.expressions.F(). But since it can also be imported from django.db.models, ​PR #14047 changed it to deconstruct to django.db.models.F(). This simplifies generated migration code where it will be referenced only as from django.db import models / models.F().\nAs Mariusz pointed out on the PR, the same technique can be applied to other expressions, further simplifying generated migrations.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/expressions.py"
+    ],
+    "locations": [
+      "django/db/models/expressions.py::OuterRef",
+      "django/db/models/expressions.py::OuterRef.relabeled_clone",
+      "django/db/models/expressions.py::Func",
+      "django/db/models/expressions.py::Func.copy",
+      "django/db/models/expressions.py::Value",
+      "django/db/models/expressions.py::OrderByList",
+      "django/db/models/expressions.py::OrderByList.as_sql",
+      "django/db/models/expressions.py::ExpressionWrapper",
+      "django/db/models/expressions.py::ExpressionWrapper.__repr__",
+      "django/db/models/expressions.py::When",
+      "django/db/models/expressions.py::When.get_group_by_cols",
+      "django/db/models/expressions.py::Case",
+      "django/db/models/expressions.py::Exists",
+      "django/db/models/expressions.py::Exists.select_format",
+      "django/db/models/expressions.py::OrderBy"
+    ]
+  },
+  "predictions": [
+    "django/db/models/sql/query.py::Query.get_meta",
+    "tests/expressions/tests.py::BasicExpressionsTests.test_object_update_unsaved_objects",
+    "tests/expressions/tests.py::FTests.test_deconstruct",
+    "django/db/models/options.py::Options.many_to_many",
+    "django/db/models/sql/compiler.py::SQLInsertCompiler.prepare_value",
+    "django/db/models/options.py::Options.local_concrete_fields",
+    "django/db/migrations/writer.py::MigrationWriter.as_string",
+    "django/db/backends/postgresql/operations.py::DatabaseOperations.sequence_reset_sql",
+    "django/contrib/gis/utils/ogrinspect.py::ogrinspect",
+    "django/db/models/options.py::Options.concrete_fields"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "96e7ff5e9ff6362d9a886545869ce4496ca4b0fb",
+    "total_functions_indexed": 25491,
+    "retrieval_time_seconds": 1.13374662399292
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/sql/query.py::Query.get_meta\", \"score\": 80.82486619120787}, {\"doc_id\": \"tests/expressions/tests.py::BasicExpressionsTests.test_object_update_unsaved_objects\", \"score\": 77.37774309838439}, {\"doc_id\": \"tests/expressions/tests.py::FTests.test_deconstruct\", \"score\": 77.19304663953707}, {\"doc_id\": \"django/db/models/options.py::Options.many_to_many\", \"score\": 74.44585777520929}, {\"doc_id\": \"django/db/models/sql/compiler.py::SQLInsertCompiler.prepare_value\", \"score\": 73.80047485490613}, {\"doc_id\": \"django/db/models/options.py::Options.local_concrete_fields\", \"score\": 73.65459478337851}, {\"doc_id\": \"django/db/migrations/writer.py::MigrationWriter.as_string\", \"score\": 73.48704655559268}, {\"doc_id\": \"django/db/backends/postgresql/operations.py::DatabaseOperations.sequence_reset_sql\", \"score\": 73.21927789160603}, {\"doc_id\": \"django/contrib/gis/utils/ogrinspect.py::ogrinspect\", \"score\": 72.61814249359183}, {\"doc_id\": \"django/db/models/options.py::Options.concrete_fields\", \"score\": 72.2091717440381}]"
+}

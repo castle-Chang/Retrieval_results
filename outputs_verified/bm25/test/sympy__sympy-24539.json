@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-24539",
+  "query": "`PolyElement.as_expr()` not accepting symbols\nThe method `PolyElement.as_expr()`\r\n\r\nhttps://github.com/sympy/sympy/blob/193e3825645d93c73e31cdceb6d742cc6919624d/sympy/polys/rings.py#L618-L624\r\n\r\nis supposed to let you set the symbols you want to use, but, as it stands, either you pass the wrong number of symbols, and get an error message, or you pass the right number of symbols, and it ignores them, using `self.ring.symbols` instead:\r\n\r\n```python\r\n>>> from sympy import ring, ZZ, symbols\r\n>>> R, x, y, z = ring(\"x,y,z\", ZZ)\r\n>>> f = 3*x**2*y - x*y*z + 7*z**3 + 1\r\n>>> U, V, W = symbols(\"u,v,w\")\r\n>>> f.as_expr(U, V, W)\r\n3*x**2*y - x*y*z + 7*z**3 + 1\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/polys/rings.py"
+    ],
+    "locations": [
+      "sympy/polys/rings.py::PolyElement",
+      "sympy/polys/rings.py::PolyElement.set_ring",
+      "sympy/polys/rings.py::PolyElement.as_expr"
+    ]
+  },
+  "predictions": [
+    "sympy/polys/tests/test_rings.py::test_PolyElement_as_expr",
+    "sympy/discrete/convolutions.py::covering_product",
+    "sympy/discrete/convolutions.py::convolution",
+    "sympy/discrete/convolutions.py::intersecting_product",
+    "sympy/polys/tests/test_fields.py::test_FracElement_as_expr",
+    "sympy/polys/modulargcd.py::_primitive",
+    "sympy/polys/rings.py::PolyElement.coeff",
+    "sympy/polys/tests/test_euclidtools.py::test_dmp_discriminant",
+    "sympy/discrete/convolutions.py::convolution_subset",
+    "sympy/polys/tests/test_fields.py::test_FracElement___add__"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "193e3825645d93c73e31cdceb6d742cc6919624d",
+    "total_functions_indexed": 30015,
+    "retrieval_time_seconds": 2.0526390075683594
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/polys/tests/test_rings.py::test_PolyElement_as_expr\", \"score\": 189.26880552478184}, {\"doc_id\": \"sympy/discrete/convolutions.py::covering_product\", \"score\": 170.92955281455687}, {\"doc_id\": \"sympy/discrete/convolutions.py::convolution\", \"score\": 170.61554316077797}, {\"doc_id\": \"sympy/discrete/convolutions.py::intersecting_product\", \"score\": 168.50639370332945}, {\"doc_id\": \"sympy/polys/tests/test_fields.py::test_FracElement_as_expr\", \"score\": 167.290560060476}, {\"doc_id\": \"sympy/polys/modulargcd.py::_primitive\", \"score\": 164.999005354264}, {\"doc_id\": \"sympy/polys/rings.py::PolyElement.coeff\", \"score\": 164.10695710581214}, {\"doc_id\": \"sympy/polys/tests/test_euclidtools.py::test_dmp_discriminant\", \"score\": 163.1308474422404}, {\"doc_id\": \"sympy/discrete/convolutions.py::convolution_subset\", \"score\": 161.13578703268425}, {\"doc_id\": \"sympy/polys/tests/test_fields.py::test_FracElement___add__\", \"score\": 160.73695978812094}]"
+}

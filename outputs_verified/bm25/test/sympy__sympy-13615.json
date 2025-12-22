@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-13615",
+  "query": "Complement doesn't work when input is a mixture of Symbols and numbers\n```\r\n>>> a=FiniteSet(x,y,2)\r\n>>> b=Interval(-10,10)\r\n>>> Complement(a,b)\r\n{x, y}\r\n```\r\n`{x, y} \\ [-10,10]` is expected as output.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/sets/sets.py"
+    ],
+    "locations": [
+      "sympy/sets/sets.py::Set",
+      "sympy/sets/sets.py::Set._complement",
+      "sympy/sets/sets.py::Set.symmetric_difference"
+    ]
+  },
+  "predictions": [
+    "sympy/solvers/solveset.py::nonlinsolve",
+    "sympy/solvers/solveset.py::linsolve",
+    "sympy/printing/pretty/tests/test_pretty.py::test_issue_9877",
+    "sympy/core/tests/test_subs.py::test_add",
+    "sympy/sets/sets.py::Set._complement",
+    "sympy/sets/tests/test_sets.py::test_complement",
+    "sympy/integrals/tests/test_meijerint.py::test_inflate",
+    "sympy/solvers/solveset.py::substitution",
+    "sympy/core/symbol.py::symbols",
+    "sympy/solvers/tests/test_solveset.py::test_issue_11534"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "50d8a102f0735da8e165a0369bbb994c7d0592a6",
+    "total_functions_indexed": 22338,
+    "retrieval_time_seconds": 1.075272560119629
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/solvers/solveset.py::nonlinsolve\", \"score\": 70.85568007522097}, {\"doc_id\": \"sympy/solvers/solveset.py::linsolve\", \"score\": 70.27284923187027}, {\"doc_id\": \"sympy/printing/pretty/tests/test_pretty.py::test_issue_9877\", \"score\": 69.85851028753925}, {\"doc_id\": \"sympy/core/tests/test_subs.py::test_add\", \"score\": 68.27101065316087}, {\"doc_id\": \"sympy/sets/sets.py::Set._complement\", \"score\": 67.18242254288769}, {\"doc_id\": \"sympy/sets/tests/test_sets.py::test_complement\", \"score\": 67.14091603841514}, {\"doc_id\": \"sympy/integrals/tests/test_meijerint.py::test_inflate\", \"score\": 64.69520960095296}, {\"doc_id\": \"sympy/solvers/solveset.py::substitution\", \"score\": 62.17287447824832}, {\"doc_id\": \"sympy/core/symbol.py::symbols\", \"score\": 62.026608074417084}, {\"doc_id\": \"sympy/solvers/tests/test_solveset.py::test_issue_11534\", \"score\": 61.63243920405532}]"
+}

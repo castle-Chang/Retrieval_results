@@ -1,0 +1,35 @@
+{
+  "instance_id": "django__django-15732",
+  "query": "Cannot drop unique_together constraint on a single field with its own unique=True constraint\nDescription\n\t\nI have an erroneous unique_together constraint on a model's primary key (unique_together = (('id',),)) that cannot be dropped by a migration. Apparently the migration tries to find all unique constraints on the column and expects there to be only one, but I've got two — the primary key and the unique_together constraint:\nIndexes:\n\t\"foo_bar_pkey\" PRIMARY KEY, btree (id)\n\t\"foo_bar_id_1c3b3088c74c3b17_uniq\" UNIQUE CONSTRAINT, btree (id)\nDatabase is PostgreSQL, if that makes any difference.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/backends/base/schema.py"
+    ],
+    "locations": [
+      "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor",
+      "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor.alter_unique_together",
+      "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._delete_composed_index",
+      "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._create_unique_sql",
+      "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._delete_unique_sql"
+    ]
+  },
+  "predictions": [
+    "django/db/backends/base/introspection.py::BaseDatabaseIntrospection.get_constraints",
+    "django/db/backends/base/schema.py::_is_relevant_relation",
+    "tests/schema/tests.py::SchemaTests.test_remove_unique_together_does_not_remove_meta_constraints",
+    "django/contrib/admin/views/main.py::ChangeList._get_deterministic_ordering",
+    "tests/schema/tests.py::SchemaTests.test_unique_together_with_fk",
+    "tests/schema/tests.py::SchemaTests.test_unique_together_with_fk_with_existing_index",
+    "django/db/backends/mysql/introspection.py::DatabaseIntrospection.get_constraints",
+    "tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_foreign_object_to_non_unique_fields",
+    "tests/invalid_models_tests/test_relative_fields.py::M2mThroughFieldsTests.test_superset_foreign_object",
+    "tests/schema/tests.py::SchemaTests.test_alter_int_pk_to_int_unique"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "ce69e34bd646558bb44ea92cecfd98b345a0b3e0",
+    "total_functions_indexed": 25969,
+    "retrieval_time_seconds": 1.6964306831359863
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/backends/base/introspection.py::BaseDatabaseIntrospection.get_constraints\", \"score\": 111.97422196353993}, {\"doc_id\": \"django/db/backends/base/schema.py::_is_relevant_relation\", \"score\": 111.06211771589382}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_remove_unique_together_does_not_remove_meta_constraints\", \"score\": 108.07837096950202}, {\"doc_id\": \"django/contrib/admin/views/main.py::ChangeList._get_deterministic_ordering\", \"score\": 106.54125301068821}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_unique_together_with_fk\", \"score\": 105.1684723463042}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_unique_together_with_fk_with_existing_index\", \"score\": 102.20700873599576}, {\"doc_id\": \"django/db/backends/mysql/introspection.py::DatabaseIntrospection.get_constraints\", \"score\": 100.89827659252302}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_foreign_object_to_non_unique_fields\", \"score\": 100.15938373890855}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::M2mThroughFieldsTests.test_superset_foreign_object\", \"score\": 100.15777562831258}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_alter_int_pk_to_int_unique\", \"score\": 97.4372657582178}]"
+}

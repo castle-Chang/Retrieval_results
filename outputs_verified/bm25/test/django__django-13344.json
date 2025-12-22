@@ -1,0 +1,45 @@
+{
+  "instance_id": "django__django-13344",
+  "query": "Coroutine passed to the first middleware's process_response() instead of HttpResponse.\nDescription\n\t\nLike the title says, using ASGI (+ uvicorn in my case), the first middleware (according to the list in settings.py) receives a coroutine as its response parameter, while all other middlewares down the line receive a django.http.response.HttpResponse object.\nThis seems to have caused an issue in the django-cors-headers package which is often placed first in order:\n​https://github.com/adamchainz/django-cors-headers/issues/558\nHow to reproduce:\nSet up a django 3.1 project with an async server (uvicorn in my case)\nCreate a dummy class-based middleware that prints the types of arguments it receives in its process_response method:\nclass DummyMiddleware(MiddlewareMixin):\n\tdef process_response(self, request, response):\n\t\tprint(request.__class__, response.__class__)\nSet up the middleware as the first one in settings.py:\nMIDDLEWARE = [\n\t'django_uvicorn_test.middleware.DummyMiddleware',\n\t'django.middleware.security.SecurityMiddleware',\n ...\nLaunch the server and perform any request, observe console output:\n <class 'django.core.handlers.asgi.ASGIRequest'> <class 'coroutine'> \nMove the middleware down on the list, restart the server and perform a request again:\n <class 'django.core.handlers.asgi.ASGIRequest'> <class 'django.http.response.HttpResponse'>\n",
+  "ground_truth": {
+    "files": [
+      "django/middleware/security.py",
+      "django/contrib/sessions/middleware.py",
+      "django/middleware/cache.py"
+    ],
+    "locations": [
+      "django/contrib/sessions/middleware.py::SessionMiddleware",
+      "django/contrib/sessions/middleware.py::SessionMiddleware.__init__",
+      "django/middleware/cache.py::UpdateCacheMiddleware",
+      "django/middleware/cache.py::UpdateCacheMiddleware.__init__",
+      "django/middleware/cache.py::UpdateCacheMiddleware._should_update_cache",
+      "django/middleware/cache.py::FetchFromCacheMiddleware",
+      "django/middleware/cache.py::FetchFromCacheMiddleware.__init__",
+      "django/middleware/cache.py::FetchFromCacheMiddleware.process_request",
+      "django/middleware/cache.py::CacheMiddleware",
+      "django/middleware/cache.py::CacheMiddleware.__init__",
+      "django/middleware/security.py::SecurityMiddleware",
+      "django/middleware/security.py::SecurityMiddleware.__init__",
+      "django/middleware/security.py::SecurityMiddleware.process_request"
+    ]
+  },
+  "predictions": [
+    "django/contrib/admindocs/middleware.py::XViewMiddleware.process_view",
+    "django/core/handlers/base.py::BaseHandler._get_response_async",
+    "django/core/handlers/exception.py::convert_exception_to_response",
+    "django/core/handlers/base.py::BaseHandler.process_exception_by_middleware",
+    "django/core/handlers/base.py::BaseHandler._get_response",
+    "tests/sessions_tests/tests.py::SessionMiddlewareTests.test_session_update_error_redirect",
+    "tests/sessions_tests/tests.py::SessionMiddlewareTests.test_empty_session_saved",
+    "django/core/handlers/asgi.py::ASGIHandler.__call__",
+    "django/contrib/auth/middleware.py::RemoteUserMiddleware.process_request",
+    "tests/cache/tests.py::CacheMiddlewareTest.test_middleware"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "e39e727ded673e74016b5d3658d23cbe20234d11",
+    "total_functions_indexed": 23833,
+    "retrieval_time_seconds": 2.600389003753662
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/admindocs/middleware.py::XViewMiddleware.process_view\", \"score\": 195.8159534027672}, {\"doc_id\": \"django/core/handlers/base.py::BaseHandler._get_response_async\", \"score\": 189.62516465581535}, {\"doc_id\": \"django/core/handlers/exception.py::convert_exception_to_response\", \"score\": 185.13840556753777}, {\"doc_id\": \"django/core/handlers/base.py::BaseHandler.process_exception_by_middleware\", \"score\": 177.85663361341747}, {\"doc_id\": \"django/core/handlers/base.py::BaseHandler._get_response\", \"score\": 171.3702344036561}, {\"doc_id\": \"tests/sessions_tests/tests.py::SessionMiddlewareTests.test_session_update_error_redirect\", \"score\": 169.1697647652394}, {\"doc_id\": \"tests/sessions_tests/tests.py::SessionMiddlewareTests.test_empty_session_saved\", \"score\": 168.89779166350695}, {\"doc_id\": \"django/core/handlers/asgi.py::ASGIHandler.__call__\", \"score\": 168.7587152024754}, {\"doc_id\": \"django/contrib/auth/middleware.py::RemoteUserMiddleware.process_request\", \"score\": 168.19333015913367}, {\"doc_id\": \"tests/cache/tests.py::CacheMiddlewareTest.test_middleware\", \"score\": 165.8163140860813}]"
+}

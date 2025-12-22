@@ -1,0 +1,34 @@
+{
+  "instance_id": "sympy__sympy-14024",
+  "query": "Inconsistency when simplifying (-a)**x * a**(-x), a a positive integer\nCompare:\r\n\r\n```\r\n>>> a = Symbol('a', integer=True, positive=True)\r\n>>> e = (-a)**x * a**(-x)\r\n>>> f = simplify(e)\r\n>>> print(e)\r\na**(-x)*(-a)**x\r\n>>> print(f)\r\n(-1)**x\r\n>>> t = -S(10)/3\r\n>>> n1 = e.subs(x,t)\r\n>>> n2 = f.subs(x,t)\r\n>>> print(N(n1))\r\n-0.5 + 0.866025403784439*I\r\n>>> print(N(n2))\r\n-0.5 + 0.866025403784439*I\r\n```\r\n\r\nvs\r\n\r\n```\r\n>>> a = S(2)\r\n>>> e = (-a)**x * a**(-x)\r\n>>> f = simplify(e)\r\n>>> print(e)\r\n(-2)**x*2**(-x)\r\n>>> print(f)\r\n(-1)**x\r\n>>> t = -S(10)/3\r\n>>> n1 = e.subs(x,t)\r\n>>> n2 = f.subs(x,t)\r\n>>> print(N(n1))\r\n0.5 - 0.866025403784439*I\r\n>>> print(N(n2))\r\n-0.5 + 0.866025403784439*I\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/numbers.py"
+    ],
+    "locations": [
+      "sympy/core/numbers.py::Rational",
+      "sympy/core/numbers.py::Rational._eval_power",
+      "sympy/core/numbers.py::Integer",
+      "sympy/core/numbers.py::Integer._eval_power"
+    ]
+  },
+  "predictions": [
+    "sympy/core/tests/test_numbers.py::test_issue_13890",
+    "sympy/simplify/tests/test_simplify.py::test_issue_5652",
+    "sympy/simplify/tests/test_powsimp.py::test_issue_10195",
+    "sympy/simplify/tests/test_simplify.py::test_issue_9398",
+    "sympy/simplify/tests/test_simplify.py::test_issue_from_PR1599",
+    "sympy/simplify/tests/test_simplify.py::test_issue_9448",
+    "sympy/simplify/tests/test_simplify.py::test_simplify_other",
+    "sympy/simplify/tests/test_simplify.py::test_signsimp",
+    "sympy/simplify/tests/test_simplify.py::test_simplify_float_vs_integer",
+    "sympy/simplify/tests/test_simplify.py::test_simplify_fail1"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "b17abcb09cbcee80a90f6750e0f9b53f0247656c",
+    "total_functions_indexed": 22631,
+    "retrieval_time_seconds": 0.02594161033630371
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/tests/test_numbers.py::test_issue_13890\", \"score\": 0.6028664112091064}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_issue_5652\", \"score\": 0.5717609524726868}, {\"doc_id\": \"sympy/simplify/tests/test_powsimp.py::test_issue_10195\", \"score\": 0.5547991991043091}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_issue_9398\", \"score\": 0.5499516725540161}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_issue_from_PR1599\", \"score\": 0.5494648218154907}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_issue_9448\", \"score\": 0.5296412706375122}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_simplify_other\", \"score\": 0.5267028212547302}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_signsimp\", \"score\": 0.5250774621963501}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_simplify_float_vs_integer\", \"score\": 0.5249905586242676}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_simplify_fail1\", \"score\": 0.519667387008667}]"
+}

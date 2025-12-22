@@ -1,0 +1,39 @@
+{
+  "instance_id": "sphinx-doc__sphinx-8035",
+  "query": "Support defining specific `:private-members:` for autodoc\n**Is your feature request related to a problem? Please describe.**\r\nCurrently, if I'm using autodoc, the `:private-members:` option does not allow specification of which private members to document. The current behavior is to document all private members, but what if I would only like to document 1 or 2?\r\n\r\n**Describe the solution you'd like**\r\nFor `:private-members:` to take arguments, similarly to how `:members:` currently works\r\n\r\n**Describe alternatives you've considered**\r\nThe current best way to do this is to explicitly list each class in a module and use `:autoattribute:`\r\n\r\n- Some prior discussion: https://github.com/sphinx-doc/sphinx/issues/8009\r\n\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/ext/autodoc/__init__.py"
+    ],
+    "locations": [
+      "sphinx/ext/autodoc/__init__.py::merge_special_members_option",
+      "sphinx/ext/autodoc/__init__.py::cut_lines",
+      "sphinx/ext/autodoc/__init__.py::Documenter",
+      "sphinx/ext/autodoc/__init__.py::Documenter.filter_members",
+      "sphinx/ext/autodoc/__init__.py::ModuleDocumenter",
+      "sphinx/ext/autodoc/__init__.py::ModuleDocumenter.__init__",
+      "sphinx/ext/autodoc/__init__.py::ClassDocumenter",
+      "sphinx/ext/autodoc/__init__.py::ClassDocumenter.__init__",
+      "sphinx/ext/autodoc/__init__.py::ClassDocumenter.can_document_member"
+    ]
+  },
+  "predictions": [
+    "sphinx/ext/autodoc/__init__.py::Documenter.filter_members",
+    "doc/usage/extensions/example_numpy.py::ExampleClass._private",
+    "doc/usage/extensions/example_google.py::ExampleClass._private",
+    "tests/test_ext_autodoc_private_members.py::test_private_field_and_private_members",
+    "sphinx/ext/autodoc/__init__.py::Documenter.document_members",
+    "sphinx/ext/autodoc/__init__.py::merge_special_members_option",
+    "sphinx/ext/napoleon/__init__.py::_skip_member",
+    "sphinx/ext/autodoc/__init__.py::Documenter.generate",
+    "sphinx/ext/autodoc/__init__.py::members_option",
+    "sphinx/ext/autodoc/__init__.py::Documenter.get_object_members"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "5e6da19f0e44a0ae83944fb6ce18f18f781e1a6e",
+    "total_functions_indexed": 5431,
+    "retrieval_time_seconds": 0.5667734146118164
+  },
+  "raw_output": "[{\"doc_id\": \"sphinx/ext/autodoc/__init__.py::Documenter.filter_members\", \"score\": 119.91209271575158}, {\"doc_id\": \"doc/usage/extensions/example_numpy.py::ExampleClass._private\", \"score\": 114.14753395322691}, {\"doc_id\": \"doc/usage/extensions/example_google.py::ExampleClass._private\", \"score\": 114.14753395322691}, {\"doc_id\": \"tests/test_ext_autodoc_private_members.py::test_private_field_and_private_members\", \"score\": 112.0688670168785}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::Documenter.document_members\", \"score\": 109.31131948543833}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::merge_special_members_option\", \"score\": 105.26510550879654}, {\"doc_id\": \"sphinx/ext/napoleon/__init__.py::_skip_member\", \"score\": 105.19999946914203}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::Documenter.generate\", \"score\": 104.81707105927633}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::members_option\", \"score\": 98.25910087590708}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::Documenter.get_object_members\", \"score\": 97.94791012573607}]"
+}

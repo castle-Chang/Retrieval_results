@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-16046",
+  "query": "Fix numberformat.py \"string index out of range\" when null\nDescription\n\t\nWhen:\nif str_number[0] == \"-\"\nencounters a number field that's null when formatting for the admin list_display this causes an \nIndexError: string index out of range\nI can attach the proposed fix here, or open a pull request on GitHub if you like?\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/numberformat.py"
+    ],
+    "locations": [
+      "django/utils/numberformat.py::format"
+    ]
+  },
+  "predictions": [
+    "tests/admin_utils/tests.py::UtilsTests.test_number_formats_display_for_field",
+    "tests/template_tests/syntax_tests/test_list_index.py::ListIndexTests.test_list_index03",
+    "tests/template_tests/syntax_tests/test_list_index.py::ListIndexTests.test_list_index02",
+    "tests/utils_tests/test_numberformat.py::TestNumberFormat.test_format_string",
+    "tests/admin_utils/tests.py::UtilsTests.test_number_formats_with_thousand_separator_display_for_field",
+    "django/contrib/admin/templatetags/admin_list.py::paginator_number",
+    "tests/template_tests/filter_tests/test_stringformat.py::FunctionTests.test_invalid",
+    "tests/utils_tests/test_numberformat.py::TestNumberFormat.test_format_number",
+    "django/contrib/admin/checks.py::ModelAdminChecks._check_list_display",
+    "django/utils/formats.py::number_format"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "ec13e801b820614ff374cb0046092caab8d67249",
+    "total_functions_indexed": 26158,
+    "retrieval_time_seconds": 0.07765722274780273
+  },
+  "raw_output": "[{\"doc_id\": \"tests/admin_utils/tests.py::UtilsTests.test_number_formats_display_for_field\", \"score\": 0.3998733460903168}, {\"doc_id\": \"tests/template_tests/syntax_tests/test_list_index.py::ListIndexTests.test_list_index03\", \"score\": 0.3797379732131958}, {\"doc_id\": \"tests/template_tests/syntax_tests/test_list_index.py::ListIndexTests.test_list_index02\", \"score\": 0.3734223246574402}, {\"doc_id\": \"tests/utils_tests/test_numberformat.py::TestNumberFormat.test_format_string\", \"score\": 0.3608070909976959}, {\"doc_id\": \"tests/admin_utils/tests.py::UtilsTests.test_number_formats_with_thousand_separator_display_for_field\", \"score\": 0.3439871072769165}, {\"doc_id\": \"django/contrib/admin/templatetags/admin_list.py::paginator_number\", \"score\": 0.343359112739563}, {\"doc_id\": \"tests/template_tests/filter_tests/test_stringformat.py::FunctionTests.test_invalid\", \"score\": 0.3397368788719177}, {\"doc_id\": \"tests/utils_tests/test_numberformat.py::TestNumberFormat.test_format_number\", \"score\": 0.33807000517845154}, {\"doc_id\": \"django/contrib/admin/checks.py::ModelAdminChecks._check_list_display\", \"score\": 0.33737003803253174}, {\"doc_id\": \"django/utils/formats.py::number_format\", \"score\": 0.32595980167388916}]"
+}

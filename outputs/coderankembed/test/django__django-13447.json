@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-13447",
+  "query": "Added model class to app_list context\nDescription\n\t \n\t\t(last modified by Raffaele Salmaso)\n\t \nI need to manipulate the app_list in my custom admin view, and the easiest way to get the result is to have access to the model class (currently the dictionary is a serialized model).\nIn addition I would make the _build_app_dict method public, as it is used by the two views index and app_index.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admin/sites.py"
+    ],
+    "locations": [
+      "django/contrib/admin/sites.py::AdminSite",
+      "django/contrib/admin/sites.py::AdminSite._build_app_dict"
+    ]
+  },
+  "predictions": [
+    "django/contrib/admin/sites.py::AdminSite._build_app_dict",
+    "django/contrib/admindocs/views.py::ModelIndexView.get_context_data",
+    "django/contrib/admin/sites.py::AdminSite.app_index",
+    "django/contrib/admin/sites.py::AdminSite.get_app_list",
+    "tests/admin_views/tests.py::CSSTest.test_app_model_in_app_index_body_class",
+    "django/contrib/admindocs/views.py::ModelDetailView.get_context_data",
+    "tests/admin_views/tests.py::CSSTest.test_app_model_in_list_body_class",
+    "django/contrib/admin/sites.py::AdminSite.index",
+    "django/db/migrations/state.py::ProjectState.add_model",
+    "tests/admin_views/tests.py::AdminViewBasicTest.test_app_index_context"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "0456d3e42795481a186db05719300691fe2a1029",
+    "total_functions_indexed": 24564,
+    "retrieval_time_seconds": 0.007877588272094727
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/admin/sites.py::AdminSite._build_app_dict\", \"score\": 0.542926549911499}, {\"doc_id\": \"django/contrib/admindocs/views.py::ModelIndexView.get_context_data\", \"score\": 0.5340368747711182}, {\"doc_id\": \"django/contrib/admin/sites.py::AdminSite.app_index\", \"score\": 0.5096952319145203}, {\"doc_id\": \"django/contrib/admin/sites.py::AdminSite.get_app_list\", \"score\": 0.49972671270370483}, {\"doc_id\": \"tests/admin_views/tests.py::CSSTest.test_app_model_in_app_index_body_class\", \"score\": 0.49423688650131226}, {\"doc_id\": \"django/contrib/admindocs/views.py::ModelDetailView.get_context_data\", \"score\": 0.45650261640548706}, {\"doc_id\": \"tests/admin_views/tests.py::CSSTest.test_app_model_in_list_body_class\", \"score\": 0.45291420817375183}, {\"doc_id\": \"django/contrib/admin/sites.py::AdminSite.index\", \"score\": 0.4467175006866455}, {\"doc_id\": \"django/db/migrations/state.py::ProjectState.add_model\", \"score\": 0.425174355506897}, {\"doc_id\": \"tests/admin_views/tests.py::AdminViewBasicTest.test_app_index_context\", \"score\": 0.4234592914581299}]"
+}

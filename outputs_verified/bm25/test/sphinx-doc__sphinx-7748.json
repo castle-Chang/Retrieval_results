@@ -1,0 +1,37 @@
+{
+  "instance_id": "sphinx-doc__sphinx-7748",
+  "query": "autodoc_docstring_signature with overloaded methods\nWhen using swig to wrap C++ classes for python, if they have overloaded methods, I believe the convention is to place the signatures for each of the overloaded C++ methods at the start of the docstring. Currently, `autodoc_docstring_signature` can only pick up the first one. It would be nice to be able to pick up all of them.\n\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/ext/autodoc/__init__.py"
+    ],
+    "locations": [
+      "sphinx/ext/autodoc/__init__.py::DocstringSignatureMixin",
+      "sphinx/ext/autodoc/__init__.py::DocstringSignatureMixin._find_signature",
+      "sphinx/ext/autodoc/__init__.py::DocstringSignatureMixin.get_doc",
+      "sphinx/ext/autodoc/__init__.py::DocstringSignatureMixin.format_signature",
+      "sphinx/ext/autodoc/__init__.py::DocstringStripSignatureMixin",
+      "sphinx/ext/autodoc/__init__.py::FunctionDocumenter",
+      "sphinx/ext/autodoc/__init__.py::FunctionDocumenter.format_signature"
+    ]
+  },
+  "predictions": [
+    "doc/usage/extensions/example_google.py::module_level_function",
+    "doc/usage/extensions/example_numpy.py::module_level_function",
+    "sphinx/domains/__init__.py::Domain.get_objects",
+    "sphinx/application.py::Sphinx.add_enumerable_node",
+    "doc/usage/extensions/example_numpy.py::example_generator",
+    "doc/usage/extensions/example_google.py::example_generator",
+    "sphinx/application.py::Sphinx.add_config_value",
+    "sphinx/application.py::Sphinx.add_node",
+    "sphinx/ext/napoleon/__init__.py::_process_docstring",
+    "sphinx/util/inspect.py::getdoc"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "9988d5ce267bf0df4791770b469431b1fb00dcdd",
+    "total_functions_indexed": 5322,
+    "retrieval_time_seconds": 0.19090652465820312
+  },
+  "raw_output": "[{\"doc_id\": \"doc/usage/extensions/example_google.py::module_level_function\", \"score\": 66.84347399946522}, {\"doc_id\": \"doc/usage/extensions/example_numpy.py::module_level_function\", \"score\": 66.82900959912332}, {\"doc_id\": \"sphinx/domains/__init__.py::Domain.get_objects\", \"score\": 62.817552481892534}, {\"doc_id\": \"sphinx/application.py::Sphinx.add_enumerable_node\", \"score\": 62.275484102287734}, {\"doc_id\": \"doc/usage/extensions/example_numpy.py::example_generator\", \"score\": 62.18816251795249}, {\"doc_id\": \"doc/usage/extensions/example_google.py::example_generator\", \"score\": 62.18816251795249}, {\"doc_id\": \"sphinx/application.py::Sphinx.add_config_value\", \"score\": 62.06240101647707}, {\"doc_id\": \"sphinx/application.py::Sphinx.add_node\", \"score\": 62.03560493723026}, {\"doc_id\": \"sphinx/ext/napoleon/__init__.py::_process_docstring\", \"score\": 62.007319716068785}, {\"doc_id\": \"sphinx/util/inspect.py::getdoc\", \"score\": 61.539245075678856}]"
+}

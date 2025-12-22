@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-16527",
+  "query": "\"show_save_as_new\" in admin can add without this permission\nDescription\n\t \n\t\t(last modified by Mariusz Felisiak)\n\t \nAt \"django/contrib/admin/templatetags/admin_modify.py\" file, line 102, I think you must put one more verification for this tag: \"and has_add_permission\", because \"save_as_new\" is a add modification.\nI rewrite this for my project:\n\t\t\t\"show_save_as_new\": not is_popup\n\t\t\tand has_add_permission # This line that I put!!!\n\t\t\tand has_change_permission\n\t\t\tand change\n\t\t\tand save_as,\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admin/templatetags/admin_modify.py"
+    ],
+    "locations": [
+      "django/contrib/admin/templatetags/admin_modify.py::submit_row"
+    ]
+  },
+  "predictions": [
+    "django/contrib/admin/templatetags/admin_modify.py::submit_row",
+    "django/contrib/admin/options.py::ModelAdmin.get_model_perms",
+    "django/contrib/admin/options.py::ModelAdmin.render_change_form",
+    "django/contrib/auth/admin.py::UserAdmin._add_view",
+    "django/core/files/base.py::File.__iter__",
+    "django/template/defaulttags.py::regroup",
+    "django/db/backends/mysql/introspection.py::DatabaseIntrospection.get_table_description",
+    "django/forms/formsets.py::BaseFormSet.deleted_forms",
+    "django/contrib/admin/options.py::BaseModelAdmin.to_field_allowed",
+    "django/contrib/auth/password_validation.py::exceeds_maximum_length_ratio"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "bd366ca2aeffa869b7dbc0b0aa01caea75e6dc31",
+    "total_functions_indexed": 26352,
+    "retrieval_time_seconds": 1.5021727085113525
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/admin/templatetags/admin_modify.py::submit_row\", \"score\": 119.8353002477776}, {\"doc_id\": \"django/contrib/admin/options.py::ModelAdmin.get_model_perms\", \"score\": 75.68640921400389}, {\"doc_id\": \"django/contrib/admin/options.py::ModelAdmin.render_change_form\", \"score\": 63.948585488967176}, {\"doc_id\": \"django/contrib/auth/admin.py::UserAdmin._add_view\", \"score\": 58.894071567981115}, {\"doc_id\": \"django/core/files/base.py::File.__iter__\", \"score\": 58.867145153526}, {\"doc_id\": \"django/template/defaulttags.py::regroup\", \"score\": 58.1943725253041}, {\"doc_id\": \"django/db/backends/mysql/introspection.py::DatabaseIntrospection.get_table_description\", \"score\": 57.85812640321893}, {\"doc_id\": \"django/forms/formsets.py::BaseFormSet.deleted_forms\", \"score\": 54.681431628099475}, {\"doc_id\": \"django/contrib/admin/options.py::BaseModelAdmin.to_field_allowed\", \"score\": 53.97235826293529}, {\"doc_id\": \"django/contrib/auth/password_validation.py::exceeds_maximum_length_ratio\", \"score\": 53.59632323588221}]"
+}

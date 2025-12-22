@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-14016",
+  "query": "\"TypeError: cannot pickle\" when applying | operator to a Q object\nDescription\n\t \n\t\t(last modified by Daniel Izquierdo)\n\t \nUsing a reference to a non-pickleable type of object such as dict_keys in a Q object makes the | operator fail:\n>>> from django.db.models import Q\n>>> Q(x__in={}.keys())\n<Q: (AND: ('x__in', dict_keys([])))>\n>>> Q() | Q(x__in={}.keys())\nTraceback (most recent call last):\n...\nTypeError: cannot pickle 'dict_keys' object\nEven though this particular example could be solved by doing Q() | Q(x__in={}) it still feels like using .keys() should work.\nI can work on a patch if there's agreement that this should not crash.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/query_utils.py"
+    ],
+    "locations": [
+      "django/db/models/query_utils.py::Q",
+      "django/db/models/query_utils.py::Q._combine"
+    ]
+  },
+  "predictions": [
+    "tests/queries/test_q.py::QTests.test_combine_not_q_object",
+    "tests/queryset_pickle/tests.py::PickleabilityTestCase.test_unsupported_unpickle",
+    "tests/queryset_pickle/tests.py::PickleabilityTestCase.test_model_pickle",
+    "tests/or_lookups/tests.py::OrLookupsTests.test_q_negated",
+    "tests/httpwrappers/tests.py::QueryDictTests.test_pickle",
+    "tests/queryset_pickle/tests.py::PickleabilityTestCase.test_manager_pickle",
+    "tests/queries/tests.py::Queries1Tests.test_deferred_load_qs_pickling",
+    "tests/generic_relations_regress/tests.py::GenericRelationTests.test_q_object_or",
+    "tests/aggregation_regress/tests.py::AggregationTests.test_pickle",
+    "tests/queryset_pickle/tests.py::PickleabilityTestCase.test_missing_django_version_unpickling"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "1710cdbe79c90665046034fe1700933d038d90ad",
+    "total_functions_indexed": 24279,
+    "retrieval_time_seconds": 0.21452736854553223
+  },
+  "raw_output": "[{\"doc_id\": \"tests/queries/test_q.py::QTests.test_combine_not_q_object\", \"score\": 0.4900057911872864}, {\"doc_id\": \"tests/queryset_pickle/tests.py::PickleabilityTestCase.test_unsupported_unpickle\", \"score\": 0.4415402114391327}, {\"doc_id\": \"tests/queryset_pickle/tests.py::PickleabilityTestCase.test_model_pickle\", \"score\": 0.41963303089141846}, {\"doc_id\": \"tests/or_lookups/tests.py::OrLookupsTests.test_q_negated\", \"score\": 0.4157866835594177}, {\"doc_id\": \"tests/httpwrappers/tests.py::QueryDictTests.test_pickle\", \"score\": 0.4098859429359436}, {\"doc_id\": \"tests/queryset_pickle/tests.py::PickleabilityTestCase.test_manager_pickle\", \"score\": 0.4049718976020813}, {\"doc_id\": \"tests/queries/tests.py::Queries1Tests.test_deferred_load_qs_pickling\", \"score\": 0.3971162438392639}, {\"doc_id\": \"tests/generic_relations_regress/tests.py::GenericRelationTests.test_q_object_or\", \"score\": 0.3961186110973358}, {\"doc_id\": \"tests/aggregation_regress/tests.py::AggregationTests.test_pickle\", \"score\": 0.3912747800350189}, {\"doc_id\": \"tests/queryset_pickle/tests.py::PickleabilityTestCase.test_missing_django_version_unpickling\", \"score\": 0.38979244232177734}]"
+}

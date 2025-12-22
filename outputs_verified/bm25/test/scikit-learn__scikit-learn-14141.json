@@ -1,0 +1,31 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-14141",
+  "query": "Add joblib in show_versions\njoblib should be added to the dependencies listed in show_versions or added to the issue template when sklearn version is > 0.20.\n",
+  "ground_truth": {
+    "files": [
+      "sklearn/utils/_show_versions.py"
+    ],
+    "locations": [
+      "sklearn/utils/_show_versions.py::_get_deps_info"
+    ]
+  },
+  "predictions": [
+    "sklearn/utils/validation.py::check_memory",
+    "sklearn/utils/fixes.py::_joblib_parallel_args",
+    "sklearn/linear_model/tests/test_sgd.py::test_SGDClassifier_fit_for_all_backends",
+    "sklearn/utils/estimator_checks.py::check_estimators_overwrite_params",
+    "sklearn/utils/tests/test_validation.py::test_check_memory",
+    "sklearn/utils/tests/test_show_versions.py::test_show_versions_with_blas",
+    "sklearn/pipeline.py::Pipeline._fit",
+    "sklearn/decomposition/online_lda.py::LatentDirichletAllocation._e_step",
+    "sklearn/datasets/svmlight_format.py::load_svmlight_file",
+    "sklearn/datasets/openml.py::fetch_openml"
+  ],
+  "metadata": {
+    "repo": "scikit-learn/scikit-learn",
+    "commit": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+    "total_functions_indexed": 6626,
+    "retrieval_time_seconds": 0.15008306503295898
+  },
+  "raw_output": "[{\"doc_id\": \"sklearn/utils/validation.py::check_memory\", \"score\": 32.44097465831635}, {\"doc_id\": \"sklearn/utils/fixes.py::_joblib_parallel_args\", \"score\": 31.539092560192728}, {\"doc_id\": \"sklearn/linear_model/tests/test_sgd.py::test_SGDClassifier_fit_for_all_backends\", \"score\": 30.527325319554528}, {\"doc_id\": \"sklearn/utils/estimator_checks.py::check_estimators_overwrite_params\", \"score\": 29.653637412691463}, {\"doc_id\": \"sklearn/utils/tests/test_validation.py::test_check_memory\", \"score\": 28.852476944408874}, {\"doc_id\": \"sklearn/utils/tests/test_show_versions.py::test_show_versions_with_blas\", \"score\": 27.77317490006183}, {\"doc_id\": \"sklearn/pipeline.py::Pipeline._fit\", \"score\": 27.346235494981265}, {\"doc_id\": \"sklearn/decomposition/online_lda.py::LatentDirichletAllocation._e_step\", \"score\": 27.012288298058508}, {\"doc_id\": \"sklearn/datasets/svmlight_format.py::load_svmlight_file\", \"score\": 26.85665408350522}, {\"doc_id\": \"sklearn/datasets/openml.py::fetch_openml\", \"score\": 25.894221801805944}]"
+}

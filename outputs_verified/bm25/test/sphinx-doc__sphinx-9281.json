@@ -1,0 +1,31 @@
+{
+  "instance_id": "sphinx-doc__sphinx-9281",
+  "query": "Python Enum values (used to show default values in function signatures) are rendered ugly.\nPython Enum values (used to show default values in function signatures) are rendered ugly.\r\n\r\n**To Reproduce**\r\n\r\nI made a minimal example to show the issue:\r\n\r\nhttps://github.com/sidneycadot/sphinx_issue_ugly_enum\r\n\r\n```\r\n$ git clone git@github.com:sidneycadot/sphinx_issue_ugly_enum.git\r\n$ cd sphinx_issue_ugly_enum/\r\n$ make html\r\n$ firefox build/html/index.html \r\n```\r\n\r\n**Expected behavior**\r\n\r\nI would hope the signature rendered as:\r\n\r\n    ugly_enum_func(e: ugly_enum.MyEnum = MyEnum.ValueA) → None\r\n\r\nUnfortunately, it renders as:\r\n\r\n    ugly_enum_func(e: ugly_enum.MyEnum = <MyEnum.ValueA: 10>) → None\r\n\r\n**Environment info**\r\n\r\n- Python version: 3.9.5\r\n- Sphinx version: 4.0.2\r\n- Sphinx extensions: autodoc\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/util/inspect.py"
+    ],
+    "locations": [
+      "sphinx/util/inspect.py::object_description"
+    ]
+  },
+  "predictions": [
+    "sphinx/application.py::Sphinx.add_config_value",
+    "sphinx/ext/autodoc/__init__.py::FunctionDocumenter.merge_default_value",
+    "sphinx/ext/autodoc/__init__.py::MethodDocumenter.merge_default_value",
+    "tests/test_intl.py::test_xml_keep_external_links",
+    "sphinx/util/inspect.py::signature",
+    "sphinx/ext/autodoc/preserve_defaults.py::update_defvalue",
+    "tests/test_build_html.py::test_html_inventory",
+    "sphinx/application.py::Sphinx.add_js_file",
+    "doc/usage/extensions/example_numpy.py::example_generator",
+    "doc/usage/extensions/example_google.py::example_generator"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "8ec06e9a1bd862cd713b9db748e039ccc7b3e15b",
+    "total_functions_indexed": 5725,
+    "retrieval_time_seconds": 0.3229846954345703
+  },
+  "raw_output": "[{\"doc_id\": \"sphinx/application.py::Sphinx.add_config_value\", \"score\": 81.37994609730629}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::FunctionDocumenter.merge_default_value\", \"score\": 71.00505876955705}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::MethodDocumenter.merge_default_value\", \"score\": 71.00505876955705}, {\"doc_id\": \"tests/test_intl.py::test_xml_keep_external_links\", \"score\": 66.56536148137403}, {\"doc_id\": \"sphinx/util/inspect.py::signature\", \"score\": 65.38754095519158}, {\"doc_id\": \"sphinx/ext/autodoc/preserve_defaults.py::update_defvalue\", \"score\": 63.91193522275628}, {\"doc_id\": \"tests/test_build_html.py::test_html_inventory\", \"score\": 61.696570430952626}, {\"doc_id\": \"sphinx/application.py::Sphinx.add_js_file\", \"score\": 60.13737082980131}, {\"doc_id\": \"doc/usage/extensions/example_numpy.py::example_generator\", \"score\": 58.59389676432151}, {\"doc_id\": \"doc/usage/extensions/example_google.py::example_generator\", \"score\": 58.59389676432151}]"
+}

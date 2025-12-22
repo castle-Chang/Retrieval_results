@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11477",
+  "query": "translate_url() creates an incorrect URL when optional named groups are missing in the URL pattern\nDescription\n\t\nThere is a problem when translating urls with absent 'optional' arguments\n(it's seen in test case of the patch)\n",
+  "ground_truth": {
+    "files": [
+      "django/urls/resolvers.py"
+    ],
+    "locations": [
+      "django/urls/resolvers.py::RegexPattern",
+      "django/urls/resolvers.py::RegexPattern.match"
+    ]
+  },
+  "predictions": [
+    "django/urls/resolvers.py::CheckURLMixin._check_pattern_startswith_slash",
+    "tests/check_framework/test_urls.py::CheckUrlConfigTests.test_beginning_with_slash",
+    "tests/urlpatterns_reverse/tests.py::ResolverTests.test_404_tried_urls_have_names",
+    "django/template/defaulttags.py::url",
+    "django/shortcuts.py::resolve_url",
+    "django/urls/resolvers.py::URLResolver.resolve",
+    "django/urls/resolvers.py::CheckURLMixin.describe",
+    "django/urls/resolvers.py::URLResolver._reverse_with_prefix",
+    "django/forms/models.py::model_to_dict",
+    "tests/file_storage/tests.py::FileStorageTests.test_base_url"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "e28671187903e6aca2428374fdd504fca3032aee",
+    "total_functions_indexed": 22600,
+    "retrieval_time_seconds": 0.5658955574035645
+  },
+  "raw_output": "[{\"doc_id\": \"django/urls/resolvers.py::CheckURLMixin._check_pattern_startswith_slash\", \"score\": 44.33805821714352}, {\"doc_id\": \"tests/check_framework/test_urls.py::CheckUrlConfigTests.test_beginning_with_slash\", \"score\": 40.567711596249154}, {\"doc_id\": \"tests/urlpatterns_reverse/tests.py::ResolverTests.test_404_tried_urls_have_names\", \"score\": 40.37938162431825}, {\"doc_id\": \"django/template/defaulttags.py::url\", \"score\": 40.22616771298022}, {\"doc_id\": \"django/shortcuts.py::resolve_url\", \"score\": 39.72514559682473}, {\"doc_id\": \"django/urls/resolvers.py::URLResolver.resolve\", \"score\": 39.50104317377936}, {\"doc_id\": \"django/urls/resolvers.py::CheckURLMixin.describe\", \"score\": 38.65264224250555}, {\"doc_id\": \"django/urls/resolvers.py::URLResolver._reverse_with_prefix\", \"score\": 37.99347082938393}, {\"doc_id\": \"django/forms/models.py::model_to_dict\", \"score\": 37.6578749205311}, {\"doc_id\": \"tests/file_storage/tests.py::FileStorageTests.test_base_url\", \"score\": 36.09787955436461}]"
+}

@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-19637",
+  "query": "kernS: 'kern' referenced before assignment\nfrom sympy.core.sympify import kernS\r\n\r\ntext = \"(2*x)/(x-1)\"\r\nexpr = kernS(text)  \r\n//  hit = kern in s\r\n// UnboundLocalError: local variable 'kern' referenced before assignment\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/sympify.py"
+    ],
+    "locations": [
+      "sympy/core/sympify.py::kernS"
+    ]
+  },
+  "predictions": [
+    "sympy/core/sympify.py::kernS",
+    "sympy/core/tests/test_sympify.py::test_kernS",
+    "sympy/functions/special/polynomials.py::legendre._eval_rewrite_as_polynomial",
+    "sympy/functions/special/polynomials.py::chebyshevt._eval_rewrite_as_polynomial",
+    "sympy/functions/special/polynomials.py::chebyshevu._eval_rewrite_as_polynomial",
+    "sympy/functions/special/polynomials.py::hermite._eval_rewrite_as_polynomial",
+    "sympy/functions/special/polynomials.py::gegenbauer._eval_rewrite_as_polynomial",
+    "sympy/functions/special/polynomials.py::assoc_legendre._eval_rewrite_as_polynomial",
+    "sympy/functions/special/polynomials.py::laguerre._eval_rewrite_as_polynomial",
+    "sympy/codegen/ast.py::CodeBlock.topological_sort"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "63f8f465d48559fecb4e4bf3c48b75bf15a3e0ef",
+    "total_functions_indexed": 34692,
+    "retrieval_time_seconds": 0.8210494518280029
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/sympify.py::kernS\", \"score\": 114.72030211519845}, {\"doc_id\": \"sympy/core/tests/test_sympify.py::test_kernS\", \"score\": 66.20810622786522}, {\"doc_id\": \"sympy/functions/special/polynomials.py::legendre._eval_rewrite_as_polynomial\", \"score\": 53.73434974634152}, {\"doc_id\": \"sympy/functions/special/polynomials.py::chebyshevt._eval_rewrite_as_polynomial\", \"score\": 53.64119104569765}, {\"doc_id\": \"sympy/functions/special/polynomials.py::chebyshevu._eval_rewrite_as_polynomial\", \"score\": 52.94810163003459}, {\"doc_id\": \"sympy/functions/special/polynomials.py::hermite._eval_rewrite_as_polynomial\", \"score\": 52.795120744820835}, {\"doc_id\": \"sympy/functions/special/polynomials.py::gegenbauer._eval_rewrite_as_polynomial\", \"score\": 52.21780120415784}, {\"doc_id\": \"sympy/functions/special/polynomials.py::assoc_legendre._eval_rewrite_as_polynomial\", \"score\": 51.708433406001824}, {\"doc_id\": \"sympy/functions/special/polynomials.py::laguerre._eval_rewrite_as_polynomial\", \"score\": 50.731115134501024}, {\"doc_id\": \"sympy/codegen/ast.py::CodeBlock.topological_sort\", \"score\": 50.05641651355455}]"
+}

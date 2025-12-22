@@ -1,0 +1,44 @@
+{
+  "instance_id": "django__django-11400",
+  "query": "Ordering problem in admin.RelatedFieldListFilter and admin.RelatedOnlyFieldListFilter\nDescription\n\t\nRelatedFieldListFilter doesn't fall back to the ordering defined in Model._meta.ordering. \nOrdering gets set to an empty tuple in ​https://github.com/django/django/blob/2.2.1/django/contrib/admin/filters.py#L196 and unless ordering is defined on the related model's ModelAdmin class it stays an empty tuple. IMHO it should fall back to the ordering defined in the related model's Meta.ordering field.\nRelatedOnlyFieldListFilter doesn't order the related model at all, even if ordering is defined on the related model's ModelAdmin class.\nThat's because the call to field.get_choices ​https://github.com/django/django/blob/2.2.1/django/contrib/admin/filters.py#L422 omits the ordering kwarg entirely.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/__init__.py",
+      "django/contrib/admin/filters.py",
+      "django/db/models/fields/reverse_related.py"
+    ],
+    "locations": [
+      "django/contrib/admin/filters.py::RelatedFieldListFilter",
+      "django/contrib/admin/filters.py::RelatedFieldListFilter.expected_parameters",
+      "django/contrib/admin/filters.py::RelatedFieldListFilter.field_choices",
+      "django/contrib/admin/filters.py::RelatedFieldListFilter.choices",
+      "django/contrib/admin/filters.py::RelatedOnlyFieldListFilter",
+      "django/contrib/admin/filters.py::RelatedOnlyFieldListFilter.field_choices",
+      "django/db/models/fields/__init__.py::Field",
+      "django/db/models/fields/__init__.py::Field.get_choices",
+      "django/db/models/fields/__init__.py::Field.value_to_string",
+      "django/db/models/fields/reverse_related.py::ForeignObjectRel",
+      "django/db/models/fields/reverse_related.py::ForeignObjectRel.get_choices",
+      "django/db/models/fields/reverse_related.py::ForeignObjectRel.is_hidden"
+    ]
+  },
+  "predictions": [
+    "django/contrib/admin/filters.py::RelatedFieldListFilter.field_choices",
+    "tests/admin_changelist/tests.py::ChangeListTests.test_deterministic_order_for_unordered_model",
+    "django/contrib/admin/options.py::BaseModelAdmin.get_field_queryset",
+    "tests/admin_changelist/tests.py::ChangeListTests.test_deterministic_order_for_model_ordered_by_its_manager",
+    "tests/queries/tests.py::ConditionalTests.test_infinite_loop",
+    "django/db/models/base.py::Model._check_ordering",
+    "tests/modeladmin/test_checks.py::OrderingCheckTests.test_not_iterable",
+    "tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_missing_field",
+    "django/contrib/admin/views/main.py::ChangeList.get_ordering",
+    "tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_missing_foreignkey_field"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "1f8382d34d54061eddc41df6994e20ee38c60907",
+    "total_functions_indexed": 22723,
+    "retrieval_time_seconds": 1.766718864440918
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/admin/filters.py::RelatedFieldListFilter.field_choices\", \"score\": 174.7072430998288}, {\"doc_id\": \"tests/admin_changelist/tests.py::ChangeListTests.test_deterministic_order_for_unordered_model\", \"score\": 169.96641796692742}, {\"doc_id\": \"django/contrib/admin/options.py::BaseModelAdmin.get_field_queryset\", \"score\": 167.50648159478268}, {\"doc_id\": \"tests/admin_changelist/tests.py::ChangeListTests.test_deterministic_order_for_model_ordered_by_its_manager\", \"score\": 167.39493326304907}, {\"doc_id\": \"tests/queries/tests.py::ConditionalTests.test_infinite_loop\", \"score\": 156.19891273592202}, {\"doc_id\": \"django/db/models/base.py::Model._check_ordering\", \"score\": 152.15922267077462}, {\"doc_id\": \"tests/modeladmin/test_checks.py::OrderingCheckTests.test_not_iterable\", \"score\": 151.293302377162}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_missing_field\", \"score\": 150.0920004961605}, {\"doc_id\": \"django/contrib/admin/views/main.py::ChangeList.get_ordering\", \"score\": 149.9487305315614}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_missing_foreignkey_field\", \"score\": 146.99323421865023}]"
+}

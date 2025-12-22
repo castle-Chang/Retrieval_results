@@ -1,0 +1,36 @@
+{
+  "instance_id": "sympy__sympy-12419",
+  "query": "Sum of the elements of an identity matrix is zero\nI think this is a bug.\r\n\r\nI created a matrix by M.T * M under an assumption that M is orthogonal.  SymPy successfully recognized that the result is an identity matrix.  I tested its identity-ness by element-wise, queries, and sum of the diagonal elements and received expected results.\r\n\r\nHowever, when I attempt to evaluate the total sum of the elements the result was 0 while 'n' is expected.\r\n\r\n```\r\nfrom sympy import *\r\nfrom sympy import Q as Query\r\n\r\nn = Symbol('n', integer=True, positive=True)\r\ni, j = symbols('i j', integer=True)\r\nM = MatrixSymbol('M', n, n)\r\n\r\ne = None\r\nwith assuming(Query.orthogonal(M)):\r\n    e = refine((M.T * M).doit())\r\n\r\n# Correct: M.T * M is an identity matrix.\r\nprint(e, e[0, 0], e[0, 1], e[1, 0], e[1, 1])\r\n\r\n# Correct: The output is True True\r\nprint(ask(Query.diagonal(e)), ask(Query.integer_elements(e)))\r\n\r\n# Correct: The sum of the diagonal elements is n\r\nprint(Sum(e[i, i], (i, 0, n-1)).doit())\r\n\r\n# So far so good\r\n# Total sum of the elements is expected to be 'n' but the answer is 0!\r\nprint(Sum(Sum(e[i, j], (i, 0, n-1)), (j, 0, n-1)).doit())\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/matrices/expressions/matexpr.py"
+    ],
+    "locations": [
+      "sympy/matrices/expressions/matexpr.py::MatrixElement",
+      "sympy/matrices/expressions/matexpr.py::MatrixElement._eval_derivative",
+      "sympy/matrices/expressions/matexpr.py::Identity",
+      "sympy/matrices/expressions/matexpr.py::Identity.conjugate",
+      "sympy/matrices/expressions/matexpr.py::Identity._entry",
+      "sympy/matrices/expressions/matexpr.py::Identity._eval_determinant"
+    ]
+  },
+  "predictions": [
+    "sympy/concrete/tests/test_sums_products.py::test_karr_convention",
+    "sympy/concrete/summations.py::summation",
+    "sympy/series/acceleration.py::shanks",
+    "sympy/concrete/summations.py::Sum.euler_maclaurin",
+    "sympy/matrices/matrices.py::MatrixProperties.is_anti_symmetric",
+    "sympy/polys/subresultants_qq_zz.py::bezout",
+    "sympy/simplify/simplify.py::signsimp",
+    "sympy/utilities/iterables.py::multiset_partitions",
+    "sympy/polys/subresultants_qq_zz.py::sylvester",
+    "sympy/assumptions/ask.py::AssumptionKeys.orthogonal"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "479939f8c65c8c2908bbedc959549a257a7c0b0b",
+    "total_functions_indexed": 20518,
+    "retrieval_time_seconds": 2.5192432403564453
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/concrete/tests/test_sums_products.py::test_karr_convention\", \"score\": 355.0384960654661}, {\"doc_id\": \"sympy/concrete/summations.py::summation\", \"score\": 329.139549222464}, {\"doc_id\": \"sympy/series/acceleration.py::shanks\", \"score\": 326.2352953120135}, {\"doc_id\": \"sympy/concrete/summations.py::Sum.euler_maclaurin\", \"score\": 321.0129419708635}, {\"doc_id\": \"sympy/matrices/matrices.py::MatrixProperties.is_anti_symmetric\", \"score\": 304.2589380792163}, {\"doc_id\": \"sympy/polys/subresultants_qq_zz.py::bezout\", \"score\": 302.60251928972474}, {\"doc_id\": \"sympy/simplify/simplify.py::signsimp\", \"score\": 299.1598756997549}, {\"doc_id\": \"sympy/utilities/iterables.py::multiset_partitions\", \"score\": 296.36045615614324}, {\"doc_id\": \"sympy/polys/subresultants_qq_zz.py::sylvester\", \"score\": 294.5229656768615}, {\"doc_id\": \"sympy/assumptions/ask.py::AssumptionKeys.orthogonal\", \"score\": 293.9541392831776}]"
+}

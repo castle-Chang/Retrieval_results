@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-11433",
+  "query": "Allow `cleaned_data` to overwrite fields' default values.\nDescription\n\t\nSee comments here: ​https://github.com/django/django/pull/7068/files#r289432409\nCurrently, when submitting a form, if 'some_field' isn't in the data payload (e.g. it wasn't included in the form, perhaps because its value is derived from another field), and 'some_field' has a default value on the model, it cannot be overwritten with 'self.cleaned_data'.\nThis does not really follow the paradigm of modifying data in 'cleaned_data'. It requires the user to copy and overwrite the raw data submitted with the form.\n",
+  "ground_truth": {
+    "files": [
+      "django/forms/models.py"
+    ],
+    "locations": [
+      "django/forms/models.py::construct_instance"
+    ]
+  },
+  "predictions": [
+    "django/forms/models.py::BaseModelFormSet.validate_unique",
+    "tests/forms_tests/tests/test_forms.py::FormsTestCase.test_optional_data",
+    "django/forms/models.py::construct_instance",
+    "tests/forms_tests/tests/test_forms.py::FormsTestCase.test_empty_permitted",
+    "django/forms/models.py::BaseModelForm._get_validation_exclusions",
+    "django/forms/fields.py::Field.bound_data",
+    "django/forms/formsets.py::BaseFormSet.ordered_forms",
+    "django/db/models/fields/files.py::FileField.save_form_data",
+    "tests/forms_tests/tests/test_forms.py::FormsTestCase.test_cleaned_data_only_fields",
+    "django/forms/forms.py::BaseForm.full_clean"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "21b1d239125f1228e579b1ce8d94d4d5feadd2a6",
+    "total_functions_indexed": 22512,
+    "retrieval_time_seconds": 1.3839592933654785
+  },
+  "raw_output": "[{\"doc_id\": \"django/forms/models.py::BaseModelFormSet.validate_unique\", \"score\": 111.12972088573667}, {\"doc_id\": \"tests/forms_tests/tests/test_forms.py::FormsTestCase.test_optional_data\", \"score\": 105.11868693633417}, {\"doc_id\": \"django/forms/models.py::construct_instance\", \"score\": 102.72502532151567}, {\"doc_id\": \"tests/forms_tests/tests/test_forms.py::FormsTestCase.test_empty_permitted\", \"score\": 100.17807342299773}, {\"doc_id\": \"django/forms/models.py::BaseModelForm._get_validation_exclusions\", \"score\": 94.29944109075328}, {\"doc_id\": \"django/forms/fields.py::Field.bound_data\", \"score\": 94.2496090810916}, {\"doc_id\": \"django/forms/formsets.py::BaseFormSet.ordered_forms\", \"score\": 93.19687026783535}, {\"doc_id\": \"django/db/models/fields/files.py::FileField.save_form_data\", \"score\": 92.04212054663861}, {\"doc_id\": \"tests/forms_tests/tests/test_forms.py::FormsTestCase.test_cleaned_data_only_fields\", \"score\": 89.14033092307976}, {\"doc_id\": \"django/forms/forms.py::BaseForm.full_clean\", \"score\": 88.69257877087429}]"
+}

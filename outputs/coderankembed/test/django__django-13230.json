@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-13230",
+  "query": "Add support for item_comments to syndication framework\nDescription\n\t\nAdd comments argument to feed.add_item() in syndication.views so that item_comments can be defined directly without having to take the detour via item_extra_kwargs .\nAdditionally, comments is already explicitly mentioned in the feedparser, but not implemented in the view.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/syndication/views.py"
+    ],
+    "locations": [
+      "django/contrib/syndication/views.py::Feed",
+      "django/contrib/syndication/views.py::Feed.get_feed"
+    ]
+  },
+  "predictions": [
+    "django/contrib/syndication/views.py::Feed.item_extra_kwargs",
+    "django/contrib/syndication/views.py::Feed.item_description",
+    "django/utils/feedgenerator.py::SyndicationFeed.add_item",
+    "django/utils/feedgenerator.py::SyndicationFeed.item_attributes",
+    "django/contrib/syndication/views.py::Feed.item_link",
+    "django/utils/feedgenerator.py::SyndicationFeed.add_item_elements",
+    "django/contrib/syndication/views.py::Feed.feed_extra_kwargs",
+    "tests/syndication_tests/feeds.py::TestRss2Feed.item_description",
+    "django/contrib/gis/feeds.py::Feed.item_extra_kwargs",
+    "django/contrib/syndication/views.py::Feed.item_title"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "184a6eebb0ef56d5f1b1315a8e666830e37f3f81",
+    "total_functions_indexed": 23747,
+    "retrieval_time_seconds": 0.15453791618347168
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/syndication/views.py::Feed.item_extra_kwargs\", \"score\": 0.6263484954833984}, {\"doc_id\": \"django/contrib/syndication/views.py::Feed.item_description\", \"score\": 0.5659828186035156}, {\"doc_id\": \"django/utils/feedgenerator.py::SyndicationFeed.add_item\", \"score\": 0.5658317804336548}, {\"doc_id\": \"django/utils/feedgenerator.py::SyndicationFeed.item_attributes\", \"score\": 0.5561846494674683}, {\"doc_id\": \"django/contrib/syndication/views.py::Feed.item_link\", \"score\": 0.5518553256988525}, {\"doc_id\": \"django/utils/feedgenerator.py::SyndicationFeed.add_item_elements\", \"score\": 0.5490747690200806}, {\"doc_id\": \"django/contrib/syndication/views.py::Feed.feed_extra_kwargs\", \"score\": 0.5337532758712769}, {\"doc_id\": \"tests/syndication_tests/feeds.py::TestRss2Feed.item_description\", \"score\": 0.46469229459762573}, {\"doc_id\": \"django/contrib/gis/feeds.py::Feed.item_extra_kwargs\", \"score\": 0.4584842920303345}, {\"doc_id\": \"django/contrib/syndication/views.py::Feed.item_title\", \"score\": 0.45304766297340393}]"
+}

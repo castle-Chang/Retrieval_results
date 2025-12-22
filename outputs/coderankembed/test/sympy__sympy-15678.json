@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-15678",
+  "query": "Some issues with idiff\nidiff doesn't support Eq, and it also doesn't support f(x) instead of y. Both should be easy to correct.\r\n\r\n```\r\n>>> idiff(Eq(y*exp(y), x*exp(x)), y, x)\r\nTraceback (most recent call last):\r\n  File \"<stdin>\", line 1, in <module>\r\n  File \"./sympy/geometry/util.py\", line 582, in idiff\r\n    yp = solve(eq.diff(x), dydx)[0].subs(derivs)\r\nIndexError: list index out of range\r\n>>> idiff(f(x)*exp(f(x)) - x*exp(x), f(x), x)\r\nTraceback (most recent call last):\r\n  File \"<stdin>\", line 1, in <module>\r\n  File \"./sympy/geometry/util.py\", line 574, in idiff\r\n    raise ValueError(\"expecting x-dependent symbol(s) but got: %s\" % y)\r\nValueError: expecting x-dependent symbol(s) but got: f(x)\r\n>>> idiff(y*exp(y)- x*exp(x), y, x)\r\n(x + 1)*exp(x - y)/(y + 1)\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/geometry/util.py"
+    ],
+    "locations": [
+      "sympy/geometry/util.py::idiff"
+    ]
+  },
+  "predictions": [
+    "sympy/geometry/util.py::idiff",
+    "sympy/geometry/tests/test_util.py::test_idiff",
+    "sympy/core/function.py::diff",
+    "sympy/utilities/tests/test_wester.py::test_U8",
+    "sympy/core/tests/test_diff.py::test_diff",
+    "sympy/core/tests/test_function.py::test_diff_symbols",
+    "sympy/solvers/solvers.py::_invert",
+    "sympy/core/tests/test_function.py::test_issue_15241",
+    "sympy/core/tests/test_diff.py::test_diff_no_eval_derivative",
+    "sympy/core/tests/test_function.py::test_issue_5399"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "31c68eef3ffef39e2e792b0ec92cd92b7010eb2a",
+    "total_functions_indexed": 24378,
+    "retrieval_time_seconds": 0.005479335784912109
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/geometry/util.py::idiff\", \"score\": 0.7489053010940552}, {\"doc_id\": \"sympy/geometry/tests/test_util.py::test_idiff\", \"score\": 0.6983588933944702}, {\"doc_id\": \"sympy/core/function.py::diff\", \"score\": 0.5321652293205261}, {\"doc_id\": \"sympy/utilities/tests/test_wester.py::test_U8\", \"score\": 0.5248568058013916}, {\"doc_id\": \"sympy/core/tests/test_diff.py::test_diff\", \"score\": 0.5198842287063599}, {\"doc_id\": \"sympy/core/tests/test_function.py::test_diff_symbols\", \"score\": 0.5191844701766968}, {\"doc_id\": \"sympy/solvers/solvers.py::_invert\", \"score\": 0.5126916170120239}, {\"doc_id\": \"sympy/core/tests/test_function.py::test_issue_15241\", \"score\": 0.4992326498031616}, {\"doc_id\": \"sympy/core/tests/test_diff.py::test_diff_no_eval_derivative\", \"score\": 0.49621063470840454}, {\"doc_id\": \"sympy/core/tests/test_function.py::test_issue_5399\", \"score\": 0.49557796120643616}]"
+}

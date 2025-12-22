@@ -1,0 +1,47 @@
+{
+  "instance_id": "matplotlib__matplotlib-25775",
+  "query": "[ENH]: Add get/set_antialiased to Text objects\n### Problem\n\nCurrently, Text objects always retrieve their antialiasing state via the global rcParams[\"text.antialias\"], unlike other artists for which this can be configured on a per-artist basis via `set_antialiased` (and read via `set_antialiased`).\n\n### Proposed solution\n\nAdd similar getters/setters on Text objects (also adjusting Annotations accordingly, if needed) and use that info in the drawing stage.\r\n\r\nShould be relatively easy to implement, except that the slight fiddling needed with backends requires some understanding of backend code (I think we need to replace the access to `rcParams[\"text.antialiased\"]` by going through the GraphicsContext state).\n",
+  "ground_truth": {
+    "files": [
+      "lib/matplotlib/backends/backend_cairo.py",
+      "lib/matplotlib/backends/backend_agg.py",
+      "lib/matplotlib/text.py"
+    ],
+    "locations": [
+      "lib/matplotlib/backends/backend_agg.py::RendererAgg",
+      "lib/matplotlib/backends/backend_agg.py::RendererAgg.draw_text",
+      "lib/matplotlib/backends/backend_cairo.py::RendererCairo",
+      "lib/matplotlib/backends/backend_cairo.py::RendererCairo.draw_text",
+      "lib/matplotlib/backends/backend_cairo.py::GraphicsContextCairo",
+      "lib/matplotlib/backends/backend_cairo.py::GraphicsContextCairo.set_antialiased",
+      "lib/matplotlib/backends/backend_cairo.py::GraphicsContextCairo.set_capstyle",
+      "lib/matplotlib/text.py::Text",
+      "lib/matplotlib/text.py::Text.__init__",
+      "lib/matplotlib/text.py::Text._reset_visual_defaults",
+      "lib/matplotlib/text.py::Text.update",
+      "lib/matplotlib/text.py::Text.get_rotation_mode",
+      "lib/matplotlib/text.py::Text.update_from",
+      "lib/matplotlib/text.py::Text._get_layout",
+      "lib/matplotlib/text.py::Text.draw"
+    ]
+  },
+  "predictions": [
+    "lib/matplotlib/pyplot.py::_get_backend_mod",
+    "lib/matplotlib/backend_bases.py::GraphicsContextBase.set_antialiased",
+    "lib/matplotlib/axes/_base.py::_draw_rasterized",
+    "lib/matplotlib/axes/_axes.py::Axes.text",
+    "lib/matplotlib/tests/test_patches.py::test_default_antialiased",
+    "lib/matplotlib/ticker.py::PercentFormatter.symbol",
+    "lib/matplotlib/tests/test_rcparams.py::test_rcparams_reset_after_fail",
+    "lib/matplotlib/pyplot.py::switch_backend",
+    "lib/matplotlib/pyplot.py::draw",
+    "lib/matplotlib/textpath.py::TextPath.__init__"
+  ],
+  "metadata": {
+    "repo": "matplotlib/matplotlib",
+    "commit": "26224d96066b5c60882296c551f54ca7732c0af0",
+    "total_functions_indexed": 9183,
+    "retrieval_time_seconds": 0.5475442409515381
+  },
+  "raw_output": "[{\"doc_id\": \"lib/matplotlib/pyplot.py::_get_backend_mod\", \"score\": 81.44770487240302}, {\"doc_id\": \"lib/matplotlib/backend_bases.py::GraphicsContextBase.set_antialiased\", \"score\": 81.25381813155781}, {\"doc_id\": \"lib/matplotlib/axes/_base.py::_draw_rasterized\", \"score\": 77.70392651177781}, {\"doc_id\": \"lib/matplotlib/axes/_axes.py::Axes.text\", \"score\": 77.51448123528019}, {\"doc_id\": \"lib/matplotlib/tests/test_patches.py::test_default_antialiased\", \"score\": 76.86291119045838}, {\"doc_id\": \"lib/matplotlib/ticker.py::PercentFormatter.symbol\", \"score\": 76.68818631592661}, {\"doc_id\": \"lib/matplotlib/tests/test_rcparams.py::test_rcparams_reset_after_fail\", \"score\": 75.23775079911385}, {\"doc_id\": \"lib/matplotlib/pyplot.py::switch_backend\", \"score\": 75.1695840705993}, {\"doc_id\": \"lib/matplotlib/pyplot.py::draw\", \"score\": 74.57773114485155}, {\"doc_id\": \"lib/matplotlib/textpath.py::TextPath.__init__\", \"score\": 74.28324896657183}]"
+}

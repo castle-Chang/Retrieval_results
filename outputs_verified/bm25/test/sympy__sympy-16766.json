@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-16766",
+  "query": "PythonCodePrinter doesn't support Indexed \nI use `lambdify()` to generate some functions and save the code for further use. But the generated code for `Indexed` operation has some warnings which can be confirmed by following code;\r\n\r\n```\r\nfrom sympy import *\r\np = IndexedBase(\"p\")\r\n\r\npycode(p[0])\r\n```\r\nthe output is \r\n\r\n```\r\n  # Not supported in Python:\r\n  # Indexed\r\np[0]\r\n```\r\n\r\nWe should add following method to `PythonCodePrinter`:\r\n\r\n```\r\ndef _print_Indexed(self, expr):\r\n    base, *index = expr.args\r\n    return \"{}[{}]\".format(str(base), \", \".join([self._print(ind) for ind in index]))\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/pycode.py"
+    ],
+    "locations": [
+      "sympy/printing/pycode.py::PythonCodePrinter",
+      "sympy/printing/pycode.py::PythonCodePrinter._print_Not"
+    ]
+  },
+  "predictions": [
+    "sympy/utilities/lambdify.py::_TensorflowEvaluatorPrinter._print_unpacking",
+    "sympy/printing/codeprinter.py::CodePrinter._sort_optimized",
+    "sympy/printing/fcode.py::FCodePrinter._print_Piecewise",
+    "sympy/printing/julia.py::julia_code",
+    "sympy/printing/octave.py::octave_code",
+    "sympy/printing/rust.py::rust_code",
+    "sympy/printing/ccode.py::ccode",
+    "sympy/utilities/codegen.py::OctaveCodeGen.routine",
+    "sympy/stats/joint_rv_types.py::JointRV",
+    "sympy/tensor/index_methods.py::get_indices"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "b8fe457a02cc24b3470ff678d0099c350b7fef43",
+    "total_functions_indexed": 24986,
+    "retrieval_time_seconds": 1.793816089630127
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/utilities/lambdify.py::_TensorflowEvaluatorPrinter._print_unpacking\", \"score\": 147.37438402827803}, {\"doc_id\": \"sympy/printing/codeprinter.py::CodePrinter._sort_optimized\", \"score\": 132.2782593789529}, {\"doc_id\": \"sympy/printing/fcode.py::FCodePrinter._print_Piecewise\", \"score\": 130.52883924866245}, {\"doc_id\": \"sympy/printing/julia.py::julia_code\", \"score\": 119.99639358123315}, {\"doc_id\": \"sympy/printing/octave.py::octave_code\", \"score\": 119.58558540904447}, {\"doc_id\": \"sympy/printing/rust.py::rust_code\", \"score\": 117.64052372102886}, {\"doc_id\": \"sympy/printing/ccode.py::ccode\", \"score\": 114.57914357297392}, {\"doc_id\": \"sympy/utilities/codegen.py::OctaveCodeGen.routine\", \"score\": 114.2037789816146}, {\"doc_id\": \"sympy/stats/joint_rv_types.py::JointRV\", \"score\": 113.67642376192416}, {\"doc_id\": \"sympy/tensor/index_methods.py::get_indices\", \"score\": 113.66615993981237}]"
+}

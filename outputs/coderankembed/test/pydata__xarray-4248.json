@@ -1,0 +1,31 @@
+{
+  "instance_id": "pydata__xarray-4248",
+  "query": "Feature request: show units in dataset overview\nHere's a hypothetical dataset:\r\n\r\n```\r\n<xarray.Dataset>\r\nDimensions:  (time: 3, x: 988, y: 822)\r\nCoordinates:\r\n  * x         (x) float64 ...\r\n  * y         (y) float64 ...\r\n  * time      (time) datetime64[ns] ...\r\nData variables:\r\n    rainfall  (time, y, x) float32 ...\r\n    max_temp  (time, y, x) float32 ...\r\n```\r\n\r\nIt would be really nice if the units of the coordinates and of the data variables were shown in the `Dataset` repr, for example as:\r\n\r\n```\r\n<xarray.Dataset>\r\nDimensions:  (time: 3, x: 988, y: 822)\r\nCoordinates:\r\n  * x, in metres         (x)            float64 ...\r\n  * y, in metres         (y)            float64 ...\r\n  * time                 (time)         datetime64[ns] ...\r\nData variables:\r\n    rainfall, in mm      (time, y, x)   float32 ...\r\n    max_temp, in deg C   (time, y, x)   float32 ...\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "xarray/core/formatting.py"
+    ],
+    "locations": [
+      "xarray/core/formatting.py::inline_variable_array_repr"
+    ]
+  },
+  "predictions": [
+    "xarray/core/formatting.py::dataset_repr",
+    "xarray/core/coordinates.py::DatasetCoordinates.__init__",
+    "xarray/conventions.py::encode_dataset_coordinates",
+    "xarray/core/dataset.py::DataVariables.__repr__",
+    "xarray/tests/test_units.py::TestDataset.test_repr",
+    "xarray/core/formatting_html.py::dataset_repr",
+    "xarray/tests/test_units.py::test_replication_dataset",
+    "xarray/tests/test_units.py::test_apply_ufunc_dataset",
+    "xarray/core/dataset.py::Dataset.__repr__",
+    "xarray/tests/test_dataset.py::TestDataset.test_repr"
+  ],
+  "metadata": {
+    "repo": "pydata/xarray",
+    "commit": "98dc1f4ea18738492e074e9e51ddfed5cd30ab94",
+    "total_functions_indexed": 4245,
+    "retrieval_time_seconds": 0.0009169578552246094
+  },
+  "raw_output": "[{\"doc_id\": \"xarray/core/formatting.py::dataset_repr\", \"score\": 0.45159757137298584}, {\"doc_id\": \"xarray/core/coordinates.py::DatasetCoordinates.__init__\", \"score\": 0.42265447974205017}, {\"doc_id\": \"xarray/conventions.py::encode_dataset_coordinates\", \"score\": 0.4188077449798584}, {\"doc_id\": \"xarray/core/dataset.py::DataVariables.__repr__\", \"score\": 0.4163608253002167}, {\"doc_id\": \"xarray/tests/test_units.py::TestDataset.test_repr\", \"score\": 0.41464942693710327}, {\"doc_id\": \"xarray/core/formatting_html.py::dataset_repr\", \"score\": 0.4048128128051758}, {\"doc_id\": \"xarray/tests/test_units.py::test_replication_dataset\", \"score\": 0.40201497077941895}, {\"doc_id\": \"xarray/tests/test_units.py::test_apply_ufunc_dataset\", \"score\": 0.39946234226226807}, {\"doc_id\": \"xarray/core/dataset.py::Dataset.__repr__\", \"score\": 0.38806015253067017}, {\"doc_id\": \"xarray/tests/test_dataset.py::TestDataset.test_repr\", \"score\": 0.38637158274650574}]"
+}

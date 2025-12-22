@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-13971",
+  "query": "Display of SeqFormula()\n```\r\nimport sympy as sp\r\nk, m, n = sp.symbols('k m n', integer=True)\r\nsp.init_printing()\r\n\r\nsp.SeqFormula(n**2, (n,0,sp.oo))\r\n```\r\n\r\nThe Jupyter rendering of this command backslash-escapes the brackets producing:\r\n\r\n`\\left\\[0, 1, 4, 9, \\ldots\\right\\]`\r\n\r\nCopying this output to a markdown cell this does not render properly.  Whereas:\r\n\r\n`[0, 1, 4, 9, \\ldots ]`\r\n\r\ndoes render just fine.  \r\n\r\nSo - sequence output should not backslash-escape square brackets, or, `\\]` should instead render?\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/latex.py"
+    ],
+    "locations": [
+      "sympy/printing/latex.py::LatexPrinter",
+      "sympy/printing/latex.py::LatexPrinter._print_SeqFormula"
+    ]
+  },
+  "predictions": [
+    "sympy/series/tests/test_sequences.py::test_SeqFormula",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_SeqFormula",
+    "sympy/printing/latex.py::LatexPrinter._print_SeqFormula",
+    "sympy/core/tests/test_args.py::test_sympy__series__sequences__SeqFormula",
+    "sympy/series/tests/test_sequences.py::test_sequence",
+    "sympy/series/sequences.py::SeqFormula.formula",
+    "sympy/printing/tests/test_latex.py::test_latex_sequences",
+    "sympy/series/sequences.py::SeqFormula.__new__",
+    "sympy/series/tests/test_sequences.py::test_operations",
+    "sympy/series/tests/test_sequences.py::test_SeqMul"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "84c125972ad535b2dfb245f8d311d347b45e5b8a",
+    "total_functions_indexed": 22514,
+    "retrieval_time_seconds": 0.0069921016693115234
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/series/tests/test_sequences.py::test_SeqFormula\", \"score\": 0.6260274052619934}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_SeqFormula\", \"score\": 0.5994195342063904}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_SeqFormula\", \"score\": 0.596437394618988}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__series__sequences__SeqFormula\", \"score\": 0.5882363319396973}, {\"doc_id\": \"sympy/series/tests/test_sequences.py::test_sequence\", \"score\": 0.5543649196624756}, {\"doc_id\": \"sympy/series/sequences.py::SeqFormula.formula\", \"score\": 0.5317564010620117}, {\"doc_id\": \"sympy/printing/tests/test_latex.py::test_latex_sequences\", \"score\": 0.5147569179534912}, {\"doc_id\": \"sympy/series/sequences.py::SeqFormula.__new__\", \"score\": 0.5032087564468384}, {\"doc_id\": \"sympy/series/tests/test_sequences.py::test_operations\", \"score\": 0.4872299134731293}, {\"doc_id\": \"sympy/series/tests/test_sequences.py::test_SeqMul\", \"score\": 0.4746522307395935}]"
+}

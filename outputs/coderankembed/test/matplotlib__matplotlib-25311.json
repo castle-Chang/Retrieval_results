@@ -1,0 +1,33 @@
+{
+  "instance_id": "matplotlib__matplotlib-25311",
+  "query": "[Bug]: Unable to pickle figure with draggable legend\n### Bug summary\r\n\r\nI am unable to pickle figure with draggable legend. Same error comes for draggable annotations.\r\n\r\n\r\n\r\n\r\n\r\n### Code for reproduction\r\n\r\n```python\r\nimport matplotlib.pyplot as plt\r\nimport pickle\r\n\r\nfig = plt.figure()\r\nax = fig.add_subplot(111)\r\n\r\ntime=[0,1,2,3,4]\r\nspeed=[40,43,45,47,48]\r\n\r\nax.plot(time,speed,label=\"speed\")\r\n\r\nleg=ax.legend()\r\nleg.set_draggable(True) #pickling works after removing this line \r\n\r\npickle.dumps(fig)\r\nplt.show()\r\n```\r\n\r\n\r\n### Actual outcome\r\n\r\n`TypeError: cannot pickle 'FigureCanvasQTAgg' object`\r\n\r\n### Expected outcome\r\n\r\nPickling successful\r\n\r\n### Additional information\r\n\r\n_No response_\r\n\r\n### Operating system\r\n\r\nWindows 10\r\n\r\n### Matplotlib Version\r\n\r\n3.7.0\r\n\r\n### Matplotlib Backend\r\n\r\n_No response_\r\n\r\n### Python version\r\n\r\n3.10\r\n\r\n### Jupyter version\r\n\r\n_No response_\r\n\r\n### Installation\r\n\r\npip\n",
+  "ground_truth": {
+    "files": [
+      "lib/matplotlib/offsetbox.py"
+    ],
+    "locations": [
+      "lib/matplotlib/offsetbox.py::DraggableBase",
+      "lib/matplotlib/offsetbox.py::DraggableBase.__init__",
+      "lib/matplotlib/offsetbox.py::DraggableBase.on_motion"
+    ]
+  },
+  "predictions": [
+    "lib/matplotlib/tests/test_pickle.py::test_no_pyplot",
+    "lib/matplotlib/tests/test_legend.py::test_legend_draggable",
+    "lib/matplotlib/tests/test_pickle.py::test_image",
+    "lib/matplotlib/tests/test_pickle.py::test_unpickle_canvas",
+    "lib/matplotlib/tests/test_legend.py::test_get_set_draggable",
+    "lib/matplotlib/backends/backend_qtagg.py::FigureCanvasQTAgg.print_figure",
+    "lib/matplotlib/tests/test_pickle.py::test_complete",
+    "lib/matplotlib/tests/test_pickle.py::test_gcf",
+    "lib/matplotlib/tests/test_pickle.py::test_simple",
+    "lib/matplotlib/tests/test_pickle.py::test_renderer"
+  ],
+  "metadata": {
+    "repo": "matplotlib/matplotlib",
+    "commit": "430fb1db88843300fb4baae3edc499bbfe073b0c",
+    "total_functions_indexed": 9188,
+    "retrieval_time_seconds": 0.0025758743286132812
+  },
+  "raw_output": "[{\"doc_id\": \"lib/matplotlib/tests/test_pickle.py::test_no_pyplot\", \"score\": 0.5600244998931885}, {\"doc_id\": \"lib/matplotlib/tests/test_legend.py::test_legend_draggable\", \"score\": 0.5512129068374634}, {\"doc_id\": \"lib/matplotlib/tests/test_pickle.py::test_image\", \"score\": 0.530691385269165}, {\"doc_id\": \"lib/matplotlib/tests/test_pickle.py::test_unpickle_canvas\", \"score\": 0.5161339640617371}, {\"doc_id\": \"lib/matplotlib/tests/test_legend.py::test_get_set_draggable\", \"score\": 0.48766788840293884}, {\"doc_id\": \"lib/matplotlib/backends/backend_qtagg.py::FigureCanvasQTAgg.print_figure\", \"score\": 0.4719669222831726}, {\"doc_id\": \"lib/matplotlib/tests/test_pickle.py::test_complete\", \"score\": 0.45575258135795593}, {\"doc_id\": \"lib/matplotlib/tests/test_pickle.py::test_gcf\", \"score\": 0.44989994168281555}, {\"doc_id\": \"lib/matplotlib/tests/test_pickle.py::test_simple\", \"score\": 0.44373151659965515}, {\"doc_id\": \"lib/matplotlib/tests/test_pickle.py::test_renderer\", \"score\": 0.44094526767730713}]"
+}

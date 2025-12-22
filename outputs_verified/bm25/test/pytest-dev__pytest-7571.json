@@ -1,0 +1,34 @@
+{
+  "instance_id": "pytest-dev__pytest-7571",
+  "query": "caplog fixture doesn't restore log level after test\nFrom the documentation at https://docs.pytest.org/en/6.0.0/logging.html#caplog-fixture, \"The log levels set are restored automatically at the end of the test\".\r\nIt used to work, but looks broken in new 6.0 release. Minimal example to reproduce:\r\n\r\n```\r\ndef test_foo(caplog):\r\n    caplog.set_level(42)\r\n\r\ndef test_bar(caplog):\r\n    print(caplog.handler.level)\r\n```\r\n\r\nIt prints \"0\" for pytest<6, \"42\" after.\n",
+  "ground_truth": {
+    "files": [
+      "src/_pytest/logging.py"
+    ],
+    "locations": [
+      "src/_pytest/logging.py::LogCaptureFixture",
+      "src/_pytest/logging.py::LogCaptureFixture.__init__",
+      "src/_pytest/logging.py::LogCaptureFixture._finalize",
+      "src/_pytest/logging.py::LogCaptureFixture.set_level"
+    ]
+  },
+  "predictions": [
+    "testing/logging/test_fixture.py::test_change_level_undo",
+    "testing/logging/test_fixture.py::test_log_report_captures_according_to_config_option_upon_failure",
+    "testing/logging/test_fixture.py::test_change_level",
+    "testing/test_capture.py::test_global_capture_with_live_logging",
+    "testing/logging/test_fixture.py::test_messages",
+    "src/_pytest/logging.py::caplog",
+    "src/_pytest/logging.py::LogCaptureFixture.set_level",
+    "testing/logging/test_fixture.py::test_with_statement",
+    "testing/logging/test_reporting.py::test_colored_ansi_esc_caplogtext",
+    "testing/logging/test_fixture.py::test_unicode"
+  ],
+  "metadata": {
+    "repo": "pytest-dev/pytest",
+    "commit": "422685d0bdc110547535036c1ff398b5e1c44145",
+    "total_functions_indexed": 3917,
+    "retrieval_time_seconds": 0.17315316200256348
+  },
+  "raw_output": "[{\"doc_id\": \"testing/logging/test_fixture.py::test_change_level_undo\", \"score\": 118.00748601221865}, {\"doc_id\": \"testing/logging/test_fixture.py::test_log_report_captures_according_to_config_option_upon_failure\", \"score\": 103.32431414249895}, {\"doc_id\": \"testing/logging/test_fixture.py::test_change_level\", \"score\": 100.92273315262017}, {\"doc_id\": \"testing/test_capture.py::test_global_capture_with_live_logging\", \"score\": 98.6376855721992}, {\"doc_id\": \"testing/logging/test_fixture.py::test_messages\", \"score\": 95.56425788666206}, {\"doc_id\": \"src/_pytest/logging.py::caplog\", \"score\": 95.32266531101533}, {\"doc_id\": \"src/_pytest/logging.py::LogCaptureFixture.set_level\", \"score\": 92.2559242470551}, {\"doc_id\": \"testing/logging/test_fixture.py::test_with_statement\", \"score\": 92.18780002329575}, {\"doc_id\": \"testing/logging/test_reporting.py::test_colored_ansi_esc_caplogtext\", \"score\": 89.62438916757846}, {\"doc_id\": \"testing/logging/test_fixture.py::test_unicode\", \"score\": 88.0745882474802}]"
+}

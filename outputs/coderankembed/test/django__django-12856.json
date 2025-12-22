@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12856",
+  "query": "Add check for fields of UniqueConstraints.\nDescription\n\t \n\t\t(last modified by Marnanel Thurman)\n\t \nWhen a model gains a UniqueConstraint, makemigrations doesn't check that the fields named therein actually exist.\nThis is in contrast to the older unique_together syntax, which raises models.E012 if the fields don't exist.\nIn the attached demonstration, you'll need to uncomment \"with_unique_together\" in settings.py in order to show that unique_together raises E012.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/base.py"
+    ],
+    "locations": [
+      "django/db/models/base.py::Model",
+      "django/db/models/base.py::Model._check_constraints"
+    ]
+  },
+  "predictions": [
+    "tests/migrations/test_base.py::MigrationTestBase.assertUniqueConstraintExists",
+    "django/db/models/base.py::Model._get_unique_checks",
+    "tests/invalid_models_tests/test_models.py::ConstraintsTests.test_unique_constraint_with_condition",
+    "tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_foreign_object_to_non_unique_fields",
+    "tests/model_forms/tests.py::UniqueTest.test_multiple_field_unique_together",
+    "tests/invalid_models_tests/test_models.py::ConstraintsTests.test_deferrable_unique_constraint",
+    "django/db/models/constraints.py::UniqueConstraint.__init__",
+    "django/db/models/options.py::Options.total_unique_constraints",
+    "tests/model_forms/tests.py::UniqueTest.test_unique_together_exclusion",
+    "django/db/models/constraints.py::UniqueConstraint.create_sql"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "8328811f048fed0dd22573224def8c65410c9f2e",
+    "total_functions_indexed": 23434,
+    "retrieval_time_seconds": 0.005124568939208984
+  },
+  "raw_output": "[{\"doc_id\": \"tests/migrations/test_base.py::MigrationTestBase.assertUniqueConstraintExists\", \"score\": 0.5371931791305542}, {\"doc_id\": \"django/db/models/base.py::Model._get_unique_checks\", \"score\": 0.5180566310882568}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::ConstraintsTests.test_unique_constraint_with_condition\", \"score\": 0.5138214826583862}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_foreign_object_to_non_unique_fields\", \"score\": 0.5008599758148193}, {\"doc_id\": \"tests/model_forms/tests.py::UniqueTest.test_multiple_field_unique_together\", \"score\": 0.4992409944534302}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::ConstraintsTests.test_deferrable_unique_constraint\", \"score\": 0.4977904260158539}, {\"doc_id\": \"django/db/models/constraints.py::UniqueConstraint.__init__\", \"score\": 0.49525386095046997}, {\"doc_id\": \"django/db/models/options.py::Options.total_unique_constraints\", \"score\": 0.4872207045555115}, {\"doc_id\": \"tests/model_forms/tests.py::UniqueTest.test_unique_together_exclusion\", \"score\": 0.48555347323417664}, {\"doc_id\": \"django/db/models/constraints.py::UniqueConstraint.create_sql\", \"score\": 0.48416072130203247}]"
+}

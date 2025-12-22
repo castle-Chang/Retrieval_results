@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-16899",
+  "query": "ModelAdmin: Error message for readonly_fields's check does not include the field name\nDescription\n\t\nWhen subclassing a ModelAdmin, the current error message for the readonly_fields would indicate the index of the value at fault but it will not include the field's name (from the test suite):\nThe value of 'readonly_fields[0]' is not a callable, an attribute of 'CityInline', or an attribute of 'admin_checks.City'.\nOther fields like list_editable, raw_id_fields, list_display, etc. would also include this value:\nThe value of 'list_editable[0]' refers to 'original_release', which is not contained in 'list_display'.\nIt would be good if we can unify this and include the field name in the readonly_fields checks, it also eases the understanding of the error when using the framework.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admin/checks.py"
+    ],
+    "locations": [
+      "django/contrib/admin/checks.py::BaseModelAdminChecks",
+      "django/contrib/admin/checks.py::BaseModelAdminChecks._check_readonly_fields_item"
+    ]
+  },
+  "predictions": [
+    "tests/admin_checks/tests.py::SystemChecksTestCase.test_nonexistent_field_on_inline",
+    "tests/admin_checks/tests.py::SystemChecksTestCase.test_readonly_and_editable",
+    "tests/admin_checks/tests.py::SystemChecksTestCase.test_nonexistent_field",
+    "tests/admin_checks/tests.py::SystemChecksTestCase.test_field_name_not_in_list_display",
+    "django/contrib/admin/checks.py::BaseModelAdminChecks._check_field_spec_item",
+    "django/contrib/admin/checks.py::ModelAdminChecks._check_list_editable_item",
+    "tests/modeladmin/test_checks.py::ListDisplayEditableTests.test_list_display_first_item_same_as_list_editable_no_list_display_links",
+    "tests/admin_checks/tests.py::SystemChecksTestCase.test_list_editable_missing_field",
+    "django/forms/forms.py::BaseForm.add_error",
+    "tests/admin_checks/tests.py::SystemChecksTestCase.test_pk_not_editable"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "d3d173425fc0a1107836da5b4567f1c88253191b",
+    "total_functions_indexed": 26676,
+    "retrieval_time_seconds": 1.9297802448272705
+  },
+  "raw_output": "[{\"doc_id\": \"tests/admin_checks/tests.py::SystemChecksTestCase.test_nonexistent_field_on_inline\", \"score\": 185.69664409083262}, {\"doc_id\": \"tests/admin_checks/tests.py::SystemChecksTestCase.test_readonly_and_editable\", \"score\": 181.35288449453267}, {\"doc_id\": \"tests/admin_checks/tests.py::SystemChecksTestCase.test_nonexistent_field\", \"score\": 166.04731814358732}, {\"doc_id\": \"tests/admin_checks/tests.py::SystemChecksTestCase.test_field_name_not_in_list_display\", \"score\": 164.21206450028248}, {\"doc_id\": \"django/contrib/admin/checks.py::BaseModelAdminChecks._check_field_spec_item\", \"score\": 163.66602282526844}, {\"doc_id\": \"django/contrib/admin/checks.py::ModelAdminChecks._check_list_editable_item\", \"score\": 163.65711513884455}, {\"doc_id\": \"tests/modeladmin/test_checks.py::ListDisplayEditableTests.test_list_display_first_item_same_as_list_editable_no_list_display_links\", \"score\": 157.23661038987035}, {\"doc_id\": \"tests/admin_checks/tests.py::SystemChecksTestCase.test_list_editable_missing_field\", \"score\": 151.81913138598844}, {\"doc_id\": \"django/forms/forms.py::BaseForm.add_error\", \"score\": 148.6109151403288}, {\"doc_id\": \"tests/admin_checks/tests.py::SystemChecksTestCase.test_pk_not_editable\", \"score\": 145.26482614257992}]"
+}

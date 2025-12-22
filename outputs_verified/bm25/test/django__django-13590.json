@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-13590",
+  "query": "Upgrading 2.2>3.0 causes named tuples used as arguments to __range to error.\nDescription\n\t\nI noticed this while upgrading a project from 2.2 to 3.0.\nThis project passes named 2-tuples as arguments to range queryset filters. This works fine on 2.2. On 3.0 it causes the following error: TypeError: __new__() missing 1 required positional argument: 'far'.\nThis happens because django.db.models.sql.query.Query.resolve_lookup_value goes into the tuple elements to resolve lookups and then attempts to reconstitute the tuple with the resolved elements.\nWhen it attempts to construct the new tuple it preserves the type (the named tuple) but it passes a iterator to it's constructor.\nNamedTuples don't have the code path for copying an iterator, and so it errors on insufficient arguments.\nThe fix is to * expand the contents of the iterator into the constructor.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/sql/query.py"
+    ],
+    "locations": [
+      "django/db/models/sql/query.py::Query",
+      "django/db/models/sql/query.py::Query.resolve_lookup_value",
+      "django/db/models/sql/query.py::Query.solve_lookup_type"
+    ]
+  },
+  "predictions": [
+    "django/db/models/query.py::QuerySet._next_is_sticky",
+    "django/db/models/options.py::normalize_together",
+    "django/db/models/query.py::QuerySet.__iter__",
+    "django/contrib/gis/db/models/fields.py::GeometryField.__init__",
+    "django/db/models/sql/query.py::JoinPromoter.update_join_types",
+    "django/shortcuts.py::resolve_url",
+    "django/dispatch/dispatcher.py::Signal.send",
+    "django/templatetags/i18n.py::do_translate",
+    "django/dispatch/dispatcher.py::Signal.send_robust",
+    "django/apps/registry.py::Apps.lazy_model_operation"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "755dbf39fcdc491fe9b588358303e259c7750be4",
+    "total_functions_indexed": 24028,
+    "retrieval_time_seconds": 2.615997314453125
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/query.py::QuerySet._next_is_sticky\", \"score\": 139.08185273237982}, {\"doc_id\": \"django/db/models/options.py::normalize_together\", \"score\": 135.84423750101647}, {\"doc_id\": \"django/db/models/query.py::QuerySet.__iter__\", \"score\": 131.39374469441603}, {\"doc_id\": \"django/contrib/gis/db/models/fields.py::GeometryField.__init__\", \"score\": 131.24101272281806}, {\"doc_id\": \"django/db/models/sql/query.py::JoinPromoter.update_join_types\", \"score\": 130.63870821499432}, {\"doc_id\": \"django/shortcuts.py::resolve_url\", \"score\": 130.50321244229926}, {\"doc_id\": \"django/dispatch/dispatcher.py::Signal.send\", \"score\": 129.72312329437054}, {\"doc_id\": \"django/templatetags/i18n.py::do_translate\", \"score\": 128.88693427862358}, {\"doc_id\": \"django/dispatch/dispatcher.py::Signal.send_robust\", \"score\": 127.90656322982726}, {\"doc_id\": \"django/apps/registry.py::Apps.lazy_model_operation\", \"score\": 125.2222076943433}]"
+}

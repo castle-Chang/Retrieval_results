@@ -1,0 +1,33 @@
+{
+  "instance_id": "pylint-dev__pylint-4604",
+  "query": "unused-import false positive for a module used in a type comment\n### Steps to reproduce\r\n\r\n```python\r\n\"\"\"Docstring.\"\"\"\r\n\r\nimport abc\r\nfrom abc import ABC\r\n\r\nX = ...  # type: abc.ABC\r\nY = ...  # type: ABC\r\n```\r\n\r\n### Current behavior\r\n\r\n```\r\n************* Module a\r\n/tmp/a.py:3:0: W0611: Unused import abc (unused-import)\r\n\r\n-----------------------------------\r\nYour code has been rated at 7.50/10\r\n```\r\n\r\n### Expected behavior\r\n\r\n`unused-import` should not be emitted.\r\n\r\n### pylint --version output\r\n\r\nResult of `pylint --version` output:\r\n\r\n```\r\npylint 2.8.3\r\nastroid 2.5.6\r\nPython 3.9.2 (default, Feb 28 2021, 17:03:44) \r\n[GCC 10.2.1 20210110]\r\n```\r\n\r\nThis is a follow up to #3112.\n",
+  "ground_truth": {
+    "files": [
+      "pylint/constants.py",
+      "pylint/checkers/variables.py"
+    ],
+    "locations": [
+      "pylint/checkers/variables.py::VariablesChecker",
+      "pylint/checkers/variables.py::VariablesChecker._store_type_annotation_node"
+    ]
+  },
+  "predictions": [
+    "tests/functional/u/unused/unused_variable.py::unused_import_from",
+    "tests/checkers/unittest_variables.py::TestVariablesCheckerWithTearDown.test_custom_callback_string",
+    "tests/extensions/test_check_docs.py::TestParamDocChecker.test_ignores_return_in_abstract_method_google",
+    "tests/extensions/test_check_docs.py::TestParamDocChecker.test_ignores_return_in_abstract_method_numpy",
+    "tests/extensions/test_check_docs.py::TestParamDocChecker.test_ignores_return_in_abstract_method_sphinx",
+    "tests/functional/u/unused/unused_variable.py::test_global",
+    "tests/test_self.py::TestRunTC.test_stdin",
+    "tests/test_self.py::TestRunTC.test_jobs_score",
+    "tests/test_self.py::TestRunTC.test_relative_imports",
+    "tests/checkers/unittest_base.py::TestNameChecker.test_property_names"
+  ],
+  "metadata": {
+    "repo": "pylint-dev/pylint",
+    "commit": "1e55ae64624d28c5fe8b63ad7979880ee2e6ef3f",
+    "total_functions_indexed": 4370,
+    "retrieval_time_seconds": 0.22466206550598145
+  },
+  "raw_output": "[{\"doc_id\": \"tests/functional/u/unused/unused_variable.py::unused_import_from\", \"score\": 111.22564669642199}, {\"doc_id\": \"tests/checkers/unittest_variables.py::TestVariablesCheckerWithTearDown.test_custom_callback_string\", \"score\": 87.82067050434361}, {\"doc_id\": \"tests/extensions/test_check_docs.py::TestParamDocChecker.test_ignores_return_in_abstract_method_google\", \"score\": 86.75046654774229}, {\"doc_id\": \"tests/extensions/test_check_docs.py::TestParamDocChecker.test_ignores_return_in_abstract_method_numpy\", \"score\": 86.75046654774229}, {\"doc_id\": \"tests/extensions/test_check_docs.py::TestParamDocChecker.test_ignores_return_in_abstract_method_sphinx\", \"score\": 85.99651042629398}, {\"doc_id\": \"tests/functional/u/unused/unused_variable.py::test_global\", \"score\": 83.33900151857013}, {\"doc_id\": \"tests/test_self.py::TestRunTC.test_stdin\", \"score\": 78.38644465506563}, {\"doc_id\": \"tests/test_self.py::TestRunTC.test_jobs_score\", \"score\": 68.21442047460604}, {\"doc_id\": \"tests/test_self.py::TestRunTC.test_relative_imports\", \"score\": 67.03214127909816}, {\"doc_id\": \"tests/checkers/unittest_base.py::TestNameChecker.test_property_names\", \"score\": 66.68163060658385}]"
+}

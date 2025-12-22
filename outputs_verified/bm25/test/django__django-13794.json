@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-13794",
+  "query": "add filter is unable to concatenate strings with lazy string\nDescription\n\t\nIf you try to concatenate a string with a lazy string with the add template filter, the result is always the empty string because the add filter generates an exception (TypeError: can only concatenate str (not \"__proxy__\") to str).\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/functional.py"
+    ],
+    "locations": [
+      "django/utils/functional.py::lazy"
+    ]
+  },
+  "predictions": [
+    "django/template/defaultfilters.py::stringformat",
+    "django/utils/http.py::urlencode",
+    "tests/test_client/tests.py::ClientTest.test_get_data_none",
+    "django/template/base.py::render_value_in_context",
+    "django/forms/utils.py::flatatt",
+    "django/contrib/postgres/utils.py::prefix_validation_error",
+    "django/templatetags/i18n.py::do_translate",
+    "django/utils/functional.py::keep_lazy",
+    "django/utils/encoding.py::force_str",
+    "django/contrib/gis/gdal/prototypes/errcheck.py::check_string"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "fe886eee36be8022f34cfe59aa61ff1c21fe01d9",
+    "total_functions_indexed": 24231,
+    "retrieval_time_seconds": 0.7943296432495117
+  },
+  "raw_output": "[{\"doc_id\": \"django/template/defaultfilters.py::stringformat\", \"score\": 70.42175177425598}, {\"doc_id\": \"django/utils/http.py::urlencode\", \"score\": 62.6804093112958}, {\"doc_id\": \"tests/test_client/tests.py::ClientTest.test_get_data_none\", \"score\": 58.2799126852511}, {\"doc_id\": \"django/template/base.py::render_value_in_context\", \"score\": 56.613065764049594}, {\"doc_id\": \"django/forms/utils.py::flatatt\", \"score\": 55.971115749737585}, {\"doc_id\": \"django/contrib/postgres/utils.py::prefix_validation_error\", \"score\": 55.57000618939249}, {\"doc_id\": \"django/templatetags/i18n.py::do_translate\", \"score\": 55.11420888484855}, {\"doc_id\": \"django/utils/functional.py::keep_lazy\", \"score\": 54.864738539579186}, {\"doc_id\": \"django/utils/encoding.py::force_str\", \"score\": 54.556603188308856}, {\"doc_id\": \"django/contrib/gis/gdal/prototypes/errcheck.py::check_string\", \"score\": 54.264154784012135}]"
+}

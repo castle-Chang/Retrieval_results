@@ -1,0 +1,36 @@
+{
+  "instance_id": "django__django-11149",
+  "query": "Admin inlines for auto-created ManyToManyFields are editable if the user only has the view permission\nDescription\n\t\nFrom https://code.djangoproject.com/ticket/8060#comment:34\nReplying to Will Gordon:\nThis seems to have regressed in (at least) 2.1. I have 2 view only permissions. I have a ManyToManyField represented in my main model as a TabularInline. But, my user with view only permissions can now add or remove these items at will!\nI am having the same issue, so I assume this is a bug. I did not find Will had created a separate ticket.\nmodels.py:\nclass Photo(models.Model):\n\tpass\nclass Report(models.Model):\n\tphotos = models.ManyToManyField(Photo)\nadmin.py:\n\t\tclass ReportPhotoInlineModelAdmin(admin.TabularInline):\n\t\t\tmodel = Report.photos.through\n\t\t\tshow_change_link = True\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admin/options.py"
+    ],
+    "locations": [
+      "django/contrib/admin/options.py::InlineModelAdmin",
+      "django/contrib/admin/options.py::InlineModelAdmin.get_queryset",
+      "django/contrib/admin/options.py::InlineModelAdmin.has_add_permission",
+      "django/contrib/admin/options.py::InlineModelAdmin.has_change_permission",
+      "django/contrib/admin/options.py::InlineModelAdmin.has_delete_permission",
+      "django/contrib/admin/options.py::InlineModelAdmin.has_view_permission"
+    ]
+  },
+  "predictions": [
+    "django/contrib/admin/options.py::InlineModelAdmin.has_add_permission",
+    "django/contrib/admin/options.py::InlineModelAdmin.has_change_permission",
+    "django/contrib/admin/options.py::InlineModelAdmin.has_delete_permission",
+    "tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_relationship_model_with_foreign_key_to_wrong_model",
+    "tests/invalid_models_tests/test_models.py::IndexTogetherTests.test_pointing_to_m2m_field",
+    "tests/invalid_models_tests/test_models.py::UniqueTogetherTests.test_pointing_to_m2m",
+    "tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_relationship_model_missing_foreign_key",
+    "django/contrib/admin/options.py::BaseModelAdmin.to_field_allowed",
+    "tests/invalid_models_tests/test_models.py::FieldNamesTests.test_M2M_long_column_name",
+    "tests/invalid_models_tests/test_models.py::IndexesTests.test_pointing_to_m2m_field"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "e245046bb6e8b32360aa48b8a41fb7050f0fc730",
+    "total_functions_indexed": 22410,
+    "retrieval_time_seconds": 1.7529997825622559
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/admin/options.py::InlineModelAdmin.has_add_permission\", \"score\": 101.86218947609825}, {\"doc_id\": \"django/contrib/admin/options.py::InlineModelAdmin.has_change_permission\", \"score\": 101.23665930934247}, {\"doc_id\": \"django/contrib/admin/options.py::InlineModelAdmin.has_delete_permission\", \"score\": 100.61928054283834}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_relationship_model_with_foreign_key_to_wrong_model\", \"score\": 90.75891385597832}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::IndexTogetherTests.test_pointing_to_m2m_field\", \"score\": 90.07554103370452}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::UniqueTogetherTests.test_pointing_to_m2m\", \"score\": 90.07554103370452}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_relationship_model_missing_foreign_key\", \"score\": 89.49433511361987}, {\"doc_id\": \"django/contrib/admin/options.py::BaseModelAdmin.to_field_allowed\", \"score\": 88.93907884614086}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::FieldNamesTests.test_M2M_long_column_name\", \"score\": 88.74966695707566}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::IndexesTests.test_pointing_to_m2m_field\", \"score\": 88.30576084039919}]"
+}

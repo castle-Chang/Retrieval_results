@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-15400",
+  "query": "SimpleLazyObject doesn't implement __radd__\nDescription\n\t\nTechnically, there's a whole bunch of magic methods it doesn't implement, compared to a complete proxy implementation, like that of wrapt.ObjectProxy, but __radd__ being missing is the one that's biting me at the moment.\nAs far as I can tell, the implementation can't just be\n__radd__ = new_method_proxy(operator.radd)\nbecause that doesn't exist, which is rubbish.\n__radd__ = new_method_proxy(operator.attrgetter(\"__radd__\"))\nalso won't work because types may not have that attr, and attrgetter doesn't supress the exception (correctly)\nThe minimal implementation I've found that works for me is:\n\tdef __radd__(self, other):\n\t\tif self._wrapped is empty:\n\t\t\tself._setup()\n\t\treturn other + self._wrapped\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/functional.py"
+    ],
+    "locations": [
+      "django/utils/functional.py::SimpleLazyObject",
+      "django/utils/functional.py::SimpleLazyObject.__deepcopy__",
+      "django/utils/functional.py::partition"
+    ]
+  },
+  "predictions": [
+    "django/utils/functional.py::SimpleLazyObject.__copy__",
+    "django/utils/functional.py::SimpleLazyObject.__deepcopy__",
+    "tests/utils_tests/test_lazyobject.py::SimpleLazyObjectTestCase.lazy_wrap",
+    "django/utils/functional.py::LazyObject.__copy__",
+    "django/utils/functional.py::LazyObject.__setattr__",
+    "django/contrib/gis/geos/mutable_list.py::ListMixin.__radd__",
+    "django/utils/functional.py::LazyObject._setup",
+    "django/utils/functional.py::LazyObject.__deepcopy__",
+    "tests/utils_tests/test_lazyobject.py::LazyObjectTestCase.lazy_wrap",
+    "django/db/models/expressions.py::Combinable.__radd__"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "4c76ffc2d6c77c850b4bef8d9acc197d11c47937",
+    "total_functions_indexed": 25616,
+    "retrieval_time_seconds": 0.01068258285522461
+  },
+  "raw_output": "[{\"doc_id\": \"django/utils/functional.py::SimpleLazyObject.__copy__\", \"score\": 0.4905931055545807}, {\"doc_id\": \"django/utils/functional.py::SimpleLazyObject.__deepcopy__\", \"score\": 0.47687438130378723}, {\"doc_id\": \"tests/utils_tests/test_lazyobject.py::SimpleLazyObjectTestCase.lazy_wrap\", \"score\": 0.4653334617614746}, {\"doc_id\": \"django/utils/functional.py::LazyObject.__copy__\", \"score\": 0.459034264087677}, {\"doc_id\": \"django/utils/functional.py::LazyObject.__setattr__\", \"score\": 0.44867202639579773}, {\"doc_id\": \"django/contrib/gis/geos/mutable_list.py::ListMixin.__radd__\", \"score\": 0.44793668389320374}, {\"doc_id\": \"django/utils/functional.py::LazyObject._setup\", \"score\": 0.4276397228240967}, {\"doc_id\": \"django/utils/functional.py::LazyObject.__deepcopy__\", \"score\": 0.42429304122924805}, {\"doc_id\": \"tests/utils_tests/test_lazyobject.py::LazyObjectTestCase.lazy_wrap\", \"score\": 0.4215628504753113}, {\"doc_id\": \"django/db/models/expressions.py::Combinable.__radd__\", \"score\": 0.41972440481185913}]"
+}

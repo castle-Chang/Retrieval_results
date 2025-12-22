@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-23191",
+  "query": "display bug while using pretty_print with sympy.vector object in the terminal\nThe following code jumbles some of the outputs in the terminal, essentially by inserting the unit vector in the middle -\r\n```python\r\nfrom sympy import *\r\nfrom sympy.vector import CoordSys3D, Del\r\n\r\ninit_printing()\r\n\r\ndelop = Del()\r\nCC_ = CoordSys3D(\"C\")\r\nx,    y,    z    = CC_.x, CC_.y, CC_.z\r\nxhat, yhat, zhat = CC_.i, CC_.j, CC_.k\r\n\r\nt = symbols(\"t\")\r\nten = symbols(\"10\", positive=True)\r\neps, mu = 4*pi*ten**(-11), ten**(-5)\r\n\r\nBx = 2 * ten**(-4) * cos(ten**5 * t) * sin(ten**(-3) * y)\r\nvecB = Bx * xhat\r\nvecE = (1/eps) * Integral(delop.cross(vecB/mu).doit(), t)\r\n\r\npprint(vecB)\r\nprint()\r\npprint(vecE)\r\nprint()\r\npprint(vecE.doit())\r\n```\r\n\r\nOutput:\r\n```python\r\n⎛     ⎛y_C⎞    ⎛  5  ⎞⎞    \r\n⎜2⋅sin⎜───⎟ i_C⋅cos⎝10 ⋅t⎠⎟\r\n⎜     ⎜  3⎟           ⎟    \r\n⎜     ⎝10 ⎠           ⎟    \r\n⎜─────────────────────⎟    \r\n⎜           4         ⎟    \r\n⎝         10          ⎠    \r\n\r\n⎛     ⌠                           ⎞    \r\n⎜     ⎮       ⎛y_C⎞    ⎛  5  ⎞    ⎟ k_C\r\n⎜     ⎮ -2⋅cos⎜───⎟⋅cos⎝10 ⋅t⎠    ⎟    \r\n⎜     ⎮       ⎜  3⎟               ⎟    \r\n⎜  11 ⎮       ⎝10 ⎠               ⎟    \r\n⎜10  ⋅⎮ ─────────────────────── dt⎟    \r\n⎜     ⎮             2             ⎟    \r\n⎜     ⎮           10              ⎟    \r\n⎜     ⌡                           ⎟    \r\n⎜─────────────────────────────────⎟    \r\n⎝               4⋅π               ⎠    \r\n\r\n⎛   4    ⎛  5  ⎞    ⎛y_C⎞ ⎞    \r\n⎜-10 ⋅sin⎝10 ⋅t⎠⋅cos⎜───⎟ k_C ⎟\r\n⎜                   ⎜  3⎟ ⎟    \r\n⎜                   ⎝10 ⎠ ⎟    \r\n⎜─────────────────────────⎟    \r\n⎝           2⋅π           ⎠    ```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/pretty/pretty.py"
+    ],
+    "locations": [
+      "sympy/printing/pretty/pretty.py::PrettyPrinter",
+      "sympy/printing/pretty/pretty.py::PrettyPrinter._print_BasisDependent"
+    ]
+  },
+  "predictions": [
+    "sympy/printing/pretty/tests/test_pretty.py::test_vector_expr_pretty_printing",
+    "sympy/physics/vector/tests/test_printing.py::test_vector_pretty_print",
+    "sympy/printing/pretty/tests/test_pretty.py::test_issue_12675",
+    "sympy/physics/vector/tests/test_printing.py::test_issue_13354",
+    "sympy/vector/tests/test_printing.py::test_pretty_print_unicode_v",
+    "sympy/vector/tests/test_printing.py::test_pretty_printing_ascii",
+    "sympy/vector/tests/test_printing.py::test_str_printing",
+    "sympy/printing/tests/test_mathml.py::test_print_Vector",
+    "sympy/printing/pretty/tests/test_pretty.py::test_issue_5524",
+    "sympy/printing/pretty/tests/test_pretty.py::test_pretty_Intersection_issue_10414"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "fa9b4b140ec0eaf75a62c1111131626ef0f6f524",
+    "total_functions_indexed": 37727,
+    "retrieval_time_seconds": 0.020303726196289062
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/printing/pretty/tests/test_pretty.py::test_vector_expr_pretty_printing\", \"score\": 0.6184356212615967}, {\"doc_id\": \"sympy/physics/vector/tests/test_printing.py::test_vector_pretty_print\", \"score\": 0.6086417436599731}, {\"doc_id\": \"sympy/printing/pretty/tests/test_pretty.py::test_issue_12675\", \"score\": 0.5933765172958374}, {\"doc_id\": \"sympy/physics/vector/tests/test_printing.py::test_issue_13354\", \"score\": 0.5855192542076111}, {\"doc_id\": \"sympy/vector/tests/test_printing.py::test_pretty_print_unicode_v\", \"score\": 0.5825287103652954}, {\"doc_id\": \"sympy/vector/tests/test_printing.py::test_pretty_printing_ascii\", \"score\": 0.5550286173820496}, {\"doc_id\": \"sympy/vector/tests/test_printing.py::test_str_printing\", \"score\": 0.5439108610153198}, {\"doc_id\": \"sympy/printing/tests/test_mathml.py::test_print_Vector\", \"score\": 0.5434426665306091}, {\"doc_id\": \"sympy/printing/pretty/tests/test_pretty.py::test_issue_5524\", \"score\": 0.5408597588539124}, {\"doc_id\": \"sympy/printing/pretty/tests/test_pretty.py::test_pretty_Intersection_issue_10414\", \"score\": 0.5159438848495483}]"
+}

@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-12308",
+  "query": "JSONField are not properly displayed in admin when they are readonly.\nDescription\n\t\nJSONField values are displayed as dict when readonly in the admin.\nFor example, {\"foo\": \"bar\"} would be displayed as {'foo': 'bar'}, which is not valid JSON.\nI believe the fix would be to add a special case in django.contrib.admin.utils.display_for_field to call the prepare_value of the JSONField (not calling json.dumps directly to take care of the InvalidJSONInput case).\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admin/utils.py"
+    ],
+    "locations": [
+      "django/contrib/admin/utils.py::display_for_field"
+    ]
+  },
+  "predictions": [
+    "django/forms/fields.py::JSONField.prepare_value",
+    "django/contrib/admin/helpers.py::AdminReadonlyField.contents",
+    "tests/forms_tests/field_tests/test_jsonfield.py::JSONFieldTest.test_redisplay_wrong_input",
+    "django/db/models/fields/json.py::JSONField.value_to_string",
+    "django/forms/fields.py::JSONField.to_python",
+    "django/db/models/fields/json.py::JSONField.get_prep_value",
+    "django/contrib/admin/utils.py::display_for_field",
+    "django/contrib/postgres/forms/hstore.py::HStoreField.prepare_value",
+    "django/db/models/fields/json.py::JSONField.validate",
+    "tests/admin_views/tests.py::AdminFieldExtractionMixin.get_admin_readonly_field"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "2e0f04507b17362239ba49830d26fec504d46978",
+    "total_functions_indexed": 23387,
+    "retrieval_time_seconds": 0.006289482116699219
+  },
+  "raw_output": "[{\"doc_id\": \"django/forms/fields.py::JSONField.prepare_value\", \"score\": 0.5459015369415283}, {\"doc_id\": \"django/contrib/admin/helpers.py::AdminReadonlyField.contents\", \"score\": 0.528122067451477}, {\"doc_id\": \"tests/forms_tests/field_tests/test_jsonfield.py::JSONFieldTest.test_redisplay_wrong_input\", \"score\": 0.4879379868507385}, {\"doc_id\": \"django/db/models/fields/json.py::JSONField.value_to_string\", \"score\": 0.47752445936203003}, {\"doc_id\": \"django/forms/fields.py::JSONField.to_python\", \"score\": 0.47110554575920105}, {\"doc_id\": \"django/db/models/fields/json.py::JSONField.get_prep_value\", \"score\": 0.4683704376220703}, {\"doc_id\": \"django/contrib/admin/utils.py::display_for_field\", \"score\": 0.46647199988365173}, {\"doc_id\": \"django/contrib/postgres/forms/hstore.py::HStoreField.prepare_value\", \"score\": 0.44436436891555786}, {\"doc_id\": \"django/db/models/fields/json.py::JSONField.validate\", \"score\": 0.4325016438961029}, {\"doc_id\": \"tests/admin_views/tests.py::AdminFieldExtractionMixin.get_admin_readonly_field\", \"score\": 0.4317377507686615}]"
+}

@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-15789",
+  "query": "Add an encoder parameter to django.utils.html.json_script().\nDescription\n\t\nI have a use case where I want to customize the JSON encoding of some values to output to the template layer. It looks like django.utils.html.json_script is a good utility for that, however the JSON encoder is hardcoded to DjangoJSONEncoder. I think it would be nice to be able to pass a custom encoder class.\nBy the way, django.utils.html.json_script is not documented (only its template filter counterpart is), would it be a good thing to add to the docs?\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/html.py"
+    ],
+    "locations": [
+      "django/utils/html.py::json_script"
+    ]
+  },
+  "predictions": [
+    "django/utils/html.py::json_script",
+    "django/template/defaultfilters.py::json_script",
+    "tests/httpwrappers/tests.py::JsonResponseTests.test_json_response_custom_encoder",
+    "tests/test_client/tests.py::ClientTest.test_json_encoder_argument",
+    "tests/serializers/test_json.py::JsonSerializerTestCase.test_custom_encoder",
+    "django/template/defaultfilters.py::escapejs_filter",
+    "tests/forms_tests/field_tests/test_jsonfield.py::JSONFieldTest.test_custom_encoder_decoder",
+    "django/utils/html.py::escapejs",
+    "tests/serializers/test_jsonl.py::JsonlSerializerTestCase.test_custom_encoder",
+    "django/test/client.py::RequestFactory._encode_json"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "d4d5427571b4bf3a21c902276c2a00215c2a37cc",
+    "total_functions_indexed": 26051,
+    "retrieval_time_seconds": 0.011231184005737305
+  },
+  "raw_output": "[{\"doc_id\": \"django/utils/html.py::json_script\", \"score\": 0.5697866678237915}, {\"doc_id\": \"django/template/defaultfilters.py::json_script\", \"score\": 0.557995617389679}, {\"doc_id\": \"tests/httpwrappers/tests.py::JsonResponseTests.test_json_response_custom_encoder\", \"score\": 0.5181045532226562}, {\"doc_id\": \"tests/test_client/tests.py::ClientTest.test_json_encoder_argument\", \"score\": 0.4475586414337158}, {\"doc_id\": \"tests/serializers/test_json.py::JsonSerializerTestCase.test_custom_encoder\", \"score\": 0.4248686134815216}, {\"doc_id\": \"django/template/defaultfilters.py::escapejs_filter\", \"score\": 0.41392478346824646}, {\"doc_id\": \"tests/forms_tests/field_tests/test_jsonfield.py::JSONFieldTest.test_custom_encoder_decoder\", \"score\": 0.40511539578437805}, {\"doc_id\": \"django/utils/html.py::escapejs\", \"score\": 0.40476351976394653}, {\"doc_id\": \"tests/serializers/test_jsonl.py::JsonlSerializerTestCase.test_custom_encoder\", \"score\": 0.40227776765823364}, {\"doc_id\": \"django/test/client.py::RequestFactory._encode_json\", \"score\": 0.40123775601387024}]"
+}

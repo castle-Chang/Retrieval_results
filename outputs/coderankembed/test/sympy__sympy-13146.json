@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-13146",
+  "query": "Exponent doesn't fully simplify\nSay I have code like this:\n\n```\nimport sympy\nfrom sympy import *\nx=Symbol('x')\nexpr1 = S(1)/2*x**2.5\nexpr2 = S(1)*x**(S(5)/2)/2\nres = expr1-expr2\nres= simplify(res.evalf(5))\nprint res\n```\n\nThe output is\n`-0.5*x**2.5 + 0.5*x**2.5`\nHow do I simplify it to 0?\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/operations.py"
+    ],
+    "locations": [
+      "sympy/core/operations.py::AssocOp",
+      "sympy/core/operations.py::AssocOp._eval_evalf",
+      "sympy/core/operations.py::AssocOp.make_args"
+    ]
+  },
+  "predictions": [
+    "sympy/simplify/tests/test_simplify.py::test_issue_5652",
+    "sympy/simplify/tests/test_simplify.py::test_simplify_float_vs_integer",
+    "sympy/functions/elementary/tests/test_exponential.py::test_log_simplify",
+    "sympy/simplify/tests/test_simplify.py::test_simplify_expr",
+    "sympy/simplify/tests/test_simplify.py::test_issue_9448",
+    "sympy/simplify/tests/test_simplify.py::test_issue_6811",
+    "sympy/simplify/tests/test_simplify.py::test_issue_4194",
+    "sympy/simplify/tests/test_simplify.py::test_simplify_issue_1308",
+    "sympy/simplify/tests/test_simplify.py::test_simplify_fail1",
+    "sympy/functions/elementary/tests/test_exponential.py::test_issue_8866"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "b678d8103e48fdb1af335dbf0080b3d5366f2d17",
+    "total_functions_indexed": 21188,
+    "retrieval_time_seconds": 0.09434676170349121
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_issue_5652\", \"score\": 0.5530086755752563}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_simplify_float_vs_integer\", \"score\": 0.5483591556549072}, {\"doc_id\": \"sympy/functions/elementary/tests/test_exponential.py::test_log_simplify\", \"score\": 0.5469161868095398}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_simplify_expr\", \"score\": 0.544784426689148}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_issue_9448\", \"score\": 0.5412640571594238}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_issue_6811\", \"score\": 0.5411732196807861}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_issue_4194\", \"score\": 0.5359756350517273}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_simplify_issue_1308\", \"score\": 0.5355665683746338}, {\"doc_id\": \"sympy/simplify/tests/test_simplify.py::test_simplify_fail1\", \"score\": 0.5307163000106812}, {\"doc_id\": \"sympy/functions/elementary/tests/test_exponential.py::test_issue_8866\", \"score\": 0.5167273283004761}]"
+}

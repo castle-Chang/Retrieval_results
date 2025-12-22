@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-17087",
+  "query": "Class methods from nested classes cannot be used as Field.default.\nDescription\n\t \n\t\t(last modified by Mariusz Felisiak)\n\t \nGiven the following model:\n \nclass Profile(models.Model):\n\tclass Capability(models.TextChoices):\n\t\tBASIC = (\"BASIC\", \"Basic\")\n\t\tPROFESSIONAL = (\"PROFESSIONAL\", \"Professional\")\n\t\t\n\t\t@classmethod\n\t\tdef default(cls) -> list[str]:\n\t\t\treturn [cls.BASIC]\n\tcapabilities = ArrayField(\n\t\tmodels.CharField(choices=Capability.choices, max_length=30, blank=True),\n\t\tnull=True,\n\t\tdefault=Capability.default\n\t)\nThe resulting migration contained the following:\n # ...\n\t migrations.AddField(\n\t\t model_name='profile',\n\t\t name='capabilities',\n\t\t field=django.contrib.postgres.fields.ArrayField(base_field=models.CharField(blank=True, choices=[('BASIC', 'Basic'), ('PROFESSIONAL', 'Professional')], max_length=30), default=appname.models.Capability.default, null=True, size=None),\n\t ),\n # ...\nAs you can see, migrations.AddField is passed as argument \"default\" a wrong value \"appname.models.Capability.default\", which leads to an error when trying to migrate. The right value should be \"appname.models.Profile.Capability.default\".\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/serializer.py"
+    ],
+    "locations": [
+      "django/db/migrations/serializer.py::FunctionTypeSerializer",
+      "django/db/migrations/serializer.py::FunctionTypeSerializer.serialize"
+    ]
+  },
+  "predictions": [
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_non_interactive_not_null_alteration",
+    "tests/migrations/test_writer.py::WriterTests.test_serialize_choices",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_auto_now_add_interactive",
+    "tests/invalid_models_tests/test_ordinary_fields.py::TimeFieldTests.test_fix_default_value",
+    "django/contrib/gis/gdal/layer.py::Layer.test_capability",
+    "django/contrib/gis/utils/ogrinspect.py::ogrinspect",
+    "django/db/models/fields/__init__.py::Field.deconstruct",
+    "tests/migrations/test_writer.py::WriterTests.test_deconstruct_class_arguments",
+    "django/db/migrations/recorder.py::MigrationRecorder.Migration",
+    "tests/migrations/test_operations.py::OperationTests.test_add_charfield"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "4a72da71001f154ea60906a2f74898d32b7322a7",
+    "total_functions_indexed": 26796,
+    "retrieval_time_seconds": 1.9371542930603027
+  },
+  "raw_output": "[{\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_non_interactive_not_null_alteration\", \"score\": 135.93630172949028}, {\"doc_id\": \"tests/migrations/test_writer.py::WriterTests.test_serialize_choices\", \"score\": 134.1499119211718}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_auto_now_add_interactive\", \"score\": 130.7607853063093}, {\"doc_id\": \"tests/invalid_models_tests/test_ordinary_fields.py::TimeFieldTests.test_fix_default_value\", \"score\": 129.15828415528418}, {\"doc_id\": \"django/contrib/gis/gdal/layer.py::Layer.test_capability\", \"score\": 128.88529237736532}, {\"doc_id\": \"django/contrib/gis/utils/ogrinspect.py::ogrinspect\", \"score\": 126.51823640159434}, {\"doc_id\": \"django/db/models/fields/__init__.py::Field.deconstruct\", \"score\": 126.00613469735501}, {\"doc_id\": \"tests/migrations/test_writer.py::WriterTests.test_deconstruct_class_arguments\", \"score\": 125.72819322969872}, {\"doc_id\": \"django/db/migrations/recorder.py::MigrationRecorder.Migration\", \"score\": 124.24503532874465}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_add_charfield\", \"score\": 122.44277185987133}]"
+}

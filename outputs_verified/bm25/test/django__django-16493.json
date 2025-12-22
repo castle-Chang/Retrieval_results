@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-16493",
+  "query": "Callable storage on FileField fails to deconstruct when it returns default_storage\nDescription\n\t\nIf the storage argument on a FileField is set to a callable that returns default_storage, it is omitted from the deconstructed form of the field, rather than being included as a reference to the callable as expected.\nFor example, given a model definition:\nfrom django.core.files.storage import FileSystemStorage, default_storage\nfrom django.db import models\nimport random\nother_storage = FileSystemStorage(location='/media/other')\ndef get_storage():\n\treturn random.choice([default_storage, other_storage])\nclass MyModel(models.Model):\n\tmy_file = models.FileField(storage=get_storage)\nrepeatedly running makemigrations will randomly generate a migration that alternately includes or omits storage=myapp.models.get_storage on the FileField definition.\nThis case was overlooked in the fix for #31941 - the deconstruct method tests if self.storage is not default_storage to determine whether to add the storage kwarg, but at this point self.storage is the evaluated version, so it wrongly returns false for a callable that returns default_storage.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/files.py"
+    ],
+    "locations": [
+      "django/db/models/fields/files.py::FileField",
+      "django/db/models/fields/files.py::FileField.deconstruct",
+      "django/db/models/fields/files.py::FileField.get_internal_type"
+    ]
+  },
+  "predictions": [
+    "django/db/models/fields/files.py::FileField.__init__",
+    "django/contrib/messages/storage/__init__.py::default_storage",
+    "django/db/models/fields/files.py::FileField.deconstruct",
+    "tests/file_storage/tests.py::FieldCallableFileStorageTests.test_callable_function_storage_file_field",
+    "tests/messages_tests/test_fallback.py::FallbackTests.test_no_fallback",
+    "tests/messages_tests/base.py::BaseTests.get_storage",
+    "django/test/signals.py::storages_changed",
+    "django/contrib/messages/api.py::get_level",
+    "django/db/models/fields/files.py::FileField.generate_filename",
+    "tests/file_storage/tests.py::FieldCallableFileStorageTests.test_file_field_storage_none_uses_default_storage"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "e3a4cee081cf60650b8824f0646383b79cb110e7",
+    "total_functions_indexed": 26329,
+    "retrieval_time_seconds": 2.249568223953247
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/fields/files.py::FileField.__init__\", \"score\": 211.3543127874493}, {\"doc_id\": \"django/contrib/messages/storage/__init__.py::default_storage\", \"score\": 193.96645362352197}, {\"doc_id\": \"django/db/models/fields/files.py::FileField.deconstruct\", \"score\": 175.02230083287577}, {\"doc_id\": \"tests/file_storage/tests.py::FieldCallableFileStorageTests.test_callable_function_storage_file_field\", \"score\": 162.4506399693173}, {\"doc_id\": \"tests/messages_tests/test_fallback.py::FallbackTests.test_no_fallback\", \"score\": 161.45863261125595}, {\"doc_id\": \"tests/messages_tests/base.py::BaseTests.get_storage\", \"score\": 160.67493753684656}, {\"doc_id\": \"django/test/signals.py::storages_changed\", \"score\": 160.44930705404673}, {\"doc_id\": \"django/contrib/messages/api.py::get_level\", \"score\": 160.2450683075511}, {\"doc_id\": \"django/db/models/fields/files.py::FileField.generate_filename\", \"score\": 155.18280601228574}, {\"doc_id\": \"tests/file_storage/tests.py::FieldCallableFileStorageTests.test_file_field_storage_none_uses_default_storage\", \"score\": 152.5652521101189}]"
+}

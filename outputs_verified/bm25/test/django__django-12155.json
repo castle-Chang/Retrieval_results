@@ -1,0 +1,36 @@
+{
+  "instance_id": "django__django-12155",
+  "query": "docutils reports an error rendering view docstring when the first line is not empty\nDescription\n\t\nCurrently admindoc works correctly only with docstrings where the first line is empty, and all Django docstrings are formatted in this way.\nHowever usually the docstring text starts at the first line, e.g.:\ndef test():\n\t\"\"\"test tests something.\n\t\"\"\"\nand this cause an error:\nError in \"default-role\" directive:\nno content permitted.\n.. default-role:: cmsreference\nThe culprit is this code in trim_docstring:\nindent = min(len(line) - len(line.lstrip()) for line in lines if line.lstrip())\nThe problem is that the indentation of the first line is 0.\nThe solution is to skip the first line:\nindent = min(len(line) - len(line.lstrip()) for line in lines[1:] if line.lstrip())\nThanks.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admindocs/views.py",
+      "django/contrib/admindocs/utils.py"
+    ],
+    "locations": [
+      "django/contrib/admindocs/utils.py::get_view_name",
+      "django/contrib/admindocs/utils.py::trim_docstring",
+      "django/contrib/admindocs/utils.py::parse_docstring",
+      "django/contrib/admindocs/views.py::ModelDetailView",
+      "django/contrib/admindocs/views.py::ModelDetailView.get_context_data"
+    ]
+  },
+  "predictions": [
+    "django/contrib/admindocs/utils.py::trim_docstring",
+    "django/utils/text.py::wrap",
+    "django/template/defaultfilters.py::linenumbers",
+    "django/template/base.py::Template.get_exception_info",
+    "docs/_ext/djangodocs.py::ConsoleDirective.run",
+    "django/core/management/commands/makemessages.py::write_pot_file",
+    "django/core/files/base.py::File.__iter__",
+    "django/db/backends/mysql/introspection.py::DatabaseIntrospection.get_table_description",
+    "tests/fixtures_regress/tests.py::TestFixtures.test_loaddata_no_fixture_specified",
+    "django/views/i18n.py::JavaScriptCatalog._plural_string"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "e8fcdaad5c428878d0a5d6ba820d957013f75595",
+    "total_functions_indexed": 23049,
+    "retrieval_time_seconds": 2.009920835494995
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/admindocs/utils.py::trim_docstring\", \"score\": 306.49734403334674}, {\"doc_id\": \"django/utils/text.py::wrap\", \"score\": 203.1271541717293}, {\"doc_id\": \"django/template/defaultfilters.py::linenumbers\", \"score\": 198.35495627541644}, {\"doc_id\": \"django/template/base.py::Template.get_exception_info\", \"score\": 196.18051939309146}, {\"doc_id\": \"docs/_ext/djangodocs.py::ConsoleDirective.run\", \"score\": 187.87458680082764}, {\"doc_id\": \"django/core/management/commands/makemessages.py::write_pot_file\", \"score\": 182.75364787662917}, {\"doc_id\": \"django/core/files/base.py::File.__iter__\", \"score\": 181.7934234948592}, {\"doc_id\": \"django/db/backends/mysql/introspection.py::DatabaseIntrospection.get_table_description\", \"score\": 171.5929264547666}, {\"doc_id\": \"tests/fixtures_regress/tests.py::TestFixtures.test_loaddata_no_fixture_specified\", \"score\": 166.52101596589867}, {\"doc_id\": \"django/views/i18n.py::JavaScriptCatalog._plural_string\", \"score\": 162.17439080301006}]"
+}

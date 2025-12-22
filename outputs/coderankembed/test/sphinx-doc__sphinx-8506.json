@@ -1,0 +1,32 @@
+{
+  "instance_id": "sphinx-doc__sphinx-8506",
+  "query": "Sphinx 3.2 complains about option:: syntax that earlier versions accepted\nSphinx 3.2 complains about use of the option:: directive that earlier versions accepted without complaint.\r\n\r\nThe QEMU documentation includes this:\r\n```\r\n.. option:: [enable=]PATTERN\r\n\r\n   Immediately enable events matching *PATTERN*\r\n```\r\n\r\nas part of the documentation of the command line options of one of its programs. Earlier versions of Sphinx were fine with this, but Sphinx 3.2 complains:\r\n\r\n```\r\nWarning, treated as error:\r\n../../docs/qemu-option-trace.rst.inc:4:Malformed option description '[enable=]PATTERN', should look like \"opt\", \"-opt args\", \"--opt args\", \"/opt args\" or \"+opt args\"\r\n```\r\n\r\nSphinx ideally shouldn't change in ways that break the building of documentation that worked in older versions, because this makes it unworkably difficult to have documentation that builds with whatever the Linux distro's sphinx-build is.\r\n\r\nThe error message suggests that Sphinx has a very restrictive idea of what option syntax is; it would be better if it just accepted any string, because not all programs and OSes have option syntax that matches the limited list the error message indicates.\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/domains/std.py"
+    ],
+    "locations": [
+      "sphinx/domains/std.py::Cmdoption",
+      "sphinx/domains/std.py::Cmdoption.handle_signature"
+    ]
+  },
+  "predictions": [
+    "sphinx/directives/code.py::LiteralIncludeReader.parse_options",
+    "sphinx/ext/autodoc/directive.py::DummyOptionSpec.__bool__",
+    "tests/test_domain_rst.py::test_rst_directive_option_with_argument",
+    "sphinx/writers/text.py::TextTranslator.visit_option_string",
+    "tests/test_domain_rst.py::test_rst_directive_option_type",
+    "sphinx/writers/latex.py::LaTeXTranslator.visit_option_list",
+    "sphinx/builders/latex/__init__.py::validate_latex_theme_options",
+    "sphinx/writers/latex.py::LaTeXTranslator.visit_option_argument",
+    "tests/test_domain_rst.py::test_rst_directive_option",
+    "sphinx/writers/texinfo.py::TexinfoTranslator.visit_option_string"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "e4bd3bd3ddd42c6642ff779a4f7381f219655c2c",
+    "total_functions_indexed": 5578,
+    "retrieval_time_seconds": 0.005124092102050781
+  },
+  "raw_output": "[{\"doc_id\": \"sphinx/directives/code.py::LiteralIncludeReader.parse_options\", \"score\": 0.44451096653938293}, {\"doc_id\": \"sphinx/ext/autodoc/directive.py::DummyOptionSpec.__bool__\", \"score\": 0.4171631336212158}, {\"doc_id\": \"tests/test_domain_rst.py::test_rst_directive_option_with_argument\", \"score\": 0.4014435112476349}, {\"doc_id\": \"sphinx/writers/text.py::TextTranslator.visit_option_string\", \"score\": 0.3989807367324829}, {\"doc_id\": \"tests/test_domain_rst.py::test_rst_directive_option_type\", \"score\": 0.3897484838962555}, {\"doc_id\": \"sphinx/writers/latex.py::LaTeXTranslator.visit_option_list\", \"score\": 0.3875636160373688}, {\"doc_id\": \"sphinx/builders/latex/__init__.py::validate_latex_theme_options\", \"score\": 0.38562679290771484}, {\"doc_id\": \"sphinx/writers/latex.py::LaTeXTranslator.visit_option_argument\", \"score\": 0.38389772176742554}, {\"doc_id\": \"tests/test_domain_rst.py::test_rst_directive_option\", \"score\": 0.38263171911239624}, {\"doc_id\": \"sphinx/writers/texinfo.py::TexinfoTranslator.visit_option_string\", \"score\": 0.3757392168045044}]"
+}

@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-11400",
+  "query": "ccode(sinc(x)) doesn't work\n```\nIn [30]: ccode(sinc(x))\nOut[30]: '// Not supported in C:\\n// sinc\\nsinc(x)'\n```\n\nI don't think `math.h` has `sinc`, but it could print\n\n```\nIn [38]: ccode(Piecewise((sin(theta)/theta, Ne(theta, 0)), (1, True)))\nOut[38]: '((Ne(theta, 0)) ? (\\n   sin(theta)/theta\\n)\\n: (\\n   1\\n))'\n```\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/ccode.py"
+    ],
+    "locations": [
+      "sympy/printing/ccode.py::CCodePrinter",
+      "sympy/printing/ccode.py::CCodePrinter._print_Symbol",
+      "sympy/printing/ccode.py::CCodePrinter._print_AugmentedAssignment"
+    ]
+  },
+  "predictions": [
+    "sympy/printing/tests/test_octave.py::test_sinc",
+    "sympy/printing/octave.py::OctaveCodePrinter._print_sinc",
+    "sympy/functions/elementary/tests/test_trigonometric.py::test_sinc",
+    "sympy/printing/tests/test_ccode.py::test_ccode_functions",
+    "sympy/printing/ccode.py::print_ccode",
+    "sympy/printing/tests/test_ccode.py::test_ccode_settings",
+    "sympy/printing/tests/test_ccode.py::test_ccode_Piecewise",
+    "sympy/printing/tests/test_ccode.py::test_ccode_Integer",
+    "sympy/functions/special/error_functions.py::Si._eval_rewrite_as_sinc",
+    "sympy/printing/tests/test_ccode.py::test_ccode_constants_mathh"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "8dcb12a6cf500e8738d6729ab954a261758f49ca",
+    "total_functions_indexed": 19897,
+    "retrieval_time_seconds": 0.021885395050048828
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/printing/tests/test_octave.py::test_sinc\", \"score\": 0.6474785804748535}, {\"doc_id\": \"sympy/printing/octave.py::OctaveCodePrinter._print_sinc\", \"score\": 0.6418675184249878}, {\"doc_id\": \"sympy/functions/elementary/tests/test_trigonometric.py::test_sinc\", \"score\": 0.5788989067077637}, {\"doc_id\": \"sympy/printing/tests/test_ccode.py::test_ccode_functions\", \"score\": 0.5405991077423096}, {\"doc_id\": \"sympy/printing/ccode.py::print_ccode\", \"score\": 0.5349397659301758}, {\"doc_id\": \"sympy/printing/tests/test_ccode.py::test_ccode_settings\", \"score\": 0.4906936287879944}, {\"doc_id\": \"sympy/printing/tests/test_ccode.py::test_ccode_Piecewise\", \"score\": 0.48949670791625977}, {\"doc_id\": \"sympy/printing/tests/test_ccode.py::test_ccode_Integer\", \"score\": 0.4840373992919922}, {\"doc_id\": \"sympy/functions/special/error_functions.py::Si._eval_rewrite_as_sinc\", \"score\": 0.47573405504226685}, {\"doc_id\": \"sympy/printing/tests/test_ccode.py::test_ccode_constants_mathh\", \"score\": 0.4730442762374878}]"
+}

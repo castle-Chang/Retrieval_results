@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-24562",
+  "query": "Rational calc value error\npython 3.11, sympy 1.11.1\r\nwhen calc Rational('0.5', '100'), the value is 1/100100; but Rational(0.5, 100) the value is 1/200, this value is the true value, and the version of sympy 1.8 is normal\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/numbers.py"
+    ],
+    "locations": [
+      "sympy/core/numbers.py::Rational",
+      "sympy/core/numbers.py::Rational.__new__"
+    ]
+  },
+  "predictions": [
+    "sympy/integrals/prde.py::real_imag",
+    "sympy/core/numbers.py::mod_inverse",
+    "sympy/stats/rv_interface.py::median",
+    "sympy/geometry/ellipse.py::Ellipse.evolute",
+    "sympy/functions/special/delta_functions.py::Heaviside.eval",
+    "sympy/core/tests/test_sympify.py::test_sympify_gmpy",
+    "sympy/matrices/matrices.py::MatrixBase.condition_number",
+    "sympy/ntheory/egyptian_fraction.py::egyptian_fraction",
+    "sympy/integrals/intpoly.py::left_integral3D",
+    "sympy/matrices/sparse.py::SparseRepMatrix.solve_least_squares"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "b1cb676cf92dd1a48365b731979833375b188bf2",
+    "total_functions_indexed": 30025,
+    "retrieval_time_seconds": 1.0111632347106934
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/integrals/prde.py::real_imag\", \"score\": 78.55456060060213}, {\"doc_id\": \"sympy/core/numbers.py::mod_inverse\", \"score\": 75.06508597296492}, {\"doc_id\": \"sympy/stats/rv_interface.py::median\", \"score\": 72.35794990429363}, {\"doc_id\": \"sympy/geometry/ellipse.py::Ellipse.evolute\", \"score\": 71.56717610576207}, {\"doc_id\": \"sympy/functions/special/delta_functions.py::Heaviside.eval\", \"score\": 71.21871778699713}, {\"doc_id\": \"sympy/core/tests/test_sympify.py::test_sympify_gmpy\", \"score\": 70.93636089651348}, {\"doc_id\": \"sympy/matrices/matrices.py::MatrixBase.condition_number\", \"score\": 70.923745089828}, {\"doc_id\": \"sympy/ntheory/egyptian_fraction.py::egyptian_fraction\", \"score\": 70.8787488076624}, {\"doc_id\": \"sympy/integrals/intpoly.py::left_integral3D\", \"score\": 70.06625619977625}, {\"doc_id\": \"sympy/matrices/sparse.py::SparseRepMatrix.solve_least_squares\", \"score\": 68.9215590566541}]"
+}

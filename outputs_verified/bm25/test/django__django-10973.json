@@ -1,0 +1,34 @@
+{
+  "instance_id": "django__django-10973",
+  "query": "Use subprocess.run and PGPASSWORD for client in postgres backend\nDescription\n\t\n​subprocess.run was added in python 3.5 (which is the minimum version since Django 2.1). This function allows you to pass a custom environment for the subprocess.\nUsing this in django.db.backends.postgres.client to set PGPASSWORD simplifies the code and makes it more reliable.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/backends/postgresql/client.py"
+    ],
+    "locations": [
+      "django/db/backends/postgresql/client.py::_escape_pgpass",
+      "django/db/backends/postgresql/client.py::DatabaseClient",
+      "django/db/backends/postgresql/client.py::DatabaseClient.runshell_db",
+      "django/db/backends/postgresql/client.py::DatabaseClient.runshell"
+    ]
+  },
+  "predictions": [
+    "tests/admin_scripts/tests.py::AdminScriptTestCase.run_test",
+    "django/utils/version.py::get_git_changeset",
+    "tests/postgres_tests/test_integration.py::PostgresIntegrationTests.test_check",
+    "django/db/backends/mysql/creation.py::DatabaseCreation._clone_db",
+    "django/db/backends/postgresql/base.py::DatabaseWrapper._nodb_connection",
+    "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor.quote_value",
+    "django/contrib/gis/db/backends/postgis/operations.py::PostGISOperations.spatial_version",
+    "django/core/cache/backends/base.py::BaseCache.make_key",
+    "django/db/models/expressions.py::BaseExpression._resolve_output_field",
+    "django/db/models/fields/__init__.py::Field.db_type"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "ddb293685235fd09e932805771ae97f72e817181",
+    "total_functions_indexed": 22290,
+    "retrieval_time_seconds": 0.8843238353729248
+  },
+  "raw_output": "[{\"doc_id\": \"tests/admin_scripts/tests.py::AdminScriptTestCase.run_test\", \"score\": 57.853565932971}, {\"doc_id\": \"django/utils/version.py::get_git_changeset\", \"score\": 57.665058725369725}, {\"doc_id\": \"tests/postgres_tests/test_integration.py::PostgresIntegrationTests.test_check\", \"score\": 57.60191845051111}, {\"doc_id\": \"django/db/backends/mysql/creation.py::DatabaseCreation._clone_db\", \"score\": 53.64534672629846}, {\"doc_id\": \"django/db/backends/postgresql/base.py::DatabaseWrapper._nodb_connection\", \"score\": 51.321846172229385}, {\"doc_id\": \"django/db/backends/base/schema.py::BaseDatabaseSchemaEditor.quote_value\", \"score\": 50.4101984235507}, {\"doc_id\": \"django/contrib/gis/db/backends/postgis/operations.py::PostGISOperations.spatial_version\", \"score\": 49.88226864017822}, {\"doc_id\": \"django/core/cache/backends/base.py::BaseCache.make_key\", \"score\": 49.58012708184156}, {\"doc_id\": \"django/db/models/expressions.py::BaseExpression._resolve_output_field\", \"score\": 49.44813263259987}, {\"doc_id\": \"django/db/models/fields/__init__.py::Field.db_type\", \"score\": 49.33501450962475}]"
+}

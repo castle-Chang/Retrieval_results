@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-16333",
+  "query": "UserCreationForm should save data from ManyToMany form fields\nDescription\n\t\nWhen using contrib.auth.forms.UserCreationForm with a custom User model which has ManyToManyField fields, the data in all related form fields (e.g. a ModelMultipleChoiceField) is not saved. \nThis is because unlike its parent class django.forms.ModelForm, UserCreationForm.save(commit=True) omits to call self.save_m2m(). \nThis has been discussed on the #django-developers mailing list ​https://groups.google.com/u/1/g/django-developers/c/2jj-ecoBwE4 and I'm ready to work on a PR.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/auth/forms.py"
+    ],
+    "locations": [
+      "django/contrib/auth/forms.py::UserCreationForm",
+      "django/contrib/auth/forms.py::UserCreationForm.save"
+    ]
+  },
+  "predictions": [
+    "django/forms/models.py::BaseModelForm.save",
+    "django/contrib/auth/forms.py::UserCreationForm.save",
+    "tests/model_forms/tests.py::ModelFormBaseTest.test_exclude_and_validation",
+    "tests/auth_tests/test_forms.py::UserCreationFormTest.test_user_create_form_validates_password_with_all_data",
+    "tests/auth_tests/test_forms.py::UserCreationFormTest.test_success",
+    "django/contrib/admin/options.py::ModelAdmin.save_related",
+    "django/core/serializers/base.py::DeserializedObject.save",
+    "tests/auth_tests/test_forms.py::UserCreationFormTest.test_custom_form",
+    "tests/model_formsets/tests.py::ModelFormsetTest.test_inline_formsets_with_custom_save_method_related_instance",
+    "tests/auth_tests/test_forms.py::UserCreationFormTest.test_custom_form_hidden_username_field"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "60a7bd89860e504c0c33b02c78edcac87f6d1b5a",
+    "total_functions_indexed": 26312,
+    "retrieval_time_seconds": 1.353076457977295
+  },
+  "raw_output": "[{\"doc_id\": \"django/forms/models.py::BaseModelForm.save\", \"score\": 86.83159595784574}, {\"doc_id\": \"django/contrib/auth/forms.py::UserCreationForm.save\", \"score\": 82.41427430860395}, {\"doc_id\": \"tests/model_forms/tests.py::ModelFormBaseTest.test_exclude_and_validation\", \"score\": 82.06265081354623}, {\"doc_id\": \"tests/auth_tests/test_forms.py::UserCreationFormTest.test_user_create_form_validates_password_with_all_data\", \"score\": 81.11059861123263}, {\"doc_id\": \"tests/auth_tests/test_forms.py::UserCreationFormTest.test_success\", \"score\": 79.71386648131369}, {\"doc_id\": \"django/contrib/admin/options.py::ModelAdmin.save_related\", \"score\": 77.16275544169537}, {\"doc_id\": \"django/core/serializers/base.py::DeserializedObject.save\", \"score\": 76.30404634303592}, {\"doc_id\": \"tests/auth_tests/test_forms.py::UserCreationFormTest.test_custom_form\", \"score\": 76.21076979144885}, {\"doc_id\": \"tests/model_formsets/tests.py::ModelFormsetTest.test_inline_formsets_with_custom_save_method_related_instance\", \"score\": 74.31350188970364}, {\"doc_id\": \"tests/auth_tests/test_forms.py::UserCreationFormTest.test_custom_form_hidden_username_field\", \"score\": 74.29105274302547}]"
+}

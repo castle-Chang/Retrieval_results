@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-12171",
+  "query": "matematica code printer does not handle floats and derivatives correctly\nIn its current state the mathematica code printer does not handle Derivative(func(vars), deriver) \r\ne.g. Derivative(f(t), t) yields Derivative(f(t), t) instead of D[f[t],t]\r\n\r\nAlso floats with exponents are not handled correctly e.g. 1.0e-4 is not converted to 1.0*^-4\r\n\r\nThis has an easy fix by adding the following lines to MCodePrinter:\r\n\r\n\r\ndef _print_Derivative(self, expr):\r\n        return \"D[%s]\" % (self.stringify(expr.args, \", \"))\r\n\r\ndef _print_Float(self, expr):\r\n        res =str(expr)\r\n        return res.replace('e','*^') \r\n\r\n\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/mathematica.py"
+    ],
+    "locations": [
+      "sympy/printing/mathematica.py::MCodePrinter",
+      "sympy/printing/mathematica.py::MCodePrinter._print_Sum",
+      "sympy/printing/mathematica.py::mathematica_code"
+    ]
+  },
+  "predictions": [
+    "sympy/printing/fcode.py::FCodePrinter._print_Float",
+    "sympy/printing/mathematica.py::MCodePrinter._print_Mul",
+    "sympy/printing/latex.py::LatexPrinter._print_Derivative",
+    "sympy/printing/latex.py::LatexPrinter._print_Float",
+    "sympy/printing/str.py::StrPrinter._print_Derivative",
+    "sympy/printing/fcode.py::FCodePrinter._print_Pow",
+    "sympy/printing/mathematica.py::mathematica_code",
+    "sympy/printing/mathematica.py::MCodePrinter._print_Function",
+    "sympy/printing/mathematica.py::MCodePrinter._print_Pow",
+    "sympy/physics/vector/printing.py::VectorLatexPrinter._print_Derivative"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "ca6ef27272be31c9dc3753ede9232c39df9a75d8",
+    "total_functions_indexed": 20348,
+    "retrieval_time_seconds": 0.04524993896484375
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/printing/fcode.py::FCodePrinter._print_Float\", \"score\": 0.5692007541656494}, {\"doc_id\": \"sympy/printing/mathematica.py::MCodePrinter._print_Mul\", \"score\": 0.5537368059158325}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_Derivative\", \"score\": 0.5478930473327637}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_Float\", \"score\": 0.5467475652694702}, {\"doc_id\": \"sympy/printing/str.py::StrPrinter._print_Derivative\", \"score\": 0.5268750190734863}, {\"doc_id\": \"sympy/printing/fcode.py::FCodePrinter._print_Pow\", \"score\": 0.5199478268623352}, {\"doc_id\": \"sympy/printing/mathematica.py::mathematica_code\", \"score\": 0.5196744203567505}, {\"doc_id\": \"sympy/printing/mathematica.py::MCodePrinter._print_Function\", \"score\": 0.518481969833374}, {\"doc_id\": \"sympy/printing/mathematica.py::MCodePrinter._print_Pow\", \"score\": 0.513778030872345}, {\"doc_id\": \"sympy/physics/vector/printing.py::VectorLatexPrinter._print_Derivative\", \"score\": 0.5133869647979736}]"
+}
