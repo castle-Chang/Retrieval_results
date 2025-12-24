@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-20916",
+  "query": "pprint unicode does not format subscripts on Greek letters\nGood:\r\n\r\n[ -t₀⋅w₀   -t₁⋅w₀   -t₂⋅w₀]\r\n\r\n\r\nBad:\r\n\r\n[ -t₀⋅ω0   -t₁⋅ω0   -t₂⋅ω0]\r\n\r\n\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/conventions.py"
+    ],
+    "locations": [
+      "sympy/printing/conventions.py::split_super_sub"
+    ]
+  },
+  "predictions": [
+    "sympy/printing/pretty/tests/test_pretty.py::test_pretty_Subs",
+    "sympy/printing/tests/test_str.py::test_Subs_printing",
+    "sympy/printing/pretty/tests/test_pretty.py::test_pretty_seq",
+    "sympy/vector/tests/test_printing.py::test_pretty_print_unicode_v",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_primenu",
+    "sympy/physics/vector/tests/test_printing.py::unicode_vpretty",
+    "sympy/printing/pretty/tests/test_pretty.py::test_pretty_basic",
+    "sympy/printing/tree.py::pprint_nodes",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_seq",
+    "sympy/printing/pretty/tests/test_pretty.py::test_issue_6324"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "82298df6a51491bfaad0c6d1980e7e3ca808ae93",
+    "total_functions_indexed": 35871,
+    "retrieval_time_seconds": 0.009727001190185547
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/printing/pretty/tests/test_pretty.py::test_pretty_Subs\", \"score\": 0.7360631227493286}, {\"doc_id\": \"sympy/printing/tests/test_str.py::test_Subs_printing\", \"score\": 0.7207647562026978}, {\"doc_id\": \"sympy/printing/pretty/tests/test_pretty.py::test_pretty_seq\", \"score\": 0.7189198136329651}, {\"doc_id\": \"sympy/vector/tests/test_printing.py::test_pretty_print_unicode_v\", \"score\": 0.7180403470993042}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_primenu\", \"score\": 0.7180098295211792}, {\"doc_id\": \"sympy/physics/vector/tests/test_printing.py::unicode_vpretty\", \"score\": 0.7176461219787598}, {\"doc_id\": \"sympy/printing/pretty/tests/test_pretty.py::test_pretty_basic\", \"score\": 0.7171527743339539}, {\"doc_id\": \"sympy/printing/tree.py::pprint_nodes\", \"score\": 0.7154713869094849}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_seq\", \"score\": 0.7126750946044922}, {\"doc_id\": \"sympy/printing/pretty/tests/test_pretty.py::test_issue_6324\", \"score\": 0.7111208438873291}]"
+}

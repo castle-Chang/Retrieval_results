@@ -1,0 +1,47 @@
+{
+  "instance_id": "sympy__sympy-14248",
+  "query": "The difference of MatrixSymbols prints as a sum with (-1) coefficient\nInternally, differences like a-b are represented as the sum of a with `(-1)*b`, but they are supposed to print like a-b. This does not happen with MatrixSymbols. I tried three printers: str, pretty, and latex: \r\n```\r\nfrom sympy import *\r\nA = MatrixSymbol('A', 2, 2)\r\nB = MatrixSymbol('B', 2, 2)\r\nprint(A - A*B - B)\r\npprint(A - A*B - B)\r\nlatex(A - A*B - B)\r\n```\r\nOutput:\r\n```\r\n(-1)*B + (-1)*A*B + A\r\n-B + -A⋅B + A\r\n'-1 B + -1 A B + A'\r\n```\r\n\r\nBased on a [Stack Overflow post](https://stackoverflow.com/q/48826611)\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/latex.py",
+      "sympy/printing/str.py",
+      "sympy/printing/pretty/pretty.py"
+    ],
+    "locations": [
+      "sympy/printing/latex.py::LatexPrinter",
+      "sympy/printing/latex.py::LatexPrinter._print_Adjoint",
+      "sympy/printing/latex.py::LatexPrinter._print_MatAdd",
+      "sympy/printing/latex.py::LatexPrinter._print_MatMul",
+      "sympy/printing/latex.py::LatexPrinter._print_Mod",
+      "sympy/printing/pretty/pretty.py::PrettyPrinter",
+      "sympy/printing/pretty/pretty.py::PrettyPrinter._print_BlockMatrix",
+      "sympy/printing/pretty/pretty.py::PrettyPrinter._print_MatAdd",
+      "sympy/printing/pretty/pretty.py::PrettyPrinter._print_MatMul",
+      "sympy/printing/str.py::StrPrinter",
+      "sympy/printing/str.py::StrPrinter._print_Mul",
+      "sympy/printing/str.py::StrPrinter._print_MatMul",
+      "sympy/printing/str.py::StrPrinter._print_HadamardProduct",
+      "sympy/printing/str.py::StrPrinter._print_MatAdd",
+      "sympy/printing/str.py::StrPrinter._print_NaN"
+    ]
+  },
+  "predictions": [
+    "sympy/printing/latex.py::LatexPrinter._print_SymmetricDifference",
+    "sympy/printing/tests/test_ccode.py::test_MatrixElement_printing",
+    "sympy/printing/tests/test_str.py::test_MatrixElement_printing",
+    "sympy/printing/mathml.py::MathMLPresentationPrinter._print_Symbol",
+    "sympy/printing/tests/test_rcode.py::test_MatrixElement_printing",
+    "sympy/printing/tests/test_latex.py::test_MatrixElement_printing",
+    "sympy/printing/latex.py::LatexPrinter._print_MatPow",
+    "sympy/printing/mathml.py::MathMLContentPrinter._print_Symbol",
+    "sympy/printing/tests/test_fcode.py::test_MatrixElement_printing",
+    "sympy/printing/tests/test_jscode.py::test_MatrixElement_printing"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "9986b38181cdd556a3f3411e553864f11912244e",
+    "total_functions_indexed": 22890,
+    "retrieval_time_seconds": 0.0044558048248291016
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_SymmetricDifference\", \"score\": 0.7667355537414551}, {\"doc_id\": \"sympy/printing/tests/test_ccode.py::test_MatrixElement_printing\", \"score\": 0.7587589025497437}, {\"doc_id\": \"sympy/printing/tests/test_str.py::test_MatrixElement_printing\", \"score\": 0.7534749507904053}, {\"doc_id\": \"sympy/printing/mathml.py::MathMLPresentationPrinter._print_Symbol\", \"score\": 0.7469433546066284}, {\"doc_id\": \"sympy/printing/tests/test_rcode.py::test_MatrixElement_printing\", \"score\": 0.7451337575912476}, {\"doc_id\": \"sympy/printing/tests/test_latex.py::test_MatrixElement_printing\", \"score\": 0.7439956665039062}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_MatPow\", \"score\": 0.7423418760299683}, {\"doc_id\": \"sympy/printing/mathml.py::MathMLContentPrinter._print_Symbol\", \"score\": 0.7408971786499023}, {\"doc_id\": \"sympy/printing/tests/test_fcode.py::test_MatrixElement_printing\", \"score\": 0.7405592203140259}, {\"doc_id\": \"sympy/printing/tests/test_jscode.py::test_MatrixElement_printing\", \"score\": 0.7396446466445923}]"
+}

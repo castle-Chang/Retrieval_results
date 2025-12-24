@@ -1,0 +1,34 @@
+{
+  "instance_id": "django__django-13279",
+  "query": "Session data cannot be decoded during the transition to Django 3.1.\nDescription\n\t\nIn d4fff711d4c97356bd6ba1273d2a5e349326eb5f (#31274) we've changed format for session data, that's why setting DEFAULT_HASHING_ALGORITHM to 'sha1' is not enough to support running multiple instances of the same project during the transition to Django 3.1.\nWe could use the legacy encode() when DEFAULT_HASHING_ALGORITHM == 'sha1' (it's a bit hacky).\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/sessions/backends/base.py"
+    ],
+    "locations": [
+      "django/contrib/sessions/backends/base.py::SessionBase",
+      "django/contrib/sessions/backends/base.py::SessionBase.encode",
+      "django/contrib/sessions/backends/base.py::SessionBase.decode",
+      "django/contrib/sessions/backends/base.py::SessionBase._legacy_decode"
+    ]
+  },
+  "predictions": [
+    "django/contrib/sessions/backends/base.py::SessionBase._legacy_decode",
+    "django/contrib/sessions/backends/base.py::SessionBase.decode",
+    "tests/sessions_tests/tests.py::SessionTestsMixin.test_decode_legacy",
+    "django/contrib/auth/base_user.py::AbstractBaseUser._legacy_get_session_auth_hash",
+    "django/contrib/messages/storage/cookie.py::CookieStorage._legacy_decode",
+    "django/contrib/sessions/backends/base.py::SessionBase._hash",
+    "tests/messages_tests/test_cookie.py::CookieTests.test_legacy_hash_decode",
+    "django/contrib/messages/storage/cookie.py::CookieStorage._legacy_hash",
+    "django/contrib/sessions/base_session.py::BaseSessionManager.encode",
+    "django/contrib/sessions/backends/base.py::SessionBase.encode"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "6e9c5ee88fc948e05b4a7d9f82a8861ed2b0343d",
+    "total_functions_indexed": 23788,
+    "retrieval_time_seconds": 0.022513151168823242
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/sessions/backends/base.py::SessionBase._legacy_decode\", \"score\": 0.8321405649185181}, {\"doc_id\": \"django/contrib/sessions/backends/base.py::SessionBase.decode\", \"score\": 0.8075761198997498}, {\"doc_id\": \"tests/sessions_tests/tests.py::SessionTestsMixin.test_decode_legacy\", \"score\": 0.7837451696395874}, {\"doc_id\": \"django/contrib/auth/base_user.py::AbstractBaseUser._legacy_get_session_auth_hash\", \"score\": 0.7754911184310913}, {\"doc_id\": \"django/contrib/messages/storage/cookie.py::CookieStorage._legacy_decode\", \"score\": 0.7679871320724487}, {\"doc_id\": \"django/contrib/sessions/backends/base.py::SessionBase._hash\", \"score\": 0.7664808034896851}, {\"doc_id\": \"tests/messages_tests/test_cookie.py::CookieTests.test_legacy_hash_decode\", \"score\": 0.7591896653175354}, {\"doc_id\": \"django/contrib/messages/storage/cookie.py::CookieStorage._legacy_hash\", \"score\": 0.7553380727767944}, {\"doc_id\": \"django/contrib/sessions/base_session.py::BaseSessionManager.encode\", \"score\": 0.7425525188446045}, {\"doc_id\": \"django/contrib/sessions/backends/base.py::SessionBase.encode\", \"score\": 0.74229896068573}]"
+}

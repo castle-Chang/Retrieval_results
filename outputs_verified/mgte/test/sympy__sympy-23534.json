@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-23534",
+  "query": "Using symbols to create functions doesn't work if there is an extra layer of parentheses\nSympy version == 1.10.1\r\n\r\nUsing `symbols` to create symbol-like objects like instances of `Function` as shown in the [documentation](https://docs.sympy.org/latest/modules/core.html?highlight=symbols#symbols) creates objects of class `Symbol` instead of `Function` if there is an extra layer of parentheses.\r\n\r\nThe extra layer of parentheses are necessary to deconstruct the output as separate tuples.\r\n\r\nRunning the code:\r\n```\r\nq, u = smp.symbols(('q:2', 'u:2'), cls=smp.Function)\r\nprint(type(q[0]))\r\n```\r\n#### Expected result:\r\n<class 'sympy.core.function.UndefinedFunction'>\r\n\r\n#### Actual result: \r\n<class 'sympy.core.symbol.Symbol'>\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/symbol.py"
+    ],
+    "locations": [
+      "sympy/core/symbol.py::symbols"
+    ]
+  },
+  "predictions": [
+    "sympy/core/symbol.py::Symbol.__xnew__",
+    "sympy/core/symbol.py::var",
+    "sympy/core/symbol.py::Symbol.__new__",
+    "sympy/core/symbol.py::Symbol.as_dummy",
+    "sympy/core/function.py::Subs.__new__",
+    "sympy/core/function.py::UndefinedFunction.__new__",
+    "sympy/utilities/iterables.py::numbered_symbols",
+    "sympy/physics/vector/printing.py::VectorPrettyPrinter._print_Function",
+    "sympy/printing/mathml.py::MathMLPresentationPrinter._print_Symbol",
+    "sympy/core/symbol.py::Wild.__new__"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "832c24fec1046eaa544a4cab4c69e3af3e651759",
+    "total_functions_indexed": 37820,
+    "retrieval_time_seconds": 0.007680654525756836
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/symbol.py::Symbol.__xnew__\", \"score\": 0.7410102486610413}, {\"doc_id\": \"sympy/core/symbol.py::var\", \"score\": 0.7401076555252075}, {\"doc_id\": \"sympy/core/symbol.py::Symbol.__new__\", \"score\": 0.7383327484130859}, {\"doc_id\": \"sympy/core/symbol.py::Symbol.as_dummy\", \"score\": 0.7363078594207764}, {\"doc_id\": \"sympy/core/function.py::Subs.__new__\", \"score\": 0.7347477078437805}, {\"doc_id\": \"sympy/core/function.py::UndefinedFunction.__new__\", \"score\": 0.7320365905761719}, {\"doc_id\": \"sympy/utilities/iterables.py::numbered_symbols\", \"score\": 0.7320030927658081}, {\"doc_id\": \"sympy/physics/vector/printing.py::VectorPrettyPrinter._print_Function\", \"score\": 0.7301377654075623}, {\"doc_id\": \"sympy/printing/mathml.py::MathMLPresentationPrinter._print_Symbol\", \"score\": 0.7295137643814087}, {\"doc_id\": \"sympy/core/symbol.py::Wild.__new__\", \"score\": 0.728958785533905}]"
+}

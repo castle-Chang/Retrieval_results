@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11477",
+  "query": "translate_url() creates an incorrect URL when optional named groups are missing in the URL pattern\nDescription\n\t\nThere is a problem when translating urls with absent 'optional' arguments\n(it's seen in test case of the patch)\n",
+  "ground_truth": {
+    "files": [
+      "django/urls/resolvers.py"
+    ],
+    "locations": [
+      "django/urls/resolvers.py::RegexPattern",
+      "django/urls/resolvers.py::RegexPattern.match"
+    ]
+  },
+  "predictions": [
+    "django/urls/base.py::translate_url",
+    "tests/i18n/patterns/tests.py::URLTranslationTests.test_translate_url_utility",
+    "tests/check_framework/test_urls.py::UpdatedToPathTests.test_contains_re_named_group",
+    "tests/i18n/patterns/tests.py::URLTranslationTests.test_no_prefix_translated",
+    "tests/i18n/patterns/tests.py::URLTranslationTests.test_users_url",
+    "django/contrib/admindocs/utils.py::replace_named_groups",
+    "django/contrib/admindocs/utils.py::replace_unnamed_groups",
+    "tests/urlpatterns_reverse/tests.py::NamespaceTests.test_ambiguous_urlpattern",
+    "django/contrib/admindocs/views.py::simplify_regex",
+    "tests/urlpatterns_reverse/test_localeregexdescriptor.py::LocaleRegexDescriptorTests.tearDown"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "e28671187903e6aca2428374fdd504fca3032aee",
+    "total_functions_indexed": 22600,
+    "retrieval_time_seconds": 0.015532255172729492
+  },
+  "raw_output": "[{\"doc_id\": \"django/urls/base.py::translate_url\", \"score\": 0.7077431678771973}, {\"doc_id\": \"tests/i18n/patterns/tests.py::URLTranslationTests.test_translate_url_utility\", \"score\": 0.6902948617935181}, {\"doc_id\": \"tests/check_framework/test_urls.py::UpdatedToPathTests.test_contains_re_named_group\", \"score\": 0.6590368151664734}, {\"doc_id\": \"tests/i18n/patterns/tests.py::URLTranslationTests.test_no_prefix_translated\", \"score\": 0.656658947467804}, {\"doc_id\": \"tests/i18n/patterns/tests.py::URLTranslationTests.test_users_url\", \"score\": 0.6564121246337891}, {\"doc_id\": \"django/contrib/admindocs/utils.py::replace_named_groups\", \"score\": 0.6471599340438843}, {\"doc_id\": \"django/contrib/admindocs/utils.py::replace_unnamed_groups\", \"score\": 0.6416847109794617}, {\"doc_id\": \"tests/urlpatterns_reverse/tests.py::NamespaceTests.test_ambiguous_urlpattern\", \"score\": 0.6406979560852051}, {\"doc_id\": \"django/contrib/admindocs/views.py::simplify_regex\", \"score\": 0.6406846046447754}, {\"doc_id\": \"tests/urlpatterns_reverse/test_localeregexdescriptor.py::LocaleRegexDescriptorTests.tearDown\", \"score\": 0.6375718116760254}]"
+}

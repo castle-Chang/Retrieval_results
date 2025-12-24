@@ -1,0 +1,37 @@
+{
+  "instance_id": "sphinx-doc__sphinx-8548",
+  "query": "autodoc inherited-members won't work for inherited attributes (data members).\nautodoc searches for a cached docstring using (namespace, attrname) as search-key, but doesn't check for baseclass-namespace.\n\n---\n- Bitbucket: https://bitbucket.org/birkenfeld/sphinx/issue/741\n- Originally reported by: Anonymous\n- Originally created at: 2011-08-02T17:05:58.754\n\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/ext/autodoc/importer.py",
+      "sphinx/ext/autodoc/__init__.py"
+    ],
+    "locations": [
+      "sphinx/ext/autodoc/__init__.py::ClassDocumenter",
+      "sphinx/ext/autodoc/__init__.py::ClassDocumenter.add_directive_header",
+      "sphinx/ext/autodoc/__init__.py::ClassDocumenter.get_object_members",
+      "sphinx/ext/autodoc/importer.py::ClassAttribute",
+      "sphinx/ext/autodoc/importer.py::ClassAttribute.__init__",
+      "sphinx/ext/autodoc/importer.py::get_class_members"
+    ]
+  },
+  "predictions": [
+    "sphinx/ext/autodoc/__init__.py::ClassDocumenter.document_members",
+    "sphinx/ext/autodoc/__init__.py::Documenter.filter_members",
+    "sphinx/ext/autodoc/__init__.py::AttributeDocumenter.get_doc",
+    "sphinx/ext/autodoc/__init__.py::AttributeDocumenter.document_members",
+    "sphinx/ext/autodoc/__init__.py::AttributeDocumenter.can_document_member",
+    "sphinx/ext/autodoc/__init__.py::PropertyDocumenter.can_document_member",
+    "sphinx/ext/autodoc/__init__.py::DataDocumenter.can_document_member",
+    "sphinx/ext/autodoc/__init__.py::DataDocumenter.document_members",
+    "sphinx/ext/autodoc/__init__.py::NewTypeAttributeDocumenter.can_document_member",
+    "sphinx/ext/autodoc/__init__.py::ClassDocumenter.get_object_members"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "dd1615c59dc6fff633e27dbb3861f2d27e1fb976",
+    "total_functions_indexed": 5602,
+    "retrieval_time_seconds": 0.0021467208862304688
+  },
+  "raw_output": "[{\"doc_id\": \"sphinx/ext/autodoc/__init__.py::ClassDocumenter.document_members\", \"score\": 0.7668074369430542}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::Documenter.filter_members\", \"score\": 0.7550003528594971}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::AttributeDocumenter.get_doc\", \"score\": 0.7534698247909546}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::AttributeDocumenter.document_members\", \"score\": 0.7505834698677063}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::AttributeDocumenter.can_document_member\", \"score\": 0.7436014413833618}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::PropertyDocumenter.can_document_member\", \"score\": 0.7417373657226562}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::DataDocumenter.can_document_member\", \"score\": 0.7380688786506653}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::DataDocumenter.document_members\", \"score\": 0.7361225485801697}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::NewTypeAttributeDocumenter.can_document_member\", \"score\": 0.7359850406646729}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::ClassDocumenter.get_object_members\", \"score\": 0.7314553260803223}]"
+}

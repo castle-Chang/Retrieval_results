@@ -1,0 +1,34 @@
+{
+  "instance_id": "psf__requests-1142",
+  "query": "requests.get is ALWAYS sending content length\nHi,\n\nIt seems like that request.get always adds 'content-length' header to the request.\nI think that the right behavior is not to add this header automatically in GET requests or add the possibility to not send it.\n\nFor example http://amazon.com returns 503 for every get request that contains 'content-length' header.\n\nThanks,\n\nOren\n\n",
+  "ground_truth": {
+    "files": [
+      "requests/models.py"
+    ],
+    "locations": [
+      "requests/models.py::PreparedRequest",
+      "requests/models.py::PreparedRequest.prepare_body",
+      "requests/models.py::PreparedRequest.prepare_content_length",
+      "requests/models.py::PreparedRequest.prepare_auth"
+    ]
+  },
+  "predictions": [
+    "requests/models.py::PreparedRequest.prepare_content_length",
+    "requests/packages/urllib3/response.py::HTTPResponse.getheader",
+    "requests/packages/urllib3/connectionpool.py::HTTPConnectionPool.urlopen",
+    "requests/api.py::get",
+    "requests/packages/urllib3/response.py::HTTPResponse.get_redirect_location",
+    "test_requests.py::RequestsTestCase.test_HTTP_200_OK_GET_WITH_MIXED_PARAMS",
+    "requests/packages/urllib3/request.py::RequestMethods.request_encode_body",
+    "requests/packages/urllib3/request.py::RequestMethods.request",
+    "requests/packages/urllib3/util.py::make_headers",
+    "requests/packages/urllib3/response.py::HTTPResponse.read"
+  ],
+  "metadata": {
+    "repo": "psf/requests",
+    "commit": "22623bd8c265b78b161542663ee980738441c307",
+    "total_functions_indexed": 404,
+    "retrieval_time_seconds": 0.000461578369140625
+  },
+  "raw_output": "[{\"doc_id\": \"requests/models.py::PreparedRequest.prepare_content_length\", \"score\": 0.5909519195556641}, {\"doc_id\": \"requests/packages/urllib3/response.py::HTTPResponse.getheader\", \"score\": 0.5849381685256958}, {\"doc_id\": \"requests/packages/urllib3/connectionpool.py::HTTPConnectionPool.urlopen\", \"score\": 0.5843145847320557}, {\"doc_id\": \"requests/api.py::get\", \"score\": 0.5783552527427673}, {\"doc_id\": \"requests/packages/urllib3/response.py::HTTPResponse.get_redirect_location\", \"score\": 0.5712859630584717}, {\"doc_id\": \"test_requests.py::RequestsTestCase.test_HTTP_200_OK_GET_WITH_MIXED_PARAMS\", \"score\": 0.5660765171051025}, {\"doc_id\": \"requests/packages/urllib3/request.py::RequestMethods.request_encode_body\", \"score\": 0.5630595684051514}, {\"doc_id\": \"requests/packages/urllib3/request.py::RequestMethods.request\", \"score\": 0.5579643249511719}, {\"doc_id\": \"requests/packages/urllib3/util.py::make_headers\", \"score\": 0.5575048327445984}, {\"doc_id\": \"requests/packages/urllib3/response.py::HTTPResponse.read\", \"score\": 0.5555770993232727}]"
+}

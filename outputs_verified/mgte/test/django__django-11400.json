@@ -1,0 +1,44 @@
+{
+  "instance_id": "django__django-11400",
+  "query": "Ordering problem in admin.RelatedFieldListFilter and admin.RelatedOnlyFieldListFilter\nDescription\n\t\nRelatedFieldListFilter doesn't fall back to the ordering defined in Model._meta.ordering. \nOrdering gets set to an empty tuple in ​https://github.com/django/django/blob/2.2.1/django/contrib/admin/filters.py#L196 and unless ordering is defined on the related model's ModelAdmin class it stays an empty tuple. IMHO it should fall back to the ordering defined in the related model's Meta.ordering field.\nRelatedOnlyFieldListFilter doesn't order the related model at all, even if ordering is defined on the related model's ModelAdmin class.\nThat's because the call to field.get_choices ​https://github.com/django/django/blob/2.2.1/django/contrib/admin/filters.py#L422 omits the ordering kwarg entirely.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/__init__.py",
+      "django/db/models/fields/reverse_related.py",
+      "django/contrib/admin/filters.py"
+    ],
+    "locations": [
+      "django/contrib/admin/filters.py::RelatedFieldListFilter",
+      "django/contrib/admin/filters.py::RelatedFieldListFilter.expected_parameters",
+      "django/contrib/admin/filters.py::RelatedFieldListFilter.field_choices",
+      "django/contrib/admin/filters.py::RelatedFieldListFilter.choices",
+      "django/contrib/admin/filters.py::RelatedOnlyFieldListFilter",
+      "django/contrib/admin/filters.py::RelatedOnlyFieldListFilter.field_choices",
+      "django/db/models/fields/__init__.py::Field",
+      "django/db/models/fields/__init__.py::Field.get_choices",
+      "django/db/models/fields/__init__.py::Field.value_to_string",
+      "django/db/models/fields/reverse_related.py::ForeignObjectRel",
+      "django/db/models/fields/reverse_related.py::ForeignObjectRel.get_choices",
+      "django/db/models/fields/reverse_related.py::ForeignObjectRel.is_hidden"
+    ]
+  },
+  "predictions": [
+    "django/contrib/admin/filters.py::RelatedFieldListFilter.field_choices",
+    "django/contrib/admin/filters.py::RelatedOnlyFieldListFilter.field_choices",
+    "tests/admin_filters/tests.py::ListFiltersTests.test_relatedfieldlistfilter_foreignkey_ordering",
+    "django/contrib/admin/filters.py::RelatedFieldListFilter.choices",
+    "django/contrib/admin/filters.py::RelatedFieldListFilter.__init__",
+    "tests/admin_filters/tests.py::ListFiltersTests.test_relatedfieldlistfilter_foreignkey_ordering_reverse",
+    "django/contrib/admin/views/main.py::ChangeList.get_ordering_field",
+    "django/contrib/admin/filters.py::RelatedFieldListFilter.include_empty_choice",
+    "django/contrib/admin/options.py::BaseModelAdmin.get_ordering",
+    "django/contrib/admin/options.py::BaseModelAdmin.get_field_queryset"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "1f8382d34d54061eddc41df6994e20ee38c60907",
+    "total_functions_indexed": 22723,
+    "retrieval_time_seconds": 0.008276224136352539
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/admin/filters.py::RelatedFieldListFilter.field_choices\", \"score\": 0.8468921184539795}, {\"doc_id\": \"django/contrib/admin/filters.py::RelatedOnlyFieldListFilter.field_choices\", \"score\": 0.8164609670639038}, {\"doc_id\": \"tests/admin_filters/tests.py::ListFiltersTests.test_relatedfieldlistfilter_foreignkey_ordering\", \"score\": 0.7927452325820923}, {\"doc_id\": \"django/contrib/admin/filters.py::RelatedFieldListFilter.choices\", \"score\": 0.7853662371635437}, {\"doc_id\": \"django/contrib/admin/filters.py::RelatedFieldListFilter.__init__\", \"score\": 0.7783292531967163}, {\"doc_id\": \"tests/admin_filters/tests.py::ListFiltersTests.test_relatedfieldlistfilter_foreignkey_ordering_reverse\", \"score\": 0.7638411521911621}, {\"doc_id\": \"django/contrib/admin/views/main.py::ChangeList.get_ordering_field\", \"score\": 0.7565526366233826}, {\"doc_id\": \"django/contrib/admin/filters.py::RelatedFieldListFilter.include_empty_choice\", \"score\": 0.7544919848442078}, {\"doc_id\": \"django/contrib/admin/options.py::BaseModelAdmin.get_ordering\", \"score\": 0.7543138265609741}, {\"doc_id\": \"django/contrib/admin/options.py::BaseModelAdmin.get_field_queryset\", \"score\": 0.7532341480255127}]"
+}

@@ -1,0 +1,35 @@
+{
+  "instance_id": "django__django-11095",
+  "query": "add ModelAdmin.get_inlines() hook to allow set inlines based on the request or model instance.\nDescription\n\t\nadd ModelAdmin.get_inlines() hook to allow set inlines based on the request or model instance.\nCurrently, We can override the method get_inline_instances to do such a thing, but a for loop should be copied to my code. So I wished add a hook get_inlines(request, obj=None)\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admin/options.py"
+    ],
+    "locations": [
+      "django/contrib/admin/options.py::BaseModelAdmin",
+      "django/contrib/admin/options.py::BaseModelAdmin.get_fieldsets",
+      "django/contrib/admin/options.py::BaseModelAdmin.get_ordering",
+      "django/contrib/admin/options.py::ModelAdmin",
+      "django/contrib/admin/options.py::ModelAdmin.get_inline_instances"
+    ]
+  },
+  "predictions": [
+    "django/contrib/admin/options.py::ModelAdmin.get_inline_instances",
+    "django/contrib/admin/options.py::ModelAdmin.get_formsets_with_inlines",
+    "django/contrib/admin/checks.py::ModelAdminChecks._check_inlines",
+    "django/contrib/admin/checks.py::ModelAdminChecks._check_inlines_item",
+    "django/contrib/admin/options.py::ModelAdmin.get_inline_formsets",
+    "tests/admin_views/admin.py::GetFormsetsArgumentCheckingAdmin.get_formsets_with_inlines",
+    "django/contrib/admin/options.py::InlineModelAdmin.get_queryset",
+    "django/contrib/admin/checks.py::InlineModelAdminChecks.check",
+    "django/contrib/admin/options.py::InlineModelAdmin.get_min_num",
+    "django/contrib/admin/options.py::InlineModelAdmin.get_extra"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "7d49ad76562e8c0597a0eb66046ab423b12888d8",
+    "total_functions_indexed": 22424,
+    "retrieval_time_seconds": 0.007380962371826172
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/admin/options.py::ModelAdmin.get_inline_instances\", \"score\": 0.8496671915054321}, {\"doc_id\": \"django/contrib/admin/options.py::ModelAdmin.get_formsets_with_inlines\", \"score\": 0.8026202917098999}, {\"doc_id\": \"django/contrib/admin/checks.py::ModelAdminChecks._check_inlines\", \"score\": 0.8014931678771973}, {\"doc_id\": \"django/contrib/admin/checks.py::ModelAdminChecks._check_inlines_item\", \"score\": 0.7864723205566406}, {\"doc_id\": \"django/contrib/admin/options.py::ModelAdmin.get_inline_formsets\", \"score\": 0.7813836336135864}, {\"doc_id\": \"tests/admin_views/admin.py::GetFormsetsArgumentCheckingAdmin.get_formsets_with_inlines\", \"score\": 0.7725563645362854}, {\"doc_id\": \"django/contrib/admin/options.py::InlineModelAdmin.get_queryset\", \"score\": 0.7582318782806396}, {\"doc_id\": \"django/contrib/admin/checks.py::InlineModelAdminChecks.check\", \"score\": 0.7566584348678589}, {\"doc_id\": \"django/contrib/admin/options.py::InlineModelAdmin.get_min_num\", \"score\": 0.7565504312515259}, {\"doc_id\": \"django/contrib/admin/options.py::InlineModelAdmin.get_extra\", \"score\": 0.740984320640564}]"
+}

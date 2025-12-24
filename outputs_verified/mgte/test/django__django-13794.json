@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-13794",
+  "query": "add filter is unable to concatenate strings with lazy string\nDescription\n\t\nIf you try to concatenate a string with a lazy string with the add template filter, the result is always the empty string because the add filter generates an exception (TypeError: can only concatenate str (not \"__proxy__\") to str).\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/functional.py"
+    ],
+    "locations": [
+      "django/utils/functional.py::lazy"
+    ]
+  },
+  "predictions": [
+    "django/utils/functional.py::lazystr",
+    "tests/utils_tests/test_safestring.py::SafeStringTest.test_add_lazy_safe_text_and_safe_text",
+    "tests/i18n/tests.py::TranslationTests.test_lazy_objects",
+    "django/template/defaultfilters.py::join",
+    "django/template/defaultfilters.py::add",
+    "tests/template_tests/filter_tests/test_slugify.py::FunctionTests.test_slugify_lazy_string",
+    "django/conf/__init__.py::LazySettings._add_script_prefix",
+    "tests/template_tests/test_base.py::TemplateTests.test_lazy_template_string",
+    "django/template/defaultfilters.py::stringfilter",
+    "django/contrib/admin/templatetags/admin_urls.py::add_preserved_filters"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "fe886eee36be8022f34cfe59aa61ff1c21fe01d9",
+    "total_functions_indexed": 24231,
+    "retrieval_time_seconds": 0.011142253875732422
+  },
+  "raw_output": "[{\"doc_id\": \"django/utils/functional.py::lazystr\", \"score\": 0.6745232343673706}, {\"doc_id\": \"tests/utils_tests/test_safestring.py::SafeStringTest.test_add_lazy_safe_text_and_safe_text\", \"score\": 0.6628597974777222}, {\"doc_id\": \"tests/i18n/tests.py::TranslationTests.test_lazy_objects\", \"score\": 0.6580253839492798}, {\"doc_id\": \"django/template/defaultfilters.py::join\", \"score\": 0.6538994908332825}, {\"doc_id\": \"django/template/defaultfilters.py::add\", \"score\": 0.653418242931366}, {\"doc_id\": \"tests/template_tests/filter_tests/test_slugify.py::FunctionTests.test_slugify_lazy_string\", \"score\": 0.6513935923576355}, {\"doc_id\": \"django/conf/__init__.py::LazySettings._add_script_prefix\", \"score\": 0.6456683874130249}, {\"doc_id\": \"tests/template_tests/test_base.py::TemplateTests.test_lazy_template_string\", \"score\": 0.6422984600067139}, {\"doc_id\": \"django/template/defaultfilters.py::stringfilter\", \"score\": 0.6403552293777466}, {\"doc_id\": \"django/contrib/admin/templatetags/admin_urls.py::add_preserved_filters\", \"score\": 0.6377358436584473}]"
+}

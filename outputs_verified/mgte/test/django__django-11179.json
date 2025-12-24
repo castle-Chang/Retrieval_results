@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11179",
+  "query": "delete() on instances of models without any dependencies doesn't clear PKs.\nDescription\n\t\nDeleting any model with no dependencies not updates the PK on the model. It should be set to None after .delete() call.\nSee Django.db.models.deletion:276-281. Should update the model line 280.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/deletion.py"
+    ],
+    "locations": [
+      "django/db/models/deletion.py::Collector",
+      "django/db/models/deletion.py::Collector.delete"
+    ]
+  },
+  "predictions": [
+    "django/db/models/query.py::QuerySet._raw_delete",
+    "django/db/models/base.py::Model.delete",
+    "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._delete_primary_key_sql",
+    "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._delete_unique_sql",
+    "django/db/models/query.py::QuerySet.delete",
+    "django/db/models/deletion.py::Collector.delete",
+    "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._delete_primary_key",
+    "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._delete_fk_sql",
+    "django/contrib/admin/options.py::ModelAdmin.delete_queryset",
+    "django/db/models/sql/subqueries.py::DeleteQuery.delete_qs"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "19fc6376ce67d01ca37a91ef2f55ef769f50513a",
+    "total_functions_indexed": 22420,
+    "retrieval_time_seconds": 0.011295080184936523
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/query.py::QuerySet._raw_delete\", \"score\": 0.776405930519104}, {\"doc_id\": \"django/db/models/base.py::Model.delete\", \"score\": 0.7694324254989624}, {\"doc_id\": \"django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._delete_primary_key_sql\", \"score\": 0.7594631910324097}, {\"doc_id\": \"django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._delete_unique_sql\", \"score\": 0.7544920444488525}, {\"doc_id\": \"django/db/models/query.py::QuerySet.delete\", \"score\": 0.7537155151367188}, {\"doc_id\": \"django/db/models/deletion.py::Collector.delete\", \"score\": 0.7515295743942261}, {\"doc_id\": \"django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._delete_primary_key\", \"score\": 0.7512949705123901}, {\"doc_id\": \"django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._delete_fk_sql\", \"score\": 0.7501431703567505}, {\"doc_id\": \"django/contrib/admin/options.py::ModelAdmin.delete_queryset\", \"score\": 0.7402259111404419}, {\"doc_id\": \"django/db/models/sql/subqueries.py::DeleteQuery.delete_qs\", \"score\": 0.7390033006668091}]"
+}

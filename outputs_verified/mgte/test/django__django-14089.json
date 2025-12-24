@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-14089",
+  "query": "Allow calling reversed() on an OrderedSet\nDescription\n\t\nCurrently, ​OrderedSet isn't reversible (i.e. allowed to be passed as an argument to Python's ​reversed()). This would be natural to support given that OrderedSet is ordered. This should be straightforward to add by adding a __reversed__() method to OrderedSet.\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/datastructures.py"
+    ],
+    "locations": [
+      "django/utils/datastructures.py::OrderedSet",
+      "django/utils/datastructures.py::OrderedSet.__iter__",
+      "django/utils/datastructures.py::OrderedSet.__contains__"
+    ]
+  },
+  "predictions": [
+    "django/db/models/query.py::QuerySet.reverse",
+    "tests/custom_migration_operations/more_operations.py::TestOperation.reversible",
+    "tests/custom_migration_operations/operations.py::TestOperation.reversible",
+    "django/db/migrations/operations/special.py::RunPython.reversible",
+    "tests/ordering/tests.py::OrderingTests.test_reversed_ordering",
+    "django/db/migrations/operations/special.py::RunSQL.reversible",
+    "tests/ordering/tests.py::OrderingTests.test_no_reordering_after_slicing",
+    "django/db/models/expressions.py::OrderBy.reverse_ordering",
+    "tests/ordering/tests.py::OrderingTests.assertQuerysetEqualReversible",
+    "django/db/models/fields/related_descriptors.py::ReverseManyToOneDescriptor._get_set_deprecation_msg_params"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "d01709aae21de9cd2565b9c52f32732ea28a2d98",
+    "total_functions_indexed": 24361,
+    "retrieval_time_seconds": 0.009021282196044922
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/query.py::QuerySet.reverse\", \"score\": 0.7152453660964966}, {\"doc_id\": \"tests/custom_migration_operations/more_operations.py::TestOperation.reversible\", \"score\": 0.6979211568832397}, {\"doc_id\": \"tests/custom_migration_operations/operations.py::TestOperation.reversible\", \"score\": 0.6879345178604126}, {\"doc_id\": \"django/db/migrations/operations/special.py::RunPython.reversible\", \"score\": 0.6876919865608215}, {\"doc_id\": \"tests/ordering/tests.py::OrderingTests.test_reversed_ordering\", \"score\": 0.6822595596313477}, {\"doc_id\": \"django/db/migrations/operations/special.py::RunSQL.reversible\", \"score\": 0.6795516610145569}, {\"doc_id\": \"tests/ordering/tests.py::OrderingTests.test_no_reordering_after_slicing\", \"score\": 0.6688168048858643}, {\"doc_id\": \"django/db/models/expressions.py::OrderBy.reverse_ordering\", \"score\": 0.6653836965560913}, {\"doc_id\": \"tests/ordering/tests.py::OrderingTests.assertQuerysetEqualReversible\", \"score\": 0.6647403240203857}, {\"doc_id\": \"django/db/models/fields/related_descriptors.py::ReverseManyToOneDescriptor._get_set_deprecation_msg_params\", \"score\": 0.6621872186660767}]"
+}

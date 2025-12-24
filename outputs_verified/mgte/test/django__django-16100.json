@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-16100",
+  "query": "Add transaction handling to Changelist list_editable processing.\nDescription\n\t\nIt seems that changelist_view in Django admin is missing a transaction. Since the view may change data in database, it should be wrapped in a transaction to prevent unexpected states in case of errors.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admin/options.py"
+    ],
+    "locations": [
+      "django/contrib/admin/options.py::ModelAdmin",
+      "django/contrib/admin/options.py::ModelAdmin.changelist_view"
+    ]
+  },
+  "predictions": [
+    "django/contrib/admin/options.py::ModelAdmin.changelist_view",
+    "django/contrib/admin/options.py::ModelAdmin.get_changelist_instance",
+    "tests/admin_changelist/tests.py::ChangeListTests.test_get_list_editable_queryset",
+    "tests/admin_changelist/tests.py::ChangeListTests.test_changelist_view_list_editable_changed_objects_uses_filter",
+    "django/contrib/admin/views/main.py::ChangeList.apply_select_related",
+    "django/contrib/admin/options.py::ModelAdmin._get_list_editable_queryset",
+    "django/contrib/admin/views/main.py::ChangeList.__init__",
+    "django/contrib/admin/checks.py::ModelAdminChecks._check_list_editable",
+    "django/contrib/admin/options.py::ModelAdmin.get_changelist",
+    "django/contrib/admin/options.py::ModelAdmin.get_changelist_formset"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "c6350d594c359151ee17b0c4f354bb44f28ff69e",
+    "total_functions_indexed": 26192,
+    "retrieval_time_seconds": 0.011746406555175781
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/admin/options.py::ModelAdmin.changelist_view\", \"score\": 0.7667196989059448}, {\"doc_id\": \"django/contrib/admin/options.py::ModelAdmin.get_changelist_instance\", \"score\": 0.7376301288604736}, {\"doc_id\": \"tests/admin_changelist/tests.py::ChangeListTests.test_get_list_editable_queryset\", \"score\": 0.7312434315681458}, {\"doc_id\": \"tests/admin_changelist/tests.py::ChangeListTests.test_changelist_view_list_editable_changed_objects_uses_filter\", \"score\": 0.7301656603813171}, {\"doc_id\": \"django/contrib/admin/views/main.py::ChangeList.apply_select_related\", \"score\": 0.7184748649597168}, {\"doc_id\": \"django/contrib/admin/options.py::ModelAdmin._get_list_editable_queryset\", \"score\": 0.7175785303115845}, {\"doc_id\": \"django/contrib/admin/views/main.py::ChangeList.__init__\", \"score\": 0.7165557742118835}, {\"doc_id\": \"django/contrib/admin/checks.py::ModelAdminChecks._check_list_editable\", \"score\": 0.716002345085144}, {\"doc_id\": \"django/contrib/admin/options.py::ModelAdmin.get_changelist\", \"score\": 0.7128393650054932}, {\"doc_id\": \"django/contrib/admin/options.py::ModelAdmin.get_changelist_formset\", \"score\": 0.7112951278686523}]"
+}

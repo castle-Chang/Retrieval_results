@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-14155",
+  "query": "ResolverMatch.__repr__() doesn't handle functools.partial() nicely.\nDescription\n\t \n\t\t(last modified by Nick Pope)\n\t \nWhen a partial function is passed as the view, the __repr__ shows the func argument as functools.partial which isn't very helpful, especially as it doesn't reveal the underlying function or arguments provided.\nBecause a partial function also has arguments provided up front, we need to handle those specially so that they are accessible in __repr__.\nISTM that we can simply unwrap functools.partial objects in ResolverMatch.__init__().\n",
+  "ground_truth": {
+    "files": [
+      "django/urls/resolvers.py"
+    ],
+    "locations": [
+      "django/urls/resolvers.py::ResolverMatch",
+      "django/urls/resolvers.py::ResolverMatch.__getitem__",
+      "django/urls/resolvers.py::ResolverMatch.__repr__"
+    ]
+  },
+  "predictions": [
+    "django/urls/resolvers.py::ResolverMatch.__repr__",
+    "django/urls/resolvers.py::ResolverMatch.__init__",
+    "django/urls/resolvers.py::ResolverMatch.__getitem__",
+    "django/urls/resolvers.py::URLResolver._reverse_with_prefix",
+    "tests/migrations/test_autodetector.py::AutodetectorTests.test_supports_functools_partial",
+    "django/template/defaulttags.py::RegroupNode.resolve_expression",
+    "django/urls/resolvers.py::URLPattern.lookup_str",
+    "tests/urlpatterns_reverse/views.py::pass_resolver_match_view",
+    "django/contrib/gis/db/models/functions.py::AsSVG.__init__",
+    "django/db/models/signals.py::ModelSignal._lazy_method"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "2f13c476abe4ba787b6cb71131818341911f43cc",
+    "total_functions_indexed": 24458,
+    "retrieval_time_seconds": 0.01242685317993164
+  },
+  "raw_output": "[{\"doc_id\": \"django/urls/resolvers.py::ResolverMatch.__repr__\", \"score\": 0.6913031339645386}, {\"doc_id\": \"django/urls/resolvers.py::ResolverMatch.__init__\", \"score\": 0.6788465976715088}, {\"doc_id\": \"django/urls/resolvers.py::ResolverMatch.__getitem__\", \"score\": 0.6616634130477905}, {\"doc_id\": \"django/urls/resolvers.py::URLResolver._reverse_with_prefix\", \"score\": 0.6594794988632202}, {\"doc_id\": \"tests/migrations/test_autodetector.py::AutodetectorTests.test_supports_functools_partial\", \"score\": 0.658556342124939}, {\"doc_id\": \"django/template/defaulttags.py::RegroupNode.resolve_expression\", \"score\": 0.6539179086685181}, {\"doc_id\": \"django/urls/resolvers.py::URLPattern.lookup_str\", \"score\": 0.6503379344940186}, {\"doc_id\": \"tests/urlpatterns_reverse/views.py::pass_resolver_match_view\", \"score\": 0.644336998462677}, {\"doc_id\": \"django/contrib/gis/db/models/functions.py::AsSVG.__init__\", \"score\": 0.6438720226287842}, {\"doc_id\": \"django/db/models/signals.py::ModelSignal._lazy_method\", \"score\": 0.6395453214645386}]"
+}

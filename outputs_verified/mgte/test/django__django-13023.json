@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-13023",
+  "query": "DecimalField.to_python() raises TypeError on dict values.\nDescription\n\t\nA call to DecimalField.to_python() with a dictionary as the value parameter produces TypeError instead of ValidationError. This is a problem, for example, when you try to save a model object, and a decimal field got set to a dictionary by mistake. The TypeError exception that comes back makes it hard to track the problem to the field if the object has a lot of fields.\nI am proposing a patch to fix it:\n​https://github.com/django/django/pull/13023\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/__init__.py"
+    ],
+    "locations": [
+      "django/db/models/fields/__init__.py::DecimalField",
+      "django/db/models/fields/__init__.py::DecimalField.to_python"
+    ]
+  },
+  "predictions": [
+    "django/db/models/fields/__init__.py::DecimalField.to_python",
+    "django/forms/fields.py::DecimalField.to_python",
+    "django/db/backends/base/operations.py::BaseDatabaseOperations.adapt_decimalfield_value",
+    "django/db/models/fields/__init__.py::DecimalField.get_prep_value",
+    "tests/model_fields/test_decimalfield.py::DecimalFieldTests.test_to_python",
+    "django/db/models/fields/__init__.py::DecimalField.get_db_prep_save",
+    "django/db/backends/sqlite3/operations.py::DatabaseOperations.get_decimalfield_converter",
+    "django/core/validators.py::DecimalValidator.__call__",
+    "django/db/models/fields/__init__.py::FloatField.to_python",
+    "django/forms/fields.py::IntegerField.to_python"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "f83b44075dafa429d59e8755aa47e15577cc49f9",
+    "total_functions_indexed": 23532,
+    "retrieval_time_seconds": 0.007477521896362305
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/fields/__init__.py::DecimalField.to_python\", \"score\": 0.8305644989013672}, {\"doc_id\": \"django/forms/fields.py::DecimalField.to_python\", \"score\": 0.8068803548812866}, {\"doc_id\": \"django/db/backends/base/operations.py::BaseDatabaseOperations.adapt_decimalfield_value\", \"score\": 0.7698289752006531}, {\"doc_id\": \"django/db/models/fields/__init__.py::DecimalField.get_prep_value\", \"score\": 0.7604158520698547}, {\"doc_id\": \"tests/model_fields/test_decimalfield.py::DecimalFieldTests.test_to_python\", \"score\": 0.7595256567001343}, {\"doc_id\": \"django/db/models/fields/__init__.py::DecimalField.get_db_prep_save\", \"score\": 0.7587777376174927}, {\"doc_id\": \"django/db/backends/sqlite3/operations.py::DatabaseOperations.get_decimalfield_converter\", \"score\": 0.7566113471984863}, {\"doc_id\": \"django/core/validators.py::DecimalValidator.__call__\", \"score\": 0.7488488554954529}, {\"doc_id\": \"django/db/models/fields/__init__.py::FloatField.to_python\", \"score\": 0.745714545249939}, {\"doc_id\": \"django/forms/fields.py::IntegerField.to_python\", \"score\": 0.742998480796814}]"
+}

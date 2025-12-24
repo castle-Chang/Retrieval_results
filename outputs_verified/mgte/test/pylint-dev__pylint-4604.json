@@ -1,0 +1,33 @@
+{
+  "instance_id": "pylint-dev__pylint-4604",
+  "query": "unused-import false positive for a module used in a type comment\n### Steps to reproduce\r\n\r\n```python\r\n\"\"\"Docstring.\"\"\"\r\n\r\nimport abc\r\nfrom abc import ABC\r\n\r\nX = ...  # type: abc.ABC\r\nY = ...  # type: ABC\r\n```\r\n\r\n### Current behavior\r\n\r\n```\r\n************* Module a\r\n/tmp/a.py:3:0: W0611: Unused import abc (unused-import)\r\n\r\n-----------------------------------\r\nYour code has been rated at 7.50/10\r\n```\r\n\r\n### Expected behavior\r\n\r\n`unused-import` should not be emitted.\r\n\r\n### pylint --version output\r\n\r\nResult of `pylint --version` output:\r\n\r\n```\r\npylint 2.8.3\r\nastroid 2.5.6\r\nPython 3.9.2 (default, Feb 28 2021, 17:03:44) \r\n[GCC 10.2.1 20210110]\r\n```\r\n\r\nThis is a follow up to #3112.\n",
+  "ground_truth": {
+    "files": [
+      "pylint/checkers/variables.py",
+      "pylint/constants.py"
+    ],
+    "locations": [
+      "pylint/checkers/variables.py::VariablesChecker",
+      "pylint/checkers/variables.py::VariablesChecker._store_type_annotation_node"
+    ]
+  },
+  "predictions": [
+    "tests/functional/u/unused/unused_typing_imports.py::unused_reassigned_import",
+    "tests/test_self.py::TestRunTC.test_do_not_import_files_from_local_directory_with_pythonpath",
+    "tests/checkers/unittest_python3.py::TestPython3Checker.test_bad_import_conditional",
+    "tests/checkers/unittest_python3.py::TestPython3Checker.test_bad_string_import_from",
+    "tests/functional/u/unused/unused_typing_imports.py::unused_assignment_import",
+    "tests/checkers/unittest_python3.py::TestPython3Checker.test_bad_import",
+    "tests/checkers/unittest_python3.py::TestPython3Checker.test_bad_import_from",
+    "tests/test_self.py::TestRunTC.test_do_not_import_files_from_local_directory",
+    "tests/functional/u/unused/unused_variable.py::unused_import_in_function",
+    "tests/checkers/unittest_python3.py::TestPython3Checker.test_ok_string_import_from"
+  ],
+  "metadata": {
+    "repo": "pylint-dev/pylint",
+    "commit": "1e55ae64624d28c5fe8b63ad7979880ee2e6ef3f",
+    "total_functions_indexed": 4370,
+    "retrieval_time_seconds": 0.03700375556945801
+  },
+  "raw_output": "[{\"doc_id\": \"tests/functional/u/unused/unused_typing_imports.py::unused_reassigned_import\", \"score\": 0.75899338722229}, {\"doc_id\": \"tests/test_self.py::TestRunTC.test_do_not_import_files_from_local_directory_with_pythonpath\", \"score\": 0.7528467774391174}, {\"doc_id\": \"tests/checkers/unittest_python3.py::TestPython3Checker.test_bad_import_conditional\", \"score\": 0.7426890730857849}, {\"doc_id\": \"tests/checkers/unittest_python3.py::TestPython3Checker.test_bad_string_import_from\", \"score\": 0.7379552125930786}, {\"doc_id\": \"tests/functional/u/unused/unused_typing_imports.py::unused_assignment_import\", \"score\": 0.7355071306228638}, {\"doc_id\": \"tests/checkers/unittest_python3.py::TestPython3Checker.test_bad_import\", \"score\": 0.7351316213607788}, {\"doc_id\": \"tests/checkers/unittest_python3.py::TestPython3Checker.test_bad_import_from\", \"score\": 0.7346965670585632}, {\"doc_id\": \"tests/test_self.py::TestRunTC.test_do_not_import_files_from_local_directory\", \"score\": 0.734434962272644}, {\"doc_id\": \"tests/functional/u/unused/unused_variable.py::unused_import_in_function\", \"score\": 0.7322045564651489}, {\"doc_id\": \"tests/checkers/unittest_python3.py::TestPython3Checker.test_ok_string_import_from\", \"score\": 0.7303752899169922}]"
+}

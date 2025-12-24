@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-15809",
+  "query": "Zero-argument Min() and Max()\nRight now `Min()` and `Max()` with no arguments raise `ValueError: The Max/Min functions must have arguments.`. It might be mathematically more convenient to have them return `oo` and `-oo`, respectively. See https://en.wikipedia.org/wiki/Empty_set#Extended_real_numbers for why these are valid answers mathematically. \n",
+  "ground_truth": {
+    "files": [
+      "sympy/functions/elementary/miscellaneous.py"
+    ],
+    "locations": [
+      "sympy/functions/elementary/miscellaneous.py::MinMaxBase",
+      "sympy/functions/elementary/miscellaneous.py::MinMaxBase.__new__"
+    ]
+  },
+  "predictions": [
+    "sympy/functions/elementary/miscellaneous.py::MinMaxBase.__new__",
+    "sympy/functions/elementary/miscellaneous.py::MinMaxBase._collapse_arguments",
+    "sympy/functions/elementary/miscellaneous.py::_minmax_as_Piecewise",
+    "sympy/assumptions/tests/test_query.py::test_zero",
+    "sympy/calculus/util.py::AccumulationBounds.__new__",
+    "sympy/assumptions/tests/test_query.py::test_nonzero",
+    "sympy/assumptions/handlers/calculus.py::AskFiniteHandler.Pow",
+    "sympy/functions/elementary/miscellaneous.py::MinMaxBase._find_localzeros",
+    "sympy/physics/quantum/grover.py::OracleGate._eval_args",
+    "sympy/functions/elementary/tests/test_miscellaneous.py::test_minmax_assumptions"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "28d913d3cead6c5646307ffa6540b21d65059dfd",
+    "total_functions_indexed": 24401,
+    "retrieval_time_seconds": 0.003496885299682617
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/functions/elementary/miscellaneous.py::MinMaxBase.__new__\", \"score\": 0.6944950222969055}, {\"doc_id\": \"sympy/functions/elementary/miscellaneous.py::MinMaxBase._collapse_arguments\", \"score\": 0.6733767986297607}, {\"doc_id\": \"sympy/functions/elementary/miscellaneous.py::_minmax_as_Piecewise\", \"score\": 0.672144889831543}, {\"doc_id\": \"sympy/assumptions/tests/test_query.py::test_zero\", \"score\": 0.6711616516113281}, {\"doc_id\": \"sympy/calculus/util.py::AccumulationBounds.__new__\", \"score\": 0.6694176197052002}, {\"doc_id\": \"sympy/assumptions/tests/test_query.py::test_nonzero\", \"score\": 0.6632791757583618}, {\"doc_id\": \"sympy/assumptions/handlers/calculus.py::AskFiniteHandler.Pow\", \"score\": 0.6578376293182373}, {\"doc_id\": \"sympy/functions/elementary/miscellaneous.py::MinMaxBase._find_localzeros\", \"score\": 0.6573952436447144}, {\"doc_id\": \"sympy/physics/quantum/grover.py::OracleGate._eval_args\", \"score\": 0.6547098159790039}, {\"doc_id\": \"sympy/functions/elementary/tests/test_miscellaneous.py::test_minmax_assumptions\", \"score\": 0.6532788872718811}]"
+}

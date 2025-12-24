@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-14500",
+  "query": "Squashed migration is not marked as unapplied\nDescription\n\t \n\t\t(last modified by Markus Holtermann)\n\t \nWhen unapplying a squashed migration and the replaced migration files are still around, the MigrationExecutor mark the squash migration as unapplied, too, not only the replaced migrations.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/executor.py"
+    ],
+    "locations": [
+      "django/db/migrations/executor.py::MigrationExecutor",
+      "django/db/migrations/executor.py::MigrationExecutor.unapply_migration"
+    ]
+  },
+  "predictions": [
+    "tests/migrations/test_executor.py::ExecutorTests.test_migrate_marks_replacement_applied_even_if_it_did_nothing",
+    "tests/migrations/test_executor.py::ExecutorTests.test_run_with_squashed",
+    "django/db/migrations/executor.py::MigrationExecutor.check_replacements",
+    "tests/migrations/test_commands.py::SquashMigrationsTests.test_squashed_name_without_start_migration_name",
+    "tests/migrations/test_loader.py::LoaderTests.test_loading_squashed_ref_squashed",
+    "tests/migrations/test_executor.py::ExecutorTests.test_apply_all_replaced_marks_replacement_as_applied",
+    "tests/migrations/test_commands.py::SquashMigrationsTests.test_squashmigrations_squashes",
+    "tests/migrations/test_commands.py::SquashMigrationsTests.test_squashed_name_with_start_migration_name",
+    "tests/migrations/test_commands.py::MigrateTests.test_migrate_record_squashed",
+    "django/db/migrations/recorder.py::MigrationRecorder.record_unapplied"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "8c3bd0b708b488a1f6e8bd8cc6b96569904605be",
+    "total_functions_indexed": 24668,
+    "retrieval_time_seconds": 0.03782057762145996
+  },
+  "raw_output": "[{\"doc_id\": \"tests/migrations/test_executor.py::ExecutorTests.test_migrate_marks_replacement_applied_even_if_it_did_nothing\", \"score\": 0.780451238155365}, {\"doc_id\": \"tests/migrations/test_executor.py::ExecutorTests.test_run_with_squashed\", \"score\": 0.7419251203536987}, {\"doc_id\": \"django/db/migrations/executor.py::MigrationExecutor.check_replacements\", \"score\": 0.7401028275489807}, {\"doc_id\": \"tests/migrations/test_commands.py::SquashMigrationsTests.test_squashed_name_without_start_migration_name\", \"score\": 0.726789116859436}, {\"doc_id\": \"tests/migrations/test_loader.py::LoaderTests.test_loading_squashed_ref_squashed\", \"score\": 0.718698263168335}, {\"doc_id\": \"tests/migrations/test_executor.py::ExecutorTests.test_apply_all_replaced_marks_replacement_as_applied\", \"score\": 0.7184231877326965}, {\"doc_id\": \"tests/migrations/test_commands.py::SquashMigrationsTests.test_squashmigrations_squashes\", \"score\": 0.7141345739364624}, {\"doc_id\": \"tests/migrations/test_commands.py::SquashMigrationsTests.test_squashed_name_with_start_migration_name\", \"score\": 0.7101370096206665}, {\"doc_id\": \"tests/migrations/test_commands.py::MigrateTests.test_migrate_record_squashed\", \"score\": 0.7047446966171265}, {\"doc_id\": \"django/db/migrations/recorder.py::MigrationRecorder.record_unapplied\", \"score\": 0.6943697929382324}]"
+}

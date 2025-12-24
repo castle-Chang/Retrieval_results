@@ -1,0 +1,35 @@
+{
+  "instance_id": "django__django-13401",
+  "query": "Abstract model field should not be equal across models\nDescription\n\t\nConsider the following models:\nclass A(models.Model):\n\tclass Meta:\n\t\tabstract = True\n\tmyfield = IntegerField()\nclass B(A):\n\tpass\nclass C(A):\n\tpass\nIf I pull the fields of B and C into a shared set, one will be de-duplicated away, because they compare as equal. I found this surprising, though in practice using a list was sufficient for my need. The root of the issue is that they compare equal, as fields only consider self.creation_counter when comparing for equality.\nlen({B._meta.get_field('myfield'), C._meta.get_field('myfield')}) == 1\nB._meta.get_field('myfield') == C._meta.get_field('myfield')\nWe should adjust __eq__ so that if the field.model is different, they will compare unequal. Similarly, it is probably wise to adjust __hash__ and __lt__ to match.\nWhen adjusting __lt__, it may be wise to order first by self.creation_counter so that cases not affected by this equality collision won't be re-ordered. In my experimental branch, there was one test that broke if I ordered them by model first.\nI brought this up on IRC django-dev to check my intuitions, and those conversing with me there seemed to agree that the current behavior is not intuitive.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/__init__.py"
+    ],
+    "locations": [
+      "django/db/models/fields/__init__.py::Field",
+      "django/db/models/fields/__init__.py::Field.__eq__",
+      "django/db/models/fields/__init__.py::Field.__lt__",
+      "django/db/models/fields/__init__.py::Field.__hash__",
+      "django/db/models/fields/__init__.py::Field.__deepcopy__"
+    ]
+  },
+  "predictions": [
+    "django/db/models/fields/__init__.py::Field.__eq__",
+    "django/db/models/fields/__init__.py::Field.__lt__",
+    "django/db/models/base.py::Model.__eq__",
+    "tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_multiple_inheritance_cannot_shadow_inherited_field",
+    "tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_multiple_inheritance_cannot_shadow_concrete_inherited_field",
+    "tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_multi_inheritance_field_clashes",
+    "tests/migrations/test_state.py::ModelStateTests.test_fields_ordering_equality",
+    "django/db/models/base.py::Model._check_field_name_clashes",
+    "tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_cannot_override_indirect_abstract_field",
+    "tests/check_framework/test_model_checks.py::IndexNameTests.test_collision_abstract_model"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "453967477e3ddae704cd739eac2449c0e13d464c",
+    "total_functions_indexed": 23855,
+    "retrieval_time_seconds": 0.007665872573852539
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/fields/__init__.py::Field.__eq__\", \"score\": 0.7924569845199585}, {\"doc_id\": \"django/db/models/fields/__init__.py::Field.__lt__\", \"score\": 0.7578845620155334}, {\"doc_id\": \"django/db/models/base.py::Model.__eq__\", \"score\": 0.7457874417304993}, {\"doc_id\": \"tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_multiple_inheritance_cannot_shadow_inherited_field\", \"score\": 0.7424285411834717}, {\"doc_id\": \"tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_multiple_inheritance_cannot_shadow_concrete_inherited_field\", \"score\": 0.7402293682098389}, {\"doc_id\": \"tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_multi_inheritance_field_clashes\", \"score\": 0.7323914766311646}, {\"doc_id\": \"tests/migrations/test_state.py::ModelStateTests.test_fields_ordering_equality\", \"score\": 0.7291592359542847}, {\"doc_id\": \"django/db/models/base.py::Model._check_field_name_clashes\", \"score\": 0.727307915687561}, {\"doc_id\": \"tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_cannot_override_indirect_abstract_field\", \"score\": 0.7236537337303162}, {\"doc_id\": \"tests/check_framework/test_model_checks.py::IndexNameTests.test_collision_abstract_model\", \"score\": 0.722716748714447}]"
+}

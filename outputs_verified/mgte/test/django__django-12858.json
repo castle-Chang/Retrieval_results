@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12858",
+  "query": "models.E015 is raised when ordering uses lookups that are not transforms.\nDescription\n\t\n./manage.py check\nSystemCheckError: System check identified some issues:\nERRORS:\napp.Stock: (models.E015) 'ordering' refers to the nonexistent field, related field, or lookup 'supply__product__parent__isnull'.\nHowever this ordering works fine:\n>>> list(Stock.objects.order_by('supply__product__parent__isnull').values_list('pk', flat=True)[:5])\n[1292, 1293, 1300, 1295, 1294]\n>>> list(Stock.objects.order_by('-supply__product__parent__isnull').values_list('pk', flat=True)[:5])\n[108, 109, 110, 23, 107]\nI believe it was fine until #29408 was implemented.\nStock.supply is a foreign key to Supply, Supply.product is a foreign key to Product, Product.parent is a ForeignKey('self', models.CASCADE, null=True)\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/base.py"
+    ],
+    "locations": [
+      "django/db/models/base.py::Model",
+      "django/db/models/base.py::Model._check_ordering"
+    ]
+  },
+  "predictions": [
+    "django/db/models/sql/query.py::Query.add_ordering",
+    "django/db/models/base.py::Model._check_ordering",
+    "tests/null_fk_ordering/tests.py::NullFkOrderingTests.test_ordering_across_null_fk",
+    "django/db/models/base.py::method_set_order",
+    "django/db/backends/base/operations.py::BaseDatabaseOperations.force_no_ordering",
+    "tests/queries/tests.py::Queries1Tests.test_tickets_2076_7256",
+    "django/contrib/admin/options.py::BaseModelAdmin.get_ordering",
+    "django/contrib/admin/views/main.py::ChangeList._get_deterministic_ordering",
+    "django/db/models/base.py::method_get_order",
+    "django/contrib/admin/checks.py::BaseModelAdminChecks._check_ordering_item"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "f2051eb8a7febdaaa43bd33bf5a6108c5f428e59",
+    "total_functions_indexed": 23315,
+    "retrieval_time_seconds": 0.011500120162963867
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/sql/query.py::Query.add_ordering\", \"score\": 0.7382885217666626}, {\"doc_id\": \"django/db/models/base.py::Model._check_ordering\", \"score\": 0.7249819040298462}, {\"doc_id\": \"tests/null_fk_ordering/tests.py::NullFkOrderingTests.test_ordering_across_null_fk\", \"score\": 0.7015714645385742}, {\"doc_id\": \"django/db/models/base.py::method_set_order\", \"score\": 0.7015508413314819}, {\"doc_id\": \"django/db/backends/base/operations.py::BaseDatabaseOperations.force_no_ordering\", \"score\": 0.7013547420501709}, {\"doc_id\": \"tests/queries/tests.py::Queries1Tests.test_tickets_2076_7256\", \"score\": 0.6998908519744873}, {\"doc_id\": \"django/contrib/admin/options.py::BaseModelAdmin.get_ordering\", \"score\": 0.6970953941345215}, {\"doc_id\": \"django/contrib/admin/views/main.py::ChangeList._get_deterministic_ordering\", \"score\": 0.6968827247619629}, {\"doc_id\": \"django/db/models/base.py::method_get_order\", \"score\": 0.6965961456298828}, {\"doc_id\": \"django/contrib/admin/checks.py::BaseModelAdminChecks._check_ordering_item\", \"score\": 0.6963777542114258}]"
+}

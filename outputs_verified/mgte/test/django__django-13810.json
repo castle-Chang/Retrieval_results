@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-13810",
+  "query": "MiddlewareNotUsed leaves undesired side effects when loading middleware in ASGI context\nDescription\n\t\nI experienced strange issues when working with ​ASGI , ​django-debug-toolbar and my own small middleware. It was hard problem to debug, I uploaded an example project here: ​https://github.com/hbielenia/asgi-djangotoolbar-bug (the name is misleading - I initially thought it's a bug with django-debug-toolbar).\nThe SESSION_FILE_PATH setting is intentionally broken to cause a 500 error. When starting the application and accessing /admin (any location really, but I wanted to leave it at a minimum and didn't add any views) it gives TypeError: object HttpResponse can't be used in 'await' expression. Commenting out asgi_djangotoolbar_bug.middleware.DummyMiddleware fixes the issue (in that I receive a 500 ImproperlyConfigured exception). I'm not sure about the overall role of django-debug-toolbar here - removing it causes Daphne to return a 500 error page but without debug information and there's no traceback in console either. I decided to leave it since it helped me approximate the causes of issue.\nI notice that in ​https://github.com/django/django/blob/3.1.4/django/core/handlers/base.py#L58 while MiddlewareNotUsed causes the loop to skip futher processing and go to next middleware, it does leave handler variable overwritten with output of self.adapt_method_mode(). On next pass, this handler is passed to next middleware instance, disregarding all the previous checks for (lack of) async support. This likely causes the middleware chain to be \"poisoned\" from this point onwards, resulting in last middleware in response cycle to return an HttpResponse as a synchronous middleware would, instead of coroutine that is expected.\nThis is probably avoided by adding async support to my middleware, but unless I'm missing something ​docs indicate it should work as it is. It is my intention that it's applied only on synchronous requests, so I didn't make it async compatible on purpose. If it's intentional in Django that every middleware needs to support async if the application is run as ASGI app, the documentation should probably state that clearly. Though it kinda defeats the purpose of having async_capable = False flag in the first place.\n",
+  "ground_truth": {
+    "files": [
+      "django/core/handlers/base.py"
+    ],
+    "locations": [
+      "django/core/handlers/base.py::BaseHandler",
+      "django/core/handlers/base.py::BaseHandler.load_middleware"
+    ]
+  },
+  "predictions": [
+    "django/core/handlers/asgi.py::ASGIHandler.__init__",
+    "django/utils/decorators.py::async_only_middleware",
+    "django/core/handlers/base.py::BaseHandler.load_middleware",
+    "tests/middleware_exceptions/tests.py::MiddlewareNotUsedTests.test_do_not_log_when_debug_is_false",
+    "django/test/client.py::AsyncClientHandler.__call__",
+    "tests/middleware_exceptions/tests.py::MiddlewareSyncAsyncTests.test_async_middleware",
+    "tests/middleware_exceptions/tests.py::MiddlewareSyncAsyncTests.test_sync_middleware_async",
+    "django/utils/decorators.py::sync_and_async_middleware",
+    "tests/middleware_exceptions/tests.py::MiddlewareSyncAsyncTests.test_async_middleware_async",
+    "tests/middleware_exceptions/tests.py::MiddlewareSyncAsyncTests.test_not_sync_or_async_middleware"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "429d089d0a8fbd400e0c010708df4f0d16218970",
+    "total_functions_indexed": 24235,
+    "retrieval_time_seconds": 0.023469209671020508
+  },
+  "raw_output": "[{\"doc_id\": \"django/core/handlers/asgi.py::ASGIHandler.__init__\", \"score\": 0.7972135543823242}, {\"doc_id\": \"django/utils/decorators.py::async_only_middleware\", \"score\": 0.7649617791175842}, {\"doc_id\": \"django/core/handlers/base.py::BaseHandler.load_middleware\", \"score\": 0.7582327127456665}, {\"doc_id\": \"tests/middleware_exceptions/tests.py::MiddlewareNotUsedTests.test_do_not_log_when_debug_is_false\", \"score\": 0.756904125213623}, {\"doc_id\": \"django/test/client.py::AsyncClientHandler.__call__\", \"score\": 0.7498090267181396}, {\"doc_id\": \"tests/middleware_exceptions/tests.py::MiddlewareSyncAsyncTests.test_async_middleware\", \"score\": 0.7471320033073425}, {\"doc_id\": \"tests/middleware_exceptions/tests.py::MiddlewareSyncAsyncTests.test_sync_middleware_async\", \"score\": 0.746902346611023}, {\"doc_id\": \"django/utils/decorators.py::sync_and_async_middleware\", \"score\": 0.7439755797386169}, {\"doc_id\": \"tests/middleware_exceptions/tests.py::MiddlewareSyncAsyncTests.test_async_middleware_async\", \"score\": 0.7426398396492004}, {\"doc_id\": \"tests/middleware_exceptions/tests.py::MiddlewareSyncAsyncTests.test_not_sync_or_async_middleware\", \"score\": 0.7389634847640991}]"
+}

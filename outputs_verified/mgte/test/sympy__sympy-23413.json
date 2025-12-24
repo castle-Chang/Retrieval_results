@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-23413",
+  "query": "bug with HNF removing rows\nI expect\r\n`np.flip (hermite_normal_form (Matrix (np.flip (np.array ([[5, 8, 12], [0, 0, 1]]))).T).T))`\r\nto give\r\n`[[5,  8, 0], [0,  0, 1]]`\r\nbut instead I get\r\n`[[5,  8, 0]]`\r\nIt seems to be falsely identifying my matrix as rank-deficient and removing the row when I try to achieve a row-style HNF using flips and transposes.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/polys/matrices/normalforms.py"
+    ],
+    "locations": [
+      "sympy/polys/matrices/normalforms.py::_hermite_normal_form"
+    ]
+  },
+  "predictions": [
+    "sympy/matrices/tests/test_normalforms.py::test_hermite_normal",
+    "sympy/polys/matrices/tests/test_normalforms.py::test_hermite_normal",
+    "sympy/polys/matrices/normalforms.py::_hermite_normal_form",
+    "sympy/matrices/normalforms.py::hermite_normal_form",
+    "sympy/polys/numberfields/tests/test_modules.py::test_is_HNF",
+    "sympy/polys/numberfields/modules.py::Submodule.is_sq_maxrank_HNF",
+    "sympy/polys/numberfields/modules.py::is_sq_maxrank_HNF",
+    "sympy/polys/matrices/normalforms.py::hermite_normal_form",
+    "sympy/matrices/tests/test_commonmatrix.py::test_row_col_del",
+    "sympy/polys/matrices/normalforms.py::_gcdex"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "10de1a18a0efac0b19b611e40c928250dda688bf",
+    "total_functions_indexed": 37775,
+    "retrieval_time_seconds": 0.09494996070861816
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/matrices/tests/test_normalforms.py::test_hermite_normal\", \"score\": 0.7336443662643433}, {\"doc_id\": \"sympy/polys/matrices/tests/test_normalforms.py::test_hermite_normal\", \"score\": 0.7249776124954224}, {\"doc_id\": \"sympy/polys/matrices/normalforms.py::_hermite_normal_form\", \"score\": 0.7156813144683838}, {\"doc_id\": \"sympy/matrices/normalforms.py::hermite_normal_form\", \"score\": 0.6898792386054993}, {\"doc_id\": \"sympy/polys/numberfields/tests/test_modules.py::test_is_HNF\", \"score\": 0.6862407922744751}, {\"doc_id\": \"sympy/polys/numberfields/modules.py::Submodule.is_sq_maxrank_HNF\", \"score\": 0.6857457160949707}, {\"doc_id\": \"sympy/polys/numberfields/modules.py::is_sq_maxrank_HNF\", \"score\": 0.6856411695480347}, {\"doc_id\": \"sympy/polys/matrices/normalforms.py::hermite_normal_form\", \"score\": 0.671638011932373}, {\"doc_id\": \"sympy/matrices/tests/test_commonmatrix.py::test_row_col_del\", \"score\": 0.663934588432312}, {\"doc_id\": \"sympy/polys/matrices/normalforms.py::_gcdex\", \"score\": 0.6595696210861206}]"
+}

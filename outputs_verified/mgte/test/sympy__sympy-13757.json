@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-13757",
+  "query": "Multiplying an expression by a Poly does not evaluate when the expression is on the left side of the multiplication\nTested in Python 3.4 64-bit and 3.6 64-bit\r\nVersion: 1.1.2.dev0\r\n```\r\n>>> Poly(x)*x\r\nPoly(x**2, x, domain='ZZ')\r\n\r\n>>> x*Poly(x)\r\nx*Poly(x, x, domain='ZZ')\r\n\r\n>>> -2*Poly(x)\r\nPoly(-2*x, x, domain='ZZ')\r\n\r\n>>> S(-2)*Poly(x)\r\n-2*Poly(x, x, domain='ZZ')\r\n\r\n>>> Poly(x)*S(-2)\r\nPoly(-2*x, x, domain='ZZ')\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/polys/polytools.py"
+    ],
+    "locations": [
+      "sympy/polys/polytools.py::Poly",
+      "sympy/polys/polytools.py::Poly.__new__"
+    ]
+  },
+  "predictions": [
+    "sympy/polys/domains/domain.py::Domain.mul",
+    "sympy/polys/polytools.py::Poly.mul",
+    "sympy/polys/rings.py::PolyElement.__mul__",
+    "sympy/polys/polytools.py::Poly.__mul__",
+    "sympy/polys/polyclasses.py::ANP.__mul__",
+    "sympy/polys/polytools.py::_parallel_poly_from_expr",
+    "sympy/polys/rootoftools.py::ComplexRootOf.expr",
+    "sympy/polys/polytools.py::Poly.mul_ground",
+    "sympy/polys/polytools.py::Poly.coeff",
+    "sympy/polys/polytools.py::_poly_from_expr"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "a5e6a101869e027e7930e694f8b1cfb082603453",
+    "total_functions_indexed": 22373,
+    "retrieval_time_seconds": 0.004051923751831055
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/polys/domains/domain.py::Domain.mul\", \"score\": 0.7163834571838379}, {\"doc_id\": \"sympy/polys/polytools.py::Poly.mul\", \"score\": 0.714174211025238}, {\"doc_id\": \"sympy/polys/rings.py::PolyElement.__mul__\", \"score\": 0.7116143703460693}, {\"doc_id\": \"sympy/polys/polytools.py::Poly.__mul__\", \"score\": 0.7075902223587036}, {\"doc_id\": \"sympy/polys/polyclasses.py::ANP.__mul__\", \"score\": 0.7070949077606201}, {\"doc_id\": \"sympy/polys/polytools.py::_parallel_poly_from_expr\", \"score\": 0.7064070701599121}, {\"doc_id\": \"sympy/polys/rootoftools.py::ComplexRootOf.expr\", \"score\": 0.7062145471572876}, {\"doc_id\": \"sympy/polys/polytools.py::Poly.mul_ground\", \"score\": 0.7059975862503052}, {\"doc_id\": \"sympy/polys/polytools.py::Poly.coeff\", \"score\": 0.7049049139022827}, {\"doc_id\": \"sympy/polys/polytools.py::_poly_from_expr\", \"score\": 0.7043572664260864}]"
+}

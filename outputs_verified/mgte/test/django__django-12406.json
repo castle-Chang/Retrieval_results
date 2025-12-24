@@ -1,0 +1,36 @@
+{
+  "instance_id": "django__django-12406",
+  "query": "ModelForm RadioSelect widget for foreign keys should not present a blank option if blank=False on the model\nDescription\n\t\nUnlike the select widget, where a blank option is idiomatic even for required fields, radioselect has an inherent unfilled state that makes the \"-------\" option look suspiciously like a valid choice.\nclass TestRun(models.Model):\n\tdata_file = models.ForeignKey(BatchData, on_delete=models.SET_NULL, null=True, blank=False)\nclass TestRunForm(ModelForm):\n\tclass Meta:\n\t\tmodel = TestRun\n\t\tfields = ['data_file']\n\t\twidgets = {'data_file': RadioSelect()}\nrenders {{test_run_form.data_file}} as\n<ul id=\"id_data_file\">\n <li><label for=\"id_data_file_0\">\n\t<input checked=\"checked\" id=\"id_data_file_0\" name=\"data_file\" type=\"radio\" value=\"\"> ---------\n </label></li>\n <li><label for=\"id_data_file_1\">\n\t<input id=\"id_data_file_1\" name=\"data_file\" type=\"radio\" value=\"1\"> First Data File\n </label></li>\n</ul>\nInstead, there should be no checked option for RadioSelect's <input> tags when rendering a new form from a model if blank is not a valid selection.\n",
+  "ground_truth": {
+    "files": [
+      "django/forms/models.py",
+      "django/db/models/fields/related.py"
+    ],
+    "locations": [
+      "django/db/models/fields/related.py::ForeignKey",
+      "django/db/models/fields/related.py::ForeignKey.formfield",
+      "django/db/models/fields/related.py::ForeignKey.db_check",
+      "django/forms/models.py::ModelChoiceField",
+      "django/forms/models.py::ModelChoiceField.__init__"
+    ]
+  },
+  "predictions": [
+    "tests/forms_tests/widget_tests/test_radioselect.py::RadioSelectTest.test_render",
+    "tests/model_forms/test_modelchoicefield.py::ModelChoiceFieldTests.test_no_extra_query_when_accessing_attrs",
+    "tests/forms_tests/tests/test_forms.py::FormsTestCase.test_forms_with_radio",
+    "tests/forms_tests/widget_tests/test_radioselect.py::RadioSelectTest.test_render_as_subwidget",
+    "tests/admin_widgets/tests.py::AdminFormfieldForDBFieldTests.test_radio_fields_ForeignKey",
+    "tests/forms_tests/widget_tests/test_radioselect.py::RadioSelectTest.test_constructor_attrs",
+    "tests/forms_tests/widget_tests/test_radioselect.py::RadioSelectTest.test_render_attrs",
+    "tests/admin_widgets/tests.py::AdminFormfieldForDBFieldTests.test_choices_with_radio_fields",
+    "django/contrib/admin/options.py::BaseModelAdmin.formfield_for_choice_field",
+    "tests/forms_tests/widget_tests/test_radioselect.py::RadioSelectTest.test_nested_choices"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "335c9c94acf263901fb023404408880245b0c4b4",
+    "total_functions_indexed": 23220,
+    "retrieval_time_seconds": 0.008965253829956055
+  },
+  "raw_output": "[{\"doc_id\": \"tests/forms_tests/widget_tests/test_radioselect.py::RadioSelectTest.test_render\", \"score\": 0.7995689511299133}, {\"doc_id\": \"tests/model_forms/test_modelchoicefield.py::ModelChoiceFieldTests.test_no_extra_query_when_accessing_attrs\", \"score\": 0.7962195873260498}, {\"doc_id\": \"tests/forms_tests/tests/test_forms.py::FormsTestCase.test_forms_with_radio\", \"score\": 0.7940831184387207}, {\"doc_id\": \"tests/forms_tests/widget_tests/test_radioselect.py::RadioSelectTest.test_render_as_subwidget\", \"score\": 0.7916750907897949}, {\"doc_id\": \"tests/admin_widgets/tests.py::AdminFormfieldForDBFieldTests.test_radio_fields_ForeignKey\", \"score\": 0.79015052318573}, {\"doc_id\": \"tests/forms_tests/widget_tests/test_radioselect.py::RadioSelectTest.test_constructor_attrs\", \"score\": 0.7854845523834229}, {\"doc_id\": \"tests/forms_tests/widget_tests/test_radioselect.py::RadioSelectTest.test_render_attrs\", \"score\": 0.7827653884887695}, {\"doc_id\": \"tests/admin_widgets/tests.py::AdminFormfieldForDBFieldTests.test_choices_with_radio_fields\", \"score\": 0.7764129638671875}, {\"doc_id\": \"django/contrib/admin/options.py::BaseModelAdmin.formfield_for_choice_field\", \"score\": 0.7760401368141174}, {\"doc_id\": \"tests/forms_tests/widget_tests/test_radioselect.py::RadioSelectTest.test_nested_choices\", \"score\": 0.7744152545928955}]"
+}

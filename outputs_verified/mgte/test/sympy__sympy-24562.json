@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-24562",
+  "query": "Rational calc value error\npython 3.11, sympy 1.11.1\r\nwhen calc Rational('0.5', '100'), the value is 1/100100; but Rational(0.5, 100) the value is 1/200, this value is the true value, and the version of sympy 1.8 is normal\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/numbers.py"
+    ],
+    "locations": [
+      "sympy/core/numbers.py::Rational",
+      "sympy/core/numbers.py::Rational.__new__"
+    ]
+  },
+  "predictions": [
+    "sympy/polys/domains/pythonrational.py::sympify_pythonrational",
+    "sympy/core/tests/test_args.py::test_sympy__core__numbers__Rational",
+    "sympy/sets/tests/test_fancysets.py::test_Rationals",
+    "sympy/polys/domains/pythonrationalfield.py::PythonRationalField.from_sympy",
+    "sympy/printing/tests/test_repr.py::test_Rational",
+    "sympy/printing/tests/test_smtlib.py::test_Rational",
+    "sympy/solvers/tests/test_numeric.py::test_nsolve_rational",
+    "sympy/polys/domains/rationalfield.py::RationalField.to_sympy",
+    "sympy/core/evalf.py::evalf_rational",
+    "sympy/core/numbers.py::Rational.__neg__"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "b1cb676cf92dd1a48365b731979833375b188bf2",
+    "total_functions_indexed": 30025,
+    "retrieval_time_seconds": 0.0066792964935302734
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/polys/domains/pythonrational.py::sympify_pythonrational\", \"score\": 0.787996232509613}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__core__numbers__Rational\", \"score\": 0.7872669696807861}, {\"doc_id\": \"sympy/sets/tests/test_fancysets.py::test_Rationals\", \"score\": 0.7865443229675293}, {\"doc_id\": \"sympy/polys/domains/pythonrationalfield.py::PythonRationalField.from_sympy\", \"score\": 0.7858138084411621}, {\"doc_id\": \"sympy/printing/tests/test_repr.py::test_Rational\", \"score\": 0.7856752872467041}, {\"doc_id\": \"sympy/printing/tests/test_smtlib.py::test_Rational\", \"score\": 0.7800796031951904}, {\"doc_id\": \"sympy/solvers/tests/test_numeric.py::test_nsolve_rational\", \"score\": 0.7792989611625671}, {\"doc_id\": \"sympy/polys/domains/rationalfield.py::RationalField.to_sympy\", \"score\": 0.7786033153533936}, {\"doc_id\": \"sympy/core/evalf.py::evalf_rational\", \"score\": 0.7774103879928589}, {\"doc_id\": \"sympy/core/numbers.py::Rational.__neg__\", \"score\": 0.777202308177948}]"
+}

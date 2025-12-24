@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-16642",
+  "query": "Improper guessing of Mime Type for \"br\" and \"Z\" file types\nDescription\n\t\nBelow FileResponse will set the content type as text/html, even if the last file extension is \"Z' or \"br\".\nFileResponse(open('test.html.Z', 'rb'))\nFileResponse(open('test.html.br', 'rb'))\n",
+  "ground_truth": {
+    "files": [
+      "django/http/response.py"
+    ],
+    "locations": [
+      "django/http/response.py::FileResponse",
+      "django/http/response.py::FileResponse.set_headers"
+    ]
+  },
+  "predictions": [
+    "tests/responses/test_fileresponse.py::FileResponseTests.test_content_type_buffer_explicit_default",
+    "tests/responses/test_fileresponse.py::FileResponseTests.test_content_type_file",
+    "tests/responses/test_fileresponse.py::FileResponseTests.test_compressed_response",
+    "tests/responses/test_fileresponse.py::FileResponseTests.test_content_type_buffer_explicit",
+    "tests/view_tests/tests/test_static.py::StaticTests.test_serve",
+    "tests/responses/test_fileresponse.py::FileResponseTests.test_content_type_buffer_named",
+    "tests/middleware/tests.py::GZipMiddlewareTest.test_compress_file_response",
+    "tests/responses/test_fileresponse.py::FileResponseTests.test_content_disposition_escaping",
+    "tests/responses/test_fileresponse.py::FileResponseTests.test_content_type_buffer",
+    "tests/mail/tests.py::MailTests.test_email_multi_alternatives_content_mimetype_none"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "fbe850106b2e4b85f838219cb9e1df95fba6c164",
+    "total_functions_indexed": 26464,
+    "retrieval_time_seconds": 0.005548238754272461
+  },
+  "raw_output": "[{\"doc_id\": \"tests/responses/test_fileresponse.py::FileResponseTests.test_content_type_buffer_explicit_default\", \"score\": 0.7386083602905273}, {\"doc_id\": \"tests/responses/test_fileresponse.py::FileResponseTests.test_content_type_file\", \"score\": 0.7384440898895264}, {\"doc_id\": \"tests/responses/test_fileresponse.py::FileResponseTests.test_compressed_response\", \"score\": 0.7325594425201416}, {\"doc_id\": \"tests/responses/test_fileresponse.py::FileResponseTests.test_content_type_buffer_explicit\", \"score\": 0.7240038514137268}, {\"doc_id\": \"tests/view_tests/tests/test_static.py::StaticTests.test_serve\", \"score\": 0.7139366865158081}, {\"doc_id\": \"tests/responses/test_fileresponse.py::FileResponseTests.test_content_type_buffer_named\", \"score\": 0.7130026817321777}, {\"doc_id\": \"tests/middleware/tests.py::GZipMiddlewareTest.test_compress_file_response\", \"score\": 0.7081069946289062}, {\"doc_id\": \"tests/responses/test_fileresponse.py::FileResponseTests.test_content_disposition_escaping\", \"score\": 0.7060339450836182}, {\"doc_id\": \"tests/responses/test_fileresponse.py::FileResponseTests.test_content_type_buffer\", \"score\": 0.7036283016204834}, {\"doc_id\": \"tests/mail/tests.py::MailTests.test_email_multi_alternatives_content_mimetype_none\", \"score\": 0.7029620409011841}]"
+}

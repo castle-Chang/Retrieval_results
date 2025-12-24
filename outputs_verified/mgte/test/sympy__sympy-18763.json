@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-18763",
+  "query": "Incorrect parenthesizing of Subs\nHere is an example.\r\n```python\r\n>>> from sympy import Subs\r\n>>> from sympy.abc import x,y\r\n>>> 3*Subs(-x+y, (x,),(1,))\r\n```\r\nLaTeX printing of this gives:  \r\n```python\r\n'3 \\\\left. - x + y \\\\right|_{\\\\substack{ x=1 }}'\r\n```\r\n\r\n![image](https://quicklatex.com/cache3/76/ql_9672fd7e62c909ff3d9ac8543c2e2576_l3.png)\r\n\r\n\r\nIt would be better to be parenthesized to:  \r\n```python\r\n'3 \\\\left. \\\\left(- x + y\\\\right) \\\\right|_{\\\\substack{ x=1 }}'\r\n```\r\n\r\n![image](https://quicklatex.com/cache3/bf/ql_936ffdb876e784206d4c54bb93d28dbf_l3.png)\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/latex.py"
+    ],
+    "locations": [
+      "sympy/printing/latex.py::LatexPrinter",
+      "sympy/printing/latex.py::LatexPrinter._print_Subs",
+      "sympy/printing/latex.py::LatexPrinter._print_Integral"
+    ]
+  },
+  "predictions": [
+    "sympy/printing/latex.py::LatexPrinter._print_Subs",
+    "sympy/printing/tests/test_latex.py::test_latex_subs",
+    "sympy/parsing/latex/_parse_latex_antlr.py::do_subs",
+    "sympy/printing/latex.py::LatexPrinter.parenthesize_super",
+    "sympy/printing/tests/test_str.py::test_Subs_printing",
+    "sympy/printing/latex.py::LatexPrinter._print_Basic",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_Subs",
+    "sympy/parsing/latex/_antlr/latexparser.py::LaTeXParser.subexpr",
+    "sympy/printing/tests/test_latex.py::test_set_operators_parenthesis",
+    "sympy/printing/latex.py::LatexPrinter._deal_with_super_sub"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "70381f282f2d9d039da860e391fe51649df2779d",
+    "total_functions_indexed": 33572,
+    "retrieval_time_seconds": 0.009224176406860352
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_Subs\", \"score\": 0.8004713654518127}, {\"doc_id\": \"sympy/printing/tests/test_latex.py::test_latex_subs\", \"score\": 0.7974122762680054}, {\"doc_id\": \"sympy/parsing/latex/_parse_latex_antlr.py::do_subs\", \"score\": 0.7595252990722656}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter.parenthesize_super\", \"score\": 0.747692346572876}, {\"doc_id\": \"sympy/printing/tests/test_str.py::test_Subs_printing\", \"score\": 0.7472802400588989}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_Basic\", \"score\": 0.7401093244552612}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_Subs\", \"score\": 0.7397054433822632}, {\"doc_id\": \"sympy/parsing/latex/_antlr/latexparser.py::LaTeXParser.subexpr\", \"score\": 0.7396767139434814}, {\"doc_id\": \"sympy/printing/tests/test_latex.py::test_set_operators_parenthesis\", \"score\": 0.7384786605834961}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._deal_with_super_sub\", \"score\": 0.7381904125213623}]"
+}

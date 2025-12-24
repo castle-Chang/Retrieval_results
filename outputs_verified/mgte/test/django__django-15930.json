@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-15930",
+  "query": "Case() crashes with ~Q(pk__in=[]).\nDescription\n\t\nThe following code generates a syntax error. \nUser.objects.annotate(\n\t_a=Case(\n\t\tWhen(~Q(pk__in=[]), then=Value(True)),\n\t\tdefault=Value(False),\n\t\toutput_field=BooleanField(),\n\t)\n).order_by(\"-a\").values(\"pk\")\nThe error is: \nProgrammingError: syntax error at or near \"THEN\"\nLINE 1: ..._user\".\"id\" FROM \"users_user\" ORDER BY CASE WHEN THEN true ...\nThe generated SQL is: \nSELECT \"users_user\".\"id\" FROM \"users_user\" ORDER BY CASE WHEN THEN True ELSE False END ASC\nI expected behavior to annotate all rows with the value True since they all match.\nRelevant because ~Q(pkin=[]) is a sentinel value that is sometimes returned by application code.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/expressions.py"
+    ],
+    "locations": [
+      "django/db/models/expressions.py::When",
+      "django/db/models/expressions.py::When.as_sql"
+    ]
+  },
+  "predictions": [
+    "tests/expressions_case/tests.py::CaseExpressionTests.test_annotate_with_in_clause",
+    "tests/expressions_case/tests.py::CaseExpressionTests.test_annotate_with_expression_as_value",
+    "tests/expressions_case/tests.py::CaseExpressionTests.test_annotate_without_default",
+    "tests/expressions_case/tests.py::CaseExpressionTests.test_annotate_with_expression_as_condition",
+    "tests/expressions_case/tests.py::CaseExpressionTests.test_in_subquery",
+    "tests/expressions_case/tests.py::CaseExpressionTests.test_annotate_with_annotation_in_value",
+    "tests/expressions_window/tests.py::NonQueryWindowTests.test_conditional_annotation",
+    "tests/expressions_case/tests.py::CaseExpressionTests.test_annotate_with_annotation_in_condition",
+    "django/db/models/expressions.py::When.__init__",
+    "tests/expressions_case/tests.py::CaseExpressionTests.test_annotate"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "63884829acd207404f2a5c3cc1d6b4cd0a822b70",
+    "total_functions_indexed": 26095,
+    "retrieval_time_seconds": 0.006361246109008789
+  },
+  "raw_output": "[{\"doc_id\": \"tests/expressions_case/tests.py::CaseExpressionTests.test_annotate_with_in_clause\", \"score\": 0.718395471572876}, {\"doc_id\": \"tests/expressions_case/tests.py::CaseExpressionTests.test_annotate_with_expression_as_value\", \"score\": 0.709352970123291}, {\"doc_id\": \"tests/expressions_case/tests.py::CaseExpressionTests.test_annotate_without_default\", \"score\": 0.7062201499938965}, {\"doc_id\": \"tests/expressions_case/tests.py::CaseExpressionTests.test_annotate_with_expression_as_condition\", \"score\": 0.7035369873046875}, {\"doc_id\": \"tests/expressions_case/tests.py::CaseExpressionTests.test_in_subquery\", \"score\": 0.7031265497207642}, {\"doc_id\": \"tests/expressions_case/tests.py::CaseExpressionTests.test_annotate_with_annotation_in_value\", \"score\": 0.7020502686500549}, {\"doc_id\": \"tests/expressions_window/tests.py::NonQueryWindowTests.test_conditional_annotation\", \"score\": 0.6986629962921143}, {\"doc_id\": \"tests/expressions_case/tests.py::CaseExpressionTests.test_annotate_with_annotation_in_condition\", \"score\": 0.697428822517395}, {\"doc_id\": \"django/db/models/expressions.py::When.__init__\", \"score\": 0.6950265169143677}, {\"doc_id\": \"tests/expressions_case/tests.py::CaseExpressionTests.test_annotate\", \"score\": 0.6947709321975708}]"
+}

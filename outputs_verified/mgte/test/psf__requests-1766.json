@@ -1,0 +1,32 @@
+{
+  "instance_id": "psf__requests-1766",
+  "query": "quote qop options in Digest Auth\nBased on RFC2617 (http://tools.ietf.org/html/rfc2617), the value of\n'qop-options' directive should be quoted with double quotes:\n\n```\nqop-options\n     This directive is optional, but is made so only for backward\n     compatibility with RFC 2069 [6]; it SHOULD be used by all\n     implementations compliant with this version of the Digest\n     scheme. If present, it is a quoted string of one or more\n     tokens indicating the \"quality of protection\" values supported by\n     the server.  The value \"auth\" indicates authentication; the\n     value \"auth-int\" indicates authentication with\n     integrity protection; see the\n```\n\ncurl comamnd-line tool also appends these quotes. You can see this\nby `curl -v --digest --user user:passwd http://example.com/digest-auth`.\nUnfortunately, some minor server-side implementations seem to be sensitive\non this difference.\n\n",
+  "ground_truth": {
+    "files": [
+      "requests/auth.py"
+    ],
+    "locations": [
+      "requests/auth.py::HTTPDigestAuth",
+      "requests/auth.py::HTTPDigestAuth.build_digest_header"
+    ]
+  },
+  "predictions": [
+    "requests/auth.py::HTTPDigestAuth.build_digest_header",
+    "requests/auth.py::HTTPDigestAuth.__call__",
+    "requests/auth.py::HTTPDigestAuth.handle_401",
+    "test_requests.py::RequestsTestCase.test_DIGESTAUTH_WRONG_HTTP_401_GET",
+    "requests/auth.py::HTTPDigestAuth.__init__",
+    "test_requests.py::RequestsTestCase.test_DIGEST_HTTP_200_OK_GET",
+    "test_requests.py::RequestsTestCase.test_DIGEST_AUTH_RETURNS_COOKIE",
+    "test_requests.py::RequestsTestCase.test_DIGEST_STREAM",
+    "requests/api.py::options",
+    "requests/packages/urllib3/fields.py::format_header_param"
+  ],
+  "metadata": {
+    "repo": "psf/requests",
+    "commit": "847735553aeda6e6633f2b32e14ba14ba86887a4",
+    "total_functions_indexed": 542,
+    "retrieval_time_seconds": 0.0027971267700195312
+  },
+  "raw_output": "[{\"doc_id\": \"requests/auth.py::HTTPDigestAuth.build_digest_header\", \"score\": 0.7135173678398132}, {\"doc_id\": \"requests/auth.py::HTTPDigestAuth.__call__\", \"score\": 0.6775411367416382}, {\"doc_id\": \"requests/auth.py::HTTPDigestAuth.handle_401\", \"score\": 0.6547999978065491}, {\"doc_id\": \"test_requests.py::RequestsTestCase.test_DIGESTAUTH_WRONG_HTTP_401_GET\", \"score\": 0.6430765390396118}, {\"doc_id\": \"requests/auth.py::HTTPDigestAuth.__init__\", \"score\": 0.6357786059379578}, {\"doc_id\": \"test_requests.py::RequestsTestCase.test_DIGEST_HTTP_200_OK_GET\", \"score\": 0.6233240962028503}, {\"doc_id\": \"test_requests.py::RequestsTestCase.test_DIGEST_AUTH_RETURNS_COOKIE\", \"score\": 0.6187038421630859}, {\"doc_id\": \"test_requests.py::RequestsTestCase.test_DIGEST_STREAM\", \"score\": 0.6178511381149292}, {\"doc_id\": \"requests/api.py::options\", \"score\": 0.5964303612709045}, {\"doc_id\": \"requests/packages/urllib3/fields.py::format_header_param\", \"score\": 0.5962532758712769}]"
+}

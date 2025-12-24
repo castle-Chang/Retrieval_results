@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-16145",
+  "query": "`runserver 0`'s \"Starting development server at <address>\" doesn't work\nDescription\n\t\nAccording to ​tutorial running \npython manage.py runserver 0:8000\nis the same as \npython manage.py runserver 0.0.0.0:8000\nbut it's output \n$ python manage.py runserver 0:8000\t\t\t\t\t\t\t\t\t Watching for file changes with StatReloader\t\t\t\t\t\t \n...\nStarting development server at http://0:8000/ \n...\nSo that you can't use link \"​http://0:8000/\" in your browser. Output should be \"Starting development server at ​http://0.0.0.0:8000/\" when providing \"0:8000\" in command line in order to stay consistent with docs.\n",
+  "ground_truth": {
+    "files": [
+      "django/core/management/commands/runserver.py"
+    ],
+    "locations": [
+      "django/core/management/commands/runserver.py::Command",
+      "django/core/management/commands/runserver.py::Command.inner_run"
+    ]
+  },
+  "predictions": [
+    "tests/admin_scripts/tests.py::ManageRunserver.test_runserver_addrport",
+    "tests/admin_scripts/tests.py::ManageRunserver.test_runner_hostname",
+    "django/core/management/commands/runserver.py::Command.inner_run",
+    "django/core/management/commands/runserver.py::Command.handle",
+    "tests/admin_scripts/tests.py::ManageRunserverMigrationWarning.setUp",
+    "tests/admin_scripts/tests.py::ManageRunserverEmptyAllowedHosts.test_empty_allowed_hosts_error",
+    "django/core/management/__init__.py::ManagementUtility.execute",
+    "django/core/management/commands/runserver.py::Command.execute",
+    "tests/admin_scripts/tests.py::ManageRunserver.test_runner_addrport_ipv6",
+    "tests/admin_scripts/tests.py::ManageRunserver.setUp"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "93d4c9ea1de24eb391cb2b3561b6703fd46374df",
+    "total_functions_indexed": 26190,
+    "retrieval_time_seconds": 0.007117509841918945
+  },
+  "raw_output": "[{\"doc_id\": \"tests/admin_scripts/tests.py::ManageRunserver.test_runserver_addrport\", \"score\": 0.7160114049911499}, {\"doc_id\": \"tests/admin_scripts/tests.py::ManageRunserver.test_runner_hostname\", \"score\": 0.7030757665634155}, {\"doc_id\": \"django/core/management/commands/runserver.py::Command.inner_run\", \"score\": 0.7011985778808594}, {\"doc_id\": \"django/core/management/commands/runserver.py::Command.handle\", \"score\": 0.7002302408218384}, {\"doc_id\": \"tests/admin_scripts/tests.py::ManageRunserverMigrationWarning.setUp\", \"score\": 0.6923949718475342}, {\"doc_id\": \"tests/admin_scripts/tests.py::ManageRunserverEmptyAllowedHosts.test_empty_allowed_hosts_error\", \"score\": 0.6916636228561401}, {\"doc_id\": \"django/core/management/__init__.py::ManagementUtility.execute\", \"score\": 0.6871268153190613}, {\"doc_id\": \"django/core/management/commands/runserver.py::Command.execute\", \"score\": 0.6817031502723694}, {\"doc_id\": \"tests/admin_scripts/tests.py::ManageRunserver.test_runner_addrport_ipv6\", \"score\": 0.6698116064071655}, {\"doc_id\": \"tests/admin_scripts/tests.py::ManageRunserver.setUp\", \"score\": 0.6694384813308716}]"
+}

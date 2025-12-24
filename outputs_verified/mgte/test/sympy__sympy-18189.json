@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-18189",
+  "query": "diophantine: incomplete results depending on syms order with permute=True\n```\r\nIn [10]: diophantine(n**4 + m**4 - 2**4 - 3**4, syms=(m,n), permute=True)\r\nOut[10]: {(-3, -2), (-3, 2), (-2, -3), (-2, 3), (2, -3), (2, 3), (3, -2), (3, 2)}\r\n\r\nIn [11]: diophantine(n**4 + m**4 - 2**4 - 3**4, syms=(n,m), permute=True)\r\nOut[11]: {(3, 2)}\r\n```\r\n\ndiophantine: incomplete results depending on syms order with permute=True\n```\r\nIn [10]: diophantine(n**4 + m**4 - 2**4 - 3**4, syms=(m,n), permute=True)\r\nOut[10]: {(-3, -2), (-3, 2), (-2, -3), (-2, 3), (2, -3), (2, 3), (3, -2), (3, 2)}\r\n\r\nIn [11]: diophantine(n**4 + m**4 - 2**4 - 3**4, syms=(n,m), permute=True)\r\nOut[11]: {(3, 2)}\r\n```\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/solvers/diophantine.py"
+    ],
+    "locations": [
+      "sympy/solvers/diophantine.py::diophantine"
+    ]
+  },
+  "predictions": [
+    "sympy/solvers/tests/test_diophantine.py::test_diophantine_permute_sign",
+    "sympy/solvers/diophantine.py::diophantine",
+    "sympy/solvers/tests/test_diophantine.py::test_diophantine",
+    "sympy/solvers/tests/test_diophantine.py::test_assumptions",
+    "sympy/solvers/tests/test_diophantine.py::test_issue_9106",
+    "sympy/solvers/tests/test_diophantine.py::test_not_implemented",
+    "sympy/solvers/tests/test_diophantine.py::test_issue_8943",
+    "sympy/solvers/tests/test_diophantine.py::test_issue_9538",
+    "sympy/solvers/tests/test_diophantine.py::test_diopcoverage",
+    "sympy/solvers/tests/test_diophantine.py::check_solutions"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "1923822ddf8265199dbd9ef9ce09641d3fd042b9",
+    "total_functions_indexed": 33741,
+    "retrieval_time_seconds": 0.005257606506347656
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/solvers/tests/test_diophantine.py::test_diophantine_permute_sign\", \"score\": 0.8221765756607056}, {\"doc_id\": \"sympy/solvers/diophantine.py::diophantine\", \"score\": 0.7997603416442871}, {\"doc_id\": \"sympy/solvers/tests/test_diophantine.py::test_diophantine\", \"score\": 0.7812479734420776}, {\"doc_id\": \"sympy/solvers/tests/test_diophantine.py::test_assumptions\", \"score\": 0.7674066424369812}, {\"doc_id\": \"sympy/solvers/tests/test_diophantine.py::test_issue_9106\", \"score\": 0.752239465713501}, {\"doc_id\": \"sympy/solvers/tests/test_diophantine.py::test_not_implemented\", \"score\": 0.7506445050239563}, {\"doc_id\": \"sympy/solvers/tests/test_diophantine.py::test_issue_8943\", \"score\": 0.747211217880249}, {\"doc_id\": \"sympy/solvers/tests/test_diophantine.py::test_issue_9538\", \"score\": 0.7432364821434021}, {\"doc_id\": \"sympy/solvers/tests/test_diophantine.py::test_diopcoverage\", \"score\": 0.7406123876571655}, {\"doc_id\": \"sympy/solvers/tests/test_diophantine.py::check_solutions\", \"score\": 0.7399712800979614}]"
+}

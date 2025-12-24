@@ -1,0 +1,38 @@
+{
+  "instance_id": "pytest-dev__pytest-8399",
+  "query": "Starting v6.2.0, unittest setUpClass fixtures are no longer \"private\"\n<!--\r\nThanks for submitting an issue!\r\n\r\nQuick check-list while reporting bugs:\r\n-->\r\nMinimal example:\r\n```\r\nimport unittest\r\n\r\nclass Tests(unittest.TestCase):\r\n    @classmethod\r\n    def setUpClass(cls):\r\n        pass\r\n\r\n    def test_1(self):\r\n        pass\r\n```\r\n```\r\n~$  pytest --fixtures\r\n...\r\nunittest_setUpClass_fixture_Tests [class scope] -- ../Platform/.venv/lib/python3.6/site-packages/_pytest/unittest.py:145\r\n    /home/ubuntu/src/Platform/.venv/lib/python3.6/site-packages/_pytest/unittest.py:145: no docstring available\r\n```\r\nThe expected (and previously implemented behavior) is that this fixture's name would start with an underscore, and would therefore only get printed if the additional `-v` flag was used. As it stands, I don't see a way to hide such generated fixtures which will not have a docstring.\r\n\r\nThis breaks a code-quality CI script that makes sure we don't have undocumented pytest fixtures (and the code-base has many legacy tests that use unittest, and that will not get upgraded).\r\n\n",
+  "ground_truth": {
+    "files": [
+      "src/_pytest/python.py",
+      "src/_pytest/unittest.py"
+    ],
+    "locations": [
+      "src/_pytest/python.py::Module",
+      "src/_pytest/python.py::Module._inject_setup_module_fixture",
+      "src/_pytest/python.py::Module._inject_setup_function_fixture",
+      "src/_pytest/python.py::Class",
+      "src/_pytest/python.py::Class._inject_setup_class_fixture",
+      "src/_pytest/python.py::Class._inject_setup_method_fixture",
+      "src/_pytest/unittest.py::_make_xunit_fixture"
+    ]
+  },
+  "predictions": [
+    "src/_pytest/unittest.py::UnitTestCase._inject_setup_teardown_fixtures",
+    "testing/python/fixtures.py::TestFixtureUsages.test_setup_functions_as_fixtures",
+    "testing/python/fixtures.py::TestShowFixtures.test_show_fixtures_testmodule",
+    "testing/python/fixtures.py::TestShowFixtures.test_show_fixtures_conftest",
+    "src/_pytest/python.py::Class._inject_setup_class_fixture",
+    "testing/test_doctest.py::TestDoctestAutoUseFixtures.test_fixture_scopes",
+    "testing/python/fixtures.py::TestFixtureUsages.test_usefixtures_ini",
+    "testing/python/fixtures.py::TestShowFixtures.test_show_fixtures_with_same_name",
+    "src/_pytest/unittest.py::_make_xunit_fixture",
+    "testing/python/fixtures.py::TestShowFixtures.test_show_fixtures_verbose"
+  ],
+  "metadata": {
+    "repo": "pytest-dev/pytest",
+    "commit": "6e7dc8bac831cd8cf7a53b08efa366bd84f0c0fe",
+    "total_functions_indexed": 4140,
+    "retrieval_time_seconds": 0.0010704994201660156
+  },
+  "raw_output": "[{\"doc_id\": \"src/_pytest/unittest.py::UnitTestCase._inject_setup_teardown_fixtures\", \"score\": 0.8103548288345337}, {\"doc_id\": \"testing/python/fixtures.py::TestFixtureUsages.test_setup_functions_as_fixtures\", \"score\": 0.7854408025741577}, {\"doc_id\": \"testing/python/fixtures.py::TestShowFixtures.test_show_fixtures_testmodule\", \"score\": 0.7846723794937134}, {\"doc_id\": \"testing/python/fixtures.py::TestShowFixtures.test_show_fixtures_conftest\", \"score\": 0.784271240234375}, {\"doc_id\": \"src/_pytest/python.py::Class._inject_setup_class_fixture\", \"score\": 0.7825495004653931}, {\"doc_id\": \"testing/test_doctest.py::TestDoctestAutoUseFixtures.test_fixture_scopes\", \"score\": 0.7802090644836426}, {\"doc_id\": \"testing/python/fixtures.py::TestFixtureUsages.test_usefixtures_ini\", \"score\": 0.7800242304801941}, {\"doc_id\": \"testing/python/fixtures.py::TestShowFixtures.test_show_fixtures_with_same_name\", \"score\": 0.7746591567993164}, {\"doc_id\": \"src/_pytest/unittest.py::_make_xunit_fixture\", \"score\": 0.773514449596405}, {\"doc_id\": \"testing/python/fixtures.py::TestShowFixtures.test_show_fixtures_verbose\", \"score\": 0.7733327150344849}]"
+}

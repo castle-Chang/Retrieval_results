@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-14915",
+  "query": "ModelChoiceIteratorValue is not hashable.\nDescription\n\t\nRecently I migrated from Django 3.0 to Django 3.1. In my code, I add custom data-* attributes to the select widget options. After the upgrade some of those options broke. Error is {TypeError}unhashable type: 'ModelChoiceIteratorValue'.\nExample (this one breaks):\n\tdef create_option(self, name, value, label, selected, index, subindex=None, attrs=None):\n\t\tcontext = super().create_option(name, value, label, selected, index, subindex, attrs)\n\t\tif not value:\n\t\t\treturn context\n\t\tif value in self.show_fields: # This is a dict {1: ['first_name', 'last_name']}\n\t\t\tcontext['attrs']['data-fields'] = json.dumps(self.show_fields[value])\nHowever, working with arrays is not an issue:\n\tdef create_option(self, name, value, label, selected, index, subindex=None, attrs=None):\n\t\tcontext = super().create_option(name, value, label, selected, index, subindex, attrs)\n\t\tif not value:\n\t\t\treturn context\n\t\tif value in allowed_values: # This is an array [1, 2]\n\t\t\t...\n",
+  "ground_truth": {
+    "files": [
+      "django/forms/models.py"
+    ],
+    "locations": [
+      "django/forms/models.py::ModelChoiceIteratorValue",
+      "django/forms/models.py::ModelChoiceIteratorValue.__str__",
+      "django/forms/models.py::ModelChoiceIteratorValue.__eq__"
+    ]
+  },
+  "predictions": [
+    "django/forms/models.py::ModelChoiceField._get_choices",
+    "django/forms/models.py::ModelChoiceIteratorValue.__str__",
+    "tests/model_forms/test_modelchoicefield.py::ModelChoiceFieldTests.test_custom_choice_iterator_passes_model_to_widget",
+    "django/forms/models.py::ModelChoiceField.__deepcopy__",
+    "tests/model_forms/test_modelchoicefield.py::ModelChoiceFieldTests.test_choice_iterator_passes_model_to_widget",
+    "django/forms/models.py::ModelChoiceIteratorValue.__init__",
+    "django/forms/models.py::ModelChoiceIterator.__iter__",
+    "django/db/models/fields/__init__.py::Field._check_choices",
+    "django/forms/widgets.py::Select.use_required_attribute",
+    "django/forms/models.py::ModelChoiceField.to_python"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "903aaa35e5ceaa33bfc9b19b7f6da65ce5a91dd4",
+    "total_functions_indexed": 25127,
+    "retrieval_time_seconds": 0.006844520568847656
+  },
+  "raw_output": "[{\"doc_id\": \"django/forms/models.py::ModelChoiceField._get_choices\", \"score\": 0.725155234336853}, {\"doc_id\": \"django/forms/models.py::ModelChoiceIteratorValue.__str__\", \"score\": 0.7247589826583862}, {\"doc_id\": \"tests/model_forms/test_modelchoicefield.py::ModelChoiceFieldTests.test_custom_choice_iterator_passes_model_to_widget\", \"score\": 0.7167223691940308}, {\"doc_id\": \"django/forms/models.py::ModelChoiceField.__deepcopy__\", \"score\": 0.7164008021354675}, {\"doc_id\": \"tests/model_forms/test_modelchoicefield.py::ModelChoiceFieldTests.test_choice_iterator_passes_model_to_widget\", \"score\": 0.7158652544021606}, {\"doc_id\": \"django/forms/models.py::ModelChoiceIteratorValue.__init__\", \"score\": 0.7129923701286316}, {\"doc_id\": \"django/forms/models.py::ModelChoiceIterator.__iter__\", \"score\": 0.7107044458389282}, {\"doc_id\": \"django/db/models/fields/__init__.py::Field._check_choices\", \"score\": 0.7076765298843384}, {\"doc_id\": \"django/forms/widgets.py::Select.use_required_attribute\", \"score\": 0.7060486674308777}, {\"doc_id\": \"django/forms/models.py::ModelChoiceField.to_python\", \"score\": 0.703418493270874}]"
+}

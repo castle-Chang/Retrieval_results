@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11276",
+  "query": "Use Python stdlib html.escape() to in django.utils.html.escape()\nDescription\n\t\nThe function django.utils.html.escape() partially duplicates the Python stdlib function html.escape(). We can replace this duplication with wider community developed version.\nhtml.escape() has been available since Python 3.2:\n​https://docs.python.org/3/library/html.html#html.escape\nThis function is also faster than Django's. As Python bug ​https://bugs.python.org/issue18020 concludes, using .replace() can be faster than .translate(). This function gets called numerous times when rendering templates. After making the change locally, I saw the following improvement:\nmaster:\n$ python -m timeit -s 'from django.utils.html import escape' 'escape(copyright)'\n50000 loops, best of 5: 4.03 usec per loop\nbranch:\n$ python -m timeit -s 'from django.utils.html import escape' 'escape(copyright)'\n100000 loops, best of 5: 2.45 usec per loop\nOne small concern, html.escape() converts ' to &#x27 rather than &#39. These values are functionally equivalent HTML, but I'll mention it as a backwards incompatible change as the literal text has changed\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/html.py"
+    ],
+    "locations": [
+      "django/utils/html.py::escape",
+      "django/utils/html.py::urlize"
+    ]
+  },
+  "predictions": [
+    "django/utils/html.py::escape",
+    "django/template/defaultfilters.py::force_escape",
+    "django/utils/html.py::conditional_escape",
+    "django/utils/html.py::escapejs",
+    "tests/template_backends/test_django.py::DjangoTemplatesTests.test_autoescape_off",
+    "tests/template_backends/test_django.py::DjangoTemplatesTests.test_autoescape_default",
+    "django/template/defaultfilters.py::escapejs_filter",
+    "tests/utils_tests/test_html.py::TestUtilsHtml.test_escapejs",
+    "tests/utils_tests/test_safestring.py::customescape.__html__",
+    "django/utils/http.py::urlquote"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "28d5262fa3315690395f04e3619ed554dbaf725b",
+    "total_functions_indexed": 22442,
+    "retrieval_time_seconds": 0.008649587631225586
+  },
+  "raw_output": "[{\"doc_id\": \"django/utils/html.py::escape\", \"score\": 0.8427038192749023}, {\"doc_id\": \"django/template/defaultfilters.py::force_escape\", \"score\": 0.8348333835601807}, {\"doc_id\": \"django/utils/html.py::conditional_escape\", \"score\": 0.8255749940872192}, {\"doc_id\": \"django/utils/html.py::escapejs\", \"score\": 0.8174964189529419}, {\"doc_id\": \"tests/template_backends/test_django.py::DjangoTemplatesTests.test_autoescape_off\", \"score\": 0.7858082056045532}, {\"doc_id\": \"tests/template_backends/test_django.py::DjangoTemplatesTests.test_autoescape_default\", \"score\": 0.7702435255050659}, {\"doc_id\": \"django/template/defaultfilters.py::escapejs_filter\", \"score\": 0.7695097923278809}, {\"doc_id\": \"tests/utils_tests/test_html.py::TestUtilsHtml.test_escapejs\", \"score\": 0.7680684924125671}, {\"doc_id\": \"tests/utils_tests/test_safestring.py::customescape.__html__\", \"score\": 0.7678999900817871}, {\"doc_id\": \"django/utils/http.py::urlquote\", \"score\": 0.7659603357315063}]"
+}

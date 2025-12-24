@@ -1,0 +1,31 @@
+{
+  "instance_id": "psf__requests-1921",
+  "query": "Removing a default header of a session\n[The docs](http://docs.python-requests.org/en/latest/user/advanced/#session-objects) say that you can prevent sending a session header by setting the headers value to None in the method's arguments. You would expect (as [discussed on IRC](https://botbot.me/freenode/python-requests/msg/10788170/)) that this would work for session's default headers, too:\n\n``` python\nsession = requests.Session()\n# Do not send Accept-Encoding\nsession.headers['Accept-Encoding'] = None\n```\n\nWhat happens is that \"None\"  gets sent as the value of header.\n\n```\nAccept-Encoding: None\n```\n\nFor the reference, here is a way that works:\n\n``` python\ndel session.headers['Accept-Encoding']\n```\n\n",
+  "ground_truth": {
+    "files": [
+      "requests/sessions.py"
+    ],
+    "locations": [
+      "requests/sessions.py::merge_setting"
+    ]
+  },
+  "predictions": [
+    "test_requests.py::RequestsTestCase.test_header_remove_is_case_insensitive",
+    "requests/utils.py::default_headers",
+    "requests/sessions.py::Session.delete",
+    "requests/sessions.py::Session.head",
+    "requests/packages/urllib3/response.py::HTTPResponse.getheader",
+    "requests/packages/urllib3/util.py::make_headers",
+    "requests/utils.py::unquote_header_value",
+    "requests/cookies.py::MockRequest.get_header",
+    "test_requests.py::RequestsTestCase.test_autoset_header_values_are_native",
+    "test_requests.py::RequestsTestCase.test_request_cookies_not_persisted"
+  ],
+  "metadata": {
+    "repo": "psf/requests",
+    "commit": "3c88e520da24ae6f736929a750876e7654accc3d",
+    "total_functions_indexed": 585,
+    "retrieval_time_seconds": 0.00764155387878418
+  },
+  "raw_output": "[{\"doc_id\": \"test_requests.py::RequestsTestCase.test_header_remove_is_case_insensitive\", \"score\": 0.7130268812179565}, {\"doc_id\": \"requests/utils.py::default_headers\", \"score\": 0.6887805461883545}, {\"doc_id\": \"requests/sessions.py::Session.delete\", \"score\": 0.6815998554229736}, {\"doc_id\": \"requests/sessions.py::Session.head\", \"score\": 0.6803622841835022}, {\"doc_id\": \"requests/packages/urllib3/response.py::HTTPResponse.getheader\", \"score\": 0.6647899150848389}, {\"doc_id\": \"requests/packages/urllib3/util.py::make_headers\", \"score\": 0.6624958515167236}, {\"doc_id\": \"requests/utils.py::unquote_header_value\", \"score\": 0.66036057472229}, {\"doc_id\": \"requests/cookies.py::MockRequest.get_header\", \"score\": 0.6567051410675049}, {\"doc_id\": \"test_requests.py::RequestsTestCase.test_autoset_header_values_are_native\", \"score\": 0.6466590166091919}, {\"doc_id\": \"test_requests.py::RequestsTestCase.test_request_cookies_not_persisted\", \"score\": 0.6465110778808594}]"
+}

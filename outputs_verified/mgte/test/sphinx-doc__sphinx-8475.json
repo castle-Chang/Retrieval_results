@@ -1,0 +1,32 @@
+{
+  "instance_id": "sphinx-doc__sphinx-8475",
+  "query": "Extend linkchecker GET fallback logic to handle Too Many Redirects\nSubject: linkcheck - fallback to GET requests when HEAD requests returns Too Many Redirects\r\n\r\n### Feature or Bugfix\r\n\r\n- Bugfix\r\n\r\n### Purpose\r\n\r\nSome websites will enter infinite redirect loops with HEAD requests. In this case, the GET fallback is ignored as the exception is of type `TooManyRedirects` and the link is reported as broken.\r\nThis extends the except clause to retry with a GET request for such scenarios.\r\n\r\n### Detail\r\n\r\nClassifying this as a bug fix as URLs like https://idr.openmicroscopy.org/webclient/?show=well-119093 used to pass the linkchecking prior to Sphinx 3.2.0 but are now failing as HEAD requests have been enforced (#7936).\r\n\r\n/cc @mtbc @jburel @manics @joshmoore\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/builders/linkcheck.py"
+    ],
+    "locations": [
+      "sphinx/builders/linkcheck.py::CheckExternalLinksBuilder",
+      "sphinx/builders/linkcheck.py::CheckExternalLinksBuilder.check_thread"
+    ]
+  },
+  "predictions": [
+    "sphinx/builders/linkcheck.py::CheckExternalLinksBuilder.check_thread",
+    "sphinx/builders/linkcheck.py::CheckExternalLinksBuilder.init",
+    "tests/test_build_linkcheck.py::make_redirect_handler",
+    "sphinx/builders/linkcheck.py::CheckExternalLinksBuilder.process_result",
+    "tests/test_build_linkcheck.py::test_follows_redirects_on_GET",
+    "sphinx/builders/linkcheck.py::setup",
+    "tests/test_build_linkcheck.py::test_follows_redirects_on_HEAD",
+    "tests/test_build_linkcheck.py::test_raises_for_invalid_status",
+    "sphinx/builders/_epub_base.py::EpubBuilder.fix_genindex",
+    "sphinx/writers/manpage.py::ManualPageTranslator.visit_reference"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "3ea1ec84cc610f7a9f4f6b354e264565254923ff",
+    "total_functions_indexed": 5557,
+    "retrieval_time_seconds": 0.0013325214385986328
+  },
+  "raw_output": "[{\"doc_id\": \"sphinx/builders/linkcheck.py::CheckExternalLinksBuilder.check_thread\", \"score\": 0.6436024904251099}, {\"doc_id\": \"sphinx/builders/linkcheck.py::CheckExternalLinksBuilder.init\", \"score\": 0.6038320064544678}, {\"doc_id\": \"tests/test_build_linkcheck.py::make_redirect_handler\", \"score\": 0.5974476337432861}, {\"doc_id\": \"sphinx/builders/linkcheck.py::CheckExternalLinksBuilder.process_result\", \"score\": 0.5933130979537964}, {\"doc_id\": \"tests/test_build_linkcheck.py::test_follows_redirects_on_GET\", \"score\": 0.5909722447395325}, {\"doc_id\": \"sphinx/builders/linkcheck.py::setup\", \"score\": 0.5709211230278015}, {\"doc_id\": \"tests/test_build_linkcheck.py::test_follows_redirects_on_HEAD\", \"score\": 0.5579268336296082}, {\"doc_id\": \"tests/test_build_linkcheck.py::test_raises_for_invalid_status\", \"score\": 0.5573174357414246}, {\"doc_id\": \"sphinx/builders/_epub_base.py::EpubBuilder.fix_genindex\", \"score\": 0.5545690655708313}, {\"doc_id\": \"sphinx/writers/manpage.py::ManualPageTranslator.visit_reference\", \"score\": 0.5469205379486084}]"
+}

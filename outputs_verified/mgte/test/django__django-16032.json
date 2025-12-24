@@ -1,0 +1,39 @@
+{
+  "instance_id": "django__django-16032",
+  "query": "__in doesn't clear selected fields on the RHS when QuerySet.alias() is used after annotate().\nDescription\n\t\nHere is a test case to reproduce the bug, you can add this in tests/annotations/tests.py\n\tdef test_annotation_and_alias_filter_in_subquery(self):\n\t\tlong_books_qs = (\n\t\t\tBook.objects.filter(\n\t\t\t\tpages__gt=400,\n\t\t\t)\n\t\t\t.annotate(book_annotate=Value(1))\n\t\t\t.alias(book_alias=Value(1))\n\t\t)\n\t\tpublisher_books_qs = (\n\t\t\tPublisher.objects.filter(\n\t\t\t\tbook__in=long_books_qs\n\t\t\t)\n\t\t\t.values(\"name\")\n\t\t)\n\t\tself.assertCountEqual(\n\t\t\tpublisher_books_qs,\n\t\t\t[\n\t\t\t\t{'name': 'Apress'},\n\t\t\t\t{'name': 'Sams'},\n\t\t\t\t{'name': 'Prentice Hall'},\n\t\t\t\t{'name': 'Morgan Kaufmann'}\n\t\t\t]\n\t\t)\nYou should get this error:\ndjango.db.utils.OperationalError: sub-select returns 10 columns - expected 1\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/related_lookups.py",
+      "django/db/models/sql/query.py"
+    ],
+    "locations": [
+      "django/db/models/fields/related_lookups.py::RelatedIn",
+      "django/db/models/fields/related_lookups.py::RelatedIn.get_prep_lookup",
+      "django/db/models/fields/related_lookups.py::RelatedIn.as_sql",
+      "django/db/models/sql/query.py::Query",
+      "django/db/models/sql/query.py::Query.output_field",
+      "django/db/models/sql/query.py::Query.has_select_fields",
+      "django/db/models/sql/query.py::Query.base_table",
+      "django/db/models/sql/query.py::Query.set_values"
+    ]
+  },
+  "predictions": [
+    "tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_annotation_filter_with_subquery",
+    "tests/filtered_relation/tests.py::FilteredRelationTests.test_as_subquery",
+    "tests/aggregation/tests.py::AggregateTestCase.test_aggregation_subquery_annotation_related_field",
+    "tests/aggregation/tests.py::AggregateTestCase.test_aggregation_subquery_annotation_values",
+    "tests/aggregation_regress/tests.py::AggregationTests.test_having_subquery_select",
+    "tests/aggregation/test_filter_argument.py::FilteredAggregateTests.test_filtered_aggregate_ref_multiple_subquery_annotation",
+    "tests/filtered_relation/tests.py::FilteredRelationTests.test_internal_queryset_alias_mapping",
+    "tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_annotation_subquery_and_aggregate_values_chaining",
+    "tests/aggregation/tests.py::AggregateTestCase.test_aggregation_nested_subquery_outerref",
+    "tests/filtered_relation/tests.py::FilteredRelationTests.test_select_related"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "0c3981eb5094419fe200eb46c71b5376a2266166",
+    "total_functions_indexed": 26155,
+    "retrieval_time_seconds": 0.007612705230712891
+  },
+  "raw_output": "[{\"doc_id\": \"tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_annotation_filter_with_subquery\", \"score\": 0.8080787658691406}, {\"doc_id\": \"tests/filtered_relation/tests.py::FilteredRelationTests.test_as_subquery\", \"score\": 0.7738078832626343}, {\"doc_id\": \"tests/aggregation/tests.py::AggregateTestCase.test_aggregation_subquery_annotation_related_field\", \"score\": 0.7647675275802612}, {\"doc_id\": \"tests/aggregation/tests.py::AggregateTestCase.test_aggregation_subquery_annotation_values\", \"score\": 0.7534352540969849}, {\"doc_id\": \"tests/aggregation_regress/tests.py::AggregationTests.test_having_subquery_select\", \"score\": 0.7523705959320068}, {\"doc_id\": \"tests/aggregation/test_filter_argument.py::FilteredAggregateTests.test_filtered_aggregate_ref_multiple_subquery_annotation\", \"score\": 0.7515354752540588}, {\"doc_id\": \"tests/filtered_relation/tests.py::FilteredRelationTests.test_internal_queryset_alias_mapping\", \"score\": 0.7484562993049622}, {\"doc_id\": \"tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_annotation_subquery_and_aggregate_values_chaining\", \"score\": 0.7439450025558472}, {\"doc_id\": \"tests/aggregation/tests.py::AggregateTestCase.test_aggregation_nested_subquery_outerref\", \"score\": 0.7428850531578064}, {\"doc_id\": \"tests/filtered_relation/tests.py::FilteredRelationTests.test_select_related\", \"score\": 0.7403323650360107}]"
+}

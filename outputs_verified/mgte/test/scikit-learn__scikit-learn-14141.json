@@ -1,0 +1,31 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-14141",
+  "query": "Add joblib in show_versions\njoblib should be added to the dependencies listed in show_versions or added to the issue template when sklearn version is > 0.20.\n",
+  "ground_truth": {
+    "files": [
+      "sklearn/utils/_show_versions.py"
+    ],
+    "locations": [
+      "sklearn/utils/_show_versions.py::_get_deps_info"
+    ]
+  },
+  "predictions": [
+    "sklearn/utils/tests/test_utils.py::test_deprecation_joblib_api",
+    "sklearn/utils/_show_versions.py::_get_deps_info",
+    "sklearn/utils/tests/test_fixes.py::test_joblib_parallel_args",
+    "sklearn/utils/tests/test_show_versions.py::test_get_deps_info",
+    "sklearn/utils/_show_versions.py::show_versions",
+    "sklearn/utils/tests/test_show_versions.py::test_show_versions_with_blas",
+    "sklearn/utils/fixes.py::_joblib_parallel_args",
+    "sklearn/tests/test_pipeline.py::test_make_pipeline_memory",
+    "sklearn/tests/test_base.py::test_pickle_version_warning_is_issued_when_no_version_info_in_pickle",
+    "sklearn/tests/test_base.py::test_pickle_version_warning_is_issued_upon_different_version"
+  ],
+  "metadata": {
+    "repo": "scikit-learn/scikit-learn",
+    "commit": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+    "total_functions_indexed": 6626,
+    "retrieval_time_seconds": 0.0015838146209716797
+  },
+  "raw_output": "[{\"doc_id\": \"sklearn/utils/tests/test_utils.py::test_deprecation_joblib_api\", \"score\": 0.7244338989257812}, {\"doc_id\": \"sklearn/utils/_show_versions.py::_get_deps_info\", \"score\": 0.7072761058807373}, {\"doc_id\": \"sklearn/utils/tests/test_fixes.py::test_joblib_parallel_args\", \"score\": 0.6929078102111816}, {\"doc_id\": \"sklearn/utils/tests/test_show_versions.py::test_get_deps_info\", \"score\": 0.6825263500213623}, {\"doc_id\": \"sklearn/utils/_show_versions.py::show_versions\", \"score\": 0.6786510348320007}, {\"doc_id\": \"sklearn/utils/tests/test_show_versions.py::test_show_versions_with_blas\", \"score\": 0.6766376495361328}, {\"doc_id\": \"sklearn/utils/fixes.py::_joblib_parallel_args\", \"score\": 0.6661444306373596}, {\"doc_id\": \"sklearn/tests/test_pipeline.py::test_make_pipeline_memory\", \"score\": 0.6382868885993958}, {\"doc_id\": \"sklearn/tests/test_base.py::test_pickle_version_warning_is_issued_when_no_version_info_in_pickle\", \"score\": 0.6371093988418579}, {\"doc_id\": \"sklearn/tests/test_base.py::test_pickle_version_warning_is_issued_upon_different_version\", \"score\": 0.6295034885406494}]"
+}

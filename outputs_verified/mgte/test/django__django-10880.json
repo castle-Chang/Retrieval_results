@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-10880",
+  "query": "Query syntax error with condition and distinct combination\nDescription\n\t\nA Count annotation containing both a Case condition and a distinct=True param produces a query error on Django 2.2 (whatever the db backend). A space is missing at least (... COUNT(DISTINCTCASE WHEN ...).\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/aggregates.py"
+    ],
+    "locations": [
+      "django/db/models/aggregates.py::Aggregate",
+      "django/db/models/aggregates.py::Aggregate.get_group_by_cols",
+      "django/db/models/aggregates.py::Aggregate.as_sql"
+    ]
+  },
+  "predictions": [
+    "django/db/models/sql/query.py::Query.add_distinct_fields",
+    "django/db/models/sql/query.py::Query.get_count",
+    "django/db/models/sql/compiler.py::SQLCompiler.get_distinct",
+    "django/db/models/query.py::QuerySet.difference",
+    "django/db/models/query.py::QuerySet.distinct",
+    "django/db/models/query.py::QuerySet.annotate",
+    "tests/queries/tests.py::Queries1Tests.test_ticket_20250",
+    "django/db/models/query.py::QuerySet.count",
+    "django/db/models/query.py::QuerySet.aggregate",
+    "django/db/models/query.py::QuerySet.get"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "838e432e3e5519c5383d12018e6c78f8ec7833c1",
+    "total_functions_indexed": 22312,
+    "retrieval_time_seconds": 0.007005929946899414
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/sql/query.py::Query.add_distinct_fields\", \"score\": 0.7318153977394104}, {\"doc_id\": \"django/db/models/sql/query.py::Query.get_count\", \"score\": 0.7249383330345154}, {\"doc_id\": \"django/db/models/sql/compiler.py::SQLCompiler.get_distinct\", \"score\": 0.7084278464317322}, {\"doc_id\": \"django/db/models/query.py::QuerySet.difference\", \"score\": 0.6988393664360046}, {\"doc_id\": \"django/db/models/query.py::QuerySet.distinct\", \"score\": 0.697299599647522}, {\"doc_id\": \"django/db/models/query.py::QuerySet.annotate\", \"score\": 0.6967743635177612}, {\"doc_id\": \"tests/queries/tests.py::Queries1Tests.test_ticket_20250\", \"score\": 0.6921305656433105}, {\"doc_id\": \"django/db/models/query.py::QuerySet.count\", \"score\": 0.6907740831375122}, {\"doc_id\": \"django/db/models/query.py::QuerySet.aggregate\", \"score\": 0.6899386644363403}, {\"doc_id\": \"django/db/models/query.py::QuerySet.get\", \"score\": 0.6887978315353394}]"
+}

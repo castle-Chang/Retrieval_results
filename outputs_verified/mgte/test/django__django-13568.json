@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-13568",
+  "query": "Skip auth.E003 system check for USERNAME_FIELD with total UniqueConstraints.\nDescription\n\t\nDefining a user model like this:\nclass User(AbstractBaseUser):\n\tusername = models.CharField(max_length=30)\n\tUSERNAME_FIELD = \"username\"\n\tclass Meta:\n\t\tconstraints = [UniqueConstraint(fields=[\"username\"], name=\"user_username_unq\")]\nWill trigger auth.E003:\nauth.User: (auth.E003) 'User.username' must be unique because it is named as the 'USERNAME_FIELD'.\nSometimes it’s not preferable to set the field as unique with unique=True as it will create an extra implicit *_like index for CharField and TextField on PostgresSQL. The system check should be extended to check for the presence of USERNAME_FIELD in Model._meta.constraints. Not really sure if this classifies as a bug.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/auth/checks.py"
+    ],
+    "locations": [
+      "django/contrib/auth/checks.py::check_user_model"
+    ]
+  },
+  "predictions": [
+    "tests/auth_tests/test_checks.py::UserModelChecksTests.test_username_not_in_required_fields",
+    "tests/auth_tests/test_checks.py::UserModelChecksTests.test_username_non_unique",
+    "django/contrib/auth/management/__init__.py::get_default_username",
+    "tests/schema/tests.py::SchemaTests.test_remove_field_unique_does_not_remove_meta_constraints",
+    "django/contrib/auth/management/commands/createsuperuser.py::Command._validate_username",
+    "tests/invalid_models_tests/test_models.py::ConstraintsTests.test_unique_constraint_pointing_to_missing_field",
+    "tests/auth_tests/test_forms.py::UserCreationFormTest.test_duplicate_normalized_unicode",
+    "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._unique_sql",
+    "tests/invalid_models_tests/test_models.py::ConstraintsTests.test_unique_constraint_include_pointing_to_missing_field",
+    "django/contrib/auth/checks.py::check_user_model"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "ede9fac75807fe5810df66280a60e7068cc97e4a",
+    "total_functions_indexed": 23995,
+    "retrieval_time_seconds": 0.01251077651977539
+  },
+  "raw_output": "[{\"doc_id\": \"tests/auth_tests/test_checks.py::UserModelChecksTests.test_username_not_in_required_fields\", \"score\": 0.755043625831604}, {\"doc_id\": \"tests/auth_tests/test_checks.py::UserModelChecksTests.test_username_non_unique\", \"score\": 0.7492518424987793}, {\"doc_id\": \"django/contrib/auth/management/__init__.py::get_default_username\", \"score\": 0.7243587374687195}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_remove_field_unique_does_not_remove_meta_constraints\", \"score\": 0.7205010652542114}, {\"doc_id\": \"django/contrib/auth/management/commands/createsuperuser.py::Command._validate_username\", \"score\": 0.717888355255127}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::ConstraintsTests.test_unique_constraint_pointing_to_missing_field\", \"score\": 0.71290123462677}, {\"doc_id\": \"tests/auth_tests/test_forms.py::UserCreationFormTest.test_duplicate_normalized_unicode\", \"score\": 0.7102307081222534}, {\"doc_id\": \"django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._unique_sql\", \"score\": 0.7082841396331787}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::ConstraintsTests.test_unique_constraint_include_pointing_to_missing_field\", \"score\": 0.7076218128204346}, {\"doc_id\": \"django/contrib/auth/checks.py::check_user_model\", \"score\": 0.7074205875396729}]"
+}

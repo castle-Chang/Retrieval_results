@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-19637",
+  "query": "kernS: 'kern' referenced before assignment\nfrom sympy.core.sympify import kernS\r\n\r\ntext = \"(2*x)/(x-1)\"\r\nexpr = kernS(text)  \r\n//  hit = kern in s\r\n// UnboundLocalError: local variable 'kern' referenced before assignment\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/sympify.py"
+    ],
+    "locations": [
+      "sympy/core/sympify.py::kernS"
+    ]
+  },
+  "predictions": [
+    "sympy/core/sympify.py::kernS",
+    "sympy/core/tests/test_sympify.py::test_kernS",
+    "sympy/integrals/rubi/utility_function.py::KernelSubst",
+    "sympy/polys/agca/homomorphisms.py::ModuleHomomorphism._kernel",
+    "sympy/polys/agca/homomorphisms.py::ModuleHomomorphism.kernel",
+    "sympy/combinatorics/homomorphisms.py::GroupHomomorphism.kernel",
+    "sympy/integrals/rubi/utility_function.py::SmartApart",
+    "sympy/printing/str.py::sstr",
+    "sympy/integrals/rubi/utility_function.py::GensymSubst",
+    "sympy/series/formal.py::_apply_integrate"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "63f8f465d48559fecb4e4bf3c48b75bf15a3e0ef",
+    "total_functions_indexed": 34692,
+    "retrieval_time_seconds": 0.00944066047668457
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/sympify.py::kernS\", \"score\": 0.8340096473693848}, {\"doc_id\": \"sympy/core/tests/test_sympify.py::test_kernS\", \"score\": 0.8081368207931519}, {\"doc_id\": \"sympy/integrals/rubi/utility_function.py::KernelSubst\", \"score\": 0.7347158789634705}, {\"doc_id\": \"sympy/polys/agca/homomorphisms.py::ModuleHomomorphism._kernel\", \"score\": 0.715064525604248}, {\"doc_id\": \"sympy/polys/agca/homomorphisms.py::ModuleHomomorphism.kernel\", \"score\": 0.7102733850479126}, {\"doc_id\": \"sympy/combinatorics/homomorphisms.py::GroupHomomorphism.kernel\", \"score\": 0.708362340927124}, {\"doc_id\": \"sympy/integrals/rubi/utility_function.py::SmartApart\", \"score\": 0.6996169090270996}, {\"doc_id\": \"sympy/printing/str.py::sstr\", \"score\": 0.696628212928772}, {\"doc_id\": \"sympy/integrals/rubi/utility_function.py::GensymSubst\", \"score\": 0.6946645379066467}, {\"doc_id\": \"sympy/series/formal.py::_apply_integrate\", \"score\": 0.6930238604545593}]"
+}

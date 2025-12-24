@@ -1,0 +1,32 @@
+{
+  "instance_id": "astropy__astropy-7166",
+  "query": "InheritDocstrings metaclass doesn't work for properties\nInside the InheritDocstrings metaclass it uses `inspect.isfunction` which returns `False` for properties.\n",
+  "ground_truth": {
+    "files": [
+      "astropy/utils/misc.py"
+    ],
+    "locations": [
+      "astropy/utils/misc.py::InheritDocstrings",
+      "astropy/utils/misc.py::InheritDocstrings.__init__"
+    ]
+  },
+  "predictions": [
+    "astropy/utils/tests/test_misc.py::test_inherit_docstrings",
+    "astropy/utils/introspection.py::_isinstancemethod",
+    "astropy/utils/tests/test_decorators.py::test_classproperty_docstring",
+    "astropy/modeling/core.py::_ModelMeta._create_inverse_property",
+    "astropy/utils/misc.py::InheritDocstrings.__init__",
+    "astropy/units/tests/test_units.py::test_inherit_docstrings",
+    "astropy/utils/tests/test_decorators.py::test_format_doc_onMethod",
+    "astropy/units/function/core.py::FunctionUnitBase.__ne__",
+    "astropy/utils/metadata.py::_warn_str_func",
+    "astropy/modeling/core.py::_ModelMeta._is_concrete"
+  ],
+  "metadata": {
+    "repo": "astropy/astropy",
+    "commit": "26d147868f8a891a6009a25cd6a8576d2e1bd747",
+    "total_functions_indexed": 9979,
+    "retrieval_time_seconds": 0.0919034481048584
+  },
+  "raw_output": "[{\"doc_id\": \"astropy/utils/tests/test_misc.py::test_inherit_docstrings\", \"score\": 0.6348688006401062}, {\"doc_id\": \"astropy/utils/introspection.py::_isinstancemethod\", \"score\": 0.6268709897994995}, {\"doc_id\": \"astropy/utils/tests/test_decorators.py::test_classproperty_docstring\", \"score\": 0.6247521042823792}, {\"doc_id\": \"astropy/modeling/core.py::_ModelMeta._create_inverse_property\", \"score\": 0.5943469405174255}, {\"doc_id\": \"astropy/utils/misc.py::InheritDocstrings.__init__\", \"score\": 0.5893498063087463}, {\"doc_id\": \"astropy/units/tests/test_units.py::test_inherit_docstrings\", \"score\": 0.5697412490844727}, {\"doc_id\": \"astropy/utils/tests/test_decorators.py::test_format_doc_onMethod\", \"score\": 0.5670028924942017}, {\"doc_id\": \"astropy/units/function/core.py::FunctionUnitBase.__ne__\", \"score\": 0.566301703453064}, {\"doc_id\": \"astropy/utils/metadata.py::_warn_str_func\", \"score\": 0.5645341873168945}, {\"doc_id\": \"astropy/modeling/core.py::_ModelMeta._is_concrete\", \"score\": 0.5636254549026489}]"
+}

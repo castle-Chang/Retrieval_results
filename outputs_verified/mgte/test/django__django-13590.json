@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-13590",
+  "query": "Upgrading 2.2>3.0 causes named tuples used as arguments to __range to error.\nDescription\n\t\nI noticed this while upgrading a project from 2.2 to 3.0.\nThis project passes named 2-tuples as arguments to range queryset filters. This works fine on 2.2. On 3.0 it causes the following error: TypeError: __new__() missing 1 required positional argument: 'far'.\nThis happens because django.db.models.sql.query.Query.resolve_lookup_value goes into the tuple elements to resolve lookups and then attempts to reconstitute the tuple with the resolved elements.\nWhen it attempts to construct the new tuple it preserves the type (the named tuple) but it passes a iterator to it's constructor.\nNamedTuples don't have the code path for copying an iterator, and so it errors on insufficient arguments.\nThe fix is to * expand the contents of the iterator into the constructor.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/sql/query.py"
+    ],
+    "locations": [
+      "django/db/models/sql/query.py::Query",
+      "django/db/models/sql/query.py::Query.resolve_lookup_value",
+      "django/db/models/sql/query.py::Query.solve_lookup_type"
+    ]
+  },
+  "predictions": [
+    "django/db/models/query_utils.py::InvalidQueryType.__warn",
+    "tests/lookup/tests.py::LookupTests.test_isnull_non_boolean_value",
+    "django/db/models/lookups.py::IsNull.as_sql",
+    "tests/queryset_pickle/tests.py::PickleabilityTestCase.test_unsupported_unpickle",
+    "django/db/models/query.py::QuerySet.__setstate__",
+    "django/db/models/query.py::QuerySet._not_support_combined_queries",
+    "tests/queryset_pickle/tests.py::PickleabilityTestCase.test_missing_django_version_unpickling",
+    "django/db/models/query.py::NamedValuesListIterable.__iter__",
+    "tests/postgres_tests/test_array.py::TestQuerying.test_unsupported_lookup",
+    "django/db/models/sql/query.py::JoinPromoter.update_join_types"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "755dbf39fcdc491fe9b588358303e259c7750be4",
+    "total_functions_indexed": 24028,
+    "retrieval_time_seconds": 0.09851217269897461
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/query_utils.py::InvalidQueryType.__warn\", \"score\": 0.6872907876968384}, {\"doc_id\": \"tests/lookup/tests.py::LookupTests.test_isnull_non_boolean_value\", \"score\": 0.6868178844451904}, {\"doc_id\": \"django/db/models/lookups.py::IsNull.as_sql\", \"score\": 0.6849798560142517}, {\"doc_id\": \"tests/queryset_pickle/tests.py::PickleabilityTestCase.test_unsupported_unpickle\", \"score\": 0.6786725521087646}, {\"doc_id\": \"django/db/models/query.py::QuerySet.__setstate__\", \"score\": 0.676677942276001}, {\"doc_id\": \"django/db/models/query.py::QuerySet._not_support_combined_queries\", \"score\": 0.675450325012207}, {\"doc_id\": \"tests/queryset_pickle/tests.py::PickleabilityTestCase.test_missing_django_version_unpickling\", \"score\": 0.6753883957862854}, {\"doc_id\": \"django/db/models/query.py::NamedValuesListIterable.__iter__\", \"score\": 0.67484450340271}, {\"doc_id\": \"tests/postgres_tests/test_array.py::TestQuerying.test_unsupported_lookup\", \"score\": 0.6744626760482788}, {\"doc_id\": \"django/db/models/sql/query.py::JoinPromoter.update_join_types\", \"score\": 0.6740381121635437}]"
+}

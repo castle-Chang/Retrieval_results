@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-15037",
+  "query": "Foreign key to a specific field is not handled in inspectdb\nDescription\n\t \n\t\t(last modified by Tim Graham)\n\t \nif you have a DB like that\nCREATE TABLE foo ( id serial primary key, other_id int UNIQUE);\nCREATE TABLE bar (\n\tid serial primary key, other_id int,\n\tconstraint myconst \n\tFOREIGN KEY(other_id) references foo(other_id)\n);\nthe generated model for the bar table will have the other_id be a FK to foo and not foo(other_id).\nI'm attaching a potential fix for this. Sorry I had no time for the UTs.\n",
+  "ground_truth": {
+    "files": [
+      "django/core/management/commands/inspectdb.py"
+    ],
+    "locations": [
+      "django/core/management/commands/inspectdb.py::Command",
+      "django/core/management/commands/inspectdb.py::Command.handle_inspection"
+    ]
+  },
+  "predictions": [
+    "django/db/backends/sqlite3/schema.py::DatabaseSchemaEditor._is_referenced_by_fk_constraint",
+    "django/contrib/admin/utils.py::_get_non_gfk_field",
+    "tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_foreign_key_to_non_unique_field",
+    "tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_foreign_key_to_non_unique_field_under_explicit_model",
+    "tests/multiple_database/tests.py::QueryTestCase.test_foreign_key_separation",
+    "django/db/backends/sqlite3/base.py::DatabaseWrapper.check_constraints",
+    "django/forms/models.py::_get_foreign_key",
+    "django/db/backends/sqlite3/introspection.py::DatabaseIntrospection._get_foreign_key_constraints",
+    "django/db/backends/mysql/base.py::DatabaseWrapper.check_constraints",
+    "tests/queries/test_query.py::TestQuery.test_foreign_key"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "dab48b7482295956973879d15bfd4d3bb0718772",
+    "total_functions_indexed": 25232,
+    "retrieval_time_seconds": 0.028945207595825195
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/backends/sqlite3/schema.py::DatabaseSchemaEditor._is_referenced_by_fk_constraint\", \"score\": 0.7617155313491821}, {\"doc_id\": \"django/contrib/admin/utils.py::_get_non_gfk_field\", \"score\": 0.7390486001968384}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_foreign_key_to_non_unique_field\", \"score\": 0.7374650239944458}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_foreign_key_to_non_unique_field_under_explicit_model\", \"score\": 0.7320684194564819}, {\"doc_id\": \"tests/multiple_database/tests.py::QueryTestCase.test_foreign_key_separation\", \"score\": 0.731537938117981}, {\"doc_id\": \"django/db/backends/sqlite3/base.py::DatabaseWrapper.check_constraints\", \"score\": 0.731155514717102}, {\"doc_id\": \"django/forms/models.py::_get_foreign_key\", \"score\": 0.7294173240661621}, {\"doc_id\": \"django/db/backends/sqlite3/introspection.py::DatabaseIntrospection._get_foreign_key_constraints\", \"score\": 0.728628933429718}, {\"doc_id\": \"django/db/backends/mysql/base.py::DatabaseWrapper.check_constraints\", \"score\": 0.7277776002883911}, {\"doc_id\": \"tests/queries/test_query.py::TestQuery.test_foreign_key\", \"score\": 0.7267728447914124}]"
+}

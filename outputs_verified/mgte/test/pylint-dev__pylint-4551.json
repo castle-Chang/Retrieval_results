@@ -1,0 +1,43 @@
+{
+  "instance_id": "pylint-dev__pylint-4551",
+  "query": "Use Python type hints for UML generation\nIt seems that pyreverse does not read python type hints (as defined by [PEP 484](https://www.python.org/dev/peps/pep-0484/)), and this does not help when you use `None` as a default value :\r\n\r\n### Code example\r\n```\r\nclass C(object):\r\n    def __init__(self, a: str = None):\r\n        self.a = a\r\n```\r\n\r\n### Current behavior\r\n\r\nOutput of pyreverse :\r\n\r\n![classes_test](https://user-images.githubusercontent.com/22218701/27432305-f10fe03e-574f-11e7-81fa-e2b59e493360.png)\r\n\r\n### Expected behavior\r\n\r\nI would like to see something like : `a : String` in the output.\r\n\r\n### pylint --version output\r\npylint-script.py 1.6.5,\r\nastroid 1.4.9\r\nPython 3.6.0 |Anaconda custom (64-bit)| (default, Dec 23 2016, 11:57:41) [MSC v.1900 64 bit (AMD64)]\r\n\n",
+  "ground_truth": {
+    "files": [
+      "pylint/pyreverse/utils.py",
+      "pylint/pyreverse/writer.py",
+      "pylint/pyreverse/inspector.py",
+      "pylint/pyreverse/diagrams.py"
+    ],
+    "locations": [
+      "pylint/pyreverse/diagrams.py::ClassDiagram",
+      "pylint/pyreverse/diagrams.py::ClassDiagram.class_names",
+      "pylint/pyreverse/inspector.py::Linker",
+      "pylint/pyreverse/inspector.py::Linker.visit_assignname",
+      "pylint/pyreverse/inspector.py::Linker.handle_assignattr_type",
+      "pylint/pyreverse/inspector.py::Linker.visit_import",
+      "pylint/pyreverse/utils.py::LocalsVisitor",
+      "pylint/pyreverse/utils.py::LocalsVisitor.visit",
+      "pylint/pyreverse/writer.py::DotWriter",
+      "pylint/pyreverse/writer.py::DotWriter.get_values"
+    ]
+  },
+  "predictions": [
+    "pylint/pyreverse/inspector.py::Linker.visit_classdef",
+    "tests/unittest_pyreverse_writer.py::Config.__init__",
+    "pylint/pyreverse/inspector.py::Linker.visit_assignname",
+    "pylint/checkers/typecheck.py::TypeChecker._get_nomember_msgid_hint",
+    "pylint/__init__.py::run_pyreverse",
+    "tests/functional/t/typing_generic.py::A.a_method",
+    "pylint/pyreverse/inspector.py::Linker.handle_assignattr_type",
+    "tests/functional/u/unused/unused_argument.py::AAAA.using_inner_function",
+    "pylint/checkers/utils.py::node_type",
+    "pylint/pyreverse/utils.py::FilterMixIn.__init__"
+  ],
+  "metadata": {
+    "repo": "pylint-dev/pylint",
+    "commit": "99589b08de8c5a2c6cc61e13a37420a868c80599",
+    "total_functions_indexed": 4355,
+    "retrieval_time_seconds": 0.0642549991607666
+  },
+  "raw_output": "[{\"doc_id\": \"pylint/pyreverse/inspector.py::Linker.visit_classdef\", \"score\": 0.6811854839324951}, {\"doc_id\": \"tests/unittest_pyreverse_writer.py::Config.__init__\", \"score\": 0.6795283555984497}, {\"doc_id\": \"pylint/pyreverse/inspector.py::Linker.visit_assignname\", \"score\": 0.6723533272743225}, {\"doc_id\": \"pylint/checkers/typecheck.py::TypeChecker._get_nomember_msgid_hint\", \"score\": 0.6678574085235596}, {\"doc_id\": \"pylint/__init__.py::run_pyreverse\", \"score\": 0.6662461757659912}, {\"doc_id\": \"tests/functional/t/typing_generic.py::A.a_method\", \"score\": 0.66458660364151}, {\"doc_id\": \"pylint/pyreverse/inspector.py::Linker.handle_assignattr_type\", \"score\": 0.6640980243682861}, {\"doc_id\": \"tests/functional/u/unused/unused_argument.py::AAAA.using_inner_function\", \"score\": 0.6605116128921509}, {\"doc_id\": \"pylint/checkers/utils.py::node_type\", \"score\": 0.659905195236206}, {\"doc_id\": \"pylint/pyreverse/utils.py::FilterMixIn.__init__\", \"score\": 0.6595515012741089}]"
+}

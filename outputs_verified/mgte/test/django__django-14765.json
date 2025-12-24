@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-14765",
+  "query": "ProjectState.__init__() can assume its real_apps argument is a set\nDescription\n\t\n​PR #14760 made all calls to ProjectState.__init__() pass real_apps as a set. In ​ProjectState.__init__() now, then, instead of checking that real_apps is a set and converting it to a set if not, it can just assert that it's a set when non-None. (Presumably the construction of new ProjectState objects is part of Django's internal API.) I had made this comment on the PR, but it wasn't important enough to hold up the PR because another PR was depending on it getting merged.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/state.py"
+    ],
+    "locations": [
+      "django/db/migrations/state.py::ProjectState",
+      "django/db/migrations/state.py::ProjectState.__init__"
+    ]
+  },
+  "predictions": [
+    "django/db/migrations/state.py::ProjectState.apps",
+    "django/db/migrations/state.py::ProjectState.__init__",
+    "django/db/migrations/state.py::StateApps.__init__",
+    "django/db/migrations/state.py::ProjectState.from_apps",
+    "django/db/migrations/state.py::ProjectState.__eq__",
+    "django/db/migrations/executor.py::MigrationExecutor._create_project_state",
+    "tests/migrations/test_state.py::StateTests.test_real_apps",
+    "django/db/migrations/state.py::ProjectState.clone",
+    "django/db/migrations/state.py::ModelState.__init__",
+    "django/db/migrations/state.py::ProjectState.clear_delayed_apps_cache"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "4e8121e8e42a24acc3565851c9ef50ca8322b15c",
+    "total_functions_indexed": 24954,
+    "retrieval_time_seconds": 0.005873680114746094
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/migrations/state.py::ProjectState.apps\", \"score\": 0.8085039258003235}, {\"doc_id\": \"django/db/migrations/state.py::ProjectState.__init__\", \"score\": 0.8003331422805786}, {\"doc_id\": \"django/db/migrations/state.py::StateApps.__init__\", \"score\": 0.7863632440567017}, {\"doc_id\": \"django/db/migrations/state.py::ProjectState.from_apps\", \"score\": 0.7589620351791382}, {\"doc_id\": \"django/db/migrations/state.py::ProjectState.__eq__\", \"score\": 0.7393741607666016}, {\"doc_id\": \"django/db/migrations/executor.py::MigrationExecutor._create_project_state\", \"score\": 0.7384372353553772}, {\"doc_id\": \"tests/migrations/test_state.py::StateTests.test_real_apps\", \"score\": 0.7377562522888184}, {\"doc_id\": \"django/db/migrations/state.py::ProjectState.clone\", \"score\": 0.7364752888679504}, {\"doc_id\": \"django/db/migrations/state.py::ModelState.__init__\", \"score\": 0.7146145105361938}, {\"doc_id\": \"django/db/migrations/state.py::ProjectState.clear_delayed_apps_cache\", \"score\": 0.7098528146743774}]"
+}

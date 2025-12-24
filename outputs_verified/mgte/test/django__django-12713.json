@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12713",
+  "query": "Allow overridding widget in formfield_for_manytomany().\nDescription\n\t \n\t\t(last modified by Mariusz Felisiak)\n\t \nIt does not work when I set widget param to function formfield_for_manytomany().\nThis is different from the formfield_for_foreignkey() function.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admin/options.py"
+    ],
+    "locations": [
+      "django/contrib/admin/options.py::BaseModelAdmin",
+      "django/contrib/admin/options.py::BaseModelAdmin.formfield_for_manytomany"
+    ]
+  },
+  "predictions": [
+    "django/contrib/admin/options.py::BaseModelAdmin.formfield_for_manytomany",
+    "django/contrib/auth/admin.py::GroupAdmin.formfield_for_manytomany",
+    "django/contrib/admin/options.py::BaseModelAdmin.formfield_for_foreignkey",
+    "django/contrib/admin/options.py::BaseModelAdmin.formfield_for_dbfield",
+    "tests/admin_widgets/widgetadmin.py::CarTireAdmin.formfield_for_foreignkey",
+    "django/contrib/gis/admin/options.py::GeoModelAdmin.formfield_for_dbfield",
+    "tests/admin_widgets/tests.py::AdminFormfieldForDBFieldTests.test_formfield_overrides_widget_instances",
+    "tests/admin_widgets/tests.py::AdminFormfieldForDBFieldTests.test_formfield_overrides_for_datetime_field",
+    "tests/admin_widgets/tests.py::AdminFormfieldForDBFieldTests.test_filtered_many_to_many",
+    "tests/admin_widgets/tests.py::AdminFormfieldForDBFieldTests.assertFormfield"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "5b884d45ac5b76234eca614d90c83b347294c332",
+    "total_functions_indexed": 23429,
+    "retrieval_time_seconds": 0.013303995132446289
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/admin/options.py::BaseModelAdmin.formfield_for_manytomany\", \"score\": 0.770789623260498}, {\"doc_id\": \"django/contrib/auth/admin.py::GroupAdmin.formfield_for_manytomany\", \"score\": 0.7664685845375061}, {\"doc_id\": \"django/contrib/admin/options.py::BaseModelAdmin.formfield_for_foreignkey\", \"score\": 0.7427183985710144}, {\"doc_id\": \"django/contrib/admin/options.py::BaseModelAdmin.formfield_for_dbfield\", \"score\": 0.7413187026977539}, {\"doc_id\": \"tests/admin_widgets/widgetadmin.py::CarTireAdmin.formfield_for_foreignkey\", \"score\": 0.7408920526504517}, {\"doc_id\": \"django/contrib/gis/admin/options.py::GeoModelAdmin.formfield_for_dbfield\", \"score\": 0.7342023253440857}, {\"doc_id\": \"tests/admin_widgets/tests.py::AdminFormfieldForDBFieldTests.test_formfield_overrides_widget_instances\", \"score\": 0.7183769941329956}, {\"doc_id\": \"tests/admin_widgets/tests.py::AdminFormfieldForDBFieldTests.test_formfield_overrides_for_datetime_field\", \"score\": 0.7125325202941895}, {\"doc_id\": \"tests/admin_widgets/tests.py::AdminFormfieldForDBFieldTests.test_filtered_many_to_many\", \"score\": 0.7121841311454773}, {\"doc_id\": \"tests/admin_widgets/tests.py::AdminFormfieldForDBFieldTests.assertFormfield\", \"score\": 0.708637535572052}]"
+}

@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-23262",
+  "query": "Python code printer not respecting tuple with one element\nHi,\r\n\r\nThanks for the recent updates in SymPy! I'm trying to update my code to use SymPy 1.10 but ran into an issue with the Python code printer. MWE:\r\n\r\n\r\n```python\r\nimport inspect\r\nfrom sympy import lambdify\r\n\r\ninspect.getsource(lambdify([], tuple([1])))\r\n```\r\nSymPy 1.9 and under outputs:\r\n```\r\n'def _lambdifygenerated():\\n    return (1,)\\n'\r\n```\r\n\r\nBut SymPy 1.10 gives\r\n\r\n```\r\n'def _lambdifygenerated():\\n    return (1)\\n'\r\n```\r\nNote the missing comma after `1` that causes an integer to be returned instead of a tuple. \r\n\r\nFor tuples with two or more elements, the generated code is correct:\r\n```python\r\ninspect.getsource(lambdify([], tuple([1, 2])))\r\n```\r\nIn SymPy  1.10 and under, outputs:\r\n\r\n```\r\n'def _lambdifygenerated():\\n    return (1, 2)\\n'\r\n```\r\nThis result is expected.\r\n\r\nNot sure if this is a regression. As this breaks my program which assumes the return type to always be a tuple, could you suggest a workaround from the code generation side? Thank you. \n",
+  "ground_truth": {
+    "files": [
+      "sympy/utilities/lambdify.py"
+    ],
+    "locations": [
+      "sympy/utilities/lambdify.py::_recursive_to_string"
+    ]
+  },
+  "predictions": [
+    "sympy/utilities/lambdify.py::_recursive_to_string",
+    "sympy/printing/lambdarepr.py::LambdaPrinter._print_Pow",
+    "sympy/utilities/tests/test_lambdify.py::test_issue_14941",
+    "sympy/utilities/tests/test_lambdify.py::test_issue_14911",
+    "sympy/utilities/lambdify.py::lambdify",
+    "sympy/utilities/tests/test_lambdify.py::test_issue_17898",
+    "sympy/utilities/tests/test_lambdify.py::test_lambdify_inspect",
+    "sympy/utilities/lambdify.py::_EvaluatorPrinter.doprint",
+    "sympy/printing/lambdarepr.py::NumExprPrinter.doprint",
+    "sympy/printing/tests/test_pycode.py::test_issue_18770"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "fdc707f73a65a429935c01532cd3970d3355eab6",
+    "total_functions_indexed": 37742,
+    "retrieval_time_seconds": 0.011111974716186523
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/utilities/lambdify.py::_recursive_to_string\", \"score\": 0.7531496286392212}, {\"doc_id\": \"sympy/printing/lambdarepr.py::LambdaPrinter._print_Pow\", \"score\": 0.7437736988067627}, {\"doc_id\": \"sympy/utilities/tests/test_lambdify.py::test_issue_14941\", \"score\": 0.7426854372024536}, {\"doc_id\": \"sympy/utilities/tests/test_lambdify.py::test_issue_14911\", \"score\": 0.7344868779182434}, {\"doc_id\": \"sympy/utilities/lambdify.py::lambdify\", \"score\": 0.733446478843689}, {\"doc_id\": \"sympy/utilities/tests/test_lambdify.py::test_issue_17898\", \"score\": 0.7301931381225586}, {\"doc_id\": \"sympy/utilities/tests/test_lambdify.py::test_lambdify_inspect\", \"score\": 0.7257199287414551}, {\"doc_id\": \"sympy/utilities/lambdify.py::_EvaluatorPrinter.doprint\", \"score\": 0.7242755889892578}, {\"doc_id\": \"sympy/printing/lambdarepr.py::NumExprPrinter.doprint\", \"score\": 0.7211059331893921}, {\"doc_id\": \"sympy/printing/tests/test_pycode.py::test_issue_18770\", \"score\": 0.7193995118141174}]"
+}

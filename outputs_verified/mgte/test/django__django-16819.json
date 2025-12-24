@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-16819",
+  "query": "Reduce Add/RemoveIndex migration operations.\nDescription\n\t\nWe should reduce AddIndex/RemoveIndex operations when optimizing migration operations.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/operations/models.py"
+    ],
+    "locations": [
+      "django/db/migrations/operations/models.py::AddIndex",
+      "django/db/migrations/operations/models.py::AddIndex.migration_name_fragment",
+      "django/db/migrations/operations/models.py::RemoveIndex"
+    ]
+  },
+  "predictions": [
+    "django/db/migrations/operations/models.py::RenameIndex.reduce",
+    "tests/migrations/test_operations.py::OperationTests.test_remove_index",
+    "django/db/migrations/operations/fields.py::AlterField.reduce",
+    "django/db/migrations/autodetector.py::MigrationAutodetector._generate_removed_altered_foo_together",
+    "tests/migrations/test_operations.py::OperationTests.test_alter_index_together_remove_with_unique_together",
+    "tests/migrations/test_operations.py::OperationTests.test_rename_index_unnamed_index",
+    "django/db/migrations/operations/base.py::Operation.reduce",
+    "django/db/migrations/operations/models.py::CreateModel.reduce",
+    "tests/migrations/test_operations.py::OperationTests.test_rename_index",
+    "tests/migrations/test_operations.py::OperationTests.test_alter_index_together_remove"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "0b0998dc151feb77068e2387c34cc50ef6b356ae",
+    "total_functions_indexed": 26570,
+    "retrieval_time_seconds": 0.00592350959777832
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/migrations/operations/models.py::RenameIndex.reduce\", \"score\": 0.7401297688484192}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_remove_index\", \"score\": 0.7097920179367065}, {\"doc_id\": \"django/db/migrations/operations/fields.py::AlterField.reduce\", \"score\": 0.6990947723388672}, {\"doc_id\": \"django/db/migrations/autodetector.py::MigrationAutodetector._generate_removed_altered_foo_together\", \"score\": 0.6990052461624146}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_alter_index_together_remove_with_unique_together\", \"score\": 0.6970187425613403}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_rename_index_unnamed_index\", \"score\": 0.6934616565704346}, {\"doc_id\": \"django/db/migrations/operations/base.py::Operation.reduce\", \"score\": 0.6934574842453003}, {\"doc_id\": \"django/db/migrations/operations/models.py::CreateModel.reduce\", \"score\": 0.6921562552452087}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_rename_index\", \"score\": 0.6920570135116577}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_alter_index_together_remove\", \"score\": 0.6902052164077759}]"
+}

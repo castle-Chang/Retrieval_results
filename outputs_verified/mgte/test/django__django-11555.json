@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11555",
+  "query": "order_by() a parent model crash when Meta.ordering contains expressions.\nDescription\n\t \n\t\t(last modified by Jonny Fuller)\n\t \nHi friends,\nDuring testing I discovered a strange bug when using a query expression for ordering during multi-table inheritance. You can find the full write up as well as reproducible test repository ​https://github.com/JonnyWaffles/djangoordermetabug. The bug occurs because the field is an OrderBy object, not a string, during get_order_dir. The linked stacktrace should make the issue obvious, but what I don't understand is why it only fails during test db setup, not during repl or script use. I wish I could help more and come up with a real solution. Hopefully, this is enough for someone wiser to find the culprit.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/sql/compiler.py"
+    ],
+    "locations": [
+      "django/db/models/sql/compiler.py::SQLCompiler",
+      "django/db/models/sql/compiler.py::SQLCompiler.find_ordering_name"
+    ]
+  },
+  "predictions": [
+    "tests/queries/tests.py::Queries4Tests.test_order_by_resetting",
+    "tests/queries/tests.py::Queries1Tests.test_tickets_2076_7256",
+    "tests/queries/tests.py::QuerySetExceptionTests.test_invalid_order_by",
+    "tests/queries/tests.py::NullableRelOrderingTests.test_ticket10028",
+    "tests/ordering/tests.py::OrderingTests.test_default_ordering_by_f_expression",
+    "tests/queries/tests.py::ConditionalTests.test_null_ordering_added",
+    "django/db/models/expressions.py::OrderBy.__init__",
+    "tests/queries/tests.py::Queries5Tests.test_ordering",
+    "tests/ordering/tests.py::OrderingTests.test_order_by_pk",
+    "django/db/models/expressions.py::OrderBy.as_sqlite"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "8dd5877f58f84f2b11126afbd0813e24545919ed",
+    "total_functions_indexed": 22642,
+    "retrieval_time_seconds": 0.01800990104675293
+  },
+  "raw_output": "[{\"doc_id\": \"tests/queries/tests.py::Queries4Tests.test_order_by_resetting\", \"score\": 0.7960413098335266}, {\"doc_id\": \"tests/queries/tests.py::Queries1Tests.test_tickets_2076_7256\", \"score\": 0.7820134162902832}, {\"doc_id\": \"tests/queries/tests.py::QuerySetExceptionTests.test_invalid_order_by\", \"score\": 0.7736387848854065}, {\"doc_id\": \"tests/queries/tests.py::NullableRelOrderingTests.test_ticket10028\", \"score\": 0.7735206484794617}, {\"doc_id\": \"tests/ordering/tests.py::OrderingTests.test_default_ordering_by_f_expression\", \"score\": 0.7694268822669983}, {\"doc_id\": \"tests/queries/tests.py::ConditionalTests.test_null_ordering_added\", \"score\": 0.7688549757003784}, {\"doc_id\": \"django/db/models/expressions.py::OrderBy.__init__\", \"score\": 0.7681601047515869}, {\"doc_id\": \"tests/queries/tests.py::Queries5Tests.test_ordering\", \"score\": 0.7676874995231628}, {\"doc_id\": \"tests/ordering/tests.py::OrderingTests.test_order_by_pk\", \"score\": 0.767437756061554}, {\"doc_id\": \"django/db/models/expressions.py::OrderBy.as_sqlite\", \"score\": 0.7669294476509094}]"
+}

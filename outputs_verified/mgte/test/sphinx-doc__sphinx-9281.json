@@ -1,0 +1,31 @@
+{
+  "instance_id": "sphinx-doc__sphinx-9281",
+  "query": "Python Enum values (used to show default values in function signatures) are rendered ugly.\nPython Enum values (used to show default values in function signatures) are rendered ugly.\r\n\r\n**To Reproduce**\r\n\r\nI made a minimal example to show the issue:\r\n\r\nhttps://github.com/sidneycadot/sphinx_issue_ugly_enum\r\n\r\n```\r\n$ git clone git@github.com:sidneycadot/sphinx_issue_ugly_enum.git\r\n$ cd sphinx_issue_ugly_enum/\r\n$ make html\r\n$ firefox build/html/index.html \r\n```\r\n\r\n**Expected behavior**\r\n\r\nI would hope the signature rendered as:\r\n\r\n    ugly_enum_func(e: ugly_enum.MyEnum = MyEnum.ValueA) → None\r\n\r\nUnfortunately, it renders as:\r\n\r\n    ugly_enum_func(e: ugly_enum.MyEnum = <MyEnum.ValueA: 10>) → None\r\n\r\n**Environment info**\r\n\r\n- Python version: 3.9.5\r\n- Sphinx version: 4.0.2\r\n- Sphinx extensions: autodoc\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/util/inspect.py"
+    ],
+    "locations": [
+      "sphinx/util/inspect.py::object_description"
+    ]
+  },
+  "predictions": [
+    "sphinx/util/inspect.py::isenumattribute",
+    "sphinx/util/inspect.py::isenumclass",
+    "sphinx/domains/c.py::CObject._add_enumerator_to_parent",
+    "sphinx/writers/latex.py::LaTeXTranslator.visit_enumerated_list",
+    "sphinx/writers/texinfo.py::TexinfoTranslator.visit_enumerated_list",
+    "sphinx/ext/autosummary/__init__.py::mangle_signature",
+    "sphinx/domains/cpp.py::CPPObject._add_enumerator_to_parent",
+    "tests/test_ext_autodoc.py::test_enum_class",
+    "sphinx/domains/c.py::ASTNumberLiteral.describe_signature",
+    "sphinx/util/inspect.py::evaluate_signature"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "8ec06e9a1bd862cd713b9db748e039ccc7b3e15b",
+    "total_functions_indexed": 5725,
+    "retrieval_time_seconds": 0.0027925968170166016
+  },
+  "raw_output": "[{\"doc_id\": \"sphinx/util/inspect.py::isenumattribute\", \"score\": 0.6911781430244446}, {\"doc_id\": \"sphinx/util/inspect.py::isenumclass\", \"score\": 0.6807651519775391}, {\"doc_id\": \"sphinx/domains/c.py::CObject._add_enumerator_to_parent\", \"score\": 0.6728987693786621}, {\"doc_id\": \"sphinx/writers/latex.py::LaTeXTranslator.visit_enumerated_list\", \"score\": 0.6694723963737488}, {\"doc_id\": \"sphinx/writers/texinfo.py::TexinfoTranslator.visit_enumerated_list\", \"score\": 0.6689481735229492}, {\"doc_id\": \"sphinx/ext/autosummary/__init__.py::mangle_signature\", \"score\": 0.6612796783447266}, {\"doc_id\": \"sphinx/domains/cpp.py::CPPObject._add_enumerator_to_parent\", \"score\": 0.654860258102417}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_enum_class\", \"score\": 0.6432496905326843}, {\"doc_id\": \"sphinx/domains/c.py::ASTNumberLiteral.describe_signature\", \"score\": 0.6420258283615112}, {\"doc_id\": \"sphinx/util/inspect.py::evaluate_signature\", \"score\": 0.6411736011505127}]"
+}

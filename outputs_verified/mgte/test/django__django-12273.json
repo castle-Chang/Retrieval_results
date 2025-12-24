@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-12273",
+  "query": "Resetting primary key for a child model doesn't work.\nDescription\n\t\nIn the attached example code setting the primary key to None does not work (so that the existing object is overwritten on save()).\nThe most important code fragments of the bug example:\nfrom django.db import models\nclass Item(models.Model):\n\t# uid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n\tuid = models.AutoField(primary_key=True, editable=False)\n\tf = models.BooleanField(default=False)\n\tdef reset(self):\n\t\tself.uid = None\n\t\tself.f = False\nclass Derived(Item):\n\tpass\nclass SaveTestCase(TestCase):\n\tdef setUp(self):\n\t\tself.derived = Derived.objects.create(f=True) # create the first object\n\t\titem = Item.objects.get(pk=self.derived.pk)\n\t\tobj1 = item.derived\n\t\tobj1.reset()\n\t\tobj1.save() # the first object is overwritten\n\tdef test_f_true(self):\n\t\tobj = Item.objects.get(pk=self.derived.pk)\n\t\tself.assertTrue(obj.f)\nDjango 2.1.2\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/base.py"
+    ],
+    "locations": [
+      "django/db/models/base.py::Model",
+      "django/db/models/base.py::Model._get_pk_val",
+      "django/db/models/base.py::Model._set_pk_val"
+    ]
+  },
+  "predictions": [
+    "tests/invalid_models_tests/test_ordinary_fields.py::AutoFieldTests.test_primary_key",
+    "tests/basic/tests.py::ModelInstanceCreationTests.test_save_primary_with_default",
+    "tests/model_fields/test_uuid.py::TestAsPrimaryKey.test_uuid_pk_on_save",
+    "tests/model_fields/test_uuid.py::TestAsPrimaryKeyTransactionTests.test_unsaved_fk",
+    "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._delete_primary_key",
+    "tests/invalid_models_tests/test_models.py::OtherModelTests.test_unique_primary_key",
+    "tests/invalid_models_tests/test_models.py::OtherModelTests.test_single_primary_key",
+    "tests/basic/tests.py::ModelTest.test_manually_specify_primary_key",
+    "tests/model_fields/test_uuid.py::TestAsPrimaryKey.test_underlying_field",
+    "tests/schema/tests.py::SchemaTests.test_alter_not_unique_field_to_primary_key"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "927c903f3cd25c817c21738328b53991c035b415",
+    "total_functions_indexed": 23156,
+    "retrieval_time_seconds": 0.019037246704101562
+  },
+  "raw_output": "[{\"doc_id\": \"tests/invalid_models_tests/test_ordinary_fields.py::AutoFieldTests.test_primary_key\", \"score\": 0.7805576324462891}, {\"doc_id\": \"tests/basic/tests.py::ModelInstanceCreationTests.test_save_primary_with_default\", \"score\": 0.7789064645767212}, {\"doc_id\": \"tests/model_fields/test_uuid.py::TestAsPrimaryKey.test_uuid_pk_on_save\", \"score\": 0.7667668461799622}, {\"doc_id\": \"tests/model_fields/test_uuid.py::TestAsPrimaryKeyTransactionTests.test_unsaved_fk\", \"score\": 0.7634204626083374}, {\"doc_id\": \"django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._delete_primary_key\", \"score\": 0.7616875171661377}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::OtherModelTests.test_unique_primary_key\", \"score\": 0.7615377306938171}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::OtherModelTests.test_single_primary_key\", \"score\": 0.753572940826416}, {\"doc_id\": \"tests/basic/tests.py::ModelTest.test_manually_specify_primary_key\", \"score\": 0.7511120438575745}, {\"doc_id\": \"tests/model_fields/test_uuid.py::TestAsPrimaryKey.test_underlying_field\", \"score\": 0.7500367164611816}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_alter_not_unique_field_to_primary_key\", \"score\": 0.7491181492805481}]"
+}

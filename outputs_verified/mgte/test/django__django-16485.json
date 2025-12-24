@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-16485",
+  "query": "floatformat() crashes on \"0.00\".\nDescription\n\t\nfrom decimal import Decimal\nfrom django.template.defaultfilters import floatformat\nfloatformat('0.00', 0)\nfloatformat(Decimal('0.00'), 0)\nBoth throw ValueError: valid range for prec is [1, MAX_PREC]\n",
+  "ground_truth": {
+    "files": [
+      "django/template/defaultfilters.py"
+    ],
+    "locations": [
+      "django/template/defaultfilters.py::floatformat"
+    ]
+  },
+  "predictions": [
+    "django/template/defaultfilters.py::floatformat",
+    "tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_zero_values",
+    "tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_low_decimal_precision",
+    "django/db/models/fields/__init__.py::DecimalField.to_python",
+    "tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_float_dunder_method",
+    "tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_negative_zero_values",
+    "django/db/models/fields/__init__.py::FloatField.get_prep_value",
+    "django/db/models/fields/__init__.py::DecimalField.get_prep_value",
+    "tests/template_tests/filter_tests/test_floatformat.py::FloatformatTests.test_floatformat01",
+    "tests/forms_tests/field_tests/test_floatfield.py::FloatFieldTest.test_floatfield_support_decimal_separator"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "39f83765e12b0e5d260b7939fc3fe281d879b279",
+    "total_functions_indexed": 26327,
+    "retrieval_time_seconds": 0.0067310333251953125
+  },
+  "raw_output": "[{\"doc_id\": \"django/template/defaultfilters.py::floatformat\", \"score\": 0.778846025466919}, {\"doc_id\": \"tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_zero_values\", \"score\": 0.7582212686538696}, {\"doc_id\": \"tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_low_decimal_precision\", \"score\": 0.750377357006073}, {\"doc_id\": \"django/db/models/fields/__init__.py::DecimalField.to_python\", \"score\": 0.7383444309234619}, {\"doc_id\": \"tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_float_dunder_method\", \"score\": 0.7224963903427124}, {\"doc_id\": \"tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_negative_zero_values\", \"score\": 0.7219616174697876}, {\"doc_id\": \"django/db/models/fields/__init__.py::FloatField.get_prep_value\", \"score\": 0.7198821902275085}, {\"doc_id\": \"django/db/models/fields/__init__.py::DecimalField.get_prep_value\", \"score\": 0.7130675911903381}, {\"doc_id\": \"tests/template_tests/filter_tests/test_floatformat.py::FloatformatTests.test_floatformat01\", \"score\": 0.7119643688201904}, {\"doc_id\": \"tests/forms_tests/field_tests/test_floatfield.py::FloatFieldTest.test_floatfield_support_decimal_separator\", \"score\": 0.7110917568206787}]"
+}

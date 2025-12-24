@@ -1,0 +1,32 @@
+{
+  "instance_id": "sphinx-doc__sphinx-7440",
+  "query": "glossary duplicate term with a different case\n**Describe the bug**\r\n```\r\nWarning, treated as error:\r\ndoc/glossary.rst:243:duplicate term description of mysql, other instance in glossary\r\n```\r\n\r\n**To Reproduce**\r\nSteps to reproduce the behavior:\r\n[.travis.yml#L168](https://github.com/phpmyadmin/phpmyadmin/blob/f7cc383674b7099190771b1db510c62bfbbf89a7/.travis.yml#L168)\r\n```\r\n$ git clone --depth 1 https://github.com/phpmyadmin/phpmyadmin.git\r\n$ cd doc\r\n$ pip install 'Sphinx'\r\n$ make html\r\n```\r\n\r\n**Expected behavior**\r\nMySQL != mysql term right ?\r\n\r\n**Your project**\r\nhttps://github.com/phpmyadmin/phpmyadmin/blame/master/doc/glossary.rst#L234\r\n\r\n\r\n**Environment info**\r\n- OS: Unix\r\n- Python version: 3.6\r\n- Sphinx version: 3.0.0\r\n\r\n**Additional context**\r\nDid occur some hours ago, maybe you just released the version\r\n\r\n- https://travis-ci.org/github/williamdes/phpmyadmintest/jobs/671352365#L328\r\n\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/domains/std.py"
+    ],
+    "locations": [
+      "sphinx/domains/std.py::make_glossary_term",
+      "sphinx/domains/std.py::StandardDomain"
+    ]
+  },
+  "predictions": [
+    "sphinx/domains/std.py::make_glossary_term",
+    "tests/test_domain_std.py::test_glossary_warning",
+    "tests/test_intl.py::test_gettext_glossary_term_inconsistencies",
+    "tests/test_domain_std.py::test_glossary",
+    "tests/test_intl.py::test_text_glossary_term_inconsistencies",
+    "sphinx/domains/c.py::_DuplicateSymbolError.__init__",
+    "tests/test_domain_std.py::test_glossary_conflicted_labels",
+    "sphinx/domains/c.py::_DuplicateSymbolError.__str__",
+    "tests/test_domain_c.py::test_build_domain_c_anon_dup_decl",
+    "tests/test_domain_std.py::test_glossary_comment2"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "9bb204dcabe6ba0fc422bf4a45ad0c79c680d90b",
+    "total_functions_indexed": 5187,
+    "retrieval_time_seconds": 0.0010919570922851562
+  },
+  "raw_output": "[{\"doc_id\": \"sphinx/domains/std.py::make_glossary_term\", \"score\": 0.6851354837417603}, {\"doc_id\": \"tests/test_domain_std.py::test_glossary_warning\", \"score\": 0.6842368841171265}, {\"doc_id\": \"tests/test_intl.py::test_gettext_glossary_term_inconsistencies\", \"score\": 0.6621357202529907}, {\"doc_id\": \"tests/test_domain_std.py::test_glossary\", \"score\": 0.6574611663818359}, {\"doc_id\": \"tests/test_intl.py::test_text_glossary_term_inconsistencies\", \"score\": 0.6537917852401733}, {\"doc_id\": \"sphinx/domains/c.py::_DuplicateSymbolError.__init__\", \"score\": 0.6523601412773132}, {\"doc_id\": \"tests/test_domain_std.py::test_glossary_conflicted_labels\", \"score\": 0.651703417301178}, {\"doc_id\": \"sphinx/domains/c.py::_DuplicateSymbolError.__str__\", \"score\": 0.6474517583847046}, {\"doc_id\": \"tests/test_domain_c.py::test_build_domain_c_anon_dup_decl\", \"score\": 0.6422406435012817}, {\"doc_id\": \"tests/test_domain_std.py::test_glossary_comment2\", \"score\": 0.6410573720932007}]"
+}
