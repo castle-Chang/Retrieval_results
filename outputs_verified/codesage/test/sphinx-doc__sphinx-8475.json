@@ -1,0 +1,32 @@
+{
+  "instance_id": "sphinx-doc__sphinx-8475",
+  "query": "Extend linkchecker GET fallback logic to handle Too Many Redirects\nSubject: linkcheck - fallback to GET requests when HEAD requests returns Too Many Redirects\r\n\r\n### Feature or Bugfix\r\n\r\n- Bugfix\r\n\r\n### Purpose\r\n\r\nSome websites will enter infinite redirect loops with HEAD requests. In this case, the GET fallback is ignored as the exception is of type `TooManyRedirects` and the link is reported as broken.\r\nThis extends the except clause to retry with a GET request for such scenarios.\r\n\r\n### Detail\r\n\r\nClassifying this as a bug fix as URLs like https://idr.openmicroscopy.org/webclient/?show=well-119093 used to pass the linkchecking prior to Sphinx 3.2.0 but are now failing as HEAD requests have been enforced (#7936).\r\n\r\n/cc @mtbc @jburel @manics @joshmoore\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/builders/linkcheck.py"
+    ],
+    "locations": [
+      "sphinx/builders/linkcheck.py::CheckExternalLinksBuilder",
+      "sphinx/builders/linkcheck.py::CheckExternalLinksBuilder.check_thread"
+    ]
+  },
+  "predictions": [
+    "sphinx/builders/linkcheck.py::CheckExternalLinksBuilder.check_thread",
+    "tests/test_build_linkcheck.py::test_follows_redirects_on_HEAD",
+    "tests/test_build_linkcheck.py::test_follows_redirects_on_GET",
+    "tests/test_build_linkcheck.py::make_redirect_handler",
+    "tests/test_build_linkcheck.py::HeadersDumperHandler.do_HEAD",
+    "sphinx/builders/linkcheck.py::CheckExternalLinksBuilder.get_target_uri",
+    "tests/test_build_linkcheck.py::OKHandler.do_GET",
+    "sphinx/builders/linkcheck.py::CheckExternalLinksBuilder.process_result",
+    "sphinx/builders/linkcheck.py::CheckExternalLinksBuilder.init",
+    "sphinx/builders/linkcheck.py::CheckExternalLinksBuilder.get_outdated_docs"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "3ea1ec84cc610f7a9f4f6b354e264565254923ff",
+    "total_functions_indexed": 5557,
+    "retrieval_time_seconds": 0.03523993492126465
+  },
+  "raw_output": "[{\"doc_id\": \"sphinx/builders/linkcheck.py::CheckExternalLinksBuilder.check_thread\", \"score\": 0.37077534198760986}, {\"doc_id\": \"tests/test_build_linkcheck.py::test_follows_redirects_on_HEAD\", \"score\": 0.3680919408798218}, {\"doc_id\": \"tests/test_build_linkcheck.py::test_follows_redirects_on_GET\", \"score\": 0.36411768198013306}, {\"doc_id\": \"tests/test_build_linkcheck.py::make_redirect_handler\", \"score\": 0.3637639880180359}, {\"doc_id\": \"tests/test_build_linkcheck.py::HeadersDumperHandler.do_HEAD\", \"score\": 0.3341829180717468}, {\"doc_id\": \"sphinx/builders/linkcheck.py::CheckExternalLinksBuilder.get_target_uri\", \"score\": 0.29068952798843384}, {\"doc_id\": \"tests/test_build_linkcheck.py::OKHandler.do_GET\", \"score\": 0.2755623161792755}, {\"doc_id\": \"sphinx/builders/linkcheck.py::CheckExternalLinksBuilder.process_result\", \"score\": 0.27377188205718994}, {\"doc_id\": \"sphinx/builders/linkcheck.py::CheckExternalLinksBuilder.init\", \"score\": 0.2732570767402649}, {\"doc_id\": \"sphinx/builders/linkcheck.py::CheckExternalLinksBuilder.get_outdated_docs\", \"score\": 0.26922252774238586}]"
+}

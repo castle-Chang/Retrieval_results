@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11964",
+  "query": "The value of a TextChoices/IntegerChoices field has a differing type\nDescription\n\t\nIf we create an instance of a model having a CharField or IntegerField with the keyword choices pointing to IntegerChoices or TextChoices, the value returned by the getter of the field will be of the same type as the one created by enum.Enum (enum value).\nFor example, this model:\nfrom django.db import models\nfrom django.utils.translation import gettext_lazy as _\nclass MyChoice(models.TextChoices):\n\tFIRST_CHOICE = \"first\", _(\"The first choice, it is\")\n\tSECOND_CHOICE = \"second\", _(\"The second choice, it is\")\nclass MyObject(models.Model):\n\tmy_str_value = models.CharField(max_length=10, choices=MyChoice.choices)\nThen this test:\nfrom django.test import TestCase\nfrom testing.pkg.models import MyObject, MyChoice\nclass EnumTest(TestCase):\n\tdef setUp(self) -> None:\n\t\tself.my_object = MyObject.objects.create(my_str_value=MyChoice.FIRST_CHOICE)\n\tdef test_created_object_is_str(self):\n\t\tmy_object = self.my_object\n\t\tself.assertIsInstance(my_object.my_str_value, str)\n\t\tself.assertEqual(str(my_object.my_str_value), \"first\")\n\tdef test_retrieved_object_is_str(self):\n\t\tmy_object = MyObject.objects.last()\n\t\tself.assertIsInstance(my_object.my_str_value, str)\n\t\tself.assertEqual(str(my_object.my_str_value), \"first\")\nAnd then the results:\n(django30-venv) ➜ django30 ./manage.py test\nCreating test database for alias 'default'...\nSystem check identified no issues (0 silenced).\nF.\n======================================================================\nFAIL: test_created_object_is_str (testing.tests.EnumTest)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n File \"/Users/mikailkocak/Development/django30/testing/tests.py\", line 14, in test_created_object_is_str\n\tself.assertEqual(str(my_object.my_str_value), \"first\")\nAssertionError: 'MyChoice.FIRST_CHOICE' != 'first'\n- MyChoice.FIRST_CHOICE\n+ first\n----------------------------------------------------------------------\nRan 2 tests in 0.002s\nFAILED (failures=1)\nWe notice when invoking __str__(...) we don't actually get the value property of the enum value which can lead to some unexpected issues, especially when communicating to an external API with a freshly created instance that will send MyEnum.MyValue, and the one that was retrieved would send my_value.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/enums.py"
+    ],
+    "locations": [
+      "django/db/models/enums.py::Choices",
+      "django/db/models/enums.py::IntegerChoices"
+    ]
+  },
+  "predictions": [
+    "tests/model_enums/tests.py::ChoicesTests.test_invalid_definition",
+    "tests/model_enums/tests.py::ChoicesTests.test_integerchoices_functional_api",
+    "tests/model_enums/tests.py::ChoicesTests.test_textchoices_blank_value",
+    "tests/model_enums/tests.py::ChoicesTests.test_integerchoices_auto_label",
+    "tests/model_enums/tests.py::ChoicesTests.test_textchoices_auto_label",
+    "tests/model_enums/tests.py::ChoicesTests.test_textchoices_functional_api",
+    "tests/model_fields/tests.py::GetChoicesOrderingTests.assertChoicesEqual",
+    "tests/forms_tests/widget_tests/test_select.py::SelectTest.test_compare_to_str",
+    "tests/model_enums/tests.py::ChoicesTests.test_textchoices_containment",
+    "tests/model_forms/test_modelchoicefield.py::ModelChoiceFieldTests.test_queryset_manager"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "fc2b1cc926e34041953738e58fa6ad3053059b22",
+    "total_functions_indexed": 22930,
+    "retrieval_time_seconds": 0.12538838386535645
+  },
+  "raw_output": "[{\"doc_id\": \"tests/model_enums/tests.py::ChoicesTests.test_invalid_definition\", \"score\": 0.5474646091461182}, {\"doc_id\": \"tests/model_enums/tests.py::ChoicesTests.test_integerchoices_functional_api\", \"score\": 0.541406512260437}, {\"doc_id\": \"tests/model_enums/tests.py::ChoicesTests.test_textchoices_blank_value\", \"score\": 0.525634765625}, {\"doc_id\": \"tests/model_enums/tests.py::ChoicesTests.test_integerchoices_auto_label\", \"score\": 0.5055564641952515}, {\"doc_id\": \"tests/model_enums/tests.py::ChoicesTests.test_textchoices_auto_label\", \"score\": 0.5053836107254028}, {\"doc_id\": \"tests/model_enums/tests.py::ChoicesTests.test_textchoices_functional_api\", \"score\": 0.49825018644332886}, {\"doc_id\": \"tests/model_fields/tests.py::GetChoicesOrderingTests.assertChoicesEqual\", \"score\": 0.4804958403110504}, {\"doc_id\": \"tests/forms_tests/widget_tests/test_select.py::SelectTest.test_compare_to_str\", \"score\": 0.47487252950668335}, {\"doc_id\": \"tests/model_enums/tests.py::ChoicesTests.test_textchoices_containment\", \"score\": 0.4699227213859558}, {\"doc_id\": \"tests/model_forms/test_modelchoicefield.py::ModelChoiceFieldTests.test_queryset_manager\", \"score\": 0.4684126377105713}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-14765",
+  "query": "ProjectState.__init__() can assume its real_apps argument is a set\nDescription\n\t\n​PR #14760 made all calls to ProjectState.__init__() pass real_apps as a set. In ​ProjectState.__init__() now, then, instead of checking that real_apps is a set and converting it to a set if not, it can just assert that it's a set when non-None. (Presumably the construction of new ProjectState objects is part of Django's internal API.) I had made this comment on the PR, but it wasn't important enough to hold up the PR because another PR was depending on it getting merged.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/state.py"
+    ],
+    "locations": [
+      "django/db/migrations/state.py::ProjectState",
+      "django/db/migrations/state.py::ProjectState.__init__"
+    ]
+  },
+  "predictions": [
+    "django/db/migrations/state.py::ProjectState.__eq__",
+    "django/db/migrations/state.py::ProjectState.apps",
+    "django/db/migrations/state.py::ProjectState.__init__",
+    "django/db/migrations/state.py::ProjectState.clone",
+    "django/db/migrations/state.py::ProjectState.from_apps",
+    "tests/migrations/test_state.py::StateTests.test_real_apps",
+    "django/db/migrations/executor.py::MigrationExecutor._create_project_state",
+    "tests/migrations/test_state.py::StateTests.test_create",
+    "django/db/migrations/state.py::ProjectState.add_model",
+    "django/db/migrations/state.py::StateApps.__init__"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "4e8121e8e42a24acc3565851c9ef50ca8322b15c",
+    "total_functions_indexed": 24954,
+    "retrieval_time_seconds": 0.09725809097290039
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/migrations/state.py::ProjectState.__eq__\", \"score\": 0.6892144680023193}, {\"doc_id\": \"django/db/migrations/state.py::ProjectState.apps\", \"score\": 0.6288785934448242}, {\"doc_id\": \"django/db/migrations/state.py::ProjectState.__init__\", \"score\": 0.5858523845672607}, {\"doc_id\": \"django/db/migrations/state.py::ProjectState.clone\", \"score\": 0.5507558584213257}, {\"doc_id\": \"django/db/migrations/state.py::ProjectState.from_apps\", \"score\": 0.5487621426582336}, {\"doc_id\": \"tests/migrations/test_state.py::StateTests.test_real_apps\", \"score\": 0.5203899145126343}, {\"doc_id\": \"django/db/migrations/executor.py::MigrationExecutor._create_project_state\", \"score\": 0.4883621037006378}, {\"doc_id\": \"tests/migrations/test_state.py::StateTests.test_create\", \"score\": 0.486441969871521}, {\"doc_id\": \"django/db/migrations/state.py::ProjectState.add_model\", \"score\": 0.4802170991897583}, {\"doc_id\": \"django/db/migrations/state.py::StateApps.__init__\", \"score\": 0.47529420256614685}]"
+}

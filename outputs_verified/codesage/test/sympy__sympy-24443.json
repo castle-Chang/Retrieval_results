@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-24443",
+  "query": "`_check_homomorphism` is broken on PermutationGroups\n```python\r\nIn [1]: from sympy.combinatorics import *\r\n   ...: from sympy.combinatorics.homomorphisms import homomorphism\r\n   ...: D3 = DihedralGroup(3)\r\n   ...: T = homomorphism(D3, D3, D3.generators, D3.generators)\r\n\r\nValueError: The given images do not define a homomorphism\r\n```\r\n\r\nThe issue is in the internal `_image()` function, where it handles the case of a `PermutationGroup`:\r\n\r\nhttps://github.com/sympy/sympy/blob/809c53c077485ca48a206cee78340389cb83b7f1/sympy/combinatorics/homomorphisms.py#L336-L337\r\n\r\nWhen `r[i]` is an inverted generator, the `in gens` test fails.\r\n\r\nI think the whole thing can be greatly simplified.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/combinatorics/homomorphisms.py"
+    ],
+    "locations": [
+      "sympy/combinatorics/homomorphisms.py::homomorphism",
+      "sympy/combinatorics/homomorphisms.py::_check_homomorphism"
+    ]
+  },
+  "predictions": [
+    "sympy/combinatorics/homomorphisms.py::GroupHomomorphism.invert_subgroup",
+    "sympy/combinatorics/tests/test_homomorphisms.py::test_check_homomorphism",
+    "sympy/combinatorics/homomorphisms.py::GroupHomomorphism.compose",
+    "sympy/combinatorics/homomorphisms.py::GroupHomomorphism.is_surjective",
+    "sympy/combinatorics/tests/test_homomorphisms.py::test_homomorphism",
+    "sympy/combinatorics/homomorphisms.py::GroupHomomorphism.restrict_to",
+    "sympy/combinatorics/homomorphisms.py::_check_homomorphism",
+    "sympy/combinatorics/homomorphisms.py::homomorphism",
+    "sympy/combinatorics/homomorphisms.py::GroupHomomorphism.is_trivial",
+    "sympy/combinatorics/homomorphisms.py::group_isomorphism"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "809c53c077485ca48a206cee78340389cb83b7f1",
+    "total_functions_indexed": 29994,
+    "retrieval_time_seconds": 0.10298609733581543
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/combinatorics/homomorphisms.py::GroupHomomorphism.invert_subgroup\", \"score\": 0.5623082518577576}, {\"doc_id\": \"sympy/combinatorics/tests/test_homomorphisms.py::test_check_homomorphism\", \"score\": 0.5240973234176636}, {\"doc_id\": \"sympy/combinatorics/homomorphisms.py::GroupHomomorphism.compose\", \"score\": 0.5164707899093628}, {\"doc_id\": \"sympy/combinatorics/homomorphisms.py::GroupHomomorphism.is_surjective\", \"score\": 0.5152489542961121}, {\"doc_id\": \"sympy/combinatorics/tests/test_homomorphisms.py::test_homomorphism\", \"score\": 0.5126805305480957}, {\"doc_id\": \"sympy/combinatorics/homomorphisms.py::GroupHomomorphism.restrict_to\", \"score\": 0.5118393898010254}, {\"doc_id\": \"sympy/combinatorics/homomorphisms.py::_check_homomorphism\", \"score\": 0.5115247368812561}, {\"doc_id\": \"sympy/combinatorics/homomorphisms.py::homomorphism\", \"score\": 0.4999288320541382}, {\"doc_id\": \"sympy/combinatorics/homomorphisms.py::GroupHomomorphism.is_trivial\", \"score\": 0.49326416850090027}, {\"doc_id\": \"sympy/combinatorics/homomorphisms.py::group_isomorphism\", \"score\": 0.48238950967788696}]"
+}

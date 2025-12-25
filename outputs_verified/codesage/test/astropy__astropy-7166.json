@@ -1,0 +1,32 @@
+{
+  "instance_id": "astropy__astropy-7166",
+  "query": "InheritDocstrings metaclass doesn't work for properties\nInside the InheritDocstrings metaclass it uses `inspect.isfunction` which returns `False` for properties.\n",
+  "ground_truth": {
+    "files": [
+      "astropy/utils/misc.py"
+    ],
+    "locations": [
+      "astropy/utils/misc.py::InheritDocstrings",
+      "astropy/utils/misc.py::InheritDocstrings.__init__"
+    ]
+  },
+  "predictions": [
+    "astropy/utils/tests/test_misc.py::test_inherit_docstrings",
+    "astropy/utils/misc.py::InheritDocstrings.__init__",
+    "astropy/utils/tests/test_decorators.py::test_classproperty_docstring",
+    "astropy/utils/decorators.py::classproperty.setter",
+    "astropy/utils/decorators.py::classproperty.__init__",
+    "astropy/utils/decorators.py::classproperty.deleter",
+    "astropy/utils/introspection.py::_isinstancemethod",
+    "astropy/utils/decorators.py::classproperty._wrap_fget",
+    "astropy/utils/tests/test_decorators.py::test_format_doc_objectInput_simple",
+    "astropy/utils/introspection.py::isinstancemethod"
+  ],
+  "metadata": {
+    "repo": "astropy/astropy",
+    "commit": "26d147868f8a891a6009a25cd6a8576d2e1bd747",
+    "total_functions_indexed": 9979,
+    "retrieval_time_seconds": 0.0037839412689208984
+  },
+  "raw_output": "[{\"doc_id\": \"astropy/utils/tests/test_misc.py::test_inherit_docstrings\", \"score\": 0.6422365307807922}, {\"doc_id\": \"astropy/utils/misc.py::InheritDocstrings.__init__\", \"score\": 0.6113763451576233}, {\"doc_id\": \"astropy/utils/tests/test_decorators.py::test_classproperty_docstring\", \"score\": 0.5145608186721802}, {\"doc_id\": \"astropy/utils/decorators.py::classproperty.setter\", \"score\": 0.42512014508247375}, {\"doc_id\": \"astropy/utils/decorators.py::classproperty.__init__\", \"score\": 0.4190068244934082}, {\"doc_id\": \"astropy/utils/decorators.py::classproperty.deleter\", \"score\": 0.40000271797180176}, {\"doc_id\": \"astropy/utils/introspection.py::_isinstancemethod\", \"score\": 0.38894355297088623}, {\"doc_id\": \"astropy/utils/decorators.py::classproperty._wrap_fget\", \"score\": 0.36496537923812866}, {\"doc_id\": \"astropy/utils/tests/test_decorators.py::test_format_doc_objectInput_simple\", \"score\": 0.3479677736759186}, {\"doc_id\": \"astropy/utils/introspection.py::isinstancemethod\", \"score\": 0.34069034457206726}]"
+}

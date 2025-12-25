@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11141",
+  "query": "Allow migrations directories without __init__.py files\nDescription\n\t \n\t\t(last modified by Tim Graham)\n\t \nBackground: In python 3 a package with no __init__.py is implicitly a namespace package, so it has no __file__ attribute. \nThe migrate command currently checks for existence of a __file__ attribute on the migrations package. This check was introduced in #21015, because the __file__ attribute was used in migration file discovery. \nHowever, in #23406 migration file discovery was changed to use pkgutil.iter_modules (), instead of direct filesystem access. pkgutil. iter_modules() uses the package's __path__ list, which exists on implicit namespace packages.\nAs a result, the __file__ check is no longer needed, and in fact prevents migrate from working on namespace packages (implicit or otherwise). \nRelated work: #29091\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/loader.py"
+    ],
+    "locations": [
+      "django/db/migrations/loader.py::MigrationLoader",
+      "django/db/migrations/loader.py::MigrationLoader.load_disk"
+    ]
+  },
+  "predictions": [
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_no_init",
+    "tests/migrations/test_loader.py::LoaderTests.test_load_empty_dir",
+    "django/db/migrations/questioner.py::MigrationQuestioner.ask_initial",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_order",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_no_apps_initial",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_files_content",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_empty_migration",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_disabled_migrations_for_app",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_migrations_modules_path_not_exist",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_empty_connections"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "5d9cf79baf07fc4aed7ad1b06990532a65378155",
+    "total_functions_indexed": 22871,
+    "retrieval_time_seconds": 0.022027015686035156
+  },
+  "raw_output": "[{\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_no_init\", \"score\": 0.5764628052711487}, {\"doc_id\": \"tests/migrations/test_loader.py::LoaderTests.test_load_empty_dir\", \"score\": 0.422504723072052}, {\"doc_id\": \"django/db/migrations/questioner.py::MigrationQuestioner.ask_initial\", \"score\": 0.4088097810745239}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_order\", \"score\": 0.38426488637924194}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_no_apps_initial\", \"score\": 0.3819783926010132}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_files_content\", \"score\": 0.3751314878463745}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_empty_migration\", \"score\": 0.37233686447143555}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_disabled_migrations_for_app\", \"score\": 0.36633992195129395}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_migrations_modules_path_not_exist\", \"score\": 0.36619508266448975}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_empty_connections\", \"score\": 0.3656599223613739}]"
+}

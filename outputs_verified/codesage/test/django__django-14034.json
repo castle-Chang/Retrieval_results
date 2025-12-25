@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-14034",
+  "query": "MultiValueField ignores a required value of a sub field\nDescription\n\t \n\t\t(last modified by Takayuki Hirai)\n\t \nA field and a form definition:\nfrom django.forms import (\n\tForm,\n\tCharField,\n\tMultiValueField,\n\tMultiWidget,\n)\nclass MF(MultiValueField):\n\twidget = MultiWidget\n\tdef __init__(self):\n\t\tfields = [\n\t\t\tCharField(required=False),\n\t\t\tCharField(required=True),\n\t\t]\n\t\twidget = self.widget(widgets=[\n\t\t\tf.widget\n\t\t\tfor f in fields\n\t\t], attrs={})\n\t\tsuper(MF, self).__init__(\n\t\t\tfields=fields,\n\t\t\twidget=widget,\n\t\t\trequire_all_fields=False,\n\t\t\trequired=False,\n\t\t)\n\tdef compress(self, value):\n\t\treturn []\nclass F(Form):\n\tmf = MF()\nWhen the form is passed empty values for both sub fields, form.is_valid() == True.\nBut I expected is_valid() returns False, because one of the sub fields is set as required.\nf = F({\n\t'mf_0': '',\n\t'mf_1': '',\n})\nassert f.is_valid() == True # I expect this should return False\nOn the other hand, When one of its sub field is passed a non-empty value, form.is_valid() == False\nf = F({\n\t'mf_0': 'xxx',\n\t'mf_1': '',\n})\nassert f.is_valid() == Flase\nIf above behavior is not expected, please fix this problem.\n",
+  "ground_truth": {
+    "files": [
+      "django/forms/boundfield.py"
+    ],
+    "locations": [
+      "django/forms/boundfield.py::BoundField",
+      "django/forms/boundfield.py::BoundField.build_widget_attrs"
+    ]
+  },
+  "predictions": [
+    "tests/forms_tests/field_tests/test_base.py::BasicFieldsTests.test_field_sets_widget_is_required",
+    "tests/forms_tests/tests/test_forms.py::FormsTestCase.test_multivalue_optional_subfields",
+    "tests/forms_tests/widget_tests/test_multiwidget.py::MultiWidgetTest.test_needs_multipart_true",
+    "tests/forms_tests/widget_tests/test_multiwidget.py::MultiWidgetTest.test_needs_multipart_false",
+    "tests/forms_tests/widget_tests/test_multiwidget.py::MultiWidgetTest.test_value_omitted_from_data",
+    "tests/forms_tests/field_tests/test_multivaluefield.py::MultiValueFieldTest.test_form_cleaned_data",
+    "tests/forms_tests/widget_tests/test_multiwidget.py::MultiWidgetTest.test_value_omitted_from_data_subwidgets_name",
+    "tests/forms_tests/field_tests/test_multivaluefield.py::MultiValueFieldTest.test_clean_disabled_multivalue",
+    "django/forms/fields.py::MultiValueField.validate",
+    "tests/forms_tests/field_tests/test_multivaluefield.py::MultiValueFieldTest.setUpClass"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "db1fc5cd3c5d36cdb5d0fe4404efd6623dd3e8fb",
+    "total_functions_indexed": 24921,
+    "retrieval_time_seconds": 0.0375368595123291
+  },
+  "raw_output": "[{\"doc_id\": \"tests/forms_tests/field_tests/test_base.py::BasicFieldsTests.test_field_sets_widget_is_required\", \"score\": 0.5541278123855591}, {\"doc_id\": \"tests/forms_tests/tests/test_forms.py::FormsTestCase.test_multivalue_optional_subfields\", \"score\": 0.5380693674087524}, {\"doc_id\": \"tests/forms_tests/widget_tests/test_multiwidget.py::MultiWidgetTest.test_needs_multipart_true\", \"score\": 0.5377243757247925}, {\"doc_id\": \"tests/forms_tests/widget_tests/test_multiwidget.py::MultiWidgetTest.test_needs_multipart_false\", \"score\": 0.5324739217758179}, {\"doc_id\": \"tests/forms_tests/widget_tests/test_multiwidget.py::MultiWidgetTest.test_value_omitted_from_data\", \"score\": 0.53193598985672}, {\"doc_id\": \"tests/forms_tests/field_tests/test_multivaluefield.py::MultiValueFieldTest.test_form_cleaned_data\", \"score\": 0.5241438150405884}, {\"doc_id\": \"tests/forms_tests/widget_tests/test_multiwidget.py::MultiWidgetTest.test_value_omitted_from_data_subwidgets_name\", \"score\": 0.5218698382377625}, {\"doc_id\": \"tests/forms_tests/field_tests/test_multivaluefield.py::MultiValueFieldTest.test_clean_disabled_multivalue\", \"score\": 0.5201113224029541}, {\"doc_id\": \"django/forms/fields.py::MultiValueField.validate\", \"score\": 0.5166840553283691}, {\"doc_id\": \"tests/forms_tests/field_tests/test_multivaluefield.py::MultiValueFieldTest.setUpClass\", \"score\": 0.5148932933807373}]"
+}

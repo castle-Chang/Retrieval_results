@@ -1,0 +1,33 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-12973",
+  "query": "LassoLarsIC: unintuitive copy_X behaviour\nHi, I would like to report what seems to be a bug in the treatment of the `copy_X` parameter of the `LassoLarsIC` class. Because it's a simple bug, it's much easier to see in the code directly than in the execution, so I am not posting steps to reproduce it.\r\n\r\nAs you can see here, LassoLarsIC accepts a copy_X parameter.\r\nhttps://github.com/scikit-learn/scikit-learn/blob/7389dbac82d362f296dc2746f10e43ffa1615660/sklearn/linear_model/least_angle.py#L1487\r\n\r\nHowever, it also takes a copy_X parameter a few lines below, in the definition of ```fit```.\r\n    ```def fit(self, X, y, copy_X=True):```\r\n\r\nNow there are two values (potentially contradicting each other) for copy_X and each one is used once. Therefore ```fit``` can have a mixed behaviour. Even worse, this can be completely invisible to the user, since copy_X has a default value of True. Let's assume that I'd like it to be False, and have set it to False in the initialization, `my_lasso = LassoLarsIC(copy_X=False)`. I then call ```my_lasso.fit(X, y)``` and my choice will be silently overwritten. \r\n\r\nIdeally I think that copy_X should be removed as an argument in ```fit```. No other estimator seems to have a duplication in class parameters and fit arguments (I've checked more than ten in the linear models module). However, this would break existing code. Therefore I propose that ```fit``` takes a default value of `None` and only overwrites the existing value if the user has explicitly passed it as an argument to ```fit```. I will submit a PR to that effect.\n",
+  "ground_truth": {
+    "files": [
+      "sklearn/linear_model/least_angle.py"
+    ],
+    "locations": [
+      "sklearn/linear_model/least_angle.py::LassoLarsIC",
+      "sklearn/linear_model/least_angle.py::LassoLarsIC.__init__",
+      "sklearn/linear_model/least_angle.py::LassoLarsIC.fit"
+    ]
+  },
+  "predictions": [
+    "sklearn/linear_model/least_angle.py::LassoLarsIC.__init__",
+    "sklearn/linear_model/least_angle.py::LassoLarsIC.fit",
+    "sklearn/linear_model/least_angle.py::LassoLars.__init__",
+    "sklearn/linear_model/least_angle.py::Lars.__init__",
+    "sklearn/linear_model/least_angle.py::LassoLarsCV.__init__",
+    "sklearn/linear_model/base.py::LinearRegression.__init__",
+    "sklearn/linear_model/tests/test_least_angle.py::test_lasso_lars_ic",
+    "sklearn/linear_model/ridge.py::_BaseRidge.__init__",
+    "sklearn/linear_model/coordinate_descent.py::Lasso.__init__",
+    "sklearn/linear_model/bayes.py::BayesianRidge.__init__"
+  ],
+  "metadata": {
+    "repo": "scikit-learn/scikit-learn",
+    "commit": "a7b8b9e9e16d4e15fabda5ae615086c2e1c47d8a",
+    "total_functions_indexed": 6662,
+    "retrieval_time_seconds": 0.08189988136291504
+  },
+  "raw_output": "[{\"doc_id\": \"sklearn/linear_model/least_angle.py::LassoLarsIC.__init__\", \"score\": 0.5076812505722046}, {\"doc_id\": \"sklearn/linear_model/least_angle.py::LassoLarsIC.fit\", \"score\": 0.49851787090301514}, {\"doc_id\": \"sklearn/linear_model/least_angle.py::LassoLars.__init__\", \"score\": 0.4730609059333801}, {\"doc_id\": \"sklearn/linear_model/least_angle.py::Lars.__init__\", \"score\": 0.4639698266983032}, {\"doc_id\": \"sklearn/linear_model/least_angle.py::LassoLarsCV.__init__\", \"score\": 0.44282442331314087}, {\"doc_id\": \"sklearn/linear_model/base.py::LinearRegression.__init__\", \"score\": 0.4149436056613922}, {\"doc_id\": \"sklearn/linear_model/tests/test_least_angle.py::test_lasso_lars_ic\", \"score\": 0.40746018290519714}, {\"doc_id\": \"sklearn/linear_model/ridge.py::_BaseRidge.__init__\", \"score\": 0.3697189688682556}, {\"doc_id\": \"sklearn/linear_model/coordinate_descent.py::Lasso.__init__\", \"score\": 0.35879671573638916}, {\"doc_id\": \"sklearn/linear_model/bayes.py::BayesianRidge.__init__\", \"score\": 0.3538322448730469}]"
+}

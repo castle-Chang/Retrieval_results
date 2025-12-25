@@ -1,0 +1,49 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-12682",
+  "query": "`SparseCoder` doesn't expose `max_iter` for `Lasso`\n`SparseCoder` uses `Lasso` if the algorithm is set to `lasso_cd`. It sets some of the `Lasso`'s parameters, but not `max_iter`, and that by default is 1000. This results in a warning in `examples/decomposition/plot_sparse_coding.py` complaining that the estimator has not converged.\r\n\r\nI guess there should be a way for the user to specify other parameters of the estimator used in `SparseCoder` other than the ones provided in the `SparseCoder.__init__` right now.\n",
+  "ground_truth": {
+    "files": [
+      "examples/decomposition/plot_sparse_coding.py",
+      "sklearn/decomposition/dict_learning.py"
+    ],
+    "locations": [
+      "examples/decomposition/plot_sparse_coding.py::ricker_function",
+      "sklearn/decomposition/dict_learning.py::_sparse_encode",
+      "sklearn/decomposition/dict_learning.py::sparse_encode",
+      "sklearn/decomposition/dict_learning.py::dict_learning",
+      "sklearn/decomposition/dict_learning.py::dict_learning_online",
+      "sklearn/decomposition/dict_learning.py::SparseCodingMixin",
+      "sklearn/decomposition/dict_learning.py::SparseCodingMixin._set_sparse_coding_params",
+      "sklearn/decomposition/dict_learning.py::SparseCodingMixin.transform",
+      "sklearn/decomposition/dict_learning.py::SparseCoder",
+      "sklearn/decomposition/dict_learning.py::SparseCoder.__init__",
+      "sklearn/decomposition/dict_learning.py::SparseCoder.fit",
+      "sklearn/decomposition/dict_learning.py::DictionaryLearning",
+      "sklearn/decomposition/dict_learning.py::DictionaryLearning.__init__",
+      "sklearn/decomposition/dict_learning.py::DictionaryLearning.fit",
+      "sklearn/decomposition/dict_learning.py::MiniBatchDictionaryLearning",
+      "sklearn/decomposition/dict_learning.py::MiniBatchDictionaryLearning.__init__",
+      "sklearn/decomposition/dict_learning.py::MiniBatchDictionaryLearning.fit",
+      "sklearn/decomposition/dict_learning.py::MiniBatchDictionaryLearning.partial_fit"
+    ]
+  },
+  "predictions": [
+    "sklearn/decomposition/tests/test_dict_learning.py::test_sparse_coder_estimator",
+    "sklearn/decomposition/dict_learning.py::SparseCoder.fit",
+    "sklearn/decomposition/dict_learning.py::DictionaryLearning.__init__",
+    "sklearn/covariance/graph_lasso_.py::GraphicalLasso.__init__",
+    "sklearn/decomposition/dict_learning.py::_sparse_encode",
+    "sklearn/decomposition/dict_learning.py::SparseCodingMixin._set_sparse_coding_params",
+    "sklearn/linear_model/coordinate_descent.py::Lasso.__init__",
+    "sklearn/linear_model/tests/test_sparse_coordinate_descent.py::test_sparse_lasso_not_as_toy_dataset",
+    "sklearn/covariance/graph_lasso_.py::GraphicalLassoCV.__init__",
+    "sklearn/linear_model/least_angle.py::LassoLarsCV.__init__"
+  ],
+  "metadata": {
+    "repo": "scikit-learn/scikit-learn",
+    "commit": "d360ffa7c5896a91ae498b3fb9cf464464ce8f34",
+    "total_functions_indexed": 6641,
+    "retrieval_time_seconds": 0.024422883987426758
+  },
+  "raw_output": "[{\"doc_id\": \"sklearn/decomposition/tests/test_dict_learning.py::test_sparse_coder_estimator\", \"score\": 0.44628745317459106}, {\"doc_id\": \"sklearn/decomposition/dict_learning.py::SparseCoder.fit\", \"score\": 0.42787957191467285}, {\"doc_id\": \"sklearn/decomposition/dict_learning.py::DictionaryLearning.__init__\", \"score\": 0.40631821751594543}, {\"doc_id\": \"sklearn/covariance/graph_lasso_.py::GraphicalLasso.__init__\", \"score\": 0.40015432238578796}, {\"doc_id\": \"sklearn/decomposition/dict_learning.py::_sparse_encode\", \"score\": 0.3980984687805176}, {\"doc_id\": \"sklearn/decomposition/dict_learning.py::SparseCodingMixin._set_sparse_coding_params\", \"score\": 0.39099711179733276}, {\"doc_id\": \"sklearn/linear_model/coordinate_descent.py::Lasso.__init__\", \"score\": 0.38976821303367615}, {\"doc_id\": \"sklearn/linear_model/tests/test_sparse_coordinate_descent.py::test_sparse_lasso_not_as_toy_dataset\", \"score\": 0.3848732113838196}, {\"doc_id\": \"sklearn/covariance/graph_lasso_.py::GraphicalLassoCV.__init__\", \"score\": 0.3789253234863281}, {\"doc_id\": \"sklearn/linear_model/least_angle.py::LassoLarsCV.__init__\", \"score\": 0.3748672902584076}]"
+}

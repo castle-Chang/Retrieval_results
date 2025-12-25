@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-12304",
+  "query": "Enumeration Types are not usable in templates.\nDescription\n\t \n\t\t(last modified by Mariusz Felisiak)\n\t \nThe new ​enumeration types are great but can't be used in Django templates due to their being callable. For example this doesn't work:\n{% if student.year_in_school == YearInSchool.FRESHMAN %}\nThis is because YearInSchool, being a class, is callable, and Django Templates always call callables with no arguments. The call fails because the required value argument is missing.\nThe easy solution would be to declare do_not_call_in_templates = True on the various Choices classes.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/enums.py"
+    ],
+    "locations": [
+      "django/db/models/enums.py::ChoicesMeta",
+      "django/db/models/enums.py::ChoicesMeta.__new__",
+      "django/db/models/enums.py::ChoicesMeta.__contains__"
+    ]
+  },
+  "predictions": [
+    "django/db/models/enums.py::ChoicesMeta.__contains__",
+    "django/db/models/enums.py::ChoicesMeta.choices",
+    "tests/model_enums/tests.py::ChoicesTests.test_invalid_definition",
+    "tests/template_tests/test_callables.py::CallableVariablesTests.test_do_not_call",
+    "django/db/models/enums.py::ChoicesMeta.labels",
+    "django/db/models/enums.py::Choices.__str__",
+    "django/db/models/enums.py::ChoicesMeta.values",
+    "django/db/models/enums.py::ChoicesMeta.__new__",
+    "django/db/models/enums.py::ChoicesMeta.names",
+    "django/db/models/enums.py::TextChoices._generate_next_value_"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "4c1b401e8250f9f520b3c7dc369554477ce8b15a",
+    "total_functions_indexed": 23148,
+    "retrieval_time_seconds": 0.008962154388427734
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/enums.py::ChoicesMeta.__contains__\", \"score\": 0.38078755140304565}, {\"doc_id\": \"django/db/models/enums.py::ChoicesMeta.choices\", \"score\": 0.3789384365081787}, {\"doc_id\": \"tests/model_enums/tests.py::ChoicesTests.test_invalid_definition\", \"score\": 0.37614575028419495}, {\"doc_id\": \"tests/template_tests/test_callables.py::CallableVariablesTests.test_do_not_call\", \"score\": 0.36829841136932373}, {\"doc_id\": \"django/db/models/enums.py::ChoicesMeta.labels\", \"score\": 0.36357438564300537}, {\"doc_id\": \"django/db/models/enums.py::Choices.__str__\", \"score\": 0.35991182923316956}, {\"doc_id\": \"django/db/models/enums.py::ChoicesMeta.values\", \"score\": 0.34778109192848206}, {\"doc_id\": \"django/db/models/enums.py::ChoicesMeta.__new__\", \"score\": 0.34610405564308167}, {\"doc_id\": \"django/db/models/enums.py::ChoicesMeta.names\", \"score\": 0.3398701250553131}, {\"doc_id\": \"django/db/models/enums.py::TextChoices._generate_next_value_\", \"score\": 0.3275393843650818}]"
+}

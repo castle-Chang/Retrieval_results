@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-19637",
+  "query": "kernS: 'kern' referenced before assignment\nfrom sympy.core.sympify import kernS\r\n\r\ntext = \"(2*x)/(x-1)\"\r\nexpr = kernS(text)  \r\n//  hit = kern in s\r\n// UnboundLocalError: local variable 'kern' referenced before assignment\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/sympify.py"
+    ],
+    "locations": [
+      "sympy/core/sympify.py::kernS"
+    ]
+  },
+  "predictions": [
+    "sympy/core/tests/test_sympify.py::test_kernS",
+    "sympy/core/sympify.py::kernS",
+    "sympy/core/numbers.py::Half.__abs__",
+    "sympy/functions/special/error_functions.py::erf2._eval_rewrite_as_uppergamma",
+    "sympy/core/tests/test_eval.py::test_pow_eval_X1",
+    "sympy/core/expr.py::Expr.as_numer_denom",
+    "sympy/functions/special/polynomials.py::chebyshevu._eval_rewrite_as_polynomial",
+    "sympy/core/tests/test_expr.py::test_integrate",
+    "sympy/functions/special/error_functions.py::erf._eval_rewrite_as_hyper",
+    "sympy/functions/special/error_functions.py::erf._eval_rewrite_as_uppergamma"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "63f8f465d48559fecb4e4bf3c48b75bf15a3e0ef",
+    "total_functions_indexed": 34692,
+    "retrieval_time_seconds": 0.005853176116943359
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/tests/test_sympify.py::test_kernS\", \"score\": 0.5480279922485352}, {\"doc_id\": \"sympy/core/sympify.py::kernS\", \"score\": 0.5301868319511414}, {\"doc_id\": \"sympy/core/numbers.py::Half.__abs__\", \"score\": 0.34309154748916626}, {\"doc_id\": \"sympy/functions/special/error_functions.py::erf2._eval_rewrite_as_uppergamma\", \"score\": 0.3287496566772461}, {\"doc_id\": \"sympy/core/tests/test_eval.py::test_pow_eval_X1\", \"score\": 0.3275846540927887}, {\"doc_id\": \"sympy/core/expr.py::Expr.as_numer_denom\", \"score\": 0.32076871395111084}, {\"doc_id\": \"sympy/functions/special/polynomials.py::chebyshevu._eval_rewrite_as_polynomial\", \"score\": 0.3181602656841278}, {\"doc_id\": \"sympy/core/tests/test_expr.py::test_integrate\", \"score\": 0.317355215549469}, {\"doc_id\": \"sympy/functions/special/error_functions.py::erf._eval_rewrite_as_hyper\", \"score\": 0.31415605545043945}, {\"doc_id\": \"sympy/functions/special/error_functions.py::erf._eval_rewrite_as_uppergamma\", \"score\": 0.3116643726825714}]"
+}

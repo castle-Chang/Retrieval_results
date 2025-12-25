@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-16901",
+  "query": "On databases lacking XOR, Q(…) ^ Q(…) ^ Q(…) wrongly interpreted as exactly-one rather than parity\nDescription\n\t\nOn databases that don’t natively support XOR, such as PostgreSQL, Django generates incorrect fallback SQL for Q(…) ^ Q(…) ^ Q(…) with more than 2 arguments. The ​correct interpretation, and the interpretation of databases natively supporting XOR (e.g. ​MySQL), is that a ^ b ^ c is true when an odd number of the arguments are true. But Django’s fallback interpretation is that a ^ b ^ c is true when exactly one argument is true:\n>>> from django.db.models import Q\n>>> from my_app.models import Client\n>>> Client.objects.filter(Q(id=37)).count()\n1\n>>> Client.objects.filter(Q(id=37) ^ Q(id=37)).count()\n0\n>>> Client.objects.filter(Q(id=37) ^ Q(id=37) ^ Q(id=37)).count()\n0\n>>> Client.objects.filter(Q(id=37) ^ Q(id=37) ^ Q(id=37) ^ Q(id=37)).count()\n0\n>>> Client.objects.filter(Q(id=37) ^ Q(id=37) ^ Q(id=37) ^ Q(id=37) ^ Q(id=37)).count()\n0\n(Expected: 1, 0, 1, 0, 1.)\nThis was introduced in #29865.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/sql/where.py"
+    ],
+    "locations": [
+      "django/db/models/sql/where.py::WhereNode",
+      "django/db/models/sql/where.py::WhereNode.as_sql"
+    ]
+  },
+  "predictions": [
+    "django/db/backends/sqlite3/_functions.py::_sqlite_bitxor",
+    "tests/xor_lookups/tests.py::XorLookupsTests.test_pk_q",
+    "tests/postgres_tests/test_aggregates.py::TestGeneralAggregate.test_bit_xor_on_only_false_values",
+    "django/db/models/query_utils.py::Q.__xor__",
+    "tests/postgres_tests/test_aggregates.py::TestGeneralAggregate.test_bit_xor_general",
+    "tests/xor_lookups/tests.py::XorLookupsTests.test_filter",
+    "tests/postgres_tests/test_aggregates.py::TestGeneralAggregate.test_bit_xor_on_only_true_values",
+    "tests/expressions/tests.py::ExpressionOperatorTests.test_lefthand_bitwise_xor_not_supported",
+    "tests/queries/tests.py::Queries6Tests.test_xor_subquery",
+    "django/db/models/expressions.py::Combinable.bitxor"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "ee36e101e8f8c0acde4bb148b738ab7034e902a0",
+    "total_functions_indexed": 26692,
+    "retrieval_time_seconds": 0.0429234504699707
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/backends/sqlite3/_functions.py::_sqlite_bitxor\", \"score\": 0.4364030361175537}, {\"doc_id\": \"tests/xor_lookups/tests.py::XorLookupsTests.test_pk_q\", \"score\": 0.4315449595451355}, {\"doc_id\": \"tests/postgres_tests/test_aggregates.py::TestGeneralAggregate.test_bit_xor_on_only_false_values\", \"score\": 0.4051873981952667}, {\"doc_id\": \"django/db/models/query_utils.py::Q.__xor__\", \"score\": 0.4035252332687378}, {\"doc_id\": \"tests/postgres_tests/test_aggregates.py::TestGeneralAggregate.test_bit_xor_general\", \"score\": 0.4009462893009186}, {\"doc_id\": \"tests/xor_lookups/tests.py::XorLookupsTests.test_filter\", \"score\": 0.4005943834781647}, {\"doc_id\": \"tests/postgres_tests/test_aggregates.py::TestGeneralAggregate.test_bit_xor_on_only_true_values\", \"score\": 0.39938032627105713}, {\"doc_id\": \"tests/expressions/tests.py::ExpressionOperatorTests.test_lefthand_bitwise_xor_not_supported\", \"score\": 0.38366997241973877}, {\"doc_id\": \"tests/queries/tests.py::Queries6Tests.test_xor_subquery\", \"score\": 0.38298219442367554}, {\"doc_id\": \"django/db/models/expressions.py::Combinable.bitxor\", \"score\": 0.37476298213005066}]"
+}

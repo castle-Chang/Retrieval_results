@@ -1,0 +1,38 @@
+{
+  "instance_id": "pytest-dev__pytest-5840",
+  "query": "5.1.2 ImportError while loading conftest (windows import folder casing issues)\n5.1.1 works fine. after upgrade to 5.1.2, the path was converted to lower case\r\n```\r\nInstalling collected packages: pytest\r\n  Found existing installation: pytest 5.1.1\r\n    Uninstalling pytest-5.1.1:\r\n      Successfully uninstalled pytest-5.1.1\r\nSuccessfully installed pytest-5.1.2\r\nPS C:\\Azure\\KMS\\ComponentTest\\Python> pytest --collect-only .\\PIsys -m smoke\r\nImportError while loading conftest 'c:\\azure\\kms\\componenttest\\python\\pisys\\conftest.py'.\r\nModuleNotFoundError: No module named 'python'\r\nPS C:\\Azure\\KMS\\ComponentTest\\Python>\r\n```\r\n\r\n\n",
+  "ground_truth": {
+    "files": [
+      "src/_pytest/pathlib.py",
+      "src/_pytest/config/__init__.py"
+    ],
+    "locations": [
+      "src/_pytest/config/__init__.py::PytestPluginManager",
+      "src/_pytest/config/__init__.py::PytestPluginManager._set_initial_conftests",
+      "src/_pytest/config/__init__.py::PytestPluginManager._getconftestmodules",
+      "src/_pytest/config/__init__.py::PytestPluginManager._rget_with_confmod",
+      "src/_pytest/config/__init__.py::PytestPluginManager._importconftest",
+      "src/_pytest/pathlib.py::parts",
+      "src/_pytest/pathlib.py::unique_path"
+    ]
+  },
+  "predictions": [
+    "src/_pytest/config/__init__.py::PytestPluginManager._importconftest",
+    "testing/test_conftest.py::test_conftestcutdir",
+    "testing/acceptance_test.py::TestGeneralUsage.test_better_reporting_on_conftest_load_failure",
+    "testing/test_conftest.py::test_conftest_global_import",
+    "testing/test_conftest.py::test_conftest_import_order",
+    "testing/test_conftest.py::test_conftest_badcase",
+    "testing/test_conftest.py::test_issue151_load_all_conftests",
+    "testing/test_conftest.py::test_conftestcutdir_inplace_considered",
+    "src/_pytest/config/__init__.py::PytestPluginManager._getconftestmodules",
+    "testing/test_conftest.py::test_doubledash_considered"
+  ],
+  "metadata": {
+    "repo": "pytest-dev/pytest",
+    "commit": "73c5b7f4b11a81e971f7d1bb18072e06a87060f4",
+    "total_functions_indexed": 3552,
+    "retrieval_time_seconds": 0.0007472038269042969
+  },
+  "raw_output": "[{\"doc_id\": \"src/_pytest/config/__init__.py::PytestPluginManager._importconftest\", \"score\": 0.6154059171676636}, {\"doc_id\": \"testing/test_conftest.py::test_conftestcutdir\", \"score\": 0.6076912879943848}, {\"doc_id\": \"testing/acceptance_test.py::TestGeneralUsage.test_better_reporting_on_conftest_load_failure\", \"score\": 0.589572548866272}, {\"doc_id\": \"testing/test_conftest.py::test_conftest_global_import\", \"score\": 0.5863463878631592}, {\"doc_id\": \"testing/test_conftest.py::test_conftest_import_order\", \"score\": 0.5763357877731323}, {\"doc_id\": \"testing/test_conftest.py::test_conftest_badcase\", \"score\": 0.5731319189071655}, {\"doc_id\": \"testing/test_conftest.py::test_issue151_load_all_conftests\", \"score\": 0.5506230592727661}, {\"doc_id\": \"testing/test_conftest.py::test_conftestcutdir_inplace_considered\", \"score\": 0.5390477180480957}, {\"doc_id\": \"src/_pytest/config/__init__.py::PytestPluginManager._getconftestmodules\", \"score\": 0.5048191547393799}, {\"doc_id\": \"testing/test_conftest.py::test_doubledash_considered\", \"score\": 0.499005526304245}]"
+}

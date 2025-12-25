@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-21596",
+  "query": "bug in is_subset(Reals)\nSolving issue #19513 has given rise to another bug.\r\nNow:\r\n```\r\nIn [8]: S1 = imageset(Lambda(n, n + (n - 1)*(n + 1)*I), S.Integers)\r\n\r\nIn [9]: S1\r\nOut[9]: {n + ⅈ⋅(n - 1)⋅(n + 1) │ n ∊ ℤ}\r\n\r\nIn [10]: 2 in S1\r\nOut[10]: False\r\n\r\nIn [11]: 2 in S1.intersect(Reals)\r\nOut[11]: True\r\n```\r\nThis output is incorrect.\r\n\r\nCorrect output is:\r\n```\r\nIn [4]: S1\r\nOut[4]: {n + ⅈ⋅(n - 1)⋅(n + 1) │ n ∊ ℤ}\r\n\r\nIn [5]: 2 in S1\r\nOut[5]: False\r\n\r\nIn [6]: 2 in S1.intersect(Reals)\r\nOut[6]: False\r\n\r\nIn [7]: S2 = Reals\r\n\r\nIn [8]: S1.intersect(S2)\r\nOut[8]: {-1, 1}\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/sets/handlers/intersection.py"
+    ],
+    "locations": [
+      "sympy/sets/handlers/intersection.py::intersection_sets"
+    ]
+  },
+  "predictions": [
+    "sympy/sets/tests/test_fancysets.py::test_issue_9543",
+    "sympy/sets/tests/test_fancysets.py::test_issue_16871b",
+    "sympy/sets/tests/test_sets.py::test_issue_16878b",
+    "sympy/sets/tests/test_fancysets.py::test_imageset_intersection",
+    "sympy/sets/tests/test_fancysets.py::test_imageset_intersect_real",
+    "sympy/sets/tests/test_fancysets.py::test_infinitely_indexed_set_1",
+    "sympy/sets/tests/test_fancysets.py::test_issue_16871",
+    "sympy/sets/tests/test_fancysets.py::test_Reals",
+    "sympy/sets/handlers/issubset.py::is_subset_sets",
+    "sympy/sets/tests/test_sets.py::test_issue_10113"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "110997fe18b9f7d5ba7d22f624d156a29bf40759",
+    "total_functions_indexed": 36549,
+    "retrieval_time_seconds": 0.025591373443603516
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/sets/tests/test_fancysets.py::test_issue_9543\", \"score\": 0.552644670009613}, {\"doc_id\": \"sympy/sets/tests/test_fancysets.py::test_issue_16871b\", \"score\": 0.5343855619430542}, {\"doc_id\": \"sympy/sets/tests/test_sets.py::test_issue_16878b\", \"score\": 0.5342156887054443}, {\"doc_id\": \"sympy/sets/tests/test_fancysets.py::test_imageset_intersection\", \"score\": 0.5290452241897583}, {\"doc_id\": \"sympy/sets/tests/test_fancysets.py::test_imageset_intersect_real\", \"score\": 0.49899423122406006}, {\"doc_id\": \"sympy/sets/tests/test_fancysets.py::test_infinitely_indexed_set_1\", \"score\": 0.4878140091896057}, {\"doc_id\": \"sympy/sets/tests/test_fancysets.py::test_issue_16871\", \"score\": 0.47737157344818115}, {\"doc_id\": \"sympy/sets/tests/test_fancysets.py::test_Reals\", \"score\": 0.4749893546104431}, {\"doc_id\": \"sympy/sets/handlers/issubset.py::is_subset_sets\", \"score\": 0.4743274450302124}, {\"doc_id\": \"sympy/sets/tests/test_sets.py::test_issue_10113\", \"score\": 0.4737030863761902}]"
+}

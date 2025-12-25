@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-18698",
+  "query": "sqf and sqf_list output is not consistant\nThe example below is wrong in the sense that we should have (x*_2 - 5_x + 6, 3) and not 2 factors of multiplicity 3.\n\n```\n>  sqf_list(  (x**2 + 1)  * (x - 1)**2 * (x - 2)**3 * (x - 3)**3  )\n\n>  (1, [(x**2 + 1, 1), (x - 1, 2), (x - 3, 3), (x - 2, 3)])\n```\n\nwhereas below is correct --- one factor of multiplicity 2\n\n```\n>  sqf_list( x**5 - 2*x**4 - 2*x**3 + 4*x**2 + x - 2 )\n\n>  (1, [(x - 2, 1), (x**2 - 1, 2)])\n```\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/polys/polytools.py"
+    ],
+    "locations": [
+      "sympy/polys/polytools.py::_symbolic_factor_list"
+    ]
+  },
+  "predictions": [
+    "sympy/polys/polytools.py::sqf_list",
+    "sympy/polys/polytools.py::Poly.sqf_list",
+    "sympy/polys/polytools.py::Poly.sqf_list_include",
+    "sympy/polys/polytools.py::_generic_factor_list",
+    "sympy/integrals/rubi/utility_function.py::FactorSquareFreeList",
+    "sympy/polys/tests/test_polytools.py::test_factor_terms",
+    "sympy/polys/compatibility.py::IPolys.dup_sqf_list_include",
+    "sympy/polys/polyclasses.py::DMP.sqf_list_include",
+    "sympy/polys/polytools.py::_symbolic_factor_list",
+    "sympy/polys/sqfreetools.py::dup_sqf_list_include"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "3dff1b98a78f28c953ae2140b69356b8391e399c",
+    "total_functions_indexed": 34130,
+    "retrieval_time_seconds": 0.09572124481201172
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/polys/polytools.py::sqf_list\", \"score\": 0.5822983980178833}, {\"doc_id\": \"sympy/polys/polytools.py::Poly.sqf_list\", \"score\": 0.5702009201049805}, {\"doc_id\": \"sympy/polys/polytools.py::Poly.sqf_list_include\", \"score\": 0.5545182824134827}, {\"doc_id\": \"sympy/polys/polytools.py::_generic_factor_list\", \"score\": 0.5500036478042603}, {\"doc_id\": \"sympy/integrals/rubi/utility_function.py::FactorSquareFreeList\", \"score\": 0.5447536110877991}, {\"doc_id\": \"sympy/polys/tests/test_polytools.py::test_factor_terms\", \"score\": 0.5245471000671387}, {\"doc_id\": \"sympy/polys/compatibility.py::IPolys.dup_sqf_list_include\", \"score\": 0.505276083946228}, {\"doc_id\": \"sympy/polys/polyclasses.py::DMP.sqf_list_include\", \"score\": 0.5021177530288696}, {\"doc_id\": \"sympy/polys/polytools.py::_symbolic_factor_list\", \"score\": 0.4885028004646301}, {\"doc_id\": \"sympy/polys/sqfreetools.py::dup_sqf_list_include\", \"score\": 0.48838484287261963}]"
+}

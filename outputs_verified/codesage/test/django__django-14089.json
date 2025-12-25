@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-14089",
+  "query": "Allow calling reversed() on an OrderedSet\nDescription\n\t\nCurrently, ​OrderedSet isn't reversible (i.e. allowed to be passed as an argument to Python's ​reversed()). This would be natural to support given that OrderedSet is ordered. This should be straightforward to add by adding a __reversed__() method to OrderedSet.\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/datastructures.py"
+    ],
+    "locations": [
+      "django/utils/datastructures.py::OrderedSet",
+      "django/utils/datastructures.py::OrderedSet.__iter__",
+      "django/utils/datastructures.py::OrderedSet.__contains__"
+    ]
+  },
+  "predictions": [
+    "tests/utils_tests/test_datastructures.py::OrderedSetTests.test_remove",
+    "django/utils/datastructures.py::OrderedSet.discard",
+    "tests/utils_tests/test_datastructures.py::OrderedSetTests.test_discard",
+    "django/utils/datastructures.py::OrderedSet.remove",
+    "tests/utils_tests/test_datastructures.py::OrderedSetTests.test_contains",
+    "django/utils/datastructures.py::OrderedSet.__iter__",
+    "tests/utils_tests/test_datastructures.py::OrderedSetTests.test_bool",
+    "tests/utils_tests/test_datastructures.py::OrderedSetTests.test_len",
+    "django/utils/datastructures.py::OrderedSet.add",
+    "django/contrib/gis/geos/mutable_list.py::ListMixin.reverse"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "d01709aae21de9cd2565b9c52f32732ea28a2d98",
+    "total_functions_indexed": 24361,
+    "retrieval_time_seconds": 0.09540629386901855
+  },
+  "raw_output": "[{\"doc_id\": \"tests/utils_tests/test_datastructures.py::OrderedSetTests.test_remove\", \"score\": 0.38676804304122925}, {\"doc_id\": \"django/utils/datastructures.py::OrderedSet.discard\", \"score\": 0.38284832239151}, {\"doc_id\": \"tests/utils_tests/test_datastructures.py::OrderedSetTests.test_discard\", \"score\": 0.3781348466873169}, {\"doc_id\": \"django/utils/datastructures.py::OrderedSet.remove\", \"score\": 0.3743404746055603}, {\"doc_id\": \"tests/utils_tests/test_datastructures.py::OrderedSetTests.test_contains\", \"score\": 0.3719644844532013}, {\"doc_id\": \"django/utils/datastructures.py::OrderedSet.__iter__\", \"score\": 0.3684203326702118}, {\"doc_id\": \"tests/utils_tests/test_datastructures.py::OrderedSetTests.test_bool\", \"score\": 0.36736881732940674}, {\"doc_id\": \"tests/utils_tests/test_datastructures.py::OrderedSetTests.test_len\", \"score\": 0.3545148968696594}, {\"doc_id\": \"django/utils/datastructures.py::OrderedSet.add\", \"score\": 0.34002429246902466}, {\"doc_id\": \"django/contrib/gis/geos/mutable_list.py::ListMixin.reverse\", \"score\": 0.3315391540527344}]"
+}

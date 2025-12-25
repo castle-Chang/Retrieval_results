@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-13933",
+  "query": "ModelChoiceField does not provide value of invalid choice when raising ValidationError\nDescription\n\t \n\t\t(last modified by Aaron Wiegel)\n\t \nCompared with ChoiceField and others, ModelChoiceField does not show the value of the invalid choice when raising a validation error. Passing in parameters with the invalid value and modifying the default error message for the code invalid_choice should fix this.\nFrom source code:\nclass ModelMultipleChoiceField(ModelChoiceField):\n\t\"\"\"A MultipleChoiceField whose choices are a model QuerySet.\"\"\"\n\twidget = SelectMultiple\n\thidden_widget = MultipleHiddenInput\n\tdefault_error_messages = {\n\t\t'invalid_list': _('Enter a list of values.'),\n\t\t'invalid_choice': _('Select a valid choice. %(value)s is not one of the'\n\t\t\t\t\t\t\t' available choices.'),\n\t\t'invalid_pk_value': _('“%(pk)s” is not a valid value.')\n\t}\n\t...\nclass ModelChoiceField(ChoiceField):\n\t\"\"\"A ChoiceField whose choices are a model QuerySet.\"\"\"\n\t# This class is a subclass of ChoiceField for purity, but it doesn't\n\t# actually use any of ChoiceField's implementation.\n\tdefault_error_messages = {\n\t\t'invalid_choice': _('Select a valid choice. That choice is not one of'\n\t\t\t\t\t\t\t' the available choices.'),\n\t}\n\t...\n",
+  "ground_truth": {
+    "files": [
+      "django/forms/models.py"
+    ],
+    "locations": [
+      "django/forms/models.py::ModelChoiceField",
+      "django/forms/models.py::ModelChoiceField.to_python",
+      "django/forms/models.py::ModelChoiceField.validate"
+    ]
+  },
+  "predictions": [
+    "django/forms/models.py::ModelChoiceField.__init__",
+    "django/forms/models.py::ModelChoiceField.validate",
+    "tests/forms_tests/tests/test_error_messages.py::ModelChoiceFieldErrorMessagesTestCase.test_modelchoicefield",
+    "tests/model_forms/test_modelchoicefield.py::ModelChoiceFieldTests.test_queryset_manager",
+    "tests/model_forms/tests.py::ModelMultipleChoiceFieldTests.test_model_multiple_choice_required_false",
+    "tests/model_forms/test_modelchoicefield.py::ModelChoiceFieldTests.test_disabled_modelchoicefield",
+    "tests/model_forms/tests.py::ModelMultipleChoiceFieldTests.test_model_multiple_choice_number_of_queries",
+    "tests/model_forms/test_modelchoicefield.py::ModelChoiceFieldTests.test_no_extra_query_when_accessing_attrs",
+    "tests/model_forms/tests.py::ModelMultipleChoiceFieldTests.test_model_multiple_choice_field_22745",
+    "django/forms/fields.py::ChoiceField.__init__"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "42e8cf47c7ee2db238bf91197ea398126c546741",
+    "total_functions_indexed": 24245,
+    "retrieval_time_seconds": 0.03922462463378906
+  },
+  "raw_output": "[{\"doc_id\": \"django/forms/models.py::ModelChoiceField.__init__\", \"score\": 0.6540539860725403}, {\"doc_id\": \"django/forms/models.py::ModelChoiceField.validate\", \"score\": 0.6389076709747314}, {\"doc_id\": \"tests/forms_tests/tests/test_error_messages.py::ModelChoiceFieldErrorMessagesTestCase.test_modelchoicefield\", \"score\": 0.5779147148132324}, {\"doc_id\": \"tests/model_forms/test_modelchoicefield.py::ModelChoiceFieldTests.test_queryset_manager\", \"score\": 0.5756281614303589}, {\"doc_id\": \"tests/model_forms/tests.py::ModelMultipleChoiceFieldTests.test_model_multiple_choice_required_false\", \"score\": 0.5709314346313477}, {\"doc_id\": \"tests/model_forms/test_modelchoicefield.py::ModelChoiceFieldTests.test_disabled_modelchoicefield\", \"score\": 0.56772381067276}, {\"doc_id\": \"tests/model_forms/tests.py::ModelMultipleChoiceFieldTests.test_model_multiple_choice_number_of_queries\", \"score\": 0.5575754642486572}, {\"doc_id\": \"tests/model_forms/test_modelchoicefield.py::ModelChoiceFieldTests.test_no_extra_query_when_accessing_attrs\", \"score\": 0.5546249151229858}, {\"doc_id\": \"tests/model_forms/tests.py::ModelMultipleChoiceFieldTests.test_model_multiple_choice_field_22745\", \"score\": 0.5515440106391907}, {\"doc_id\": \"django/forms/fields.py::ChoiceField.__init__\", \"score\": 0.5457033514976501}]"
+}

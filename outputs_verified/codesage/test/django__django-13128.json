@@ -1,0 +1,37 @@
+{
+  "instance_id": "django__django-13128",
+  "query": "make temporal subtraction work without ExpressionWrapper\nDescription\n\t\nclass Experiment(models.Model):\n\tstart = models.DateTimeField()\n\tend = models.DateTimeField()\nExperiment.objects.annotate(\n\tdelta=F('end') - F('start') + Value(datetime.timedelta(), output_field=DurationField())\n)\nThis gives:\ndjango.core.exceptions.FieldError: Expression contains mixed types: DateTimeField, DurationField. You must set output_field.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/expressions.py"
+    ],
+    "locations": [
+      "django/db/models/expressions.py::CombinedExpression",
+      "django/db/models/expressions.py::CombinedExpression.set_source_expressions",
+      "django/db/models/expressions.py::CombinedExpression.as_sql",
+      "django/db/models/expressions.py::CombinedExpression.resolve_expression",
+      "django/db/models/expressions.py::DurationExpression",
+      "django/db/models/expressions.py::DurationExpression.compile",
+      "django/db/models/expressions.py::DurationExpression.as_sql"
+    ]
+  },
+  "predictions": [
+    "tests/expressions/tests.py::FTimeDeltaTests.test_datetime_subtraction_microseconds",
+    "tests/expressions/tests.py::FTimeDeltaTests.test_datetime_subquery_subtraction",
+    "tests/expressions/tests.py::FTimeDeltaTests.test_date_subquery_subtraction",
+    "tests/expressions/tests.py::FTimeDeltaTests.test_date_subtraction",
+    "tests/expressions/tests.py::FTimeDeltaTests.test_durationfield_add",
+    "tests/expressions/tests.py::FTimeDeltaTests.test_time_subquery_subtraction",
+    "tests/expressions/tests.py::FTimeDeltaTests.test_time_subtraction",
+    "tests/expressions/tests.py::FTimeDeltaTests.test_datetime_subtraction",
+    "tests/expressions/tests.py::FTimeDeltaTests.test_date_case_subtraction",
+    "tests/expressions/tests.py::FTimeDeltaTests.test_duration_with_datetime_microseconds"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "2d67222472f80f251607ae1b720527afceba06ad",
+    "total_functions_indexed": 23652,
+    "retrieval_time_seconds": 0.028774261474609375
+  },
+  "raw_output": "[{\"doc_id\": \"tests/expressions/tests.py::FTimeDeltaTests.test_datetime_subtraction_microseconds\", \"score\": 0.6683968901634216}, {\"doc_id\": \"tests/expressions/tests.py::FTimeDeltaTests.test_datetime_subquery_subtraction\", \"score\": 0.6673299670219421}, {\"doc_id\": \"tests/expressions/tests.py::FTimeDeltaTests.test_date_subquery_subtraction\", \"score\": 0.6580512523651123}, {\"doc_id\": \"tests/expressions/tests.py::FTimeDeltaTests.test_date_subtraction\", \"score\": 0.6330883502960205}, {\"doc_id\": \"tests/expressions/tests.py::FTimeDeltaTests.test_durationfield_add\", \"score\": 0.6318376660346985}, {\"doc_id\": \"tests/expressions/tests.py::FTimeDeltaTests.test_time_subquery_subtraction\", \"score\": 0.628787636756897}, {\"doc_id\": \"tests/expressions/tests.py::FTimeDeltaTests.test_time_subtraction\", \"score\": 0.624266505241394}, {\"doc_id\": \"tests/expressions/tests.py::FTimeDeltaTests.test_datetime_subtraction\", \"score\": 0.6217629909515381}, {\"doc_id\": \"tests/expressions/tests.py::FTimeDeltaTests.test_date_case_subtraction\", \"score\": 0.5803385972976685}, {\"doc_id\": \"tests/expressions/tests.py::FTimeDeltaTests.test_duration_with_datetime_microseconds\", \"score\": 0.5784449577331543}]"
+}

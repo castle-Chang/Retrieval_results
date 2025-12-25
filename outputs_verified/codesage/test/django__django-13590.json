@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-13590",
+  "query": "Upgrading 2.2>3.0 causes named tuples used as arguments to __range to error.\nDescription\n\t\nI noticed this while upgrading a project from 2.2 to 3.0.\nThis project passes named 2-tuples as arguments to range queryset filters. This works fine on 2.2. On 3.0 it causes the following error: TypeError: __new__() missing 1 required positional argument: 'far'.\nThis happens because django.db.models.sql.query.Query.resolve_lookup_value goes into the tuple elements to resolve lookups and then attempts to reconstitute the tuple with the resolved elements.\nWhen it attempts to construct the new tuple it preserves the type (the named tuple) but it passes a iterator to it's constructor.\nNamedTuples don't have the code path for copying an iterator, and so it errors on insufficient arguments.\nThe fix is to * expand the contents of the iterator into the constructor.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/sql/query.py"
+    ],
+    "locations": [
+      "django/db/models/sql/query.py::Query",
+      "django/db/models/sql/query.py::Query.resolve_lookup_value",
+      "django/db/models/sql/query.py::Query.solve_lookup_type"
+    ]
+  },
+  "predictions": [
+    "django/db/models/query.py::NamedValuesListIterable.__iter__",
+    "django/db/models/lookups.py::YearLt.get_bound_params",
+    "django/db/models/lookups.py::YearExact.get_bound_params",
+    "tests/postgres_tests/test_ranges.py::TestQueryingWithRanges.test_datetime_range",
+    "tests/postgres_tests/test_ranges.py::TestQueryingWithRanges.test_integer_range",
+    "django/db/models/query.py::QuerySet.values_list",
+    "tests/postgres_tests/test_ranges.py::TestQueryingWithRanges.test_float_range",
+    "django/db/models/lookups.py::YearLte.get_bound_params",
+    "tests/postgres_tests/test_ranges.py::TestQueryingWithRanges.test_biginteger_range",
+    "django/db/models/lookups.py::YearGt.get_bound_params"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "755dbf39fcdc491fe9b588358303e259c7750be4",
+    "total_functions_indexed": 24028,
+    "retrieval_time_seconds": 0.07340359687805176
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/query.py::NamedValuesListIterable.__iter__\", \"score\": 0.4241269826889038}, {\"doc_id\": \"django/db/models/lookups.py::YearLt.get_bound_params\", \"score\": 0.3507542610168457}, {\"doc_id\": \"django/db/models/lookups.py::YearExact.get_bound_params\", \"score\": 0.34676557779312134}, {\"doc_id\": \"tests/postgres_tests/test_ranges.py::TestQueryingWithRanges.test_datetime_range\", \"score\": 0.34177377820014954}, {\"doc_id\": \"tests/postgres_tests/test_ranges.py::TestQueryingWithRanges.test_integer_range\", \"score\": 0.335638165473938}, {\"doc_id\": \"django/db/models/query.py::QuerySet.values_list\", \"score\": 0.3353744149208069}, {\"doc_id\": \"tests/postgres_tests/test_ranges.py::TestQueryingWithRanges.test_float_range\", \"score\": 0.334839403629303}, {\"doc_id\": \"django/db/models/lookups.py::YearLte.get_bound_params\", \"score\": 0.33474594354629517}, {\"doc_id\": \"tests/postgres_tests/test_ranges.py::TestQueryingWithRanges.test_biginteger_range\", \"score\": 0.33394619822502136}, {\"doc_id\": \"django/db/models/lookups.py::YearGt.get_bound_params\", \"score\": 0.32929176092147827}]"
+}

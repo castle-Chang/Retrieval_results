@@ -1,0 +1,34 @@
+{
+  "instance_id": "psf__requests-2931",
+  "query": "Request with binary payload fails due to calling to_native_string\nIntroduced with https://github.com/kennethreitz/requests/issues/2844\n\n```\nimport requests\nrequests.put(\"http://httpbin.org/put\", data=u\"ööö\".encode(\"utf-8\"))\n```\n\nThis works with 2.8.1, but not with 2.9.\n\n",
+  "ground_truth": {
+    "files": [
+      "requests/models.py"
+    ],
+    "locations": [
+      "requests/models.py::RequestEncodingMixin",
+      "requests/models.py::RequestEncodingMixin._encode_params",
+      "requests/models.py::PreparedRequest",
+      "requests/models.py::PreparedRequest.prepare_url"
+    ]
+  },
+  "predictions": [
+    "test_requests.py::TestRequests.test_unicode_header_name",
+    "test_requests.py::TestRequests.test_header_keys_are_native",
+    "test_requests.py::TestRequests.test_autoset_header_values_are_native",
+    "test_requests.py::TestRequests.test_json_param_post_should_not_override_data_param",
+    "requests/utils.py::to_native_string",
+    "test_requests.py::TestRequests.test_unicode_get",
+    "test_requests.py::TestRequests.test_unicode_multipart_post",
+    "test_requests.py::TestRequests.test_cannot_send_unprepared_requests",
+    "test_requests.py::TestRequests.test_can_send_bytes_bytearray_objects_with_files",
+    "test_requests.py::TestRequests.test_unicode_multipart_post_fieldnames"
+  ],
+  "metadata": {
+    "repo": "psf/requests",
+    "commit": "5f7a3a74aab1625c2bb65f643197ee885e3da576",
+    "total_functions_indexed": 732,
+    "retrieval_time_seconds": 0.10136771202087402
+  },
+  "raw_output": "[{\"doc_id\": \"test_requests.py::TestRequests.test_unicode_header_name\", \"score\": 0.4113849997520447}, {\"doc_id\": \"test_requests.py::TestRequests.test_header_keys_are_native\", \"score\": 0.34846559166908264}, {\"doc_id\": \"test_requests.py::TestRequests.test_autoset_header_values_are_native\", \"score\": 0.3260636031627655}, {\"doc_id\": \"test_requests.py::TestRequests.test_json_param_post_should_not_override_data_param\", \"score\": 0.31554096937179565}, {\"doc_id\": \"requests/utils.py::to_native_string\", \"score\": 0.29963499307632446}, {\"doc_id\": \"test_requests.py::TestRequests.test_unicode_get\", \"score\": 0.29701364040374756}, {\"doc_id\": \"test_requests.py::TestRequests.test_unicode_multipart_post\", \"score\": 0.28862425684928894}, {\"doc_id\": \"test_requests.py::TestRequests.test_cannot_send_unprepared_requests\", \"score\": 0.2851506769657135}, {\"doc_id\": \"test_requests.py::TestRequests.test_can_send_bytes_bytearray_objects_with_files\", \"score\": 0.2838752865791321}, {\"doc_id\": \"test_requests.py::TestRequests.test_unicode_multipart_post_fieldnames\", \"score\": 0.2809174656867981}]"
+}

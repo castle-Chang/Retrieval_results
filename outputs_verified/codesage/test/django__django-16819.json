@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-16819",
+  "query": "Reduce Add/RemoveIndex migration operations.\nDescription\n\t\nWe should reduce AddIndex/RemoveIndex operations when optimizing migration operations.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/operations/models.py"
+    ],
+    "locations": [
+      "django/db/migrations/operations/models.py::AddIndex",
+      "django/db/migrations/operations/models.py::AddIndex.migration_name_fragment",
+      "django/db/migrations/operations/models.py::RemoveIndex"
+    ]
+  },
+  "predictions": [
+    "tests/migrations/test_operations.py::OperationTests.test_remove_index",
+    "tests/migrations/test_autodetector.py::AutodetectorTests.test_remove_indexes",
+    "tests/migrations/test_operations.py::OperationTests.test_add_index",
+    "tests/migrations/test_operations.py::OperationTests.test_remove_func_index",
+    "tests/migrations/test_autodetector.py::AutodetectorTests.test_add_index_with_new_model",
+    "tests/migrations/test_operations.py::SwappableOperationTests.test_indexes_ignore_swapped",
+    "django/db/migrations/autodetector.py::MigrationAutodetector.generate_removed_indexes",
+    "tests/migrations/test_operations.py::OperationTests.test_alter_index_together_remove_with_unique_together",
+    "tests/migrations/test_autodetector.py::AutodetectorTests.test_order_fields_indexes",
+    "tests/migrations/test_operations.py::OperationTests.test_remove_index_state_forwards"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "0b0998dc151feb77068e2387c34cc50ef6b356ae",
+    "total_functions_indexed": 26570,
+    "retrieval_time_seconds": 0.008392333984375
+  },
+  "raw_output": "[{\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_remove_index\", \"score\": 0.41129788756370544}, {\"doc_id\": \"tests/migrations/test_autodetector.py::AutodetectorTests.test_remove_indexes\", \"score\": 0.3969627916812897}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_add_index\", \"score\": 0.38469043374061584}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_remove_func_index\", \"score\": 0.36863017082214355}, {\"doc_id\": \"tests/migrations/test_autodetector.py::AutodetectorTests.test_add_index_with_new_model\", \"score\": 0.36224210262298584}, {\"doc_id\": \"tests/migrations/test_operations.py::SwappableOperationTests.test_indexes_ignore_swapped\", \"score\": 0.3615824580192566}, {\"doc_id\": \"django/db/migrations/autodetector.py::MigrationAutodetector.generate_removed_indexes\", \"score\": 0.3607812523841858}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_alter_index_together_remove_with_unique_together\", \"score\": 0.3556901216506958}, {\"doc_id\": \"tests/migrations/test_autodetector.py::AutodetectorTests.test_order_fields_indexes\", \"score\": 0.3545585870742798}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_remove_index_state_forwards\", \"score\": 0.3544355034828186}]"
+}

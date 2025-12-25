@@ -1,0 +1,34 @@
+{
+  "instance_id": "sympy__sympy-22080",
+  "query": "Mod function lambdify bug\nDescription:\r\nWhen lambdifying any function of structure like `expr * Mod(a, b)` sympy moves the multiplier into the first argument of Mod, like `Mod(expr * a, b)`, WHEN we specify `modules=[]`\r\n\r\nThis is an example from Sympy online shell\r\n```\r\n>>> from sympy import Mod, lambdify, symbols\r\n>>> x, y = symbols('x y')\r\n>>> expr = -Mod(x, y)\r\n>>> f = lambdify([x, y], expr)\r\n>>> f(3, 7)\r\n-3\r\n>>> inspect.getsource(f)\r\ndef _lambdifygenerated(x, y):\r\n    return (-mod(x, y))\r\n\r\n\r\n>>> g = lambdify([x, y], expr, modules=[])\r\n>>> g(3, 7)\r\n4\r\n>>> inspect.getsource(g)\r\ndef _lambdifygenerated(x, y):\r\n    return (-x % y)\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/precedence.py",
+      "sympy/printing/codeprinter.py"
+    ],
+    "locations": [
+      "sympy/printing/codeprinter.py::requires",
+      "sympy/printing/codeprinter.py::CodePrinter",
+      "sympy/printing/codeprinter.py::CodePrinter._print_Mul"
+    ]
+  },
+  "predictions": [
+    "sympy/utilities/lambdify.py::lambdify",
+    "sympy/utilities/lambdify.py::_import",
+    "sympy/utilities/lambdify.py::_module_present",
+    "sympy/core/expr.py::Expr.__mod__",
+    "sympy/utilities/tests/test_lambdify.py::test_issue9474",
+    "sympy/core/mod.py::Mod._eval_rewrite_as_floor",
+    "sympy/utilities/tests/test_lambdify.py::test_namespace_type",
+    "sympy/core/expr.py::Expr.__rmod__",
+    "sympy/utilities/tests/test_lambdify.py::test_math",
+    "sympy/plotting/experimental_lambdify.py::Lambdifier.__init__"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "3f8c8c2377cb8e0daaf8073e8d03ac7d87580813",
+    "total_functions_indexed": 37051,
+    "retrieval_time_seconds": 0.0407106876373291
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/utilities/lambdify.py::lambdify\", \"score\": 0.4630509912967682}, {\"doc_id\": \"sympy/utilities/lambdify.py::_import\", \"score\": 0.44141116738319397}, {\"doc_id\": \"sympy/utilities/lambdify.py::_module_present\", \"score\": 0.43789464235305786}, {\"doc_id\": \"sympy/core/expr.py::Expr.__mod__\", \"score\": 0.4320961534976959}, {\"doc_id\": \"sympy/utilities/tests/test_lambdify.py::test_issue9474\", \"score\": 0.431495726108551}, {\"doc_id\": \"sympy/core/mod.py::Mod._eval_rewrite_as_floor\", \"score\": 0.42753157019615173}, {\"doc_id\": \"sympy/utilities/tests/test_lambdify.py::test_namespace_type\", \"score\": 0.4252932071685791}, {\"doc_id\": \"sympy/core/expr.py::Expr.__rmod__\", \"score\": 0.42135125398635864}, {\"doc_id\": \"sympy/utilities/tests/test_lambdify.py::test_math\", \"score\": 0.41553953289985657}, {\"doc_id\": \"sympy/plotting/experimental_lambdify.py::Lambdifier.__init__\", \"score\": 0.41158565878868103}]"
+}

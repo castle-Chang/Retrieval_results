@@ -1,0 +1,35 @@
+{
+  "instance_id": "django__django-11095",
+  "query": "add ModelAdmin.get_inlines() hook to allow set inlines based on the request or model instance.\nDescription\n\t\nadd ModelAdmin.get_inlines() hook to allow set inlines based on the request or model instance.\nCurrently, We can override the method get_inline_instances to do such a thing, but a for loop should be copied to my code. So I wished add a hook get_inlines(request, obj=None)\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admin/options.py"
+    ],
+    "locations": [
+      "django/contrib/admin/options.py::BaseModelAdmin",
+      "django/contrib/admin/options.py::BaseModelAdmin.get_fieldsets",
+      "django/contrib/admin/options.py::BaseModelAdmin.get_ordering",
+      "django/contrib/admin/options.py::ModelAdmin",
+      "django/contrib/admin/options.py::ModelAdmin.get_inline_instances"
+    ]
+  },
+  "predictions": [
+    "django/contrib/admin/options.py::ModelAdmin.get_inline_instances",
+    "django/contrib/admin/options.py::ModelAdmin.get_formsets_with_inlines",
+    "django/contrib/admin/checks.py::ModelAdminChecks._check_inlines",
+    "django/contrib/admin/options.py::ModelAdmin.get_inline_formsets",
+    "tests/modeladmin/tests.py::ModelAdminPermissionTests.test_inline_has_add_permission_uses_obj",
+    "tests/modeladmin/test_checks.py::InlinesCheckTests.test_not_iterable",
+    "tests/admin_inlines/tests.py::TestInline.test_no_parent_callable_lookup",
+    "tests/generic_inline_admin/tests.py::GenericInlineModelAdminTest.test_get_formsets_with_inlines_returns_tuples",
+    "tests/modeladmin/test_checks.py::InlinesCheckTests.test_invalid_callable",
+    "tests/modeladmin/test_checks.py::InlinesCheckTests.test_valid_case"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "7d49ad76562e8c0597a0eb66046ab423b12888d8",
+    "total_functions_indexed": 22424,
+    "retrieval_time_seconds": 0.006252288818359375
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/admin/options.py::ModelAdmin.get_inline_instances\", \"score\": 0.7421776056289673}, {\"doc_id\": \"django/contrib/admin/options.py::ModelAdmin.get_formsets_with_inlines\", \"score\": 0.6347898244857788}, {\"doc_id\": \"django/contrib/admin/checks.py::ModelAdminChecks._check_inlines\", \"score\": 0.622244119644165}, {\"doc_id\": \"django/contrib/admin/options.py::ModelAdmin.get_inline_formsets\", \"score\": 0.539467990398407}, {\"doc_id\": \"tests/modeladmin/tests.py::ModelAdminPermissionTests.test_inline_has_add_permission_uses_obj\", \"score\": 0.525071382522583}, {\"doc_id\": \"tests/modeladmin/test_checks.py::InlinesCheckTests.test_not_iterable\", \"score\": 0.5064424276351929}, {\"doc_id\": \"tests/admin_inlines/tests.py::TestInline.test_no_parent_callable_lookup\", \"score\": 0.5019748210906982}, {\"doc_id\": \"tests/generic_inline_admin/tests.py::GenericInlineModelAdminTest.test_get_formsets_with_inlines_returns_tuples\", \"score\": 0.5000045299530029}, {\"doc_id\": \"tests/modeladmin/test_checks.py::InlinesCheckTests.test_invalid_callable\", \"score\": 0.4985351860523224}, {\"doc_id\": \"tests/modeladmin/test_checks.py::InlinesCheckTests.test_valid_case\", \"score\": 0.49337416887283325}]"
+}

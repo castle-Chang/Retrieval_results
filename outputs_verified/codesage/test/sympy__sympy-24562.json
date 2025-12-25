@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-24562",
+  "query": "Rational calc value error\npython 3.11, sympy 1.11.1\r\nwhen calc Rational('0.5', '100'), the value is 1/100100; but Rational(0.5, 100) the value is 1/200, this value is the true value, and the version of sympy 1.8 is normal\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/numbers.py"
+    ],
+    "locations": [
+      "sympy/core/numbers.py::Rational",
+      "sympy/core/numbers.py::Rational.__new__"
+    ]
+  },
+  "predictions": [
+    "sympy/core/tests/test_numbers.py::test_abs1",
+    "sympy/core/tests/test_expr.py::test_SAGE1",
+    "sympy/core/numbers.py::Rational.__abs__",
+    "sympy/core/numbers.py::Rational.__hash__",
+    "sympy/core/numbers.py::Rational._Rrel",
+    "sympy/core/numbers.py::Integer.__eq__",
+    "sympy/core/tests/test_numbers.py::test_int",
+    "sympy/core/tests/test_args.py::test_sympy__core__numbers__Rational",
+    "sympy/polys/tests/test_pythonrational.py::test_PythonRational__float__",
+    "sympy/core/tests/test_numbers.py::test_Rational_int"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "b1cb676cf92dd1a48365b731979833375b188bf2",
+    "total_functions_indexed": 30025,
+    "retrieval_time_seconds": 0.1689774990081787
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/tests/test_numbers.py::test_abs1\", \"score\": 0.4817371368408203}, {\"doc_id\": \"sympy/core/tests/test_expr.py::test_SAGE1\", \"score\": 0.47499650716781616}, {\"doc_id\": \"sympy/core/numbers.py::Rational.__abs__\", \"score\": 0.44998493790626526}, {\"doc_id\": \"sympy/core/numbers.py::Rational.__hash__\", \"score\": 0.4449692666530609}, {\"doc_id\": \"sympy/core/numbers.py::Rational._Rrel\", \"score\": 0.44355350732803345}, {\"doc_id\": \"sympy/core/numbers.py::Integer.__eq__\", \"score\": 0.43835997581481934}, {\"doc_id\": \"sympy/core/tests/test_numbers.py::test_int\", \"score\": 0.4379085600376129}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__core__numbers__Rational\", \"score\": 0.4374479651451111}, {\"doc_id\": \"sympy/polys/tests/test_pythonrational.py::test_PythonRational__float__\", \"score\": 0.436860054731369}, {\"doc_id\": \"sympy/core/tests/test_numbers.py::test_Rational_int\", \"score\": 0.43061596155166626}]"
+}

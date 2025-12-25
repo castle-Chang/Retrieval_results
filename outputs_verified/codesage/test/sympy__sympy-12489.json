@@ -1,0 +1,61 @@
+{
+  "instance_id": "sympy__sympy-12489",
+  "query": "combinatorics.Permutation can't be subclassed properly\nI stumbled across a subclassing issue with `combinatorics.Permutation`:\r\nThe object creation is done in `Permutation.__new__`, but internally the function `_af_new` is used (which itself is a reference to the static method `Permutation._af_new`). This method eventually creates the object calling `Basic.__new__(Perm, perm)` (`Perm` is a reference to `Permutation`).\r\nIn the end, this makes subclassing `Permutation` impossible (besides overriding `Permutation._af_new` as always instances of `Permutation` are returned.\r\n\r\nAn elegant solution would be to stick to Python's instance creation mechanisms, i.e. use classmethods where appropriate (`__new__` is one) and use the mandatory reference to the class (the first argument of a classmethod) the method is called on for instance creation.\r\n\r\nI'm completely new to sympy development and encountered this issue whilst trying to subclass `Permutation`. Therefore I'm not aware of any side effects changing the instance creation probably has. (I monkeypatched it locally and ran the tests, all succeeded.)\r\n\r\nMaybe there is a coherent explanation why the implementation is as it is and should not be changed?\n",
+  "ground_truth": {
+    "files": [
+      "sympy/combinatorics/permutations.py"
+    ],
+    "locations": [
+      "sympy/combinatorics/permutations.py::_af_invert",
+      "sympy/combinatorics/permutations.py::_af_pow",
+      "sympy/combinatorics/permutations.py::_af_commutes_with",
+      "sympy/combinatorics/permutations.py::Cycle",
+      "sympy/combinatorics/permutations.py::Cycle.copy",
+      "sympy/combinatorics/permutations.py::Permutation",
+      "sympy/combinatorics/permutations.py::Permutation.__new__",
+      "sympy/combinatorics/permutations.py::Permutation._af_new",
+      "sympy/combinatorics/permutations.py::Permutation._hashable_content",
+      "sympy/combinatorics/permutations.py::Permutation.__add__",
+      "sympy/combinatorics/permutations.py::Permutation.__sub__",
+      "sympy/combinatorics/permutations.py::Permutation.rmul_with_af",
+      "sympy/combinatorics/permutations.py::Permutation.mul_inv",
+      "sympy/combinatorics/permutations.py::Permutation.__rmul__",
+      "sympy/combinatorics/permutations.py::Permutation.__mul__",
+      "sympy/combinatorics/permutations.py::Permutation.commutes_with",
+      "sympy/combinatorics/permutations.py::Permutation.__pow__",
+      "sympy/combinatorics/permutations.py::Permutation.__rxor__",
+      "sympy/combinatorics/permutations.py::Permutation.transpositions",
+      "sympy/combinatorics/permutations.py::Permutation.__iter__",
+      "sympy/combinatorics/permutations.py::Permutation.unrank_nonlex",
+      "sympy/combinatorics/permutations.py::Permutation.rank_nonlex",
+      "sympy/combinatorics/permutations.py::Permutation.rank",
+      "sympy/combinatorics/permutations.py::Permutation.signature",
+      "sympy/combinatorics/permutations.py::Permutation.unrank_trotterjohnson",
+      "sympy/combinatorics/permutations.py::Permutation.next_trotterjohnson",
+      "sympy/combinatorics/permutations.py::Permutation.get_precedence_matrix",
+      "sympy/combinatorics/permutations.py::Permutation.josephus",
+      "sympy/combinatorics/permutations.py::Permutation.from_inversion_vector",
+      "sympy/combinatorics/permutations.py::Permutation.random",
+      "sympy/combinatorics/permutations.py::Permutation.unrank_lex"
+    ]
+  },
+  "predictions": [
+    "sympy/combinatorics/permutations.py::Permutation._af_new",
+    "sympy/combinatorics/perm_groups.py::PermutationGroup.__new__",
+    "sympy/combinatorics/permutations.py::Permutation.__new__",
+    "sympy/combinatorics/permutations.py::Permutation.__mul__",
+    "sympy/combinatorics/tests/test_permutations.py::test_args",
+    "sympy/combinatorics/tests/test_permutations.py::test_Permutation",
+    "sympy/combinatorics/permutations.py::Permutation.rmul_with_af",
+    "sympy/combinatorics/permutations.py::Permutation.rmul",
+    "sympy/combinatorics/permutations.py::Permutation.__repr__",
+    "sympy/combinatorics/permutations.py::Permutation.random"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "aa9780761ad8c3c0f68beeef3a0ce5caac9e100b",
+    "total_functions_indexed": 20663,
+    "retrieval_time_seconds": 0.0356752872467041
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/combinatorics/permutations.py::Permutation._af_new\", \"score\": 0.5374970436096191}, {\"doc_id\": \"sympy/combinatorics/perm_groups.py::PermutationGroup.__new__\", \"score\": 0.481911838054657}, {\"doc_id\": \"sympy/combinatorics/permutations.py::Permutation.__new__\", \"score\": 0.45249658823013306}, {\"doc_id\": \"sympy/combinatorics/permutations.py::Permutation.__mul__\", \"score\": 0.44280269742012024}, {\"doc_id\": \"sympy/combinatorics/tests/test_permutations.py::test_args\", \"score\": 0.4088834226131439}, {\"doc_id\": \"sympy/combinatorics/tests/test_permutations.py::test_Permutation\", \"score\": 0.38823235034942627}, {\"doc_id\": \"sympy/combinatorics/permutations.py::Permutation.rmul_with_af\", \"score\": 0.386387437582016}, {\"doc_id\": \"sympy/combinatorics/permutations.py::Permutation.rmul\", \"score\": 0.3831978440284729}, {\"doc_id\": \"sympy/combinatorics/permutations.py::Permutation.__repr__\", \"score\": 0.381822794675827}, {\"doc_id\": \"sympy/combinatorics/permutations.py::Permutation.random\", \"score\": 0.3687278628349304}]"
+}

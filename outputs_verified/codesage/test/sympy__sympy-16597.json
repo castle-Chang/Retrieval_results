@@ -1,0 +1,44 @@
+{
+  "instance_id": "sympy__sympy-16597",
+  "query": "a.is_even does not imply a.is_finite\nI'm not sure what the right answer is here:\r\n```julia\r\nIn [1]: m = Symbol('m', even=True)                                                                                                             \r\n\r\nIn [2]: m.is_finite                                                                                                                            \r\n\r\nIn [3]: print(m.is_finite)                                                                                                                     \r\nNone\r\n```\r\nI would expect that a number should be finite before it can be even.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/assumptions.py",
+      "sympy/tensor/indexed.py",
+      "sympy/core/power.py",
+      "sympy/assumptions/ask.py",
+      "sympy/printing/tree.py",
+      "sympy/assumptions/ask_generated.py"
+    ],
+    "locations": [
+      "sympy/assumptions/ask.py::get_known_facts",
+      "sympy/assumptions/ask_generated.py::get_known_facts_cnf",
+      "sympy/assumptions/ask_generated.py::get_known_facts_dict",
+      "sympy/core/power.py::Pow",
+      "sympy/core/power.py::Pow._eval_is_polynomial",
+      "sympy/core/power.py::Pow._eval_is_rational",
+      "sympy/printing/tree.py::print_tree",
+      "sympy/tensor/indexed.py::Idx",
+      "sympy/tensor/indexed.py::Idx.__new__"
+    ]
+  },
+  "predictions": [
+    "sympy/core/tests/test_evalf.py::test_issue_8853",
+    "sympy/core/tests/test_arit.py::test_evenness_in_ternary_integer_product_with_even",
+    "sympy/solvers/tests/test_solveset.py::test__is_finite_with_finite_vars",
+    "sympy/functions/special/tests/test_zeta_functions.py::test_issue_10475",
+    "sympy/core/tests/test_arit.py::test_Pow_is_finite",
+    "sympy/assumptions/handlers/ntheory.py::AskEvenHandler.Expr",
+    "sympy/core/tests/test_arit.py::test_Add_Mul_is_finite",
+    "sympy/core/tests/test_assumptions.py::test_Mul_is_infinite",
+    "sympy/core/tests/test_arit.py::test_Add_is_even_odd",
+    "sympy/assumptions/handlers/calculus.py::AskFiniteHandler.Symbol"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "6fd65310fa3167b9626c38a5487e171ca407d988",
+    "total_functions_indexed": 24908,
+    "retrieval_time_seconds": 0.008387327194213867
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/tests/test_evalf.py::test_issue_8853\", \"score\": 0.4828431010246277}, {\"doc_id\": \"sympy/core/tests/test_arit.py::test_evenness_in_ternary_integer_product_with_even\", \"score\": 0.45094385743141174}, {\"doc_id\": \"sympy/solvers/tests/test_solveset.py::test__is_finite_with_finite_vars\", \"score\": 0.4495004415512085}, {\"doc_id\": \"sympy/functions/special/tests/test_zeta_functions.py::test_issue_10475\", \"score\": 0.4352370500564575}, {\"doc_id\": \"sympy/core/tests/test_arit.py::test_Pow_is_finite\", \"score\": 0.4226076304912567}, {\"doc_id\": \"sympy/assumptions/handlers/ntheory.py::AskEvenHandler.Expr\", \"score\": 0.4141266644001007}, {\"doc_id\": \"sympy/core/tests/test_arit.py::test_Add_Mul_is_finite\", \"score\": 0.4106011390686035}, {\"doc_id\": \"sympy/core/tests/test_assumptions.py::test_Mul_is_infinite\", \"score\": 0.40341436862945557}, {\"doc_id\": \"sympy/core/tests/test_arit.py::test_Add_is_even_odd\", \"score\": 0.4017733931541443}, {\"doc_id\": \"sympy/assumptions/handlers/calculus.py::AskFiniteHandler.Symbol\", \"score\": 0.39594072103500366}]"
+}

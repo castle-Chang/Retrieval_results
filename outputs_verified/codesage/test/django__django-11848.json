@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-11848",
+  "query": "django.utils.http.parse_http_date two digit year check is incorrect\nDescription\n\t \n\t\t(last modified by Ad Timmering)\n\t \nRFC 850 does not mention this, but in RFC 7231 (and there's something similar in RFC 2822), there's the following quote:\nRecipients of a timestamp value in rfc850-date format, which uses a\ntwo-digit year, MUST interpret a timestamp that appears to be more\nthan 50 years in the future as representing the most recent year in\nthe past that had the same last two digits.\nCurrent logic is hard coded to consider 0-69 to be in 2000-2069, and 70-99 to be 1970-1999, instead of comparing versus the current year.\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/http.py"
+    ],
+    "locations": [
+      "django/utils/http.py::parse_http_date"
+    ]
+  },
+  "predictions": [
+    "tests/utils_tests/test_http.py::HttpDateProcessingTests.test_parsing_year_less_than_70",
+    "tests/utils_tests/test_http.py::HttpDateProcessingTests.test_parsing_rfc850",
+    "tests/utils_tests/test_http.py::HttpDateProcessingTests.test_parsing_rfc1123",
+    "tests/utils_tests/test_http.py::HttpDateProcessingTests.test_parsing_asctime",
+    "tests/utils_tests/test_feedgenerator.py::FeedgeneratorTests.test_rfc2822_date_with_timezone",
+    "tests/utils_tests/test_http.py::HttpDateProcessingTests.test_http_date",
+    "tests/utils_tests/test_feedgenerator.py::FeedgeneratorTests.test_rfc2822_date_without_time",
+    "tests/utils_tests/test_feedgenerator.py::FeedgeneratorTests.test_rfc2822_date",
+    "tests/admin_views/tests.py::DateHierarchyTests.assert_non_localized_year",
+    "tests/serializers/tests.py::SerializersTestBase.test_pre_1000ad_date"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "f0adf3b9b7a19cdee05368ff0c0c2d087f011180",
+    "total_functions_indexed": 22862,
+    "retrieval_time_seconds": 0.06629538536071777
+  },
+  "raw_output": "[{\"doc_id\": \"tests/utils_tests/test_http.py::HttpDateProcessingTests.test_parsing_year_less_than_70\", \"score\": 0.4719933271408081}, {\"doc_id\": \"tests/utils_tests/test_http.py::HttpDateProcessingTests.test_parsing_rfc850\", \"score\": 0.4518257677555084}, {\"doc_id\": \"tests/utils_tests/test_http.py::HttpDateProcessingTests.test_parsing_rfc1123\", \"score\": 0.42831870913505554}, {\"doc_id\": \"tests/utils_tests/test_http.py::HttpDateProcessingTests.test_parsing_asctime\", \"score\": 0.3743738532066345}, {\"doc_id\": \"tests/utils_tests/test_feedgenerator.py::FeedgeneratorTests.test_rfc2822_date_with_timezone\", \"score\": 0.3739510178565979}, {\"doc_id\": \"tests/utils_tests/test_http.py::HttpDateProcessingTests.test_http_date\", \"score\": 0.3656521439552307}, {\"doc_id\": \"tests/utils_tests/test_feedgenerator.py::FeedgeneratorTests.test_rfc2822_date_without_time\", \"score\": 0.36325153708457947}, {\"doc_id\": \"tests/utils_tests/test_feedgenerator.py::FeedgeneratorTests.test_rfc2822_date\", \"score\": 0.3617165684700012}, {\"doc_id\": \"tests/admin_views/tests.py::DateHierarchyTests.assert_non_localized_year\", \"score\": 0.34021538496017456}, {\"doc_id\": \"tests/serializers/tests.py::SerializersTestBase.test_pre_1000ad_date\", \"score\": 0.3367263078689575}]"
+}

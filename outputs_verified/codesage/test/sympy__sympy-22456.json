@@ -1,0 +1,38 @@
+{
+  "instance_id": "sympy__sympy-22456",
+  "query": "Argument invariance of codegen.ast String\nCurrently, the `codegen.ast` `String` class does not support argument invariance like:\r\n`expr.func(*expr.args) == expr`, but instead uses the invariance `expr.func(**expr.kwargs()) == expr`.\r\nThe former should hold for any `Basic` subclass, which `String` is.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/codegen/ast.py"
+    ],
+    "locations": [
+      "sympy/codegen/ast.py::Token",
+      "sympy/codegen/ast.py::Token.kwargs",
+      "sympy/codegen/ast.py::BreakToken",
+      "sympy/codegen/ast.py::For",
+      "sympy/codegen/ast.py::For._construct_iterable",
+      "sympy/codegen/ast.py::String",
+      "sympy/codegen/ast.py::String._sympystr",
+      "sympy/codegen/ast.py::QuotedString"
+    ]
+  },
+  "predictions": [
+    "sympy/codegen/ast.py::String._construct_text",
+    "sympy/core/operations.py::AssocOp._has_matcher",
+    "sympy/core/tests/test_expr.py::NonBasic.__mod__",
+    "sympy/utilities/codegen.py::InOutArgument.__init__",
+    "sympy/core/tests/test_expr.py::NonBasic.__rmod__",
+    "sympy/core/relational.py::_Inequality.__new__",
+    "sympy/utilities/codegen.py::InOutArgument.__str__",
+    "sympy/core/tests/test_args.py::test_sympy__codegen__ast__String",
+    "sympy/codegen/cnodes.py::alignof",
+    "sympy/matrices/expressions/inverse.py::Inverse.shape"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "a3475b3f9ac662cd425157dd3bdb93ad7111c090",
+    "total_functions_indexed": 37239,
+    "retrieval_time_seconds": 0.05066537857055664
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/codegen/ast.py::String._construct_text\", \"score\": 0.29323309659957886}, {\"doc_id\": \"sympy/core/operations.py::AssocOp._has_matcher\", \"score\": 0.28327512741088867}, {\"doc_id\": \"sympy/core/tests/test_expr.py::NonBasic.__mod__\", \"score\": 0.27178147435188293}, {\"doc_id\": \"sympy/utilities/codegen.py::InOutArgument.__init__\", \"score\": 0.2679486870765686}, {\"doc_id\": \"sympy/core/tests/test_expr.py::NonBasic.__rmod__\", \"score\": 0.26316240429878235}, {\"doc_id\": \"sympy/core/relational.py::_Inequality.__new__\", \"score\": 0.2611120939254761}, {\"doc_id\": \"sympy/utilities/codegen.py::InOutArgument.__str__\", \"score\": 0.26045119762420654}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__codegen__ast__String\", \"score\": 0.2582648694515228}, {\"doc_id\": \"sympy/codegen/cnodes.py::alignof\", \"score\": 0.2566167712211609}, {\"doc_id\": \"sympy/matrices/expressions/inverse.py::Inverse.shape\", \"score\": 0.2508358061313629}]"
+}

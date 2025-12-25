@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-13821",
+  "query": "Drop support for SQLite < 3.9.0\nDescription\n\t \n\t\t(last modified by Tim Graham)\n\t \nIndexes on expressions (see #26167) and the SQLITE_ENABLE_JSON1 compile-time option are supported on ​SQLite 3.9.0+.\nUbuntu Xenial ships with SQLite 3.11.0 (which will still by supported by Django) and will EOL in April 2021. Debian Jessie ships with 3.8.7 and was EOL June 30, 2020.\nSQLite 3.9.0 was released in October 2015. SQLite version support seems like a similar situation as GEOS libraries which we generally support about 5 years after released.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/backends/sqlite3/base.py"
+    ],
+    "locations": [
+      "django/db/backends/sqlite3/base.py::check_sqlite_version"
+    ]
+  },
+  "predictions": [
+    "django/db/backends/postgresql/features.py::DatabaseFeatures.is_postgresql_11",
+    "django/db/backends/oracle/features.py::DatabaseFeatures.has_json_object_function",
+    "django/db/backends/postgresql/features.py::DatabaseFeatures.is_postgresql_13",
+    "django/db/backends/postgresql/features.py::DatabaseFeatures.is_postgresql_10",
+    "django/db/backends/mysql/features.py::DatabaseFeatures.supports_json_field",
+    "django/db/backends/sqlite3/features.py::DatabaseFeatures.supports_json_field",
+    "django/db/backends/postgresql/features.py::DatabaseFeatures.is_postgresql_12",
+    "django/db/backends/mysql/features.py::DatabaseFeatures.can_introspect_json_field",
+    "django/db/backends/sqlite3/features.py::DatabaseFeatures.supports_atomic_references_rename",
+    "django/contrib/gis/db/backends/mysql/features.py::DatabaseFeatures.supports_geometry_field_unique_index"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "e64c1d8055a3e476122633da141f16b50f0c4a2d",
+    "total_functions_indexed": 24240,
+    "retrieval_time_seconds": 0.07957768440246582
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/backends/postgresql/features.py::DatabaseFeatures.is_postgresql_11\", \"score\": 0.4432455897331238}, {\"doc_id\": \"django/db/backends/oracle/features.py::DatabaseFeatures.has_json_object_function\", \"score\": 0.4364049434661865}, {\"doc_id\": \"django/db/backends/postgresql/features.py::DatabaseFeatures.is_postgresql_13\", \"score\": 0.4277064800262451}, {\"doc_id\": \"django/db/backends/postgresql/features.py::DatabaseFeatures.is_postgresql_10\", \"score\": 0.42652788758277893}, {\"doc_id\": \"django/db/backends/mysql/features.py::DatabaseFeatures.supports_json_field\", \"score\": 0.4254971742630005}, {\"doc_id\": \"django/db/backends/sqlite3/features.py::DatabaseFeatures.supports_json_field\", \"score\": 0.42481285333633423}, {\"doc_id\": \"django/db/backends/postgresql/features.py::DatabaseFeatures.is_postgresql_12\", \"score\": 0.4203835725784302}, {\"doc_id\": \"django/db/backends/mysql/features.py::DatabaseFeatures.can_introspect_json_field\", \"score\": 0.4186277687549591}, {\"doc_id\": \"django/db/backends/sqlite3/features.py::DatabaseFeatures.supports_atomic_references_rename\", \"score\": 0.40101248025894165}, {\"doc_id\": \"django/contrib/gis/db/backends/mysql/features.py::DatabaseFeatures.supports_geometry_field_unique_index\", \"score\": 0.37717825174331665}]"
+}

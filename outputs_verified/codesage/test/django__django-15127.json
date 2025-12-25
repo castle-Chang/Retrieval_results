@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-15127",
+  "query": "LEVEL_TAGS not updated when using @override_settings\nDescription\n\t\nWhen reading messages inside tests, new message tags created using @override_settings is not updated.\nThat causes the django.contrib.messages.storage.base.Message.level_tag property results to be an empty string and not know the new tags.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/messages/apps.py"
+    ],
+    "locations": [
+      "django/contrib/messages/apps.py::MessagesConfig"
+    ]
+  },
+  "predictions": [
+    "tests/messages_tests/base.py::BaseTests.test_custom_tags",
+    "tests/messages_tests/base.py::override_settings_tags.enable",
+    "tests/messages_tests/base.py::BaseTests.test_level_tag",
+    "tests/messages_tests/base.py::override_settings_tags.disable",
+    "tests/messages_tests/base.py::BaseTests.test_tags",
+    "tests/messages_tests/base.py::BaseTests.test_settings_level",
+    "tests/messages_tests/base.py::BaseTests.test_low_level",
+    "tests/messages_tests/base.py::BaseTests.test_default_level",
+    "tests/messages_tests/base.py::BaseTests.setUp",
+    "tests/messages_tests/base.py::BaseTests.test_high_level"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "9a6e2df3a8f01ea761529bec48e5a8dc0ea9575b",
+    "total_functions_indexed": 25306,
+    "retrieval_time_seconds": 0.04195046424865723
+  },
+  "raw_output": "[{\"doc_id\": \"tests/messages_tests/base.py::BaseTests.test_custom_tags\", \"score\": 0.6141886711120605}, {\"doc_id\": \"tests/messages_tests/base.py::override_settings_tags.enable\", \"score\": 0.6082684993743896}, {\"doc_id\": \"tests/messages_tests/base.py::BaseTests.test_level_tag\", \"score\": 0.587127685546875}, {\"doc_id\": \"tests/messages_tests/base.py::override_settings_tags.disable\", \"score\": 0.5823302865028381}, {\"doc_id\": \"tests/messages_tests/base.py::BaseTests.test_tags\", \"score\": 0.561129629611969}, {\"doc_id\": \"tests/messages_tests/base.py::BaseTests.test_settings_level\", \"score\": 0.5449965596199036}, {\"doc_id\": \"tests/messages_tests/base.py::BaseTests.test_low_level\", \"score\": 0.4956052899360657}, {\"doc_id\": \"tests/messages_tests/base.py::BaseTests.test_default_level\", \"score\": 0.4945570230484009}, {\"doc_id\": \"tests/messages_tests/base.py::BaseTests.setUp\", \"score\": 0.49098363518714905}, {\"doc_id\": \"tests/messages_tests/base.py::BaseTests.test_high_level\", \"score\": 0.49066460132598877}]"
+}

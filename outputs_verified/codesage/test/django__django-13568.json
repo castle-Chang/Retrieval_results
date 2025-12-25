@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-13568",
+  "query": "Skip auth.E003 system check for USERNAME_FIELD with total UniqueConstraints.\nDescription\n\t\nDefining a user model like this:\nclass User(AbstractBaseUser):\n\tusername = models.CharField(max_length=30)\n\tUSERNAME_FIELD = \"username\"\n\tclass Meta:\n\t\tconstraints = [UniqueConstraint(fields=[\"username\"], name=\"user_username_unq\")]\nWill trigger auth.E003:\nauth.User: (auth.E003) 'User.username' must be unique because it is named as the 'USERNAME_FIELD'.\nSometimes it’s not preferable to set the field as unique with unique=True as it will create an extra implicit *_like index for CharField and TextField on PostgresSQL. The system check should be extended to check for the presence of USERNAME_FIELD in Model._meta.constraints. Not really sure if this classifies as a bug.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/auth/checks.py"
+    ],
+    "locations": [
+      "django/contrib/auth/checks.py::check_user_model"
+    ]
+  },
+  "predictions": [
+    "tests/auth_tests/test_checks.py::UserModelChecksTests.test_username_non_unique",
+    "tests/schema/tests.py::SchemaTests.test_remove_field_unique_does_not_remove_meta_constraints",
+    "tests/schema/tests.py::SchemaTests.test_alter_field_add_unique_to_charfield",
+    "django/db/models/base.py::Model.unique_error_message",
+    "tests/constraints/tests.py::UniqueConstraintTests.test_eq",
+    "tests/constraints/tests.py::UniqueConstraintTests.test_repr",
+    "tests/auth_tests/test_checks.py::UserModelChecksTests.test_username_not_in_required_fields",
+    "django/db/models/constraints.py::UniqueConstraint.constraint_sql",
+    "tests/schema/tests.py::SchemaTests.test_alter_field_add_unique_to_charfield_with_db_index",
+    "django/db/models/constraints.py::UniqueConstraint.create_sql"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "ede9fac75807fe5810df66280a60e7068cc97e4a",
+    "total_functions_indexed": 23995,
+    "retrieval_time_seconds": 0.04419136047363281
+  },
+  "raw_output": "[{\"doc_id\": \"tests/auth_tests/test_checks.py::UserModelChecksTests.test_username_non_unique\", \"score\": 0.5336427092552185}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_remove_field_unique_does_not_remove_meta_constraints\", \"score\": 0.5047682523727417}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_alter_field_add_unique_to_charfield\", \"score\": 0.4938602149486542}, {\"doc_id\": \"django/db/models/base.py::Model.unique_error_message\", \"score\": 0.48071253299713135}, {\"doc_id\": \"tests/constraints/tests.py::UniqueConstraintTests.test_eq\", \"score\": 0.48033639788627625}, {\"doc_id\": \"tests/constraints/tests.py::UniqueConstraintTests.test_repr\", \"score\": 0.4765411615371704}, {\"doc_id\": \"tests/auth_tests/test_checks.py::UserModelChecksTests.test_username_not_in_required_fields\", \"score\": 0.4744780659675598}, {\"doc_id\": \"django/db/models/constraints.py::UniqueConstraint.constraint_sql\", \"score\": 0.4699394702911377}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_alter_field_add_unique_to_charfield_with_db_index\", \"score\": 0.4680559039115906}, {\"doc_id\": \"django/db/models/constraints.py::UniqueConstraint.create_sql\", \"score\": 0.45861953496932983}]"
+}

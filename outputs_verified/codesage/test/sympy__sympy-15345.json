@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-15345",
+  "query": "mathematica_code gives wrong output with Max\nIf I run the code\r\n\r\n```\r\nx = symbols('x')\r\nmathematica_code(Max(x,2))\r\n```\r\n\r\nthen I would expect the output `'Max[x,2]'` which is valid Mathematica code but instead I get `'Max(2, x)'` which is not valid Mathematica code.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/mathematica.py"
+    ],
+    "locations": [
+      "sympy/printing/mathematica.py::MCodePrinter",
+      "sympy/printing/mathematica.py::MCodePrinter._print_Function",
+      "sympy/printing/mathematica.py::MCodePrinter._print_Integral"
+    ]
+  },
+  "predictions": [
+    "sympy/printing/ccode.py::C89CodePrinter._print_Max",
+    "sympy/printing/ccode.py::C99CodePrinter._print_Max",
+    "sympy/printing/cxxcode.py::_CXXCodePrinterBase._print_Max",
+    "sympy/printing/tests/test_ccode.py::test_ccode_Max",
+    "sympy/printing/tests/test_rcode.py::test_rcode_Max",
+    "sympy/parsing/tests/test_mathematica.py::test_mathematica",
+    "sympy/printing/mathematica.py::MCodePrinter._print_NegativeInfinity",
+    "sympy/printing/mathematica.py::MCodePrinter._print_Infinity",
+    "sympy/core/tests/test_args.py::test_sympy__functions__elementary__miscellaneous__Max",
+    "sympy/parsing/maxima.py::MaximaHelpers.maxima_expand"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "9ef28fba5b4d6d0168237c9c005a550e6dc27d81",
+    "total_functions_indexed": 24081,
+    "retrieval_time_seconds": 0.035959720611572266
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/printing/ccode.py::C89CodePrinter._print_Max\", \"score\": 0.4372883141040802}, {\"doc_id\": \"sympy/printing/ccode.py::C99CodePrinter._print_Max\", \"score\": 0.42517566680908203}, {\"doc_id\": \"sympy/printing/cxxcode.py::_CXXCodePrinterBase._print_Max\", \"score\": 0.41418713331222534}, {\"doc_id\": \"sympy/printing/tests/test_ccode.py::test_ccode_Max\", \"score\": 0.40296071767807007}, {\"doc_id\": \"sympy/printing/tests/test_rcode.py::test_rcode_Max\", \"score\": 0.40017256140708923}, {\"doc_id\": \"sympy/parsing/tests/test_mathematica.py::test_mathematica\", \"score\": 0.38337022066116333}, {\"doc_id\": \"sympy/printing/mathematica.py::MCodePrinter._print_NegativeInfinity\", \"score\": 0.37564486265182495}, {\"doc_id\": \"sympy/printing/mathematica.py::MCodePrinter._print_Infinity\", \"score\": 0.3743633031845093}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__functions__elementary__miscellaneous__Max\", \"score\": 0.3612711429595947}, {\"doc_id\": \"sympy/parsing/maxima.py::MaximaHelpers.maxima_expand\", \"score\": 0.361137330532074}]"
+}

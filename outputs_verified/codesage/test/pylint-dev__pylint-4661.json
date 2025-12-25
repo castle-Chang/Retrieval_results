@@ -1,0 +1,32 @@
+{
+  "instance_id": "pylint-dev__pylint-4661",
+  "query": "Make pylint XDG Base Directory Specification compliant\nI have this really annoying `.pylint.d` directory in my home folder. From what I can tell (I don't do C or C++), this directory is storing data. \r\n\r\nThe problem with this is, quite simply, that data storage has a designated spot. The `$HOME/.local/share/<PROGRAM_NAME>` folder. This is a part of the [XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html). A system that designates the folders for specific things like cached files (`$HOME/.cache/<PROGRAM_NAME>`), configuration files (`$HOME/.config/<PROGRAM_NAME>`), and data files (`$HOME/.local/share/<PROGRAM_NAME>`), among other things. The point is to keep user home directories clean and the user sane. \r\n\r\nThis should be pretty easy to implement. Simply change the variables/constants for where these files are made and stored to the appropriate directory. Simple as that, even for a large codebase (if it was done right). \n",
+  "ground_truth": {
+    "files": [
+      "pylint/config/__init__.py",
+      "setup.cfg"
+    ],
+    "locations": [
+      "pylint/config/__init__.py::_get_pdata_path"
+    ]
+  },
+  "predictions": [
+    "pylint/config/__init__.py::_get_pdata_path",
+    "pylint/__init__.py::modify_sys_path",
+    "tests/lint/unittest_lint.py::test_pylint_home",
+    "pylint/epylint.py::_get_env",
+    "pylint/config/__init__.py::save_results",
+    "tests/lint/unittest_lint.py::tempdir",
+    "pylint/checkers/format.py::FormatChecker.remove_pylint_option_from_lines",
+    "pylint/checkers/imports.py::ImportsChecker._compute_site_packages",
+    "tests/test_self.py::TestRunTC.test_can_list_directories_without_dunder_init",
+    "pylint/config/__init__.py::find_pylintrc"
+  ],
+  "metadata": {
+    "repo": "pylint-dev/pylint",
+    "commit": "1d1619ef913b99b06647d2030bddff4800abdf63",
+    "total_functions_indexed": 4456,
+    "retrieval_time_seconds": 0.0011639595031738281
+  },
+  "raw_output": "[{\"doc_id\": \"pylint/config/__init__.py::_get_pdata_path\", \"score\": 0.36625242233276367}, {\"doc_id\": \"pylint/__init__.py::modify_sys_path\", \"score\": 0.366129070520401}, {\"doc_id\": \"tests/lint/unittest_lint.py::test_pylint_home\", \"score\": 0.35182350873947144}, {\"doc_id\": \"pylint/epylint.py::_get_env\", \"score\": 0.2981516718864441}, {\"doc_id\": \"pylint/config/__init__.py::save_results\", \"score\": 0.2951628863811493}, {\"doc_id\": \"tests/lint/unittest_lint.py::tempdir\", \"score\": 0.2918221950531006}, {\"doc_id\": \"pylint/checkers/format.py::FormatChecker.remove_pylint_option_from_lines\", \"score\": 0.2886638045310974}, {\"doc_id\": \"pylint/checkers/imports.py::ImportsChecker._compute_site_packages\", \"score\": 0.2757735252380371}, {\"doc_id\": \"tests/test_self.py::TestRunTC.test_can_list_directories_without_dunder_init\", \"score\": 0.2733258008956909}, {\"doc_id\": \"pylint/config/__init__.py::find_pylintrc\", \"score\": 0.2730713486671448}]"
+}

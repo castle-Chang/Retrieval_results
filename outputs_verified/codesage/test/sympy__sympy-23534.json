@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-23534",
+  "query": "Using symbols to create functions doesn't work if there is an extra layer of parentheses\nSympy version == 1.10.1\r\n\r\nUsing `symbols` to create symbol-like objects like instances of `Function` as shown in the [documentation](https://docs.sympy.org/latest/modules/core.html?highlight=symbols#symbols) creates objects of class `Symbol` instead of `Function` if there is an extra layer of parentheses.\r\n\r\nThe extra layer of parentheses are necessary to deconstruct the output as separate tuples.\r\n\r\nRunning the code:\r\n```\r\nq, u = smp.symbols(('q:2', 'u:2'), cls=smp.Function)\r\nprint(type(q[0]))\r\n```\r\n#### Expected result:\r\n<class 'sympy.core.function.UndefinedFunction'>\r\n\r\n#### Actual result: \r\n<class 'sympy.core.symbol.Symbol'>\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/symbol.py"
+    ],
+    "locations": [
+      "sympy/core/symbol.py::symbols"
+    ]
+  },
+  "predictions": [
+    "sympy/core/symbol.py::Symbol.__xnew_cached_",
+    "sympy/core/symbol.py::Symbol.__getnewargs_ex__",
+    "sympy/core/symbol.py::Symbol.__new__",
+    "sympy/physics/vector/functions.py::dynamicsymbols",
+    "sympy/core/symbol.py::Wild.__xnew__",
+    "sympy/core/symbol.py::Symbol.free_symbols",
+    "sympy/core/function.py::FunctionClass.free_symbols",
+    "sympy/polys/polyoptions.py::Symbols.preprocess",
+    "sympy/core/symbol.py::Symbol.as_set",
+    "sympy/core/symbol.py::_symbol"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "832c24fec1046eaa544a4cab4c69e3af3e651759",
+    "total_functions_indexed": 37820,
+    "retrieval_time_seconds": 0.10691952705383301
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/symbol.py::Symbol.__xnew_cached_\", \"score\": 0.42191800475120544}, {\"doc_id\": \"sympy/core/symbol.py::Symbol.__getnewargs_ex__\", \"score\": 0.40954703092575073}, {\"doc_id\": \"sympy/core/symbol.py::Symbol.__new__\", \"score\": 0.4013105034828186}, {\"doc_id\": \"sympy/physics/vector/functions.py::dynamicsymbols\", \"score\": 0.399686336517334}, {\"doc_id\": \"sympy/core/symbol.py::Wild.__xnew__\", \"score\": 0.39892253279685974}, {\"doc_id\": \"sympy/core/symbol.py::Symbol.free_symbols\", \"score\": 0.39246028661727905}, {\"doc_id\": \"sympy/core/function.py::FunctionClass.free_symbols\", \"score\": 0.3837927579879761}, {\"doc_id\": \"sympy/polys/polyoptions.py::Symbols.preprocess\", \"score\": 0.38072842359542847}, {\"doc_id\": \"sympy/core/symbol.py::Symbol.as_set\", \"score\": 0.37996721267700195}, {\"doc_id\": \"sympy/core/symbol.py::_symbol\", \"score\": 0.37506628036499023}]"
+}

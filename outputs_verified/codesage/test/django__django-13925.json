@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-13925",
+  "query": "models.W042 is raised on inherited manually specified primary key.\nDescription\n\t\nI have models which inherit from other models, and they should inherit the primary key. This works fine with Django 3.1. However, if I install Django 3.2 alpha, when I run make_migrations I get the following error messages:\nSystem check identified some issues:\nWARNINGS:\naccounts.ReservedUsername: (models.W042) Auto-created primary key used when not defining a primary key type, by default 'django.db.models.AutoField'.\n\t\tHINT: Configure the DEFAULT_AUTO_FIELD setting or the SpeedyCoreAccountsConfig.default_auto_field attribute to point to a subclass of AutoField, e.g. 'django.db.models.BigAutoField'.\naccounts.User: (models.W042) Auto-created primary key used when not defining a primary key type, by default 'django.db.models.AutoField'.\n\t\tHINT: Configure the DEFAULT_AUTO_FIELD setting or the SpeedyCoreAccountsConfig.default_auto_field attribute to point to a subclass of AutoField, e.g. 'django.db.models.BigAutoField'.\nblocks.Block: (models.W042) Auto-created primary key used when not defining a primary key type, by default 'django.db.models.AutoField'.\n\t\tHINT: Configure the DEFAULT_AUTO_FIELD setting or the AppConfig.default_auto_field attribute to point to a subclass of AutoField, e.g. 'django.db.models.BigAutoField'.\ncontact_by_form.Feedback: (models.W042) Auto-created primary key used when not defining a primary key type, by default 'django.db.models.AutoField'.\n\t\tHINT: Configure the DEFAULT_AUTO_FIELD setting or the SpeedyCoreContactByFormConfig.default_auto_field attribute to point to a subclass of AutoField, e.g. 'django.db.models.BigAutoField'.\ncore_messages.ReadMark: (models.W042) Auto-created primary key used when not defining a primary key type, by default 'django.db.models.AutoField'.\n\t\tHINT: Configure the DEFAULT_AUTO_FIELD setting or the SpeedyCoreMessagesConfig.default_auto_field attribute to point to a subclass of AutoField, e.g. 'django.db.models.BigAutoField'.\nfriendship.Block: (models.W042) Auto-created primary key used when not defining a primary key type, by default 'django.db.models.AutoField'.\n\t\tHINT: Configure the DEFAULT_AUTO_FIELD setting or the AppConfig.default_auto_field attribute to point to a subclass of AutoField, e.g. 'django.db.models.BigAutoField'.\nfriendship.Follow: (models.W042) Auto-created primary key used when not defining a primary key type, by default 'django.db.models.AutoField'.\n\t\tHINT: Configure the DEFAULT_AUTO_FIELD setting or the AppConfig.default_auto_field attribute to point to a subclass of AutoField, e.g. 'django.db.models.BigAutoField'.\nfriendship.Friend: (models.W042) Auto-created primary key used when not defining a primary key type, by default 'django.db.models.AutoField'.\n\t\tHINT: Configure the DEFAULT_AUTO_FIELD setting or the AppConfig.default_auto_field attribute to point to a subclass of AutoField, e.g. 'django.db.models.BigAutoField'.\nfriendship.FriendshipRequest: (models.W042) Auto-created primary key used when not defining a primary key type, by default 'django.db.models.AutoField'.\n\t\tHINT: Configure the DEFAULT_AUTO_FIELD setting or the AppConfig.default_auto_field attribute to point to a subclass of AutoField, e.g. 'django.db.models.BigAutoField'.\nlikes.UserLike: (models.W042) Auto-created primary key used when not defining a primary key type, by default 'django.db.models.AutoField'.\n\t\tHINT: Configure the DEFAULT_AUTO_FIELD setting or the AppConfig.default_auto_field attribute to point to a subclass of AutoField, e.g. 'django.db.models.BigAutoField'.\nuploads.Image: (models.W042) Auto-created primary key used when not defining a primary key type, by default 'django.db.models.AutoField'.\n\t\tHINT: Configure the DEFAULT_AUTO_FIELD setting or the AppConfig.default_auto_field attribute to point to a subclass of AutoField, e.g. 'django.db.models.BigAutoField'.\nThese models should not use auto-created primary keys! I already defined the primary key in the ancestor of the model. For example class Entity which class User inherits from. It looks to me like a bug in Django 3.2 alpha.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/base.py"
+    ],
+    "locations": [
+      "django/db/models/base.py::Model",
+      "django/db/models/base.py::Model._check_default_pk"
+    ]
+  },
+  "predictions": [
+    "django/db/models/fields/__init__.py::AutoFieldMixin.contribute_to_class",
+    "django/db/models/fields/__init__.py::AutoField.get_internal_type",
+    "django/db/models/options.py::Options._get_default_pk_class",
+    "django/db/models/fields/__init__.py::AutoFieldMeta._subclasses",
+    "django/db/models/fields/__init__.py::AutoFieldMeta.__instancecheck__",
+    "django/apps/config.py::AppConfig._is_default_auto_field_overridden",
+    "django/db/models/fields/__init__.py::SmallAutoField.get_internal_type",
+    "django/db/models/fields/__init__.py::AutoFieldMixin.validate",
+    "django/db/models/fields/__init__.py::AutoFieldMixin.formfield",
+    "tests/custom_pk/fields.py::MyAutoField.to_python"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "0c42cdf0d2422f4c080e93594d5d15381d6e955e",
+    "total_functions_indexed": 24238,
+    "retrieval_time_seconds": 0.006903886795043945
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/fields/__init__.py::AutoFieldMixin.contribute_to_class\", \"score\": 0.5563790798187256}, {\"doc_id\": \"django/db/models/fields/__init__.py::AutoField.get_internal_type\", \"score\": 0.5220453143119812}, {\"doc_id\": \"django/db/models/options.py::Options._get_default_pk_class\", \"score\": 0.5024327039718628}, {\"doc_id\": \"django/db/models/fields/__init__.py::AutoFieldMeta._subclasses\", \"score\": 0.49833834171295166}, {\"doc_id\": \"django/db/models/fields/__init__.py::AutoFieldMeta.__instancecheck__\", \"score\": 0.4715791344642639}, {\"doc_id\": \"django/apps/config.py::AppConfig._is_default_auto_field_overridden\", \"score\": 0.4706159830093384}, {\"doc_id\": \"django/db/models/fields/__init__.py::SmallAutoField.get_internal_type\", \"score\": 0.46875202655792236}, {\"doc_id\": \"django/db/models/fields/__init__.py::AutoFieldMixin.validate\", \"score\": 0.4672236442565918}, {\"doc_id\": \"django/db/models/fields/__init__.py::AutoFieldMixin.formfield\", \"score\": 0.462640643119812}, {\"doc_id\": \"tests/custom_pk/fields.py::MyAutoField.to_python\", \"score\": 0.46193358302116394}]"
+}

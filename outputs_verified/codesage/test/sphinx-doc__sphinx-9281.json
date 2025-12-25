@@ -1,0 +1,31 @@
+{
+  "instance_id": "sphinx-doc__sphinx-9281",
+  "query": "Python Enum values (used to show default values in function signatures) are rendered ugly.\nPython Enum values (used to show default values in function signatures) are rendered ugly.\r\n\r\n**To Reproduce**\r\n\r\nI made a minimal example to show the issue:\r\n\r\nhttps://github.com/sidneycadot/sphinx_issue_ugly_enum\r\n\r\n```\r\n$ git clone git@github.com:sidneycadot/sphinx_issue_ugly_enum.git\r\n$ cd sphinx_issue_ugly_enum/\r\n$ make html\r\n$ firefox build/html/index.html \r\n```\r\n\r\n**Expected behavior**\r\n\r\nI would hope the signature rendered as:\r\n\r\n    ugly_enum_func(e: ugly_enum.MyEnum = MyEnum.ValueA) → None\r\n\r\nUnfortunately, it renders as:\r\n\r\n    ugly_enum_func(e: ugly_enum.MyEnum = <MyEnum.ValueA: 10>) → None\r\n\r\n**Environment info**\r\n\r\n- Python version: 3.9.5\r\n- Sphinx version: 4.0.2\r\n- Sphinx extensions: autodoc\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/util/inspect.py"
+    ],
+    "locations": [
+      "sphinx/util/inspect.py::object_description"
+    ]
+  },
+  "predictions": [
+    "sphinx/domains/cpp.py::ASTEnum.__init__",
+    "sphinx/domains/c.py::ASTEnum.__init__",
+    "tests/roots/test-ext-autodoc/target/enums.py::EnumCls.say_hello",
+    "tests/roots/test-ext-autodoc/target/enums.py::EnumCls.say_goodbye",
+    "doc/development/tutorials/examples/autodoc_intenum.py::IntEnumDocumenter.add_content",
+    "doc/development/tutorials/examples/autodoc_intenum.py::IntEnumDocumenter.can_document_member",
+    "sphinx/domains/cpp.py::ASTEnum.describe_signature",
+    "tests/test_ext_autodoc.py::test_enum_class",
+    "sphinx/util/inspect.py::isenumattribute",
+    "sphinx/domains/c.py::ASTEnum._stringify"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "8ec06e9a1bd862cd713b9db748e039ccc7b3e15b",
+    "total_functions_indexed": 5725,
+    "retrieval_time_seconds": 0.09167718887329102
+  },
+  "raw_output": "[{\"doc_id\": \"sphinx/domains/cpp.py::ASTEnum.__init__\", \"score\": 0.39944663643836975}, {\"doc_id\": \"sphinx/domains/c.py::ASTEnum.__init__\", \"score\": 0.3955379128456116}, {\"doc_id\": \"tests/roots/test-ext-autodoc/target/enums.py::EnumCls.say_hello\", \"score\": 0.38007405400276184}, {\"doc_id\": \"tests/roots/test-ext-autodoc/target/enums.py::EnumCls.say_goodbye\", \"score\": 0.3792341649532318}, {\"doc_id\": \"doc/development/tutorials/examples/autodoc_intenum.py::IntEnumDocumenter.add_content\", \"score\": 0.3699917793273926}, {\"doc_id\": \"doc/development/tutorials/examples/autodoc_intenum.py::IntEnumDocumenter.can_document_member\", \"score\": 0.3594732880592346}, {\"doc_id\": \"sphinx/domains/cpp.py::ASTEnum.describe_signature\", \"score\": 0.35798147320747375}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_enum_class\", \"score\": 0.35231831669807434}, {\"doc_id\": \"sphinx/util/inspect.py::isenumattribute\", \"score\": 0.3508317172527313}, {\"doc_id\": \"sphinx/domains/c.py::ASTEnum._stringify\", \"score\": 0.3483494818210602}]"
+}

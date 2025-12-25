@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-16485",
+  "query": "floatformat() crashes on \"0.00\".\nDescription\n\t\nfrom decimal import Decimal\nfrom django.template.defaultfilters import floatformat\nfloatformat('0.00', 0)\nfloatformat(Decimal('0.00'), 0)\nBoth throw ValueError: valid range for prec is [1, MAX_PREC]\n",
+  "ground_truth": {
+    "files": [
+      "django/template/defaultfilters.py"
+    ],
+    "locations": [
+      "django/template/defaultfilters.py::floatformat"
+    ]
+  },
+  "predictions": [
+    "tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_low_decimal_precision",
+    "django/db/models/fields/__init__.py::DecimalField.context",
+    "django/db/backends/utils.py::format_number",
+    "django/core/validators.py::DecimalValidator.__init__",
+    "django/core/validators.py::DecimalValidator.__eq__",
+    "tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_negative_zero_values",
+    "django/template/defaultfilters.py::floatformat",
+    "django/forms/fields.py::DecimalField.to_python",
+    "django/db/models/fields/__init__.py::DecimalField.formfield",
+    "django/db/models/fields/__init__.py::DecimalField.__init__"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "39f83765e12b0e5d260b7939fc3fe281d879b279",
+    "total_functions_indexed": 26327,
+    "retrieval_time_seconds": 0.09596848487854004
+  },
+  "raw_output": "[{\"doc_id\": \"tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_low_decimal_precision\", \"score\": 0.5541631579399109}, {\"doc_id\": \"django/db/models/fields/__init__.py::DecimalField.context\", \"score\": 0.4818705916404724}, {\"doc_id\": \"django/db/backends/utils.py::format_number\", \"score\": 0.45936959981918335}, {\"doc_id\": \"django/core/validators.py::DecimalValidator.__init__\", \"score\": 0.4574616551399231}, {\"doc_id\": \"django/core/validators.py::DecimalValidator.__eq__\", \"score\": 0.44437387585639954}, {\"doc_id\": \"tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_negative_zero_values\", \"score\": 0.44334766268730164}, {\"doc_id\": \"django/template/defaultfilters.py::floatformat\", \"score\": 0.4429210126399994}, {\"doc_id\": \"django/forms/fields.py::DecimalField.to_python\", \"score\": 0.4321446418762207}, {\"doc_id\": \"django/db/models/fields/__init__.py::DecimalField.formfield\", \"score\": 0.4288439452648163}, {\"doc_id\": \"django/db/models/fields/__init__.py::DecimalField.__init__\", \"score\": 0.42694997787475586}]"
+}

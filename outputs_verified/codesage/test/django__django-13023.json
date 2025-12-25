@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-13023",
+  "query": "DecimalField.to_python() raises TypeError on dict values.\nDescription\n\t\nA call to DecimalField.to_python() with a dictionary as the value parameter produces TypeError instead of ValidationError. This is a problem, for example, when you try to save a model object, and a decimal field got set to a dictionary by mistake. The TypeError exception that comes back makes it hard to track the problem to the field if the object has a lot of fields.\nI am proposing a patch to fix it:\n​https://github.com/django/django/pull/13023\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/__init__.py"
+    ],
+    "locations": [
+      "django/db/models/fields/__init__.py::DecimalField",
+      "django/db/models/fields/__init__.py::DecimalField.to_python"
+    ]
+  },
+  "predictions": [
+    "tests/model_fields/test_decimalfield.py::DecimalFieldTests.test_to_python",
+    "django/db/models/fields/__init__.py::DecimalField.get_prep_value",
+    "django/db/models/fields/__init__.py::Field.to_python",
+    "django/db/models/fields/__init__.py::DecimalField.to_python",
+    "django/db/models/fields/__init__.py::DecimalField.get_db_prep_save",
+    "django/db/models/fields/__init__.py::Field.clean",
+    "tests/model_fields/test_uuid.py::TestMethods.test_to_python_int_too_large",
+    "django/forms/fields.py::Field.clean",
+    "tests/invalid_models_tests/test_ordinary_fields.py::DecimalFieldTests.test_required_attributes",
+    "tests/validation/test_error_messages.py::ValidationMessagesTest.test_decimal_field_raises_error_message"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "f83b44075dafa429d59e8755aa47e15577cc49f9",
+    "total_functions_indexed": 23532,
+    "retrieval_time_seconds": 0.013100147247314453
+  },
+  "raw_output": "[{\"doc_id\": \"tests/model_fields/test_decimalfield.py::DecimalFieldTests.test_to_python\", \"score\": 0.6151015758514404}, {\"doc_id\": \"django/db/models/fields/__init__.py::DecimalField.get_prep_value\", \"score\": 0.5799379944801331}, {\"doc_id\": \"django/db/models/fields/__init__.py::Field.to_python\", \"score\": 0.5562198162078857}, {\"doc_id\": \"django/db/models/fields/__init__.py::DecimalField.to_python\", \"score\": 0.5226643681526184}, {\"doc_id\": \"django/db/models/fields/__init__.py::DecimalField.get_db_prep_save\", \"score\": 0.5110594034194946}, {\"doc_id\": \"django/db/models/fields/__init__.py::Field.clean\", \"score\": 0.4852455258369446}, {\"doc_id\": \"tests/model_fields/test_uuid.py::TestMethods.test_to_python_int_too_large\", \"score\": 0.484526664018631}, {\"doc_id\": \"django/forms/fields.py::Field.clean\", \"score\": 0.46258416771888733}, {\"doc_id\": \"tests/invalid_models_tests/test_ordinary_fields.py::DecimalFieldTests.test_required_attributes\", \"score\": 0.4583926200866699}, {\"doc_id\": \"tests/validation/test_error_messages.py::ValidationMessagesTest.test_decimal_field_raises_error_message\", \"score\": 0.45250236988067627}]"
+}

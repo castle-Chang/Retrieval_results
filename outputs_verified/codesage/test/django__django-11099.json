@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11099",
+  "query": "UsernameValidator allows trailing newline in usernames\nDescription\n\t\nASCIIUsernameValidator and UnicodeUsernameValidator use the regex \nr'^[\\w.@+-]+$'\nThe intent is to only allow alphanumeric characters as well as ., @, +, and -. However, a little known quirk of Python regexes is that $ will also match a trailing newline. Therefore, the user name validators will accept usernames which end with a newline. You can avoid this behavior by instead using \\A and \\Z to terminate regexes. For example, the validator regex could be changed to\nr'\\A[\\w.@+-]+\\Z'\nin order to reject usernames that end with a newline.\nI am not sure how to officially post a patch, but the required change is trivial - using the regex above in the two validators in contrib.auth.validators.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/auth/validators.py"
+    ],
+    "locations": [
+      "django/contrib/auth/validators.py::ASCIIUsernameValidator",
+      "django/contrib/auth/validators.py::UnicodeUsernameValidator"
+    ]
+  },
+  "predictions": [
+    "tests/auth_tests/test_validators.py::UsernameValidatorsTests.test_unicode_validator",
+    "tests/auth_tests/test_validators.py::UsernameValidatorsTests.test_ascii_validator",
+    "django/contrib/auth/forms.py::UsernameField.to_python",
+    "django/core/validators.py::EmailValidator.__call__",
+    "tests/auth_tests/test_basic.py::BasicTestCase.test_unicode_username",
+    "django/core/validators.py::ProhibitNullCharactersValidator.__call__",
+    "tests/validators/tests.py::TestValidatorEquality.test_regex_equality_nocache",
+    "tests/auth_tests/test_forms.py::UserCreationFormTest.test_duplicate_normalized_unicode",
+    "django/core/validators.py::ProhibitNullCharactersValidator.__eq__",
+    "tests/validators/tests.py::TestValidatorEquality.test_prohibit_null_characters_validator_equality"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "d26b2424437dabeeca94d7900b37d2df4410da0c",
+    "total_functions_indexed": 22382,
+    "retrieval_time_seconds": 0.007391929626464844
+  },
+  "raw_output": "[{\"doc_id\": \"tests/auth_tests/test_validators.py::UsernameValidatorsTests.test_unicode_validator\", \"score\": 0.5634239912033081}, {\"doc_id\": \"tests/auth_tests/test_validators.py::UsernameValidatorsTests.test_ascii_validator\", \"score\": 0.5533331036567688}, {\"doc_id\": \"django/contrib/auth/forms.py::UsernameField.to_python\", \"score\": 0.3635600209236145}, {\"doc_id\": \"django/core/validators.py::EmailValidator.__call__\", \"score\": 0.3372073769569397}, {\"doc_id\": \"tests/auth_tests/test_basic.py::BasicTestCase.test_unicode_username\", \"score\": 0.3038594722747803}, {\"doc_id\": \"django/core/validators.py::ProhibitNullCharactersValidator.__call__\", \"score\": 0.303417831659317}, {\"doc_id\": \"tests/validators/tests.py::TestValidatorEquality.test_regex_equality_nocache\", \"score\": 0.29342857003211975}, {\"doc_id\": \"tests/auth_tests/test_forms.py::UserCreationFormTest.test_duplicate_normalized_unicode\", \"score\": 0.2870016098022461}, {\"doc_id\": \"django/core/validators.py::ProhibitNullCharactersValidator.__eq__\", \"score\": 0.2844277620315552}, {\"doc_id\": \"tests/validators/tests.py::TestValidatorEquality.test_prohibit_null_characters_validator_equality\", \"score\": 0.2750297784805298}]"
+}

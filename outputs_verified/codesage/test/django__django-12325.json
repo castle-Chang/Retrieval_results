@@ -1,0 +1,35 @@
+{
+  "instance_id": "django__django-12325",
+  "query": "pk setup for MTI to parent get confused by multiple OneToOne references.\nDescription\n\t\nclass Document(models.Model):\n\tpass\nclass Picking(Document):\n\tdocument_ptr = models.OneToOneField(Document, on_delete=models.CASCADE, parent_link=True, related_name='+')\n\torigin = models.OneToOneField(Document, related_name='picking', on_delete=models.PROTECT)\nproduces django.core.exceptions.ImproperlyConfigured: Add parent_link=True to appname.Picking.origin.\nclass Picking(Document):\n\torigin = models.OneToOneField(Document, related_name='picking', on_delete=models.PROTECT)\n\tdocument_ptr = models.OneToOneField(Document, on_delete=models.CASCADE, parent_link=True, related_name='+')\nWorks\nFirst issue is that order seems to matter?\nEven if ordering is required \"by design\"(It shouldn't be we have explicit parent_link marker) shouldn't it look from top to bottom like it does with managers and other things?\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/options.py",
+      "django/db/models/base.py"
+    ],
+    "locations": [
+      "django/db/models/base.py::ModelBase",
+      "django/db/models/base.py::ModelBase.__new__",
+      "django/db/models/options.py::Options",
+      "django/db/models/options.py::Options._prepare"
+    ]
+  },
+  "predictions": [
+    "django/db/models/base.py::Model._set_pk_val",
+    "tests/select_related_onetoone/models.py::Parent1.__str__",
+    "tests/select_related_onetoone/models.py::Parent2.__str__",
+    "tests/model_inheritance_regress/tests.py::ModelInheritanceTest.test_use_explicit_o2o_to_parent_as_pk",
+    "tests/model_inheritance/tests.py::ModelInheritanceDataTests.test_parent_child_one_to_one_link",
+    "tests/model_inheritance_regress/tests.py::ModelInheritanceTest.test_use_explicit_o2o_to_parent_from_abstract_model",
+    "tests/serializers/models/multi_table.py::ParentManager.get_by_natural_key",
+    "django/db/models/options.py::Options._prepare",
+    "tests/serializers/models/multi_table.py::Parent.natural_key",
+    "tests/admin_utils/tests.py::NestedObjectsTests._connect"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "29c126bb349526b5f1cd78facbe9f25906f18563",
+    "total_functions_indexed": 23161,
+    "retrieval_time_seconds": 0.035193681716918945
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/base.py::Model._set_pk_val\", \"score\": 0.5208640098571777}, {\"doc_id\": \"tests/select_related_onetoone/models.py::Parent1.__str__\", \"score\": 0.4606133699417114}, {\"doc_id\": \"tests/select_related_onetoone/models.py::Parent2.__str__\", \"score\": 0.4467669129371643}, {\"doc_id\": \"tests/model_inheritance_regress/tests.py::ModelInheritanceTest.test_use_explicit_o2o_to_parent_as_pk\", \"score\": 0.44001248478889465}, {\"doc_id\": \"tests/model_inheritance/tests.py::ModelInheritanceDataTests.test_parent_child_one_to_one_link\", \"score\": 0.43331995606422424}, {\"doc_id\": \"tests/model_inheritance_regress/tests.py::ModelInheritanceTest.test_use_explicit_o2o_to_parent_from_abstract_model\", \"score\": 0.4313364028930664}, {\"doc_id\": \"tests/serializers/models/multi_table.py::ParentManager.get_by_natural_key\", \"score\": 0.42769283056259155}, {\"doc_id\": \"django/db/models/options.py::Options._prepare\", \"score\": 0.4185382127761841}, {\"doc_id\": \"tests/serializers/models/multi_table.py::Parent.natural_key\", \"score\": 0.41662442684173584}, {\"doc_id\": \"tests/admin_utils/tests.py::NestedObjectsTests._connect\", \"score\": 0.4158787429332733}]"
+}

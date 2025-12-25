@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-16642",
+  "query": "Improper guessing of Mime Type for \"br\" and \"Z\" file types\nDescription\n\t\nBelow FileResponse will set the content type as text/html, even if the last file extension is \"Z' or \"br\".\nFileResponse(open('test.html.Z', 'rb'))\nFileResponse(open('test.html.br', 'rb'))\n",
+  "ground_truth": {
+    "files": [
+      "django/http/response.py"
+    ],
+    "locations": [
+      "django/http/response.py::FileResponse",
+      "django/http/response.py::FileResponse.set_headers"
+    ]
+  },
+  "predictions": [
+    "tests/responses/test_fileresponse.py::FileResponseTests.test_content_type_buffer_explicit_default",
+    "tests/responses/test_fileresponse.py::FileResponseTests.test_content_type_buffer_named",
+    "django/http/response.py::FileResponse.__init__",
+    "tests/responses/test_fileresponse.py::FileResponseTests.test_content_type_buffer_explicit",
+    "tests/responses/test_fileresponse.py::FileResponseTests.test_compressed_response",
+    "tests/responses/test_fileresponse.py::FileResponseTests.test_content_type_buffer",
+    "tests/responses/test_fileresponse.py::FileResponseTests.test_unicode_attachment",
+    "tests/responses/test_fileresponse.py::FileResponseTests.test_content_type_file",
+    "tests/responses/test_fileresponse.py::FileResponseTests.test_buffer_explicit_absolute_filename",
+    "tests/responses/test_fileresponse.py::FileResponseTests.test_content_disposition_file"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "fbe850106b2e4b85f838219cb9e1df95fba6c164",
+    "total_functions_indexed": 26464,
+    "retrieval_time_seconds": 0.008189201354980469
+  },
+  "raw_output": "[{\"doc_id\": \"tests/responses/test_fileresponse.py::FileResponseTests.test_content_type_buffer_explicit_default\", \"score\": 0.36590713262557983}, {\"doc_id\": \"tests/responses/test_fileresponse.py::FileResponseTests.test_content_type_buffer_named\", \"score\": 0.33668631315231323}, {\"doc_id\": \"django/http/response.py::FileResponse.__init__\", \"score\": 0.3275364637374878}, {\"doc_id\": \"tests/responses/test_fileresponse.py::FileResponseTests.test_content_type_buffer_explicit\", \"score\": 0.31512919068336487}, {\"doc_id\": \"tests/responses/test_fileresponse.py::FileResponseTests.test_compressed_response\", \"score\": 0.31495094299316406}, {\"doc_id\": \"tests/responses/test_fileresponse.py::FileResponseTests.test_content_type_buffer\", \"score\": 0.31355804204940796}, {\"doc_id\": \"tests/responses/test_fileresponse.py::FileResponseTests.test_unicode_attachment\", \"score\": 0.30420270562171936}, {\"doc_id\": \"tests/responses/test_fileresponse.py::FileResponseTests.test_content_type_file\", \"score\": 0.2851421535015106}, {\"doc_id\": \"tests/responses/test_fileresponse.py::FileResponseTests.test_buffer_explicit_absolute_filename\", \"score\": 0.27498313784599304}, {\"doc_id\": \"tests/responses/test_fileresponse.py::FileResponseTests.test_content_disposition_file\", \"score\": 0.2589338421821594}]"
+}

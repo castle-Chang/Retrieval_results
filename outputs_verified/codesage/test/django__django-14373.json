@@ -1,0 +1,34 @@
+{
+  "instance_id": "django__django-14373",
+  "query": "DateFormat.Y() is not zero-padded.\nDescription\n\t\nThe Y specifier for django.utils.dateformat.DateFormat is supposed to always return a four-digit year padded with zeros. This doesn't seem to be the case for year < 1000.\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/dateformat.py"
+    ],
+    "locations": [
+      "django/utils/dateformat.py::DateFormat",
+      "django/utils/dateformat.py::DateFormat.y",
+      "django/utils/dateformat.py::DateFormat.Y",
+      "django/utils/dateformat.py::DateFormat.z"
+    ]
+  },
+  "predictions": [
+    "django/utils/dateformat.py::DateFormat.y",
+    "django/utils/dateformat.py::DateFormat.Y",
+    "django/views/generic/dates.py::YearMixin.get_year_format",
+    "django/views/generic/dates.py::YearMixin.get_next_year",
+    "django/views/generic/dates.py::YearMixin.get_previous_year",
+    "django/views/generic/dates.py::YearMixin.get_year",
+    "django/utils/dateformat.py::DateFormat.z",
+    "django/utils/dateformat.py::DateFormat.n",
+    "django/utils/datetime_safe.py::strftime",
+    "django/utils/dateformat.py::DateFormat.j"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "b1a4b1f0bdf05adbd3dc4dde14228e68da54c1a3",
+    "total_functions_indexed": 24558,
+    "retrieval_time_seconds": 0.0224151611328125
+  },
+  "raw_output": "[{\"doc_id\": \"django/utils/dateformat.py::DateFormat.y\", \"score\": 0.4915229082107544}, {\"doc_id\": \"django/utils/dateformat.py::DateFormat.Y\", \"score\": 0.4736838936805725}, {\"doc_id\": \"django/views/generic/dates.py::YearMixin.get_year_format\", \"score\": 0.355582594871521}, {\"doc_id\": \"django/views/generic/dates.py::YearMixin.get_next_year\", \"score\": 0.3533586263656616}, {\"doc_id\": \"django/views/generic/dates.py::YearMixin.get_previous_year\", \"score\": 0.3391530513763428}, {\"doc_id\": \"django/views/generic/dates.py::YearMixin.get_year\", \"score\": 0.3328806757926941}, {\"doc_id\": \"django/utils/dateformat.py::DateFormat.z\", \"score\": 0.32821035385131836}, {\"doc_id\": \"django/utils/dateformat.py::DateFormat.n\", \"score\": 0.3082398772239685}, {\"doc_id\": \"django/utils/datetime_safe.py::strftime\", \"score\": 0.301970899105072}, {\"doc_id\": \"django/utils/dateformat.py::DateFormat.j\", \"score\": 0.30007171630859375}]"
+}

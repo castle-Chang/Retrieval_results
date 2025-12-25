@@ -1,0 +1,33 @@
+{
+  "instance_id": "pylint-dev__pylint-4604",
+  "query": "unused-import false positive for a module used in a type comment\n### Steps to reproduce\r\n\r\n```python\r\n\"\"\"Docstring.\"\"\"\r\n\r\nimport abc\r\nfrom abc import ABC\r\n\r\nX = ...  # type: abc.ABC\r\nY = ...  # type: ABC\r\n```\r\n\r\n### Current behavior\r\n\r\n```\r\n************* Module a\r\n/tmp/a.py:3:0: W0611: Unused import abc (unused-import)\r\n\r\n-----------------------------------\r\nYour code has been rated at 7.50/10\r\n```\r\n\r\n### Expected behavior\r\n\r\n`unused-import` should not be emitted.\r\n\r\n### pylint --version output\r\n\r\nResult of `pylint --version` output:\r\n\r\n```\r\npylint 2.8.3\r\nastroid 2.5.6\r\nPython 3.9.2 (default, Feb 28 2021, 17:03:44) \r\n[GCC 10.2.1 20210110]\r\n```\r\n\r\nThis is a follow up to #3112.\n",
+  "ground_truth": {
+    "files": [
+      "pylint/constants.py",
+      "pylint/checkers/variables.py"
+    ],
+    "locations": [
+      "pylint/checkers/variables.py::VariablesChecker",
+      "pylint/checkers/variables.py::VariablesChecker._store_type_annotation_node"
+    ]
+  },
+  "predictions": [
+    "tests/test_self.py::TestRunTC.test_stdin",
+    "tests/test_self.py::TestRunTC.test_version",
+    "tests/checkers/unittest_imports.py::TestImportsChecker.test_import_outside_toplevel",
+    "tests/checkers/unittest_deprecated.py::TestDeprecatedChecker.test_deprecated_module",
+    "tests/acceptance/test_stdlib.py::test_libmodule",
+    "tests/checkers/unittest_deprecated.py::TestDeprecatedChecker.test_deprecated_module_from",
+    "pylint/testutils/lint_module_test.py::LintModuleTest._should_be_skipped_due_to_version",
+    "pylint/testutils/lint_module_test.py::LintModuleTest.runTest",
+    "tests/functional/u/unused/unused_variable.py::unused_import_from",
+    "tests/checkers/unittest_variables.py::TestVariablesChecker.test_bitbucket_issue_78"
+  ],
+  "metadata": {
+    "repo": "pylint-dev/pylint",
+    "commit": "1e55ae64624d28c5fe8b63ad7979880ee2e6ef3f",
+    "total_functions_indexed": 4370,
+    "retrieval_time_seconds": 0.014338493347167969
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_self.py::TestRunTC.test_stdin\", \"score\": 0.5145971775054932}, {\"doc_id\": \"tests/test_self.py::TestRunTC.test_version\", \"score\": 0.49684417247772217}, {\"doc_id\": \"tests/checkers/unittest_imports.py::TestImportsChecker.test_import_outside_toplevel\", \"score\": 0.48808759450912476}, {\"doc_id\": \"tests/checkers/unittest_deprecated.py::TestDeprecatedChecker.test_deprecated_module\", \"score\": 0.4613240957260132}, {\"doc_id\": \"tests/acceptance/test_stdlib.py::test_libmodule\", \"score\": 0.46087220311164856}, {\"doc_id\": \"tests/checkers/unittest_deprecated.py::TestDeprecatedChecker.test_deprecated_module_from\", \"score\": 0.4582439661026001}, {\"doc_id\": \"pylint/testutils/lint_module_test.py::LintModuleTest._should_be_skipped_due_to_version\", \"score\": 0.4492482841014862}, {\"doc_id\": \"pylint/testutils/lint_module_test.py::LintModuleTest.runTest\", \"score\": 0.44711798429489136}, {\"doc_id\": \"tests/functional/u/unused/unused_variable.py::unused_import_from\", \"score\": 0.44299376010894775}, {\"doc_id\": \"tests/checkers/unittest_variables.py::TestVariablesChecker.test_bitbucket_issue_78\", \"score\": 0.442546010017395}]"
+}

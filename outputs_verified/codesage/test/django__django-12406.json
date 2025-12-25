@@ -1,0 +1,36 @@
+{
+  "instance_id": "django__django-12406",
+  "query": "ModelForm RadioSelect widget for foreign keys should not present a blank option if blank=False on the model\nDescription\n\t\nUnlike the select widget, where a blank option is idiomatic even for required fields, radioselect has an inherent unfilled state that makes the \"-------\" option look suspiciously like a valid choice.\nclass TestRun(models.Model):\n\tdata_file = models.ForeignKey(BatchData, on_delete=models.SET_NULL, null=True, blank=False)\nclass TestRunForm(ModelForm):\n\tclass Meta:\n\t\tmodel = TestRun\n\t\tfields = ['data_file']\n\t\twidgets = {'data_file': RadioSelect()}\nrenders {{test_run_form.data_file}} as\n<ul id=\"id_data_file\">\n <li><label for=\"id_data_file_0\">\n\t<input checked=\"checked\" id=\"id_data_file_0\" name=\"data_file\" type=\"radio\" value=\"\"> ---------\n </label></li>\n <li><label for=\"id_data_file_1\">\n\t<input id=\"id_data_file_1\" name=\"data_file\" type=\"radio\" value=\"1\"> First Data File\n </label></li>\n</ul>\nInstead, there should be no checked option for RadioSelect's <input> tags when rendering a new form from a model if blank is not a valid selection.\n",
+  "ground_truth": {
+    "files": [
+      "django/forms/models.py",
+      "django/db/models/fields/related.py"
+    ],
+    "locations": [
+      "django/db/models/fields/related.py::ForeignKey",
+      "django/db/models/fields/related.py::ForeignKey.formfield",
+      "django/db/models/fields/related.py::ForeignKey.db_check",
+      "django/forms/models.py::ModelChoiceField",
+      "django/forms/models.py::ModelChoiceField.__init__"
+    ]
+  },
+  "predictions": [
+    "tests/modeladmin/tests.py::ModelAdminTests.test_foreign_key_as_radio_field",
+    "tests/modeladmin/tests.py::ModelAdminTests.test_default_foreign_key_widget",
+    "tests/forms_tests/tests/test_forms.py::FormsTestCase.test_forms_with_file_fields",
+    "tests/forms_tests/tests/test_forms.py::FormsTestCase.test_filefield_with_fileinput_required",
+    "tests/admin_widgets/tests.py::AdminFormfieldForDBFieldTests.test_choices_with_radio_fields",
+    "tests/admin_widgets/tests.py::AdminFormfieldForDBFieldTests.test_radio_fields_ForeignKey",
+    "tests/modeladmin/test_checks.py::RadioFieldsCheckTests.test_invalid_field_type",
+    "tests/forms_tests/widget_tests/test_radioselect.py::RadioSelectTest.test_render",
+    "tests/forms_tests/tests/test_forms.py::FormsTestCase.test_forms_with_radio",
+    "tests/forms_tests/widget_tests/test_radioselect.py::RadioSelectTest.test_nested_choices"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "335c9c94acf263901fb023404408880245b0c4b4",
+    "total_functions_indexed": 23220,
+    "retrieval_time_seconds": 0.03011631965637207
+  },
+  "raw_output": "[{\"doc_id\": \"tests/modeladmin/tests.py::ModelAdminTests.test_foreign_key_as_radio_field\", \"score\": 0.539973258972168}, {\"doc_id\": \"tests/modeladmin/tests.py::ModelAdminTests.test_default_foreign_key_widget\", \"score\": 0.5398493409156799}, {\"doc_id\": \"tests/forms_tests/tests/test_forms.py::FormsTestCase.test_forms_with_file_fields\", \"score\": 0.5220211744308472}, {\"doc_id\": \"tests/forms_tests/tests/test_forms.py::FormsTestCase.test_filefield_with_fileinput_required\", \"score\": 0.5117620229721069}, {\"doc_id\": \"tests/admin_widgets/tests.py::AdminFormfieldForDBFieldTests.test_choices_with_radio_fields\", \"score\": 0.5074633359909058}, {\"doc_id\": \"tests/admin_widgets/tests.py::AdminFormfieldForDBFieldTests.test_radio_fields_ForeignKey\", \"score\": 0.5047187805175781}, {\"doc_id\": \"tests/modeladmin/test_checks.py::RadioFieldsCheckTests.test_invalid_field_type\", \"score\": 0.49008962512016296}, {\"doc_id\": \"tests/forms_tests/widget_tests/test_radioselect.py::RadioSelectTest.test_render\", \"score\": 0.48997414112091064}, {\"doc_id\": \"tests/forms_tests/tests/test_forms.py::FormsTestCase.test_forms_with_radio\", \"score\": 0.48420536518096924}, {\"doc_id\": \"tests/forms_tests/widget_tests/test_radioselect.py::RadioSelectTest.test_nested_choices\", \"score\": 0.4755103588104248}]"
+}

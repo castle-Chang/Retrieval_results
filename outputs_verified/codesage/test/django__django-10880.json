@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-10880",
+  "query": "Query syntax error with condition and distinct combination\nDescription\n\t\nA Count annotation containing both a Case condition and a distinct=True param produces a query error on Django 2.2 (whatever the db backend). A space is missing at least (... COUNT(DISTINCTCASE WHEN ...).\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/aggregates.py"
+    ],
+    "locations": [
+      "django/db/models/aggregates.py::Aggregate",
+      "django/db/models/aggregates.py::Aggregate.get_group_by_cols",
+      "django/db/models/aggregates.py::Aggregate.as_sql"
+    ]
+  },
+  "predictions": [
+    "tests/backends/base/test_operations.py::DatabaseOperationTests.test_distinct_on_fields",
+    "tests/backends/sqlite/tests.py::Tests.test_distinct_aggregation",
+    "tests/expressions/tests.py::ReprTests.test_distinct_aggregates",
+    "tests/distinct_on_fields/tests.py::DistinctOnTests.test_distinct_not_implemented_checks",
+    "tests/basic/tests.py::ModelTest.test_emptyqs_distinct",
+    "tests/many_to_many/tests.py::ManyToManyQueryTests.test_count_join_optimization",
+    "tests/expressions_case/tests.py::CaseExpressionTests.test_m2m_reuse",
+    "tests/db_functions/comparison/test_coalesce.py::CoalesceTests.test_gt_two_expressions",
+    "tests/queries/tests.py::Queries6Tests.test_distinct_ordered_sliced_subquery_aggregation",
+    "tests/expressions_case/tests.py::CaseExpressionTests.test_filter_with_annotation_in_condition"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "838e432e3e5519c5383d12018e6c78f8ec7833c1",
+    "total_functions_indexed": 22312,
+    "retrieval_time_seconds": 0.010347604751586914
+  },
+  "raw_output": "[{\"doc_id\": \"tests/backends/base/test_operations.py::DatabaseOperationTests.test_distinct_on_fields\", \"score\": 0.3563895523548126}, {\"doc_id\": \"tests/backends/sqlite/tests.py::Tests.test_distinct_aggregation\", \"score\": 0.3524487018585205}, {\"doc_id\": \"tests/expressions/tests.py::ReprTests.test_distinct_aggregates\", \"score\": 0.34200286865234375}, {\"doc_id\": \"tests/distinct_on_fields/tests.py::DistinctOnTests.test_distinct_not_implemented_checks\", \"score\": 0.338193416595459}, {\"doc_id\": \"tests/basic/tests.py::ModelTest.test_emptyqs_distinct\", \"score\": 0.3299218416213989}, {\"doc_id\": \"tests/many_to_many/tests.py::ManyToManyQueryTests.test_count_join_optimization\", \"score\": 0.31960970163345337}, {\"doc_id\": \"tests/expressions_case/tests.py::CaseExpressionTests.test_m2m_reuse\", \"score\": 0.31006985902786255}, {\"doc_id\": \"tests/db_functions/comparison/test_coalesce.py::CoalesceTests.test_gt_two_expressions\", \"score\": 0.31006717681884766}, {\"doc_id\": \"tests/queries/tests.py::Queries6Tests.test_distinct_ordered_sliced_subquery_aggregation\", \"score\": 0.3069602847099304}, {\"doc_id\": \"tests/expressions_case/tests.py::CaseExpressionTests.test_filter_with_annotation_in_condition\", \"score\": 0.3069266974925995}]"
+}

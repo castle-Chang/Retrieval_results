@@ -1,0 +1,35 @@
+{
+  "instance_id": "django__django-11292",
+  "query": "Add --skip-checks option to management commands.\nDescription\n\t\nManagement commands already have skip_checks stealth option. I propose exposing this option on the command line. This would allow users to skip checks when running a command from the command line. Sometimes in a development environment, it is nice to move ahead with a task at hand rather than getting side tracked fixing a system check.\n",
+  "ground_truth": {
+    "files": [
+      "django/core/management/base.py"
+    ],
+    "locations": [
+      "django/core/management/base.py::DjangoHelpFormatter",
+      "django/core/management/base.py::DjangoHelpFormatter._reordered_actions",
+      "django/core/management/base.py::BaseCommand",
+      "django/core/management/base.py::BaseCommand.create_parser",
+      "django/core/management/base.py::BaseCommand.execute"
+    ]
+  },
+  "predictions": [
+    "tests/user_commands/tests.py::CommandTests.test_call_command_no_checks",
+    "django/core/management/base.py::BaseCommand._run_checks",
+    "django/core/management/commands/check.py::Command.add_arguments",
+    "django/test/utils.py::override_system_checks.disable",
+    "django/core/management/commands/check.py::Command.handle",
+    "django/test/utils.py::override_system_checks.enable",
+    "tests/user_commands/tests.py::CommandTests.test_system_exit",
+    "tests/user_commands/tests.py::CommandTests.test_check_migrations",
+    "django/test/testcases.py::_deferredSkip",
+    "django/core/management/base.py::handle_default_options"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "eb16c7260e573ec513d84cb586d96bdf508f3173",
+    "total_functions_indexed": 22445,
+    "retrieval_time_seconds": 0.018915891647338867
+  },
+  "raw_output": "[{\"doc_id\": \"tests/user_commands/tests.py::CommandTests.test_call_command_no_checks\", \"score\": 0.3258430063724518}, {\"doc_id\": \"django/core/management/base.py::BaseCommand._run_checks\", \"score\": 0.3245254158973694}, {\"doc_id\": \"django/core/management/commands/check.py::Command.add_arguments\", \"score\": 0.31890034675598145}, {\"doc_id\": \"django/test/utils.py::override_system_checks.disable\", \"score\": 0.3108518719673157}, {\"doc_id\": \"django/core/management/commands/check.py::Command.handle\", \"score\": 0.30468499660491943}, {\"doc_id\": \"django/test/utils.py::override_system_checks.enable\", \"score\": 0.29480600357055664}, {\"doc_id\": \"tests/user_commands/tests.py::CommandTests.test_system_exit\", \"score\": 0.271700382232666}, {\"doc_id\": \"tests/user_commands/tests.py::CommandTests.test_check_migrations\", \"score\": 0.27118709683418274}, {\"doc_id\": \"django/test/testcases.py::_deferredSkip\", \"score\": 0.26273518800735474}, {\"doc_id\": \"django/core/management/base.py::handle_default_options\", \"score\": 0.261923611164093}]"
+}

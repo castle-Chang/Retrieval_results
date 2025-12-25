@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-12273",
+  "query": "Resetting primary key for a child model doesn't work.\nDescription\n\t\nIn the attached example code setting the primary key to None does not work (so that the existing object is overwritten on save()).\nThe most important code fragments of the bug example:\nfrom django.db import models\nclass Item(models.Model):\n\t# uid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n\tuid = models.AutoField(primary_key=True, editable=False)\n\tf = models.BooleanField(default=False)\n\tdef reset(self):\n\t\tself.uid = None\n\t\tself.f = False\nclass Derived(Item):\n\tpass\nclass SaveTestCase(TestCase):\n\tdef setUp(self):\n\t\tself.derived = Derived.objects.create(f=True) # create the first object\n\t\titem = Item.objects.get(pk=self.derived.pk)\n\t\tobj1 = item.derived\n\t\tobj1.reset()\n\t\tobj1.save() # the first object is overwritten\n\tdef test_f_true(self):\n\t\tobj = Item.objects.get(pk=self.derived.pk)\n\t\tself.assertTrue(obj.f)\nDjango 2.1.2\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/base.py"
+    ],
+    "locations": [
+      "django/db/models/base.py::Model",
+      "django/db/models/base.py::Model._get_pk_val",
+      "django/db/models/base.py::Model._set_pk_val"
+    ]
+  },
+  "predictions": [
+    "tests/model_fields/test_uuid.py::TestAsPrimaryKey.test_two_level_foreign_keys",
+    "tests/model_formsets/test_uuid.py::InlineFormsetTests.test_inlineformset_factory_nulls_default_pks",
+    "tests/model_fields/test_uuid.py::TestAsPrimaryKey.test_uuid_pk_on_save",
+    "tests/many_to_one/tests.py::ManyToOneTests.test_fk_assignment_and_related_object_cache",
+    "tests/basic/tests.py::ModelInstanceCreationTests.test_save_primary_with_default",
+    "tests/model_fields/test_uuid.py::TestAsPrimaryKey.test_update_with_related_model_instance",
+    "tests/model_fields/test_uuid.py::TestAsPrimaryKey.test_update_with_related_model_id",
+    "tests/many_to_one/tests.py::ManyToOneTests.test_assign_fk_id_value",
+    "tests/basic/tests.py::ModelInstanceCreationTests.test_can_leave_off_value_for_autofield_and_it_gets_value_on_save",
+    "tests/model_formsets/test_uuid.py::InlineFormsetTests.test_inlineformset_factory_nulls_default_pks_auto_parent_uuid_child"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "927c903f3cd25c817c21738328b53991c035b415",
+    "total_functions_indexed": 23156,
+    "retrieval_time_seconds": 0.057131052017211914
+  },
+  "raw_output": "[{\"doc_id\": \"tests/model_fields/test_uuid.py::TestAsPrimaryKey.test_two_level_foreign_keys\", \"score\": 0.5430080890655518}, {\"doc_id\": \"tests/model_formsets/test_uuid.py::InlineFormsetTests.test_inlineformset_factory_nulls_default_pks\", \"score\": 0.5376392602920532}, {\"doc_id\": \"tests/model_fields/test_uuid.py::TestAsPrimaryKey.test_uuid_pk_on_save\", \"score\": 0.5267777442932129}, {\"doc_id\": \"tests/many_to_one/tests.py::ManyToOneTests.test_fk_assignment_and_related_object_cache\", \"score\": 0.5188120603561401}, {\"doc_id\": \"tests/basic/tests.py::ModelInstanceCreationTests.test_save_primary_with_default\", \"score\": 0.4914180636405945}, {\"doc_id\": \"tests/model_fields/test_uuid.py::TestAsPrimaryKey.test_update_with_related_model_instance\", \"score\": 0.48458459973335266}, {\"doc_id\": \"tests/model_fields/test_uuid.py::TestAsPrimaryKey.test_update_with_related_model_id\", \"score\": 0.48060131072998047}, {\"doc_id\": \"tests/many_to_one/tests.py::ManyToOneTests.test_assign_fk_id_value\", \"score\": 0.48049986362457275}, {\"doc_id\": \"tests/basic/tests.py::ModelInstanceCreationTests.test_can_leave_off_value_for_autofield_and_it_gets_value_on_save\", \"score\": 0.480154812335968}, {\"doc_id\": \"tests/model_formsets/test_uuid.py::InlineFormsetTests.test_inlineformset_factory_nulls_default_pks_auto_parent_uuid_child\", \"score\": 0.4779251515865326}]"
+}

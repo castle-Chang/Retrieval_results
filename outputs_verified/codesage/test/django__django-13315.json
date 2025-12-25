@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-13315",
+  "query": "limit_choices_to on a ForeignKey can render duplicate options in formfield\nDescription\n\t\nIf you pass a Q object as limit_choices_to on a ForeignKey field involving a join, you may end up with duplicate options in your form.\nSee regressiontest in patch for a clear view on the problem.\n",
+  "ground_truth": {
+    "files": [
+      "django/forms/models.py"
+    ],
+    "locations": [
+      "django/forms/models.py::apply_limit_choices_to_to_formfield",
+      "django/forms/models.py::fields_for_model"
+    ]
+  },
+  "predictions": [
+    "tests/model_forms/tests.py::LimitChoicesToTests.test_limit_choices_to_callable_for_fk_rel",
+    "tests/model_forms/tests.py::LimitChoicesToTests.test_limit_choices_to_callable_for_m2m_rel",
+    "django/forms/models.py::apply_limit_choices_to_to_formfield",
+    "tests/model_forms/tests.py::LimitChoicesToTests.test_custom_field_with_queryset_but_no_limit_choices_to",
+    "tests/model_fields/tests.py::GetChoicesLimitChoicesToTests.test_get_choices_reverse_related_field",
+    "tests/model_forms/tests.py::LimitChoicesToTests.test_fields_for_model_applies_limit_choices_to",
+    "tests/model_fields/tests.py::GetChoicesLimitChoicesToTests.test_get_choices",
+    "tests/model_fields/tests.py::GetChoicesLimitChoicesToTests.assertChoicesEqual",
+    "tests/validation/tests.py::BaseModelValidationTests.test_limited_FK_raises_error",
+    "tests/model_fields/tests.py::GetChoicesLimitChoicesToTests.setUpTestData"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "36bc47069ce071e80c8129500de3b8664d2058a7",
+    "total_functions_indexed": 24033,
+    "retrieval_time_seconds": 0.006987094879150391
+  },
+  "raw_output": "[{\"doc_id\": \"tests/model_forms/tests.py::LimitChoicesToTests.test_limit_choices_to_callable_for_fk_rel\", \"score\": 0.7400351762771606}, {\"doc_id\": \"tests/model_forms/tests.py::LimitChoicesToTests.test_limit_choices_to_callable_for_m2m_rel\", \"score\": 0.6726318001747131}, {\"doc_id\": \"django/forms/models.py::apply_limit_choices_to_to_formfield\", \"score\": 0.640923023223877}, {\"doc_id\": \"tests/model_forms/tests.py::LimitChoicesToTests.test_custom_field_with_queryset_but_no_limit_choices_to\", \"score\": 0.6286512613296509}, {\"doc_id\": \"tests/model_fields/tests.py::GetChoicesLimitChoicesToTests.test_get_choices_reverse_related_field\", \"score\": 0.6221930980682373}, {\"doc_id\": \"tests/model_forms/tests.py::LimitChoicesToTests.test_fields_for_model_applies_limit_choices_to\", \"score\": 0.5965278744697571}, {\"doc_id\": \"tests/model_fields/tests.py::GetChoicesLimitChoicesToTests.test_get_choices\", \"score\": 0.5931763648986816}, {\"doc_id\": \"tests/model_fields/tests.py::GetChoicesLimitChoicesToTests.assertChoicesEqual\", \"score\": 0.581787109375}, {\"doc_id\": \"tests/validation/tests.py::BaseModelValidationTests.test_limited_FK_raises_error\", \"score\": 0.5702418088912964}, {\"doc_id\": \"tests/model_fields/tests.py::GetChoicesLimitChoicesToTests.setUpTestData\", \"score\": 0.5533396005630493}]"
+}

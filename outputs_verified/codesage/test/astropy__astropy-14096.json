@@ -1,0 +1,33 @@
+{
+  "instance_id": "astropy__astropy-14096",
+  "query": "Subclassed SkyCoord gives misleading attribute access message\nI'm trying to subclass `SkyCoord`, and add some custom properties. This all seems to be working fine, but when I have a custom property (`prop` below) that tries to access a non-existent attribute (`random_attr`) below, the error message is misleading because it says `prop` doesn't exist, where it should say `random_attr` doesn't exist.\r\n\r\n```python\r\nimport astropy.coordinates as coord\r\n\r\n\r\nclass custom_coord(coord.SkyCoord):\r\n    @property\r\n    def prop(self):\r\n        return self.random_attr\r\n\r\n\r\nc = custom_coord('00h42m30s', '+41d12m00s', frame='icrs')\r\nc.prop\r\n```\r\n\r\nraises\r\n```\r\nTraceback (most recent call last):\r\n  File \"test.py\", line 11, in <module>\r\n    c.prop\r\n  File \"/Users/dstansby/miniconda3/lib/python3.7/site-packages/astropy/coordinates/sky_coordinate.py\", line 600, in __getattr__\r\n    .format(self.__class__.__name__, attr))\r\nAttributeError: 'custom_coord' object has no attribute 'prop'\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "astropy/coordinates/sky_coordinate.py"
+    ],
+    "locations": [
+      "astropy/coordinates/sky_coordinate.py::SkyCoord",
+      "astropy/coordinates/sky_coordinate.py::SkyCoord.__getattr__",
+      "astropy/coordinates/sky_coordinate.py::SkyCoord.__setattr__"
+    ]
+  },
+  "predictions": [
+    "astropy/coordinates/tests/test_sky_coord.py::test_immutable",
+    "astropy/coordinates/tests/test_sky_coord.py::test_set_attribute_exceptions",
+    "astropy/coordinates/tests/test_sky_coord.py::test_frame_attr_getattr",
+    "astropy/coordinates/tests/test_sky_coord.py::test_attr_inheritance",
+    "astropy/coordinates/tests/test_sky_coord.py::test_user_friendly_pm_error",
+    "astropy/coordinates/tests/test_sky_coord.py::test_nodata_failure",
+    "astropy/coordinates/tests/test_sky_coord.py::test_custom_frame_skycoord",
+    "astropy/coordinates/tests/test_sky_coord.py::test_passing_inconsistent_coordinates_and_units_raises_helpful_error",
+    "astropy/coordinates/tests/test_sky_coord.py::test_init_with_frame_instance_keyword",
+    "astropy/coordinates/tests/test_frames.py::test_coordinateattribute_transformation"
+  ],
+  "metadata": {
+    "repo": "astropy/astropy",
+    "commit": "1a4462d72eb03f30dc83a879b1dd57aac8b2c18b",
+    "total_functions_indexed": 15182,
+    "retrieval_time_seconds": 0.008671998977661133
+  },
+  "raw_output": "[{\"doc_id\": \"astropy/coordinates/tests/test_sky_coord.py::test_immutable\", \"score\": 0.6077617406845093}, {\"doc_id\": \"astropy/coordinates/tests/test_sky_coord.py::test_set_attribute_exceptions\", \"score\": 0.5613548755645752}, {\"doc_id\": \"astropy/coordinates/tests/test_sky_coord.py::test_frame_attr_getattr\", \"score\": 0.5436379909515381}, {\"doc_id\": \"astropy/coordinates/tests/test_sky_coord.py::test_attr_inheritance\", \"score\": 0.5416070222854614}, {\"doc_id\": \"astropy/coordinates/tests/test_sky_coord.py::test_user_friendly_pm_error\", \"score\": 0.5270096659660339}, {\"doc_id\": \"astropy/coordinates/tests/test_sky_coord.py::test_nodata_failure\", \"score\": 0.5193151235580444}, {\"doc_id\": \"astropy/coordinates/tests/test_sky_coord.py::test_custom_frame_skycoord\", \"score\": 0.5180007815361023}, {\"doc_id\": \"astropy/coordinates/tests/test_sky_coord.py::test_passing_inconsistent_coordinates_and_units_raises_helpful_error\", \"score\": 0.5148868560791016}, {\"doc_id\": \"astropy/coordinates/tests/test_sky_coord.py::test_init_with_frame_instance_keyword\", \"score\": 0.5135964751243591}, {\"doc_id\": \"astropy/coordinates/tests/test_frames.py::test_coordinateattribute_transformation\", \"score\": 0.5113729238510132}]"
+}

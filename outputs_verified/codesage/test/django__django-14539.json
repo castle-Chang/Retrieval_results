@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-14539",
+  "query": "urlize() does not handle html escaped string and trailing punctuation correctly\nDescription\n\t\nExample:\nurlize('Search for google.com/?q=1&lt! and see.')\n# expected output\n'Search for <a href=\"http://google.com/?q=1%3C\">google.com/?q=1&lt</a>! and see.'\n# actual output\n'Search for <a href=\"http://google.com/?q=1%3C\">google.com/?q=1&lt</a>lt! and see.'\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/html.py"
+    ],
+    "locations": [
+      "django/utils/html.py::urlize"
+    ]
+  },
+  "predictions": [
+    "tests/utils_tests/test_html.py::TestUtilsHtml.test_urlize",
+    "tests/template_tests/filter_tests/test_urlize.py::FunctionTests.test_autoescape",
+    "tests/template_tests/filter_tests/test_urlize.py::FunctionTests.test_urlencoded",
+    "tests/template_tests/filter_tests/test_urlize.py::UrlizeTests.test_urlize09",
+    "tests/template_tests/filter_tests/test_urlize.py::FunctionTests.test_exclamation_marks",
+    "tests/template_tests/filter_tests/test_urlize.py::FunctionTests.test_quotation_marks",
+    "tests/utils_tests/test_html.py::TestUtilsHtml.test_urlize_unchanged_inputs",
+    "tests/template_tests/filter_tests/test_urlize.py::FunctionTests.test_https",
+    "tests/template_tests/filter_tests/test_urlize.py::FunctionTests.test_unicode",
+    "tests/template_tests/filter_tests/test_urlize.py::FunctionTests.test_url_split_chars"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "6a5ef557f80a8eb6a758ebe99c8bb477ca47459e",
+    "total_functions_indexed": 24729,
+    "retrieval_time_seconds": 0.02080988883972168
+  },
+  "raw_output": "[{\"doc_id\": \"tests/utils_tests/test_html.py::TestUtilsHtml.test_urlize\", \"score\": 0.612228512763977}, {\"doc_id\": \"tests/template_tests/filter_tests/test_urlize.py::FunctionTests.test_autoescape\", \"score\": 0.5612150430679321}, {\"doc_id\": \"tests/template_tests/filter_tests/test_urlize.py::FunctionTests.test_urlencoded\", \"score\": 0.553389310836792}, {\"doc_id\": \"tests/template_tests/filter_tests/test_urlize.py::UrlizeTests.test_urlize09\", \"score\": 0.5505638718605042}, {\"doc_id\": \"tests/template_tests/filter_tests/test_urlize.py::FunctionTests.test_exclamation_marks\", \"score\": 0.5504398941993713}, {\"doc_id\": \"tests/template_tests/filter_tests/test_urlize.py::FunctionTests.test_quotation_marks\", \"score\": 0.5479186773300171}, {\"doc_id\": \"tests/utils_tests/test_html.py::TestUtilsHtml.test_urlize_unchanged_inputs\", \"score\": 0.5470760464668274}, {\"doc_id\": \"tests/template_tests/filter_tests/test_urlize.py::FunctionTests.test_https\", \"score\": 0.5373062491416931}, {\"doc_id\": \"tests/template_tests/filter_tests/test_urlize.py::FunctionTests.test_unicode\", \"score\": 0.5282076597213745}, {\"doc_id\": \"tests/template_tests/filter_tests/test_urlize.py::FunctionTests.test_url_split_chars\", \"score\": 0.5276585817337036}]"
+}

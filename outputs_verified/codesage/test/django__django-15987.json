@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-15987",
+  "query": "Fixture dirs duplicates undetected if dir is Path instance\nDescription\n\t\nWhen FIXTURE_DIRS contains Path instances, the duplicate check in loaddata does not detect duplicates.\n",
+  "ground_truth": {
+    "files": [
+      "django/core/management/commands/loaddata.py"
+    ],
+    "locations": [
+      "django/core/management/commands/loaddata.py::Command",
+      "django/core/management/commands/loaddata.py::Command.fixture_dirs"
+    ]
+  },
+  "predictions": [
+    "tests/fixtures_regress/tests.py::TestFixtures.test_fixture_dirs_with_duplicates",
+    "tests/fixtures_regress/tests.py::TestFixtures.test_fixture_dirs_with_default_fixture_path",
+    "tests/fixtures_regress/tests.py::TestFixtures.test_absolute_path",
+    "django/core/management/commands/loaddata.py::Command.find_fixture_files_in_dir",
+    "tests/fixtures_regress/tests.py::TestLoadFixtureFromOtherAppDirectory.test_fixtures_loaded",
+    "tests/fixtures_regress/tests.py::TestFixtures.test_fixtures_dir_pathlib",
+    "tests/fixtures_regress/tests.py::TestFixtures.test_loaddata_with_valid_fixture_dirs",
+    "django/core/management/commands/loaddata.py::Command.fixture_dirs",
+    "tests/fixtures_regress/tests.py::TestFixtures.test_relative_path",
+    "tests/fixtures/tests.py::FixtureLoadingTests.test_dumpdata_with_excludes"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "7e6b537f5b92be152779fc492bb908d27fe7c52a",
+    "total_functions_indexed": 26126,
+    "retrieval_time_seconds": 0.09408378601074219
+  },
+  "raw_output": "[{\"doc_id\": \"tests/fixtures_regress/tests.py::TestFixtures.test_fixture_dirs_with_duplicates\", \"score\": 0.5220233798027039}, {\"doc_id\": \"tests/fixtures_regress/tests.py::TestFixtures.test_fixture_dirs_with_default_fixture_path\", \"score\": 0.400333046913147}, {\"doc_id\": \"tests/fixtures_regress/tests.py::TestFixtures.test_absolute_path\", \"score\": 0.3607151508331299}, {\"doc_id\": \"django/core/management/commands/loaddata.py::Command.find_fixture_files_in_dir\", \"score\": 0.35523927211761475}, {\"doc_id\": \"tests/fixtures_regress/tests.py::TestLoadFixtureFromOtherAppDirectory.test_fixtures_loaded\", \"score\": 0.3492317795753479}, {\"doc_id\": \"tests/fixtures_regress/tests.py::TestFixtures.test_fixtures_dir_pathlib\", \"score\": 0.34887391328811646}, {\"doc_id\": \"tests/fixtures_regress/tests.py::TestFixtures.test_loaddata_with_valid_fixture_dirs\", \"score\": 0.3469249904155731}, {\"doc_id\": \"django/core/management/commands/loaddata.py::Command.fixture_dirs\", \"score\": 0.3323289752006531}, {\"doc_id\": \"tests/fixtures_regress/tests.py::TestFixtures.test_relative_path\", \"score\": 0.32233983278274536}, {\"doc_id\": \"tests/fixtures/tests.py::FixtureLoadingTests.test_dumpdata_with_excludes\", \"score\": 0.3127214312553406}]"
+}

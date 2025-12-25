@@ -1,0 +1,40 @@
+{
+  "instance_id": "pylint-dev__pylint-6386",
+  "query": "Argument expected for short verbose option\n### Bug description\r\n\r\nThe short option of the `verbose` option expects an argument.\r\nAlso, the help message for the `verbose` option suggests a value `VERBOSE` should be provided.\r\n\r\nThe long option works ok & doesn't expect an argument:\r\n`pylint mytest.py --verbose`\r\n\r\n\r\n### Command used\r\n\r\n```shell\r\npylint mytest.py -v\r\n```\r\n\r\n\r\n### Pylint output\r\n\r\n```shell\r\nusage: pylint [options]\r\npylint: error: argument --verbose/-v: expected one argument\r\n```\r\n\r\n### Expected behavior\r\n\r\nSimilar behaviour to the long option.\r\n\r\n### Pylint version\r\n\r\n```shell\r\npylint 2.14.0-dev0\r\nastroid 2.11.2\r\nPython 3.10.0b2 (v3.10.0b2:317314165a, May 31 2021, 10:02:22) [Clang 12.0.5 (clang-1205.0.22.9)]\r\n```\r\n\n",
+  "ground_truth": {
+    "files": [
+      "pylint/lint/base_options.py",
+      "pylint/config/argument.py",
+      "pylint/config/arguments_manager.py",
+      "pylint/config/utils.py"
+    ],
+    "locations": [
+      "pylint/config/argument.py::_CallableArgument",
+      "pylint/config/argument.py::_CallableArgument.__init__",
+      "pylint/config/arguments_manager.py::_ArgumentsManager",
+      "pylint/config/arguments_manager.py::_ArgumentsManager._add_parser_option",
+      "pylint/config/utils.py::_convert_option_to_argument",
+      "pylint/config/utils.py::_preprocess_options",
+      "pylint/lint/base_options.py::_make_run_options"
+    ]
+  },
+  "predictions": [
+    "tests/test_self.py::TestRunTC.test_version",
+    "pylint/config/callback_actions.py::_LongHelpAction.__call__",
+    "pylint/config/option_parser.py::OptionParser._match_long_opt",
+    "tests/test_self.py::TestRunTC._test_output_file",
+    "pylint/epylint.py::py_run",
+    "pylint/config/help_formatter.py::_HelpFormatter.get_long_description",
+    "pylint/epylint.py::Run",
+    "pylint/checkers/format.py::FormatChecker.check_lines",
+    "pylint/lint/pylinter.py::PyLinter.__init__",
+    "pylint/config/config_file_parser.py::_ConfigurationFileParser.__init__"
+  ],
+  "metadata": {
+    "repo": "pylint-dev/pylint",
+    "commit": "754b487f4d892e3d4872b6fc7468a71db4e31c13",
+    "total_functions_indexed": 5469,
+    "retrieval_time_seconds": 0.09036636352539062
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_self.py::TestRunTC.test_version\", \"score\": 0.34169474244117737}, {\"doc_id\": \"pylint/config/callback_actions.py::_LongHelpAction.__call__\", \"score\": 0.3342651128768921}, {\"doc_id\": \"pylint/config/option_parser.py::OptionParser._match_long_opt\", \"score\": 0.3249306082725525}, {\"doc_id\": \"tests/test_self.py::TestRunTC._test_output_file\", \"score\": 0.31637194752693176}, {\"doc_id\": \"pylint/epylint.py::py_run\", \"score\": 0.3103916645050049}, {\"doc_id\": \"pylint/config/help_formatter.py::_HelpFormatter.get_long_description\", \"score\": 0.3023073673248291}, {\"doc_id\": \"pylint/epylint.py::Run\", \"score\": 0.2980228662490845}, {\"doc_id\": \"pylint/checkers/format.py::FormatChecker.check_lines\", \"score\": 0.295413613319397}, {\"doc_id\": \"pylint/lint/pylinter.py::PyLinter.__init__\", \"score\": 0.28948670625686646}, {\"doc_id\": \"pylint/config/config_file_parser.py::_ConfigurationFileParser.__init__\", \"score\": 0.28932875394821167}]"
+}

@@ -1,0 +1,35 @@
+{
+  "instance_id": "django__django-15732",
+  "query": "Cannot drop unique_together constraint on a single field with its own unique=True constraint\nDescription\n\t\nI have an erroneous unique_together constraint on a model's primary key (unique_together = (('id',),)) that cannot be dropped by a migration. Apparently the migration tries to find all unique constraints on the column and expects there to be only one, but I've got two — the primary key and the unique_together constraint:\nIndexes:\n\t\"foo_bar_pkey\" PRIMARY KEY, btree (id)\n\t\"foo_bar_id_1c3b3088c74c3b17_uniq\" UNIQUE CONSTRAINT, btree (id)\nDatabase is PostgreSQL, if that makes any difference.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/backends/base/schema.py"
+    ],
+    "locations": [
+      "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor",
+      "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor.alter_unique_together",
+      "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._delete_composed_index",
+      "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._create_unique_sql",
+      "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._delete_unique_sql"
+    ]
+  },
+  "predictions": [
+    "tests/schema/tests.py::SchemaTests.test_unique_together_with_fk_with_existing_index",
+    "tests/schema/tests.py::SchemaTests.test_unique_together_with_fk",
+    "tests/schema/tests.py::SchemaTests.test_unique_together",
+    "tests/invalid_models_tests/test_models.py::UniqueTogetherTests.test_pointing_to_m2m",
+    "tests/schema/tests.py::SchemaTests.test_index_together_with_fk",
+    "tests/invalid_models_tests/test_models.py::UniqueTogetherTests.test_pointing_to_missing_field",
+    "tests/model_forms/tests.py::UniqueTest.test_unique_together_exclusion",
+    "tests/invalid_models_tests/test_models.py::UniqueTogetherTests.test_pointing_to_fk",
+    "tests/migrations/test_operations.py::OperationTests.test_alter_unique_together",
+    "tests/schema/tests.py::SchemaTests.test_remove_unique_together_does_not_remove_meta_constraints"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "ce69e34bd646558bb44ea92cecfd98b345a0b3e0",
+    "total_functions_indexed": 25969,
+    "retrieval_time_seconds": 0.033425331115722656
+  },
+  "raw_output": "[{\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_unique_together_with_fk_with_existing_index\", \"score\": 0.6926305294036865}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_unique_together_with_fk\", \"score\": 0.6635260581970215}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_unique_together\", \"score\": 0.6413806676864624}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::UniqueTogetherTests.test_pointing_to_m2m\", \"score\": 0.5969377756118774}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_index_together_with_fk\", \"score\": 0.5967026948928833}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::UniqueTogetherTests.test_pointing_to_missing_field\", \"score\": 0.5881373882293701}, {\"doc_id\": \"tests/model_forms/tests.py::UniqueTest.test_unique_together_exclusion\", \"score\": 0.5783066153526306}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::UniqueTogetherTests.test_pointing_to_fk\", \"score\": 0.5652496218681335}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_alter_unique_together\", \"score\": 0.5560203790664673}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_remove_unique_together_does_not_remove_meta_constraints\", \"score\": 0.5438956022262573}]"
+}

@@ -1,0 +1,35 @@
+{
+  "instance_id": "django__django-13512",
+  "query": "Admin doesn't display properly unicode chars in JSONFields.\nDescription\n\t \n\t\t(last modified by ZhaoQi99)\n\t \n>>> import json\n>>> print json.dumps('中国')\n\"\\u4e2d\\u56fd\"\njson.dumps use ASCII encoding by default when serializing Chinese.\nSo when we edit a JsonField which contains Chinese character in Django admin,it will appear in ASCII characters.\nI have try to fix this this problem in ​https://github.com/adamchainz/django-mysql/pull/714.And it works prefectly.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admin/utils.py",
+      "django/forms/fields.py"
+    ],
+    "locations": [
+      "django/contrib/admin/utils.py::display_for_field",
+      "django/forms/fields.py::JSONField",
+      "django/forms/fields.py::JSONField.prepare_value",
+      "django/forms/fields.py::JSONField.has_changed"
+    ]
+  },
+  "predictions": [
+    "django/db/models/fields/json.py::JSONField.get_prep_value",
+    "django/forms/fields.py::JSONField.prepare_value",
+    "django/db/models/fields/json.py::JSONField.validate",
+    "django/db/models/fields/json.py::JSONField.value_to_string",
+    "django/db/models/fields/json.py::JSONField.__init__",
+    "django/db/models/fields/json.py::JSONField.formfield",
+    "django/forms/fields.py::JSONField.__init__",
+    "django/db/models/fields/__init__.py::CharField.to_python",
+    "tests/forms_tests/field_tests/test_jsonfield.py::JSONFieldTest.test_custom_encoder_decoder",
+    "django/utils/encoding.py::DjangoUnicodeDecodeError.__init__"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "b79088306513d5ed76d31ac40ab3c15f858946ea",
+    "total_functions_indexed": 23962,
+    "retrieval_time_seconds": 0.043668270111083984
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/fields/json.py::JSONField.get_prep_value\", \"score\": 0.47776538133621216}, {\"doc_id\": \"django/forms/fields.py::JSONField.prepare_value\", \"score\": 0.4632185995578766}, {\"doc_id\": \"django/db/models/fields/json.py::JSONField.validate\", \"score\": 0.4441584646701813}, {\"doc_id\": \"django/db/models/fields/json.py::JSONField.value_to_string\", \"score\": 0.42524200677871704}, {\"doc_id\": \"django/db/models/fields/json.py::JSONField.__init__\", \"score\": 0.422500878572464}, {\"doc_id\": \"django/db/models/fields/json.py::JSONField.formfield\", \"score\": 0.4217608869075775}, {\"doc_id\": \"django/forms/fields.py::JSONField.__init__\", \"score\": 0.4098203778266907}, {\"doc_id\": \"django/db/models/fields/__init__.py::CharField.to_python\", \"score\": 0.4019513726234436}, {\"doc_id\": \"tests/forms_tests/field_tests/test_jsonfield.py::JSONFieldTest.test_custom_encoder_decoder\", \"score\": 0.39096933603286743}, {\"doc_id\": \"django/utils/encoding.py::DjangoUnicodeDecodeError.__init__\", \"score\": 0.3900127410888672}]"
+}

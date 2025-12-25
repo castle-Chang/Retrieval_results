@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-16766",
+  "query": "PythonCodePrinter doesn't support Indexed \nI use `lambdify()` to generate some functions and save the code for further use. But the generated code for `Indexed` operation has some warnings which can be confirmed by following code;\r\n\r\n```\r\nfrom sympy import *\r\np = IndexedBase(\"p\")\r\n\r\npycode(p[0])\r\n```\r\nthe output is \r\n\r\n```\r\n  # Not supported in Python:\r\n  # Indexed\r\np[0]\r\n```\r\n\r\nWe should add following method to `PythonCodePrinter`:\r\n\r\n```\r\ndef _print_Indexed(self, expr):\r\n    base, *index = expr.args\r\n    return \"{}[{}]\".format(str(base), \", \".join([self._print(ind) for ind in index]))\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/pycode.py"
+    ],
+    "locations": [
+      "sympy/printing/pycode.py::PythonCodePrinter",
+      "sympy/printing/pycode.py::PythonCodePrinter._print_Not"
+    ]
+  },
+  "predictions": [
+    "sympy/tensor/indexed.py::Indexed._sympystr",
+    "sympy/printing/tests/test_jscode.py::test_jscode_Indexed",
+    "sympy/printing/tests/test_ccode.py::test_ccode_Indexed",
+    "sympy/printing/rcode.py::RCodePrinter._print_Indexed",
+    "sympy/printing/tests/test_glsl.py::test_glsl_code_Indexed",
+    "sympy/printing/fcode.py::FCodePrinter._print_Indexed",
+    "sympy/tensor/indexed.py::IndexedBase._sympystr",
+    "sympy/tensor/indexed.py::Indexed.__new__",
+    "sympy/printing/tests/test_rcode.py::test_rcode_Indexed",
+    "sympy/printing/latex.py::LatexPrinter._print_IndexedBase"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "b8fe457a02cc24b3470ff678d0099c350b7fef43",
+    "total_functions_indexed": 24986,
+    "retrieval_time_seconds": 0.04607248306274414
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/tensor/indexed.py::Indexed._sympystr\", \"score\": 0.5254904627799988}, {\"doc_id\": \"sympy/printing/tests/test_jscode.py::test_jscode_Indexed\", \"score\": 0.5127236843109131}, {\"doc_id\": \"sympy/printing/tests/test_ccode.py::test_ccode_Indexed\", \"score\": 0.5022019147872925}, {\"doc_id\": \"sympy/printing/rcode.py::RCodePrinter._print_Indexed\", \"score\": 0.48727208375930786}, {\"doc_id\": \"sympy/printing/tests/test_glsl.py::test_glsl_code_Indexed\", \"score\": 0.4794269800186157}, {\"doc_id\": \"sympy/printing/fcode.py::FCodePrinter._print_Indexed\", \"score\": 0.47852855920791626}, {\"doc_id\": \"sympy/tensor/indexed.py::IndexedBase._sympystr\", \"score\": 0.47791212797164917}, {\"doc_id\": \"sympy/tensor/indexed.py::Indexed.__new__\", \"score\": 0.4626563489437103}, {\"doc_id\": \"sympy/printing/tests/test_rcode.py::test_rcode_Indexed\", \"score\": 0.46191924810409546}, {\"doc_id\": \"sympy/printing/latex.py::LatexPrinter._print_IndexedBase\", \"score\": 0.45487791299819946}]"
+}

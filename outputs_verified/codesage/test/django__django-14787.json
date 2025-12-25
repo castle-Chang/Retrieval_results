@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-14787",
+  "query": "method_decorator() should preserve wrapper assignments\nDescription\n\t\nthe function that is passed to the decorator is a partial object and does not have any of the attributes expected from a function i.e. __name__, __module__ etc...\nconsider the following case\ndef logger(func):\n\t@wraps(func)\n\tdef inner(*args, **kwargs):\n\t\ttry:\n\t\t\tresult = func(*args, **kwargs)\n\t\texcept Exception as e:\n\t\t\tresult = str(e)\n\t\tfinally:\n\t\t\tlogger.debug(f\"{func.__name__} called with args: {args} and kwargs: {kwargs} resulting: {result}\")\n\treturn inner\nclass Test:\n\t@method_decorator(logger)\n\tdef hello_world(self):\n\t\treturn \"hello\"\nTest().test_method()\nThis results in the following exception\nAttributeError: 'functools.partial' object has no attribute '__name__'\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/decorators.py"
+    ],
+    "locations": [
+      "django/utils/decorators.py::_multi_decorate"
+    ]
+  },
+  "predictions": [
+    "tests/decorators/tests.py::MethodDecoratorTests.test_descriptors",
+    "tests/decorators/tests.py::MethodDecoratorTests.test_invalid_non_callable_attribute_decoration",
+    "tests/decorators/tests.py::MethodDecoratorTests.test_class_decoration",
+    "tests/decorators/tests.py::MethodDecoratorTests.test_invalid_method_name_to_decorate",
+    "tests/decorators/tests.py::MethodDecoratorTests.test_preserve_attributes",
+    "tests/decorators/tests.py::MethodDecoratorTests.test_tuple_of_decorators",
+    "tests/decorators/tests.py::MethodDecoratorTests.test_new_attribute",
+    "tests/decorators/tests.py::MethodDecoratorTests.test_argumented",
+    "tests/decorators/tests.py::MethodDecoratorTests.test_preserve_signature",
+    "tests/decorators/tests.py::MethodDecoratorTests.test_bad_iterable"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "004b4620f6f4ad87261e149898940f2dcd5757ef",
+    "total_functions_indexed": 25202,
+    "retrieval_time_seconds": 0.02776169776916504
+  },
+  "raw_output": "[{\"doc_id\": \"tests/decorators/tests.py::MethodDecoratorTests.test_descriptors\", \"score\": 0.5830216407775879}, {\"doc_id\": \"tests/decorators/tests.py::MethodDecoratorTests.test_invalid_non_callable_attribute_decoration\", \"score\": 0.5372244119644165}, {\"doc_id\": \"tests/decorators/tests.py::MethodDecoratorTests.test_class_decoration\", \"score\": 0.531100869178772}, {\"doc_id\": \"tests/decorators/tests.py::MethodDecoratorTests.test_invalid_method_name_to_decorate\", \"score\": 0.5135030746459961}, {\"doc_id\": \"tests/decorators/tests.py::MethodDecoratorTests.test_preserve_attributes\", \"score\": 0.49850109219551086}, {\"doc_id\": \"tests/decorators/tests.py::MethodDecoratorTests.test_tuple_of_decorators\", \"score\": 0.48693400621414185}, {\"doc_id\": \"tests/decorators/tests.py::MethodDecoratorTests.test_new_attribute\", \"score\": 0.483823299407959}, {\"doc_id\": \"tests/decorators/tests.py::MethodDecoratorTests.test_argumented\", \"score\": 0.4769766926765442}, {\"doc_id\": \"tests/decorators/tests.py::MethodDecoratorTests.test_preserve_signature\", \"score\": 0.44129228591918945}, {\"doc_id\": \"tests/decorators/tests.py::MethodDecoratorTests.test_bad_iterable\", \"score\": 0.42754095792770386}]"
+}

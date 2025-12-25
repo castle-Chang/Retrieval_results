@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-14999",
+  "query": "RenameModel with db_table should be a noop.\nDescription\n\t\nA RenameModel operation that already has db_table defined must be a noop.\nIn Postgres, it drops and recreates foreign key constraints. In sqlite it recreates the table (as expected for a table renaming).\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/operations/models.py"
+    ],
+    "locations": [
+      "django/db/migrations/operations/models.py::RenameModel",
+      "django/db/migrations/operations/models.py::RenameModel.database_forwards"
+    ]
+  },
+  "predictions": [
+    "tests/migrations/test_operations.py::OperationTests.test_rename_model_with_superclass_fk",
+    "tests/migrations/test_operations.py::OperationTests.test_rename_model_with_self_referential_fk",
+    "tests/migrations/test_operations.py::OperationTests.test_rename_model",
+    "tests/migrations/test_operations.py::OperationTests.test_alter_model_table_none",
+    "tests/schema/tests.py::SchemaTests.test_db_table",
+    "tests/migrations/test_operations.py::OperationTests.test_alter_model_table",
+    "tests/migrations/test_autodetector.py::AutodetectorTests.test_alter_db_table_with_model_change",
+    "tests/migrations/test_autodetector.py::AutodetectorTests.test_keep_db_table_with_model_change",
+    "tests/schema/tests.py::SchemaTests.test_alter_db_table_case",
+    "tests/migrations/test_autodetector.py::AutodetectorTests.test_rename_model_reverse_relation_dependencies"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "a754b82dac511475b6276039471ccd17cc64aeb8",
+    "total_functions_indexed": 25228,
+    "retrieval_time_seconds": 0.0261383056640625
+  },
+  "raw_output": "[{\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_rename_model_with_superclass_fk\", \"score\": 0.5688412189483643}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_rename_model_with_self_referential_fk\", \"score\": 0.5424445867538452}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_rename_model\", \"score\": 0.5329869985580444}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_alter_model_table_none\", \"score\": 0.5011539459228516}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_db_table\", \"score\": 0.49885016679763794}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_alter_model_table\", \"score\": 0.48438137769699097}, {\"doc_id\": \"tests/migrations/test_autodetector.py::AutodetectorTests.test_alter_db_table_with_model_change\", \"score\": 0.4836176335811615}, {\"doc_id\": \"tests/migrations/test_autodetector.py::AutodetectorTests.test_keep_db_table_with_model_change\", \"score\": 0.4828033447265625}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_alter_db_table_case\", \"score\": 0.48216596245765686}, {\"doc_id\": \"tests/migrations/test_autodetector.py::AutodetectorTests.test_rename_model_reverse_relation_dependencies\", \"score\": 0.4802998900413513}]"
+}

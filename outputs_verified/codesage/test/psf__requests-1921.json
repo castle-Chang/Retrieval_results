@@ -1,0 +1,31 @@
+{
+  "instance_id": "psf__requests-1921",
+  "query": "Removing a default header of a session\n[The docs](http://docs.python-requests.org/en/latest/user/advanced/#session-objects) say that you can prevent sending a session header by setting the headers value to None in the method's arguments. You would expect (as [discussed on IRC](https://botbot.me/freenode/python-requests/msg/10788170/)) that this would work for session's default headers, too:\n\n``` python\nsession = requests.Session()\n# Do not send Accept-Encoding\nsession.headers['Accept-Encoding'] = None\n```\n\nWhat happens is that \"None\"  gets sent as the value of header.\n\n```\nAccept-Encoding: None\n```\n\nFor the reference, here is a way that works:\n\n``` python\ndel session.headers['Accept-Encoding']\n```\n\n",
+  "ground_truth": {
+    "files": [
+      "requests/sessions.py"
+    ],
+    "locations": [
+      "requests/sessions.py::merge_setting"
+    ]
+  },
+  "predictions": [
+    "requests/sessions.py::Session.__init__",
+    "requests/sessions.py::Session.__exit__",
+    "requests/utils.py::get_encoding_from_headers",
+    "requests/sessions.py::Session.head",
+    "requests/cookies.py::RequestsCookieJar.__delitem__",
+    "requests/sessions.py::Session.delete",
+    "requests/utils.py::default_headers",
+    "requests/packages/urllib3/response.py::_get_decoder",
+    "requests/cookies.py::MockRequest.get_header",
+    "requests/cookies.py::MockRequest.add_header"
+  ],
+  "metadata": {
+    "repo": "psf/requests",
+    "commit": "3c88e520da24ae6f736929a750876e7654accc3d",
+    "total_functions_indexed": 585,
+    "retrieval_time_seconds": 0.09002351760864258
+  },
+  "raw_output": "[{\"doc_id\": \"requests/sessions.py::Session.__init__\", \"score\": 0.3112707734107971}, {\"doc_id\": \"requests/sessions.py::Session.__exit__\", \"score\": 0.29331326484680176}, {\"doc_id\": \"requests/utils.py::get_encoding_from_headers\", \"score\": 0.2762492299079895}, {\"doc_id\": \"requests/sessions.py::Session.head\", \"score\": 0.2759011685848236}, {\"doc_id\": \"requests/cookies.py::RequestsCookieJar.__delitem__\", \"score\": 0.27169176936149597}, {\"doc_id\": \"requests/sessions.py::Session.delete\", \"score\": 0.27038663625717163}, {\"doc_id\": \"requests/utils.py::default_headers\", \"score\": 0.26475805044174194}, {\"doc_id\": \"requests/packages/urllib3/response.py::_get_decoder\", \"score\": 0.2588269114494324}, {\"doc_id\": \"requests/cookies.py::MockRequest.get_header\", \"score\": 0.2543707489967346}, {\"doc_id\": \"requests/cookies.py::MockRequest.add_header\", \"score\": 0.25154614448547363}]"
+}

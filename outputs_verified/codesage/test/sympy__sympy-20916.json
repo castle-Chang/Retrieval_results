@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-20916",
+  "query": "pprint unicode does not format subscripts on Greek letters\nGood:\r\n\r\n[ -t₀⋅w₀   -t₁⋅w₀   -t₂⋅w₀]\r\n\r\n\r\nBad:\r\n\r\n[ -t₀⋅ω0   -t₁⋅ω0   -t₂⋅ω0]\r\n\r\n\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/printing/conventions.py"
+    ],
+    "locations": [
+      "sympy/printing/conventions.py::split_super_sub"
+    ]
+  },
+  "predictions": [
+    "sympy/printing/pretty/tests/test_pretty.py::test_upretty_sub_super",
+    "sympy/printing/pretty/pretty_symbology.py::pretty_symbol",
+    "sympy/printing/pretty/tests/test_pretty.py::test_upretty_subs_missing_in_24",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_lowergamma",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_uppergamma",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_gamma",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_primenu",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_dirichlet_eta",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_lerchphi",
+    "sympy/printing/pretty/pretty.py::PrettyPrinter._print_Heaviside"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "82298df6a51491bfaad0c6d1980e7e3ca808ae93",
+    "total_functions_indexed": 35871,
+    "retrieval_time_seconds": 0.015910625457763672
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/printing/pretty/tests/test_pretty.py::test_upretty_sub_super\", \"score\": 0.3808082938194275}, {\"doc_id\": \"sympy/printing/pretty/pretty_symbology.py::pretty_symbol\", \"score\": 0.3725988268852234}, {\"doc_id\": \"sympy/printing/pretty/tests/test_pretty.py::test_upretty_subs_missing_in_24\", \"score\": 0.36941611766815186}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_lowergamma\", \"score\": 0.3669297397136688}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_uppergamma\", \"score\": 0.3666302561759949}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_gamma\", \"score\": 0.3564051389694214}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_primenu\", \"score\": 0.352814644575119}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_dirichlet_eta\", \"score\": 0.35138222575187683}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_lerchphi\", \"score\": 0.3513759672641754}, {\"doc_id\": \"sympy/printing/pretty/pretty.py::PrettyPrinter._print_Heaviside\", \"score\": 0.34763196110725403}]"
+}

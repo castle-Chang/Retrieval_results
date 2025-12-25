@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-16333",
+  "query": "UserCreationForm should save data from ManyToMany form fields\nDescription\n\t\nWhen using contrib.auth.forms.UserCreationForm with a custom User model which has ManyToManyField fields, the data in all related form fields (e.g. a ModelMultipleChoiceField) is not saved. \nThis is because unlike its parent class django.forms.ModelForm, UserCreationForm.save(commit=True) omits to call self.save_m2m(). \nThis has been discussed on the #django-developers mailing list ​https://groups.google.com/u/1/g/django-developers/c/2jj-ecoBwE4 and I'm ready to work on a PR.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/auth/forms.py"
+    ],
+    "locations": [
+      "django/contrib/auth/forms.py::UserCreationForm",
+      "django/contrib/auth/forms.py::UserCreationForm.save"
+    ]
+  },
+  "predictions": [
+    "tests/schema/tests.py::SchemaTests.test_m2m_create_custom",
+    "tests/model_formsets/tests.py::ModelFormsetTest.test_commit_false",
+    "tests/schema/tests.py::SchemaTests.test_m2m_custom",
+    "tests/schema/tests.py::SchemaTests.test_m2m_create",
+    "tests/schema/tests.py::SchemaTests._test_m2m_create",
+    "tests/auth_tests/test_forms.py::UserCreationFormTest.test_success",
+    "tests/schema/tests.py::SchemaTests._test_m2m_create_through",
+    "tests/model_forms/tests.py::ModelFormBasicTests.test_m2m_editing",
+    "tests/forms_tests/tests/tests.py::ManyToManyExclusionTestCase.test_m2m_field_exclusion",
+    "tests/schema/tests.py::SchemaTests.test_m2m_create_through_custom"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "60a7bd89860e504c0c33b02c78edcac87f6d1b5a",
+    "total_functions_indexed": 26312,
+    "retrieval_time_seconds": 0.009880781173706055
+  },
+  "raw_output": "[{\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_m2m_create_custom\", \"score\": 0.5273013710975647}, {\"doc_id\": \"tests/model_formsets/tests.py::ModelFormsetTest.test_commit_false\", \"score\": 0.5120818614959717}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_m2m_custom\", \"score\": 0.4906211197376251}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_m2m_create\", \"score\": 0.48810380697250366}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests._test_m2m_create\", \"score\": 0.4809560775756836}, {\"doc_id\": \"tests/auth_tests/test_forms.py::UserCreationFormTest.test_success\", \"score\": 0.47796300053596497}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests._test_m2m_create_through\", \"score\": 0.47136592864990234}, {\"doc_id\": \"tests/model_forms/tests.py::ModelFormBasicTests.test_m2m_editing\", \"score\": 0.46997368335723877}, {\"doc_id\": \"tests/forms_tests/tests/tests.py::ManyToManyExclusionTestCase.test_m2m_field_exclusion\", \"score\": 0.46769481897354126}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_m2m_create_through_custom\", \"score\": 0.4673599600791931}]"
+}

@@ -1,0 +1,39 @@
+{
+  "instance_id": "django__django-16032",
+  "query": "__in doesn't clear selected fields on the RHS when QuerySet.alias() is used after annotate().\nDescription\n\t\nHere is a test case to reproduce the bug, you can add this in tests/annotations/tests.py\n\tdef test_annotation_and_alias_filter_in_subquery(self):\n\t\tlong_books_qs = (\n\t\t\tBook.objects.filter(\n\t\t\t\tpages__gt=400,\n\t\t\t)\n\t\t\t.annotate(book_annotate=Value(1))\n\t\t\t.alias(book_alias=Value(1))\n\t\t)\n\t\tpublisher_books_qs = (\n\t\t\tPublisher.objects.filter(\n\t\t\t\tbook__in=long_books_qs\n\t\t\t)\n\t\t\t.values(\"name\")\n\t\t)\n\t\tself.assertCountEqual(\n\t\t\tpublisher_books_qs,\n\t\t\t[\n\t\t\t\t{'name': 'Apress'},\n\t\t\t\t{'name': 'Sams'},\n\t\t\t\t{'name': 'Prentice Hall'},\n\t\t\t\t{'name': 'Morgan Kaufmann'}\n\t\t\t]\n\t\t)\nYou should get this error:\ndjango.db.utils.OperationalError: sub-select returns 10 columns - expected 1\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/related_lookups.py",
+      "django/db/models/sql/query.py"
+    ],
+    "locations": [
+      "django/db/models/fields/related_lookups.py::RelatedIn",
+      "django/db/models/fields/related_lookups.py::RelatedIn.get_prep_lookup",
+      "django/db/models/fields/related_lookups.py::RelatedIn.as_sql",
+      "django/db/models/sql/query.py::Query",
+      "django/db/models/sql/query.py::Query.output_field",
+      "django/db/models/sql/query.py::Query.has_select_fields",
+      "django/db/models/sql/query.py::Query.base_table",
+      "django/db/models/sql/query.py::Query.set_values"
+    ]
+  },
+  "predictions": [
+    "tests/aggregation/tests.py::AggregateTestCase.test_aggregation_subquery_annotation_values",
+    "tests/aggregation_regress/tests.py::AggregationTests.test_having_subquery_select",
+    "tests/aggregation/tests.py::AggregateTestCase.test_aggregation_subquery_annotation_related_field",
+    "tests/annotations/tests.py::AliasTests.test_filter_alias_with_f",
+    "tests/annotations/tests.py::AliasTests.test_alias_annotation_expression",
+    "tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_annotation_filter_with_subquery",
+    "tests/annotations/tests.py::AliasTests.test_alias_default_alias_expression",
+    "tests/aggregation/tests.py::AggregateTestCase.test_aggregation_subquery_annotation",
+    "tests/annotations/tests.py::AliasTests.test_alias_annotate_with_aggregation",
+    "tests/annotations/tests.py::AliasTests.test_basic_alias_annotation"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "0c3981eb5094419fe200eb46c71b5376a2266166",
+    "total_functions_indexed": 26155,
+    "retrieval_time_seconds": 0.0961308479309082
+  },
+  "raw_output": "[{\"doc_id\": \"tests/aggregation/tests.py::AggregateTestCase.test_aggregation_subquery_annotation_values\", \"score\": 0.6322146058082581}, {\"doc_id\": \"tests/aggregation_regress/tests.py::AggregationTests.test_having_subquery_select\", \"score\": 0.6160157918930054}, {\"doc_id\": \"tests/aggregation/tests.py::AggregateTestCase.test_aggregation_subquery_annotation_related_field\", \"score\": 0.5890512466430664}, {\"doc_id\": \"tests/annotations/tests.py::AliasTests.test_filter_alias_with_f\", \"score\": 0.5626752972602844}, {\"doc_id\": \"tests/annotations/tests.py::AliasTests.test_alias_annotation_expression\", \"score\": 0.5583916902542114}, {\"doc_id\": \"tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_annotation_filter_with_subquery\", \"score\": 0.5574914813041687}, {\"doc_id\": \"tests/annotations/tests.py::AliasTests.test_alias_default_alias_expression\", \"score\": 0.556469202041626}, {\"doc_id\": \"tests/aggregation/tests.py::AggregateTestCase.test_aggregation_subquery_annotation\", \"score\": 0.5509892702102661}, {\"doc_id\": \"tests/annotations/tests.py::AliasTests.test_alias_annotate_with_aggregation\", \"score\": 0.5486650466918945}, {\"doc_id\": \"tests/annotations/tests.py::AliasTests.test_basic_alias_annotation\", \"score\": 0.5479471683502197}]"
+}

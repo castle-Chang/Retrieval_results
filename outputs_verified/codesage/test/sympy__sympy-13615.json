@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-13615",
+  "query": "Complement doesn't work when input is a mixture of Symbols and numbers\n```\r\n>>> a=FiniteSet(x,y,2)\r\n>>> b=Interval(-10,10)\r\n>>> Complement(a,b)\r\n{x, y}\r\n```\r\n`{x, y} \\ [-10,10]` is expected as output.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/sets/sets.py"
+    ],
+    "locations": [
+      "sympy/sets/sets.py::Set",
+      "sympy/sets/sets.py::Set._complement",
+      "sympy/sets/sets.py::Set.symmetric_difference"
+    ]
+  },
+  "predictions": [
+    "sympy/sets/tests/test_sets.py::test_issue_9808",
+    "sympy/sets/tests/test_sets.py::test_Complement",
+    "sympy/sets/tests/test_sets.py::test_issue_9637",
+    "sympy/sets/tests/test_sets.py::test_issue_9447",
+    "sympy/sets/tests/test_sets.py::test_complement",
+    "sympy/sets/sets.py::FiniteSet._complement",
+    "sympy/sets/sets.py::Set.complement",
+    "sympy/core/tests/test_args.py::test_sympy__sets__sets__Complement",
+    "sympy/sets/sets.py::Interval._complement",
+    "sympy/sets/sets.py::Complement.reduce"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "50d8a102f0735da8e165a0369bbb994c7d0592a6",
+    "total_functions_indexed": 22338,
+    "retrieval_time_seconds": 0.018309831619262695
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/sets/tests/test_sets.py::test_issue_9808\", \"score\": 0.5462286472320557}, {\"doc_id\": \"sympy/sets/tests/test_sets.py::test_Complement\", \"score\": 0.5363541841506958}, {\"doc_id\": \"sympy/sets/tests/test_sets.py::test_issue_9637\", \"score\": 0.5362597703933716}, {\"doc_id\": \"sympy/sets/tests/test_sets.py::test_issue_9447\", \"score\": 0.5123233199119568}, {\"doc_id\": \"sympy/sets/tests/test_sets.py::test_complement\", \"score\": 0.48174554109573364}, {\"doc_id\": \"sympy/sets/sets.py::FiniteSet._complement\", \"score\": 0.47699087858200073}, {\"doc_id\": \"sympy/sets/sets.py::Set.complement\", \"score\": 0.4688723683357239}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__sets__sets__Complement\", \"score\": 0.46066364645957947}, {\"doc_id\": \"sympy/sets/sets.py::Interval._complement\", \"score\": 0.4464867413043976}, {\"doc_id\": \"sympy/sets/sets.py::Complement.reduce\", \"score\": 0.42789310216903687}]"
+}

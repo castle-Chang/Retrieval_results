@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-11119",
+  "query": "Engine.render_to_string() should honor the autoescape attribute\nDescription\n\t\nIn Engine.render_to_string, a Context is created without specifying the engine autoescape attribute. So if you create en engine with autoescape=False and then call its render_to_string() method, the result will always be autoescaped. It was probably overlooked in [19a5f6da329d58653bcda85].\n",
+  "ground_truth": {
+    "files": [
+      "django/template/engine.py"
+    ],
+    "locations": [
+      "django/template/engine.py::Engine",
+      "django/template/engine.py::Engine.render_to_string",
+      "django/template/engine.py::Engine.select_template"
+    ]
+  },
+  "predictions": [
+    "tests/template_tests/syntax_tests/test_autoescape.py::AutoescapeTagTests.test_autoescape_tag01",
+    "tests/template_tests/syntax_tests/test_autoescape.py::AutoescapeTagTests.test_autoescape_tag02",
+    "tests/template_tests/syntax_tests/test_autoescape.py::AutoescapeTagTests.test_autoescape_tag05",
+    "tests/template_tests/syntax_tests/test_autoescape.py::AutoescapeTagTests.test_autoescape_tag03",
+    "tests/template_tests/syntax_tests/test_autoescape.py::AutoescapeTagTests.test_autoescape_tag04",
+    "tests/template_tests/syntax_tests/test_autoescape.py::AutoescapeTagTests.test_autoescape_tag09",
+    "tests/template_tests/syntax_tests/test_autoescape.py::AutoescapeTagTests.test_autoescape_tag10",
+    "tests/template_tests/syntax_tests/test_autoescape.py::AutoescapeTagTests.test_autoescape_literals01",
+    "tests/template_tests/syntax_tests/test_autoescape.py::AutoescapeTagTests.test_autoescape_tag07",
+    "tests/template_tests/syntax_tests/test_autoescape.py::AutoescapeTagTests.test_autoescape_tag06"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "d4df5e1b0b1c643fe0fc521add0236764ec8e92a",
+    "total_functions_indexed": 22391,
+    "retrieval_time_seconds": 0.006613731384277344
+  },
+  "raw_output": "[{\"doc_id\": \"tests/template_tests/syntax_tests/test_autoescape.py::AutoescapeTagTests.test_autoescape_tag01\", \"score\": 0.6535513401031494}, {\"doc_id\": \"tests/template_tests/syntax_tests/test_autoescape.py::AutoescapeTagTests.test_autoescape_tag02\", \"score\": 0.6306343078613281}, {\"doc_id\": \"tests/template_tests/syntax_tests/test_autoescape.py::AutoescapeTagTests.test_autoescape_tag05\", \"score\": 0.629485547542572}, {\"doc_id\": \"tests/template_tests/syntax_tests/test_autoescape.py::AutoescapeTagTests.test_autoescape_tag03\", \"score\": 0.6266040802001953}, {\"doc_id\": \"tests/template_tests/syntax_tests/test_autoescape.py::AutoescapeTagTests.test_autoescape_tag04\", \"score\": 0.6242087483406067}, {\"doc_id\": \"tests/template_tests/syntax_tests/test_autoescape.py::AutoescapeTagTests.test_autoescape_tag09\", \"score\": 0.6102026700973511}, {\"doc_id\": \"tests/template_tests/syntax_tests/test_autoescape.py::AutoescapeTagTests.test_autoescape_tag10\", \"score\": 0.6096561551094055}, {\"doc_id\": \"tests/template_tests/syntax_tests/test_autoescape.py::AutoescapeTagTests.test_autoescape_literals01\", \"score\": 0.6057251691818237}, {\"doc_id\": \"tests/template_tests/syntax_tests/test_autoescape.py::AutoescapeTagTests.test_autoescape_tag07\", \"score\": 0.6039899587631226}, {\"doc_id\": \"tests/template_tests/syntax_tests/test_autoescape.py::AutoescapeTagTests.test_autoescape_tag06\", \"score\": 0.6039406657218933}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11239",
+  "query": "Add support for postgresql client certificates and key to dbshell.\nDescription\n\t\nThis bug is very similar to the #28322\nA common security procedure for DB access is to require mutual TLS for the DB connection.\nThis involves specifying a server certificate, client certificate, and client key when connecting.\nDjango already supports this configuration, it looks like this:\nDATABASES = {\n\t'default': {\n\t\t'ENGINE': 'django.db.backends.postgresql',\n\t\t'NAME': os.environ.get('POSTGRES_DB_NAME'),\n\t\t'USER': os.environ.get('POSTGRES_DB_USER'),\n\t\t'HOST': 'postgres',\n\t\t'PORT': '5432',\n\t\t'SCHEMA': os.environ.get('POSTGRES_DB_SCHEMA'),\n\t\t'OPTIONS': {\n\t\t\t 'sslmode': 'verify-ca',\n\t\t\t 'sslrootcert': os.environ.get('POSTGRES_CLI_SSL_CA', 'ca.crt'),\n\t\t\t 'sslcert': os.environ.get('POSTGRES_CLI_SSL_CRT', 'client_cert_chain.crt'),\n\t\t\t 'sslkey': os.environ.get('POSTGRES_CLI_SSL_KEY', 'client_key.key')\n\t\t}\n\t}\n}\nHowever the dbshell command does not support the client cert params.\nShould be a trivial fix to add in support for the other 'ssl' parameters required here.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/backends/postgresql/client.py"
+    ],
+    "locations": [
+      "django/db/backends/postgresql/client.py::DatabaseClient",
+      "django/db/backends/postgresql/client.py::DatabaseClient.runshell_db"
+    ]
+  },
+  "predictions": [
+    "django/db/backends/postgresql/client.py::DatabaseClient.runshell",
+    "django/db/backends/postgresql/client.py::DatabaseClient.runshell_db",
+    "tests/dbshell/test_mysql.py::MySqlDbshellCommandTestCase.get_command_line_arguments",
+    "django/db/backends/mysql/client.py::DatabaseClient.settings_to_cmd_args",
+    "django/core/management/commands/dbshell.py::Command.add_arguments",
+    "django/core/management/commands/dbshell.py::Command.handle",
+    "tests/dbshell/test_postgresql.py::PostgreSqlDbshellCommandTestCase._run_it",
+    "django/db/backends/postgresql/base.py::DatabaseWrapper.get_connection_params",
+    "django/db/backends/base/client.py::BaseDatabaseClient.runshell",
+    "django/db/backends/mysql/client.py::DatabaseClient.runshell"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "d87bd29c4f8dfcdf3f4a4eb8340e6770a2416fe3",
+    "total_functions_indexed": 22429,
+    "retrieval_time_seconds": 0.007502317428588867
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/backends/postgresql/client.py::DatabaseClient.runshell\", \"score\": 0.5297252535820007}, {\"doc_id\": \"django/db/backends/postgresql/client.py::DatabaseClient.runshell_db\", \"score\": 0.5170442461967468}, {\"doc_id\": \"tests/dbshell/test_mysql.py::MySqlDbshellCommandTestCase.get_command_line_arguments\", \"score\": 0.49810299277305603}, {\"doc_id\": \"django/db/backends/mysql/client.py::DatabaseClient.settings_to_cmd_args\", \"score\": 0.48986709117889404}, {\"doc_id\": \"django/core/management/commands/dbshell.py::Command.add_arguments\", \"score\": 0.48661482334136963}, {\"doc_id\": \"django/core/management/commands/dbshell.py::Command.handle\", \"score\": 0.44406408071517944}, {\"doc_id\": \"tests/dbshell/test_postgresql.py::PostgreSqlDbshellCommandTestCase._run_it\", \"score\": 0.44352394342422485}, {\"doc_id\": \"django/db/backends/postgresql/base.py::DatabaseWrapper.get_connection_params\", \"score\": 0.43957826495170593}, {\"doc_id\": \"django/db/backends/base/client.py::BaseDatabaseClient.runshell\", \"score\": 0.43456682562828064}, {\"doc_id\": \"django/db/backends/mysql/client.py::DatabaseClient.runshell\", \"score\": 0.43299028277397156}]"
+}

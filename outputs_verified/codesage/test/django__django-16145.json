@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-16145",
+  "query": "`runserver 0`'s \"Starting development server at <address>\" doesn't work\nDescription\n\t\nAccording to ​tutorial running \npython manage.py runserver 0:8000\nis the same as \npython manage.py runserver 0.0.0.0:8000\nbut it's output \n$ python manage.py runserver 0:8000\t\t\t\t\t\t\t\t\t Watching for file changes with StatReloader\t\t\t\t\t\t \n...\nStarting development server at http://0:8000/ \n...\nSo that you can't use link \"​http://0:8000/\" in your browser. Output should be \"Starting development server at ​http://0.0.0.0:8000/\" when providing \"0:8000\" in command line in order to stay consistent with docs.\n",
+  "ground_truth": {
+    "files": [
+      "django/core/management/commands/runserver.py"
+    ],
+    "locations": [
+      "django/core/management/commands/runserver.py::Command",
+      "django/core/management/commands/runserver.py::Command.inner_run"
+    ]
+  },
+  "predictions": [
+    "tests/admin_scripts/tests.py::ManageRunserver.test_runner_hostname",
+    "tests/admin_scripts/tests.py::ManageRunserver.test_runserver_addrport",
+    "django/core/management/commands/testserver.py::Command.handle",
+    "tests/admin_scripts/tests.py::ManageRunserver.setUp",
+    "tests/admin_scripts/tests.py::ManageTestserver.test_params_to_runserver",
+    "tests/admin_scripts/tests.py::ManageRunserver.test_runner_custom_defaults",
+    "django/core/management/commands/runserver.py::Command.inner_run",
+    "tests/admin_scripts/tests.py::ManageRunserver.test_runner_hostname_ipv6",
+    "tests/admin_scripts/tests.py::ManageRunserver.test_runner_addrport_ipv6",
+    "tests/admin_scripts/tests.py::ManageRunserver.test_skip_checks"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "93d4c9ea1de24eb391cb2b3561b6703fd46374df",
+    "total_functions_indexed": 26190,
+    "retrieval_time_seconds": 0.010038614273071289
+  },
+  "raw_output": "[{\"doc_id\": \"tests/admin_scripts/tests.py::ManageRunserver.test_runner_hostname\", \"score\": 0.4929417371749878}, {\"doc_id\": \"tests/admin_scripts/tests.py::ManageRunserver.test_runserver_addrport\", \"score\": 0.4925903081893921}, {\"doc_id\": \"django/core/management/commands/testserver.py::Command.handle\", \"score\": 0.48744821548461914}, {\"doc_id\": \"tests/admin_scripts/tests.py::ManageRunserver.setUp\", \"score\": 0.4647408723831177}, {\"doc_id\": \"tests/admin_scripts/tests.py::ManageTestserver.test_params_to_runserver\", \"score\": 0.46307772397994995}, {\"doc_id\": \"tests/admin_scripts/tests.py::ManageRunserver.test_runner_custom_defaults\", \"score\": 0.4484785795211792}, {\"doc_id\": \"django/core/management/commands/runserver.py::Command.inner_run\", \"score\": 0.41801363229751587}, {\"doc_id\": \"tests/admin_scripts/tests.py::ManageRunserver.test_runner_hostname_ipv6\", \"score\": 0.41521409153938293}, {\"doc_id\": \"tests/admin_scripts/tests.py::ManageRunserver.test_runner_addrport_ipv6\", \"score\": 0.41306668519973755}, {\"doc_id\": \"tests/admin_scripts/tests.py::ManageRunserver.test_skip_checks\", \"score\": 0.4033902883529663}]"
+}

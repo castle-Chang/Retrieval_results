@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12754",
+  "query": "FieldError when migrating field to new model subclass.\nDescription\n\t\nAnalogous to #21890. If creating a model subclass and moving a field onto it in the same step, makemigrations works but migrate dies with django.core.exceptions.FieldError: Local field 'title' in class 'Book' clashes with field of the same name from base class 'Readable'.\nFor example, take this model:\nfrom django.db import models\nclass Readable(models.Model):\n\ttitle = models.CharField(max_length=200)\nAnd change to this:\nfrom django.db import models\nclass Readable(models.Model):\n\tpass\nclass Book(Readable):\n\ttitle = models.CharField(max_length=200)\nThe migration generates with CreateModel for Book, then RemoveField for Readable.title. But running it produces the error.\nReversing the order of the migration operations makes it pass. The auto-detector should be able to use this order.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/autodetector.py"
+    ],
+    "locations": [
+      "django/db/migrations/autodetector.py::MigrationAutodetector",
+      "django/db/migrations/autodetector.py::MigrationAutodetector.generate_created_models"
+    ]
+  },
+  "predictions": [
+    "tests/migrations/test_operations.py::OperationTests.test_rename_missing_field",
+    "django/db/migrations/operations/fields.py::AddField.database_backwards",
+    "django/db/migrations/operations/fields.py::RenameField.__init__",
+    "django/db/migrations/operations/fields.py::RemoveField.database_backwards",
+    "django/db/migrations/operations/fields.py::RemoveField.database_forwards",
+    "django/db/migrations/operations/fields.py::RenameField.database_forwards",
+    "django/db/migrations/operations/fields.py::RenameField.database_backwards",
+    "django/db/migrations/operations/fields.py::RenameField.references_field",
+    "django/db/migrations/operations/fields.py::FieldOperation.__init__",
+    "django/db/migrations/questioner.py::MigrationQuestioner.ask_auto_now_add_addition"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "18759b2209ff556aed7f20d83cbf23e3d234e41c",
+    "total_functions_indexed": 23454,
+    "retrieval_time_seconds": 0.03268694877624512
+  },
+  "raw_output": "[{\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_rename_missing_field\", \"score\": 0.5164280533790588}, {\"doc_id\": \"django/db/migrations/operations/fields.py::AddField.database_backwards\", \"score\": 0.5159695148468018}, {\"doc_id\": \"django/db/migrations/operations/fields.py::RenameField.__init__\", \"score\": 0.5113283395767212}, {\"doc_id\": \"django/db/migrations/operations/fields.py::RemoveField.database_backwards\", \"score\": 0.5080674886703491}, {\"doc_id\": \"django/db/migrations/operations/fields.py::RemoveField.database_forwards\", \"score\": 0.4947919249534607}, {\"doc_id\": \"django/db/migrations/operations/fields.py::RenameField.database_forwards\", \"score\": 0.49095457792282104}, {\"doc_id\": \"django/db/migrations/operations/fields.py::RenameField.database_backwards\", \"score\": 0.49078720808029175}, {\"doc_id\": \"django/db/migrations/operations/fields.py::RenameField.references_field\", \"score\": 0.4897412061691284}, {\"doc_id\": \"django/db/migrations/operations/fields.py::FieldOperation.__init__\", \"score\": 0.47131162881851196}, {\"doc_id\": \"django/db/migrations/questioner.py::MigrationQuestioner.ask_auto_now_add_addition\", \"score\": 0.47082167863845825}]"
+}

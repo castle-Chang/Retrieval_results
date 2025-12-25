@@ -1,0 +1,54 @@
+{
+  "instance_id": "django__django-16560",
+  "query": "Allow to customize the code attribute of ValidationError raised by BaseConstraint.validate\nDescription\n\t\nIt is currently possible to customize the violation_error_message of a ValidationError raised by a constraint but not the code.\nI'd like to add a new violation_error_message parameter to BaseConstraint to allow to easily add one.\nCurrently, to achieve the same result, you have to subclass the constraint to tweak validate to catch and reraise the ValidationError.\nSince the documentation recommends to Provide a descriptive error code to the constructor: when raising a ValidationError in ​https://docs.djangoproject.com/en/4.1/ref/forms/validation/#raising-validationerror , I think it would make sense to provide this possibility for errors raised by constraints.\nIf you think it would be a good idea, I'd be happy to work on a PR.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/constraints.py",
+      "django/contrib/postgres/constraints.py"
+    ],
+    "locations": [
+      "django/contrib/postgres/constraints.py::ExclusionConstraint",
+      "django/contrib/postgres/constraints.py::ExclusionConstraint.__init__",
+      "django/contrib/postgres/constraints.py::ExclusionConstraint._get_expressions",
+      "django/contrib/postgres/constraints.py::ExclusionConstraint.__eq__",
+      "django/contrib/postgres/constraints.py::ExclusionConstraint.__repr__",
+      "django/contrib/postgres/constraints.py::ExclusionConstraint.validate",
+      "django/db/models/constraints.py::BaseConstraint",
+      "django/db/models/constraints.py::BaseConstraint.__init__",
+      "django/db/models/constraints.py::BaseConstraint.deconstruct",
+      "django/db/models/constraints.py::BaseConstraint.clone",
+      "django/db/models/constraints.py::CheckConstraint",
+      "django/db/models/constraints.py::CheckConstraint.__init__",
+      "django/db/models/constraints.py::CheckConstraint._get_check_sql",
+      "django/db/models/constraints.py::CheckConstraint.validate",
+      "django/db/models/constraints.py::CheckConstraint.__repr__",
+      "django/db/models/constraints.py::CheckConstraint.__eq__",
+      "django/db/models/constraints.py::UniqueConstraint",
+      "django/db/models/constraints.py::UniqueConstraint.__init__",
+      "django/db/models/constraints.py::UniqueConstraint.contains_expressions",
+      "django/db/models/constraints.py::UniqueConstraint.remove_sql",
+      "django/db/models/constraints.py::UniqueConstraint.__repr__",
+      "django/db/models/constraints.py::UniqueConstraint.__eq__",
+      "django/db/models/constraints.py::UniqueConstraint.validate"
+    ]
+  },
+  "predictions": [
+    "django/db/models/constraints.py::BaseConstraint.get_violation_error_message",
+    "django/db/models/constraints.py::BaseConstraint.__init__",
+    "django/db/models/constraints.py::CheckConstraint.__repr__",
+    "tests/constraints/tests.py::BaseConstraintTests.test_custom_violation_error_message",
+    "django/core/exceptions.py::ValidationError.__repr__",
+    "django/core/exceptions.py::ValidationError.message_dict",
+    "django/core/exceptions.py::ValidationError.__init__",
+    "tests/constraints/tests.py::BaseConstraintTests.test_default_violation_error_message",
+    "django/contrib/postgres/operations.py::ValidateConstraint.describe",
+    "tests/constraints/tests.py::BaseConstraintTests.test_positional_arguments"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "51c9bb7cd16081133af4f0ab6d06572660309730",
+    "total_functions_indexed": 26404,
+    "retrieval_time_seconds": 0.09418201446533203
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/constraints.py::BaseConstraint.get_violation_error_message\", \"score\": 0.54461669921875}, {\"doc_id\": \"django/db/models/constraints.py::BaseConstraint.__init__\", \"score\": 0.4588913321495056}, {\"doc_id\": \"django/db/models/constraints.py::CheckConstraint.__repr__\", \"score\": 0.45295578241348267}, {\"doc_id\": \"tests/constraints/tests.py::BaseConstraintTests.test_custom_violation_error_message\", \"score\": 0.4039194583892822}, {\"doc_id\": \"django/core/exceptions.py::ValidationError.__repr__\", \"score\": 0.40372079610824585}, {\"doc_id\": \"django/core/exceptions.py::ValidationError.message_dict\", \"score\": 0.3984309434890747}, {\"doc_id\": \"django/core/exceptions.py::ValidationError.__init__\", \"score\": 0.3872891664505005}, {\"doc_id\": \"tests/constraints/tests.py::BaseConstraintTests.test_default_violation_error_message\", \"score\": 0.3795412480831146}, {\"doc_id\": \"django/contrib/postgres/operations.py::ValidateConstraint.describe\", \"score\": 0.3765677511692047}, {\"doc_id\": \"tests/constraints/tests.py::BaseConstraintTests.test_positional_arguments\", \"score\": 0.37124037742614746}]"
+}

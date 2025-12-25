@@ -1,0 +1,36 @@
+{
+  "instance_id": "sympy__sympy-12419",
+  "query": "Sum of the elements of an identity matrix is zero\nI think this is a bug.\r\n\r\nI created a matrix by M.T * M under an assumption that M is orthogonal.  SymPy successfully recognized that the result is an identity matrix.  I tested its identity-ness by element-wise, queries, and sum of the diagonal elements and received expected results.\r\n\r\nHowever, when I attempt to evaluate the total sum of the elements the result was 0 while 'n' is expected.\r\n\r\n```\r\nfrom sympy import *\r\nfrom sympy import Q as Query\r\n\r\nn = Symbol('n', integer=True, positive=True)\r\ni, j = symbols('i j', integer=True)\r\nM = MatrixSymbol('M', n, n)\r\n\r\ne = None\r\nwith assuming(Query.orthogonal(M)):\r\n    e = refine((M.T * M).doit())\r\n\r\n# Correct: M.T * M is an identity matrix.\r\nprint(e, e[0, 0], e[0, 1], e[1, 0], e[1, 1])\r\n\r\n# Correct: The output is True True\r\nprint(ask(Query.diagonal(e)), ask(Query.integer_elements(e)))\r\n\r\n# Correct: The sum of the diagonal elements is n\r\nprint(Sum(e[i, i], (i, 0, n-1)).doit())\r\n\r\n# So far so good\r\n# Total sum of the elements is expected to be 'n' but the answer is 0!\r\nprint(Sum(Sum(e[i, j], (i, 0, n-1)), (j, 0, n-1)).doit())\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/matrices/expressions/matexpr.py"
+    ],
+    "locations": [
+      "sympy/matrices/expressions/matexpr.py::MatrixElement",
+      "sympy/matrices/expressions/matexpr.py::MatrixElement._eval_derivative",
+      "sympy/matrices/expressions/matexpr.py::Identity",
+      "sympy/matrices/expressions/matexpr.py::Identity.conjugate",
+      "sympy/matrices/expressions/matexpr.py::Identity._entry",
+      "sympy/matrices/expressions/matexpr.py::Identity._eval_determinant"
+    ]
+  },
+  "predictions": [
+    "sympy/assumptions/tests/test_matrices.py::test_diagonal",
+    "sympy/matrices/expressions/tests/test_matexpr.py::test_Identity",
+    "sympy/concrete/tests/test_sums_products.py::test_matrix_sum",
+    "sympy/matrices/expressions/tests/test_matexpr.py::test_Identity_doit",
+    "sympy/matrices/expressions/matexpr.py::Identity._entry",
+    "sympy/matrices/expressions/tests/test_diagonal.py::test_DiagonalMatrix_Assumptions",
+    "sympy/matrices/expressions/tests/test_matmul.py::test_refine",
+    "sympy/assumptions/handlers/matrices.py::AskDiagonalHandler.MatAdd",
+    "sympy/assumptions/handlers/matrices.py::AskDiagonalHandler.Inverse",
+    "sympy/matrices/expressions/trace.py::trace"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "479939f8c65c8c2908bbedc959549a257a7c0b0b",
+    "total_functions_indexed": 20518,
+    "retrieval_time_seconds": 0.0077097415924072266
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/assumptions/tests/test_matrices.py::test_diagonal\", \"score\": 0.4742760956287384}, {\"doc_id\": \"sympy/matrices/expressions/tests/test_matexpr.py::test_Identity\", \"score\": 0.47017499804496765}, {\"doc_id\": \"sympy/concrete/tests/test_sums_products.py::test_matrix_sum\", \"score\": 0.45769673585891724}, {\"doc_id\": \"sympy/matrices/expressions/tests/test_matexpr.py::test_Identity_doit\", \"score\": 0.4488639831542969}, {\"doc_id\": \"sympy/matrices/expressions/matexpr.py::Identity._entry\", \"score\": 0.4370036721229553}, {\"doc_id\": \"sympy/matrices/expressions/tests/test_diagonal.py::test_DiagonalMatrix_Assumptions\", \"score\": 0.43496447801589966}, {\"doc_id\": \"sympy/matrices/expressions/tests/test_matmul.py::test_refine\", \"score\": 0.4346824288368225}, {\"doc_id\": \"sympy/assumptions/handlers/matrices.py::AskDiagonalHandler.MatAdd\", \"score\": 0.4175202548503876}, {\"doc_id\": \"sympy/assumptions/handlers/matrices.py::AskDiagonalHandler.Inverse\", \"score\": 0.41369277238845825}, {\"doc_id\": \"sympy/matrices/expressions/trace.py::trace\", \"score\": 0.4126674234867096}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-11618",
+  "query": "distance calculation wrong\n``` python\n>>> Point(2,0).distance(Point(1,0,2))\n1\n```\n\nThe 3rd dimension is being ignored when the Points are zipped together to calculate the distance so `sqrt((2-1)**2 + (0-0)**2)` is being computed instead of `sqrt(5)`.\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/geometry/point.py"
+    ],
+    "locations": [
+      "sympy/geometry/point.py::Point",
+      "sympy/geometry/point.py::Point.distance"
+    ]
+  },
+  "predictions": [
+    "sympy/geometry/line3d.py::Segment3D.length",
+    "sympy/geometry/line3d.py::Ray3D.distance",
+    "sympy/geometry/point.py::Point.distance",
+    "sympy/geometry/point.py::Point.__abs__",
+    "sympy/geometry/line.py::Segment.length",
+    "sympy/geometry/polygon.py::Triangle.circumradius",
+    "sympy/geometry/line3d.py::Segment3D.distance",
+    "sympy/geometry/point.py::Point.taxicab_distance",
+    "sympy/geometry/line.py::Ray.distance",
+    "sympy/geometry/line3d.py::Line3D.distance"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "360290c4c401e386db60723ddb0109ed499c9f6e",
+    "total_functions_indexed": 20088,
+    "retrieval_time_seconds": 0.008413553237915039
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/geometry/line3d.py::Segment3D.length\", \"score\": 0.5060544013977051}, {\"doc_id\": \"sympy/geometry/line3d.py::Ray3D.distance\", \"score\": 0.4536149501800537}, {\"doc_id\": \"sympy/geometry/point.py::Point.distance\", \"score\": 0.4445316195487976}, {\"doc_id\": \"sympy/geometry/point.py::Point.__abs__\", \"score\": 0.4403153657913208}, {\"doc_id\": \"sympy/geometry/line.py::Segment.length\", \"score\": 0.43749862909317017}, {\"doc_id\": \"sympy/geometry/polygon.py::Triangle.circumradius\", \"score\": 0.41814908385276794}, {\"doc_id\": \"sympy/geometry/line3d.py::Segment3D.distance\", \"score\": 0.41678160429000854}, {\"doc_id\": \"sympy/geometry/point.py::Point.taxicab_distance\", \"score\": 0.41595563292503357}, {\"doc_id\": \"sympy/geometry/line.py::Ray.distance\", \"score\": 0.40995633602142334}, {\"doc_id\": \"sympy/geometry/line3d.py::Line3D.distance\", \"score\": 0.40974441170692444}]"
+}

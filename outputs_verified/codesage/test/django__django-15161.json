@@ -1,0 +1,45 @@
+{
+  "instance_id": "django__django-15161",
+  "query": "Use simplified paths for deconstruct of expressions\nDescription\n\t\nPreviously F() deconstructed to: django.db.models.expressions.F(). But since it can also be imported from django.db.models, ​PR #14047 changed it to deconstruct to django.db.models.F(). This simplifies generated migration code where it will be referenced only as from django.db import models / models.F().\nAs Mariusz pointed out on the PR, the same technique can be applied to other expressions, further simplifying generated migrations.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/expressions.py"
+    ],
+    "locations": [
+      "django/db/models/expressions.py::OuterRef",
+      "django/db/models/expressions.py::OuterRef.relabeled_clone",
+      "django/db/models/expressions.py::Func",
+      "django/db/models/expressions.py::Func.copy",
+      "django/db/models/expressions.py::Value",
+      "django/db/models/expressions.py::OrderByList",
+      "django/db/models/expressions.py::OrderByList.as_sql",
+      "django/db/models/expressions.py::ExpressionWrapper",
+      "django/db/models/expressions.py::ExpressionWrapper.__repr__",
+      "django/db/models/expressions.py::When",
+      "django/db/models/expressions.py::When.get_group_by_cols",
+      "django/db/models/expressions.py::Case",
+      "django/db/models/expressions.py::Exists",
+      "django/db/models/expressions.py::Exists.select_format",
+      "django/db/models/expressions.py::OrderBy"
+    ]
+  },
+  "predictions": [
+    "tests/expressions/tests.py::FTests.test_deconstruct",
+    "django/db/models/expressions.py::BaseExpression._parse_expressions",
+    "django/db/models/expressions.py::F.__repr__",
+    "django/db/models/expressions.py::Func.resolve_expression",
+    "django/db/models/expressions.py::F.resolve_expression",
+    "django/db/models/expressions.py::Func.get_source_expressions",
+    "django/db/models/expressions.py::Subquery.get_source_expressions",
+    "django/db/models/indexes.py::Index.deconstruct",
+    "django/db/models/expressions.py::F.__eq__",
+    "django/db/models/constraints.py::UniqueConstraint.deconstruct"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "96e7ff5e9ff6362d9a886545869ce4496ca4b0fb",
+    "total_functions_indexed": 25491,
+    "retrieval_time_seconds": 0.0727694034576416
+  },
+  "raw_output": "[{\"doc_id\": \"tests/expressions/tests.py::FTests.test_deconstruct\", \"score\": 0.5029462575912476}, {\"doc_id\": \"django/db/models/expressions.py::BaseExpression._parse_expressions\", \"score\": 0.4248461127281189}, {\"doc_id\": \"django/db/models/expressions.py::F.__repr__\", \"score\": 0.4148999750614166}, {\"doc_id\": \"django/db/models/expressions.py::Func.resolve_expression\", \"score\": 0.39721590280532837}, {\"doc_id\": \"django/db/models/expressions.py::F.resolve_expression\", \"score\": 0.3914371132850647}, {\"doc_id\": \"django/db/models/expressions.py::Func.get_source_expressions\", \"score\": 0.3913445472717285}, {\"doc_id\": \"django/db/models/expressions.py::Subquery.get_source_expressions\", \"score\": 0.38535916805267334}, {\"doc_id\": \"django/db/models/indexes.py::Index.deconstruct\", \"score\": 0.37644103169441223}, {\"doc_id\": \"django/db/models/expressions.py::F.__eq__\", \"score\": 0.37548333406448364}, {\"doc_id\": \"django/db/models/constraints.py::UniqueConstraint.deconstruct\", \"score\": 0.3719717860221863}]"
+}

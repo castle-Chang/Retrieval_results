@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-15499",
+  "query": "Optimize CreateModel + AlterModelManagers to CreateModel\nDescription\n\t\nDuring migration optimization, CreateModel + AlterModelOptions is reduced to just CreateModel, with the model options. Similarly, CreateModel + AlterModelManagers can become just CreateModel.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/operations/models.py"
+    ],
+    "locations": [
+      "django/db/migrations/operations/models.py::CreateModel",
+      "django/db/migrations/operations/models.py::CreateModel.reduce"
+    ]
+  },
+  "predictions": [
+    "tests/migrations/test_operations.py::OperationTests.test_alter_model_options_emptying",
+    "django/db/migrations/operations/models.py::AlterModelOptions.state_forwards",
+    "tests/migrations/test_operations.py::OperationTests.test_alter_model_options",
+    "django/db/migrations/operations/models.py::AlterModelManagers.state_forwards",
+    "tests/migrations/test_operations.py::OperationTests.test_alter_model_managers_emptying",
+    "django/db/migrations/operations/models.py::AlterModelOptions.__init__",
+    "django/db/migrations/operations/models.py::AlterModelOptions.database_forwards",
+    "django/db/migrations/autodetector.py::MigrationAutodetector.generate_altered_options",
+    "tests/migrations/test_operations.py::OperationTests.test_alter_model_managers",
+    "django/db/migrations/operations/models.py::AlterModelManagers.deconstruct"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "d90e34c61b27fba2527834806639eebbcfab9631",
+    "total_functions_indexed": 25711,
+    "retrieval_time_seconds": 0.12977957725524902
+  },
+  "raw_output": "[{\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_alter_model_options_emptying\", \"score\": 0.42513081431388855}, {\"doc_id\": \"django/db/migrations/operations/models.py::AlterModelOptions.state_forwards\", \"score\": 0.4143622815608978}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_alter_model_options\", \"score\": 0.41353315114974976}, {\"doc_id\": \"django/db/migrations/operations/models.py::AlterModelManagers.state_forwards\", \"score\": 0.4088648557662964}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_alter_model_managers_emptying\", \"score\": 0.4073637127876282}, {\"doc_id\": \"django/db/migrations/operations/models.py::AlterModelOptions.__init__\", \"score\": 0.40390539169311523}, {\"doc_id\": \"django/db/migrations/operations/models.py::AlterModelOptions.database_forwards\", \"score\": 0.39301782846450806}, {\"doc_id\": \"django/db/migrations/autodetector.py::MigrationAutodetector.generate_altered_options\", \"score\": 0.3920237421989441}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_alter_model_managers\", \"score\": 0.38765597343444824}, {\"doc_id\": \"django/db/migrations/operations/models.py::AlterModelManagers.deconstruct\", \"score\": 0.3856376111507416}]"
+}

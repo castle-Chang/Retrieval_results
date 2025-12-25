@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-16612",
+  "query": "AdminSite.catch_all_view() drops query string in redirects\nDescription\n\t\n#31747 introduced AdminSite.catch_all_view(). However, in the process it broke the ability to redirect with settings.APPEND_SLASH = True when there are query strings.\nProvided URL: ​http://127.0.0.1:8000/admin/auth/foo?id=123\nExpected redirect: ​http://127.0.0.1:8000/admin/auth/foo/?id=123\nActual redirect: ​http://127.0.0.1:8000/admin/auth/foo/\nThis seems to be because the redirect in question does not include the query strings (such as via request.META['QUERY_STRING']):\nreturn HttpResponsePermanentRedirect(\"%s/\" % request.path)\n​https://github.com/django/django/blob/c57ff9ba5e251cd4c2761105a6046662c08f951e/django/contrib/admin/sites.py#L456\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admin/sites.py"
+    ],
+    "locations": [
+      "django/contrib/admin/sites.py::AdminSite",
+      "django/contrib/admin/sites.py::AdminSite.catch_all_view",
+      "django/contrib/admin/sites.py::AdminSite._build_app_dict"
+    ]
+  },
+  "predictions": [
+    "tests/admin_views/tests.py::AdminSiteFinalCatchAllPatternTests.test_missing_slash_append_slash_true_without_final_catch_all_view",
+    "tests/admin_views/tests.py::AdminSiteFinalCatchAllPatternTests.test_known_url_missing_slash_redirects_with_slash_if_not_auth_no_catch_all_view",
+    "django/contrib/admin/sites.py::AdminSite.catch_all_view",
+    "tests/admin_views/tests.py::AdminSiteFinalCatchAllPatternTests.test_missing_slash_append_slash_true",
+    "tests/admin_views/tests.py::AdminSiteFinalCatchAllPatternTests.test_missing_slash_append_slash_false_without_final_catch_all_view",
+    "tests/admin_views/tests.py::AdminSiteFinalCatchAllPatternTests.test_missing_slash_append_slash_true_force_script_name",
+    "tests/admin_views/tests.py::AdminSiteFinalCatchAllPatternTests.test_missing_slash_append_slash_true_non_staff_user",
+    "tests/admin_views/tests.py::AdminSiteFinalCatchAllPatternTests.test_non_admin_url_shares_url_prefix_without_final_catch_all_view",
+    "tests/admin_views/tests.py::AdminSiteFinalCatchAllPatternTests.test_url_no_trailing_slash_if_not_auth_without_final_catch_all_view",
+    "tests/admin_views/tests.py::AdminSiteFinalCatchAllPatternTests.test_missing_slash_append_slash_false"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "55bcbd8d172b689811fae17cde2f09218dd74e9c",
+    "total_functions_indexed": 26417,
+    "retrieval_time_seconds": 0.05116415023803711
+  },
+  "raw_output": "[{\"doc_id\": \"tests/admin_views/tests.py::AdminSiteFinalCatchAllPatternTests.test_missing_slash_append_slash_true_without_final_catch_all_view\", \"score\": 0.568440318107605}, {\"doc_id\": \"tests/admin_views/tests.py::AdminSiteFinalCatchAllPatternTests.test_known_url_missing_slash_redirects_with_slash_if_not_auth_no_catch_all_view\", \"score\": 0.5586596727371216}, {\"doc_id\": \"django/contrib/admin/sites.py::AdminSite.catch_all_view\", \"score\": 0.551884651184082}, {\"doc_id\": \"tests/admin_views/tests.py::AdminSiteFinalCatchAllPatternTests.test_missing_slash_append_slash_true\", \"score\": 0.5394272804260254}, {\"doc_id\": \"tests/admin_views/tests.py::AdminSiteFinalCatchAllPatternTests.test_missing_slash_append_slash_false_without_final_catch_all_view\", \"score\": 0.5217108726501465}, {\"doc_id\": \"tests/admin_views/tests.py::AdminSiteFinalCatchAllPatternTests.test_missing_slash_append_slash_true_force_script_name\", \"score\": 0.5153930187225342}, {\"doc_id\": \"tests/admin_views/tests.py::AdminSiteFinalCatchAllPatternTests.test_missing_slash_append_slash_true_non_staff_user\", \"score\": 0.5062515735626221}, {\"doc_id\": \"tests/admin_views/tests.py::AdminSiteFinalCatchAllPatternTests.test_non_admin_url_shares_url_prefix_without_final_catch_all_view\", \"score\": 0.4916553497314453}, {\"doc_id\": \"tests/admin_views/tests.py::AdminSiteFinalCatchAllPatternTests.test_url_no_trailing_slash_if_not_auth_without_final_catch_all_view\", \"score\": 0.4832123816013336}, {\"doc_id\": \"tests/admin_views/tests.py::AdminSiteFinalCatchAllPatternTests.test_missing_slash_append_slash_false\", \"score\": 0.4816916882991791}]"
+}

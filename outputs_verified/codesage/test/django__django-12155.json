@@ -1,0 +1,36 @@
+{
+  "instance_id": "django__django-12155",
+  "query": "docutils reports an error rendering view docstring when the first line is not empty\nDescription\n\t\nCurrently admindoc works correctly only with docstrings where the first line is empty, and all Django docstrings are formatted in this way.\nHowever usually the docstring text starts at the first line, e.g.:\ndef test():\n\t\"\"\"test tests something.\n\t\"\"\"\nand this cause an error:\nError in \"default-role\" directive:\nno content permitted.\n.. default-role:: cmsreference\nThe culprit is this code in trim_docstring:\nindent = min(len(line) - len(line.lstrip()) for line in lines if line.lstrip())\nThe problem is that the indentation of the first line is 0.\nThe solution is to skip the first line:\nindent = min(len(line) - len(line.lstrip()) for line in lines[1:] if line.lstrip())\nThanks.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admindocs/utils.py",
+      "django/contrib/admindocs/views.py"
+    ],
+    "locations": [
+      "django/contrib/admindocs/utils.py::get_view_name",
+      "django/contrib/admindocs/utils.py::trim_docstring",
+      "django/contrib/admindocs/utils.py::parse_docstring",
+      "django/contrib/admindocs/views.py::ModelDetailView",
+      "django/contrib/admindocs/views.py::ModelDetailView.get_context_data"
+    ]
+  },
+  "predictions": [
+    "tests/admin_docs/test_utils.py::TestUtils.test_trim_docstring",
+    "django/contrib/admindocs/utils.py::trim_docstring",
+    "django/contrib/admindocs/views.py::BaseAdminDocsView.dispatch",
+    "tests/admin_docs/test_utils.py::TestUtils.test_parse_docstring",
+    "tests/admin_docs/test_utils.py::TestUtils.test_title_output",
+    "tests/admin_docs/test_views.py::AdminDocViewTests.test_missing_docutils",
+    "tests/admin_docs/test_utils.py::TestUtils.setUp",
+    "tests/admin_docs/test_views.py::AdminDocViewTests.test_view_detail",
+    "django/contrib/admindocs/utils.py::parse_rst",
+    "django/contrib/admindocs/utils.py::default_reference_role"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "e8fcdaad5c428878d0a5d6ba820d957013f75595",
+    "total_functions_indexed": 23049,
+    "retrieval_time_seconds": 0.011854887008666992
+  },
+  "raw_output": "[{\"doc_id\": \"tests/admin_docs/test_utils.py::TestUtils.test_trim_docstring\", \"score\": 0.5335714817047119}, {\"doc_id\": \"django/contrib/admindocs/utils.py::trim_docstring\", \"score\": 0.5300960540771484}, {\"doc_id\": \"django/contrib/admindocs/views.py::BaseAdminDocsView.dispatch\", \"score\": 0.4886954128742218}, {\"doc_id\": \"tests/admin_docs/test_utils.py::TestUtils.test_parse_docstring\", \"score\": 0.4657142460346222}, {\"doc_id\": \"tests/admin_docs/test_utils.py::TestUtils.test_title_output\", \"score\": 0.4400330185890198}, {\"doc_id\": \"tests/admin_docs/test_views.py::AdminDocViewTests.test_missing_docutils\", \"score\": 0.43490922451019287}, {\"doc_id\": \"tests/admin_docs/test_utils.py::TestUtils.setUp\", \"score\": 0.39106425642967224}, {\"doc_id\": \"tests/admin_docs/test_views.py::AdminDocViewTests.test_view_detail\", \"score\": 0.39088261127471924}, {\"doc_id\": \"django/contrib/admindocs/utils.py::parse_rst\", \"score\": 0.3675116002559662}, {\"doc_id\": \"django/contrib/admindocs/utils.py::default_reference_role\", \"score\": 0.3657201826572418}]"
+}

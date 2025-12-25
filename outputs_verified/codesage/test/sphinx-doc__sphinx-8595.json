@@ -1,0 +1,32 @@
+{
+  "instance_id": "sphinx-doc__sphinx-8595",
+  "query": "autodoc: empty __all__ attribute is ignored\n**Describe the bug**\r\nautodoc: empty `__all__` attribute is ignored\r\n\r\n**To Reproduce**\r\n```\r\n# example.py\r\n__all__ = []\r\n\r\n\r\ndef foo():\r\n    \"docstring\"\r\n\r\n\r\ndef bar():\r\n    \"docstring\"\r\n\r\n\r\ndef baz():\r\n    \"docstring\"\r\n```\r\n```\r\n# index.rst\r\n.. automodule:: example\r\n   :members:\r\n```\r\n\r\nAll foo, bar, and baz are shown.\r\n\r\n**Expected behavior**\r\nNo entries should be shown because `__all__` is empty.\r\n\r\n**Your project**\r\nNo\r\n\r\n**Screenshots**\r\nNo\r\n\r\n**Environment info**\r\n- OS: Mac\r\n- Python version: 3.9.1\r\n- Sphinx version: HEAD of 3.x\r\n- Sphinx extensions: sphinx.ext.autodoc\r\n- Extra tools: No\r\n\r\n**Additional context**\r\nNo\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/ext/autodoc/__init__.py"
+    ],
+    "locations": [
+      "sphinx/ext/autodoc/__init__.py::ModuleDocumenter",
+      "sphinx/ext/autodoc/__init__.py::ModuleDocumenter.get_object_members"
+    ]
+  },
+  "predictions": [
+    "sphinx/ext/autodoc/__init__.py::_All.__contains__",
+    "sphinx/ext/autodoc/__init__.py::ModuleDocumenter.import_object",
+    "tests/test_ext_autodoc.py::test_autodoc",
+    "tests/test_ext_autodoc_configs.py::test_autodoc_default_options",
+    "tests/test_ext_autodoc.py::test_autodoc_ignore_module_all",
+    "tests/test_ext_autodoc.py::test_autodoc_imported_members",
+    "tests/test_ext_autodoc.py::test_autodoc_subclass_of_builtin_class",
+    "tests/test_ext_autodoc_configs.py::test_autodoc_default_options_with_values",
+    "tests/test_ext_autodoc.py::test_autodoc_special_members",
+    "tests/test_ext_autodoc.py::test_autodoc_members"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "b19bce971e82f2497d67fdacdeca8db08ae0ba56",
+    "total_functions_indexed": 5621,
+    "retrieval_time_seconds": 0.07107234001159668
+  },
+  "raw_output": "[{\"doc_id\": \"sphinx/ext/autodoc/__init__.py::_All.__contains__\", \"score\": 0.5622944831848145}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::ModuleDocumenter.import_object\", \"score\": 0.49488866329193115}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc\", \"score\": 0.4941833019256592}, {\"doc_id\": \"tests/test_ext_autodoc_configs.py::test_autodoc_default_options\", \"score\": 0.49313873052597046}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_ignore_module_all\", \"score\": 0.4898533225059509}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_imported_members\", \"score\": 0.4828246235847473}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_subclass_of_builtin_class\", \"score\": 0.4827880561351776}, {\"doc_id\": \"tests/test_ext_autodoc_configs.py::test_autodoc_default_options_with_values\", \"score\": 0.4804399013519287}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_special_members\", \"score\": 0.47880882024765015}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_members\", \"score\": 0.4714354872703552}]"
+}

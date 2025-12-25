@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-12125",
+  "query": "makemigrations produces incorrect path for inner classes\nDescription\n\t\nWhen you define a subclass from django.db.models.Field as an inner class of some other class, and use this field inside a django.db.models.Model class, then when you run manage.py makemigrations, a migrations file is created which refers to the inner class as if it were a top-level class of the module it is in.\nTo reproduce, create the following as your model:\nclass Outer(object):\n\tclass Inner(models.CharField):\n\t\tpass\nclass A(models.Model):\n\tfield = Outer.Inner(max_length=20)\nAfter running manage.py makemigrations, the generated migrations file contains the following:\nmigrations.CreateModel(\n\tname='A',\n\tfields=[\n\t\t('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n\t\t('field', test1.models.Inner(max_length=20)),\n\t],\n),\nNote the test1.models.Inner, which should have been test1.models.Outer.Inner.\nThe real life case involved an EnumField from django-enumfields, defined as an inner class of a Django Model class, similar to this:\nimport enum\nfrom enumfields import Enum, EnumField\nclass Thing(models.Model):\n\t@enum.unique\n\tclass State(Enum):\n\t\ton = 'on'\n\t\toff = 'off'\n\tstate = EnumField(enum=State)\nThis results in the following migrations code:\nmigrations.CreateModel(\n\tname='Thing',\n\tfields=[\n\t\t('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n\t\t('state', enumfields.fields.EnumField(enum=test1.models.State, max_length=10)),\n\t],\n),\nThis refers to test1.models.State, instead of to test1.models.Thing.State.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/serializer.py"
+    ],
+    "locations": [
+      "django/db/migrations/serializer.py::TypeSerializer",
+      "django/db/migrations/serializer.py::TypeSerializer.serialize",
+      "django/db/migrations/serializer.py::UUIDSerializer"
+    ]
+  },
+  "predictions": [
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_migrations_modules_path_not_exist",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_non_interactive_no_field_rename",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_files_content",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_migration_path_output",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_non_interactive_not_null_addition",
+    "tests/migrations/test_autodetector.py::AutodetectorTests.test_swappable_first_inheritance",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_non_interactive_no_model_rename",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_no_apps_initial",
+    "django/db/models/fields/__init__.py::AutoFieldMixin.contribute_to_class",
+    "tests/migrations/test_state.py::ModelStateTests.test_sanity_check_to"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "89d41cba392b759732ba9f1db4ff29ed47da6a56",
+    "total_functions_indexed": 23040,
+    "retrieval_time_seconds": 0.031986236572265625
+  },
+  "raw_output": "[{\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_migrations_modules_path_not_exist\", \"score\": 0.49379587173461914}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_non_interactive_no_field_rename\", \"score\": 0.4831779897212982}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_files_content\", \"score\": 0.4814671277999878}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_migration_path_output\", \"score\": 0.4732741415500641}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_non_interactive_not_null_addition\", \"score\": 0.4549507796764374}, {\"doc_id\": \"tests/migrations/test_autodetector.py::AutodetectorTests.test_swappable_first_inheritance\", \"score\": 0.45217591524124146}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_non_interactive_no_model_rename\", \"score\": 0.45212602615356445}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_no_apps_initial\", \"score\": 0.44666779041290283}, {\"doc_id\": \"django/db/models/fields/__init__.py::AutoFieldMixin.contribute_to_class\", \"score\": 0.4381878674030304}, {\"doc_id\": \"tests/migrations/test_state.py::ModelStateTests.test_sanity_check_to\", \"score\": 0.436698853969574}]"
+}

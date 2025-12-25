@@ -1,0 +1,34 @@
+{
+  "instance_id": "django__django-15561",
+  "query": "AlterField operation should be noop when adding/changing choices on SQLite.\nDescription\n\t\nwhile writing a test case for #33470 i found that for sqlite, even a seemingly db-transparent change like adding choices still generates sql (new table + insert + drop + rename) even though this shouldn't be needed. on e.g. postgres the same migration generates no sql\n",
+  "ground_truth": {
+    "files": [
+      "django/db/backends/base/schema.py",
+      "django/db/models/fields/__init__.py"
+    ],
+    "locations": [
+      "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor",
+      "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._field_should_be_altered",
+      "django/db/models/fields/__init__.py::Field"
+    ]
+  },
+  "predictions": [
+    "tests/schema/tests.py::SchemaTests.test_unique_no_unnecessary_fk_drops",
+    "tests/migrations/test_operations.py::OperationTests.test_alter_field_add_db_column_noop",
+    "tests/migrations/test_operations.py::OperationTests.test_alter_field_with_index",
+    "tests/migrations/test_operations.py::OperationTests.test_alter_field",
+    "tests/schema/tests.py::SchemaTests.test_char_field_with_db_index_to_fk",
+    "tests/migrations/test_operations.py::OperationTests.test_alter_field_with_func_unique_constraint",
+    "tests/schema/tests.py::SchemaTests.test_alter_field_type_and_db_collation",
+    "tests/schema/tests.py::SchemaTests.test_alter_field_add_unique_to_charfield_with_db_index",
+    "tests/schema/tests.py::SchemaTests.test_alter_auto_field_to_char_field",
+    "tests/schema/tests.py::SchemaTests.test_text_field_with_db_index_to_fk"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "6991880109e35c879b71b7d9d9c154baeec12b89",
+    "total_functions_indexed": 25775,
+    "retrieval_time_seconds": 0.12204885482788086
+  },
+  "raw_output": "[{\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_unique_no_unnecessary_fk_drops\", \"score\": 0.5513299703598022}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_alter_field_add_db_column_noop\", \"score\": 0.550606369972229}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_alter_field_with_index\", \"score\": 0.5279966592788696}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_alter_field\", \"score\": 0.5217574834823608}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_char_field_with_db_index_to_fk\", \"score\": 0.5128487348556519}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_alter_field_with_func_unique_constraint\", \"score\": 0.5079405307769775}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_alter_field_type_and_db_collation\", \"score\": 0.5038583278656006}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_alter_field_add_unique_to_charfield_with_db_index\", \"score\": 0.49825724959373474}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_alter_auto_field_to_char_field\", \"score\": 0.49745309352874756}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_text_field_with_db_index_to_fk\", \"score\": 0.4944159984588623}]"
+}
