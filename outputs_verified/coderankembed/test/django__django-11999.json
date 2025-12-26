@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-11999",
+  "query": "Cannot override get_FOO_display() in Django 2.2+.\nDescription\n\t\nI cannot override the get_FIELD_display function on models since version 2.2. It works in version 2.1.\nExample:\nclass FooBar(models.Model):\n\tfoo_bar = models.CharField(_(\"foo\"), choices=[(1, 'foo'), (2, 'bar')])\n\tdef __str__(self):\n\t\treturn self.get_foo_bar_display() # This returns 'foo' or 'bar' in 2.2, but 'something' in 2.1\n\tdef get_foo_bar_display(self):\n\t\treturn \"something\"\nWhat I expect is that I should be able to override this function.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/__init__.py"
+    ],
+    "locations": [
+      "django/db/models/fields/__init__.py::Field",
+      "django/db/models/fields/__init__.py::Field.contribute_to_class",
+      "django/db/models/fields/__init__.py::Field.get_filter_kwargs_for_object"
+    ]
+  },
+  "predictions": [
+    "django/db/models/base.py::Model._get_FIELD_display",
+    "django/forms/models.py::ModelChoiceField.label_from_instance",
+    "django/db/models/fields/__init__.py::CharField.get_internal_type",
+    "django/contrib/admin/utils.py::display_for_field",
+    "tests/model_fields/tests.py::GetFieldDisplayTests.test_get_FIELD_display_translated",
+    "django/contrib/admin/options.py::ModelAdmin.get_list_display",
+    "tests/model_fields/tests.py::BasicFieldTests.test_field_repr",
+    "tests/model_fields/tests.py::GetFieldDisplayTests.test_choices_and_field_display",
+    "django/db/models/fields/__init__.py::CharField.to_python",
+    "django/contrib/admin/utils.py::label_for_field"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "84633905273fc916e3d17883810d9969c03f73c2",
+    "total_functions_indexed": 22949,
+    "retrieval_time_seconds": 0.04596376419067383
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/base.py::Model._get_FIELD_display\", \"score\": 0.5861439108848572}, {\"doc_id\": \"django/forms/models.py::ModelChoiceField.label_from_instance\", \"score\": 0.47015178203582764}, {\"doc_id\": \"django/db/models/fields/__init__.py::CharField.get_internal_type\", \"score\": 0.4644795060157776}, {\"doc_id\": \"django/contrib/admin/utils.py::display_for_field\", \"score\": 0.45251208543777466}, {\"doc_id\": \"tests/model_fields/tests.py::GetFieldDisplayTests.test_get_FIELD_display_translated\", \"score\": 0.44527965784072876}, {\"doc_id\": \"django/contrib/admin/options.py::ModelAdmin.get_list_display\", \"score\": 0.43504977226257324}, {\"doc_id\": \"tests/model_fields/tests.py::BasicFieldTests.test_field_repr\", \"score\": 0.43360012769699097}, {\"doc_id\": \"tests/model_fields/tests.py::GetFieldDisplayTests.test_choices_and_field_display\", \"score\": 0.430717408657074}, {\"doc_id\": \"django/db/models/fields/__init__.py::CharField.to_python\", \"score\": 0.4271036684513092}, {\"doc_id\": \"django/contrib/admin/utils.py::label_for_field\", \"score\": 0.4168732166290283}]"
+}

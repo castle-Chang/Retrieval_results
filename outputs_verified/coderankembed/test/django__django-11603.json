@@ -1,0 +1,34 @@
+{
+  "instance_id": "django__django-11603",
+  "query": "Add DISTINCT support for Avg and Sum aggregates.\nDescription\n\t\nAs an extension of #28658, aggregates should be supported for other general aggregates such as Avg and Sum. Before 2.2, these aggregations just ignored the parameter, but now throw an exception.\nThis change would just involve setting these classes as allowing DISTINCT, and could also be applied to Min and Max (although pointless).\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/aggregates.py"
+    ],
+    "locations": [
+      "django/db/models/aggregates.py::Avg",
+      "django/db/models/aggregates.py::Count",
+      "django/db/models/aggregates.py::Sum",
+      "django/db/models/aggregates.py::Variance"
+    ]
+  },
+  "predictions": [
+    "tests/aggregation_regress/tests.py::AggregationTests.test_allow_distinct",
+    "tests/backends/sqlite/tests.py::Tests.test_distinct_aggregation",
+    "django/db/models/aggregates.py::Aggregate.__init__",
+    "tests/aggregation_regress/tests.py::AggregationTests.test_annotate_distinct_aggregate",
+    "tests/aggregation/tests.py::AggregateTestCase.test_sum_distinct_aggregate",
+    "django/db/backends/sqlite3/operations.py::DatabaseOperations.check_expression_support",
+    "django/contrib/gis/db/backends/base/features.py::BaseSpatialFeatures.supports_union_aggr",
+    "django/db/models/aggregates.py::Aggregate._get_repr_options",
+    "tests/aggregation_regress/tests.py::AggregationTests.test_distinct_conditional_aggregate",
+    "tests/expressions/tests.py::ReprTests.test_distinct_aggregates"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "f618e033acd37d59b536d6e6126e6c5be18037f6",
+    "total_functions_indexed": 22686,
+    "retrieval_time_seconds": 0.035886526107788086
+  },
+  "raw_output": "[{\"doc_id\": \"tests/aggregation_regress/tests.py::AggregationTests.test_allow_distinct\", \"score\": 0.5504659414291382}, {\"doc_id\": \"tests/backends/sqlite/tests.py::Tests.test_distinct_aggregation\", \"score\": 0.5408297777175903}, {\"doc_id\": \"django/db/models/aggregates.py::Aggregate.__init__\", \"score\": 0.5273882150650024}, {\"doc_id\": \"tests/aggregation_regress/tests.py::AggregationTests.test_annotate_distinct_aggregate\", \"score\": 0.48927924036979675}, {\"doc_id\": \"tests/aggregation/tests.py::AggregateTestCase.test_sum_distinct_aggregate\", \"score\": 0.4518947899341583}, {\"doc_id\": \"django/db/backends/sqlite3/operations.py::DatabaseOperations.check_expression_support\", \"score\": 0.451241135597229}, {\"doc_id\": \"django/contrib/gis/db/backends/base/features.py::BaseSpatialFeatures.supports_union_aggr\", \"score\": 0.43503138422966003}, {\"doc_id\": \"django/db/models/aggregates.py::Aggregate._get_repr_options\", \"score\": 0.426839679479599}, {\"doc_id\": \"tests/aggregation_regress/tests.py::AggregationTests.test_distinct_conditional_aggregate\", \"score\": 0.42646893858909607}, {\"doc_id\": \"tests/expressions/tests.py::ReprTests.test_distinct_aggregates\", \"score\": 0.4234773516654968}]"
+}

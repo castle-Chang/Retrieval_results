@@ -1,0 +1,40 @@
+{
+  "instance_id": "django__django-13741",
+  "query": "Set disabled prop on ReadOnlyPasswordHashField\nDescription\n\t\nCurrently the django.contrib.auth.forms.UserChangeForm defines a clean_password method that returns the initial password value to prevent (accidental) changes to the password value. It is also documented that custom forms for the User model need to define this method: ​https://docs.djangoproject.com/en/3.1/topics/auth/customizing/#a-full-example\nA while ago the forms.Field base class gained the ​disabled argument to:\n[disable] a form field using the disabled HTML attribute so that it won’t be editable by users. Even if a user tampers with the field’s value submitted to the server, it will be ignored in favor of the value from the form’s initial data.\nIt seems to me that this property could be set to True be default on the ReadOnlyPasswordHashField used to display the password hash. This way the clean_password is no longer necessary and the potential pitfall when using the ReadOnlyPasswordHashField without implementing clean_password is removed.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/auth/forms.py"
+    ],
+    "locations": [
+      "django/contrib/auth/forms.py::ReadOnlyPasswordHashField",
+      "django/contrib/auth/forms.py::ReadOnlyPasswordHashField.__init__",
+      "django/contrib/auth/forms.py::ReadOnlyPasswordHashField.bound_data",
+      "django/contrib/auth/forms.py::ReadOnlyPasswordHashField.has_changed",
+      "django/contrib/auth/forms.py::UsernameField",
+      "django/contrib/auth/forms.py::UsernameField.to_python",
+      "django/contrib/auth/forms.py::UserChangeForm",
+      "django/contrib/auth/forms.py::UserChangeForm.__init__",
+      "django/contrib/auth/forms.py::UserChangeForm.clean_password",
+      "django/contrib/auth/forms.py::AuthenticationForm"
+    ]
+  },
+  "predictions": [
+    "django/contrib/auth/forms.py::ReadOnlyPasswordHashField.__init__",
+    "tests/auth_tests/test_forms.py::ReadOnlyPasswordHashTest.test_readonly_field_has_changed",
+    "django/contrib/auth/forms.py::ReadOnlyPasswordHashField.has_changed",
+    "tests/auth_tests/test_forms.py::ReadOnlyPasswordHashTest.test_bug_19349_render_with_none_value",
+    "django/contrib/auth/base_user.py::AbstractBaseUser.set_unusable_password",
+    "tests/forms_tests/field_tests/test_base.py::DisabledFieldTests.test_disabled_field_has_changed_always_false",
+    "tests/model_fields/tests.py::BasicFieldTests.test_formfield_disabled",
+    "django/contrib/auth/forms.py::ReadOnlyPasswordHashField.bound_data",
+    "tests/auth_tests/test_views.py::ChangelistTests.test_view_user_password_is_readonly",
+    "tests/auth_tests/test_forms.py::ReadOnlyPasswordHashTest.test_render"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "d746f28949c009251a8741ba03d156964050717f",
+    "total_functions_indexed": 24190,
+    "retrieval_time_seconds": 0.006064176559448242
+  },
+  "raw_output": "[{\"doc_id\": \"django/contrib/auth/forms.py::ReadOnlyPasswordHashField.__init__\", \"score\": 0.5674808621406555}, {\"doc_id\": \"tests/auth_tests/test_forms.py::ReadOnlyPasswordHashTest.test_readonly_field_has_changed\", \"score\": 0.5320836305618286}, {\"doc_id\": \"django/contrib/auth/forms.py::ReadOnlyPasswordHashField.has_changed\", \"score\": 0.49287092685699463}, {\"doc_id\": \"tests/auth_tests/test_forms.py::ReadOnlyPasswordHashTest.test_bug_19349_render_with_none_value\", \"score\": 0.47635138034820557}, {\"doc_id\": \"django/contrib/auth/base_user.py::AbstractBaseUser.set_unusable_password\", \"score\": 0.47547802329063416}, {\"doc_id\": \"tests/forms_tests/field_tests/test_base.py::DisabledFieldTests.test_disabled_field_has_changed_always_false\", \"score\": 0.4416496753692627}, {\"doc_id\": \"tests/model_fields/tests.py::BasicFieldTests.test_formfield_disabled\", \"score\": 0.43506884574890137}, {\"doc_id\": \"django/contrib/auth/forms.py::ReadOnlyPasswordHashField.bound_data\", \"score\": 0.42308902740478516}, {\"doc_id\": \"tests/auth_tests/test_views.py::ChangelistTests.test_view_user_password_is_readonly\", \"score\": 0.4153621792793274}, {\"doc_id\": \"tests/auth_tests/test_forms.py::ReadOnlyPasswordHashTest.test_render\", \"score\": 0.4129626750946045}]"
+}

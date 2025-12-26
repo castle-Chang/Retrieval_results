@@ -1,0 +1,40 @@
+{
+  "instance_id": "django__django-11734",
+  "query": "OuterRef in exclude() or ~Q() uses wrong model.\nDescription\n\t\nThe following test (added to tests/queries/test_qs_combinators) fails when trying to exclude results using OuterRef()\ndef test_exists_exclude(self):\n\t# filter()\n\tqs = Number.objects.annotate(\n\t\tfoo=Exists(\n\t\t\tItem.objects.filter(tags__category_id=OuterRef('pk'))\n\t\t)\n\t).filter(foo=True)\n\tprint(qs) # works\n\t# exclude()\n\tqs = Number.objects.annotate(\n\t\tfoo =Exists(\n\t\t\tItem.objects.exclude(tags__category_id=OuterRef('pk'))\n\t\t)\n\t).filter(foo=True)\n\tprint(qs) # crashes\n\t# filter(~Q())\n\tqs = Number.objects.annotate(\n\t\tfoo =Exists(\n\t\t\tItem.objects.filter(~Q(tags__category_id=OuterRef('pk')))\n\t\t)\n\t).filter(foo=True)\n\tprint(qs) # crashes\nIt results in the following error\nValueError: This queryset contains a reference to an outer query and may only be used in a subquery\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/related_lookups.py",
+      "django/db/models/sql/query.py",
+      "django/db/models/fields/__init__.py"
+    ],
+    "locations": [
+      "django/db/models/fields/__init__.py::AutoFieldMixin",
+      "django/db/models/fields/__init__.py::AutoFieldMixin.get_db_prep_value",
+      "django/db/models/fields/__init__.py::AutoFieldMixin.get_prep_value",
+      "django/db/models/fields/__init__.py::AutoFieldMixin.contribute_to_class",
+      "django/db/models/fields/related_lookups.py::RelatedLookupMixin",
+      "django/db/models/fields/related_lookups.py::RelatedLookupMixin.get_prep_lookup",
+      "django/db/models/sql/query.py::Query",
+      "django/db/models/sql/query.py::Query.split_exclude"
+    ]
+  },
+  "predictions": [
+    "tests/expressions/tests.py::BasicExpressionsTests.test_outerref",
+    "tests/queries/tests.py::Queries1Tests.test_nested_exclude",
+    "django/db/models/expressions.py::ResolvedOuterRef.as_sql",
+    "tests/queries/tests.py::Queries1Tests.test_exclude",
+    "tests/queries/tests.py::Ticket20101Tests.test_ticket_20101",
+    "tests/or_lookups/tests.py::OrLookupsTests.test_q_negated",
+    "tests/expressions/tests.py::BasicExpressionsTests.test_subquery_references_joined_table_twice",
+    "tests/queries/tests.py::Queries1Tests.test_ticket7096",
+    "tests/expressions/tests.py::BasicExpressionsTests.test_exists_in_filter",
+    "tests/queries/tests.py::Queries1Tests.test_exclude_in"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "999891bd80b3d02dd916731a7a239e1036174885",
+    "total_functions_indexed": 22797,
+    "retrieval_time_seconds": 0.13605141639709473
+  },
+  "raw_output": "[{\"doc_id\": \"tests/expressions/tests.py::BasicExpressionsTests.test_outerref\", \"score\": 0.6531941890716553}, {\"doc_id\": \"tests/queries/tests.py::Queries1Tests.test_nested_exclude\", \"score\": 0.5747913122177124}, {\"doc_id\": \"django/db/models/expressions.py::ResolvedOuterRef.as_sql\", \"score\": 0.5347787141799927}, {\"doc_id\": \"tests/queries/tests.py::Queries1Tests.test_exclude\", \"score\": 0.5136791467666626}, {\"doc_id\": \"tests/queries/tests.py::Ticket20101Tests.test_ticket_20101\", \"score\": 0.5127600431442261}, {\"doc_id\": \"tests/or_lookups/tests.py::OrLookupsTests.test_q_negated\", \"score\": 0.5102737545967102}, {\"doc_id\": \"tests/expressions/tests.py::BasicExpressionsTests.test_subquery_references_joined_table_twice\", \"score\": 0.5087694525718689}, {\"doc_id\": \"tests/queries/tests.py::Queries1Tests.test_ticket7096\", \"score\": 0.505366325378418}, {\"doc_id\": \"tests/expressions/tests.py::BasicExpressionsTests.test_exists_in_filter\", \"score\": 0.4988846778869629}, {\"doc_id\": \"tests/queries/tests.py::Queries1Tests.test_exclude_in\", \"score\": 0.49533218145370483}]"
+}

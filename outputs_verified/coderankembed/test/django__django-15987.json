@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-15987",
+  "query": "Fixture dirs duplicates undetected if dir is Path instance\nDescription\n\t\nWhen FIXTURE_DIRS contains Path instances, the duplicate check in loaddata does not detect duplicates.\n",
+  "ground_truth": {
+    "files": [
+      "django/core/management/commands/loaddata.py"
+    ],
+    "locations": [
+      "django/core/management/commands/loaddata.py::Command",
+      "django/core/management/commands/loaddata.py::Command.fixture_dirs"
+    ]
+  },
+  "predictions": [
+    "tests/fixtures_regress/tests.py::TestFixtures.test_fixture_dirs_with_duplicates",
+    "django/core/management/commands/loaddata.py::Command.fixture_dirs",
+    "tests/fixtures_regress/tests.py::TestFixtures.test_loaddata_with_valid_fixture_dirs",
+    "tests/fixtures_regress/tests.py::TestFixtures.test_fixture_dirs_with_default_fixture_path",
+    "tests/test_runner/test_discover_runner.py::DiscoverRunnerTests.test_duplicates_ignored",
+    "django/core/management/commands/loaddata.py::Command.get_fixture_name_and_dirs",
+    "tests/apps/tests.py::AppConfigTests.test_duplicate_dunder_path_no_dunder_file",
+    "django/core/management/commands/loaddata.py::Command.find_fixture_files_in_dir",
+    "tests/fixtures_regress/tests.py::TestFixtures.test_fixtures_dir_pathlib",
+    "django/contrib/admin/utils.py::lookup_spawns_duplicates"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "7e6b537f5b92be152779fc492bb908d27fe7c52a",
+    "total_functions_indexed": 26126,
+    "retrieval_time_seconds": 0.09539985656738281
+  },
+  "raw_output": "[{\"doc_id\": \"tests/fixtures_regress/tests.py::TestFixtures.test_fixture_dirs_with_duplicates\", \"score\": 0.6872431039810181}, {\"doc_id\": \"django/core/management/commands/loaddata.py::Command.fixture_dirs\", \"score\": 0.49654653668403625}, {\"doc_id\": \"tests/fixtures_regress/tests.py::TestFixtures.test_loaddata_with_valid_fixture_dirs\", \"score\": 0.47053736448287964}, {\"doc_id\": \"tests/fixtures_regress/tests.py::TestFixtures.test_fixture_dirs_with_default_fixture_path\", \"score\": 0.46952933073043823}, {\"doc_id\": \"tests/test_runner/test_discover_runner.py::DiscoverRunnerTests.test_duplicates_ignored\", \"score\": 0.44480249285697937}, {\"doc_id\": \"django/core/management/commands/loaddata.py::Command.get_fixture_name_and_dirs\", \"score\": 0.44419145584106445}, {\"doc_id\": \"tests/apps/tests.py::AppConfigTests.test_duplicate_dunder_path_no_dunder_file\", \"score\": 0.4269792437553406}, {\"doc_id\": \"django/core/management/commands/loaddata.py::Command.find_fixture_files_in_dir\", \"score\": 0.4179207384586334}, {\"doc_id\": \"tests/fixtures_regress/tests.py::TestFixtures.test_fixtures_dir_pathlib\", \"score\": 0.41001367568969727}, {\"doc_id\": \"django/contrib/admin/utils.py::lookup_spawns_duplicates\", \"score\": 0.3845445513725281}]"
+}

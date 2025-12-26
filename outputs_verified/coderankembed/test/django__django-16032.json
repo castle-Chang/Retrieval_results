@@ -1,0 +1,39 @@
+{
+  "instance_id": "django__django-16032",
+  "query": "__in doesn't clear selected fields on the RHS when QuerySet.alias() is used after annotate().\nDescription\n\t\nHere is a test case to reproduce the bug, you can add this in tests/annotations/tests.py\n\tdef test_annotation_and_alias_filter_in_subquery(self):\n\t\tlong_books_qs = (\n\t\t\tBook.objects.filter(\n\t\t\t\tpages__gt=400,\n\t\t\t)\n\t\t\t.annotate(book_annotate=Value(1))\n\t\t\t.alias(book_alias=Value(1))\n\t\t)\n\t\tpublisher_books_qs = (\n\t\t\tPublisher.objects.filter(\n\t\t\t\tbook__in=long_books_qs\n\t\t\t)\n\t\t\t.values(\"name\")\n\t\t)\n\t\tself.assertCountEqual(\n\t\t\tpublisher_books_qs,\n\t\t\t[\n\t\t\t\t{'name': 'Apress'},\n\t\t\t\t{'name': 'Sams'},\n\t\t\t\t{'name': 'Prentice Hall'},\n\t\t\t\t{'name': 'Morgan Kaufmann'}\n\t\t\t]\n\t\t)\nYou should get this error:\ndjango.db.utils.OperationalError: sub-select returns 10 columns - expected 1\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/related_lookups.py",
+      "django/db/models/sql/query.py"
+    ],
+    "locations": [
+      "django/db/models/fields/related_lookups.py::RelatedIn",
+      "django/db/models/fields/related_lookups.py::RelatedIn.get_prep_lookup",
+      "django/db/models/fields/related_lookups.py::RelatedIn.as_sql",
+      "django/db/models/sql/query.py::Query",
+      "django/db/models/sql/query.py::Query.output_field",
+      "django/db/models/sql/query.py::Query.has_select_fields",
+      "django/db/models/sql/query.py::Query.base_table",
+      "django/db/models/sql/query.py::Query.set_values"
+    ]
+  },
+  "predictions": [
+    "tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_annotation_filter_with_subquery",
+    "tests/aggregation_regress/tests.py::AggregationTests.test_having_subquery_select",
+    "tests/aggregation/test_filter_argument.py::FilteredAggregateTests.test_filtered_aggregate_ref_multiple_subquery_annotation",
+    "tests/annotations/tests.py::AliasTests.test_joined_alias_annotation",
+    "tests/filtered_relation/tests.py::FilteredRelationTests.test_internal_queryset_alias_mapping",
+    "tests/filtered_relation/tests.py::FilteredRelationTests.test_as_subquery",
+    "tests/aggregation/tests.py::AggregateTestCase.test_aggregation_subquery_annotation_values",
+    "tests/annotations/tests.py::AliasTests.test_overwrite_alias_with_annotation",
+    "tests/annotations/tests.py::AliasTests.test_alias_annotate_with_aggregation",
+    "tests/annotations/tests.py::AliasTests.test_overwrite_annotation_with_alias"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "0c3981eb5094419fe200eb46c71b5376a2266166",
+    "total_functions_indexed": 26155,
+    "retrieval_time_seconds": 0.005693674087524414
+  },
+  "raw_output": "[{\"doc_id\": \"tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_annotation_filter_with_subquery\", \"score\": 0.6223837733268738}, {\"doc_id\": \"tests/aggregation_regress/tests.py::AggregationTests.test_having_subquery_select\", \"score\": 0.5782380700111389}, {\"doc_id\": \"tests/aggregation/test_filter_argument.py::FilteredAggregateTests.test_filtered_aggregate_ref_multiple_subquery_annotation\", \"score\": 0.5631300806999207}, {\"doc_id\": \"tests/annotations/tests.py::AliasTests.test_joined_alias_annotation\", \"score\": 0.5561140775680542}, {\"doc_id\": \"tests/filtered_relation/tests.py::FilteredRelationTests.test_internal_queryset_alias_mapping\", \"score\": 0.5532015562057495}, {\"doc_id\": \"tests/filtered_relation/tests.py::FilteredRelationTests.test_as_subquery\", \"score\": 0.552588701248169}, {\"doc_id\": \"tests/aggregation/tests.py::AggregateTestCase.test_aggregation_subquery_annotation_values\", \"score\": 0.5423885583877563}, {\"doc_id\": \"tests/annotations/tests.py::AliasTests.test_overwrite_alias_with_annotation\", \"score\": 0.5415694713592529}, {\"doc_id\": \"tests/annotations/tests.py::AliasTests.test_alias_annotate_with_aggregation\", \"score\": 0.5335582494735718}, {\"doc_id\": \"tests/annotations/tests.py::AliasTests.test_overwrite_annotation_with_alias\", \"score\": 0.5268795490264893}]"
+}

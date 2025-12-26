@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-12262",
+  "query": "Custom template tags raise TemplateSyntaxError when keyword-only arguments with defaults are provided.\nDescription\n\t \n\t\t(last modified by P-Seebauer)\n\t \nWhen creating simple tags without variable keyword args, but an keyword argument with a default value. It's not possible to supply any other variable.\n@register.simple_tag\ndef hello(*, greeting='hello'):\n\treturn f'{greeting} world'\n{% hello greeting='hi' %}\nRaises “'hello' received unexpected keyword argument 'greeting'”\nAlso supplying a keyword argument a second time raises the wrong error message:\n#tag\n@register.simple_tag\ndef hi(*, greeting):\n\treturn f'{greeting} world'\n{% hi greeting='hi' greeting='hello' %}\nRaises “'hi' received unexpected keyword argument 'greeting'”\ninstead of \"'hi' received multiple values for keyword argument 'greeting'\"\nSame goes for inclusion tags (is the same code) I already have a fix ready, will push it after creating the ticket (that I have a ticket# for the commit).\nIs actually for all versions since the offending line is from 2.0…\n",
+  "ground_truth": {
+    "files": [
+      "django/template/library.py"
+    ],
+    "locations": [
+      "django/template/library.py::parse_bits"
+    ]
+  },
+  "predictions": [
+    "tests/template_tests/test_custom.py::SimpleTagTests.test_simple_tag_errors",
+    "tests/template_tests/templatetags/custom.py::simple_keyword_only_default",
+    "django/template/defaulttags.py::templatetag",
+    "tests/template_tests/test_custom.py::InclusionTagTests.test_inclusion_tag_errors",
+    "tests/template_tests/templatetags/custom.py::simple_keyword_only_param",
+    "tests/template_tests/test_custom.py::SimpleTagTests.test_simple_tag_missing_context",
+    "tests/template_tests/test_custom.py::SimpleTagTests.test_simple_tags",
+    "tests/template_tests/test_custom.py::SimpleTagTests.test_simple_tag_registration",
+    "tests/template_tests/test_library.py::SimpleTagRegistrationTests.test_simple_tag_name_kwarg",
+    "tests/template_tests/templatetags/custom.py::simple_unlimited_args_kwargs"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "69331bb851c34f05bc77e9fc24020fe6908b9cd5",
+    "total_functions_indexed": 23129,
+    "retrieval_time_seconds": 0.005464076995849609
+  },
+  "raw_output": "[{\"doc_id\": \"tests/template_tests/test_custom.py::SimpleTagTests.test_simple_tag_errors\", \"score\": 0.616651713848114}, {\"doc_id\": \"tests/template_tests/templatetags/custom.py::simple_keyword_only_default\", \"score\": 0.5888423323631287}, {\"doc_id\": \"django/template/defaulttags.py::templatetag\", \"score\": 0.5489511489868164}, {\"doc_id\": \"tests/template_tests/test_custom.py::InclusionTagTests.test_inclusion_tag_errors\", \"score\": 0.5268641114234924}, {\"doc_id\": \"tests/template_tests/templatetags/custom.py::simple_keyword_only_param\", \"score\": 0.521246075630188}, {\"doc_id\": \"tests/template_tests/test_custom.py::SimpleTagTests.test_simple_tag_missing_context\", \"score\": 0.5173892378807068}, {\"doc_id\": \"tests/template_tests/test_custom.py::SimpleTagTests.test_simple_tags\", \"score\": 0.5006967186927795}, {\"doc_id\": \"tests/template_tests/test_custom.py::SimpleTagTests.test_simple_tag_registration\", \"score\": 0.49989843368530273}, {\"doc_id\": \"tests/template_tests/test_library.py::SimpleTagRegistrationTests.test_simple_tag_name_kwarg\", \"score\": 0.49456876516342163}, {\"doc_id\": \"tests/template_tests/templatetags/custom.py::simple_unlimited_args_kwargs\", \"score\": 0.48603126406669617}]"
+}

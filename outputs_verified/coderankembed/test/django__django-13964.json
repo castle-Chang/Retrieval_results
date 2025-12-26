@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-13964",
+  "query": "Saving parent object after setting on child leads to data loss for parents with non-numeric primary key.\nDescription\n\t \n\t\t(last modified by Charlie DeTar)\n\t \nGiven a model with a foreign key relation to another model that has a non-auto CharField as its primary key:\nclass Product(models.Model):\n\tsku = models.CharField(primary_key=True, max_length=50)\nclass Order(models.Model):\n\tproduct = models.ForeignKey(Product, on_delete=models.CASCADE)\nIf the relation is initialized on the parent with an empty instance that does not yet specify its primary key, and the primary key is subsequently defined, the parent does not \"see\" the primary key's change:\nwith transaction.atomic():\n\torder = Order()\n\torder.product = Product()\n\torder.product.sku = \"foo\"\n\torder.product.save()\n\torder.save()\n\tassert Order.objects.filter(product_id=\"\").exists() # Succeeds, but shouldn't\n\tassert Order.objects.filter(product=order.product).exists() # Fails\nInstead of product_id being populated with product.sku, it is set to emptystring. The foreign key constraint which would enforce the existence of a product with sku=\"\" is deferred until the transaction commits. The transaction does correctly fail on commit with a ForeignKeyViolation due to the non-existence of a product with emptystring as its primary key.\nOn the other hand, if the related unsaved instance is initialized with its primary key before assignment to the parent, it is persisted correctly:\nwith transaction.atomic():\n\torder = Order()\n\torder.product = Product(sku=\"foo\")\n\torder.product.save()\n\torder.save()\n\tassert Order.objects.filter(product=order.product).exists() # succeeds\nCommitting the transaction also succeeds.\nThis may have something to do with how the Order.product_id field is handled at assignment, together with something about handling fetching of auto vs non-auto primary keys from the related instance.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/base.py"
+    ],
+    "locations": [
+      "django/db/models/base.py::Model",
+      "django/db/models/base.py::Model._prepare_related_fields_for_save"
+    ]
+  },
+  "predictions": [
+    "tests/basic/tests.py::ModelInstanceCreationTests.test_save_parent_primary_with_default",
+    "tests/many_to_one/tests.py::ManyToOneTests.test_save_nullable_fk_after_parent",
+    "tests/many_to_one/tests.py::ManyToOneTests.test_fk_assignment_and_related_object_cache",
+    "tests/basic/tests.py::ModelInstanceCreationTests.test_save_primary_with_default",
+    "tests/many_to_one/tests.py::ManyToOneTests.test_save_nullable_fk_after_parent_with_to_field",
+    "tests/model_fields/test_uuid.py::TestAsPrimaryKeyTransactionTests.test_unsaved_fk",
+    "tests/schema/tests.py::SchemaTests.test_no_db_constraint_added_during_primary_key_change",
+    "django/db/models/fields/related_descriptors.py::ForwardOneToOneDescriptor.__set__",
+    "tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_foreignkey_field",
+    "tests/many_to_one/tests.py::ManyToOneTests.test_assign_fk_id_value"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "f39634ff229887bf7790c069d0c411b38494ca38",
+    "total_functions_indexed": 24251,
+    "retrieval_time_seconds": 0.004926919937133789
+  },
+  "raw_output": "[{\"doc_id\": \"tests/basic/tests.py::ModelInstanceCreationTests.test_save_parent_primary_with_default\", \"score\": 0.5866148471832275}, {\"doc_id\": \"tests/many_to_one/tests.py::ManyToOneTests.test_save_nullable_fk_after_parent\", \"score\": 0.5256975889205933}, {\"doc_id\": \"tests/many_to_one/tests.py::ManyToOneTests.test_fk_assignment_and_related_object_cache\", \"score\": 0.513501763343811}, {\"doc_id\": \"tests/basic/tests.py::ModelInstanceCreationTests.test_save_primary_with_default\", \"score\": 0.494665265083313}, {\"doc_id\": \"tests/many_to_one/tests.py::ManyToOneTests.test_save_nullable_fk_after_parent_with_to_field\", \"score\": 0.48783671855926514}, {\"doc_id\": \"tests/model_fields/test_uuid.py::TestAsPrimaryKeyTransactionTests.test_unsaved_fk\", \"score\": 0.48026537895202637}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_no_db_constraint_added_during_primary_key_change\", \"score\": 0.4744443893432617}, {\"doc_id\": \"django/db/models/fields/related_descriptors.py::ForwardOneToOneDescriptor.__set__\", \"score\": 0.4609774947166443}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_foreignkey_field\", \"score\": 0.459991991519928}, {\"doc_id\": \"tests/many_to_one/tests.py::ManyToOneTests.test_assign_fk_id_value\", \"score\": 0.45425844192504883}]"
+}

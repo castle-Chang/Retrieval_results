@@ -1,0 +1,32 @@
+{
+  "instance_id": "matplotlib__matplotlib-25960",
+  "query": "[Bug]: wspace and hspace in subfigures not working\n### Bug summary\n\n`wspace` and `hspace` in `Figure.subfigures` do nothing.\n\n### Code for reproduction\n\n```python\nimport matplotlib.pyplot as plt\r\n\r\nfigs = plt.figure().subfigures(2, 2, wspace=0, hspace=0)\r\nfor fig in figs.flat:\r\n    fig.subplots().plot([1, 2])\r\nplt.show()\n```\n\n\n### Actual outcome\n\nSame figure independently of the values of hspace and wspace.\n\n### Expected outcome\n\nhttps://github.com/matplotlib/matplotlib/blob/b3bd929cf07ea35479fded8f739126ccc39edd6d/lib/matplotlib/figure.py#L1550-L1554\n\n### Additional information\n\n_No response_\n\n### Operating system\n\nOS/X\n\n### Matplotlib Version\n\n3.7.1\n\n### Matplotlib Backend\n\nMacOSX\n\n### Python version\n\nPython 3.10.9\n\n### Jupyter version\n\n_No response_\n\n### Installation\n\nconda\n",
+  "ground_truth": {
+    "files": [
+      "lib/matplotlib/figure.py"
+    ],
+    "locations": [
+      "lib/matplotlib/figure.py::FigureBase",
+      "lib/matplotlib/figure.py::FigureBase.subfigures"
+    ]
+  },
+  "predictions": [
+    "lib/matplotlib/tests/test_figure.py::test_subfigure",
+    "lib/matplotlib/tests/test_figure.py::test_subfigure_ticks",
+    "lib/mpl_toolkits/mplot3d/tests/test_axes3d.py::test_subfigure_simple",
+    "lib/matplotlib/tests/test_figure.py::test_subfigure_double",
+    "lib/matplotlib/tests/test_figure.py::test_subfigure_spanning",
+    "lib/matplotlib/tests/test_figure.py::test_subfigure_ss",
+    "lib/matplotlib/tests/test_figure.py::test_suptitle_subfigures",
+    "lib/matplotlib/figure.py::FigureBase.subfigures",
+    "lib/matplotlib/tests/test_figure.py::test_subfigure_scatter_size",
+    "lib/matplotlib/tests/test_subplots.py::test_width_and_height_ratios"
+  ],
+  "metadata": {
+    "repo": "matplotlib/matplotlib",
+    "commit": "1d0d255b79e84dfc9f2123c5eb85a842d342f72b",
+    "total_functions_indexed": 9227,
+    "retrieval_time_seconds": 0.003924131393432617
+  },
+  "raw_output": "[{\"doc_id\": \"lib/matplotlib/tests/test_figure.py::test_subfigure\", \"score\": 0.5495004057884216}, {\"doc_id\": \"lib/matplotlib/tests/test_figure.py::test_subfigure_ticks\", \"score\": 0.5428485870361328}, {\"doc_id\": \"lib/mpl_toolkits/mplot3d/tests/test_axes3d.py::test_subfigure_simple\", \"score\": 0.541240394115448}, {\"doc_id\": \"lib/matplotlib/tests/test_figure.py::test_subfigure_double\", \"score\": 0.5399733781814575}, {\"doc_id\": \"lib/matplotlib/tests/test_figure.py::test_subfigure_spanning\", \"score\": 0.5398467779159546}, {\"doc_id\": \"lib/matplotlib/tests/test_figure.py::test_subfigure_ss\", \"score\": 0.5383632183074951}, {\"doc_id\": \"lib/matplotlib/tests/test_figure.py::test_suptitle_subfigures\", \"score\": 0.5227236747741699}, {\"doc_id\": \"lib/matplotlib/figure.py::FigureBase.subfigures\", \"score\": 0.49017277359962463}, {\"doc_id\": \"lib/matplotlib/tests/test_figure.py::test_subfigure_scatter_size\", \"score\": 0.4900605082511902}, {\"doc_id\": \"lib/matplotlib/tests/test_subplots.py::test_width_and_height_ratios\", \"score\": 0.4873408079147339}]"
+}

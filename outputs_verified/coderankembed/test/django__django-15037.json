@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-15037",
+  "query": "Foreign key to a specific field is not handled in inspectdb\nDescription\n\t \n\t\t(last modified by Tim Graham)\n\t \nif you have a DB like that\nCREATE TABLE foo ( id serial primary key, other_id int UNIQUE);\nCREATE TABLE bar (\n\tid serial primary key, other_id int,\n\tconstraint myconst \n\tFOREIGN KEY(other_id) references foo(other_id)\n);\nthe generated model for the bar table will have the other_id be a FK to foo and not foo(other_id).\nI'm attaching a potential fix for this. Sorry I had no time for the UTs.\n",
+  "ground_truth": {
+    "files": [
+      "django/core/management/commands/inspectdb.py"
+    ],
+    "locations": [
+      "django/core/management/commands/inspectdb.py::Command",
+      "django/core/management/commands/inspectdb.py::Command.handle_inspection"
+    ]
+  },
+  "predictions": [
+    "tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_foreign_key_to_non_unique_field_under_explicit_model",
+    "tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_foreign_key_to_non_unique_field",
+    "tests/schema/tests.py::SchemaTests.test_fk_db_constraint",
+    "tests/invalid_models_tests/test_models.py::ConstraintsTests.test_func_unique_constraint_pointing_to_fk",
+    "tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_foreign_key_to_partially_unique_field",
+    "tests/invalid_models_tests/test_models.py::UniqueTogetherTests.test_pointing_to_fk",
+    "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._fk_constraint_name",
+    "tests/invalid_models_tests/test_models.py::IndexesTests.test_pointing_to_fk",
+    "tests/model_forms/tests.py::OtherModelFormTests.test_foreignkeys_which_use_to_field",
+    "tests/invalid_models_tests/test_models.py::ConstraintsTests.test_unique_constraint_pointing_to_fk"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "dab48b7482295956973879d15bfd4d3bb0718772",
+    "total_functions_indexed": 25232,
+    "retrieval_time_seconds": 0.005322694778442383
+  },
+  "raw_output": "[{\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_foreign_key_to_non_unique_field_under_explicit_model\", \"score\": 0.5137268304824829}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_foreign_key_to_non_unique_field\", \"score\": 0.49869394302368164}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_fk_db_constraint\", \"score\": 0.48202669620513916}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::ConstraintsTests.test_func_unique_constraint_pointing_to_fk\", \"score\": 0.47799623012542725}, {\"doc_id\": \"tests/invalid_models_tests/test_relative_fields.py::RelativeFieldTests.test_foreign_key_to_partially_unique_field\", \"score\": 0.4638754725456238}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::UniqueTogetherTests.test_pointing_to_fk\", \"score\": 0.45698148012161255}, {\"doc_id\": \"django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._fk_constraint_name\", \"score\": 0.45137569308280945}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::IndexesTests.test_pointing_to_fk\", \"score\": 0.45104485750198364}, {\"doc_id\": \"tests/model_forms/tests.py::OtherModelFormTests.test_foreignkeys_which_use_to_field\", \"score\": 0.4492727518081665}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::ConstraintsTests.test_unique_constraint_pointing_to_fk\", \"score\": 0.4484504163265228}]"
+}

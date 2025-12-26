@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-14434",
+  "query": "Statement created by _create_unique_sql makes references_column always false\nDescription\n\t\nThis is due to an instance of Table is passed as an argument to Columns when a string is expected.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/backends/base/schema.py"
+    ],
+    "locations": [
+      "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor",
+      "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._create_unique_sql"
+    ]
+  },
+  "predictions": [
+    "tests/backends/test_ddl_references.py::StatementTests.test_references_column",
+    "tests/backends/test_ddl_references.py::MockReference.references_column",
+    "django/db/backends/ddl_references.py::Reference.references_column",
+    "tests/backends/test_ddl_references.py::ForeignKeyNameTests.test_references_column",
+    "django/db/backends/ddl_references.py::TableColumns.references_column",
+    "django/db/backends/ddl_references.py::ForeignKeyName.references_column",
+    "tests/backends/test_ddl_references.py::ColumnsTests.test_references_column",
+    "tests/backends/test_ddl_references.py::ExpressionsTests.test_references_column",
+    "tests/backends/test_ddl_references.py::MockReference.rename_column_references",
+    "tests/backends/test_ddl_references.py::StatementTests.test_references_table"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "5e04e84d67da8163f365e9f5fcd169e2630e2873",
+    "total_functions_indexed": 24599,
+    "retrieval_time_seconds": 0.005697488784790039
+  },
+  "raw_output": "[{\"doc_id\": \"tests/backends/test_ddl_references.py::StatementTests.test_references_column\", \"score\": 0.5837271809577942}, {\"doc_id\": \"tests/backends/test_ddl_references.py::MockReference.references_column\", \"score\": 0.5620394945144653}, {\"doc_id\": \"django/db/backends/ddl_references.py::Reference.references_column\", \"score\": 0.5553217530250549}, {\"doc_id\": \"tests/backends/test_ddl_references.py::ForeignKeyNameTests.test_references_column\", \"score\": 0.5531446933746338}, {\"doc_id\": \"django/db/backends/ddl_references.py::TableColumns.references_column\", \"score\": 0.5485921502113342}, {\"doc_id\": \"django/db/backends/ddl_references.py::ForeignKeyName.references_column\", \"score\": 0.544176459312439}, {\"doc_id\": \"tests/backends/test_ddl_references.py::ColumnsTests.test_references_column\", \"score\": 0.5377759337425232}, {\"doc_id\": \"tests/backends/test_ddl_references.py::ExpressionsTests.test_references_column\", \"score\": 0.5362686514854431}, {\"doc_id\": \"tests/backends/test_ddl_references.py::MockReference.rename_column_references\", \"score\": 0.525558590888977}, {\"doc_id\": \"tests/backends/test_ddl_references.py::StatementTests.test_references_table\", \"score\": 0.5207827091217041}]"
+}

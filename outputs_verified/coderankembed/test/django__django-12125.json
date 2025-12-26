@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-12125",
+  "query": "makemigrations produces incorrect path for inner classes\nDescription\n\t\nWhen you define a subclass from django.db.models.Field as an inner class of some other class, and use this field inside a django.db.models.Model class, then when you run manage.py makemigrations, a migrations file is created which refers to the inner class as if it were a top-level class of the module it is in.\nTo reproduce, create the following as your model:\nclass Outer(object):\n\tclass Inner(models.CharField):\n\t\tpass\nclass A(models.Model):\n\tfield = Outer.Inner(max_length=20)\nAfter running manage.py makemigrations, the generated migrations file contains the following:\nmigrations.CreateModel(\n\tname='A',\n\tfields=[\n\t\t('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n\t\t('field', test1.models.Inner(max_length=20)),\n\t],\n),\nNote the test1.models.Inner, which should have been test1.models.Outer.Inner.\nThe real life case involved an EnumField from django-enumfields, defined as an inner class of a Django Model class, similar to this:\nimport enum\nfrom enumfields import Enum, EnumField\nclass Thing(models.Model):\n\t@enum.unique\n\tclass State(Enum):\n\t\ton = 'on'\n\t\toff = 'off'\n\tstate = EnumField(enum=State)\nThis results in the following migrations code:\nmigrations.CreateModel(\n\tname='Thing',\n\tfields=[\n\t\t('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n\t\t('state', enumfields.fields.EnumField(enum=test1.models.State, max_length=10)),\n\t],\n),\nThis refers to test1.models.State, instead of to test1.models.Thing.State.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/serializer.py"
+    ],
+    "locations": [
+      "django/db/migrations/serializer.py::TypeSerializer",
+      "django/db/migrations/serializer.py::TypeSerializer.serialize",
+      "django/db/migrations/serializer.py::UUIDSerializer"
+    ]
+  },
+  "predictions": [
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_migrations_modules_path_not_exist",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_migration_path_output",
+    "django/utils/deconstruct.py::deconstructible",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_non_interactive_no_field_rename",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_no_init",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_non_interactive_not_null_addition",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_failing_migration",
+    "tests/migrations/test_state.py::ModelStateTests.test_sanity_check_through",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_migration_path_output_valueerror",
+    "tests/migrations/test_writer.py::WriterTests.test_deconstruct_class_arguments"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "89d41cba392b759732ba9f1db4ff29ed47da6a56",
+    "total_functions_indexed": 23040,
+    "retrieval_time_seconds": 0.009276151657104492
+  },
+  "raw_output": "[{\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_migrations_modules_path_not_exist\", \"score\": 0.48300203680992126}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_migration_path_output\", \"score\": 0.45060181617736816}, {\"doc_id\": \"django/utils/deconstruct.py::deconstructible\", \"score\": 0.42467862367630005}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_non_interactive_no_field_rename\", \"score\": 0.4245884418487549}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_no_init\", \"score\": 0.42439740896224976}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_non_interactive_not_null_addition\", \"score\": 0.42014601826667786}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_failing_migration\", \"score\": 0.4200327396392822}, {\"doc_id\": \"tests/migrations/test_state.py::ModelStateTests.test_sanity_check_through\", \"score\": 0.41782742738723755}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_migration_path_output_valueerror\", \"score\": 0.41776591539382935}, {\"doc_id\": \"tests/migrations/test_writer.py::WriterTests.test_deconstruct_class_arguments\", \"score\": 0.4176914691925049}]"
+}

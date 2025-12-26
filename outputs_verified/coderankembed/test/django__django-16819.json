@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-16819",
+  "query": "Reduce Add/RemoveIndex migration operations.\nDescription\n\t\nWe should reduce AddIndex/RemoveIndex operations when optimizing migration operations.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/operations/models.py"
+    ],
+    "locations": [
+      "django/db/migrations/operations/models.py::AddIndex",
+      "django/db/migrations/operations/models.py::AddIndex.migration_name_fragment",
+      "django/db/migrations/operations/models.py::RemoveIndex"
+    ]
+  },
+  "predictions": [
+    "django/db/migrations/operations/models.py::RenameIndex.reduce",
+    "django/contrib/postgres/operations.py::AddIndexConcurrently.database_backwards",
+    "django/contrib/postgres/operations.py::RemoveIndexConcurrently.database_backwards",
+    "django/db/migrations/operations/models.py::AddIndex.database_backwards",
+    "django/db/migrations/autodetector.py::MigrationAutodetector.create_altered_indexes",
+    "tests/migrations/test_operations.py::OperationTests.test_alter_index_together_remove_with_unique_together",
+    "django/db/migrations/operations/models.py::RemoveIndex.describe",
+    "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor.rename_index",
+    "tests/schema/tests.py::SchemaTests.test_add_remove_index",
+    "django/contrib/postgres/operations.py::RemoveIndexConcurrently.database_forwards"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "0b0998dc151feb77068e2387c34cc50ef6b356ae",
+    "total_functions_indexed": 26570,
+    "retrieval_time_seconds": 0.005084991455078125
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/migrations/operations/models.py::RenameIndex.reduce\", \"score\": 0.5180074572563171}, {\"doc_id\": \"django/contrib/postgres/operations.py::AddIndexConcurrently.database_backwards\", \"score\": 0.4927576780319214}, {\"doc_id\": \"django/contrib/postgres/operations.py::RemoveIndexConcurrently.database_backwards\", \"score\": 0.4890550374984741}, {\"doc_id\": \"django/db/migrations/operations/models.py::AddIndex.database_backwards\", \"score\": 0.48758184909820557}, {\"doc_id\": \"django/db/migrations/autodetector.py::MigrationAutodetector.create_altered_indexes\", \"score\": 0.4802221655845642}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_alter_index_together_remove_with_unique_together\", \"score\": 0.4788655638694763}, {\"doc_id\": \"django/db/migrations/operations/models.py::RemoveIndex.describe\", \"score\": 0.4769420027732849}, {\"doc_id\": \"django/db/backends/base/schema.py::BaseDatabaseSchemaEditor.rename_index\", \"score\": 0.475881427526474}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_add_remove_index\", \"score\": 0.4737755358219147}, {\"doc_id\": \"django/contrib/postgres/operations.py::RemoveIndexConcurrently.database_forwards\", \"score\": 0.4695245027542114}]"
+}

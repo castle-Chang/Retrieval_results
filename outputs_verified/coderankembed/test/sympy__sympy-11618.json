@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-11618",
+  "query": "distance calculation wrong\n``` python\n>>> Point(2,0).distance(Point(1,0,2))\n1\n```\n\nThe 3rd dimension is being ignored when the Points are zipped together to calculate the distance so `sqrt((2-1)**2 + (0-0)**2)` is being computed instead of `sqrt(5)`.\n\n",
+  "ground_truth": {
+    "files": [
+      "sympy/geometry/point.py"
+    ],
+    "locations": [
+      "sympy/geometry/point.py::Point",
+      "sympy/geometry/point.py::Point.distance"
+    ]
+  },
+  "predictions": [
+    "sympy/geometry/point.py::Point.distance",
+    "sympy/geometry/point.py::Point.length",
+    "sympy/geometry/point.py::Point.__abs__",
+    "sympy/geometry/line3d.py::Ray3D.distance",
+    "sympy/geometry/line.py::Ray.distance",
+    "sympy/geometry/line.py::Line.distance",
+    "sympy/geometry/line.py::Segment.distance",
+    "sympy/geometry/line3d.py::Segment3D.distance",
+    "sympy/geometry/line3d.py::Line3D.distance",
+    "sympy/geometry/plane.py::Plane.distance"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "360290c4c401e386db60723ddb0109ed499c9f6e",
+    "total_functions_indexed": 20088,
+    "retrieval_time_seconds": 0.005906105041503906
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/geometry/point.py::Point.distance\", \"score\": 0.5517850518226624}, {\"doc_id\": \"sympy/geometry/point.py::Point.length\", \"score\": 0.4656902253627777}, {\"doc_id\": \"sympy/geometry/point.py::Point.__abs__\", \"score\": 0.46295273303985596}, {\"doc_id\": \"sympy/geometry/line3d.py::Ray3D.distance\", \"score\": 0.45010173320770264}, {\"doc_id\": \"sympy/geometry/line.py::Ray.distance\", \"score\": 0.4463288187980652}, {\"doc_id\": \"sympy/geometry/line.py::Line.distance\", \"score\": 0.43696630001068115}, {\"doc_id\": \"sympy/geometry/line.py::Segment.distance\", \"score\": 0.4309713840484619}, {\"doc_id\": \"sympy/geometry/line3d.py::Segment3D.distance\", \"score\": 0.429706871509552}, {\"doc_id\": \"sympy/geometry/line3d.py::Line3D.distance\", \"score\": 0.4296637177467346}, {\"doc_id\": \"sympy/geometry/plane.py::Plane.distance\", \"score\": 0.42199641466140747}]"
+}

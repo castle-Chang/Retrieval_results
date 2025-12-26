@@ -1,0 +1,32 @@
+{
+  "instance_id": "matplotlib__matplotlib-23314",
+  "query": "[Bug]: set_visible() not working for 3d projection \n### Bug summary\r\n\r\nin the subplot projection=\"3d\" the set_visible function doesn't work even if the value is set to False\r\n\r\n### Code for reproduction\r\n\r\n```python\r\nimport matplotlib.pyplot as plt\r\nfrom matplotlib.gridspec import GridSpec\r\n\r\nfig, (ax1, ax2) = plt.subplots(1, 2, subplot_kw={'projection': '3d'})\r\nax1.scatter(1,1,1)\r\nax2.scatter(1,1,1, c='r')\r\nax1.set_visible(False)\r\n\r\nplt.show()\r\n# Thanks Tim for your help! \r\n```\r\n\r\n\r\n### Actual outcome\r\n\r\nthe subplot remains visible which should not happen if the value is set to False\r\n\r\n### Expected outcome\r\n\r\nthe subplot is not visible if the value is set to False\r\n\r\n### Additional information\r\n\r\n_No response_\r\n\r\n### Operating system\r\n\r\n_No response_\r\n\r\n### Matplotlib Version\r\n\r\n3.4.2\r\n\r\n### Matplotlib Backend\r\n\r\nQt5Agg\r\n\r\n### Python version\r\n\r\n3.8.10\r\n\r\n### Jupyter version\r\n\r\n_No response_\r\n\r\n### Installation\r\n\r\n_No response_\n",
+  "ground_truth": {
+    "files": [
+      "lib/mpl_toolkits/mplot3d/axes3d.py"
+    ],
+    "locations": [
+      "lib/mpl_toolkits/mplot3d/axes3d.py::Axes3D",
+      "lib/mpl_toolkits/mplot3d/axes3d.py::Axes3D.draw"
+    ]
+  },
+  "predictions": [
+    "lib/mpl_toolkits/tests/test_mplot3d.py::test_axes3d_cla",
+    "lib/mpl_toolkits/tests/test_mplot3d.py::test_subfigure_simple",
+    "lib/mpl_toolkits/tests/test_mplot3d.py::test_plot_3d_from_2d",
+    "lib/matplotlib/tests/test_pyplot.py::test_subplot_change_projection",
+    "lib/matplotlib/tests/test_pyplot.py::test_subplot_projection_reuse",
+    "lib/mpl_toolkits/tests/test_mplot3d.py::test_scatter3d_modification",
+    "lib/mpl_toolkits/tests/test_mplot3d.py::test_plot_scalar",
+    "lib/mpl_toolkits/tests/test_mplot3d.py::test_scatter3d",
+    "lib/mpl_toolkits/tests/test_mplot3d.py::test_scatter3d_color",
+    "lib/matplotlib/tests/test_subplots.py::check_visible"
+  ],
+  "metadata": {
+    "repo": "matplotlib/matplotlib",
+    "commit": "97fc1154992f64cfb2f86321155a7404efeb2d8a",
+    "total_functions_indexed": 8969,
+    "retrieval_time_seconds": 0.0017497539520263672
+  },
+  "raw_output": "[{\"doc_id\": \"lib/mpl_toolkits/tests/test_mplot3d.py::test_axes3d_cla\", \"score\": 0.5352019667625427}, {\"doc_id\": \"lib/mpl_toolkits/tests/test_mplot3d.py::test_subfigure_simple\", \"score\": 0.5197792053222656}, {\"doc_id\": \"lib/mpl_toolkits/tests/test_mplot3d.py::test_plot_3d_from_2d\", \"score\": 0.5142228007316589}, {\"doc_id\": \"lib/matplotlib/tests/test_pyplot.py::test_subplot_change_projection\", \"score\": 0.5114519000053406}, {\"doc_id\": \"lib/matplotlib/tests/test_pyplot.py::test_subplot_projection_reuse\", \"score\": 0.49744564294815063}, {\"doc_id\": \"lib/mpl_toolkits/tests/test_mplot3d.py::test_scatter3d_modification\", \"score\": 0.4969671964645386}, {\"doc_id\": \"lib/mpl_toolkits/tests/test_mplot3d.py::test_plot_scalar\", \"score\": 0.4942222237586975}, {\"doc_id\": \"lib/mpl_toolkits/tests/test_mplot3d.py::test_scatter3d\", \"score\": 0.49387529492378235}, {\"doc_id\": \"lib/mpl_toolkits/tests/test_mplot3d.py::test_scatter3d_color\", \"score\": 0.4920940399169922}, {\"doc_id\": \"lib/matplotlib/tests/test_subplots.py::check_visible\", \"score\": 0.490498423576355}]"
+}

@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-13821",
+  "query": "Drop support for SQLite < 3.9.0\nDescription\n\t \n\t\t(last modified by Tim Graham)\n\t \nIndexes on expressions (see #26167) and the SQLITE_ENABLE_JSON1 compile-time option are supported on ​SQLite 3.9.0+.\nUbuntu Xenial ships with SQLite 3.11.0 (which will still by supported by Django) and will EOL in April 2021. Debian Jessie ships with 3.8.7 and was EOL June 30, 2020.\nSQLite 3.9.0 was released in October 2015. SQLite version support seems like a similar situation as GEOS libraries which we generally support about 5 years after released.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/backends/sqlite3/base.py"
+    ],
+    "locations": [
+      "django/db/backends/sqlite3/base.py::check_sqlite_version"
+    ]
+  },
+  "predictions": [
+    "django/db/backends/sqlite3/operations.py::DatabaseOperations.check_expression_support",
+    "django/db/backends/sqlite3/base.py::check_sqlite_version",
+    "django/db/backends/sqlite3/features.py::DatabaseFeatures.supports_atomic_references_rename",
+    "django/db/backends/sqlite3/features.py::DatabaseFeatures.django_test_skips",
+    "django/contrib/gis/db/backends/spatialite/operations.py::SpatiaLiteOperations.unsupported_functions",
+    "django/db/backends/sqlite3/features.py::DatabaseFeatures.supports_json_field",
+    "django/db/backends/base/operations.py::BaseDatabaseOperations.check_expression_support",
+    "django/contrib/postgres/indexes.py::PostgresIndex.check_supported",
+    "django/contrib/gis/db/backends/spatialite/operations.py::SpatiaLiteOperations.spatial_version",
+    "django/contrib/gis/db/backends/base/operations.py::BaseSpatialOperations.check_expression_support"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "e64c1d8055a3e476122633da141f16b50f0c4a2d",
+    "total_functions_indexed": 24240,
+    "retrieval_time_seconds": 0.004623889923095703
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/backends/sqlite3/operations.py::DatabaseOperations.check_expression_support\", \"score\": 0.4738307595252991}, {\"doc_id\": \"django/db/backends/sqlite3/base.py::check_sqlite_version\", \"score\": 0.46966129541397095}, {\"doc_id\": \"django/db/backends/sqlite3/features.py::DatabaseFeatures.supports_atomic_references_rename\", \"score\": 0.4193497896194458}, {\"doc_id\": \"django/db/backends/sqlite3/features.py::DatabaseFeatures.django_test_skips\", \"score\": 0.40746474266052246}, {\"doc_id\": \"django/contrib/gis/db/backends/spatialite/operations.py::SpatiaLiteOperations.unsupported_functions\", \"score\": 0.3981279730796814}, {\"doc_id\": \"django/db/backends/sqlite3/features.py::DatabaseFeatures.supports_json_field\", \"score\": 0.3840942680835724}, {\"doc_id\": \"django/db/backends/base/operations.py::BaseDatabaseOperations.check_expression_support\", \"score\": 0.38045617938041687}, {\"doc_id\": \"django/contrib/postgres/indexes.py::PostgresIndex.check_supported\", \"score\": 0.36637264490127563}, {\"doc_id\": \"django/contrib/gis/db/backends/spatialite/operations.py::SpatiaLiteOperations.spatial_version\", \"score\": 0.36588019132614136}, {\"doc_id\": \"django/contrib/gis/db/backends/base/operations.py::BaseSpatialOperations.check_expression_support\", \"score\": 0.36423051357269287}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "astropy__astropy-7166",
+  "query": "InheritDocstrings metaclass doesn't work for properties\nInside the InheritDocstrings metaclass it uses `inspect.isfunction` which returns `False` for properties.\n",
+  "ground_truth": {
+    "files": [
+      "astropy/utils/misc.py"
+    ],
+    "locations": [
+      "astropy/utils/misc.py::InheritDocstrings",
+      "astropy/utils/misc.py::InheritDocstrings.__init__"
+    ]
+  },
+  "predictions": [
+    "astropy/utils/tests/test_misc.py::test_inherit_docstrings",
+    "astropy/utils/misc.py::InheritDocstrings.__init__",
+    "astropy/utils/tests/test_decorators.py::test_classproperty_docstring",
+    "astropy/units/tests/test_units.py::test_inherit_docstrings",
+    "astropy/units/tests/test_quantity.py::test_inherit_docstrings",
+    "astropy/utils/tests/test_decorators.py::test_format_doc_onClass",
+    "astropy/units/function/core.py::FunctionQuantity.__quantity_subclass__",
+    "astropy/modeling/core.py::_ModelMeta._create_inverse_property",
+    "astropy/utils/decorators.py::classproperty.deleter",
+    "astropy/utils/tests/test_decorators.py::test_format_doc_onMethod"
+  ],
+  "metadata": {
+    "repo": "astropy/astropy",
+    "commit": "26d147868f8a891a6009a25cd6a8576d2e1bd747",
+    "total_functions_indexed": 9979,
+    "retrieval_time_seconds": 0.012636899948120117
+  },
+  "raw_output": "[{\"doc_id\": \"astropy/utils/tests/test_misc.py::test_inherit_docstrings\", \"score\": 0.5761929750442505}, {\"doc_id\": \"astropy/utils/misc.py::InheritDocstrings.__init__\", \"score\": 0.4873787760734558}, {\"doc_id\": \"astropy/utils/tests/test_decorators.py::test_classproperty_docstring\", \"score\": 0.46129700541496277}, {\"doc_id\": \"astropy/units/tests/test_units.py::test_inherit_docstrings\", \"score\": 0.44188597798347473}, {\"doc_id\": \"astropy/units/tests/test_quantity.py::test_inherit_docstrings\", \"score\": 0.4031524956226349}, {\"doc_id\": \"astropy/utils/tests/test_decorators.py::test_format_doc_onClass\", \"score\": 0.36893314123153687}, {\"doc_id\": \"astropy/units/function/core.py::FunctionQuantity.__quantity_subclass__\", \"score\": 0.35019809007644653}, {\"doc_id\": \"astropy/modeling/core.py::_ModelMeta._create_inverse_property\", \"score\": 0.3426952660083771}, {\"doc_id\": \"astropy/utils/decorators.py::classproperty.deleter\", \"score\": 0.33049148321151733}, {\"doc_id\": \"astropy/utils/tests/test_decorators.py::test_format_doc_onMethod\", \"score\": 0.3187849521636963}]"
+}

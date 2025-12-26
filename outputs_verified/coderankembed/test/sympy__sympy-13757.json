@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-13757",
+  "query": "Multiplying an expression by a Poly does not evaluate when the expression is on the left side of the multiplication\nTested in Python 3.4 64-bit and 3.6 64-bit\r\nVersion: 1.1.2.dev0\r\n```\r\n>>> Poly(x)*x\r\nPoly(x**2, x, domain='ZZ')\r\n\r\n>>> x*Poly(x)\r\nx*Poly(x, x, domain='ZZ')\r\n\r\n>>> -2*Poly(x)\r\nPoly(-2*x, x, domain='ZZ')\r\n\r\n>>> S(-2)*Poly(x)\r\n-2*Poly(x, x, domain='ZZ')\r\n\r\n>>> Poly(x)*S(-2)\r\nPoly(-2*x, x, domain='ZZ')\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/polys/polytools.py"
+    ],
+    "locations": [
+      "sympy/polys/polytools.py::Poly",
+      "sympy/polys/polytools.py::Poly.__new__"
+    ]
+  },
+  "predictions": [
+    "sympy/polys/tests/test_polytools.py::test_Poly_mul",
+    "sympy/polys/polytools.py::Poly.__mul__",
+    "sympy/polys/polytools.py::Poly.mul",
+    "sympy/polys/polytools.py::Poly.mul_ground",
+    "sympy/polys/tests/test_polytools.py::test_Poly_mul_ground",
+    "sympy/polys/tests/test_polytools.py::test_Poly_pow",
+    "sympy/printing/tests/test_latex.py::test_latex_Poly",
+    "sympy/polys/polytools.py::Poly.pow",
+    "sympy/polys/polytools.py::poly",
+    "sympy/polys/tests/test_polytools.py::test_Poly__eq__"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "a5e6a101869e027e7930e694f8b1cfb082603453",
+    "total_functions_indexed": 22373,
+    "retrieval_time_seconds": 0.006341695785522461
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/polys/tests/test_polytools.py::test_Poly_mul\", \"score\": 0.5421827435493469}, {\"doc_id\": \"sympy/polys/polytools.py::Poly.__mul__\", \"score\": 0.5409772992134094}, {\"doc_id\": \"sympy/polys/polytools.py::Poly.mul\", \"score\": 0.5221728086471558}, {\"doc_id\": \"sympy/polys/polytools.py::Poly.mul_ground\", \"score\": 0.5075600147247314}, {\"doc_id\": \"sympy/polys/tests/test_polytools.py::test_Poly_mul_ground\", \"score\": 0.5036352276802063}, {\"doc_id\": \"sympy/polys/tests/test_polytools.py::test_Poly_pow\", \"score\": 0.49319377541542053}, {\"doc_id\": \"sympy/printing/tests/test_latex.py::test_latex_Poly\", \"score\": 0.4869135618209839}, {\"doc_id\": \"sympy/polys/polytools.py::Poly.pow\", \"score\": 0.4864211082458496}, {\"doc_id\": \"sympy/polys/polytools.py::poly\", \"score\": 0.48299992084503174}, {\"doc_id\": \"sympy/polys/tests/test_polytools.py::test_Poly__eq__\", \"score\": 0.4812043309211731}]"
+}

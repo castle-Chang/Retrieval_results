@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-16485",
+  "query": "floatformat() crashes on \"0.00\".\nDescription\n\t\nfrom decimal import Decimal\nfrom django.template.defaultfilters import floatformat\nfloatformat('0.00', 0)\nfloatformat(Decimal('0.00'), 0)\nBoth throw ValueError: valid range for prec is [1, MAX_PREC]\n",
+  "ground_truth": {
+    "files": [
+      "django/template/defaultfilters.py"
+    ],
+    "locations": [
+      "django/template/defaultfilters.py::floatformat"
+    ]
+  },
+  "predictions": [
+    "tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_zero_values",
+    "tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_negative_zero_values",
+    "django/template/defaultfilters.py::floatformat",
+    "tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_low_decimal_precision",
+    "tests/template_tests/filter_tests/test_floatformat.py::FloatformatTests.test_floatformat02",
+    "tests/template_tests/filter_tests/test_floatformat.py::FloatformatTests.test_floatformat01",
+    "tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_inputs",
+    "tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_float_dunder_method",
+    "django/template/defaultfilters.py::pprint",
+    "tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_unlocalize"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "39f83765e12b0e5d260b7939fc3fe281d879b279",
+    "total_functions_indexed": 26327,
+    "retrieval_time_seconds": 0.005784511566162109
+  },
+  "raw_output": "[{\"doc_id\": \"tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_zero_values\", \"score\": 0.5653800964355469}, {\"doc_id\": \"tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_negative_zero_values\", \"score\": 0.5637866258621216}, {\"doc_id\": \"django/template/defaultfilters.py::floatformat\", \"score\": 0.5554163455963135}, {\"doc_id\": \"tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_low_decimal_precision\", \"score\": 0.5515227913856506}, {\"doc_id\": \"tests/template_tests/filter_tests/test_floatformat.py::FloatformatTests.test_floatformat02\", \"score\": 0.536213755607605}, {\"doc_id\": \"tests/template_tests/filter_tests/test_floatformat.py::FloatformatTests.test_floatformat01\", \"score\": 0.5099640488624573}, {\"doc_id\": \"tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_inputs\", \"score\": 0.4604632258415222}, {\"doc_id\": \"tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_float_dunder_method\", \"score\": 0.4392087459564209}, {\"doc_id\": \"django/template/defaultfilters.py::pprint\", \"score\": 0.43911612033843994}, {\"doc_id\": \"tests/template_tests/filter_tests/test_floatformat.py::FunctionTests.test_unlocalize\", \"score\": 0.4301130175590515}]"
+}

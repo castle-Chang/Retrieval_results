@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-24539",
+  "query": "`PolyElement.as_expr()` not accepting symbols\nThe method `PolyElement.as_expr()`\r\n\r\nhttps://github.com/sympy/sympy/blob/193e3825645d93c73e31cdceb6d742cc6919624d/sympy/polys/rings.py#L618-L624\r\n\r\nis supposed to let you set the symbols you want to use, but, as it stands, either you pass the wrong number of symbols, and get an error message, or you pass the right number of symbols, and it ignores them, using `self.ring.symbols` instead:\r\n\r\n```python\r\n>>> from sympy import ring, ZZ, symbols\r\n>>> R, x, y, z = ring(\"x,y,z\", ZZ)\r\n>>> f = 3*x**2*y - x*y*z + 7*z**3 + 1\r\n>>> U, V, W = symbols(\"u,v,w\")\r\n>>> f.as_expr(U, V, W)\r\n3*x**2*y - x*y*z + 7*z**3 + 1\r\n```\n",
+  "ground_truth": {
+    "files": [
+      "sympy/polys/rings.py"
+    ],
+    "locations": [
+      "sympy/polys/rings.py::PolyElement",
+      "sympy/polys/rings.py::PolyElement.set_ring",
+      "sympy/polys/rings.py::PolyElement.as_expr"
+    ]
+  },
+  "predictions": [
+    "sympy/polys/rings.py::PolyElement.as_expr",
+    "sympy/polys/tests/test_rings.py::test_PolyElement_as_expr",
+    "sympy/core/expr.py::Expr.as_expr",
+    "sympy/polys/fields.py::FracElement.as_expr",
+    "sympy/polys/tests/test_fields.py::test_FracElement_as_expr",
+    "sympy/polys/numberfields/modules.py::PowerBasisElement.as_expr",
+    "sympy/polys/rings.py::PolyElement.as_expr_dict",
+    "sympy/core/numbers.py::AlgebraicNumber.as_expr",
+    "sympy/polys/tests/test_polytools.py::test_Poly_as_expr",
+    "sympy/polys/polytools.py::Poly.as_expr"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "193e3825645d93c73e31cdceb6d742cc6919624d",
+    "total_functions_indexed": 30015,
+    "retrieval_time_seconds": 0.09424853324890137
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/polys/rings.py::PolyElement.as_expr\", \"score\": 0.7915981411933899}, {\"doc_id\": \"sympy/polys/tests/test_rings.py::test_PolyElement_as_expr\", \"score\": 0.7609231472015381}, {\"doc_id\": \"sympy/core/expr.py::Expr.as_expr\", \"score\": 0.6401069760322571}, {\"doc_id\": \"sympy/polys/fields.py::FracElement.as_expr\", \"score\": 0.6255288124084473}, {\"doc_id\": \"sympy/polys/tests/test_fields.py::test_FracElement_as_expr\", \"score\": 0.6124353408813477}, {\"doc_id\": \"sympy/polys/numberfields/modules.py::PowerBasisElement.as_expr\", \"score\": 0.5829210877418518}, {\"doc_id\": \"sympy/polys/rings.py::PolyElement.as_expr_dict\", \"score\": 0.5795769095420837}, {\"doc_id\": \"sympy/core/numbers.py::AlgebraicNumber.as_expr\", \"score\": 0.5644726157188416}, {\"doc_id\": \"sympy/polys/tests/test_polytools.py::test_Poly_as_expr\", \"score\": 0.564445972442627}, {\"doc_id\": \"sympy/polys/polytools.py::Poly.as_expr\", \"score\": 0.5473352670669556}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-15809",
+  "query": "Zero-argument Min() and Max()\nRight now `Min()` and `Max()` with no arguments raise `ValueError: The Max/Min functions must have arguments.`. It might be mathematically more convenient to have them return `oo` and `-oo`, respectively. See https://en.wikipedia.org/wiki/Empty_set#Extended_real_numbers for why these are valid answers mathematically. \n",
+  "ground_truth": {
+    "files": [
+      "sympy/functions/elementary/miscellaneous.py"
+    ],
+    "locations": [
+      "sympy/functions/elementary/miscellaneous.py::MinMaxBase",
+      "sympy/functions/elementary/miscellaneous.py::MinMaxBase.__new__"
+    ]
+  },
+  "predictions": [
+    "sympy/sets/tests/test_sets.py::test_interval_arguments",
+    "sympy/functions/elementary/miscellaneous.py::MinMaxBase.__new__",
+    "sympy/functions/elementary/tests/test_miscellaneous.py::test_Min",
+    "sympy/functions/elementary/tests/test_miscellaneous.py::test_Max",
+    "sympy/functions/elementary/tests/test_miscellaneous.py::test_minmax_assumptions",
+    "sympy/functions/elementary/tests/test_miscellaneous.py::test_issue_8413",
+    "sympy/logic/tests/test_boolalg.py::test_all_or_nothing",
+    "sympy/functions/elementary/tests/test_miscellaneous.py::test_issue_12638",
+    "sympy/physics/quantum/operator.py::IdentityOperator.default_args",
+    "sympy/core/tests/test_args.py::test_sympy__sets__sets__EmptySet"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "28d913d3cead6c5646307ffa6540b21d65059dfd",
+    "total_functions_indexed": 24401,
+    "retrieval_time_seconds": 0.006530046463012695
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/sets/tests/test_sets.py::test_interval_arguments\", \"score\": 0.4536927044391632}, {\"doc_id\": \"sympy/functions/elementary/miscellaneous.py::MinMaxBase.__new__\", \"score\": 0.44893354177474976}, {\"doc_id\": \"sympy/functions/elementary/tests/test_miscellaneous.py::test_Min\", \"score\": 0.4068509638309479}, {\"doc_id\": \"sympy/functions/elementary/tests/test_miscellaneous.py::test_Max\", \"score\": 0.4061167538166046}, {\"doc_id\": \"sympy/functions/elementary/tests/test_miscellaneous.py::test_minmax_assumptions\", \"score\": 0.39578765630722046}, {\"doc_id\": \"sympy/functions/elementary/tests/test_miscellaneous.py::test_issue_8413\", \"score\": 0.39050939679145813}, {\"doc_id\": \"sympy/logic/tests/test_boolalg.py::test_all_or_nothing\", \"score\": 0.38721102476119995}, {\"doc_id\": \"sympy/functions/elementary/tests/test_miscellaneous.py::test_issue_12638\", \"score\": 0.3855748176574707}, {\"doc_id\": \"sympy/physics/quantum/operator.py::IdentityOperator.default_args\", \"score\": 0.38355526328086853}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__sets__sets__EmptySet\", \"score\": 0.3833770751953125}]"
+}

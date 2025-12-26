@@ -1,0 +1,37 @@
+{
+  "instance_id": "sphinx-doc__sphinx-7748",
+  "query": "autodoc_docstring_signature with overloaded methods\nWhen using swig to wrap C++ classes for python, if they have overloaded methods, I believe the convention is to place the signatures for each of the overloaded C++ methods at the start of the docstring. Currently, `autodoc_docstring_signature` can only pick up the first one. It would be nice to be able to pick up all of them.\n\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/ext/autodoc/__init__.py"
+    ],
+    "locations": [
+      "sphinx/ext/autodoc/__init__.py::DocstringSignatureMixin",
+      "sphinx/ext/autodoc/__init__.py::DocstringSignatureMixin._find_signature",
+      "sphinx/ext/autodoc/__init__.py::DocstringSignatureMixin.get_doc",
+      "sphinx/ext/autodoc/__init__.py::DocstringSignatureMixin.format_signature",
+      "sphinx/ext/autodoc/__init__.py::DocstringStripSignatureMixin",
+      "sphinx/ext/autodoc/__init__.py::FunctionDocumenter",
+      "sphinx/ext/autodoc/__init__.py::FunctionDocumenter.format_signature"
+    ]
+  },
+  "predictions": [
+    "tests/test_ext_autodoc_configs.py::test_autodoc_docstring_signature",
+    "sphinx/ext/autodoc/__init__.py::ClassDocumenter._get_signature",
+    "sphinx/ext/autodoc/__init__.py::DocstringSignatureMixin._find_signature",
+    "tests/test_ext_autodoc_configs.py::test_autodoc_typehints_signature",
+    "tests/test_ext_autodoc_configs.py::test_autoclass_content_and_docstring_signature_init",
+    "tests/test_ext_autodoc_configs.py::test_autoclass_content_and_docstring_signature_class",
+    "sphinx/ext/autodoc/__init__.py::DocstringSignatureMixin.format_signature",
+    "tests/test_ext_autodoc_configs.py::test_autoclass_content_and_docstring_signature_both",
+    "tests/roots/test-ext-autodoc/target/docstring_signature.py::C.__new__",
+    "sphinx/ext/autodoc/__init__.py::MethodDocumenter.format_signature"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "9988d5ce267bf0df4791770b469431b1fb00dcdd",
+    "total_functions_indexed": 5322,
+    "retrieval_time_seconds": 0.0017495155334472656
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_ext_autodoc_configs.py::test_autodoc_docstring_signature\", \"score\": 0.5192028284072876}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::ClassDocumenter._get_signature\", \"score\": 0.4981040954589844}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::DocstringSignatureMixin._find_signature\", \"score\": 0.489393949508667}, {\"doc_id\": \"tests/test_ext_autodoc_configs.py::test_autodoc_typehints_signature\", \"score\": 0.4519956111907959}, {\"doc_id\": \"tests/test_ext_autodoc_configs.py::test_autoclass_content_and_docstring_signature_init\", \"score\": 0.44098466634750366}, {\"doc_id\": \"tests/test_ext_autodoc_configs.py::test_autoclass_content_and_docstring_signature_class\", \"score\": 0.4399152398109436}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::DocstringSignatureMixin.format_signature\", \"score\": 0.4350484609603882}, {\"doc_id\": \"tests/test_ext_autodoc_configs.py::test_autoclass_content_and_docstring_signature_both\", \"score\": 0.43490463495254517}, {\"doc_id\": \"tests/roots/test-ext-autodoc/target/docstring_signature.py::C.__new__\", \"score\": 0.43450507521629333}, {\"doc_id\": \"sphinx/ext/autodoc/__init__.py::MethodDocumenter.format_signature\", \"score\": 0.42974936962127686}]"
+}

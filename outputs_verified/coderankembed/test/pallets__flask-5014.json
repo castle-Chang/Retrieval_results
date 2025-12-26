@@ -1,0 +1,32 @@
+{
+  "instance_id": "pallets__flask-5014",
+  "query": "Require a non-empty name for Blueprints\nThings do not work correctly if a Blueprint is given an empty name (e.g. #4944).\r\nIt would be helpful if a `ValueError` was raised when trying to do that.\n",
+  "ground_truth": {
+    "files": [
+      "src/flask/blueprints.py"
+    ],
+    "locations": [
+      "src/flask/blueprints.py::Blueprint",
+      "src/flask/blueprints.py::Blueprint.__init__"
+    ]
+  },
+  "predictions": [
+    "tests/test_blueprints.py::test_dotted_name_not_allowed",
+    "tests/test_blueprints.py::test_unique_blueprint_names",
+    "tests/test_blueprints.py::test_self_registration",
+    "src/flask/wrappers.py::Request.blueprint",
+    "tests/test_cli.py::test_cli_empty",
+    "tests/test_blueprints.py::test_template_test_with_name",
+    "tests/test_blueprints.py::test_empty_url_defaults",
+    "tests/test_blueprints.py::test_add_template_test_with_name",
+    "src/flask/blueprints.py::Blueprint._check_setup_finished",
+    "tests/test_blueprints.py::test_blueprint_renaming"
+  ],
+  "metadata": {
+    "repo": "pallets/flask",
+    "commit": "7ee9ceb71e868944a46e1ff00b506772a53a4f1d",
+    "total_functions_indexed": 823,
+    "retrieval_time_seconds": 0.0005204677581787109
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_blueprints.py::test_dotted_name_not_allowed\", \"score\": 0.5225887894630432}, {\"doc_id\": \"tests/test_blueprints.py::test_unique_blueprint_names\", \"score\": 0.4458807408809662}, {\"doc_id\": \"tests/test_blueprints.py::test_self_registration\", \"score\": 0.43835216760635376}, {\"doc_id\": \"src/flask/wrappers.py::Request.blueprint\", \"score\": 0.4225231409072876}, {\"doc_id\": \"tests/test_cli.py::test_cli_empty\", \"score\": 0.37939953804016113}, {\"doc_id\": \"tests/test_blueprints.py::test_template_test_with_name\", \"score\": 0.3734760582447052}, {\"doc_id\": \"tests/test_blueprints.py::test_empty_url_defaults\", \"score\": 0.36497029662132263}, {\"doc_id\": \"tests/test_blueprints.py::test_add_template_test_with_name\", \"score\": 0.3637511134147644}, {\"doc_id\": \"src/flask/blueprints.py::Blueprint._check_setup_finished\", \"score\": 0.3607485294342041}, {\"doc_id\": \"tests/test_blueprints.py::test_blueprint_renaming\", \"score\": 0.3556249737739563}]"
+}

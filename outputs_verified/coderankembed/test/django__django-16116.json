@@ -1,0 +1,34 @@
+{
+  "instance_id": "django__django-16116",
+  "query": "makemigrations --check generating migrations is inconsistent with other uses of --check\nDescription\n\t\nTo script a check for missing migrations but without actually intending to create the migrations, it is necessary to use both --check and --dry-run, which is inconsistent with migrate --check and optimizemigration --check, which just exit (after possibly logging a bit).\nI'm suggesting that makemigrations --check should just exit without making migrations.\nThe choice to write the migrations anyway was not discussed AFAICT on ticket:25604 or ​https://groups.google.com/g/django-developers/c/zczdY6c9KSg/m/ZXCXQsGDDAAJ.\nNoticed when reading ​PR to adjust the documentation of migrate --check. I think the current documentation is silent on this question.\n",
+  "ground_truth": {
+    "files": [
+      "django/core/management/commands/makemigrations.py"
+    ],
+    "locations": [
+      "django/core/management/commands/makemigrations.py::Command",
+      "django/core/management/commands/makemigrations.py::Command.add_arguments",
+      "django/core/management/commands/makemigrations.py::Command.handle",
+      "django/core/management/commands/makemigrations.py::Command.write_to_last_migration_files"
+    ]
+  },
+  "predictions": [
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_check",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_no_changes",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_conflict_exit",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_no_changes_no_apps",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_dry_run",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_consistency_checks_respect_routers",
+    "tests/migrations/test_commands.py::OptimizeMigrationTests.test_optimizemigration_check",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_unspecified_app_with_conflict_no_merge",
+    "django/core/management/base.py::BaseCommand.check_migrations",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_disabled_migrations_for_app"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "5d36a8266c7d5d1994d7a7eeb4016f80d9cb0401",
+    "total_functions_indexed": 26194,
+    "retrieval_time_seconds": 0.08108758926391602
+  },
+  "raw_output": "[{\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_check\", \"score\": 0.6947759985923767}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_no_changes\", \"score\": 0.5586337447166443}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_conflict_exit\", \"score\": 0.5458197593688965}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_no_changes_no_apps\", \"score\": 0.5397325158119202}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_dry_run\", \"score\": 0.5325393676757812}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_consistency_checks_respect_routers\", \"score\": 0.5300219655036926}, {\"doc_id\": \"tests/migrations/test_commands.py::OptimizeMigrationTests.test_optimizemigration_check\", \"score\": 0.5243709683418274}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_unspecified_app_with_conflict_no_merge\", \"score\": 0.5223910808563232}, {\"doc_id\": \"django/core/management/base.py::BaseCommand.check_migrations\", \"score\": 0.5178443193435669}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_disabled_migrations_for_app\", \"score\": 0.5171281695365906}]"
+}

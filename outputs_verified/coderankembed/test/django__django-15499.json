@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-15499",
+  "query": "Optimize CreateModel + AlterModelManagers to CreateModel\nDescription\n\t\nDuring migration optimization, CreateModel + AlterModelOptions is reduced to just CreateModel, with the model options. Similarly, CreateModel + AlterModelManagers can become just CreateModel.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/operations/models.py"
+    ],
+    "locations": [
+      "django/db/migrations/operations/models.py::CreateModel",
+      "django/db/migrations/operations/models.py::CreateModel.reduce"
+    ]
+  },
+  "predictions": [
+    "tests/migrations/test_optimizer.py::OptimizerTests.test_create_model_and_remove_model_options",
+    "tests/migrations/test_optimizer.py::OptimizerTests.test_create_model_alter_field",
+    "tests/migrations/test_optimizer.py::OptimizerTests.test_create_alter_model_options",
+    "tests/migrations/test_optimizer.py::OptimizerTests.test_create_rename_model",
+    "tests/migrations/test_optimizer.py::OptimizerTests._test_create_alter_foo_delete_model",
+    "tests/migrations/test_optimizer.py::OptimizerTests.test_create_model_remove_field",
+    "tests/migrations/test_optimizer.py::OptimizerTests.test_create_model_add_field",
+    "tests/migrations/test_optimizer.py::OptimizerTests.test_create_delete_model",
+    "tests/migrations/test_optimizer.py::OptimizerTests._test_create_alter_foo_field",
+    "tests/migrations/test_optimizer.py::OptimizerTests.test_create_model_rename_field"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "d90e34c61b27fba2527834806639eebbcfab9631",
+    "total_functions_indexed": 25711,
+    "retrieval_time_seconds": 0.0942225456237793
+  },
+  "raw_output": "[{\"doc_id\": \"tests/migrations/test_optimizer.py::OptimizerTests.test_create_model_and_remove_model_options\", \"score\": 0.601087212562561}, {\"doc_id\": \"tests/migrations/test_optimizer.py::OptimizerTests.test_create_model_alter_field\", \"score\": 0.5879092812538147}, {\"doc_id\": \"tests/migrations/test_optimizer.py::OptimizerTests.test_create_alter_model_options\", \"score\": 0.5731995105743408}, {\"doc_id\": \"tests/migrations/test_optimizer.py::OptimizerTests.test_create_rename_model\", \"score\": 0.5700680613517761}, {\"doc_id\": \"tests/migrations/test_optimizer.py::OptimizerTests._test_create_alter_foo_delete_model\", \"score\": 0.5633103847503662}, {\"doc_id\": \"tests/migrations/test_optimizer.py::OptimizerTests.test_create_model_remove_field\", \"score\": 0.540107786655426}, {\"doc_id\": \"tests/migrations/test_optimizer.py::OptimizerTests.test_create_model_add_field\", \"score\": 0.5339534282684326}, {\"doc_id\": \"tests/migrations/test_optimizer.py::OptimizerTests.test_create_delete_model\", \"score\": 0.5306272506713867}, {\"doc_id\": \"tests/migrations/test_optimizer.py::OptimizerTests._test_create_alter_foo_field\", \"score\": 0.5297340750694275}, {\"doc_id\": \"tests/migrations/test_optimizer.py::OptimizerTests.test_create_model_rename_field\", \"score\": 0.5129646062850952}]"
+}

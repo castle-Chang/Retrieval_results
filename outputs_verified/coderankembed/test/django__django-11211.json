@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-11211",
+  "query": "Prefetch related is not working when used GFK for model that uses UUID field as PK.\nDescription\n\t\nHow to reproduce:\ncreate model with UUID as primary key\nclass Foo(models.Model):\n\tid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n\t...\ncreate another model with GFK to model Foo\nclass Bar(models.Model):\n\tfoo_content_type = models.ForeignKey(\n\t\tContentType, related_name='actor',\n\t\ton_delete=models.CASCADE, db_index=True\n\t)\n\tfoo_object_id = models.CharField(max_length=255, db_index=True)\n\tfoo = GenericForeignKey('foo_content_type', 'foo_object_id')\n\t...\nand try to get queryset with prefetch related (django orm engine return None for attribute foo):\nBar.objects.all().prefetch_related('foo')\nThanks a lot for your attention! Also i wanna point out some related bug report from third party library in which previously i faced with that issue, maybe it would useful – ​https://github.com/justquick/django-activity-stream/issues/245\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/__init__.py"
+    ],
+    "locations": [
+      "django/db/models/fields/__init__.py::UUIDField",
+      "django/db/models/fields/__init__.py::UUIDField.get_internal_type",
+      "django/db/models/fields/__init__.py::UUIDField.get_db_prep_value"
+    ]
+  },
+  "predictions": [
+    "tests/prefetch_related/test_uuid.py::UUIDPrefetchRelated.test_prefetch_related_from_uuid_model_to_uuid_model",
+    "tests/prefetch_related/tests.py::GenericRelationTests.test_prefetch_GFK",
+    "tests/prefetch_related/test_uuid.py::UUIDPrefetchRelated.test_prefetch_related_to_uuid_model",
+    "tests/prefetch_related/test_uuid.py::UUIDPrefetchRelated.test_prefetch_related_from_uuid_model",
+    "tests/prefetch_related/tests.py::GenericRelationTests.test_prefetch_GFK_nonint_pk",
+    "tests/prefetch_related/tests.py::GenericRelationTests.test_traverse_GFK",
+    "tests/prefetch_related/tests.py::GenericRelationTests.test_charfield_GFK",
+    "tests/prefetch_related/tests.py::GenericRelationTests.test_nullable_GFK",
+    "tests/prefetch_related/tests.py::CustomPrefetchTests.test_m2m_through_gfk",
+    "tests/prefetch_related/test_uuid.py::UUIDPrefetchRelated.test_prefetch_related_from_uuid_model_to_uuid_model_with_values_flat"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "ba726067604ce5a8ca3919edf653496722b433ab",
+    "total_functions_indexed": 22422,
+    "retrieval_time_seconds": 0.006232500076293945
+  },
+  "raw_output": "[{\"doc_id\": \"tests/prefetch_related/test_uuid.py::UUIDPrefetchRelated.test_prefetch_related_from_uuid_model_to_uuid_model\", \"score\": 0.6422710418701172}, {\"doc_id\": \"tests/prefetch_related/tests.py::GenericRelationTests.test_prefetch_GFK\", \"score\": 0.6404041647911072}, {\"doc_id\": \"tests/prefetch_related/test_uuid.py::UUIDPrefetchRelated.test_prefetch_related_to_uuid_model\", \"score\": 0.6318265795707703}, {\"doc_id\": \"tests/prefetch_related/test_uuid.py::UUIDPrefetchRelated.test_prefetch_related_from_uuid_model\", \"score\": 0.629391074180603}, {\"doc_id\": \"tests/prefetch_related/tests.py::GenericRelationTests.test_prefetch_GFK_nonint_pk\", \"score\": 0.6250041127204895}, {\"doc_id\": \"tests/prefetch_related/tests.py::GenericRelationTests.test_traverse_GFK\", \"score\": 0.5932163596153259}, {\"doc_id\": \"tests/prefetch_related/tests.py::GenericRelationTests.test_charfield_GFK\", \"score\": 0.5904491543769836}, {\"doc_id\": \"tests/prefetch_related/tests.py::GenericRelationTests.test_nullable_GFK\", \"score\": 0.5899999141693115}, {\"doc_id\": \"tests/prefetch_related/tests.py::CustomPrefetchTests.test_m2m_through_gfk\", \"score\": 0.5756043195724487}, {\"doc_id\": \"tests/prefetch_related/test_uuid.py::UUIDPrefetchRelated.test_prefetch_related_from_uuid_model_to_uuid_model_with_values_flat\", \"score\": 0.5739117860794067}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11790",
+  "query": "AuthenticationForm's username field doesn't set maxlength HTML attribute.\nDescription\n\t\nAuthenticationForm's username field doesn't render with maxlength HTML attribute anymore.\nRegression introduced in #27515 and 5ceaf14686ce626404afb6a5fbd3d8286410bf13.\n​https://groups.google.com/forum/?utm_source=digest&utm_medium=email#!topic/django-developers/qnfSqro0DlA\n​https://forum.djangoproject.com/t/possible-authenticationform-max-length-regression-in-django-2-1/241\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/auth/forms.py"
+    ],
+    "locations": [
+      "django/contrib/auth/forms.py::AuthenticationForm",
+      "django/contrib/auth/forms.py::AuthenticationForm.__init__"
+    ]
+  },
+  "predictions": [
+    "tests/auth_tests/test_forms.py::AuthenticationFormTest.test_username_field_max_length_matches_user_model",
+    "tests/auth_tests/test_forms.py::AuthenticationFormTest.test_username_field_max_length_defaults_to_254",
+    "tests/forms_tests/tests/test_forms.py::FormsTestCase.test_form_html_attributes",
+    "tests/auth_tests/test_forms.py::AuthenticationFormTest.test_username_field_label_not_set",
+    "django/contrib/auth/forms.py::AuthenticationForm.__init__",
+    "tests/auth_tests/test_forms.py::AuthenticationFormTest.test_username_field_autocapitalize_none",
+    "tests/auth_tests/test_forms.py::AuthenticationFormTest.test_username_field_label_empty_string",
+    "django/contrib/auth/forms.py::UsernameField.widget_attrs",
+    "tests/auth_tests/test_forms.py::AuthenticationFormTest.test_username_field_label",
+    "tests/auth_tests/test_forms.py::AuthenticationFormTest.test_unicode_username"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "b1d6b35e146aea83b171c1b921178bbaae2795ed",
+    "total_functions_indexed": 22829,
+    "retrieval_time_seconds": 0.0044558048248291016
+  },
+  "raw_output": "[{\"doc_id\": \"tests/auth_tests/test_forms.py::AuthenticationFormTest.test_username_field_max_length_matches_user_model\", \"score\": 0.6525777578353882}, {\"doc_id\": \"tests/auth_tests/test_forms.py::AuthenticationFormTest.test_username_field_max_length_defaults_to_254\", \"score\": 0.6407553553581238}, {\"doc_id\": \"tests/forms_tests/tests/test_forms.py::FormsTestCase.test_form_html_attributes\", \"score\": 0.5335336923599243}, {\"doc_id\": \"tests/auth_tests/test_forms.py::AuthenticationFormTest.test_username_field_label_not_set\", \"score\": 0.48886191844940186}, {\"doc_id\": \"django/contrib/auth/forms.py::AuthenticationForm.__init__\", \"score\": 0.4740946888923645}, {\"doc_id\": \"tests/auth_tests/test_forms.py::AuthenticationFormTest.test_username_field_autocapitalize_none\", \"score\": 0.47322922945022583}, {\"doc_id\": \"tests/auth_tests/test_forms.py::AuthenticationFormTest.test_username_field_label_empty_string\", \"score\": 0.4704776406288147}, {\"doc_id\": \"django/contrib/auth/forms.py::UsernameField.widget_attrs\", \"score\": 0.4691157042980194}, {\"doc_id\": \"tests/auth_tests/test_forms.py::AuthenticationFormTest.test_username_field_label\", \"score\": 0.46503734588623047}, {\"doc_id\": \"tests/auth_tests/test_forms.py::AuthenticationFormTest.test_unicode_username\", \"score\": 0.4606333374977112}]"
+}

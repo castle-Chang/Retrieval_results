@@ -1,0 +1,34 @@
+{
+  "instance_id": "django__django-15561",
+  "query": "AlterField operation should be noop when adding/changing choices on SQLite.\nDescription\n\t\nwhile writing a test case for #33470 i found that for sqlite, even a seemingly db-transparent change like adding choices still generates sql (new table + insert + drop + rename) even though this shouldn't be needed. on e.g. postgres the same migration generates no sql\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/__init__.py",
+      "django/db/backends/base/schema.py"
+    ],
+    "locations": [
+      "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor",
+      "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._field_should_be_altered",
+      "django/db/models/fields/__init__.py::Field"
+    ]
+  },
+  "predictions": [
+    "tests/migrations/test_operations.py::OperationTests.test_alter_field_add_db_column_noop",
+    "django/db/backends/sqlite3/schema.py::DatabaseSchemaEditor.alter_field",
+    "tests/migrations/test_operations.py::SwappableOperationTests.test_add_field_ignore_swapped",
+    "django/db/backends/oracle/schema.py::DatabaseSchemaEditor.alter_field",
+    "tests/schema/tests.py::SchemaTests.test_alter_field_fk_attributes_noop",
+    "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._field_should_be_altered",
+    "django/db/backends/sqlite3/schema.py::DatabaseSchemaEditor.add_field",
+    "django/db/backends/oracle/schema.py::DatabaseSchemaEditor._alter_field_type_workaround",
+    "tests/migrations/test_operations.py::OperationTests.test_alter_field_with_index",
+    "django/db/backends/sqlite3/schema.py::DatabaseSchemaEditor._alter_field"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "6991880109e35c879b71b7d9d9c154baeec12b89",
+    "total_functions_indexed": 25775,
+    "retrieval_time_seconds": 0.006184101104736328
+  },
+  "raw_output": "[{\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_alter_field_add_db_column_noop\", \"score\": 0.5788677930831909}, {\"doc_id\": \"django/db/backends/sqlite3/schema.py::DatabaseSchemaEditor.alter_field\", \"score\": 0.5218232870101929}, {\"doc_id\": \"tests/migrations/test_operations.py::SwappableOperationTests.test_add_field_ignore_swapped\", \"score\": 0.512897253036499}, {\"doc_id\": \"django/db/backends/oracle/schema.py::DatabaseSchemaEditor.alter_field\", \"score\": 0.5004224181175232}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_alter_field_fk_attributes_noop\", \"score\": 0.4945383667945862}, {\"doc_id\": \"django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._field_should_be_altered\", \"score\": 0.4890376329421997}, {\"doc_id\": \"django/db/backends/sqlite3/schema.py::DatabaseSchemaEditor.add_field\", \"score\": 0.48343807458877563}, {\"doc_id\": \"django/db/backends/oracle/schema.py::DatabaseSchemaEditor._alter_field_type_workaround\", \"score\": 0.4779278337955475}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_alter_field_with_index\", \"score\": 0.47786909341812134}, {\"doc_id\": \"django/db/backends/sqlite3/schema.py::DatabaseSchemaEditor._alter_field\", \"score\": 0.46561893820762634}]"
+}

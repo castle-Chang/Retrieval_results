@@ -1,0 +1,39 @@
+{
+  "instance_id": "sympy__sympy-21930",
+  "query": "Issues with Latex printing output in second quantization module\nThere are Latex rendering problems within the \"secondquant\" module, as it does not correctly interpret double superscripts containing the \"dagger\" command within Jupyter Notebook.\r\n\r\nLet's see a minimal example\r\n\r\n```\r\nIn [1]: import sympy as sp\r\n        from sympy.physics.secondquant import B, Bd, Commutator\r\n        sp.init_printing()\r\n\r\nIn [2]: a = sp.Symbol('0')\r\n\r\nIn [3]: Commutator(Bd(a)**2, B(a))\r\nOut[3]: \\displaystyle - \\left[b_{0},b^\\dagger_{0}^{2}\\right]\r\n```\r\nSo, it doesn't render correctly, and that's because the double superscript `\"b^\\dagger_{0}^{2}\"`. It should be correct by adding curly brackets `\"{b^\\dagger_{0}}^{2}\"`\n",
+  "ground_truth": {
+    "files": [
+      "sympy/physics/secondquant.py"
+    ],
+    "locations": [
+      "sympy/physics/secondquant.py::AntiSymmetricTensor",
+      "sympy/physics/secondquant.py::AntiSymmetricTensor._sortkey",
+      "sympy/physics/secondquant.py::AntiSymmetricTensor._latex",
+      "sympy/physics/secondquant.py::CreateBoson",
+      "sympy/physics/secondquant.py::CreateBoson.__repr__",
+      "sympy/physics/secondquant.py::CreateBoson._latex",
+      "sympy/physics/secondquant.py::CreateFermion",
+      "sympy/physics/secondquant.py::CreateFermion.__repr__",
+      "sympy/physics/secondquant.py::CreateFermion._latex"
+    ]
+  },
+  "predictions": [
+    "sympy/physics/secondquant.py::CreateBoson._latex",
+    "sympy/physics/quantum/tests/test_printing.py::test_dagger",
+    "sympy/physics/secondquant.py::CreateFermion._latex",
+    "sympy/physics/secondquant.py::NO._latex",
+    "sympy/core/tests/test_args.py::test_sympy__physics__secondquant__Dagger",
+    "sympy/physics/secondquant.py::Commutator._latex",
+    "sympy/physics/secondquant.py::AntiSymmetricTensor._latex",
+    "sympy/physics/quantum/tests/test_pauli.py::test_printing",
+    "sympy/interactive/tests/test_ipythonprinting.py::test_override_repr_latex",
+    "sympy/physics/secondquant.py::AnnihilateBoson._latex"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "de446c6d85f633271dfec1452f6f28ea783e293f",
+    "total_functions_indexed": 37046,
+    "retrieval_time_seconds": 0.013776779174804688
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/physics/secondquant.py::CreateBoson._latex\", \"score\": 0.5834683775901794}, {\"doc_id\": \"sympy/physics/quantum/tests/test_printing.py::test_dagger\", \"score\": 0.5776183605194092}, {\"doc_id\": \"sympy/physics/secondquant.py::CreateFermion._latex\", \"score\": 0.5706572532653809}, {\"doc_id\": \"sympy/physics/secondquant.py::NO._latex\", \"score\": 0.5649781227111816}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__physics__secondquant__Dagger\", \"score\": 0.5529053211212158}, {\"doc_id\": \"sympy/physics/secondquant.py::Commutator._latex\", \"score\": 0.5307025909423828}, {\"doc_id\": \"sympy/physics/secondquant.py::AntiSymmetricTensor._latex\", \"score\": 0.5279653072357178}, {\"doc_id\": \"sympy/physics/quantum/tests/test_pauli.py::test_printing\", \"score\": 0.5223642587661743}, {\"doc_id\": \"sympy/interactive/tests/test_ipythonprinting.py::test_override_repr_latex\", \"score\": 0.5208208560943604}, {\"doc_id\": \"sympy/physics/secondquant.py::AnnihilateBoson._latex\", \"score\": 0.5152835249900818}]"
+}

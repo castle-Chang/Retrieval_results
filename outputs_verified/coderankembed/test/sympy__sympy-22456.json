@@ -1,0 +1,38 @@
+{
+  "instance_id": "sympy__sympy-22456",
+  "query": "Argument invariance of codegen.ast String\nCurrently, the `codegen.ast` `String` class does not support argument invariance like:\r\n`expr.func(*expr.args) == expr`, but instead uses the invariance `expr.func(**expr.kwargs()) == expr`.\r\nThe former should hold for any `Basic` subclass, which `String` is.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/codegen/ast.py"
+    ],
+    "locations": [
+      "sympy/codegen/ast.py::Token",
+      "sympy/codegen/ast.py::Token.kwargs",
+      "sympy/codegen/ast.py::BreakToken",
+      "sympy/codegen/ast.py::For",
+      "sympy/codegen/ast.py::For._construct_iterable",
+      "sympy/codegen/ast.py::String",
+      "sympy/codegen/ast.py::String._sympystr",
+      "sympy/codegen/ast.py::QuotedString"
+    ]
+  },
+  "predictions": [
+    "sympy/core/tests/test_args.py::test_sympy__codegen__ast__String",
+    "sympy/codegen/tests/test_ast.py::test_String",
+    "sympy/core/tests/test_args.py::test_sympy__codegen__ast__Variable",
+    "sympy/core/tests/test_args.py::test_sympy__codegen__ast__QuotedString",
+    "sympy/core/tests/test_args.py::test_sympy__codegen__ast__AssignmentBase",
+    "sympy/core/tests/test_args.py::test_sympy__codegen__ast__Token",
+    "sympy/core/tests/test_args.py::test_sympy__codegen__ast__CodegenAST",
+    "sympy/core/tests/test_args.py::test_sympy__codegen__ast__Comment",
+    "sympy/core/tests/test_args.py::test_sympy__codegen__ast__AugmentedAssignment",
+    "sympy/core/tests/test_args.py::test_sympy__stats__symbolic_probability__Variance"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "a3475b3f9ac662cd425157dd3bdb93ad7111c090",
+    "total_functions_indexed": 37239,
+    "retrieval_time_seconds": 0.09557557106018066
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__codegen__ast__String\", \"score\": 0.5653623938560486}, {\"doc_id\": \"sympy/codegen/tests/test_ast.py::test_String\", \"score\": 0.5045630931854248}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__codegen__ast__Variable\", \"score\": 0.43504372239112854}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__codegen__ast__QuotedString\", \"score\": 0.411365270614624}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__codegen__ast__AssignmentBase\", \"score\": 0.4065845012664795}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__codegen__ast__Token\", \"score\": 0.40431132912635803}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__codegen__ast__CodegenAST\", \"score\": 0.39744213223457336}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__codegen__ast__Comment\", \"score\": 0.3972313404083252}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__codegen__ast__AugmentedAssignment\", \"score\": 0.3959752321243286}, {\"doc_id\": \"sympy/core/tests/test_args.py::test_sympy__stats__symbolic_probability__Variance\", \"score\": 0.3951510787010193}]"
+}

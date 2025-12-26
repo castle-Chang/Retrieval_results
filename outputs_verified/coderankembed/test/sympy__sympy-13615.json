@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-13615",
+  "query": "Complement doesn't work when input is a mixture of Symbols and numbers\n```\r\n>>> a=FiniteSet(x,y,2)\r\n>>> b=Interval(-10,10)\r\n>>> Complement(a,b)\r\n{x, y}\r\n```\r\n`{x, y} \\ [-10,10]` is expected as output.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/sets/sets.py"
+    ],
+    "locations": [
+      "sympy/sets/sets.py::Set",
+      "sympy/sets/sets.py::Set._complement",
+      "sympy/sets/sets.py::Set.symmetric_difference"
+    ]
+  },
+  "predictions": [
+    "sympy/sets/sets.py::FiniteSet._complement",
+    "sympy/sets/sets.py::Interval._complement",
+    "sympy/sets/tests/test_sets.py::test_issue_9637",
+    "sympy/sets/tests/test_sets.py::test_Complement",
+    "sympy/sets/sets.py::Set._complement",
+    "sympy/sets/tests/test_sets.py::test_complement",
+    "sympy/sets/sets.py::Complement.reduce",
+    "sympy/sets/tests/test_sets.py::test_issue_9808",
+    "sympy/sets/sets.py::EmptySet._complement",
+    "sympy/sets/tests/test_sets.py::test_issue_9447"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "50d8a102f0735da8e165a0369bbb994c7d0592a6",
+    "total_functions_indexed": 22338,
+    "retrieval_time_seconds": 0.006997346878051758
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/sets/sets.py::FiniteSet._complement\", \"score\": 0.6409084796905518}, {\"doc_id\": \"sympy/sets/sets.py::Interval._complement\", \"score\": 0.6282334923744202}, {\"doc_id\": \"sympy/sets/tests/test_sets.py::test_issue_9637\", \"score\": 0.6061269044876099}, {\"doc_id\": \"sympy/sets/tests/test_sets.py::test_Complement\", \"score\": 0.5935556292533875}, {\"doc_id\": \"sympy/sets/sets.py::Set._complement\", \"score\": 0.5875788331031799}, {\"doc_id\": \"sympy/sets/tests/test_sets.py::test_complement\", \"score\": 0.5797564387321472}, {\"doc_id\": \"sympy/sets/sets.py::Complement.reduce\", \"score\": 0.5614206790924072}, {\"doc_id\": \"sympy/sets/tests/test_sets.py::test_issue_9808\", \"score\": 0.5576819181442261}, {\"doc_id\": \"sympy/sets/sets.py::EmptySet._complement\", \"score\": 0.5433744788169861}, {\"doc_id\": \"sympy/sets/tests/test_sets.py::test_issue_9447\", \"score\": 0.5376043319702148}]"
+}

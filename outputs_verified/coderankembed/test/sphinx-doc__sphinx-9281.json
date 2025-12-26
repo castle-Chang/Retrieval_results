@@ -1,0 +1,31 @@
+{
+  "instance_id": "sphinx-doc__sphinx-9281",
+  "query": "Python Enum values (used to show default values in function signatures) are rendered ugly.\nPython Enum values (used to show default values in function signatures) are rendered ugly.\r\n\r\n**To Reproduce**\r\n\r\nI made a minimal example to show the issue:\r\n\r\nhttps://github.com/sidneycadot/sphinx_issue_ugly_enum\r\n\r\n```\r\n$ git clone git@github.com:sidneycadot/sphinx_issue_ugly_enum.git\r\n$ cd sphinx_issue_ugly_enum/\r\n$ make html\r\n$ firefox build/html/index.html \r\n```\r\n\r\n**Expected behavior**\r\n\r\nI would hope the signature rendered as:\r\n\r\n    ugly_enum_func(e: ugly_enum.MyEnum = MyEnum.ValueA) → None\r\n\r\nUnfortunately, it renders as:\r\n\r\n    ugly_enum_func(e: ugly_enum.MyEnum = <MyEnum.ValueA: 10>) → None\r\n\r\n**Environment info**\r\n\r\n- Python version: 3.9.5\r\n- Sphinx version: 4.0.2\r\n- Sphinx extensions: autodoc\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/util/inspect.py"
+    ],
+    "locations": [
+      "sphinx/util/inspect.py::object_description"
+    ]
+  },
+  "predictions": [
+    "tests/test_domain_cpp.py::test_enum_definitions",
+    "tests/test_ext_autodoc.py::test_enum_class",
+    "sphinx/util/inspect.py::DefaultValue.__repr__",
+    "tests/test_config.py::test_check_enum",
+    "tests/test_util_inspect.py::test_signature_from_str_default_values",
+    "tests/test_domain_c.py::test_enum_definitions",
+    "tests/test_config.py::test_check_enum_failed",
+    "doc/development/tutorials/examples/autodoc_intenum.py::IntEnumDocumenter.add_content",
+    "sphinx/util/inspect.py::isenumclass",
+    "tests/test_ext_autodoc_configs.py::test_autodoc_default_options_with_values"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "8ec06e9a1bd862cd713b9db748e039ccc7b3e15b",
+    "total_functions_indexed": 5725,
+    "retrieval_time_seconds": 0.03634142875671387
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_domain_cpp.py::test_enum_definitions\", \"score\": 0.3884809613227844}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_enum_class\", \"score\": 0.36801373958587646}, {\"doc_id\": \"sphinx/util/inspect.py::DefaultValue.__repr__\", \"score\": 0.3568388819694519}, {\"doc_id\": \"tests/test_config.py::test_check_enum\", \"score\": 0.3445834219455719}, {\"doc_id\": \"tests/test_util_inspect.py::test_signature_from_str_default_values\", \"score\": 0.3362535536289215}, {\"doc_id\": \"tests/test_domain_c.py::test_enum_definitions\", \"score\": 0.3355982303619385}, {\"doc_id\": \"tests/test_config.py::test_check_enum_failed\", \"score\": 0.33407261967658997}, {\"doc_id\": \"doc/development/tutorials/examples/autodoc_intenum.py::IntEnumDocumenter.add_content\", \"score\": 0.32510048151016235}, {\"doc_id\": \"sphinx/util/inspect.py::isenumclass\", \"score\": 0.3238673210144043}, {\"doc_id\": \"tests/test_ext_autodoc_configs.py::test_autodoc_default_options_with_values\", \"score\": 0.31973016262054443}]"
+}

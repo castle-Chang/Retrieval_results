@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-13590",
+  "query": "Upgrading 2.2>3.0 causes named tuples used as arguments to __range to error.\nDescription\n\t\nI noticed this while upgrading a project from 2.2 to 3.0.\nThis project passes named 2-tuples as arguments to range queryset filters. This works fine on 2.2. On 3.0 it causes the following error: TypeError: __new__() missing 1 required positional argument: 'far'.\nThis happens because django.db.models.sql.query.Query.resolve_lookup_value goes into the tuple elements to resolve lookups and then attempts to reconstitute the tuple with the resolved elements.\nWhen it attempts to construct the new tuple it preserves the type (the named tuple) but it passes a iterator to it's constructor.\nNamedTuples don't have the code path for copying an iterator, and so it errors on insufficient arguments.\nThe fix is to * expand the contents of the iterator into the constructor.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/sql/query.py"
+    ],
+    "locations": [
+      "django/db/models/sql/query.py::Query",
+      "django/db/models/sql/query.py::Query.resolve_lookup_value",
+      "django/db/models/sql/query.py::Query.solve_lookup_type"
+    ]
+  },
+  "predictions": [
+    "django/db/models/query.py::NamedValuesListIterable.__iter__",
+    "django/db/models/utils.py::create_namedtuple_class",
+    "django/db/models/utils.py::unpickle_named_row",
+    "tests/expressions/tests.py::IterableLookupInnerExpressionsTests.test_range_lookup_allows_F_expressions_and_expressions_for_integers",
+    "django/utils/datastructures.py::_destruct_iterable_mapping_values",
+    "django/contrib/postgres/fields/ranges.py::RangeField._choices_is_value",
+    "django/db/models/query.py::ValuesListIterable.__iter__",
+    "tests/queries/tests.py::GeneratorExpressionTests.test_ticket10432",
+    "django/db/models/query.py::ValuesIterable.__iter__",
+    "django/contrib/admin/filters.py::FieldListFilter.queryset"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "755dbf39fcdc491fe9b588358303e259c7750be4",
+    "total_functions_indexed": 24028,
+    "retrieval_time_seconds": 0.0046846866607666016
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/query.py::NamedValuesListIterable.__iter__\", \"score\": 0.5060890316963196}, {\"doc_id\": \"django/db/models/utils.py::create_namedtuple_class\", \"score\": 0.42144763469696045}, {\"doc_id\": \"django/db/models/utils.py::unpickle_named_row\", \"score\": 0.36450693011283875}, {\"doc_id\": \"tests/expressions/tests.py::IterableLookupInnerExpressionsTests.test_range_lookup_allows_F_expressions_and_expressions_for_integers\", \"score\": 0.3547571897506714}, {\"doc_id\": \"django/utils/datastructures.py::_destruct_iterable_mapping_values\", \"score\": 0.3541247844696045}, {\"doc_id\": \"django/contrib/postgres/fields/ranges.py::RangeField._choices_is_value\", \"score\": 0.3461611270904541}, {\"doc_id\": \"django/db/models/query.py::ValuesListIterable.__iter__\", \"score\": 0.34375083446502686}, {\"doc_id\": \"tests/queries/tests.py::GeneratorExpressionTests.test_ticket10432\", \"score\": 0.3418874740600586}, {\"doc_id\": \"django/db/models/query.py::ValuesIterable.__iter__\", \"score\": 0.3373814821243286}, {\"doc_id\": \"django/contrib/admin/filters.py::FieldListFilter.queryset\", \"score\": 0.33322176337242126}]"
+}

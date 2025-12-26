@@ -1,0 +1,49 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-12682",
+  "query": "`SparseCoder` doesn't expose `max_iter` for `Lasso`\n`SparseCoder` uses `Lasso` if the algorithm is set to `lasso_cd`. It sets some of the `Lasso`'s parameters, but not `max_iter`, and that by default is 1000. This results in a warning in `examples/decomposition/plot_sparse_coding.py` complaining that the estimator has not converged.\r\n\r\nI guess there should be a way for the user to specify other parameters of the estimator used in `SparseCoder` other than the ones provided in the `SparseCoder.__init__` right now.\n",
+  "ground_truth": {
+    "files": [
+      "sklearn/decomposition/dict_learning.py",
+      "examples/decomposition/plot_sparse_coding.py"
+    ],
+    "locations": [
+      "examples/decomposition/plot_sparse_coding.py::ricker_function",
+      "sklearn/decomposition/dict_learning.py::_sparse_encode",
+      "sklearn/decomposition/dict_learning.py::sparse_encode",
+      "sklearn/decomposition/dict_learning.py::dict_learning",
+      "sklearn/decomposition/dict_learning.py::dict_learning_online",
+      "sklearn/decomposition/dict_learning.py::SparseCodingMixin",
+      "sklearn/decomposition/dict_learning.py::SparseCodingMixin._set_sparse_coding_params",
+      "sklearn/decomposition/dict_learning.py::SparseCodingMixin.transform",
+      "sklearn/decomposition/dict_learning.py::SparseCoder",
+      "sklearn/decomposition/dict_learning.py::SparseCoder.__init__",
+      "sklearn/decomposition/dict_learning.py::SparseCoder.fit",
+      "sklearn/decomposition/dict_learning.py::DictionaryLearning",
+      "sklearn/decomposition/dict_learning.py::DictionaryLearning.__init__",
+      "sklearn/decomposition/dict_learning.py::DictionaryLearning.fit",
+      "sklearn/decomposition/dict_learning.py::MiniBatchDictionaryLearning",
+      "sklearn/decomposition/dict_learning.py::MiniBatchDictionaryLearning.__init__",
+      "sklearn/decomposition/dict_learning.py::MiniBatchDictionaryLearning.fit",
+      "sklearn/decomposition/dict_learning.py::MiniBatchDictionaryLearning.partial_fit"
+    ]
+  },
+  "predictions": [
+    "sklearn/decomposition/dict_learning.py::_sparse_encode",
+    "sklearn/decomposition/tests/test_dict_learning.py::test_sparse_coder_estimator",
+    "sklearn/linear_model/tests/test_sparse_coordinate_descent.py::test_sparse_lasso_not_as_toy_dataset",
+    "sklearn/decomposition/dict_learning.py::sparse_encode",
+    "sklearn/linear_model/tests/test_least_angle.py::test_lars_cv_max_iter",
+    "sklearn/decomposition/dict_learning.py::SparseCoder.fit",
+    "sklearn/linear_model/tests/test_sgd.py::test_sgd_max_iter_param",
+    "sklearn/linear_model/tests/test_coordinate_descent.py::test_sparse_input_convergence_warning",
+    "sklearn/ensemble/_hist_gradient_boosting/tests/test_warm_start.py::test_max_iter_with_warm_start_validation",
+    "sklearn/utils/estimator_checks.py::check_non_transformer_estimators_n_iter"
+  ],
+  "metadata": {
+    "repo": "scikit-learn/scikit-learn",
+    "commit": "d360ffa7c5896a91ae498b3fb9cf464464ce8f34",
+    "total_functions_indexed": 6641,
+    "retrieval_time_seconds": 0.0014617443084716797
+  },
+  "raw_output": "[{\"doc_id\": \"sklearn/decomposition/dict_learning.py::_sparse_encode\", \"score\": 0.4452317953109741}, {\"doc_id\": \"sklearn/decomposition/tests/test_dict_learning.py::test_sparse_coder_estimator\", \"score\": 0.44211941957473755}, {\"doc_id\": \"sklearn/linear_model/tests/test_sparse_coordinate_descent.py::test_sparse_lasso_not_as_toy_dataset\", \"score\": 0.44035840034484863}, {\"doc_id\": \"sklearn/decomposition/dict_learning.py::sparse_encode\", \"score\": 0.41809120774269104}, {\"doc_id\": \"sklearn/linear_model/tests/test_least_angle.py::test_lars_cv_max_iter\", \"score\": 0.4118218421936035}, {\"doc_id\": \"sklearn/decomposition/dict_learning.py::SparseCoder.fit\", \"score\": 0.40402695536613464}, {\"doc_id\": \"sklearn/linear_model/tests/test_sgd.py::test_sgd_max_iter_param\", \"score\": 0.3987588882446289}, {\"doc_id\": \"sklearn/linear_model/tests/test_coordinate_descent.py::test_sparse_input_convergence_warning\", \"score\": 0.3620139956474304}, {\"doc_id\": \"sklearn/ensemble/_hist_gradient_boosting/tests/test_warm_start.py::test_max_iter_with_warm_start_validation\", \"score\": 0.3616844415664673}, {\"doc_id\": \"sklearn/utils/estimator_checks.py::check_non_transformer_estimators_n_iter\", \"score\": 0.3562176823616028}]"
+}

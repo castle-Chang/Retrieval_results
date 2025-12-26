@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-13794",
+  "query": "add filter is unable to concatenate strings with lazy string\nDescription\n\t\nIf you try to concatenate a string with a lazy string with the add template filter, the result is always the empty string because the add filter generates an exception (TypeError: can only concatenate str (not \"__proxy__\") to str).\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/functional.py"
+    ],
+    "locations": [
+      "django/utils/functional.py::lazy"
+    ]
+  },
+  "predictions": [
+    "tests/template_tests/filter_tests/test_escapejs.py::FunctionTests.test_lazy_string",
+    "tests/template_tests/filter_tests/test_escape.py::EscapeTests.test_escape_lazy_string",
+    "django/template/defaultfilters.py::add",
+    "tests/template_tests/filter_tests/test_wordwrap.py::FunctionTests.test_wrap_lazy_string",
+    "tests/template_tests/test_base.py::TemplateTests.test_lazy_template_string",
+    "tests/template_tests/filter_tests/test_slugify.py::FunctionTests.test_slugify_lazy_string",
+    "django/utils/safestring.py::SafeString.__add__",
+    "tests/template_tests/test_loaders.py::CachedLoaderTests.test_template_name_lazy_string",
+    "tests/template_tests/filter_tests/test_urlize.py::FunctionTests.test_lazystring",
+    "tests/template_tests/filter_tests/test_linebreaks.py::FunctionTests.test_lazy_string_input"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "fe886eee36be8022f34cfe59aa61ff1c21fe01d9",
+    "total_functions_indexed": 24231,
+    "retrieval_time_seconds": 0.00829935073852539
+  },
+  "raw_output": "[{\"doc_id\": \"tests/template_tests/filter_tests/test_escapejs.py::FunctionTests.test_lazy_string\", \"score\": 0.48472079634666443}, {\"doc_id\": \"tests/template_tests/filter_tests/test_escape.py::EscapeTests.test_escape_lazy_string\", \"score\": 0.4823220372200012}, {\"doc_id\": \"django/template/defaultfilters.py::add\", \"score\": 0.4335685074329376}, {\"doc_id\": \"tests/template_tests/filter_tests/test_wordwrap.py::FunctionTests.test_wrap_lazy_string\", \"score\": 0.4329586327075958}, {\"doc_id\": \"tests/template_tests/test_base.py::TemplateTests.test_lazy_template_string\", \"score\": 0.4293890595436096}, {\"doc_id\": \"tests/template_tests/filter_tests/test_slugify.py::FunctionTests.test_slugify_lazy_string\", \"score\": 0.42408353090286255}, {\"doc_id\": \"django/utils/safestring.py::SafeString.__add__\", \"score\": 0.42296361923217773}, {\"doc_id\": \"tests/template_tests/test_loaders.py::CachedLoaderTests.test_template_name_lazy_string\", \"score\": 0.4226352572441101}, {\"doc_id\": \"tests/template_tests/filter_tests/test_urlize.py::FunctionTests.test_lazystring\", \"score\": 0.419456422328949}, {\"doc_id\": \"tests/template_tests/filter_tests/test_linebreaks.py::FunctionTests.test_lazy_string_input\", \"score\": 0.40891802310943604}]"
+}

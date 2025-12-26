@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-21379",
+  "query": "Unexpected `PolynomialError` when using simple `subs()` for particular expressions\nI am seeing weird behavior with `subs` for particular expressions with hyperbolic sinusoids with piecewise arguments. When applying `subs`, I obtain an unexpected `PolynomialError`. For context, I was umbrella-applying a casting from int to float of all int atoms for a bunch of random expressions before using a tensorflow lambdify to avoid potential tensorflow type errors. You can pretend the expression below has a `+ 1` at the end, but below is the MWE that I could produce.\r\n\r\nSee the expression below, and the conditions in which the exception arises.\r\n\r\nSympy version: 1.8.dev\r\n\r\n```python\r\nfrom sympy import *\r\nfrom sympy.core.cache import clear_cache\r\n\r\nx, y, z = symbols('x y z')\r\n\r\nclear_cache()\r\nexpr = exp(sinh(Piecewise((x, y > x), (y, True)) / z))\r\n# This works fine\r\nexpr.subs({1: 1.0})\r\n\r\nclear_cache()\r\nx, y, z = symbols('x y z', real=True)\r\nexpr = exp(sinh(Piecewise((x, y > x), (y, True)) / z))\r\n# This fails with \"PolynomialError: Piecewise generators do not make sense\"\r\nexpr.subs({1: 1.0})  # error\r\n# Now run it again (isympy...) w/o clearing cache and everything works as expected without error\r\nexpr.subs({1: 1.0})\r\n```\r\n\r\nI am not really sure where the issue is, but I think it has something to do with the order of assumptions in this specific type of expression. Here is what I found-\r\n\r\n- The error only (AFAIK) happens with `cosh` or `tanh` in place of `sinh`, otherwise it succeeds\r\n- The error goes away if removing the division by `z`\r\n- The error goes away if removing `exp` (but stays for most unary functions, `sin`, `log`, etc.)\r\n- The error only happens with real symbols for `x` and `y` (`z` does not have to be real)\r\n\r\nNot too sure how to debug this one.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/mod.py"
+    ],
+    "locations": [
+      "sympy/core/mod.py::Mod",
+      "sympy/core/mod.py::Mod.eval"
+    ]
+  },
+  "predictions": [
+    "sympy/core/tests/test_subs.py::test_issue_6976",
+    "sympy/polys/tests/test_polytools.py::test_Poly_subs",
+    "sympy/core/tests/test_subs.py::test_Function_subs",
+    "sympy/core/tests/test_subs.py::test_issue_8886",
+    "sympy/core/tests/test_subs.py::test_issue_6559",
+    "sympy/polys/polytools.py::Poly._eval_subs",
+    "sympy/core/tests/test_subs.py::test_issue_6079",
+    "sympy/core/tests/test_subs.py::test_issue_15234",
+    "sympy/core/tests/test_subs.py::test_pow_eval_subs_no_cache",
+    "sympy/core/tests/test_subs.py::test_issue_11746"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "624217179aaf8d094e6ff75b7493ad1ee47599b0",
+    "total_functions_indexed": 36400,
+    "retrieval_time_seconds": 0.011755704879760742
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/tests/test_subs.py::test_issue_6976\", \"score\": 0.5197773575782776}, {\"doc_id\": \"sympy/polys/tests/test_polytools.py::test_Poly_subs\", \"score\": 0.5089130401611328}, {\"doc_id\": \"sympy/core/tests/test_subs.py::test_Function_subs\", \"score\": 0.506543755531311}, {\"doc_id\": \"sympy/core/tests/test_subs.py::test_issue_8886\", \"score\": 0.4978666305541992}, {\"doc_id\": \"sympy/core/tests/test_subs.py::test_issue_6559\", \"score\": 0.4968142807483673}, {\"doc_id\": \"sympy/polys/polytools.py::Poly._eval_subs\", \"score\": 0.49543631076812744}, {\"doc_id\": \"sympy/core/tests/test_subs.py::test_issue_6079\", \"score\": 0.4936635494232178}, {\"doc_id\": \"sympy/core/tests/test_subs.py::test_issue_15234\", \"score\": 0.49292677640914917}, {\"doc_id\": \"sympy/core/tests/test_subs.py::test_pow_eval_subs_no_cache\", \"score\": 0.48903241753578186}, {\"doc_id\": \"sympy/core/tests/test_subs.py::test_issue_11746\", \"score\": 0.486316442489624}]"
+}

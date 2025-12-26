@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-14089",
+  "query": "Allow calling reversed() on an OrderedSet\nDescription\n\t\nCurrently, ​OrderedSet isn't reversible (i.e. allowed to be passed as an argument to Python's ​reversed()). This would be natural to support given that OrderedSet is ordered. This should be straightforward to add by adding a __reversed__() method to OrderedSet.\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/datastructures.py"
+    ],
+    "locations": [
+      "django/utils/datastructures.py::OrderedSet",
+      "django/utils/datastructures.py::OrderedSet.__iter__",
+      "django/utils/datastructures.py::OrderedSet.__contains__"
+    ]
+  },
+  "predictions": [
+    "django/db/models/query.py::QuerySet.reverse",
+    "tests/ordering/tests.py::OrderingTests.test_reversed_ordering",
+    "tests/ordering/tests.py::OrderingTests.assertQuerysetEqualReversible",
+    "tests/utils_tests/test_datastructures.py::OrderedSetTests.test_bool",
+    "tests/utils_tests/test_datastructures.py::OrderedSetTests.test_contains",
+    "django/utils/datastructures.py::OrderedSet.__iter__",
+    "tests/utils_tests/test_datastructures.py::OrderedSetTests.test_init_with_iterable",
+    "django/utils/datastructures.py::OrderedSet.__init__",
+    "tests/utils_tests/test_datastructures.py::OrderedSetTests.test_remove",
+    "tests/utils_tests/test_datastructures.py::OrderedSetTests.test_discard"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "d01709aae21de9cd2565b9c52f32732ea28a2d98",
+    "total_functions_indexed": 24361,
+    "retrieval_time_seconds": 0.009450197219848633
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/query.py::QuerySet.reverse\", \"score\": 0.4368910789489746}, {\"doc_id\": \"tests/ordering/tests.py::OrderingTests.test_reversed_ordering\", \"score\": 0.43405812978744507}, {\"doc_id\": \"tests/ordering/tests.py::OrderingTests.assertQuerysetEqualReversible\", \"score\": 0.41378024220466614}, {\"doc_id\": \"tests/utils_tests/test_datastructures.py::OrderedSetTests.test_bool\", \"score\": 0.40998557209968567}, {\"doc_id\": \"tests/utils_tests/test_datastructures.py::OrderedSetTests.test_contains\", \"score\": 0.38855457305908203}, {\"doc_id\": \"django/utils/datastructures.py::OrderedSet.__iter__\", \"score\": 0.3839205503463745}, {\"doc_id\": \"tests/utils_tests/test_datastructures.py::OrderedSetTests.test_init_with_iterable\", \"score\": 0.3747516870498657}, {\"doc_id\": \"django/utils/datastructures.py::OrderedSet.__init__\", \"score\": 0.37114250659942627}, {\"doc_id\": \"tests/utils_tests/test_datastructures.py::OrderedSetTests.test_remove\", \"score\": 0.36908864974975586}, {\"doc_id\": \"tests/utils_tests/test_datastructures.py::OrderedSetTests.test_discard\", \"score\": 0.36825868487358093}]"
+}

@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-14017",
+  "query": "Q(...) & Exists(...) raises a TypeError\nDescription\n\t\nExists(...) & Q(...) works, but Q(...) & Exists(...) raise a TypeError\nHere's a minimal example:\nIn [3]: Exists(Product.objects.all()) & Q()\nOut[3]: <Q: (AND: <django.db.models.expressions.Exists object at 0x7fc18dd0ed90>, (AND: ))>\nIn [4]: Q() & Exists(Product.objects.all())\n---------------------------------------------------------------------------\nTypeError\t\t\t\t\t\t\t\t Traceback (most recent call last)\n<ipython-input-4-21d3dea0fcb9> in <module>\n----> 1 Q() & Exists(Product.objects.all())\n~/Code/venv/ecom/lib/python3.8/site-packages/django/db/models/query_utils.py in __and__(self, other)\n\t 90 \n\t 91\t def __and__(self, other):\n---> 92\t\t return self._combine(other, self.AND)\n\t 93 \n\t 94\t def __invert__(self):\n~/Code/venv/ecom/lib/python3.8/site-packages/django/db/models/query_utils.py in _combine(self, other, conn)\n\t 71\t def _combine(self, other, conn):\n\t 72\t\t if not isinstance(other, Q):\n---> 73\t\t\t raise TypeError(other)\n\t 74 \n\t 75\t\t # If the other Q() is empty, ignore it and just use `self`.\nTypeError: <django.db.models.expressions.Exists object at 0x7fc18dd21400>\nThe & (and |) operators should be commutative on Q-Exists pairs, but it's not\nI think there's a missing definition of __rand__ somewhere.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/query_utils.py"
+    ],
+    "locations": [
+      "django/db/models/query_utils.py::Q",
+      "django/db/models/query_utils.py::Q.__init__",
+      "django/db/models/query_utils.py::Q._combine"
+    ]
+  },
+  "predictions": [
+    "tests/queries/test_q.py::QTests.test_combine_and_empty",
+    "django/db/models/query_utils.py::Q.__and__",
+    "django/db/models/expressions.py::Combinable.__and__",
+    "tests/queries/test_q.py::QTests.test_combine_and_both_empty",
+    "django/db/models/query.py::QuerySet.__and__",
+    "django/db/models/expressions.py::Combinable.__or__",
+    "django/db/models/query_utils.py::Q.__invert__",
+    "django/db/models/sql/query.py::Query.exists",
+    "django/contrib/postgres/search.py::SearchQueryCombinable.__and__",
+    "tests/or_lookups/tests.py::OrLookupsTests.test_q_and"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "466920f6d726eee90d5566e0a9948e92b33a122e",
+    "total_functions_indexed": 24279,
+    "retrieval_time_seconds": 0.005218982696533203
+  },
+  "raw_output": "[{\"doc_id\": \"tests/queries/test_q.py::QTests.test_combine_and_empty\", \"score\": 0.4693066477775574}, {\"doc_id\": \"django/db/models/query_utils.py::Q.__and__\", \"score\": 0.4598120152950287}, {\"doc_id\": \"django/db/models/expressions.py::Combinable.__and__\", \"score\": 0.4585328698158264}, {\"doc_id\": \"tests/queries/test_q.py::QTests.test_combine_and_both_empty\", \"score\": 0.45342904329299927}, {\"doc_id\": \"django/db/models/query.py::QuerySet.__and__\", \"score\": 0.4291059672832489}, {\"doc_id\": \"django/db/models/expressions.py::Combinable.__or__\", \"score\": 0.41713663935661316}, {\"doc_id\": \"django/db/models/query_utils.py::Q.__invert__\", \"score\": 0.40728747844696045}, {\"doc_id\": \"django/db/models/sql/query.py::Query.exists\", \"score\": 0.4045872688293457}, {\"doc_id\": \"django/contrib/postgres/search.py::SearchQueryCombinable.__and__\", \"score\": 0.40042945742607117}, {\"doc_id\": \"tests/or_lookups/tests.py::OrLookupsTests.test_q_and\", \"score\": 0.39637720584869385}]"
+}

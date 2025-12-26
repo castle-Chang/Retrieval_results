@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-16527",
+  "query": "\"show_save_as_new\" in admin can add without this permission\nDescription\n\t \n\t\t(last modified by Mariusz Felisiak)\n\t \nAt \"django/contrib/admin/templatetags/admin_modify.py\" file, line 102, I think you must put one more verification for this tag: \"and has_add_permission\", because \"save_as_new\" is a add modification.\nI rewrite this for my project:\n\t\t\t\"show_save_as_new\": not is_popup\n\t\t\tand has_add_permission # This line that I put!!!\n\t\t\tand has_change_permission\n\t\t\tand change\n\t\t\tand save_as,\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admin/templatetags/admin_modify.py"
+    ],
+    "locations": [
+      "django/contrib/admin/templatetags/admin_modify.py::submit_row"
+    ]
+  },
+  "predictions": [
+    "tests/admin_views/tests.py::AdminViewPermissionsTest.test_change_view_save_as_new",
+    "tests/admin_views/test_templatetags.py::AdminTemplateTagsTest.test_override_show_save_and_add_another",
+    "tests/admin_views/tests.py::SaveAsTests.test_save_as_new_with_validation_errors",
+    "tests/admin_changelist/admin.py::EventAdmin.has_add_permission",
+    "django/contrib/admin/options.py::ModelAdmin.response_add",
+    "tests/admin_views/tests.py::AdminViewBasicTest.test_edit_save_as",
+    "tests/admin_views/tests.py::SaveAsTests.test_save_as_duplication",
+    "tests/admin_views/tests.py::SaveAsTests.test_save_as_continue_false",
+    "django/contrib/admin/templatetags/admin_modify.py::submit_row",
+    "tests/admin_views/tests.py::SaveAsTests.test_save_as_new_with_inlines_with_validation_errors"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "bd366ca2aeffa869b7dbc0b0aa01caea75e6dc31",
+    "total_functions_indexed": 26352,
+    "retrieval_time_seconds": 0.009102344512939453
+  },
+  "raw_output": "[{\"doc_id\": \"tests/admin_views/tests.py::AdminViewPermissionsTest.test_change_view_save_as_new\", \"score\": 0.5723429918289185}, {\"doc_id\": \"tests/admin_views/test_templatetags.py::AdminTemplateTagsTest.test_override_show_save_and_add_another\", \"score\": 0.5297530889511108}, {\"doc_id\": \"tests/admin_views/tests.py::SaveAsTests.test_save_as_new_with_validation_errors\", \"score\": 0.47268834710121155}, {\"doc_id\": \"tests/admin_changelist/admin.py::EventAdmin.has_add_permission\", \"score\": 0.4657953977584839}, {\"doc_id\": \"django/contrib/admin/options.py::ModelAdmin.response_add\", \"score\": 0.4641682505607605}, {\"doc_id\": \"tests/admin_views/tests.py::AdminViewBasicTest.test_edit_save_as\", \"score\": 0.46168962121009827}, {\"doc_id\": \"tests/admin_views/tests.py::SaveAsTests.test_save_as_duplication\", \"score\": 0.4563188850879669}, {\"doc_id\": \"tests/admin_views/tests.py::SaveAsTests.test_save_as_continue_false\", \"score\": 0.45248252153396606}, {\"doc_id\": \"django/contrib/admin/templatetags/admin_modify.py::submit_row\", \"score\": 0.4485098421573639}, {\"doc_id\": \"tests/admin_views/tests.py::SaveAsTests.test_save_as_new_with_inlines_with_validation_errors\", \"score\": 0.4455386698246002}]"
+}

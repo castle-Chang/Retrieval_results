@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-14034",
+  "query": "MultiValueField ignores a required value of a sub field\nDescription\n\t \n\t\t(last modified by Takayuki Hirai)\n\t \nA field and a form definition:\nfrom django.forms import (\n\tForm,\n\tCharField,\n\tMultiValueField,\n\tMultiWidget,\n)\nclass MF(MultiValueField):\n\twidget = MultiWidget\n\tdef __init__(self):\n\t\tfields = [\n\t\t\tCharField(required=False),\n\t\t\tCharField(required=True),\n\t\t]\n\t\twidget = self.widget(widgets=[\n\t\t\tf.widget\n\t\t\tfor f in fields\n\t\t], attrs={})\n\t\tsuper(MF, self).__init__(\n\t\t\tfields=fields,\n\t\t\twidget=widget,\n\t\t\trequire_all_fields=False,\n\t\t\trequired=False,\n\t\t)\n\tdef compress(self, value):\n\t\treturn []\nclass F(Form):\n\tmf = MF()\nWhen the form is passed empty values for both sub fields, form.is_valid() == True.\nBut I expected is_valid() returns False, because one of the sub fields is set as required.\nf = F({\n\t'mf_0': '',\n\t'mf_1': '',\n})\nassert f.is_valid() == True # I expect this should return False\nOn the other hand, When one of its sub field is passed a non-empty value, form.is_valid() == False\nf = F({\n\t'mf_0': 'xxx',\n\t'mf_1': '',\n})\nassert f.is_valid() == Flase\nIf above behavior is not expected, please fix this problem.\n",
+  "ground_truth": {
+    "files": [
+      "django/forms/boundfield.py"
+    ],
+    "locations": [
+      "django/forms/boundfield.py::BoundField",
+      "django/forms/boundfield.py::BoundField.build_widget_attrs"
+    ]
+  },
+  "predictions": [
+    "tests/forms_tests/tests/test_forms.py::FormsTestCase.test_multivalue_optional_subfields",
+    "tests/forms_tests/tests/test_forms.py::FormsTestCase.test_multivalue_field_validation",
+    "tests/forms_tests/field_tests/test_multiplechoicefield.py::MultipleChoiceFieldTest.test_multiplechoicefield_2",
+    "tests/forms_tests/field_tests/test_multivaluefield.py::MultiValueFieldTest.test_no_value",
+    "django/forms/fields.py::MultiValueField.__init__",
+    "tests/forms_tests/tests/test_forms.py::FormsTestCase.test_multivalue_deep_copy",
+    "tests/forms_tests/field_tests/test_multiplechoicefield.py::MultipleChoiceFieldTest.test_multiplechoicefield_1",
+    "tests/forms_tests/field_tests/test_multivaluefield.py::MultiValueFieldTest.test_clean_disabled_multivalue",
+    "tests/model_forms/tests.py::ModelMultipleChoiceFieldTests.test_model_multiple_choice_required_false",
+    "tests/forms_tests/field_tests/test_multivaluefield.py::ComplexField.__init__"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "db1fc5cd3c5d36cdb5d0fe4404efd6623dd3e8fb",
+    "total_functions_indexed": 24921,
+    "retrieval_time_seconds": 0.005438089370727539
+  },
+  "raw_output": "[{\"doc_id\": \"tests/forms_tests/tests/test_forms.py::FormsTestCase.test_multivalue_optional_subfields\", \"score\": 0.6368255615234375}, {\"doc_id\": \"tests/forms_tests/tests/test_forms.py::FormsTestCase.test_multivalue_field_validation\", \"score\": 0.5569246411323547}, {\"doc_id\": \"tests/forms_tests/field_tests/test_multiplechoicefield.py::MultipleChoiceFieldTest.test_multiplechoicefield_2\", \"score\": 0.5459792613983154}, {\"doc_id\": \"tests/forms_tests/field_tests/test_multivaluefield.py::MultiValueFieldTest.test_no_value\", \"score\": 0.5375177264213562}, {\"doc_id\": \"django/forms/fields.py::MultiValueField.__init__\", \"score\": 0.5361940264701843}, {\"doc_id\": \"tests/forms_tests/tests/test_forms.py::FormsTestCase.test_multivalue_deep_copy\", \"score\": 0.5324587821960449}, {\"doc_id\": \"tests/forms_tests/field_tests/test_multiplechoicefield.py::MultipleChoiceFieldTest.test_multiplechoicefield_1\", \"score\": 0.5313868522644043}, {\"doc_id\": \"tests/forms_tests/field_tests/test_multivaluefield.py::MultiValueFieldTest.test_clean_disabled_multivalue\", \"score\": 0.5266001224517822}, {\"doc_id\": \"tests/model_forms/tests.py::ModelMultipleChoiceFieldTests.test_model_multiple_choice_required_false\", \"score\": 0.5238953232765198}, {\"doc_id\": \"tests/forms_tests/field_tests/test_multivaluefield.py::ComplexField.__init__\", \"score\": 0.5146306753158569}]"
+}

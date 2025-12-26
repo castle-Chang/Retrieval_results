@@ -1,0 +1,35 @@
+{
+  "instance_id": "sphinx-doc__sphinx-9658",
+  "query": "Inherited classes not correctly documented when mocked\n### Describe the bug\r\n\r\nWe're experiencing an issue when documenting classes that inherit mocked classes. However, classes which inherit other classes from our own package are ok.\r\n\r\nThis issue appears to be dependent on the `sphinx` version:\r\n\r\n- `sphinx<3.0`: Everything is OK. \r\n- `sphinx>=3.0 < 3.4.2`: Classes that inherit mocked classes are not documented. (see [sphinx #8164](https://github.com/sphinx-doc/sphinx/issues/8164)). This is fixed in `sphinx 3.4.2`. \r\n- `sphinx>=3.4.2`: The previously missing classes are now documented, but there is a problem with the \"Bases\" section in the docs. \r\n \r\nExample: In the docs for `alibi_detect.utils.pytorch.kernels.DeepKernel` in this readthedocs build https://seldon--338.org.readthedocs.build/projects/alibi-detect/en/338/api/alibi_detect.utils.pytorch.kernels.html, the base class is listed as \"Bases: `torch.nn.`\" instead of \"Bases: `torch.nn.Module`\". \r\n\r\n\r\n### How to Reproduce\r\n\r\n```\r\n$ git clone https://github.com/ascillitoe/alibi-detect.git\r\n$ cd alibi-detect\r\n$ pip install -r requirements/docs.txt\r\n$ make build_docs\r\n$ # open doc/_build/html/api/alibi_detect.utils.pytorch.kernels.html and see \"Bases\" section.\r\n```\r\n\r\n\r\n### Expected behavior\r\n\r\nThe \"Bases\" section should report `torch.nn.Module` not `torch.nn.`. \r\n\r\ni.e. see\r\nhttps://seldon--325.org.readthedocs.build/projects/alibi-detect/en/325/api/alibi_detect.utils.pytorch.kernels.html\r\n\r\n### Your project\r\n\r\nhttps://github.com/ascillitoe/alibi-detect/tree/feature_sphinx4\r\n\r\n### Screenshots\r\n\r\n### Screenshot with `sphinx==4.2`\r\n![sphinx_problem](https://user-images.githubusercontent.com/32061685/133816582-ca162b07-41c7-4b8e-98ea-781e7c659229.png)\r\n\r\n### Screenshot with `sphinx<3.0`\r\n![sphinx_working](https://user-images.githubusercontent.com/32061685/133816065-6291ce1b-96cf-4b0f-9648-7f993fc15611.png)\r\n\r\n\r\n\r\n### OS\r\n\r\nUbuntu 18.04 (used by readthedocs/build:6.0)\r\n\r\n### Python version\r\n\r\n3.8.11\r\n\r\n### Sphinx version\r\n\r\n`>=3.4.2`\r\n\r\n### Sphinx extensions\r\n\r\n    [\"sphinx.ext.autodoc\",\r\n    \"sphinx.ext.doctest\",\r\n    \"sphinx.ext.intersphinx\",\r\n    \"sphinx.ext.todo\",\r\n    \"sphinx.ext.coverage\",\r\n    \"sphinx.ext.mathjax\",\r\n    \"sphinx.ext.ifconfig\",\r\n    \"sphinx.ext.viewcode\",\r\n    \"sphinx.ext.napoleon\",\r\n    \"sphinx_autodoc_typehints\",\r\n    \"sphinxcontrib.apidoc\", \r\n    \"nbsphinx\",\r\n    \"nbsphinx_link\",  \r\n    \"myst_parser\"]\r\n\r\n\r\n### Extra tools\r\n\r\n_No response_\r\n\r\n### Additional context\r\n\r\ndemo PR:\r\nhttps://github.com/SeldonIO/alibi-detect/pull/338\r\n\r\nreadthedocs demo build:\r\nhttps://seldon--338.org.readthedocs.build/projects/alibi-detect/en/338/api/alibi_detect.utils.pytorch.kernels.html\r\n\r\n\n",
+  "ground_truth": {
+    "files": [
+      "sphinx/ext/autodoc/mock.py"
+    ],
+    "locations": [
+      "sphinx/ext/autodoc/mock.py::_MockObject",
+      "sphinx/ext/autodoc/mock.py::_MockObject.__new__",
+      "sphinx/ext/autodoc/mock.py::_MockObject.__init__",
+      "sphinx/ext/autodoc/mock.py::_MockObject.__len__",
+      "sphinx/ext/autodoc/mock.py::_make_subclass"
+    ]
+  },
+  "predictions": [
+    "tests/test_ext_autodoc_automodule.py::test_subclass_of_mocked_object",
+    "tests/test_ext_autodoc.py::test_autodoc_inherited_members_Base",
+    "tests/test_ext_autodoc_mock.py::test_ismock",
+    "tests/test_ext_inheritance_diagram.py::test_import_classes",
+    "tests/test_ext_autodoc.py::test_autodoc_inherited_members",
+    "tests/test_ext_autodoc_autoclass.py::test_class_alias_having_doccomment",
+    "tests/test_ext_autodoc.py::test_autodoc_classmethod",
+    "tests/test_ext_autodoc.py::test_pyclass_for_ClassLevelDocumenter",
+    "tests/test_ext_autodoc_autoclass.py::test_autodoc_process_bases",
+    "tests/test_util_inspect.py::test_getdoc_inherited_decorated_method"
+  ],
+  "metadata": {
+    "repo": "sphinx-doc/sphinx",
+    "commit": "232dbe41c5250eb7d559d40438c4743483e95f15",
+    "total_functions_indexed": 5772,
+    "retrieval_time_seconds": 0.001714468002319336
+  },
+  "raw_output": "[{\"doc_id\": \"tests/test_ext_autodoc_automodule.py::test_subclass_of_mocked_object\", \"score\": 0.4849603772163391}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_inherited_members_Base\", \"score\": 0.47933173179626465}, {\"doc_id\": \"tests/test_ext_autodoc_mock.py::test_ismock\", \"score\": 0.464299738407135}, {\"doc_id\": \"tests/test_ext_inheritance_diagram.py::test_import_classes\", \"score\": 0.4622795581817627}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_inherited_members\", \"score\": 0.45270752906799316}, {\"doc_id\": \"tests/test_ext_autodoc_autoclass.py::test_class_alias_having_doccomment\", \"score\": 0.44399434328079224}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_autodoc_classmethod\", \"score\": 0.4398338198661804}, {\"doc_id\": \"tests/test_ext_autodoc.py::test_pyclass_for_ClassLevelDocumenter\", \"score\": 0.43830811977386475}, {\"doc_id\": \"tests/test_ext_autodoc_autoclass.py::test_autodoc_process_bases\", \"score\": 0.4267340898513794}, {\"doc_id\": \"tests/test_util_inspect.py::test_getdoc_inherited_decorated_method\", \"score\": 0.4231659173965454}]"
+}

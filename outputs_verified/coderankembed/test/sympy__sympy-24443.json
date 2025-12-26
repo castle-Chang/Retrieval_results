@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-24443",
+  "query": "`_check_homomorphism` is broken on PermutationGroups\n```python\r\nIn [1]: from sympy.combinatorics import *\r\n   ...: from sympy.combinatorics.homomorphisms import homomorphism\r\n   ...: D3 = DihedralGroup(3)\r\n   ...: T = homomorphism(D3, D3, D3.generators, D3.generators)\r\n\r\nValueError: The given images do not define a homomorphism\r\n```\r\n\r\nThe issue is in the internal `_image()` function, where it handles the case of a `PermutationGroup`:\r\n\r\nhttps://github.com/sympy/sympy/blob/809c53c077485ca48a206cee78340389cb83b7f1/sympy/combinatorics/homomorphisms.py#L336-L337\r\n\r\nWhen `r[i]` is an inverted generator, the `in gens` test fails.\r\n\r\nI think the whole thing can be greatly simplified.\n",
+  "ground_truth": {
+    "files": [
+      "sympy/combinatorics/homomorphisms.py"
+    ],
+    "locations": [
+      "sympy/combinatorics/homomorphisms.py::homomorphism",
+      "sympy/combinatorics/homomorphisms.py::_check_homomorphism"
+    ]
+  },
+  "predictions": [
+    "sympy/combinatorics/tests/test_homomorphisms.py::test_check_homomorphism",
+    "sympy/combinatorics/homomorphisms.py::_check_homomorphism",
+    "sympy/combinatorics/tests/test_homomorphisms.py::test_homomorphism",
+    "sympy/combinatorics/tests/test_perm_groups.py::test_dihedral",
+    "sympy/combinatorics/homomorphisms.py::homomorphism",
+    "sympy/combinatorics/tests/test_homomorphisms.py::test_isomorphisms",
+    "sympy/combinatorics/homomorphisms.py::GroupHomomorphism.is_trivial",
+    "sympy/combinatorics/homomorphisms.py::GroupHomomorphism.image",
+    "sympy/combinatorics/tests/test_perm_groups.py::test_PermutationGroup",
+    "sympy/combinatorics/homomorphisms.py::is_isomorphic"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "809c53c077485ca48a206cee78340389cb83b7f1",
+    "total_functions_indexed": 29994,
+    "retrieval_time_seconds": 0.01056528091430664
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/combinatorics/tests/test_homomorphisms.py::test_check_homomorphism\", \"score\": 0.6783076524734497}, {\"doc_id\": \"sympy/combinatorics/homomorphisms.py::_check_homomorphism\", \"score\": 0.6490547060966492}, {\"doc_id\": \"sympy/combinatorics/tests/test_homomorphisms.py::test_homomorphism\", \"score\": 0.6023961305618286}, {\"doc_id\": \"sympy/combinatorics/tests/test_perm_groups.py::test_dihedral\", \"score\": 0.5597281455993652}, {\"doc_id\": \"sympy/combinatorics/homomorphisms.py::homomorphism\", \"score\": 0.5377753973007202}, {\"doc_id\": \"sympy/combinatorics/tests/test_homomorphisms.py::test_isomorphisms\", \"score\": 0.5330578088760376}, {\"doc_id\": \"sympy/combinatorics/homomorphisms.py::GroupHomomorphism.is_trivial\", \"score\": 0.529231607913971}, {\"doc_id\": \"sympy/combinatorics/homomorphisms.py::GroupHomomorphism.image\", \"score\": 0.5014259815216064}, {\"doc_id\": \"sympy/combinatorics/tests/test_perm_groups.py::test_PermutationGroup\", \"score\": 0.4992024302482605}, {\"doc_id\": \"sympy/combinatorics/homomorphisms.py::is_isomorphic\", \"score\": 0.4991793632507324}]"
+}

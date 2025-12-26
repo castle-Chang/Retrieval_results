@@ -1,0 +1,34 @@
+{
+  "instance_id": "psf__requests-1142",
+  "query": "requests.get is ALWAYS sending content length\nHi,\n\nIt seems like that request.get always adds 'content-length' header to the request.\nI think that the right behavior is not to add this header automatically in GET requests or add the possibility to not send it.\n\nFor example http://amazon.com returns 503 for every get request that contains 'content-length' header.\n\nThanks,\n\nOren\n\n",
+  "ground_truth": {
+    "files": [
+      "requests/models.py"
+    ],
+    "locations": [
+      "requests/models.py::PreparedRequest",
+      "requests/models.py::PreparedRequest.prepare_body",
+      "requests/models.py::PreparedRequest.prepare_content_length",
+      "requests/models.py::PreparedRequest.prepare_auth"
+    ]
+  },
+  "predictions": [
+    "requests/models.py::PreparedRequest.prepare_content_length",
+    "test_requests.py::RequestsTestCase.test_unicode_get",
+    "test_requests.py::RequestsTestCase.test_HTTP_302_ALLOW_REDIRECT_GET",
+    "requests/api.py::get",
+    "requests/packages/urllib3/request.py::RequestMethods.__init__",
+    "requests/sessions.py::Session.get",
+    "requests/cookies.py::get_cookie_header",
+    "test_requests.py::RequestsTestCase.test_HTTP_200_OK_GET_ALTERNATIVE",
+    "requests/models.py::Response.content",
+    "requests/utils.py::get_encoding_from_headers"
+  ],
+  "metadata": {
+    "repo": "psf/requests",
+    "commit": "22623bd8c265b78b161542663ee980738441c307",
+    "total_functions_indexed": 404,
+    "retrieval_time_seconds": 0.08584761619567871
+  },
+  "raw_output": "[{\"doc_id\": \"requests/models.py::PreparedRequest.prepare_content_length\", \"score\": 0.45002201199531555}, {\"doc_id\": \"test_requests.py::RequestsTestCase.test_unicode_get\", \"score\": 0.35670459270477295}, {\"doc_id\": \"test_requests.py::RequestsTestCase.test_HTTP_302_ALLOW_REDIRECT_GET\", \"score\": 0.3363610506057739}, {\"doc_id\": \"requests/api.py::get\", \"score\": 0.334978312253952}, {\"doc_id\": \"requests/packages/urllib3/request.py::RequestMethods.__init__\", \"score\": 0.33380934596061707}, {\"doc_id\": \"requests/sessions.py::Session.get\", \"score\": 0.3253214359283447}, {\"doc_id\": \"requests/cookies.py::get_cookie_header\", \"score\": 0.32106173038482666}, {\"doc_id\": \"test_requests.py::RequestsTestCase.test_HTTP_200_OK_GET_ALTERNATIVE\", \"score\": 0.31237155199050903}, {\"doc_id\": \"requests/models.py::Response.content\", \"score\": 0.3037289083003998}, {\"doc_id\": \"requests/utils.py::get_encoding_from_headers\", \"score\": 0.2907508611679077}]"
+}

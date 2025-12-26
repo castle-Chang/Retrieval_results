@@ -1,0 +1,31 @@
+{
+  "instance_id": "django__django-15127",
+  "query": "LEVEL_TAGS not updated when using @override_settings\nDescription\n\t\nWhen reading messages inside tests, new message tags created using @override_settings is not updated.\nThat causes the django.contrib.messages.storage.base.Message.level_tag property results to be an empty string and not know the new tags.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/messages/apps.py"
+    ],
+    "locations": [
+      "django/contrib/messages/apps.py::MessagesConfig"
+    ]
+  },
+  "predictions": [
+    "tests/messages_tests/base.py::override_settings_tags.enable",
+    "tests/messages_tests/base.py::override_settings_tags.disable",
+    "django/contrib/messages/utils.py::get_level_tags",
+    "tests/messages_tests/base.py::BaseTests.test_level_tag",
+    "tests/messages_tests/base.py::BaseTests.test_custom_tags",
+    "tests/messages_tests/base.py::BaseTests.test_tags",
+    "django/contrib/messages/storage/base.py::Message.level_tag",
+    "tests/messages_tests/base.py::BaseTests.test_settings_level",
+    "django/contrib/messages/storage/base.py::Message.tags",
+    "tests/messages_tests/base.py::BaseTests.test_default_level"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "9a6e2df3a8f01ea761529bec48e5a8dc0ea9575b",
+    "total_functions_indexed": 25306,
+    "retrieval_time_seconds": 0.009379148483276367
+  },
+  "raw_output": "[{\"doc_id\": \"tests/messages_tests/base.py::override_settings_tags.enable\", \"score\": 0.6917394399642944}, {\"doc_id\": \"tests/messages_tests/base.py::override_settings_tags.disable\", \"score\": 0.6902705430984497}, {\"doc_id\": \"django/contrib/messages/utils.py::get_level_tags\", \"score\": 0.6188331842422485}, {\"doc_id\": \"tests/messages_tests/base.py::BaseTests.test_level_tag\", \"score\": 0.6124631762504578}, {\"doc_id\": \"tests/messages_tests/base.py::BaseTests.test_custom_tags\", \"score\": 0.5982841849327087}, {\"doc_id\": \"tests/messages_tests/base.py::BaseTests.test_tags\", \"score\": 0.5564103126525879}, {\"doc_id\": \"django/contrib/messages/storage/base.py::Message.level_tag\", \"score\": 0.5524609088897705}, {\"doc_id\": \"tests/messages_tests/base.py::BaseTests.test_settings_level\", \"score\": 0.5114855766296387}, {\"doc_id\": \"django/contrib/messages/storage/base.py::Message.tags\", \"score\": 0.5022543668746948}, {\"doc_id\": \"tests/messages_tests/base.py::BaseTests.test_default_level\", \"score\": 0.4762054979801178}]"
+}

@@ -1,0 +1,43 @@
+{
+  "instance_id": "pylint-dev__pylint-4551",
+  "query": "Use Python type hints for UML generation\nIt seems that pyreverse does not read python type hints (as defined by [PEP 484](https://www.python.org/dev/peps/pep-0484/)), and this does not help when you use `None` as a default value :\r\n\r\n### Code example\r\n```\r\nclass C(object):\r\n    def __init__(self, a: str = None):\r\n        self.a = a\r\n```\r\n\r\n### Current behavior\r\n\r\nOutput of pyreverse :\r\n\r\n![classes_test](https://user-images.githubusercontent.com/22218701/27432305-f10fe03e-574f-11e7-81fa-e2b59e493360.png)\r\n\r\n### Expected behavior\r\n\r\nI would like to see something like : `a : String` in the output.\r\n\r\n### pylint --version output\r\npylint-script.py 1.6.5,\r\nastroid 1.4.9\r\nPython 3.6.0 |Anaconda custom (64-bit)| (default, Dec 23 2016, 11:57:41) [MSC v.1900 64 bit (AMD64)]\r\n\n",
+  "ground_truth": {
+    "files": [
+      "pylint/pyreverse/inspector.py",
+      "pylint/pyreverse/diagrams.py",
+      "pylint/pyreverse/writer.py",
+      "pylint/pyreverse/utils.py"
+    ],
+    "locations": [
+      "pylint/pyreverse/diagrams.py::ClassDiagram",
+      "pylint/pyreverse/diagrams.py::ClassDiagram.class_names",
+      "pylint/pyreverse/inspector.py::Linker",
+      "pylint/pyreverse/inspector.py::Linker.visit_assignname",
+      "pylint/pyreverse/inspector.py::Linker.handle_assignattr_type",
+      "pylint/pyreverse/inspector.py::Linker.visit_import",
+      "pylint/pyreverse/utils.py::LocalsVisitor",
+      "pylint/pyreverse/utils.py::LocalsVisitor.visit",
+      "pylint/pyreverse/writer.py::DotWriter",
+      "pylint/pyreverse/writer.py::DotWriter.get_values"
+    ]
+  },
+  "predictions": [
+    "tests/functional/u/unused/unused_typing_imports.py::magic",
+    "tests/functional/u/unused/unused_typing_imports.py::unused_assignment_import",
+    "tests/functional/u/unused/unused_typing_imports.py::typing_fully_qualified",
+    "tests/functional/s/string/string_formatting.py::issue373",
+    "tests/functional/c/ctor_arguments.py::with_metaclass",
+    "pylint/checkers/python3.py::Python3Checker._could_be_string",
+    "pylint/extensions/typing.py::TypingChecker._msg_postponed_eval_hint",
+    "tests/functional/u/unused/unused_typing_imports.py::func2",
+    "tests/unittest_pyreverse_writer.py::Config.__init__",
+    "pylint/lint/pylinter.py::PyLinter.make_options"
+  ],
+  "metadata": {
+    "repo": "pylint-dev/pylint",
+    "commit": "99589b08de8c5a2c6cc61e13a37420a868c80599",
+    "total_functions_indexed": 4355,
+    "retrieval_time_seconds": 0.0014264583587646484
+  },
+  "raw_output": "[{\"doc_id\": \"tests/functional/u/unused/unused_typing_imports.py::magic\", \"score\": 0.3686872720718384}, {\"doc_id\": \"tests/functional/u/unused/unused_typing_imports.py::unused_assignment_import\", \"score\": 0.36357101798057556}, {\"doc_id\": \"tests/functional/u/unused/unused_typing_imports.py::typing_fully_qualified\", \"score\": 0.36026036739349365}, {\"doc_id\": \"tests/functional/s/string/string_formatting.py::issue373\", \"score\": 0.35534071922302246}, {\"doc_id\": \"tests/functional/c/ctor_arguments.py::with_metaclass\", \"score\": 0.34191110730171204}, {\"doc_id\": \"pylint/checkers/python3.py::Python3Checker._could_be_string\", \"score\": 0.33888334035873413}, {\"doc_id\": \"pylint/extensions/typing.py::TypingChecker._msg_postponed_eval_hint\", \"score\": 0.3267463445663452}, {\"doc_id\": \"tests/functional/u/unused/unused_typing_imports.py::func2\", \"score\": 0.32264500856399536}, {\"doc_id\": \"tests/unittest_pyreverse_writer.py::Config.__init__\", \"score\": 0.32078278064727783}, {\"doc_id\": \"pylint/lint/pylinter.py::PyLinter.make_options\", \"score\": 0.3205466866493225}]"
+}

@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-10880",
+  "query": "Query syntax error with condition and distinct combination\nDescription\n\t\nA Count annotation containing both a Case condition and a distinct=True param produces a query error on Django 2.2 (whatever the db backend). A space is missing at least (... COUNT(DISTINCTCASE WHEN ...).\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/aggregates.py"
+    ],
+    "locations": [
+      "django/db/models/aggregates.py::Aggregate",
+      "django/db/models/aggregates.py::Aggregate.get_group_by_cols",
+      "django/db/models/aggregates.py::Aggregate.as_sql"
+    ]
+  },
+  "predictions": [
+    "tests/distinct_on_fields/tests.py::DistinctOnTests.test_distinct_not_implemented_checks",
+    "tests/expressions/tests.py::ReprTests.test_distinct_aggregates",
+    "django/db/models/aggregates.py::Aggregate.__init__",
+    "tests/aggregation_regress/tests.py::AggregationTests.test_distinct_conditional_aggregate",
+    "tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_distinct_on_with_annotation",
+    "django/db/backends/postgresql/operations.py::DatabaseOperations.distinct_sql",
+    "django/db/models/sql/query.py::Query.add_distinct_fields",
+    "tests/aggregation_regress/tests.py::AggregationTests.test_annotate_distinct_aggregate",
+    "django/db/models/sql/query.py::Query.get_count",
+    "tests/backends/sqlite/tests.py::Tests.test_distinct_aggregation"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "838e432e3e5519c5383d12018e6c78f8ec7833c1",
+    "total_functions_indexed": 22312,
+    "retrieval_time_seconds": 0.0058362483978271484
+  },
+  "raw_output": "[{\"doc_id\": \"tests/distinct_on_fields/tests.py::DistinctOnTests.test_distinct_not_implemented_checks\", \"score\": 0.4364453852176666}, {\"doc_id\": \"tests/expressions/tests.py::ReprTests.test_distinct_aggregates\", \"score\": 0.4200756549835205}, {\"doc_id\": \"django/db/models/aggregates.py::Aggregate.__init__\", \"score\": 0.40356776118278503}, {\"doc_id\": \"tests/aggregation_regress/tests.py::AggregationTests.test_distinct_conditional_aggregate\", \"score\": 0.40124547481536865}, {\"doc_id\": \"tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_distinct_on_with_annotation\", \"score\": 0.40108609199523926}, {\"doc_id\": \"django/db/backends/postgresql/operations.py::DatabaseOperations.distinct_sql\", \"score\": 0.3942793309688568}, {\"doc_id\": \"django/db/models/sql/query.py::Query.add_distinct_fields\", \"score\": 0.3905077576637268}, {\"doc_id\": \"tests/aggregation_regress/tests.py::AggregationTests.test_annotate_distinct_aggregate\", \"score\": 0.38868647813796997}, {\"doc_id\": \"django/db/models/sql/query.py::Query.get_count\", \"score\": 0.3864583969116211}, {\"doc_id\": \"tests/backends/sqlite/tests.py::Tests.test_distinct_aggregation\", \"score\": 0.38580718636512756}]"
+}

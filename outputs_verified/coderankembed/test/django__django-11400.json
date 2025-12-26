@@ -1,0 +1,44 @@
+{
+  "instance_id": "django__django-11400",
+  "query": "Ordering problem in admin.RelatedFieldListFilter and admin.RelatedOnlyFieldListFilter\nDescription\n\t\nRelatedFieldListFilter doesn't fall back to the ordering defined in Model._meta.ordering. \nOrdering gets set to an empty tuple in ​https://github.com/django/django/blob/2.2.1/django/contrib/admin/filters.py#L196 and unless ordering is defined on the related model's ModelAdmin class it stays an empty tuple. IMHO it should fall back to the ordering defined in the related model's Meta.ordering field.\nRelatedOnlyFieldListFilter doesn't order the related model at all, even if ordering is defined on the related model's ModelAdmin class.\nThat's because the call to field.get_choices ​https://github.com/django/django/blob/2.2.1/django/contrib/admin/filters.py#L422 omits the ordering kwarg entirely.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admin/filters.py",
+      "django/db/models/fields/reverse_related.py",
+      "django/db/models/fields/__init__.py"
+    ],
+    "locations": [
+      "django/contrib/admin/filters.py::RelatedFieldListFilter",
+      "django/contrib/admin/filters.py::RelatedFieldListFilter.expected_parameters",
+      "django/contrib/admin/filters.py::RelatedFieldListFilter.field_choices",
+      "django/contrib/admin/filters.py::RelatedFieldListFilter.choices",
+      "django/contrib/admin/filters.py::RelatedOnlyFieldListFilter",
+      "django/contrib/admin/filters.py::RelatedOnlyFieldListFilter.field_choices",
+      "django/db/models/fields/__init__.py::Field",
+      "django/db/models/fields/__init__.py::Field.get_choices",
+      "django/db/models/fields/__init__.py::Field.value_to_string",
+      "django/db/models/fields/reverse_related.py::ForeignObjectRel",
+      "django/db/models/fields/reverse_related.py::ForeignObjectRel.get_choices",
+      "django/db/models/fields/reverse_related.py::ForeignObjectRel.is_hidden"
+    ]
+  },
+  "predictions": [
+    "tests/admin_ordering/tests.py::TestRelatedFieldsAdminOrdering.test_no_admin_fallback_to_model_ordering",
+    "tests/admin_filters/tests.py::ListFiltersTests.test_relatedfieldlistfilter_foreignkey_ordering",
+    "tests/admin_ordering/tests.py::TestRelatedFieldsAdminOrdering.test_admin_with_no_ordering_fallback_to_model_ordering",
+    "django/contrib/admin/filters.py::RelatedFieldListFilter.field_choices",
+    "tests/admin_ordering/tests.py::TestRelatedFieldsAdminOrdering.check_ordering_of_field_choices",
+    "tests/admin_ordering/tests.py::TestRelatedFieldsAdminOrdering.test_admin_ordering_beats_model_ordering",
+    "tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_missing_related_model_field",
+    "tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_missing_related_field",
+    "tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_two_related_model_field",
+    "tests/admin_filters/tests.py::ListFiltersTests.test_relatedfieldlistfilter_foreignkey_ordering_reverse"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "1f8382d34d54061eddc41df6994e20ee38c60907",
+    "total_functions_indexed": 22723,
+    "retrieval_time_seconds": 0.0542454719543457
+  },
+  "raw_output": "[{\"doc_id\": \"tests/admin_ordering/tests.py::TestRelatedFieldsAdminOrdering.test_no_admin_fallback_to_model_ordering\", \"score\": 0.673981785774231}, {\"doc_id\": \"tests/admin_filters/tests.py::ListFiltersTests.test_relatedfieldlistfilter_foreignkey_ordering\", \"score\": 0.6501888036727905}, {\"doc_id\": \"tests/admin_ordering/tests.py::TestRelatedFieldsAdminOrdering.test_admin_with_no_ordering_fallback_to_model_ordering\", \"score\": 0.6317220330238342}, {\"doc_id\": \"django/contrib/admin/filters.py::RelatedFieldListFilter.field_choices\", \"score\": 0.6316215991973877}, {\"doc_id\": \"tests/admin_ordering/tests.py::TestRelatedFieldsAdminOrdering.check_ordering_of_field_choices\", \"score\": 0.6298940777778625}, {\"doc_id\": \"tests/admin_ordering/tests.py::TestRelatedFieldsAdminOrdering.test_admin_ordering_beats_model_ordering\", \"score\": 0.5922498106956482}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_missing_related_model_field\", \"score\": 0.5863686800003052}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_missing_related_field\", \"score\": 0.5800853371620178}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_two_related_model_field\", \"score\": 0.5799896121025085}, {\"doc_id\": \"tests/admin_filters/tests.py::ListFiltersTests.test_relatedfieldlistfilter_foreignkey_ordering_reverse\", \"score\": 0.5786201357841492}]"
+}

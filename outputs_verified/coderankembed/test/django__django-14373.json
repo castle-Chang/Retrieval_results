@@ -1,0 +1,34 @@
+{
+  "instance_id": "django__django-14373",
+  "query": "DateFormat.Y() is not zero-padded.\nDescription\n\t\nThe Y specifier for django.utils.dateformat.DateFormat is supposed to always return a four-digit year padded with zeros. This doesn't seem to be the case for year < 1000.\n",
+  "ground_truth": {
+    "files": [
+      "django/utils/dateformat.py"
+    ],
+    "locations": [
+      "django/utils/dateformat.py::DateFormat",
+      "django/utils/dateformat.py::DateFormat.y",
+      "django/utils/dateformat.py::DateFormat.Y",
+      "django/utils/dateformat.py::DateFormat.z"
+    ]
+  },
+  "predictions": [
+    "django/utils/dateformat.py::DateFormat.y",
+    "django/utils/dateformat.py::DateFormat.Y",
+    "tests/utils_tests/test_dateformat.py::DateFormatTests.test_year_before_1000",
+    "django/utils/dateformat.py::DateFormat.z",
+    "tests/utils_tests/test_datetime_safe.py::DatetimeTests.test_zero_padding",
+    "tests/utils_tests/test_dateformat.py::DateFormatTests.test_day_of_year_leap",
+    "django/views/generic/dates.py::YearMixin.get_year_format",
+    "django/utils/dateformat.py::DateFormat.L",
+    "django/utils/dateformat.py::DateFormat.d",
+    "tests/admin_views/tests.py::DateHierarchyTests.assert_non_localized_year"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "b1a4b1f0bdf05adbd3dc4dde14228e68da54c1a3",
+    "total_functions_indexed": 24558,
+    "retrieval_time_seconds": 0.005512237548828125
+  },
+  "raw_output": "[{\"doc_id\": \"django/utils/dateformat.py::DateFormat.y\", \"score\": 0.6936467289924622}, {\"doc_id\": \"django/utils/dateformat.py::DateFormat.Y\", \"score\": 0.6530002951622009}, {\"doc_id\": \"tests/utils_tests/test_dateformat.py::DateFormatTests.test_year_before_1000\", \"score\": 0.5725216865539551}, {\"doc_id\": \"django/utils/dateformat.py::DateFormat.z\", \"score\": 0.5213754177093506}, {\"doc_id\": \"tests/utils_tests/test_datetime_safe.py::DatetimeTests.test_zero_padding\", \"score\": 0.5080274343490601}, {\"doc_id\": \"tests/utils_tests/test_dateformat.py::DateFormatTests.test_day_of_year_leap\", \"score\": 0.47509339451789856}, {\"doc_id\": \"django/views/generic/dates.py::YearMixin.get_year_format\", \"score\": 0.44289761781692505}, {\"doc_id\": \"django/utils/dateformat.py::DateFormat.L\", \"score\": 0.4396096467971802}, {\"doc_id\": \"django/utils/dateformat.py::DateFormat.d\", \"score\": 0.4198529124259949}, {\"doc_id\": \"tests/admin_views/tests.py::DateHierarchyTests.assert_non_localized_year\", \"score\": 0.4190153479576111}]"
+}

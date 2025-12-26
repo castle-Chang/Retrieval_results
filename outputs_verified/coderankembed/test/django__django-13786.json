@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-13786",
+  "query": "squashmigrations does not unset model options when optimizing CreateModel and AlterModelOptions\nDescription\n\t\nWhen an operation resembling AlterModelOptions(name=\"test_model\", options={}) is squashed into the corresponding CreateModel operation, model options are not cleared on the resulting new CreateModel operation object.\nCreateModel.reduce() sets the new options as options={**self.options, **operation.options} in this case (django/db/migrations/operations/models.py line 144 on commit 991dce4f), with no logic to remove options not found in operation.options as is found in AlterModelOptions.state_forwards().\nI believe this issue still exists on the master branch based on my reading of the code, but I've only tested against 2.2.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/operations/models.py"
+    ],
+    "locations": [
+      "django/db/migrations/operations/models.py::CreateModel",
+      "django/db/migrations/operations/models.py::CreateModel.reduce"
+    ]
+  },
+  "predictions": [
+    "tests/migrations/test_operations.py::OperationTests.test_alter_model_options_emptying",
+    "tests/migrations/test_optimizer.py::OptimizerTests.test_create_alter_model_options",
+    "tests/migrations/test_operations.py::OperationTests.test_alter_model_options",
+    "django/db/migrations/operations/models.py::AlterModelOptions.state_forwards",
+    "tests/migrations/test_operations.py::OperationTests.test_create_model",
+    "tests/migrations/test_optimizer.py::OptimizerTests.test_optimize_through_create",
+    "tests/migrations/test_commands.py::SquashMigrationsTests.test_squashmigrations_optimizes",
+    "django/db/migrations/operations/models.py::AlterModelOptions.__init__",
+    "tests/migrations/test_autodetector.py::AutodetectorTests.test_alter_model_options",
+    "tests/migrations/test_commands.py::SquashMigrationsTests.test_ticket_23799_squashmigrations_no_optimize"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "bb64b99b78a579cb2f6178011a4cf9366e634438",
+    "total_functions_indexed": 24230,
+    "retrieval_time_seconds": 0.0068972110748291016
+  },
+  "raw_output": "[{\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_alter_model_options_emptying\", \"score\": 0.6116175651550293}, {\"doc_id\": \"tests/migrations/test_optimizer.py::OptimizerTests.test_create_alter_model_options\", \"score\": 0.5595073699951172}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_alter_model_options\", \"score\": 0.5376378297805786}, {\"doc_id\": \"django/db/migrations/operations/models.py::AlterModelOptions.state_forwards\", \"score\": 0.4857131838798523}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_create_model\", \"score\": 0.4783398509025574}, {\"doc_id\": \"tests/migrations/test_optimizer.py::OptimizerTests.test_optimize_through_create\", \"score\": 0.4749736189842224}, {\"doc_id\": \"tests/migrations/test_commands.py::SquashMigrationsTests.test_squashmigrations_optimizes\", \"score\": 0.4745449423789978}, {\"doc_id\": \"django/db/migrations/operations/models.py::AlterModelOptions.__init__\", \"score\": 0.4699801504611969}, {\"doc_id\": \"tests/migrations/test_autodetector.py::AutodetectorTests.test_alter_model_options\", \"score\": 0.46954572200775146}, {\"doc_id\": \"tests/migrations/test_commands.py::SquashMigrationsTests.test_ticket_23799_squashmigrations_no_optimize\", \"score\": 0.4572965204715729}]"
+}

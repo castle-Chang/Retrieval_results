@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12754",
+  "query": "FieldError when migrating field to new model subclass.\nDescription\n\t\nAnalogous to #21890. If creating a model subclass and moving a field onto it in the same step, makemigrations works but migrate dies with django.core.exceptions.FieldError: Local field 'title' in class 'Book' clashes with field of the same name from base class 'Readable'.\nFor example, take this model:\nfrom django.db import models\nclass Readable(models.Model):\n\ttitle = models.CharField(max_length=200)\nAnd change to this:\nfrom django.db import models\nclass Readable(models.Model):\n\tpass\nclass Book(Readable):\n\ttitle = models.CharField(max_length=200)\nThe migration generates with CreateModel for Book, then RemoveField for Readable.title. But running it produces the error.\nReversing the order of the migration operations makes it pass. The auto-detector should be able to use this order.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/autodetector.py"
+    ],
+    "locations": [
+      "django/db/migrations/autodetector.py::MigrationAutodetector",
+      "django/db/migrations/autodetector.py::MigrationAutodetector.generate_created_models"
+    ]
+  },
+  "predictions": [
+    "tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_cannot_override_indirect_abstract_field",
+    "tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_override_one2one_relation_auto_field_clashes",
+    "django/db/models/base.py::Model._check_field_name_clashes",
+    "django/db/migrations/operations/fields.py::AddField.database_backwards",
+    "django/db/migrations/operations/fields.py::RenameField.database_backwards",
+    "tests/migrations/test_operations.py::OperationTests.test_rename_missing_field",
+    "tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_multi_inheritance_field_clashes",
+    "tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_multiple_times_to_model_fields",
+    "tests/migrations/test_autodetector.py::AutodetectorTests.test_rename_model_with_renamed_rel_field",
+    "tests/invalid_models_tests/test_models.py::ShadowingFieldsTests.test_field_name_clash_with_child_accessor"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "18759b2209ff556aed7f20d83cbf23e3d234e41c",
+    "total_functions_indexed": 23454,
+    "retrieval_time_seconds": 0.01347041130065918
+  },
+  "raw_output": "[{\"doc_id\": \"tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_cannot_override_indirect_abstract_field\", \"score\": 0.5100817680358887}, {\"doc_id\": \"tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_override_one2one_relation_auto_field_clashes\", \"score\": 0.503642201423645}, {\"doc_id\": \"django/db/models/base.py::Model._check_field_name_clashes\", \"score\": 0.47135859727859497}, {\"doc_id\": \"django/db/migrations/operations/fields.py::AddField.database_backwards\", \"score\": 0.46916109323501587}, {\"doc_id\": \"django/db/migrations/operations/fields.py::RenameField.database_backwards\", \"score\": 0.4678889214992523}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_rename_missing_field\", \"score\": 0.4638850688934326}, {\"doc_id\": \"tests/model_inheritance/test_abstract_inheritance.py::AbstractInheritanceTests.test_multi_inheritance_field_clashes\", \"score\": 0.46206891536712646}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_multiple_times_to_model_fields\", \"score\": 0.4587250351905823}, {\"doc_id\": \"tests/migrations/test_autodetector.py::AutodetectorTests.test_rename_model_with_renamed_rel_field\", \"score\": 0.45737916231155396}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::ShadowingFieldsTests.test_field_name_clash_with_child_accessor\", \"score\": 0.4561733901500702}]"
+}

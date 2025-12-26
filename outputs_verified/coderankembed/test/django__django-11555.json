@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11555",
+  "query": "order_by() a parent model crash when Meta.ordering contains expressions.\nDescription\n\t \n\t\t(last modified by Jonny Fuller)\n\t \nHi friends,\nDuring testing I discovered a strange bug when using a query expression for ordering during multi-table inheritance. You can find the full write up as well as reproducible test repository ​https://github.com/JonnyWaffles/djangoordermetabug. The bug occurs because the field is an OrderBy object, not a string, during get_order_dir. The linked stacktrace should make the issue obvious, but what I don't understand is why it only fails during test db setup, not during repl or script use. I wish I could help more and come up with a real solution. Hopefully, this is enough for someone wiser to find the culprit.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/sql/compiler.py"
+    ],
+    "locations": [
+      "django/db/models/sql/compiler.py::SQLCompiler",
+      "django/db/models/sql/compiler.py::SQLCompiler.find_ordering_name"
+    ]
+  },
+  "predictions": [
+    "django/db/models/sql/compiler.py::SQLCompiler.get_order_by",
+    "tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_with_order_with_respect_to",
+    "tests/queries/tests.py::Queries5Tests.test_ordering",
+    "tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_foreignkey_field",
+    "tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_two_related_model_field",
+    "django/db/models/expressions.py::BaseExpression.asc",
+    "tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_missing_related_model_field",
+    "tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_non_related_field",
+    "tests/queries/tests.py::Queries1Tests.test_tickets_2076_7256",
+    "django/db/models/expressions.py::BaseExpression.reverse_ordering"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "8dd5877f58f84f2b11126afbd0813e24545919ed",
+    "total_functions_indexed": 22642,
+    "retrieval_time_seconds": 0.0221860408782959
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/sql/compiler.py::SQLCompiler.get_order_by\", \"score\": 0.5325648188591003}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_with_order_with_respect_to\", \"score\": 0.5313355922698975}, {\"doc_id\": \"tests/queries/tests.py::Queries5Tests.test_ordering\", \"score\": 0.5274771451950073}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_foreignkey_field\", \"score\": 0.5207233428955078}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_two_related_model_field\", \"score\": 0.5198802947998047}, {\"doc_id\": \"django/db/models/expressions.py::BaseExpression.asc\", \"score\": 0.5182894468307495}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_missing_related_model_field\", \"score\": 0.5161874294281006}, {\"doc_id\": \"tests/invalid_models_tests/test_models.py::OtherModelTests.test_ordering_pointing_to_non_related_field\", \"score\": 0.516049325466156}, {\"doc_id\": \"tests/queries/tests.py::Queries1Tests.test_tickets_2076_7256\", \"score\": 0.5144808292388916}, {\"doc_id\": \"django/db/models/expressions.py::BaseExpression.reverse_ordering\", \"score\": 0.5139820575714111}]"
+}

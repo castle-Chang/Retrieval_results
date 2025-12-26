@@ -1,0 +1,35 @@
+{
+  "instance_id": "django__django-15957",
+  "query": "Prefetch objects don't work with slices\nDescription\n\t\n​Prefetch() objects does not work with sliced querysets. For example the following code results in AssertionError: Cannot filter a query once a slice has been taken.:\nCategory.objects.prefetch_related(Prefetch(\n\t'post_set',\n\tqueryset=Post.objects.all()[:3],\n\tto_attr='example_posts',\n))\nThis behavior is also mentioned in ​this StackOverflow answer. On the other hand it does not seem to be documented in Django Docs.\nWhy is it needed?\nMy use case seems to be a common one: I want to display a list of categories while displaying couple of example objects from each category next to it. If I'm not mistaken there isn't currently an efficient way of doing this. Prefetching without slicing would prefetch all objects (and there may be thousands of them) instead of the three examples that are needed.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/related_descriptors.py"
+    ],
+    "locations": [
+      "django/db/models/fields/related_descriptors.py::ForeignKeyDeferredAttribute",
+      "django/db/models/fields/related_descriptors.py::ForeignKeyDeferredAttribute.__set__",
+      "django/db/models/fields/related_descriptors.py::ForwardManyToOneDescriptor",
+      "django/db/models/fields/related_descriptors.py::create_reverse_many_to_one_manager",
+      "django/db/models/fields/related_descriptors.py::create_forward_many_to_many_manager"
+    ]
+  },
+  "predictions": [
+    "tests/prefetch_related/test_prefetch_related_objects.py::PrefetchRelatedObjectsTests.test_prefetch_queryset",
+    "tests/prefetch_related/tests.py::CustomPrefetchTests.test_values_queryset",
+    "tests/model_forms/tests.py::OtherModelFormTests.test_prefetch_related_queryset",
+    "tests/prefetch_related/tests.py::PrefetchRelatedTests.test_m2m_prefetching_iterator_without_chunks",
+    "django/db/models/query.py::prefetch_related_objects",
+    "tests/prefetch_related/tests.py::CustomPrefetchTests.test_raw_queryset",
+    "tests/prefetch_related/test_prefetch_related_objects.py::PrefetchRelatedObjectsTests.test_prefetch_object",
+    "tests/queryset_pickle/tests.py::PickleabilityTestCase.test_pickle_prefetch_queryset_usable_outside_of_prefetch",
+    "tests/prefetch_related/tests.py::PrefetchRelatedTests.test_overriding_prefetch",
+    "tests/prefetch_related/tests.py::PrefetchRelatedTests.test_get"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "f387d024fc75569d2a4a338bfda76cc2f328f627",
+    "total_functions_indexed": 26117,
+    "retrieval_time_seconds": 0.0057675838470458984
+  },
+  "raw_output": "[{\"doc_id\": \"tests/prefetch_related/test_prefetch_related_objects.py::PrefetchRelatedObjectsTests.test_prefetch_queryset\", \"score\": 0.5331970453262329}, {\"doc_id\": \"tests/prefetch_related/tests.py::CustomPrefetchTests.test_values_queryset\", \"score\": 0.5051131248474121}, {\"doc_id\": \"tests/model_forms/tests.py::OtherModelFormTests.test_prefetch_related_queryset\", \"score\": 0.5038294792175293}, {\"doc_id\": \"tests/prefetch_related/tests.py::PrefetchRelatedTests.test_m2m_prefetching_iterator_without_chunks\", \"score\": 0.4901620149612427}, {\"doc_id\": \"django/db/models/query.py::prefetch_related_objects\", \"score\": 0.4812784194946289}, {\"doc_id\": \"tests/prefetch_related/tests.py::CustomPrefetchTests.test_raw_queryset\", \"score\": 0.47898468375205994}, {\"doc_id\": \"tests/prefetch_related/test_prefetch_related_objects.py::PrefetchRelatedObjectsTests.test_prefetch_object\", \"score\": 0.4757383167743683}, {\"doc_id\": \"tests/queryset_pickle/tests.py::PickleabilityTestCase.test_pickle_prefetch_queryset_usable_outside_of_prefetch\", \"score\": 0.4733559489250183}, {\"doc_id\": \"tests/prefetch_related/tests.py::PrefetchRelatedTests.test_overriding_prefetch\", \"score\": 0.4708485007286072}, {\"doc_id\": \"tests/prefetch_related/tests.py::PrefetchRelatedTests.test_get\", \"score\": 0.4696941375732422}]"
+}

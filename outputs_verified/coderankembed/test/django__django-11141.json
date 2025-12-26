@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11141",
+  "query": "Allow migrations directories without __init__.py files\nDescription\n\t \n\t\t(last modified by Tim Graham)\n\t \nBackground: In python 3 a package with no __init__.py is implicitly a namespace package, so it has no __file__ attribute. \nThe migrate command currently checks for existence of a __file__ attribute on the migrations package. This check was introduced in #21015, because the __file__ attribute was used in migration file discovery. \nHowever, in #23406 migration file discovery was changed to use pkgutil.iter_modules (), instead of direct filesystem access. pkgutil. iter_modules() uses the package's __path__ list, which exists on implicit namespace packages.\nAs a result, the __file__ check is no longer needed, and in fact prevents migrate from working on namespace packages (implicit or otherwise). \nRelated work: #29091\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/loader.py"
+    ],
+    "locations": [
+      "django/db/migrations/loader.py::MigrationLoader",
+      "django/db/migrations/loader.py::MigrationLoader.load_disk"
+    ]
+  },
+  "predictions": [
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_no_init",
+    "tests/migrations/test_loader.py::LoaderTests.test_load_empty_dir",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_migrations_modules_path_not_exist",
+    "django/db/migrations/questioner.py::MigrationQuestioner.ask_initial",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_migrations_modules_nonexistent_toplevel_package",
+    "django/db/migrations/writer.py::MigrationWriter.basedir",
+    "tests/migrations/test_commands.py::MakeMigrationsTests.test_files_content",
+    "django/utils/module_loading.py::module_dir",
+    "tests/migrations/test_loader.py::LoaderTests.test_ignore_files",
+    "django/db/migrations/loader.py::MigrationLoader.load_disk"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "5d9cf79baf07fc4aed7ad1b06990532a65378155",
+    "total_functions_indexed": 22871,
+    "retrieval_time_seconds": 0.032830238342285156
+  },
+  "raw_output": "[{\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_no_init\", \"score\": 0.528022289276123}, {\"doc_id\": \"tests/migrations/test_loader.py::LoaderTests.test_load_empty_dir\", \"score\": 0.5102009773254395}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_migrations_modules_path_not_exist\", \"score\": 0.45577794313430786}, {\"doc_id\": \"django/db/migrations/questioner.py::MigrationQuestioner.ask_initial\", \"score\": 0.4524348974227905}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_makemigrations_migrations_modules_nonexistent_toplevel_package\", \"score\": 0.4439969062805176}, {\"doc_id\": \"django/db/migrations/writer.py::MigrationWriter.basedir\", \"score\": 0.4343162775039673}, {\"doc_id\": \"tests/migrations/test_commands.py::MakeMigrationsTests.test_files_content\", \"score\": 0.43260520696640015}, {\"doc_id\": \"django/utils/module_loading.py::module_dir\", \"score\": 0.43069425225257874}, {\"doc_id\": \"tests/migrations/test_loader.py::LoaderTests.test_ignore_files\", \"score\": 0.4301376938819885}, {\"doc_id\": \"django/db/migrations/loader.py::MigrationLoader.load_disk\", \"score\": 0.4227917492389679}]"
+}

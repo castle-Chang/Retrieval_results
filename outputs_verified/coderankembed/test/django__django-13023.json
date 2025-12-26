@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-13023",
+  "query": "DecimalField.to_python() raises TypeError on dict values.\nDescription\n\t\nA call to DecimalField.to_python() with a dictionary as the value parameter produces TypeError instead of ValidationError. This is a problem, for example, when you try to save a model object, and a decimal field got set to a dictionary by mistake. The TypeError exception that comes back makes it hard to track the problem to the field if the object has a lot of fields.\nI am proposing a patch to fix it:\n​https://github.com/django/django/pull/13023\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/fields/__init__.py"
+    ],
+    "locations": [
+      "django/db/models/fields/__init__.py::DecimalField",
+      "django/db/models/fields/__init__.py::DecimalField.to_python"
+    ]
+  },
+  "predictions": [
+    "django/db/models/fields/__init__.py::DecimalField.to_python",
+    "django/forms/fields.py::DecimalField.to_python",
+    "tests/model_fields/test_decimalfield.py::DecimalFieldTests.test_to_python",
+    "django/db/models/fields/__init__.py::DecimalField.get_prep_value",
+    "tests/validation/test_error_messages.py::ValidationMessagesTest.test_decimal_field_raises_error_message",
+    "django/db/models/fields/__init__.py::DecimalField.get_internal_type",
+    "django/db/models/fields/__init__.py::Field.to_python",
+    "django/db/models/fields/__init__.py::DecimalField.get_db_prep_save",
+    "django/db/models/fields/__init__.py::FloatField.to_python",
+    "django/db/models/fields/__init__.py::DateTimeField.to_python"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "f83b44075dafa429d59e8755aa47e15577cc49f9",
+    "total_functions_indexed": 23532,
+    "retrieval_time_seconds": 0.06690144538879395
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/fields/__init__.py::DecimalField.to_python\", \"score\": 0.6744844913482666}, {\"doc_id\": \"django/forms/fields.py::DecimalField.to_python\", \"score\": 0.6503512859344482}, {\"doc_id\": \"tests/model_fields/test_decimalfield.py::DecimalFieldTests.test_to_python\", \"score\": 0.6488849520683289}, {\"doc_id\": \"django/db/models/fields/__init__.py::DecimalField.get_prep_value\", \"score\": 0.5523476600646973}, {\"doc_id\": \"tests/validation/test_error_messages.py::ValidationMessagesTest.test_decimal_field_raises_error_message\", \"score\": 0.5405095815658569}, {\"doc_id\": \"django/db/models/fields/__init__.py::DecimalField.get_internal_type\", \"score\": 0.5360767841339111}, {\"doc_id\": \"django/db/models/fields/__init__.py::Field.to_python\", \"score\": 0.5269063115119934}, {\"doc_id\": \"django/db/models/fields/__init__.py::DecimalField.get_db_prep_save\", \"score\": 0.5233141183853149}, {\"doc_id\": \"django/db/models/fields/__init__.py::FloatField.to_python\", \"score\": 0.5209580659866333}, {\"doc_id\": \"django/db/models/fields/__init__.py::DateTimeField.to_python\", \"score\": 0.517903745174408}]"
+}

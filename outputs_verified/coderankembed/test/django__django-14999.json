@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-14999",
+  "query": "RenameModel with db_table should be a noop.\nDescription\n\t\nA RenameModel operation that already has db_table defined must be a noop.\nIn Postgres, it drops and recreates foreign key constraints. In sqlite it recreates the table (as expected for a table renaming).\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/operations/models.py"
+    ],
+    "locations": [
+      "django/db/migrations/operations/models.py::RenameModel",
+      "django/db/migrations/operations/models.py::RenameModel.database_forwards"
+    ]
+  },
+  "predictions": [
+    "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor.alter_db_table",
+    "django/db/backends/sqlite3/schema.py::DatabaseSchemaEditor.alter_db_table",
+    "tests/migrations/test_autodetector.py::AutodetectorTests.test_keep_db_table_with_model_change",
+    "tests/schema/tests.py::SchemaTests.test_db_table",
+    "tests/schema/tests.py::SchemaTests.test_referenced_table_without_constraint_rename_inside_atomic_block",
+    "django/db/migrations/operations/models.py::RenameModel.__init__",
+    "django/db/migrations/operations/models.py::RenameModel.database_forwards",
+    "tests/migrations/test_operations.py::OperationTests.test_rename_model",
+    "tests/migrations/test_autodetector.py::AutodetectorTests.test_alter_db_table_with_model_change",
+    "django/db/backends/sqlite3/schema.py::DatabaseSchemaEditor._remake_table"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "a754b82dac511475b6276039471ccd17cc64aeb8",
+    "total_functions_indexed": 25228,
+    "retrieval_time_seconds": 0.006159067153930664
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/backends/base/schema.py::BaseDatabaseSchemaEditor.alter_db_table\", \"score\": 0.5930525064468384}, {\"doc_id\": \"django/db/backends/sqlite3/schema.py::DatabaseSchemaEditor.alter_db_table\", \"score\": 0.5804438591003418}, {\"doc_id\": \"tests/migrations/test_autodetector.py::AutodetectorTests.test_keep_db_table_with_model_change\", \"score\": 0.5570409893989563}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_db_table\", \"score\": 0.5326889753341675}, {\"doc_id\": \"tests/schema/tests.py::SchemaTests.test_referenced_table_without_constraint_rename_inside_atomic_block\", \"score\": 0.5232221484184265}, {\"doc_id\": \"django/db/migrations/operations/models.py::RenameModel.__init__\", \"score\": 0.5193062424659729}, {\"doc_id\": \"django/db/migrations/operations/models.py::RenameModel.database_forwards\", \"score\": 0.5152860283851624}, {\"doc_id\": \"tests/migrations/test_operations.py::OperationTests.test_rename_model\", \"score\": 0.5139336585998535}, {\"doc_id\": \"tests/migrations/test_autodetector.py::AutodetectorTests.test_alter_db_table_with_model_change\", \"score\": 0.5109184384346008}, {\"doc_id\": \"django/db/backends/sqlite3/schema.py::DatabaseSchemaEditor._remake_table\", \"score\": 0.5069597959518433}]"
+}

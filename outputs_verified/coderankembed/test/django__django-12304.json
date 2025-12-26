@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-12304",
+  "query": "Enumeration Types are not usable in templates.\nDescription\n\t \n\t\t(last modified by Mariusz Felisiak)\n\t \nThe new ​enumeration types are great but can't be used in Django templates due to their being callable. For example this doesn't work:\n{% if student.year_in_school == YearInSchool.FRESHMAN %}\nThis is because YearInSchool, being a class, is callable, and Django Templates always call callables with no arguments. The call fails because the required value argument is missing.\nThe easy solution would be to declare do_not_call_in_templates = True on the various Choices classes.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/enums.py"
+    ],
+    "locations": [
+      "django/db/models/enums.py::ChoicesMeta",
+      "django/db/models/enums.py::ChoicesMeta.__new__",
+      "django/db/models/enums.py::ChoicesMeta.__contains__"
+    ]
+  },
+  "predictions": [
+    "django/db/models/enums.py::Choices.__str__",
+    "tests/model_enums/tests.py::ChoicesTests.test_invalid_definition",
+    "tests/model_enums/tests.py::ChoicesTests.test_textchoices_containment",
+    "django/db/models/enums.py::ChoicesMeta.__new__",
+    "tests/model_enums/tests.py::CustomChoicesTests.test_bool_unsupported",
+    "tests/model_enums/tests.py::CustomChoicesTests.test_timezone_unsupported",
+    "django/db/models/enums.py::ChoicesMeta.__contains__",
+    "tests/model_enums/tests.py::CustomChoicesTests.test_uuid_unsupported",
+    "django/db/models/fields/__init__.py::Field._choices_is_value",
+    "django/db/models/enums.py::ChoicesMeta.names"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "4c1b401e8250f9f520b3c7dc369554477ce8b15a",
+    "total_functions_indexed": 23148,
+    "retrieval_time_seconds": 0.0417020320892334
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/enums.py::Choices.__str__\", \"score\": 0.4266369342803955}, {\"doc_id\": \"tests/model_enums/tests.py::ChoicesTests.test_invalid_definition\", \"score\": 0.4215252697467804}, {\"doc_id\": \"tests/model_enums/tests.py::ChoicesTests.test_textchoices_containment\", \"score\": 0.395367830991745}, {\"doc_id\": \"django/db/models/enums.py::ChoicesMeta.__new__\", \"score\": 0.3919188976287842}, {\"doc_id\": \"tests/model_enums/tests.py::CustomChoicesTests.test_bool_unsupported\", \"score\": 0.37756991386413574}, {\"doc_id\": \"tests/model_enums/tests.py::CustomChoicesTests.test_timezone_unsupported\", \"score\": 0.3774704337120056}, {\"doc_id\": \"django/db/models/enums.py::ChoicesMeta.__contains__\", \"score\": 0.37165379524230957}, {\"doc_id\": \"tests/model_enums/tests.py::CustomChoicesTests.test_uuid_unsupported\", \"score\": 0.3696475625038147}, {\"doc_id\": \"django/db/models/fields/__init__.py::Field._choices_is_value\", \"score\": 0.3645784854888916}, {\"doc_id\": \"django/db/models/enums.py::ChoicesMeta.names\", \"score\": 0.35570797324180603}]"
+}

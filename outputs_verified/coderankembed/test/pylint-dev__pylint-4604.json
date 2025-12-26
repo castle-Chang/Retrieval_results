@@ -1,0 +1,33 @@
+{
+  "instance_id": "pylint-dev__pylint-4604",
+  "query": "unused-import false positive for a module used in a type comment\n### Steps to reproduce\r\n\r\n```python\r\n\"\"\"Docstring.\"\"\"\r\n\r\nimport abc\r\nfrom abc import ABC\r\n\r\nX = ...  # type: abc.ABC\r\nY = ...  # type: ABC\r\n```\r\n\r\n### Current behavior\r\n\r\n```\r\n************* Module a\r\n/tmp/a.py:3:0: W0611: Unused import abc (unused-import)\r\n\r\n-----------------------------------\r\nYour code has been rated at 7.50/10\r\n```\r\n\r\n### Expected behavior\r\n\r\n`unused-import` should not be emitted.\r\n\r\n### pylint --version output\r\n\r\nResult of `pylint --version` output:\r\n\r\n```\r\npylint 2.8.3\r\nastroid 2.5.6\r\nPython 3.9.2 (default, Feb 28 2021, 17:03:44) \r\n[GCC 10.2.1 20210110]\r\n```\r\n\r\nThis is a follow up to #3112.\n",
+  "ground_truth": {
+    "files": [
+      "pylint/constants.py",
+      "pylint/checkers/variables.py"
+    ],
+    "locations": [
+      "pylint/checkers/variables.py::VariablesChecker",
+      "pylint/checkers/variables.py::VariablesChecker._store_type_annotation_node"
+    ]
+  },
+  "predictions": [
+    "tests/functional/u/unused/unused_variable.py::unused_import_from",
+    "tests/functional/u/unused/unused_typing_imports.py::unused_reassigned_import",
+    "tests/functional/u/unused/unused_typing_imports.py::ContextManager.__exit__",
+    "tests/functional/u/unused/unused_typing_imports.py::unused_assignment_import",
+    "tests/functional/u/unused/unused_typing_imports.py::func_test_type_comment",
+    "tests/functional/u/unused/unused_variable.py::unused_import_in_function",
+    "tests/functional/u/unused/unused_typing_imports.py::ContextManager.__enter__",
+    "tests/functional/u/unused/unused_import_assigned_to.py::test",
+    "tests/functional/u/unused/unused_variable.py::test_regression_737",
+    "tests/functional/u/unused/unused_typing_imports.py::func2"
+  ],
+  "metadata": {
+    "repo": "pylint-dev/pylint",
+    "commit": "1e55ae64624d28c5fe8b63ad7979880ee2e6ef3f",
+    "total_functions_indexed": 4370,
+    "retrieval_time_seconds": 0.0010676383972167969
+  },
+  "raw_output": "[{\"doc_id\": \"tests/functional/u/unused/unused_variable.py::unused_import_from\", \"score\": 0.5453698635101318}, {\"doc_id\": \"tests/functional/u/unused/unused_typing_imports.py::unused_reassigned_import\", \"score\": 0.5269456505775452}, {\"doc_id\": \"tests/functional/u/unused/unused_typing_imports.py::ContextManager.__exit__\", \"score\": 0.5191512107849121}, {\"doc_id\": \"tests/functional/u/unused/unused_typing_imports.py::unused_assignment_import\", \"score\": 0.5147655606269836}, {\"doc_id\": \"tests/functional/u/unused/unused_typing_imports.py::func_test_type_comment\", \"score\": 0.5031697750091553}, {\"doc_id\": \"tests/functional/u/unused/unused_variable.py::unused_import_in_function\", \"score\": 0.4838506579399109}, {\"doc_id\": \"tests/functional/u/unused/unused_typing_imports.py::ContextManager.__enter__\", \"score\": 0.48096174001693726}, {\"doc_id\": \"tests/functional/u/unused/unused_import_assigned_to.py::test\", \"score\": 0.4787450134754181}, {\"doc_id\": \"tests/functional/u/unused/unused_variable.py::test_regression_737\", \"score\": 0.472692608833313}, {\"doc_id\": \"tests/functional/u/unused/unused_typing_imports.py::func2\", \"score\": 0.470429003238678}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-15467",
+  "query": "ModelAdmin with defined radio_fields override empty_label\nDescription\n\t\nModelAdmin drops my \"empty_label\" and set \"default_empty_label\". For example:\nclass MyModelAdmin(ModelAdmin):\n\tradio_fields = 'myfield',\n\tdef formfield_for_foreignkey(self, db_field, *args, **kwargs):\n\t\tif db_field.name == 'myfield':\n\t\t\tkwargs['empty_label'] = \"I WANT TO SET MY OWN EMPTY LABEL\"\n\t\treturn super().formfield_for_foreignkey(db_field, *args, **kwargs)\nYou get never the \"I WANT TO SET MY OWN EMPTY LABEL\"\nHow to fix it:\nIn django\\contrib\\admin\\options.py, row 234:\nkwargs['empty_label'] = _('None') if db_field.blank else None\nShould be changed on:\nkwargs['empty_label'] = (kwargs.get('empty_label') or _('None')) if db_field.blank else None\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admin/options.py"
+    ],
+    "locations": [
+      "django/contrib/admin/options.py::BaseModelAdmin",
+      "django/contrib/admin/options.py::BaseModelAdmin.formfield_for_foreignkey"
+    ]
+  },
+  "predictions": [
+    "tests/admin_widgets/tests.py::AdminFormfieldForDBFieldTests.test_radio_fields_ForeignKey",
+    "django/contrib/admin/options.py::BaseModelAdmin.formfield_for_choice_field",
+    "django/contrib/admin/options.py::BaseModelAdmin.formfield_for_foreignkey",
+    "tests/model_forms/tests.py::ModelFormBaseTest.test_blank_foreign_key_with_radio",
+    "django/contrib/admin/checks.py::BaseModelAdminChecks._check_radio_fields_key",
+    "tests/modeladmin/tests.py::ModelAdminTests.test_foreign_key_as_radio_field",
+    "django/forms/models.py::ModelChoiceField.__init__",
+    "django/contrib/admin/options.py::BaseModelAdmin.formfield_for_dbfield",
+    "django/contrib/admin/options.py::BaseModelAdmin.__init__",
+    "django/contrib/admin/options.py::BaseModelAdmin.get_empty_value_display"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "e0442a628eb480eac6a7888aed5a86f83499e299",
+    "total_functions_indexed": 25674,
+    "retrieval_time_seconds": 0.09357476234436035
+  },
+  "raw_output": "[{\"doc_id\": \"tests/admin_widgets/tests.py::AdminFormfieldForDBFieldTests.test_radio_fields_ForeignKey\", \"score\": 0.5430957674980164}, {\"doc_id\": \"django/contrib/admin/options.py::BaseModelAdmin.formfield_for_choice_field\", \"score\": 0.5110407471656799}, {\"doc_id\": \"django/contrib/admin/options.py::BaseModelAdmin.formfield_for_foreignkey\", \"score\": 0.5066598653793335}, {\"doc_id\": \"tests/model_forms/tests.py::ModelFormBaseTest.test_blank_foreign_key_with_radio\", \"score\": 0.4959349036216736}, {\"doc_id\": \"django/contrib/admin/checks.py::BaseModelAdminChecks._check_radio_fields_key\", \"score\": 0.49484315514564514}, {\"doc_id\": \"tests/modeladmin/tests.py::ModelAdminTests.test_foreign_key_as_radio_field\", \"score\": 0.4898127615451813}, {\"doc_id\": \"django/forms/models.py::ModelChoiceField.__init__\", \"score\": 0.46159955859184265}, {\"doc_id\": \"django/contrib/admin/options.py::BaseModelAdmin.formfield_for_dbfield\", \"score\": 0.45960885286331177}, {\"doc_id\": \"django/contrib/admin/options.py::BaseModelAdmin.__init__\", \"score\": 0.455142617225647}, {\"doc_id\": \"django/contrib/admin/options.py::BaseModelAdmin.get_empty_value_display\", \"score\": 0.4496188759803772}]"
+}

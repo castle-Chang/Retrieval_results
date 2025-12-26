@@ -1,0 +1,33 @@
+{
+  "instance_id": "django__django-12050",
+  "query": "Query.resolve_lookup_value coerces value of type list to tuple\nDescription\n\t\nChanges introduced in #30687 cause an input value list to be coerced to tuple breaking exact value queries. This affects ORM field types that are dependent on matching input types such as PickledField.\nThe expected iterable return type should match input iterable type.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/sql/query.py"
+    ],
+    "locations": [
+      "django/db/models/sql/query.py::Query",
+      "django/db/models/sql/query.py::Query.resolve_lookup_value",
+      "django/db/models/sql/query.py::Query.solve_lookup_type"
+    ]
+  },
+  "predictions": [
+    "django/db/models/sql/query.py::Query.resolve_lookup_value",
+    "tests/lookup/tests.py::LookupTests.test_values_list",
+    "tests/queries/tests.py::RelatedLookupTypeTests.test_values_queryset_lookup",
+    "django/contrib/postgres/fields/array.py::ArrayInLookup.get_prep_lookup",
+    "django/db/models/lookups.py::FieldGetDbPrepValueIterableMixin.get_prep_lookup",
+    "tests/admin_filters/tests.py::ListFiltersTests.test_fieldlistfilter_underscorelookup_tuple",
+    "tests/admin_utils/tests.py::UtilsTests.test_values_from_lookup_field",
+    "django/db/models/sql/query.py::Query.solve_lookup_type",
+    "django/db/models/fields/related_lookups.py::get_normalized_value",
+    "django/db/models/lookups.py::FieldGetDbPrepValueMixin.get_db_prep_lookup"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "b93a0e34d9b9b99d41103782b7e7aeabf47517e3",
+    "total_functions_indexed": 22994,
+    "retrieval_time_seconds": 0.043212890625
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/models/sql/query.py::Query.resolve_lookup_value\", \"score\": 0.5911830067634583}, {\"doc_id\": \"tests/lookup/tests.py::LookupTests.test_values_list\", \"score\": 0.49109670519828796}, {\"doc_id\": \"tests/queries/tests.py::RelatedLookupTypeTests.test_values_queryset_lookup\", \"score\": 0.48191672563552856}, {\"doc_id\": \"django/contrib/postgres/fields/array.py::ArrayInLookup.get_prep_lookup\", \"score\": 0.4790421426296234}, {\"doc_id\": \"django/db/models/lookups.py::FieldGetDbPrepValueIterableMixin.get_prep_lookup\", \"score\": 0.4503363072872162}, {\"doc_id\": \"tests/admin_filters/tests.py::ListFiltersTests.test_fieldlistfilter_underscorelookup_tuple\", \"score\": 0.44861334562301636}, {\"doc_id\": \"tests/admin_utils/tests.py::UtilsTests.test_values_from_lookup_field\", \"score\": 0.4402378797531128}, {\"doc_id\": \"django/db/models/sql/query.py::Query.solve_lookup_type\", \"score\": 0.42795610427856445}, {\"doc_id\": \"django/db/models/fields/related_lookups.py::get_normalized_value\", \"score\": 0.422604501247406}, {\"doc_id\": \"django/db/models/lookups.py::FieldGetDbPrepValueMixin.get_db_prep_lookup\", \"score\": 0.40514278411865234}]"
+}

@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-13417",
+  "query": "QuerySet.ordered property is incorrect for GROUP BY queries on models with Meta.ordering.\nDescription\n\t\nUsing the annotate function on a queryset doesn't keep the default ordering set in model's meta class.\nA property should say whether the queryset will be ordered or not. I wanted to use the qs.ordered property for this but it seems to stay truthy, even if the resulting SQL query will not have an ORDER BY clause.\nExample: \nqs = Foo.objects.all()\n​\n# SQL => 'SELECT \"foo_foo\".\"uuid\", \"foo_foo\".\"name\" FROM \"foo_foo\" ORDER BY \"foo_foo\".\"name\" ASC'\n​\nqs.ordered # => True\nqs.query.default_ordering # => True\n​\n############################################\n​\nqs2 = Foo.objects.annotate(Count(\"pk\")).all()\n​\n# SQL => 'SELECT \"foo_foo\".\"uuid\", \"foo_foo\".\"name\", COUNT(\"foo_foo\".\"uuid\") AS \"pk__count\" FROM \"foo_foo\" GROUP BY \"foo_foo\".\"uuid\"'\n​\nqs2.ordered # => True\nqs2.query.default_ordering # => True\nIf it can help : I'm using PostgreSQL\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/query.py"
+    ],
+    "locations": [
+      "django/db/models/query.py::QuerySet",
+      "django/db/models/query.py::QuerySet.ordered"
+    ]
+  },
+  "predictions": [
+    "tests/queries/tests.py::QuerysetOrderedTests.test_annotated_ordering",
+    "tests/queries/tests.py::QuerysetOrderedTests.test_explicit_ordering",
+    "tests/queries/tests.py::QuerysetOrderedTests.test_no_default_or_explicit_ordering",
+    "tests/queries/tests.py::QuerysetOrderedTests.test_order_by_extra",
+    "django/db/models/query.py::QuerySet.ordered",
+    "tests/queries/tests.py::QuerysetOrderedTests.test_empty_queryset",
+    "tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_order_by_annotation",
+    "tests/aggregation/tests.py::AggregateTestCase.test_annotate_ordering",
+    "tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_order_by_aggregate",
+    "tests/aggregation/tests.py::AggregateTestCase.test_grouped_annotation_in_group_by"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "71ae1ab0123582cc5bfe0f7d5f4cc19a9412f396",
+    "total_functions_indexed": 23866,
+    "retrieval_time_seconds": 0.0050318241119384766
+  },
+  "raw_output": "[{\"doc_id\": \"tests/queries/tests.py::QuerysetOrderedTests.test_annotated_ordering\", \"score\": 0.6795909404754639}, {\"doc_id\": \"tests/queries/tests.py::QuerysetOrderedTests.test_explicit_ordering\", \"score\": 0.638886034488678}, {\"doc_id\": \"tests/queries/tests.py::QuerysetOrderedTests.test_no_default_or_explicit_ordering\", \"score\": 0.6247845888137817}, {\"doc_id\": \"tests/queries/tests.py::QuerysetOrderedTests.test_order_by_extra\", \"score\": 0.5914704203605652}, {\"doc_id\": \"django/db/models/query.py::QuerySet.ordered\", \"score\": 0.5724332928657532}, {\"doc_id\": \"tests/queries/tests.py::QuerysetOrderedTests.test_empty_queryset\", \"score\": 0.564788818359375}, {\"doc_id\": \"tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_order_by_annotation\", \"score\": 0.5265164375305176}, {\"doc_id\": \"tests/aggregation/tests.py::AggregateTestCase.test_annotate_ordering\", \"score\": 0.524880051612854}, {\"doc_id\": \"tests/annotations/tests.py::NonAggregateAnnotationTestCase.test_order_by_aggregate\", \"score\": 0.5175533890724182}, {\"doc_id\": \"tests/aggregation/tests.py::AggregateTestCase.test_grouped_annotation_in_group_by\", \"score\": 0.5097309350967407}]"
+}

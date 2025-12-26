@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-12713",
+  "query": "Allow overridding widget in formfield_for_manytomany().\nDescription\n\t \n\t\t(last modified by Mariusz Felisiak)\n\t \nIt does not work when I set widget param to function formfield_for_manytomany().\nThis is different from the formfield_for_foreignkey() function.\n",
+  "ground_truth": {
+    "files": [
+      "django/contrib/admin/options.py"
+    ],
+    "locations": [
+      "django/contrib/admin/options.py::BaseModelAdmin",
+      "django/contrib/admin/options.py::BaseModelAdmin.formfield_for_manytomany"
+    ]
+  },
+  "predictions": [
+    "tests/admin_widgets/tests.py::AdminFormfieldForDBFieldTests.test_formfield_overrides_widget_instances",
+    "django/contrib/admin/options.py::BaseModelAdmin.formfield_for_manytomany",
+    "tests/admin_widgets/tests.py::AdminFormfieldForDBFieldTests.test_formfield_overrides",
+    "tests/modeladmin/tests.py::ModelAdminTests.test_raw_id_fields_widget_override",
+    "tests/admin_widgets/tests.py::AdminFormfieldForDBFieldTests.test_formfield_overrides_for_datetime_field",
+    "django/contrib/admin/options.py::BaseModelAdmin.formfield_for_dbfield",
+    "tests/admin_widgets/tests.py::AdminFormfieldForDBFieldTests.test_formfield_overrides_for_custom_field",
+    "django/contrib/gis/admin/options.py::GeoModelAdmin.formfield_for_dbfield",
+    "tests/postgres_tests/test_json.py::TestFormField.test_custom_widget_kwarg",
+    "tests/model_forms/tests.py::TestFieldOverridesByFormMeta.test_widget_overrides"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "5b884d45ac5b76234eca614d90c83b347294c332",
+    "total_functions_indexed": 23429,
+    "retrieval_time_seconds": 0.0061800479888916016
+  },
+  "raw_output": "[{\"doc_id\": \"tests/admin_widgets/tests.py::AdminFormfieldForDBFieldTests.test_formfield_overrides_widget_instances\", \"score\": 0.5584863424301147}, {\"doc_id\": \"django/contrib/admin/options.py::BaseModelAdmin.formfield_for_manytomany\", \"score\": 0.5577237606048584}, {\"doc_id\": \"tests/admin_widgets/tests.py::AdminFormfieldForDBFieldTests.test_formfield_overrides\", \"score\": 0.5454702377319336}, {\"doc_id\": \"tests/modeladmin/tests.py::ModelAdminTests.test_raw_id_fields_widget_override\", \"score\": 0.5429950952529907}, {\"doc_id\": \"tests/admin_widgets/tests.py::AdminFormfieldForDBFieldTests.test_formfield_overrides_for_datetime_field\", \"score\": 0.5403380393981934}, {\"doc_id\": \"django/contrib/admin/options.py::BaseModelAdmin.formfield_for_dbfield\", \"score\": 0.5387762188911438}, {\"doc_id\": \"tests/admin_widgets/tests.py::AdminFormfieldForDBFieldTests.test_formfield_overrides_for_custom_field\", \"score\": 0.5264475345611572}, {\"doc_id\": \"django/contrib/gis/admin/options.py::GeoModelAdmin.formfield_for_dbfield\", \"score\": 0.5137335062026978}, {\"doc_id\": \"tests/postgres_tests/test_json.py::TestFormField.test_custom_widget_kwarg\", \"score\": 0.5049521923065186}, {\"doc_id\": \"tests/model_forms/tests.py::TestFieldOverridesByFormMeta.test_widget_overrides\", \"score\": 0.4978160262107849}]"
+}

@@ -1,0 +1,31 @@
+{
+  "instance_id": "psf__requests-1921",
+  "query": "Removing a default header of a session\n[The docs](http://docs.python-requests.org/en/latest/user/advanced/#session-objects) say that you can prevent sending a session header by setting the headers value to None in the method's arguments. You would expect (as [discussed on IRC](https://botbot.me/freenode/python-requests/msg/10788170/)) that this would work for session's default headers, too:\n\n``` python\nsession = requests.Session()\n# Do not send Accept-Encoding\nsession.headers['Accept-Encoding'] = None\n```\n\nWhat happens is that \"None\"  gets sent as the value of header.\n\n```\nAccept-Encoding: None\n```\n\nFor the reference, here is a way that works:\n\n``` python\ndel session.headers['Accept-Encoding']\n```\n\n",
+  "ground_truth": {
+    "files": [
+      "requests/sessions.py"
+    ],
+    "locations": [
+      "requests/sessions.py::merge_setting"
+    ]
+  },
+  "predictions": [
+    "test_requests.py::RequestsTestCase.test_header_remove_is_case_insensitive",
+    "requests/utils.py::default_headers",
+    "test_requests.py::RequestsTestCase.test_session_hooks_are_used_with_no_request_hooks",
+    "test_requests.py::RequestsTestCase.test_request_cookie_overrides_session_cookie",
+    "requests/sessions.py::merge_setting",
+    "requests/sessions.py::Session.head",
+    "test_requests.py::RequestsTestCase.test_cookie_removed_on_expire",
+    "requests/utils.py::get_encoding_from_headers",
+    "requests/sessions.py::Session.delete",
+    "requests/sessions.py::session"
+  ],
+  "metadata": {
+    "repo": "psf/requests",
+    "commit": "3c88e520da24ae6f736929a750876e7654accc3d",
+    "total_functions_indexed": 585,
+    "retrieval_time_seconds": 0.08610701560974121
+  },
+  "raw_output": "[{\"doc_id\": \"test_requests.py::RequestsTestCase.test_header_remove_is_case_insensitive\", \"score\": 0.5215203762054443}, {\"doc_id\": \"requests/utils.py::default_headers\", \"score\": 0.41420409083366394}, {\"doc_id\": \"test_requests.py::RequestsTestCase.test_session_hooks_are_used_with_no_request_hooks\", \"score\": 0.39186739921569824}, {\"doc_id\": \"test_requests.py::RequestsTestCase.test_request_cookie_overrides_session_cookie\", \"score\": 0.36955636739730835}, {\"doc_id\": \"requests/sessions.py::merge_setting\", \"score\": 0.36707597970962524}, {\"doc_id\": \"requests/sessions.py::Session.head\", \"score\": 0.3587700128555298}, {\"doc_id\": \"test_requests.py::RequestsTestCase.test_cookie_removed_on_expire\", \"score\": 0.34074002504348755}, {\"doc_id\": \"requests/utils.py::get_encoding_from_headers\", \"score\": 0.3338458836078644}, {\"doc_id\": \"requests/sessions.py::Session.delete\", \"score\": 0.3285021185874939}, {\"doc_id\": \"requests/sessions.py::session\", \"score\": 0.3159501254558563}]"
+}

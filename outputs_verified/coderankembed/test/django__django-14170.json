@@ -1,0 +1,38 @@
+{
+  "instance_id": "django__django-14170",
+  "query": "Query optimization in YearLookup breaks filtering by \"__iso_year\"\nDescription\n\t \n\t\t(last modified by Florian Demmer)\n\t \nThe optimization to use BETWEEN instead of the EXTRACT operation in ​YearLookup is also registered for the ​\"__iso_year\" lookup, which breaks the functionality provided by ​ExtractIsoYear when used via the lookup.\nThis has unfortunately been broken ever since ExtractIsoYear was introduced in ​Django 2.2 via #28649 and wasn't easy to track down since ExtractIsoYear when used by itself eg. in an annotation works perfectly fine. Just when using the lookup in a filter, the optimization is used (even when explicitly using an annotation):\n# annotation works\n>>> qs = DTModel.objects.annotate(extracted=ExtractIsoYear('start_date')).only('id')\n>>> print(qs.query)\nSELECT \"db_functions_dtmodel\".\"id\", EXTRACT('isoyear' FROM \"db_functions_dtmodel\".\"start_date\") AS \"extracted\" FROM \"db_functions_dtmodel\"\n# explicit annotation used in filter does not use \"extracted\" and adds BETWEEN\n>>> print(qs.filter(extracted=2020).query)\nSELECT \"db_functions_dtmodel\".\"id\", EXTRACT('isoyear' FROM \"db_functions_dtmodel\".\"start_date\") AS \"extracted\" FROM \"db_functions_dtmodel\" WHERE \"db_functions_dtmodel\".\"start_date\" BETWEEN 2020-01-01 AND 2020-12-31\n# implicit lookup uses BETWEEN\n>>> print(DTModel.objects.filter(start_date__iso_year=2020).only('id').query)\nSELECT \"db_functions_dtmodel\".\"id\" FROM \"db_functions_dtmodel\" WHERE \"db_functions_dtmodel\".\"start_date\" BETWEEN 2020-01-01 AND 2020-12-31\nThis results in the wrong data being returned by filters using iso_year.\nThis PR fixes the behaviour, reverts the invalid changes to the tests and extends one test to catch this problem: ​https://github.com/django/django/pull/14157\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/lookups.py",
+      "django/db/backends/base/operations.py"
+    ],
+    "locations": [
+      "django/db/backends/base/operations.py::BaseDatabaseOperations",
+      "django/db/backends/base/operations.py::BaseDatabaseOperations.adapt_ipaddressfield_value",
+      "django/db/backends/base/operations.py::BaseDatabaseOperations.year_lookup_bounds_for_date_field",
+      "django/db/backends/base/operations.py::BaseDatabaseOperations.year_lookup_bounds_for_datetime_field",
+      "django/db/models/lookups.py::YearLookup",
+      "django/db/models/lookups.py::YearLookup.year_lookup_bounds",
+      "django/db/models/lookups.py::YearLookup.as_sql"
+    ]
+  },
+  "predictions": [
+    "tests/db_functions/datetime/test_extract_trunc.py::DateFunctionTests.test_extract_year_exact_lookup",
+    "tests/db_functions/datetime/test_extract_trunc.py::DateFunctionTests.test_extract_year_lessthan_lookup",
+    "tests/db_functions/datetime/test_extract_trunc.py::DateFunctionTests.test_extract_year_greaterthan_lookup",
+    "tests/db_functions/datetime/test_extract_trunc.py::DateFunctionTests.test_extract_iso_year_func",
+    "tests/db_functions/datetime/test_extract_trunc.py::DateFunctionTests.test_extract_iso_year_func_boundaries",
+    "tests/db_functions/datetime/test_extract_trunc.py::DateFunctionTests.test_extract_year_func",
+    "tests/basic/tests.py::ModelTest.test_year_lookup_edge_case",
+    "tests/custom_lookups/tests.py::YearLteTests.test_year_lte",
+    "tests/db_functions/datetime/test_extract_trunc.py::DateFunctionTests.test_trunc_year_func",
+    "django/db/models/lookups.py::YearLookup.as_sql"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "6efc35b4fe3009666e56a60af0675d7d532bf4ff",
+    "total_functions_indexed": 24435,
+    "retrieval_time_seconds": 0.004360675811767578
+  },
+  "raw_output": "[{\"doc_id\": \"tests/db_functions/datetime/test_extract_trunc.py::DateFunctionTests.test_extract_year_exact_lookup\", \"score\": 0.6055243611335754}, {\"doc_id\": \"tests/db_functions/datetime/test_extract_trunc.py::DateFunctionTests.test_extract_year_lessthan_lookup\", \"score\": 0.5897840261459351}, {\"doc_id\": \"tests/db_functions/datetime/test_extract_trunc.py::DateFunctionTests.test_extract_year_greaterthan_lookup\", \"score\": 0.5759093165397644}, {\"doc_id\": \"tests/db_functions/datetime/test_extract_trunc.py::DateFunctionTests.test_extract_iso_year_func\", \"score\": 0.531005322933197}, {\"doc_id\": \"tests/db_functions/datetime/test_extract_trunc.py::DateFunctionTests.test_extract_iso_year_func_boundaries\", \"score\": 0.4879181981086731}, {\"doc_id\": \"tests/db_functions/datetime/test_extract_trunc.py::DateFunctionTests.test_extract_year_func\", \"score\": 0.47384676337242126}, {\"doc_id\": \"tests/basic/tests.py::ModelTest.test_year_lookup_edge_case\", \"score\": 0.46252208948135376}, {\"doc_id\": \"tests/custom_lookups/tests.py::YearLteTests.test_year_lte\", \"score\": 0.4311141073703766}, {\"doc_id\": \"tests/db_functions/datetime/test_extract_trunc.py::DateFunctionTests.test_trunc_year_func\", \"score\": 0.42885494232177734}, {\"doc_id\": \"django/db/models/lookups.py::YearLookup.as_sql\", \"score\": 0.4281122088432312}]"
+}

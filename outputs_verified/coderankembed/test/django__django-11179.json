@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-11179",
+  "query": "delete() on instances of models without any dependencies doesn't clear PKs.\nDescription\n\t\nDeleting any model with no dependencies not updates the PK on the model. It should be set to None after .delete() call.\nSee Django.db.models.deletion:276-281. Should update the model line 280.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/models/deletion.py"
+    ],
+    "locations": [
+      "django/db/models/deletion.py::Collector",
+      "django/db/models/deletion.py::Collector.delete"
+    ]
+  },
+  "predictions": [
+    "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._delete_primary_key",
+    "django/db/models/deletion.py::Collector.delete",
+    "django/contrib/admin/options.py::ModelAdmin.delete_model",
+    "django/contrib/auth/models.py::AnonymousUser.delete",
+    "tests/delete_regress/tests.py::ProxyDeleteTest.test_delete_concrete_parent",
+    "tests/basic/tests.py::ModelRefreshTests.test_refresh_fk_on_delete_set_null",
+    "django/db/models/deletion.py::Collector.__init__",
+    "django/db/backends/sqlite3/schema.py::DatabaseSchemaEditor.delete_model",
+    "django/db/models/base.py::Model.__hash__",
+    "tests/delete/tests.py::FastDeleteTests.test_fast_delete_inheritance"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "19fc6376ce67d01ca37a91ef2f55ef769f50513a",
+    "total_functions_indexed": 22420,
+    "retrieval_time_seconds": 0.015214204788208008
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/backends/base/schema.py::BaseDatabaseSchemaEditor._delete_primary_key\", \"score\": 0.4838869869709015}, {\"doc_id\": \"django/db/models/deletion.py::Collector.delete\", \"score\": 0.4819904863834381}, {\"doc_id\": \"django/contrib/admin/options.py::ModelAdmin.delete_model\", \"score\": 0.4510623812675476}, {\"doc_id\": \"django/contrib/auth/models.py::AnonymousUser.delete\", \"score\": 0.44941413402557373}, {\"doc_id\": \"tests/delete_regress/tests.py::ProxyDeleteTest.test_delete_concrete_parent\", \"score\": 0.44399476051330566}, {\"doc_id\": \"tests/basic/tests.py::ModelRefreshTests.test_refresh_fk_on_delete_set_null\", \"score\": 0.4385628402233124}, {\"doc_id\": \"django/db/models/deletion.py::Collector.__init__\", \"score\": 0.43034982681274414}, {\"doc_id\": \"django/db/backends/sqlite3/schema.py::DatabaseSchemaEditor.delete_model\", \"score\": 0.4296049177646637}, {\"doc_id\": \"django/db/models/base.py::Model.__hash__\", \"score\": 0.4279939532279968}, {\"doc_id\": \"tests/delete/tests.py::FastDeleteTests.test_fast_delete_inheritance\", \"score\": 0.42763108015060425}]"
+}

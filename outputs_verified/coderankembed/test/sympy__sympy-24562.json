@@ -1,0 +1,32 @@
+{
+  "instance_id": "sympy__sympy-24562",
+  "query": "Rational calc value error\npython 3.11, sympy 1.11.1\r\nwhen calc Rational('0.5', '100'), the value is 1/100100; but Rational(0.5, 100) the value is 1/200, this value is the true value, and the version of sympy 1.8 is normal\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/numbers.py"
+    ],
+    "locations": [
+      "sympy/core/numbers.py::Rational",
+      "sympy/core/numbers.py::Rational.__new__"
+    ]
+  },
+  "predictions": [
+    "sympy/core/tests/test_power.py::test_rational",
+    "sympy/printing/tests/test_str.py::test_Rational",
+    "sympy/core/tests/test_numbers.py::test_issue_3321",
+    "sympy/solvers/tests/test_numeric.py::test_nsolve_rational",
+    "sympy/core/tests/test_numbers.py::test_Rational_int",
+    "sympy/polys/tests/test_pythonrational.py::test_PythonRational__float__",
+    "sympy/printing/tests/test_latex.py::test_latex_rational",
+    "sympy/printing/tests/test_rcode.py::test_rcode_Rational",
+    "sympy/core/tests/test_arit.py::test_issue_3514_18626",
+    "sympy/core/tests/test_truediv.py::test_truediv"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "b1cb676cf92dd1a48365b731979833375b188bf2",
+    "total_functions_indexed": 30025,
+    "retrieval_time_seconds": 0.09926342964172363
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/tests/test_power.py::test_rational\", \"score\": 0.5279607176780701}, {\"doc_id\": \"sympy/printing/tests/test_str.py::test_Rational\", \"score\": 0.5090271234512329}, {\"doc_id\": \"sympy/core/tests/test_numbers.py::test_issue_3321\", \"score\": 0.5040180683135986}, {\"doc_id\": \"sympy/solvers/tests/test_numeric.py::test_nsolve_rational\", \"score\": 0.501630961894989}, {\"doc_id\": \"sympy/core/tests/test_numbers.py::test_Rational_int\", \"score\": 0.4950386881828308}, {\"doc_id\": \"sympy/polys/tests/test_pythonrational.py::test_PythonRational__float__\", \"score\": 0.4899643063545227}, {\"doc_id\": \"sympy/printing/tests/test_latex.py::test_latex_rational\", \"score\": 0.4886506199836731}, {\"doc_id\": \"sympy/printing/tests/test_rcode.py::test_rcode_Rational\", \"score\": 0.48815006017684937}, {\"doc_id\": \"sympy/core/tests/test_arit.py::test_issue_3514_18626\", \"score\": 0.48577749729156494}, {\"doc_id\": \"sympy/core/tests/test_truediv.py::test_truediv\", \"score\": 0.48262423276901245}]"
+}

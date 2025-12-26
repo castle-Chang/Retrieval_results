@@ -1,0 +1,32 @@
+{
+  "instance_id": "django__django-14765",
+  "query": "ProjectState.__init__() can assume its real_apps argument is a set\nDescription\n\t\n​PR #14760 made all calls to ProjectState.__init__() pass real_apps as a set. In ​ProjectState.__init__() now, then, instead of checking that real_apps is a set and converting it to a set if not, it can just assert that it's a set when non-None. (Presumably the construction of new ProjectState objects is part of Django's internal API.) I had made this comment on the PR, but it wasn't important enough to hold up the PR because another PR was depending on it getting merged.\n",
+  "ground_truth": {
+    "files": [
+      "django/db/migrations/state.py"
+    ],
+    "locations": [
+      "django/db/migrations/state.py::ProjectState",
+      "django/db/migrations/state.py::ProjectState.__init__"
+    ]
+  },
+  "predictions": [
+    "django/db/migrations/state.py::ProjectState.__init__",
+    "django/db/migrations/state.py::ProjectState.from_apps",
+    "tests/migrations/test_state.py::StateTests.test_real_apps",
+    "django/db/migrations/state.py::StateApps.__init__",
+    "django/db/migrations/state.py::ProjectState.apps",
+    "django/db/migrations/state.py::ProjectState.clone",
+    "tests/migrations/test_state.py::StateTests.test_create",
+    "django/db/migrations/state.py::ProjectState.__eq__",
+    "tests/migrations/test_autodetector.py::AutodetectorTests.make_project_state",
+    "tests/migrations/test_state.py::StateTests.test_render_project_dependencies"
+  ],
+  "metadata": {
+    "repo": "django/django",
+    "commit": "4e8121e8e42a24acc3565851c9ef50ca8322b15c",
+    "total_functions_indexed": 24954,
+    "retrieval_time_seconds": 0.0050907135009765625
+  },
+  "raw_output": "[{\"doc_id\": \"django/db/migrations/state.py::ProjectState.__init__\", \"score\": 0.6061302423477173}, {\"doc_id\": \"django/db/migrations/state.py::ProjectState.from_apps\", \"score\": 0.5858935117721558}, {\"doc_id\": \"tests/migrations/test_state.py::StateTests.test_real_apps\", \"score\": 0.5656450986862183}, {\"doc_id\": \"django/db/migrations/state.py::StateApps.__init__\", \"score\": 0.5271434783935547}, {\"doc_id\": \"django/db/migrations/state.py::ProjectState.apps\", \"score\": 0.47712811827659607}, {\"doc_id\": \"django/db/migrations/state.py::ProjectState.clone\", \"score\": 0.47583526372909546}, {\"doc_id\": \"tests/migrations/test_state.py::StateTests.test_create\", \"score\": 0.4709797203540802}, {\"doc_id\": \"django/db/migrations/state.py::ProjectState.__eq__\", \"score\": 0.4680527448654175}, {\"doc_id\": \"tests/migrations/test_autodetector.py::AutodetectorTests.make_project_state\", \"score\": 0.46190929412841797}, {\"doc_id\": \"tests/migrations/test_state.py::StateTests.test_render_project_dependencies\", \"score\": 0.45617783069610596}]"
+}

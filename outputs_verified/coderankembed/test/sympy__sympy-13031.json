@@ -1,0 +1,33 @@
+{
+  "instance_id": "sympy__sympy-13031",
+  "query": "Behavior of Matrix hstack and vstack changed in sympy 1.1\nIn sympy 1.0:\r\n```\r\nimport sympy as sy\r\nM1 = sy.Matrix.zeros(0, 0)\r\nM2 = sy.Matrix.zeros(0, 1)\r\nM3 = sy.Matrix.zeros(0, 2)\r\nM4 = sy.Matrix.zeros(0, 3)\r\nsy.Matrix.hstack(M1, M2, M3, M4).shape\r\n```\r\nreturns \r\n`(0, 6)`\r\n\r\nNow, same in sympy 1.1:\r\n```\r\nimport sympy as sy\r\nM1 = sy.Matrix.zeros(0, 0)\r\nM2 = sy.Matrix.zeros(0, 1)\r\nM3 = sy.Matrix.zeros(0, 2)\r\nM4 = sy.Matrix.zeros(0, 3)\r\nsy.Matrix.hstack(M1, M2, M3, M4).shape\r\n```\r\nreturns\r\n`(0, 3)\r\n`\r\nwhereas:\r\n```\r\nimport sympy as sy\r\nM1 = sy.Matrix.zeros(1, 0)\r\nM2 = sy.Matrix.zeros(1, 1)\r\nM3 = sy.Matrix.zeros(1, 2)\r\nM4 = sy.Matrix.zeros(1, 3)\r\nsy.Matrix.hstack(M1, M2, M3, M4).shape\r\n```\r\nreturns\r\n`(1, 6)\r\n`\n",
+  "ground_truth": {
+    "files": [
+      "sympy/matrices/sparse.py"
+    ],
+    "locations": [
+      "sympy/matrices/sparse.py::MutableSparseMatrix",
+      "sympy/matrices/sparse.py::MutableSparseMatrix.col_join",
+      "sympy/matrices/sparse.py::MutableSparseMatrix.row_join"
+    ]
+  },
+  "predictions": [
+    "sympy/matrices/tests/test_commonmatrix.py::test_hstack",
+    "sympy/matrices/tests/test_commonmatrix.py::test_vstack",
+    "sympy/matrices/tests/test_matrices.py::test_issue_11944",
+    "sympy/matrices/tests/test_matrices.py::test_issue_5320",
+    "sympy/matrices/common.py::MatrixShaping.hstack",
+    "sympy/matrices/common.py::MatrixShaping.vstack",
+    "sympy/matrices/common.py::MatrixShaping.shape",
+    "sympy/polys/agca/homomorphisms.py::MatrixHomomorphism._sympy_matrix",
+    "sympy/matrices/tests/test_commonmatrix.py::test_columnspace",
+    "sympy/matrices/tests/test_matrices.py::test_slicing"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "2dfa7457f20ee187fbb09b5b6a1631da4458388c",
+    "total_functions_indexed": 20881,
+    "retrieval_time_seconds": 0.0055942535400390625
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/matrices/tests/test_commonmatrix.py::test_hstack\", \"score\": 0.654827356338501}, {\"doc_id\": \"sympy/matrices/tests/test_commonmatrix.py::test_vstack\", \"score\": 0.5943523645401001}, {\"doc_id\": \"sympy/matrices/tests/test_matrices.py::test_issue_11944\", \"score\": 0.5841139554977417}, {\"doc_id\": \"sympy/matrices/tests/test_matrices.py::test_issue_5320\", \"score\": 0.5833807587623596}, {\"doc_id\": \"sympy/matrices/common.py::MatrixShaping.hstack\", \"score\": 0.5451825261116028}, {\"doc_id\": \"sympy/matrices/common.py::MatrixShaping.vstack\", \"score\": 0.506071925163269}, {\"doc_id\": \"sympy/matrices/common.py::MatrixShaping.shape\", \"score\": 0.4349236488342285}, {\"doc_id\": \"sympy/polys/agca/homomorphisms.py::MatrixHomomorphism._sympy_matrix\", \"score\": 0.4147018790245056}, {\"doc_id\": \"sympy/matrices/tests/test_commonmatrix.py::test_columnspace\", \"score\": 0.41453808546066284}, {\"doc_id\": \"sympy/matrices/tests/test_matrices.py::test_slicing\", \"score\": 0.41366273164749146}]"
+}

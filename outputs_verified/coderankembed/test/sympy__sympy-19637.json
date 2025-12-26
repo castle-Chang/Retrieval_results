@@ -1,0 +1,31 @@
+{
+  "instance_id": "sympy__sympy-19637",
+  "query": "kernS: 'kern' referenced before assignment\nfrom sympy.core.sympify import kernS\r\n\r\ntext = \"(2*x)/(x-1)\"\r\nexpr = kernS(text)  \r\n//  hit = kern in s\r\n// UnboundLocalError: local variable 'kern' referenced before assignment\n",
+  "ground_truth": {
+    "files": [
+      "sympy/core/sympify.py"
+    ],
+    "locations": [
+      "sympy/core/sympify.py::kernS"
+    ]
+  },
+  "predictions": [
+    "sympy/core/tests/test_sympify.py::test_kernS",
+    "sympy/core/sympify.py::kernS",
+    "sympy/core/tests/test_subs.py::test_issue_13333",
+    "sympy/core/tests/test_sympify.py::test_issue_6046",
+    "sympy/core/tests/test_subs.py::test_issue_11746",
+    "sympy/printing/tests/test_latex.py::test_issue_13559",
+    "sympy/core/tests/test_eval.py::test_evalpow_bug",
+    "sympy/core/tests/test_subs.py::test_issue_2877",
+    "sympy/core/tests/test_expr.py::test_issue_7426",
+    "sympy/core/tests/test_subs.py::test_subbug1"
+  ],
+  "metadata": {
+    "repo": "sympy/sympy",
+    "commit": "63f8f465d48559fecb4e4bf3c48b75bf15a3e0ef",
+    "total_functions_indexed": 34692,
+    "retrieval_time_seconds": 0.009226322174072266
+  },
+  "raw_output": "[{\"doc_id\": \"sympy/core/tests/test_sympify.py::test_kernS\", \"score\": 0.6439168453216553}, {\"doc_id\": \"sympy/core/sympify.py::kernS\", \"score\": 0.6183208227157593}, {\"doc_id\": \"sympy/core/tests/test_subs.py::test_issue_13333\", \"score\": 0.4868437349796295}, {\"doc_id\": \"sympy/core/tests/test_sympify.py::test_issue_6046\", \"score\": 0.43495094776153564}, {\"doc_id\": \"sympy/core/tests/test_subs.py::test_issue_11746\", \"score\": 0.4339943528175354}, {\"doc_id\": \"sympy/printing/tests/test_latex.py::test_issue_13559\", \"score\": 0.42842161655426025}, {\"doc_id\": \"sympy/core/tests/test_eval.py::test_evalpow_bug\", \"score\": 0.42723435163497925}, {\"doc_id\": \"sympy/core/tests/test_subs.py::test_issue_2877\", \"score\": 0.4246872365474701}, {\"doc_id\": \"sympy/core/tests/test_expr.py::test_issue_7426\", \"score\": 0.4220825433731079}, {\"doc_id\": \"sympy/core/tests/test_subs.py::test_subbug1\", \"score\": 0.414045512676239}]"
+}
